@@ -120,6 +120,17 @@ class Det:
             ")"
         )
 
+class RobotState:
+    def __init__(self):
+        # TRACK anti-spam
+        self.last_track_action = None
+        self.last_error_x = None
+        self.last_track_log = 0
+
+        # RECENTER anti-spam
+        self.last_recenter_action = None
+        self.last_recenter_error_x = None
+        self.last_recenter_log = 0
 
 # ============================================================
 # INICIALIZACIÓN
@@ -517,8 +528,10 @@ def state_search(px, dist, estado, accion):
     # --- Si no vemos nada → paneo ---
     return search_not_see(px)
 
-def state_recenter(px, dist, estado, accion):
+def state_recenter(px, dist, estado, accion, robot_state):
     det = get_detection(px)
+
+    # Entrada al estado
     if px.last_state != estado:
         log_event(px, estado, "Entrando en RECENTER")
         log_event(px, estado, f"DEBUG det: valid={det.valid} area={det.area} x={det.x} pan={px.last_pan}")
@@ -529,43 +542,114 @@ def state_recenter(px, dist, estado, accion):
     if estado != Estado.RECENTER:
         return estado, accion
 
-    # Ejecutar recenter
-    aligned = recenter(px, det)
+    # Si no hay detección válida → SEARCH
+    if not det.valid:
+        log_event(px, Estado.RECENTER, "Perdida baliza → SEARCH")
+        return Estado.SEARCH, Cmd.STOP
 
-    if aligned:
+    # ============================================================
+    # ANTI-SPAM RECENTER LOGIC
+    # ============================================================
+    import time
+    now = time.time()
+
+    # Determinar acción actual
+    if abs(det.error_x) <= 20:
+        action = "CENTERED"
+    elif det.error_x > 0:
+        action = "TURN_RIGHT"
+    else:
+        action = "TURN_LEFT"
+
+    # Condiciones para imprimir:
+    # 1) cambia la acción
+    # 2) error_x cambia más de 15 px
+    # 3) ha pasado más de 0.3 s desde el último log
+    should_log = (
+        action != robot_state.last_recenter_action or
+        robot_state.last_recenter_error_x is None or
+        abs(det.error_x - robot_state.last_recenter_error_x) > 15 or
+        now - robot_state.last_recenter_log > 0.3
+    )
+
+    if should_log:
+        if action == "CENTERED":
+            log_event(px, Estado.RECENTER, "Alineado ✔ (cuerpo + cámara)")
+        elif action == "TURN_RIGHT":
+            log_event(px, Estado.RECENTER, f"Giro cuerpo → derecha (error_x={det.error_x})")
+        else:
+            log_event(px, Estado.RECENTER, f"Giro cuerpo → izquierda (error_x={det.error_x})")
+
+        robot_state.last_recenter_action = action
+        robot_state.last_recenter_error_x = det.error_x
+        robot_state.last_recenter_log = now
+
+    # ============================================================
+
+    # Lógica original de movimiento
+    if abs(det.error_x) <= 20:
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
-    return Estado.RECENTER, Cmd.FORWARD_SLOW
+    if det.error_x > 0:
+        return Estado.RECENTER, Cmd.WHEELS_TURN_RIGHT
+    else:
+        return Estado.RECENTER, Cmd.WHEELS_TURN_LEFT
 
-def state_track(px, dist, estado, accion):
+def state_track(px, dist, estado, accion, robot_state):
     det = get_detection(px)
+
+    # Entrada al estado
     if px.last_state != estado:
         log_event(px, estado, "Entrando en TRACK")
         log_event(px, estado, f"DEBUG det: valid={det.valid} area={det.area} x={det.x} pan={px.last_pan}")
     px.last_state = estado
-    
+
     # Seguridad primero
     estado, accion = apply_safety(px, dist, estado, accion)
     if estado != Estado.TRACK:
         return estado, accion
 
+    # Si no hay detección válida → SEARCH
     if not det.valid:
-        if px.last_track_log != "lost":
-            log_event(px, Estado.TRACK, "Perdida baliza → SEARCH")
-            px.last_track_log = "lost"
+        log_event(px, Estado.TRACK, "Perdida baliza → SEARCH")
         return Estado.SEARCH, Cmd.STOP
 
-    # Corrección de dirección
+    # ============================================================
+    # ANTI-SPAM TRACK LOGIC (usando RobotState)
+    # ============================================================
+    import time
+    now = time.time()
+
+    # Determinar acción actual
     if abs(det.error_x) > 20:
-        if px.last_track_log != "correcting":
+        action = "CORRECT"
+    else:
+        action = "FORWARD"
+
+    # Condiciones para imprimir:
+    # 1) cambia la acción
+    # 2) error_x cambia más de 15 px
+    # 3) ha pasado más de 0.3 s desde el último log
+    should_log = (
+        action != robot_state.last_track_action or
+        robot_state.last_error_x is None or
+        abs(det.error_x - robot_state.last_error_x) > 15 or
+        now - robot_state.last_track_log > 0.3
+    )
+
+    if should_log:
+        if action == "FORWARD":
+            log_event(px, Estado.TRACK, "Avanzando hacia baliza")
+        else:
             log_event(px, Estado.TRACK, f"Corrigiendo error_x={det.error_x}")
-            px.last_track_log = "correcting"
 
-    # Avance
-    if px.last_track_log != "forward":
-        log_event(px, Estado.TRACK, "Avanzando hacia baliza")
-        px.last_track_log = "forward"
+        robot_state.last_track_action = action
+        robot_state.last_error_x = det.error_x
+        robot_state.last_track_log = now
 
+    # ============================================================
+
+    # Acción final del estado TRACK
     return Estado.TRACK, Cmd.FORWARD_SLOW
 
 # ============================================================
@@ -584,6 +668,7 @@ def pet_mode(px, test_mode):
     init_flags(px)
     estado, accion = init_internal_state(px)
     check_robot(px,log_event)
+    state = RobotState()
     log_event(px, estado, "Inicio del sistema")
 
     while True:
@@ -597,9 +682,9 @@ def pet_mode(px, test_mode):
         elif estado == Estado.SEARCH:
             estado, accion = state_search(px, px.dist, estado, accion)
         elif estado == Estado.RECENTER:
-            estado, accion = state_recenter(px, px.dist, estado, accion)
+            estado, accion = state_recenter(px, px.dist, estado, accion, state)
         elif estado == Estado.TRACK:
-            estado, accion = state_track(px, px.dist, estado, accion)
+            estado, accion = state_track(px, px.dist, estado, accion, state)
 
         if px.last_cmd != accion:
             log_event(px, estado, f"CMD {accion.name}")
