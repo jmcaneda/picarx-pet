@@ -24,9 +24,9 @@ CX = 160
 CY = 120
 
 """ Real
-FAST_SPEED = 30 
-SLOW_SPEED = 10 
-TURN_SPEED = 5 
+FAST_SPEED = 20 
+SLOW_SPEED = 5
+TURN_SPEED = 1 
 """
 
 # simulado
@@ -161,8 +161,6 @@ def init_flags(px):
     px.last_raw_n = 0
     px.last_sec = "safe"
     px.dist = 999
-    # px.safety_cooldown = 0
-
 
 # ============================================================
 # LOGGING
@@ -229,19 +227,19 @@ def recenter(px, det):
     if error > 25:
         log_event(px, Estado.RECENTER, f"Giro cuerpo → derecha (error_x={error})")
         px.set_dir_servo_angle(35)
-        px.forward(5)
+        px.forward(SLOW_SPEED)
         return False
 
     # --- 2. Si la baliza está claramente a la izquierda ---
     if error < -25:
         log_event(px, Estado.RECENTER, f"Giro cuerpo → izquierda (error_x={error})")
         px.set_dir_servo_angle(-35)
-        px.forward(5)
+        px.forward(SLOW_SPEED)
         return False
 
     # --- 3. Error pequeño: cuerpo casi alineado ---
     px.set_dir_servo_angle(0)
-    px.forward(5)
+    px.forward(SLOW_SPEED)
 
     # --- 4. Releer detección porque la baliza puede moverse ---
     det2 = get_detection(px)
