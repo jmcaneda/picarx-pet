@@ -1,22 +1,15 @@
-# ============================================
-# Ignorar TODO excepto .py, .md y .log
-# ============================================
-
-# Ignorar todo por defecto
+# Ignorar TODO por defecto
 *
 
-# Pero NO ignorar estas extensiones
+# Permitir solo estos tipos de archivo
 !*.py
 !*.md
 !*.log
 
-# NO ignorar estas carpetas (si las usas)
-!src/
-!sim/
-!docs/
+# Permitir carpetas necesarias
+!sounds/
+!sounds/*
+!__pycache__/
 
-# NO ignorar el propio .gitignore
+# No ignorar el propio .gitignore
 !.gitignore
-
-# NO ignorar archivos de configuración del repo
-!.gitattributes
