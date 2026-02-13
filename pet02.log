@@ -1,115 +1,36 @@
 === Start of pet02.log ===
-[21:12:06] [Estado.CHK] [CHK] ==============================
-[21:12:06] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[21:12:06] [Estado.CHK] [CHK] ==============================
-[21:12:06] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[21:12:06] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[21:12:06] [Estado.CHK] [CHK] State wheels:     0
-[21:12:06] [Estado.CHK] [CHK] ==============================
-[21:12:06] [Estado.IDLE] Inicio del sistema
-[21:12:06] [Estado.IDLE] Entrando en IDLE
-[21:12:06] [Estado.RESET] CMD STOP
-[21:12:06] [Estado.RESET] Entrando en RESET
-[21:12:06] [Estado.SEARCH] Entrando en SEARCH
-[21:12:06] [Estado.SEARCH] Paneo → derecha
-[21:12:06] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[21:12:10] [Estado.SEARCH] Det n=1 x=320.0 y=240.0
-[21:12:10] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[21:12:11] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[21:12:11] [Estado.SEARCH] Baliza encontrada
-[21:12:11] [Estado.RECENTER] CMD STOP
-[21:12:11] [Estado.RECENTER] Entrando en RECENTER
-[21:12:11] [Estado.RECENTER] DEBUG det: valid=True area=13312 x=160 pan=0
-[21:12:11] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
-[21:12:11] [Estado.TRACK] CMD FORWARD_SLOW
-[21:12:11] [Estado.TRACK] Entrando en TRACK
-[21:12:11] [Estado.TRACK] DEBUG det: valid=True area=10800 x=178 pan=0
-[21:12:11] [Estado.TRACK] Avanzando hacia baliza
-[21:12:11] [Estado.TRACK] Corrigiendo error_x=34
-[21:12:11] [Estado.TRACK] Corrigiendo error_x=64
-[21:12:11] [Estado.TRACK] Corrigiendo error_x=80
-[21:12:11] [Estado.TRACK] Corrigiendo error_x=98
-[21:12:11] [Estado.TRACK] Corrigiendo error_x=118
-[21:12:11] [Estado.TRACK] Corrigiendo error_x=136
-[21:12:12] [Estado.TRACK] Corrigiendo error_x=156
-[21:12:12] [Estado.TRACK] Corrigiendo error_x=176
-[21:12:12] [Estado.TRACK] Corrigiendo error_x=196
-[21:12:12] [Estado.TRACK] Corrigiendo error_x=212
-[21:12:12] [Estado.TRACK] Corrigiendo error_x=230
-[21:12:12] [Estado.TRACK] Corrigiendo error_x=248
-[21:12:13] [Estado.TRACK] Corrigiendo error_x=266
-[21:12:13] [Estado.TRACK] Corrigiendo error_x=284
-[21:12:13] [Estado.TRACK] Corrigiendo error_x=300
-[21:12:13] [Estado.TRACK] Corrigiendo error_x=320
-[21:12:13] [Estado.TRACK] Corrigiendo error_x=336
-[21:12:14] [Estado.TRACK] Corrigiendo error_x=342
-[21:12:14] [Estado.TRACK] Corrigiendo error_x=358
-[21:12:14] [Estado.TRACK] Corrigiendo error_x=374
-[21:12:14] [Estado.TRACK] Corrigiendo error_x=390
-[21:12:14] [Estado.TRACK] Corrigiendo error_x=398
-[21:12:14] [Estado.TRACK] Corrigiendo error_x=416
-[21:12:15] [Estado.TRACK] Corrigiendo error_x=434
-[21:12:15] [Estado.TRACK] Corrigiendo error_x=440
-[21:12:15] [Estado.TRACK] Corrigiendo error_x=428
-[21:12:16] [Estado.TRACK] Corrigiendo error_x=406
-[21:12:16] [Estado.TRACK] Corrigiendo error_x=382
-[21:12:16] [Estado.TRACK] Corrigiendo error_x=364
-[21:12:16] [Estado.TRACK] Corrigiendo error_x=388
-[21:12:16] [Estado.TRACK] Corrigiendo error_x=366
-[21:12:16] [Estado.TRACK] Corrigiendo error_x=348
-[21:12:17] [Estado.TRACK] Corrigiendo error_x=316
-[21:12:17] [Estado.TRACK] Corrigiendo error_x=298
-[21:12:17] [Estado.TRACK] Corrigiendo error_x=280
-[21:12:17] [Estado.TRACK] Corrigiendo error_x=256
-[21:12:17] [Estado.TRACK] Corrigiendo error_x=232
-[21:12:17] [Estado.TRACK] Corrigiendo error_x=206
-[21:12:17] [Estado.TRACK] Corrigiendo error_x=182
-[21:12:18] [Estado.TRACK] Corrigiendo error_x=160
-[21:12:18] [Estado.TRACK] Corrigiendo error_x=130
-[21:12:18] [Estado.TRACK] Corrigiendo error_x=110
-[21:12:18] [Estado.TRACK] Corrigiendo error_x=94
-[21:12:18] [Estado.TRACK] Corrigiendo error_x=78
-[21:12:18] [Estado.TRACK] Corrigiendo error_x=60
-[21:12:19] [Estado.TRACK] Corrigiendo error_x=44
-[21:12:19] [Estado.TRACK] Corrigiendo error_x=28
-[21:12:19] [Estado.TRACK] Avanzando hacia baliza
-[21:12:19] [Estado.TRACK] Corrigiendo error_x=-32
-[21:12:19] [Estado.TRACK] Corrigiendo error_x=-54
-[21:12:19] [Estado.TRACK] Corrigiendo error_x=-22
-[21:12:20] [Estado.TRACK] Corrigiendo error_x=-100
-[21:12:20] [Estado.TRACK] Corrigiendo error_x=-68
-[21:12:20] [Estado.TRACK] Corrigiendo error_x=-86
-[21:12:20] [Estado.TRACK] Corrigiendo error_x=-112
-[21:12:20] [Estado.TRACK] Corrigiendo error_x=-138
-[21:12:20] [Estado.TRACK] Perdida baliza → SEARCH
-[21:12:20] [Estado.SEARCH] CMD STOP
-[21:12:20] [Estado.SEARCH] Entrando en SEARCH
-[21:12:20] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[21:12:24] [Estado.SEARCH] Det n=2 x=320.0 y=240.0
-[21:12:24] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[21:12:25] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[21:12:25] [Estado.SEARCH] Baliza encontrada
-[21:12:25] [Estado.RECENTER] CMD STOP
-[21:12:26] [Estado.RECENTER] Entrando en RECENTER
-[21:12:26] [Estado.RECENTER] DEBUG det: valid=False area=20160 x=200 pan=0
-[21:12:26] [Estado.RECENTER] Perdida baliza → SEARCH
-[21:12:26] [Estado.SEARCH] Entrando en SEARCH
-[21:12:26] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[21:12:29] [Estado.SEARCH] Det n=4 x=320.0 y=240.0
-[21:12:31] [Estado.SEARCH] Baliza encontrada
-[21:12:31] [Estado.RECENTER] CMD STOP
-[21:12:31] [Estado.RECENTER] Entrando en RECENTER
-[21:12:31] [Estado.RECENTER] DEBUG det: valid=True area=5040 x=66 pan=0
-[21:12:31] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-94)
-[21:12:31] [Estado.RECENTER] CMD WHEELS_TURN_LEFT
-[21:12:31] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-52)
-[21:12:31] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-70)
-[21:12:31] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-130)
-[21:12:31] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-98)
-[21:12:32] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-142)
-[21:12:32] [Estado.RECENTER] Perdida baliza → SEARCH
-[21:12:32] [Estado.SEARCH] CMD STOP
-[21:12:32] [Estado.SEARCH] Entrando en SEARCH
-[21:12:32] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[21:12:34] [Estado.SEARCH] Det n=1 x=320.0 y=240.0
-[21:12:34] [Estado.SEARCH] Det n=1 x=314 y=298
+[12:02:34] [Estado.CHK] [CHK] ==============================
+[12:02:34] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[12:02:34] [Estado.CHK] [CHK] ==============================
+[12:02:34] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[12:02:34] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[12:02:34] [Estado.CHK] [CHK] State wheels:     0
+[12:02:34] [Estado.CHK] [CHK] ==============================
+[12:02:34] [Estado.IDLE] Inicio del sistema
+[12:02:34] [Estado.IDLE] Entrando en IDLE
+[12:02:34] [Estado.RESET] CMD STOP
+[12:02:34] [Estado.RESET] [SIM] Ejecutado: STOP
+[12:02:35] [Estado.RESET] Entrando en RESET
+[12:02:35] [Estado.SEARCH] [SIM] Ejecutado: STOP
+[12:02:35] [Estado.SEARCH] Entrando en SEARCH
+[12:02:35] [Estado.SEARCH] Paneo → derecha
+[12:02:35] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[12:02:35] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_RIGHT
+[12:02:40] [Estado.SEARCH] Cambio → izquierda
+[12:02:40] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[12:02:40] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_LEFT
+[12:02:49] [Estado.SEARCH] Cambio → derecha
+[12:02:49] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[12:02:49] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_RIGHT
+[12:02:58] [Estado.SEARCH] Cambio → izquierda
+[12:02:58] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[12:02:58] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_LEFT
+[12:03:07] [Estado.SEARCH] Cambio → derecha
+[12:03:07] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[12:03:07] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_RIGHT
+[12:03:16] [Estado.SEARCH] Cambio → izquierda
+[12:03:16] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[12:03:16] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_LEFT
+[12:03:25] [Estado.SEARCH] Cambio → derecha
+[12:03:25] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[12:03:25] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_RIGHT

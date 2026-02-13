@@ -3,7 +3,7 @@
 ############################################################
 
 import os
-from time import sleep, time, strftime, localtime
+import time
 from vilib import Vilib
 from enum import Enum
 from libs import hello_px, check_robot
@@ -34,7 +34,7 @@ FAST_SPEED = 0
 SLOW_SPEED = 0 
 TURN_SPEED = 0
 
-CAM_STEP = 2
+CAM_STEP = 4
 
 SAFE_DISTANCE = 45      # cm
 DANGER_DISTANCE = 25    # cm
@@ -147,13 +147,7 @@ def init_camera(px):
     # (tu baliza funciona con "red")
     Vilib.color_detect(BALIZA_COLOR)
 
-    px.last_pan = 0
-    px.last_paneo = None
-    px.last_tilt = 0
-    px.search_dir = 1      # 1 = derecha, -1 = izquierda
-    px.search_cycles = 0   # cuántos barridos completos llevamos
-
-    sleep(1)
+    time.sleep(0.5)
 
 def init_wheels(px):
     px.Wheels_last_dir = 0
@@ -172,6 +166,11 @@ def init_flags(px):
     px.last_raw_n = 0
     px.last_sec = "safe"
     px.dist = 999
+    px.search_dir = 1      # 1 = derecha, -1 = izquierda
+    px.last_pan = 0
+    px.last_paneo = None
+    px.last_tilt = 0
+    px.search_cycles = 0   # cuántos barridos completos llevamos
 
 # ============================================================
 # LOGGING
@@ -184,7 +183,7 @@ def log_event(px, estado, msg):
 
     px.last_log = (estado, msg)
 
-    ts = strftime("%H:%M:%S", localtime())
+    ts = time.strftime("%H:%M:%S", time.localtime())
     line = f"[{ts}] [{estado}] {msg}\n"
 
     with open(LOG_PATH, "a", encoding="utf-8") as f:
@@ -216,61 +215,12 @@ def turn_right(px, speed=TURN_SPEED):
     px.forward(speed)
 
 def scape_danger(px, speed=SLOW_SPEED):
-    px.set_dir_servo_angle(-30)
+    px.set_dir_servo_angle(-35)
     px.backward(speed)
-    sleep(0.6)
-    px.set_dir_servo_angle(30)
+    time.sleep(0.5)
+    px.set_dir_servo_angle(35)
     px.backward(speed)
-    sleep(0.4)
-
-def recenter(px, det):
-    """
-    RECENTER basado en error_x:
-    - La cabeza manda: el cuerpo gira según error_x.
-    - La cámara solo corrige fino.
-    - El servo de dirección vuelve a 0 cuando estamos casi alineados.
-    - Cuando error_x y pan son pequeños → alineado.
-    """
-
-    error = det.error_x
-
-    # --- 1. Si la baliza está claramente a la derecha ---
-    if error > 25:
-        log_event(px, Estado.RECENTER, f"Giro cuerpo → derecha (error_x={error})")
-        px.set_dir_servo_angle(35)
-        px.forward(SLOW_SPEED)
-        return False
-
-    # --- 2. Si la baliza está claramente a la izquierda ---
-    if error < -25:
-        log_event(px, Estado.RECENTER, f"Giro cuerpo → izquierda (error_x={error})")
-        px.set_dir_servo_angle(-35)
-        px.forward(SLOW_SPEED)
-        return False
-
-    # --- 3. Error pequeño: cuerpo casi alineado ---
-    px.set_dir_servo_angle(0)
-    px.forward(SLOW_SPEED)
-
-    # --- 4. Releer detección porque la baliza puede moverse ---
-    det2 = get_detection(px)
-    error2 = det2.error_x
-
-    # --- 5. Microcorrección de cámara ---
-    if error2 > 8:
-        pan_right(px)
-        return False
-    if error2 < -8:
-        pan_left(px)
-        return False
-
-    # --- 6. Condición de alineado ---
-    if abs(error2) < 8 and abs(px.last_pan) < 5:
-        log_event(px, Estado.RECENTER, "Alineado ✔ (cuerpo + cámara)")
-        px.stop()
-        return True
-
-    return False
+    time.sleep(0.5)
 
 # ============================================================
 # MOVIMIENTOS DE CÁMARA SEGUROS
@@ -278,49 +228,94 @@ def recenter(px, det):
 
 def pan_right(px, step=CAM_STEP):
     new_angle = px.last_pan + step
-    if new_angle <= PAN_MAX:
-        px.last_pan = new_angle
-        px.set_cam_pan_angle(px.last_pan)
+    if new_angle >= PAN_MAX:
+        new_angle = PAN_MAX
+    px.last_pan = new_angle
+    px.set_cam_pan_angle(px.last_pan)
 
 def pan_left(px, step=CAM_STEP):
     new_angle = px.last_pan - step
-    if new_angle >= PAN_MIN:
-        px.last_pan = new_angle
-        px.set_cam_pan_angle(px.last_pan)
+    if new_angle <= PAN_MIN:
+        new_angle = PAN_MIN
+    px.last_pan = new_angle
+    px.set_cam_pan_angle(px.last_pan)
 
 def tilt_top(px, step=CAM_STEP):
     new_angle = px.last_tilt + step
-    if new_angle <= TILT_MAX:
-        px.last_tilt = new_angle
-        px.set_cam_tilt_angle(px.last_tilt)
+    if new_angle >= TILT_MAX:
+        new_angle = TILT_MAX
+    px.last_tilt = new_angle
+    px.set_cam_tilt_angle(px.last_tilt)
 
 def tilt_bottom(px, step=CAM_STEP):
     new_angle = px.last_tilt - step
-    if new_angle >= TILT_MIN:
-        px.last_tilt = new_angle
-        px.set_cam_tilt_angle(px.last_tilt)
+    if new_angle <= TILT_MIN:
+        new_angle = TILT_MIN
+    px.last_tilt = new_angle
+    px.set_cam_tilt_angle(px.last_tilt)
 
 
 # ============================================================
 # MAPEO DE COMANDOS
 # ============================================================
 
-def execute_motion(px, cmd: Cmd, test_mode=False):
+def execute_motion(px, estado, cmd: Cmd, test_mode=False):
     """
     Ejecuta un comando de movimiento.
-    Devuelve True si se ejecutó correctamente, False si hubo error.
+    En test_mode:
+        - Permite pan/tilt y giros de ruedas.
+        - Bloquea traslación (forward/backward) y solo imprime.
     """
 
+    # ============================================================
+    # MODO SIMULADO
+    # ============================================================
     if test_mode:
-        print(f"[SIM] Ejecutaría: {cmd.name}")
-        return True
 
+        # --- Comandos permitidos en sim ---
+        if cmd in (Cmd.CAM_PAN_LEFT, Cmd.CAM_PAN_RIGHT,
+                   Cmd.CAM_TILT_TOP, Cmd.CAM_TILT_BOTTOM,
+                   Cmd.WHEELS_TURN_LEFT, Cmd.WHEELS_TURN_RIGHT,
+                   Cmd.STOP):
+
+            # Ejecutar realmente (para ver movimiento en sim)
+            try:
+                if cmd == Cmd.STOP:
+                    stop(px)
+                elif cmd == Cmd.WHEELS_TURN_LEFT:
+                    turn_left(px)
+                elif cmd == Cmd.WHEELS_TURN_RIGHT:
+                    turn_right(px)
+                elif cmd == Cmd.CAM_PAN_LEFT:
+                    pan_left(px)
+                elif cmd == Cmd.CAM_PAN_RIGHT:
+                    pan_right(px)
+                elif cmd == Cmd.CAM_TILT_TOP:
+                    tilt_top(px)
+                elif cmd == Cmd.CAM_TILT_BOTTOM:
+                    tilt_bottom(px)
+
+                log_event(px, estado or Estado.CHK, f"[SIM] Ejecutado: {cmd.name}")
+                return True
+
+            except Exception as e:
+                log_event(px, estado or Estado.ERR, f"[SIM] Error ejecutando {cmd}: {e}")
+                return False
+
+        # --- Comandos bloqueados en sim ---
+        else:
+            log_event(px, estado or Estado.CHK, f"[SIM] BLOQUEADO (solo imprimir): {cmd.name}")
+            return True
+
+    # ============================================================
+    # MODO REAL
+    # ============================================================
     try:
         if cmd == Cmd.STOP:
             stop(px)
 
         elif cmd == Cmd.FORWARD:
-            forward(px)
+            forward(px, FAST_SPEED)
 
         elif cmd == Cmd.FORWARD_SLOW:
             forward_slow(px, SLOW_SPEED)
@@ -361,7 +356,6 @@ def execute_motion(px, cmd: Cmd, test_mode=False):
         log_event(px, Estado.ERR, f"Error ejecutando {cmd}: {e}")
         stop(px)
         return False
-
 
 # ============================================================
 # SEGURIDAD
@@ -488,6 +482,10 @@ def state_reset(px):
 def state_search(px, dist, estado, accion):
     if px.last_state != Estado.SEARCH:
         log_event(px, Estado.SEARCH, "Entrando en SEARCH")
+        px.search_dir = 1
+        px.last_paneo = None
+        px.search_seen = 0
+
     px.last_state = Estado.SEARCH
 
     # Seguridad primero
@@ -501,22 +499,21 @@ def state_search(px, dist, estado, accion):
     if det.valid and not det.is_centered:
         px.search_seen = 0
 
-        if abs(px.last_pan) >= PAN_MAX: # limites del PAN
+        # Si estamos en el límite → RECENTER
+        if abs(px.last_pan) >= PAN_MAX:
             log_event(px, Estado.SEARCH, "Límite de pan → RECENTER")
             return Estado.RECENTER, Cmd.STOP
 
+        # Corrección gruesa con cámara
         if det.error_x > 40:
             return Estado.SEARCH, Cmd.CAM_PAN_RIGHT
 
         if det.error_x < -40:
             return Estado.SEARCH, Cmd.CAM_PAN_LEFT
 
-    # --- Si está centrada durante 2 frames → TRACK ---
+    # --- Si está centrada durante 2 frames → RECENTER ---
     if det.valid and det.is_centered:
-        if not hasattr(px, "search_seen"):
-            px.search_seen = 1
-        else:
-            px.search_seen += 1
+        px.search_seen = getattr(px, "search_seen", 0) + 1
 
         if px.search_seen >= 2:
             log_event(px, Estado.SEARCH, "Baliza encontrada")
@@ -529,18 +526,20 @@ def state_search(px, dist, estado, accion):
     return search_not_see(px)
 
 def state_recenter(px, dist, estado, accion, robot_state):
-    det = get_detection(px)
+    # det = get_detection(px)
 
     # Entrada al estado
     if px.last_state != estado:
         log_event(px, estado, "Entrando en RECENTER")
-        log_event(px, estado, f"DEBUG det: valid={det.valid} area={det.area} x={det.x} pan={px.last_pan}")
+        # log_event(px, estado, f"DEBUG det: valid={det.valid} area={det.area} x={det.x} pan={px.last_pan}")
     px.last_state = estado
 
     # Seguridad primero
     estado, accion = apply_safety(px, dist, estado, accion)
     if estado != Estado.RECENTER:
         return estado, accion
+
+    det = get_detection(px)
 
     # Si no hay detección válida → SEARCH
     if not det.valid:
@@ -550,10 +549,8 @@ def state_recenter(px, dist, estado, accion, robot_state):
     # ============================================================
     # ANTI-SPAM RECENTER LOGIC
     # ============================================================
-    import time
     now = time.time()
 
-    # Determinar acción actual
     if abs(det.error_x) <= 20:
         action = "CENTERED"
     elif det.error_x > 0:
@@ -561,10 +558,6 @@ def state_recenter(px, dist, estado, accion, robot_state):
     else:
         action = "TURN_LEFT"
 
-    # Condiciones para imprimir:
-    # 1) cambia la acción
-    # 2) error_x cambia más de 15 px
-    # 3) ha pasado más de 0.3 s desde el último log
     should_log = (
         action != robot_state.last_recenter_action or
         robot_state.last_recenter_error_x is None or
@@ -585,15 +578,25 @@ def state_recenter(px, dist, estado, accion, robot_state):
         robot_state.last_recenter_log = now
 
     # ============================================================
+    # LÓGICA DE MOVIMIENTO
+    # ============================================================
 
-    # Lógica original de movimiento
-    if abs(det.error_x) <= 20:
-        return Estado.TRACK, Cmd.FORWARD_SLOW
-
-    if det.error_x > 0:
+    # 1. Corrección gruesa → ruedas
+    if det.error_x > 25:
         return Estado.RECENTER, Cmd.WHEELS_TURN_RIGHT
-    else:
+
+    if det.error_x < -25:
         return Estado.RECENTER, Cmd.WHEELS_TURN_LEFT
+
+    # 2. Corrección fina → cámara
+    if det.error_x > 8:
+        return Estado.RECENTER, Cmd.CAM_PAN_RIGHT
+
+    if det.error_x < -8:
+        return Estado.RECENTER, Cmd.CAM_PAN_LEFT
+
+    # 3. Alineado → pasar a TRACK
+    return Estado.TRACK, Cmd.FORWARD_SLOW
 
 def state_track(px, dist, estado, accion, robot_state):
     det = get_detection(px)
@@ -615,21 +618,15 @@ def state_track(px, dist, estado, accion, robot_state):
         return Estado.SEARCH, Cmd.STOP
 
     # ============================================================
-    # ANTI-SPAM TRACK LOGIC (usando RobotState)
+    # ANTI-SPAM TRACK LOGIC
     # ============================================================
-    import time
     now = time.time()
 
-    # Determinar acción actual
     if abs(det.error_x) > 20:
         action = "CORRECT"
     else:
         action = "FORWARD"
 
-    # Condiciones para imprimir:
-    # 1) cambia la acción
-    # 2) error_x cambia más de 15 px
-    # 3) ha pasado más de 0.3 s desde el último log
     should_log = (
         action != robot_state.last_track_action or
         robot_state.last_error_x is None or
@@ -648,8 +645,24 @@ def state_track(px, dist, estado, accion, robot_state):
         robot_state.last_track_log = now
 
     # ============================================================
+    # LÓGICA DE MOVIMIENTO
+    # ============================================================
 
-    # Acción final del estado TRACK
+    # 1. Corrección gruesa → ruedas
+    if det.error_x > 25:
+        return Estado.TRACK, Cmd.WHEELS_TURN_RIGHT
+
+    if det.error_x < -25:
+        return Estado.TRACK, Cmd.WHEELS_TURN_LEFT
+
+    # 2. Corrección fina → cámara
+    if det.error_x > 8:
+        return Estado.TRACK, Cmd.CAM_PAN_RIGHT
+
+    if det.error_x < -8:
+        return Estado.TRACK, Cmd.CAM_PAN_LEFT
+
+    # 3. Centrado → avanzar
     return Estado.TRACK, Cmd.FORWARD_SLOW
 
 # ============================================================
@@ -692,10 +705,9 @@ def pet_mode(px, test_mode):
 
         estado, accion = apply_safety(px, px.dist, estado, accion)
 
-        execute_motion(px, accion, test_mode)
+        execute_motion(px, estado, accion, test_mode)
 
-
-        sleep(0.05)
+        time.sleep(0.5)
 
 # ============================================================
 # ENTRYPOINT
