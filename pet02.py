@@ -98,6 +98,8 @@ class Det:
 
     @property
     def is_centered(self):
+        if not self.valid_for_search:
+            return False
         return abs(self.error_x) <= 40
 
     @property
@@ -105,6 +107,16 @@ class Det:
         return (
             self.n > 0 and
             200 < self.area < 20000
+        )
+
+    @property
+    def valid_for_search(self):
+        return (
+            self.n >= 1 and
+            self.w > 10 and self.h > 10 and
+            3000 < self.area < 25000 and
+            100 < self.x < 620 and
+            80 < self.y < 300
         )
 
     def __repr__(self):
@@ -116,7 +128,8 @@ class Det:
             f"area={self.area}, "
             f"error_x={self.error_x}, error_y={self.error_y}, "
             f"is_centered={self.is_centered}, "
-            f"valid={self.valid}"
+            f"valid={self.valid}, "
+            f"valid_for_search={self.valid_for_search}"
             ")"
         )
 
@@ -413,7 +426,7 @@ def get_detection(px):
     }
 
     if raw["color_n"] > 0 and px.last_raw_n == 0:
-        log_event(px, px.estado_actual, f"Det n={raw['color_n']} x={raw['color_x']} y={raw['color_y']}")
+        log_event(px, px.estado_actual, f"Det n={raw['color_n']} w={raw['color_w']} h={raw['color_h']} area={raw['color_w']*raw['color_h']} x={raw['color_x']} y={raw['color_y']}")
     px.last_raw_n = 1 if raw["color_n"] > 0 else 0
 
     # Crear objeto Det
@@ -496,7 +509,7 @@ def state_search(px, dist, estado, accion):
     det = get_detection(px)
 
     # --- Si vemos la baliza pero NO está centrada ---
-    if det.valid and not det.is_centered:
+    if det.valid_for_search and not det.is_centered:
         px.search_seen = 0
 
         # Si estamos en el límite → RECENTER
@@ -512,7 +525,7 @@ def state_search(px, dist, estado, accion):
             return Estado.SEARCH, Cmd.CAM_PAN_LEFT
 
     # --- Si está centrada durante 2 frames → RECENTER ---
-    if det.valid and det.is_centered:
+    if det.valid_for_search and det.is_centered:
         px.search_seen = getattr(px, "search_seen", 0) + 1
 
         if px.search_seen >= 2:
