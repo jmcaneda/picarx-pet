@@ -291,17 +291,12 @@ def execute_motion(px, estado, cmd: Cmd, test_mode=False):
         # --- Comandos permitidos en sim ---
         if cmd in (Cmd.CAM_PAN_LEFT, Cmd.CAM_PAN_RIGHT,
                    Cmd.CAM_TILT_TOP, Cmd.CAM_TILT_BOTTOM,
-                   Cmd.WHEELS_TURN_LEFT, Cmd.WHEELS_TURN_RIGHT,
                    Cmd.STOP):
 
             # Ejecutar realmente (para ver movimiento en sim)
             try:
                 if cmd == Cmd.STOP:
                     stop(px)
-                elif cmd == Cmd.WHEELS_TURN_LEFT:
-                    turn_left(px)
-                elif cmd == Cmd.WHEELS_TURN_RIGHT:
-                    turn_right(px)
                 elif cmd == Cmd.CAM_PAN_LEFT:
                     pan_left(px)
                 elif cmd == Cmd.CAM_PAN_RIGHT:
