@@ -542,6 +542,7 @@ def state_recenter(px, dist, estado, accion, robot_state):
     # Entrada al estado
     if px.last_state != estado:
         robot_state.recenter_centered_frames = 0
+        robot_state.recenter_lost_frames = 0
         log_event(px, estado, "Entrando en RECENTER")
     px.last_state = estado
 
@@ -551,11 +552,19 @@ def state_recenter(px, dist, estado, accion, robot_state):
         return estado, accion
 
     # ------------------------------------------------------------
-    # 1. Si NO hay detección válida → volver a SEARCH
+    # 1. Si NO hay detección válida → tolerar 3 frames
     # ------------------------------------------------------------
     if not det.valid_for_search:
-        log_event(px, estado, "RECENTER sin detección → SEARCH")
-        return Estado.SEARCH, Cmd.STOP
+        robot_state.recenter_lost_frames += 1
+
+        if robot_state.recenter_lost_frames >= 3:
+            log_event(px, estado, "RECENTER sin detección → SEARCH")
+            return Estado.SEARCH, Cmd.STOP
+
+        return Estado.RECENTER, Cmd.STOP
+
+    # Si hay detección válida, resetear memoria
+    robot_state.recenter_lost_frames = 0
 
     # ------------------------------------------------------------
     # 2. Corregir orientación del cuerpo
