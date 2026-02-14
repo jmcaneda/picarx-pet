@@ -23,16 +23,17 @@ TILT_MAX = 35
 CX = 160
 CY = 120
 
-""" Real
+# Real
 FAST_SPEED = 20 
 SLOW_SPEED = 5
 TURN_SPEED = 1 
-"""
 
+"""
 # simulado
 FAST_SPEED = 0 
 SLOW_SPEED = 0 
 TURN_SPEED = 0
+"""
 
 CAM_STEP = 4
 
@@ -162,9 +163,6 @@ def init_camera(px):
 
     time.sleep(0.5)
 
-def init_wheels(px):
-    px.Wheels_last_dir = 0
-
 def init_internal_state(px):
 
     return Estado.IDLE, Cmd.STOP
@@ -183,7 +181,6 @@ def init_flags(px):
     px.last_pan = 0
     px.last_paneo = None
     px.last_tilt = 0
-    px.search_cycles = 0   # cuántos barridos completos llevamos
 
 # ============================================================
 # LOGGING
@@ -425,11 +422,7 @@ def get_detection(px):
         "color_n": params.get("color_n", 0),
     }
 
-    if raw["color_n"] > 0 and px.last_raw_n == 0:
-        log_event(px, px.estado_actual, f"Det n={raw['color_n']} w={raw['color_w']} h={raw['color_h']} area={raw['color_w']*raw['color_h']} x={raw['color_x']} y={raw['color_y']}")
-    px.last_raw_n = 1 if raw["color_n"] > 0 else 0
-
-    # Crear objeto Det
+    # Crear objeto Det (solo una vez)
     det = Det(
         n = raw["color_n"],
         x = raw["color_x"],
@@ -437,6 +430,17 @@ def get_detection(px):
         w = raw["color_w"],
         h = raw["color_h"]
     )
+
+    # Log solo cuando aparece una detección nueva
+    if raw["color_n"] > 0 and px.last_raw_n == 0:
+        log_event(
+            px, px.estado_actual,
+            f"Det valid={det.valid} is_centered={det.is_centered} "
+            f"n={raw['color_n']} w={raw['color_w']} h={raw['color_h']} "
+            f"area={det.area} x={raw['color_x']} y={raw['color_y']}"
+        )
+
+    px.last_raw_n = 1 if raw["color_n"] > 0 else 0
 
     return det
 
@@ -539,20 +543,18 @@ def state_search(px, dist, estado, accion):
     return search_not_see(px)
 
 def state_recenter(px, dist, estado, accion, robot_state):
-    # det = get_detection(px)
+    det = get_detection(px)
 
     # Entrada al estado
     if px.last_state != estado:
         log_event(px, estado, "Entrando en RECENTER")
-        # log_event(px, estado, f"DEBUG det: valid={det.valid} area={det.area} x={det.x} pan={px.last_pan}")
+        log_event(px, estado, f"DEBUG det: valid={det.valid} area={det.area} x={det.x} pan={px.last_pan}")
     px.last_state = estado
 
     # Seguridad primero
     estado, accion = apply_safety(px, dist, estado, accion)
     if estado != Estado.RECENTER:
         return estado, accion
-
-    det = get_detection(px)
 
     # Si no hay detección válida → SEARCH
     if not det.valid:
@@ -690,7 +692,6 @@ def pet_mode(px, test_mode):
 
     hello_px(px)
     init_camera(px)
-    init_wheels(px)
     init_flags(px)
     estado, accion = init_internal_state(px)
     check_robot(px,log_event)

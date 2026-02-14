@@ -1,133 +1,70 @@
 === Start of pet02.log ===
-[21:13:04] [Estado.CHK] [CHK] ==============================
-[21:13:04] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[21:13:04] [Estado.CHK] [CHK] ==============================
-[21:13:04] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[21:13:04] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[21:13:04] [Estado.CHK] [CHK] State wheels:     0
-[21:13:04] [Estado.CHK] [CHK] ==============================
-[21:13:04] [Estado.IDLE] Inicio del sistema
-[21:13:04] [Estado.IDLE] Entrando en IDLE
-[21:13:04] [Estado.RESET] CMD STOP
-[21:13:04] [Estado.RESET] [SIM] Ejecutado: STOP
-[21:13:04] [Estado.RESET] Entrando en RESET
-[21:13:04] [Estado.SEARCH] [SIM] Ejecutado: STOP
-[21:13:05] [Estado.SEARCH] Entrando en SEARCH
-[21:13:05] [Estado.SEARCH] Det n=1 w=96 h=148 area=14208 x=460 y=262
-[21:13:05] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[21:13:05] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_RIGHT
-[21:13:08] [Estado.SEARCH] Paneo → derecha
-[21:13:08] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_RIGHT
-[21:13:09] [Estado.SEARCH] Baliza encontrada
-[21:13:09] [Estado.RECENTER] CMD STOP
-[21:13:09] [Estado.RECENTER] [SIM] Ejecutado: STOP
-[21:13:09] [Estado.RECENTER] Entrando en RECENTER
-[21:13:09] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-36)
-[21:13:09] [Estado.RECENTER] CMD WHEELS_TURN_LEFT
-[21:13:09] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:10] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:10] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:10] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:10] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:11] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:11] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:11] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:11] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:12] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:12] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:12] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-40)
-[21:13:12] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:13] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-40)
-[21:13:13] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:13] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:13] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:14] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:14] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:14] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:14] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:15] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:15] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:15] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-40)
-[21:13:15] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:16] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-40)
-[21:13:16] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:16] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:16] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:17] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-40)
-[21:13:17] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:17] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:17] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:18] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-40)
-[21:13:18] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:18] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:18] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:19] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:19] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:19] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-40)
-[21:13:19] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:20] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:20] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:20] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:20] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:21] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-40)
-[21:13:21] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:21] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-40)
-[21:13:21] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:22] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:22] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:22] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:22] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:23] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:23] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:23] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:24] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:24] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:24] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:25] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:25] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:25] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-40)
-[21:13:25] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:26] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:26] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:26] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:26] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:27] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:27] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:27] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:27] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:28] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-40)
-[21:13:28] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:28] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:28] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:29] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-40)
-[21:13:29] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:29] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:29] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:30] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:30] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:30] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:30] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:31] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-36)
-[21:13:31] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:31] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:31] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:32] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-40)
-[21:13:32] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:32] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-40)
-[21:13:32] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:33] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-40)
-[21:13:33] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:33] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:33] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:34] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-40)
-[21:13:34] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:34] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:34] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:35] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-40)
-[21:13:35] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:35] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:35] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:36] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:36] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
-[21:13:36] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-38)
-[21:13:36] [Estado.RECENTER] [SIM] Ejecutado: WHEELS_TURN_LEFT
+[13:30:06] [Estado.CHK] [CHK] ==============================
+[13:30:06] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[13:30:06] [Estado.CHK] [CHK] ==============================
+[13:30:06] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[13:30:06] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[13:30:06] [Estado.CHK] [CHK] State wheels:     0
+[13:30:06] [Estado.CHK] [CHK] ==============================
+[13:30:06] [Estado.IDLE] Inicio del sistema
+[13:30:06] [Estado.IDLE] Entrando en IDLE
+[13:30:06] [Estado.RESET] CMD STOP
+[13:30:07] [Estado.RESET] Entrando en RESET
+[13:30:07] [Estado.SEARCH] Entrando en SEARCH
+[13:30:07] [Estado.SEARCH] Det valid=True is_centered=False n=1 w=100 h=148 area=14800 x=474 y=262
+[13:30:07] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[13:30:11] [Estado.SEARCH] Paneo → derecha
+[13:30:11] [Estado.SEARCH] Baliza encontrada
+[13:30:11] [Estado.RECENTER] CMD STOP
+[13:30:12] [Estado.RECENTER] Entrando en RECENTER
+[13:30:12] [Estado.RECENTER] DEBUG det: valid=True area=16400 x=138 pan=32
+[13:30:12] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-22)
+[13:30:12] [Estado.RECENTER] CMD CAM_PAN_LEFT
+[13:30:12] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
+[13:30:12] [Estado.RECENTER] CMD CAM_PAN_RIGHT
+[13:30:13] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-22)
+[13:30:13] [Estado.RECENTER] CMD CAM_PAN_LEFT
+[13:30:13] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
+[13:30:13] [Estado.RECENTER] CMD CAM_PAN_RIGHT
+[13:30:14] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-22)
+[13:30:14] [Estado.RECENTER] CMD CAM_PAN_LEFT
+[13:30:14] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
+[13:30:14] [Estado.RECENTER] CMD CAM_PAN_RIGHT
+[13:30:15] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
+[13:30:15] [Estado.RECENTER] CMD CAM_PAN_LEFT
+[13:30:15] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
+[13:30:15] [Estado.RECENTER] CMD CAM_PAN_RIGHT
+[13:30:16] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-22)
+[13:30:16] [Estado.RECENTER] CMD CAM_PAN_LEFT
+[13:30:16] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
+[13:30:16] [Estado.RECENTER] CMD CAM_PAN_RIGHT
+[13:30:17] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
+[13:30:17] [Estado.RECENTER] CMD CAM_PAN_LEFT
+[13:30:17] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
+[13:30:17] [Estado.RECENTER] CMD CAM_PAN_RIGHT
+[13:30:18] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-22)
+[13:30:18] [Estado.RECENTER] CMD CAM_PAN_LEFT
+[13:30:19] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
+[13:30:19] [Estado.RECENTER] CMD CAM_PAN_RIGHT
+[13:30:19] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
+[13:30:19] [Estado.RECENTER] CMD CAM_PAN_LEFT
+[13:30:20] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
+[13:30:20] [Estado.RECENTER] CMD CAM_PAN_RIGHT
+[13:30:20] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-22)
+[13:30:20] [Estado.RECENTER] CMD CAM_PAN_LEFT
+[13:30:21] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
+[13:30:21] [Estado.RECENTER] CMD CAM_PAN_RIGHT
+[13:30:21] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-22)
+[13:30:21] [Estado.RECENTER] CMD CAM_PAN_LEFT
+[13:30:22] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
+[13:30:22] [Estado.RECENTER] CMD CAM_PAN_RIGHT
+[13:30:22] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-22)
+[13:30:22] [Estado.RECENTER] CMD CAM_PAN_LEFT
+[13:30:23] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
+[13:30:23] [Estado.RECENTER] CMD CAM_PAN_RIGHT
+[13:30:23] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-22)
+[13:30:23] [Estado.RECENTER] CMD CAM_PAN_LEFT
+[13:30:24] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
+[13:30:24] [Estado.RECENTER] CMD CAM_PAN_RIGHT
+[13:30:24] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-22)
+[13:30:24] [Estado.RECENTER] CMD CAM_PAN_LEFT
