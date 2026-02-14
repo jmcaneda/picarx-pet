@@ -1,70 +1,147 @@
 === Start of pet02.log ===
-[13:30:06] [Estado.CHK] [CHK] ==============================
-[13:30:06] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[13:30:06] [Estado.CHK] [CHK] ==============================
-[13:30:06] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[13:30:06] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[13:30:06] [Estado.CHK] [CHK] State wheels:     0
-[13:30:06] [Estado.CHK] [CHK] ==============================
-[13:30:06] [Estado.IDLE] Inicio del sistema
-[13:30:06] [Estado.IDLE] Entrando en IDLE
-[13:30:06] [Estado.RESET] CMD STOP
-[13:30:07] [Estado.RESET] Entrando en RESET
-[13:30:07] [Estado.SEARCH] Entrando en SEARCH
-[13:30:07] [Estado.SEARCH] Det valid=True is_centered=False n=1 w=100 h=148 area=14800 x=474 y=262
-[13:30:07] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[13:30:11] [Estado.SEARCH] Paneo → derecha
-[13:30:11] [Estado.SEARCH] Baliza encontrada
-[13:30:11] [Estado.RECENTER] CMD STOP
-[13:30:12] [Estado.RECENTER] Entrando en RECENTER
-[13:30:12] [Estado.RECENTER] DEBUG det: valid=True area=16400 x=138 pan=32
-[13:30:12] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-22)
-[13:30:12] [Estado.RECENTER] CMD CAM_PAN_LEFT
-[13:30:12] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
-[13:30:12] [Estado.RECENTER] CMD CAM_PAN_RIGHT
-[13:30:13] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-22)
-[13:30:13] [Estado.RECENTER] CMD CAM_PAN_LEFT
-[13:30:13] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
-[13:30:13] [Estado.RECENTER] CMD CAM_PAN_RIGHT
-[13:30:14] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-22)
-[13:30:14] [Estado.RECENTER] CMD CAM_PAN_LEFT
-[13:30:14] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
-[13:30:14] [Estado.RECENTER] CMD CAM_PAN_RIGHT
-[13:30:15] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
-[13:30:15] [Estado.RECENTER] CMD CAM_PAN_LEFT
-[13:30:15] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
-[13:30:15] [Estado.RECENTER] CMD CAM_PAN_RIGHT
-[13:30:16] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-22)
-[13:30:16] [Estado.RECENTER] CMD CAM_PAN_LEFT
-[13:30:16] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
-[13:30:16] [Estado.RECENTER] CMD CAM_PAN_RIGHT
-[13:30:17] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
-[13:30:17] [Estado.RECENTER] CMD CAM_PAN_LEFT
-[13:30:17] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
-[13:30:17] [Estado.RECENTER] CMD CAM_PAN_RIGHT
-[13:30:18] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-22)
-[13:30:18] [Estado.RECENTER] CMD CAM_PAN_LEFT
-[13:30:19] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
-[13:30:19] [Estado.RECENTER] CMD CAM_PAN_RIGHT
-[13:30:19] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
-[13:30:19] [Estado.RECENTER] CMD CAM_PAN_LEFT
-[13:30:20] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
-[13:30:20] [Estado.RECENTER] CMD CAM_PAN_RIGHT
-[13:30:20] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-22)
-[13:30:20] [Estado.RECENTER] CMD CAM_PAN_LEFT
-[13:30:21] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
-[13:30:21] [Estado.RECENTER] CMD CAM_PAN_RIGHT
-[13:30:21] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-22)
-[13:30:21] [Estado.RECENTER] CMD CAM_PAN_LEFT
-[13:30:22] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
-[13:30:22] [Estado.RECENTER] CMD CAM_PAN_RIGHT
-[13:30:22] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-22)
-[13:30:22] [Estado.RECENTER] CMD CAM_PAN_LEFT
-[13:30:23] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
-[13:30:23] [Estado.RECENTER] CMD CAM_PAN_RIGHT
-[13:30:23] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-22)
-[13:30:23] [Estado.RECENTER] CMD CAM_PAN_LEFT
-[13:30:24] [Estado.RECENTER] Alineado ✔ (cuerpo + cámara)
-[13:30:24] [Estado.RECENTER] CMD CAM_PAN_RIGHT
-[13:30:24] [Estado.RECENTER] Giro cuerpo → izquierda (error_x=-22)
-[13:30:24] [Estado.RECENTER] CMD CAM_PAN_LEFT
+[16:58:32] [Estado.CHK] [CHK] ==============================
+[16:58:32] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[16:58:32] [Estado.CHK] [CHK] ==============================
+[16:58:32] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[16:58:32] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[16:58:32] [Estado.CHK] [CHK] State wheels:     0
+[16:58:32] [Estado.CHK] [CHK] ==============================
+[16:58:32] [Estado.IDLE] Inicio del sistema
+[16:58:32] [Estado.IDLE] Entrando en IDLE
+[16:58:32] [Estado.RESET] CMD STOP
+[16:58:33] [Estado.RESET] Entrando en RESET
+[16:58:33] [Estado.SEARCH] Det valid=False is_centered=False n=1 w=136 h=176 area=23936 x=524 y=264
+[16:58:33] [Estado.SEARCH] Entrando en SEARCH
+[16:58:33] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[16:58:35] [Estado.SEARCH] Paneo → derecha
+[16:58:36] [Estado.SEARCH] Baliza encontrada
+[16:58:36] [Estado.RECENTER] CMD STOP
+[16:58:37] [Estado.RECENTER] Entrando en RECENTER
+[16:58:37] [Estado.TRACK] CMD FORWARD_SLOW
+[16:58:37] [Estado.TRACK] Entrando en TRACK
+[16:58:37] [Estado.TRACK] DEBUG det: valid=False area=30240 x=322 pan=20
+[16:58:37] [Estado.TRACK] Perdida baliza → SEARCH
+[16:58:37] [Estado.SEARCH] CMD STOP
+[16:58:38] [Estado.SEARCH] Entrando en SEARCH
+[16:58:38] [Estado.SEARCH] Paneo → derecha
+[16:58:38] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[16:58:40] [Estado.SEARCH] Cambio → izquierda
+[16:58:40] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[16:58:49] [Estado.SEARCH] Cambio → derecha
+[16:58:49] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[16:58:52] [Estado.SEARCH] Det valid=True is_centered=False n=2 w=44 h=108 area=4752 x=618 y=230
+[16:58:58] [Estado.SEARCH] Cambio → izquierda
+[16:58:58] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[16:59:07] [Estado.SEARCH] Cambio → derecha
+[16:59:07] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[16:59:10] [Estado.SEARCH] Det valid=True is_centered=False n=2 w=48 h=120 area=5760 x=616 y=236
+[16:59:16] [Estado.SEARCH] Cambio → izquierda
+[16:59:16] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[16:59:20] [Estado.SEARCH] [SEC] CRITICAL: object < 21.04 cm
+[16:59:20] [Estado.RESET] CMD SCAPE
+[16:59:22] [Estado.RESET] Entrando en RESET
+[16:59:22] [Estado.SEARCH] CMD STOP
+[16:59:22] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[16:59:27] [Estado.SEARCH] Cambio → derecha
+[16:59:27] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[16:59:33] [Estado.SEARCH] Det valid=True is_centered=False n=3 w=40 h=60 area=2400 x=596 y=238
+[16:59:36] [Estado.SEARCH] Límite de pan → RECENTER
+[16:59:36] [Estado.RECENTER] CMD STOP
+[16:59:36] [Estado.RECENTER] Entrando en RECENTER
+[16:59:36] [Estado.RECENTER] CMD WHEELS_TURN_RIGHT
+[16:59:37] [Estado.TRACK] CMD FORWARD_SLOW
+[16:59:37] [Estado.TRACK] Entrando en TRACK
+[16:59:37] [Estado.TRACK] DEBUG det: valid=False area=21600 x=60 pan=35
+[16:59:37] [Estado.TRACK] Perdida baliza → SEARCH
+[16:59:37] [Estado.SEARCH] CMD STOP
+[16:59:38] [Estado.SEARCH] Entrando en SEARCH
+[16:59:38] [Estado.SEARCH] Cambio → izquierda
+[16:59:38] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[16:59:43] [Estado.SEARCH] Baliza encontrada
+[16:59:43] [Estado.RECENTER] CMD STOP
+[16:59:43] [Estado.RECENTER] Entrando en RECENTER
+[16:59:43] [Estado.TRACK] CMD FORWARD_SLOW
+[16:59:44] [Estado.TRACK] Entrando en TRACK
+[16:59:44] [Estado.TRACK] DEBUG det: valid=False area=33920 x=136 pan=-1
+[16:59:44] [Estado.TRACK] Perdida baliza → SEARCH
+[16:59:44] [Estado.SEARCH] CMD STOP
+[16:59:44] [Estado.SEARCH] Entrando en SEARCH
+[16:59:44] [Estado.SEARCH] Paneo → derecha
+[16:59:44] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[16:59:49] [Estado.SEARCH] Cambio → izquierda
+[16:59:49] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[16:59:52] [Estado.SEARCH] Det valid=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0
+[16:59:58] [Estado.SEARCH] Cambio → derecha
+[16:59:58] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[17:00:07] [Estado.SEARCH] Cambio → izquierda
+[17:00:07] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[17:00:11] [Estado.SEARCH] Det valid=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0
+[17:00:16] [Estado.SEARCH] Cambio → derecha
+[17:00:16] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[17:00:25] [Estado.SEARCH] Cambio → izquierda
+[17:00:25] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[17:00:29] [Estado.SEARCH] Det valid=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0
+[17:00:35] [Estado.SEARCH] Cambio → derecha
+[17:00:35] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[17:00:44] [Estado.SEARCH] Cambio → izquierda
+[17:00:44] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[17:00:47] [Estado.SEARCH] Det valid=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0
+[17:00:53] [Estado.SEARCH] Cambio → derecha
+[17:00:53] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[17:00:58] [Estado.SEARCH] Det valid=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0
+[17:01:00] [Estado.SEARCH] Det valid=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0
+[17:01:02] [Estado.SEARCH] Cambio → izquierda
+[17:01:02] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[17:01:05] [Estado.SEARCH] Det valid=True is_centered=False n=1 w=32 h=32 area=1024 x=68 y=444
+[17:01:06] [Estado.SEARCH] Det valid=True is_centered=False n=1 w=36 h=36 area=1296 x=178 y=438
+[17:01:11] [Estado.SEARCH] Cambio → derecha
+[17:01:11] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[17:01:21] [Estado.SEARCH] Cambio → izquierda
+[17:01:21] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[17:01:23] [Estado.SEARCH] Det valid=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0
+[17:01:27] [Estado.SEARCH] [SEC] CRITICAL: object < 10.57 cm
+[17:01:27] [Estado.RESET] CMD SCAPE
+[17:01:28] [Estado.RESET] Entrando en RESET
+[17:01:28] [Estado.SEARCH] CMD STOP
+[17:01:29] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[17:01:30] [Estado.SEARCH] Det valid=True is_centered=False n=1 w=44 h=32 area=1408 x=78 y=464
+[17:01:33] [Estado.SEARCH] Cambio → derecha
+[17:01:33] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[17:01:35] [Estado.SEARCH] [SEC] CRITICAL: object < 23.11 cm
+[17:01:35] [Estado.RESET] CMD SCAPE
+[17:01:37] [Estado.RESET] Entrando en RESET
+[17:01:37] [Estado.SEARCH] CMD STOP
+[17:01:37] [Estado.SEARCH] Det valid=True is_centered=False n=1 w=76 h=40 area=3040 x=38 y=412
+[17:01:37] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[17:01:42] [Estado.SEARCH] Cambio → izquierda
+[17:01:42] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[17:01:44] [Estado.SEARCH] Det valid=True is_centered=False n=6 w=76 h=84 area=6384 x=202 y=438
+[17:01:44] [Estado.SEARCH] [SEC] CRITICAL: object < 3.94 cm
+[17:01:44] [Estado.RESET] CMD SCAPE
+[17:01:46] [Estado.RESET] Entrando en RESET
+[17:01:46] [Estado.SEARCH] CMD STOP
+[17:01:47] [Estado.RESET] Entrando en RESET
+[17:01:48] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[17:01:52] [Estado.SEARCH] Cambio → derecha
+[17:01:52] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[17:01:54] [Estado.SEARCH] Det valid=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0
+[17:02:01] [Estado.SEARCH] Cambio → izquierda
+[17:02:01] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[17:02:03] [Estado.SEARCH] Det valid=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0
+[17:02:11] [Estado.SEARCH] Cambio → derecha
+[17:02:11] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[17:02:19] [Estado.SEARCH] Det valid=True is_centered=False n=3 w=36 h=52 area=1872 x=510 y=146
+[17:02:20] [Estado.SEARCH] Cambio → izquierda
+[17:02:20] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[17:02:30] [Estado.SEARCH] Cambio → derecha
+[17:02:30] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[17:02:39] [Estado.SEARCH] Det valid=True is_centered=False n=2 w=40 h=60 area=2400 x=460 y=158
+[17:02:39] [Estado.SEARCH] Cambio → izquierda
+[17:02:39] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[17:02:49] [Estado.SEARCH] Cambio → derecha
+[17:02:49] [Estado.SEARCH] CMD CAM_PAN_RIGHT
+[17:02:57] [Estado.SEARCH] Det valid=True is_centered=False n=1 w=48 h=36 area=1728 x=520 y=178
+[17:02:58] [Estado.SEARCH] Cambio → izquierda
+[17:02:58] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[17:03:08] [Estado.SEARCH] Cambio → derecha
+[17:03:08] [Estado.SEARCH] CMD CAM_PAN_RIGHT
