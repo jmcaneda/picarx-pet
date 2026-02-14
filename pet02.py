@@ -589,11 +589,12 @@ def state_recenter(px, dist, estado, accion, robot_state):
 
 def state_track(px, dist, estado, accion, robot_state):
     det = get_detection(px)
+    """
     # Si la baliza está demasiado cerca visualmente → STOP
-    if det.area > 30000:   # ajustable según tu baliza
+    if det.area > 20000:   # ajustable según tu baliza
         log_event(px, estado, "Baliza muy cerca (área grande) → STOP")
         return Estado.TRACK, Cmd.STOP
-
+    """
     # Entrada al estado
     if px.last_state != estado:
         log_event(px, estado, "Entrando en TRACK")
