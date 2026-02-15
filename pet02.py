@@ -172,7 +172,7 @@ def init_flags(px):
     px.estado_actual = None
     px.last_raw = {}
     px.last_state = None
-    px.last_cmd = None
+    # px.last_cmd = None
     px.last_raw_n = 0
     px.last_sec = "safe"
     px.dist = 999
@@ -520,7 +520,7 @@ def state_search(px, dist, estado, accion):
         px.search_seen += 1
 
         # Si está centrada → RECENTER
-        if det.is_centered and px.search_seen >= 2:
+        if det.valid_for_search and det.is_centered and px.search_seen >= 2:
             log_event(px, Estado.SEARCH, "Baliza encontrada → RECENTER")
             return Estado.RECENTER, Cmd.STOP
 
@@ -596,17 +596,25 @@ def state_recenter(px, dist, estado, accion, robot_state):
 
 def state_track(px, dist, estado, accion, robot_state):
     det = get_detection(px)
-    """
-    # Si la baliza está demasiado cerca visualmente → STOP
-    if det.area > 20000:   # ajustable según tu baliza
-        log_event(px, estado, "Baliza muy cerca (área grande) → STOP")
-        return Estado.TRACK, Cmd.STOP
-    """
+
     # Entrada al estado
     if px.last_state != estado:
         log_event(px, estado, "Entrando en TRACK")
         robot_state.track_lost_frames = 0
         px.last_state = estado
+
+    # --- Protección visual: si la baliza es demasiado grande, detener ---
+    if det.valid_for_search and det.area > 35000:
+        log_event(px, estado, f"Baliza muy cerca (área={det.area}) → BACKWARD")
+        return Estado.TRACK, Cmd.BACKWARD
+
+    if det.w > 200:
+        log_event(px, estado, f"Baliza muy cerca (w={det.w}) → BACKWARD")
+        return Estado.TRACK, Cmd.BACKWARD
+
+    if det.h > 300:
+        log_event(px, estado, f"Baliza muy cerca (h={det.h}) → BACKWARD")
+        return Estado.TRACK, Cmd.BACKWARD
 
     # ------------------------------------------------------------
     # 1. Seguridad: si está demasiado cerca → STOP
@@ -641,13 +649,13 @@ def state_track(px, dist, estado, accion, robot_state):
     if abs(det.error_x) > 40:
         if det.error_x > 0:
             log_event(px, estado, f"Corrigiendo (ruedas) error_x={det.error_x}")
-            px.last_pan = 0
-            px.set_cam_pan_angle(0)
+            # px.last_pan = 0
+            # px.set_cam_pan_angle(0)
             return Estado.TRACK, Cmd.WHEELS_TURN_RIGHT
         else:
             log_event(px, estado, f"Corrigiendo (ruedas) error_x={det.error_x}")
-            px.last_pan = 0
-            px.set_cam_pan_angle(0)
+            # px.last_pan = 0
+            # px.set_cam_pan_angle(0)
             return Estado.TRACK, Cmd.WHEELS_TURN_LEFT
 
     # ------------------------------------------------------------
@@ -698,9 +706,11 @@ def pet_mode(px, test_mode):
         elif estado == Estado.TRACK:
             estado, accion = state_track(px, px.dist, estado, accion, state)
 
+        """
         if px.last_cmd != accion:
             log_event(px, estado, f"CMD {accion.name}")
         px.last_cmd = accion
+        """
 
         estado, accion = apply_safety(px, px.dist, estado, accion)
 

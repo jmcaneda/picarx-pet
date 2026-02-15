@@ -1,224 +1,365 @@
 === Start of pet02.log ===
-[18:44:48] [Estado.CHK] [CHK] ==============================
-[18:44:48] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[18:44:48] [Estado.CHK] [CHK] ==============================
-[18:44:48] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[18:44:48] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[18:44:48] [Estado.CHK] [CHK] State wheels:     0
-[18:44:48] [Estado.CHK] [CHK] ==============================
-[18:44:48] [Estado.IDLE] Inicio del sistema
-[18:44:48] [Estado.IDLE] Entrando en IDLE
-[18:44:48] [Estado.RESET] CMD STOP
-[18:44:48] [Estado.RESET] Entrando en RESET
-[18:44:48] [Estado.SEARCH] Det valid=False is_centered=True n=2 w=148 h=288 area=42624 x=258 y=260
-[18:44:48] [Estado.SEARCH] Entrando en SEARCH
-[18:44:48] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:48] [Estado.SEARCH] Baliza encontrada → RECENTER
-[18:44:48] [Estado.RECENTER] CMD STOP
-[18:44:48] [Estado.RECENTER] Entrando en RECENTER
-[18:44:48] [Estado.RECENTER] Alineado ✔ (cuerpo)
-[18:44:48] [Estado.TRACK] CMD FORWARD_SLOW
-[18:44:49] [Estado.TRACK] Entrando en TRACK
-[18:44:49] [Estado.TRACK] CMD CAM_PAN_LEFT
-[18:44:49] [Estado.TRACK] Avanzando hacia baliza
-[18:44:49] [Estado.TRACK] CMD FORWARD_SLOW
-[18:44:49] [Estado.TRACK] CMD CAM_PAN_LEFT
-[18:44:49] [Estado.TRACK] CMD CAM_PAN_RIGHT
-[18:44:49] [Estado.TRACK] Avanzando hacia baliza
-[18:44:49] [Estado.TRACK] CMD FORWARD_SLOW
-[18:44:49] [Estado.TRACK] Avanzando hacia baliza
-[18:44:49] [Estado.TRACK] CMD CAM_PAN_LEFT
-[18:44:49] [Estado.TRACK] Avanzando hacia baliza
-[18:44:49] [Estado.TRACK] CMD FORWARD_SLOW
-[18:44:49] [Estado.TRACK] CMD CAM_PAN_LEFT
-[18:44:50] [Estado.TRACK] CMD CAM_PAN_RIGHT
-[18:44:50] [Estado.TRACK] CMD CAM_PAN_LEFT
-[18:44:50] [Estado.TRACK] Avanzando hacia baliza
-[18:44:50] [Estado.TRACK] CMD FORWARD_SLOW
-[18:44:50] [Estado.TRACK] CMD CAM_PAN_LEFT
-[18:44:50] [Estado.TRACK] CMD CAM_PAN_RIGHT
-[18:44:50] [Estado.TRACK] CMD CAM_PAN_LEFT
-[18:44:50] [Estado.TRACK] Avanzando hacia baliza
-[18:44:50] [Estado.TRACK] CMD FORWARD_SLOW
-[18:44:50] [Estado.TRACK] CMD STOP
-[18:44:51] [Estado.TRACK] Perdida baliza → SEARCH
-[18:44:51] [Estado.SEARCH] Entrando en SEARCH
-[18:44:51] [Estado.SEARCH] Paneo → derecha
-[18:44:51] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:51] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:51] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:51] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:52] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:52] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:52] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:52] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:52] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:52] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:52] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:52] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:52] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:53] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:53] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:53] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:53] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:53] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:53] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:53] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:53] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:53] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:54] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:54] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:54] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:54] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:54] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:54] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:54] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:54] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:54] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:55] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:55] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:55] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:55] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:55] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:55] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:55] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:55] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:55] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:56] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:56] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:56] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:56] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:56] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:56] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:56] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:56] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:56] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:57] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:57] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:57] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:57] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:57] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:57] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:57] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:58] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:58] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:58] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:58] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:58] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:58] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:58] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:58] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:59] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:59] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:59] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:59] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:59] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:59] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:59] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:44:59] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:44:59] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:00] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:00] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:00] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:00] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:00] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:00] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:01] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:01] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:01] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:01] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:01] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:02] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:02] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:02] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:02] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:02] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:03] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:03] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:03] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:03] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:03] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:03] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:04] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:04] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:04] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:04] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:04] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:04] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:04] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:04] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:04] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:05] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:05] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:05] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:05] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:05] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:06] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:06] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:06] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:06] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:06] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:06] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:06] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:06] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:07] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:07] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:07] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:07] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:07] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:07] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:07] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:08] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:08] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:08] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:08] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:08] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:08] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:08] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:09] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:09] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:09] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:09] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:09] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:09] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:09] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:10] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:10] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:10] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:10] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:10] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:11] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:11] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:11] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:11] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:11] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:11] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:11] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:11] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:12] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:12] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:12] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:12] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:12] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:12] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:13] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:13] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:13] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:13] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:13] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:13] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:13] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:13] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:14] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:14] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:14] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:14] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:14] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:14] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:14] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:15] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:15] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:15] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:15] [Estado.SEARCH] CMD CAM_PAN_LEFT
-[18:45:15] [Estado.SEARCH] CMD CAM_PAN_RIGHT
-[18:45:16] [Estado.SEARCH] CMD CAM_PAN_LEFT
+[16:27:17] [Estado.CHK] [CHK] ==============================
+[16:27:17] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[16:27:17] [Estado.CHK] [CHK] ==============================
+[16:27:17] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[16:27:17] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[16:27:17] [Estado.CHK] [CHK] State wheels:     0
+[16:27:17] [Estado.CHK] [CHK] ==============================
+[16:27:17] [Estado.IDLE] Inicio del sistema
+[16:27:17] [Estado.IDLE] Entrando en IDLE
+[16:27:17] [Estado.RESET] Entrando en RESET
+[16:27:17] [Estado.SEARCH] Det valid=False is_centered=False n=3 w=168 h=228 area=38304 x=508 y=190
+[16:27:17] [Estado.SEARCH] Entrando en SEARCH
+[16:27:17] [Estado.SEARCH] 1 corregir con cámara → derecha
+[16:27:17] [Estado.SEARCH] Baliza encontrada → RECENTER
+[16:27:17] [Estado.RECENTER] Entrando en RECENTER
+[16:27:19] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[16:27:19] [Estado.TRACK] Entrando en TRACK
+[16:27:19] [Estado.TRACK] Baliza muy cerca (área=50048) → BACKWARD
+[16:27:19] [Estado.TRACK] Baliza muy cerca (área=48880) → BACKWARD
+[16:27:19] [Estado.TRACK] Baliza muy cerca (área=50048) → BACKWARD
+[16:27:19] [Estado.TRACK] Baliza muy cerca (área=45632) → BACKWARD
+[16:27:19] [Estado.TRACK] Baliza muy cerca (área=46368) → BACKWARD
+[16:27:19] [Estado.TRACK] Baliza muy cerca (área=40992) → BACKWARD
+[16:27:19] [Estado.TRACK] Baliza muy cerca (área=38304) → BACKWARD
+[16:27:19] [Estado.TRACK] Baliza muy cerca (área=39424) → BACKWARD
+[16:27:20] [Estado.TRACK] Corrigiendo (ruedas) error_x=-258
+[16:27:20] [Estado.TRACK] Corrigiendo (ruedas) error_x=-288
+[16:27:20] [Estado.TRACK] Corrigiendo (ruedas) error_x=-300
+[16:27:20] [Estado.TRACK] Corrigiendo (ruedas) error_x=-276
+[16:27:20] [Estado.TRACK] Corrigiendo (ruedas) error_x=-260
+[16:27:20] [Estado.TRACK] Baliza muy cerca (área=37088) → BACKWARD
+[16:27:20] [Estado.TRACK] Baliza muy cerca (área=42240) → BACKWARD
+[16:27:20] [Estado.TRACK] Baliza muy cerca (área=47520) → BACKWARD
+[16:27:20] [Estado.TRACK] Baliza muy cerca (área=35136) → BACKWARD
+[16:27:21] [Estado.TRACK] Corrigiendo (ruedas) error_x=-270
+[16:27:21] [Estado.TRACK] Corrigiendo (ruedas) error_x=-300
+[16:27:21] [Estado.TRACK] Det valid=True is_centered=False n=1 w=60 h=276 area=16560 x=30 y=222
+[16:27:21] [Estado.TRACK] Corrigiendo (ruedas) error_x=-290
+[16:27:21] [Estado.TRACK] Corrigiendo (ruedas) error_x=-288
+[16:27:21] [Estado.TRACK] Corrigiendo (ruedas) error_x=-270
+[16:27:21] [Estado.TRACK] Corrigiendo (ruedas) error_x=-254
+[16:27:21] [Estado.TRACK] Baliza muy cerca (área=43680) → BACKWARD
+[16:27:22] [Estado.TRACK] Baliza muy cerca (área=57664) → BACKWARD
+[16:27:22] [Estado.TRACK] Baliza muy cerca (área=49920) → BACKWARD
+[16:27:22] [Estado.TRACK] Baliza muy cerca (área=41984) → BACKWARD
+[16:27:22] [Estado.TRACK] Corrigiendo (ruedas) error_x=-264
+[16:27:22] [Estado.TRACK] Corrigiendo (ruedas) error_x=-290
+[16:27:22] [Estado.TRACK] Corrigiendo (ruedas) error_x=-304
+[16:27:22] [Estado.TRACK] Corrigiendo (ruedas) error_x=-284
+[16:27:22] [Estado.TRACK] Corrigiendo (ruedas) error_x=-266
+[16:27:22] [Estado.TRACK] Baliza muy cerca (área=39072) → BACKWARD
+[16:27:23] [Estado.TRACK] Baliza muy cerca (área=59200) → BACKWARD
+[16:27:23] [Estado.TRACK] Baliza muy cerca (área=48128) → BACKWARD
+[16:27:23] [Estado.TRACK] Baliza muy cerca (área=38592) → BACKWARD
+[16:27:23] [Estado.TRACK] Corrigiendo (ruedas) error_x=-272
+[16:27:23] [Estado.TRACK] Corrigiendo (ruedas) error_x=-298
+[16:27:23] [Estado.TRACK] Corrigiendo (ruedas) error_x=-304
+[16:27:23] [Estado.TRACK] Corrigiendo (ruedas) error_x=-288
+[16:27:23] [Estado.TRACK] Corrigiendo (ruedas) error_x=-270
+[16:27:23] [Estado.TRACK] Baliza muy cerca (área=42624) → BACKWARD
+[16:27:24] [Estado.TRACK] Baliza muy cerca (área=57936) → BACKWARD
+[16:27:24] [Estado.TRACK] Baliza muy cerca (área=55936) → BACKWARD
+[16:27:24] [Estado.TRACK] Baliza muy cerca (área=43808) → BACKWARD
+[16:27:24] [Estado.TRACK] Corrigiendo (ruedas) error_x=-268
+[16:27:24] [Estado.TRACK] Corrigiendo (ruedas) error_x=-300
+[16:27:24] [Estado.TRACK] Det valid=True is_centered=False n=1 w=68 h=292 area=19856 x=34 y=190
+[16:27:24] [Estado.TRACK] Corrigiendo (ruedas) error_x=-286
+[16:27:24] [Estado.TRACK] Corrigiendo (ruedas) error_x=-284
+[16:27:25] [Estado.TRACK] Corrigiendo (ruedas) error_x=-264
+[16:27:25] [Estado.TRACK] Baliza muy cerca (área=46208) → BACKWARD
+[16:27:25] [Estado.TRACK] Baliza muy cerca (área=64064) → BACKWARD
+[16:27:25] [Estado.TRACK] Baliza muy cerca (área=61600) → BACKWARD
+[16:27:25] [Estado.TRACK] Baliza muy cerca (área=45600) → BACKWARD
+[16:27:25] [Estado.TRACK] Baliza muy cerca (h=312) → BACKWARD
+[16:27:25] [Estado.TRACK] Corrigiendo (ruedas) error_x=-296
+[16:27:26] [Estado.TRACK] Perdida baliza → SEARCH
+[16:27:26] [Estado.SEARCH] Entrando en SEARCH
+[16:27:26] [Estado.SEARCH] Paneo → derecha
+[16:27:26] [Estado.SEARCH] 3 corregir con cámara → derecha
+[16:27:26] [Estado.SEARCH] Cambio → izquierda
+[16:27:26] [Estado.SEARCH] 4 corregir con cámara → izquierda
+[16:27:27] [Estado.SEARCH] Det valid=True is_centered=False n=2 w=68 h=292 area=19856 x=34 y=186
+[16:27:27] [Estado.SEARCH] 2 corregir con cámara → izquierda
+[16:27:28] [Estado.SEARCH] Baliza encontrada → RECENTER
+[16:27:28] [Estado.RECENTER] Entrando en RECENTER
+[16:27:29] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[16:27:29] [Estado.TRACK] Entrando en TRACK
+[16:27:29] [Estado.TRACK] Baliza muy cerca (área=75696) → BACKWARD
+[16:27:29] [Estado.TRACK] Baliza muy cerca (área=72048) → BACKWARD
+[16:27:29] [Estado.TRACK] Baliza muy cerca (área=70224) → BACKWARD
+[16:27:29] [Estado.TRACK] Baliza muy cerca (área=68992) → BACKWARD
+[16:27:29] [Estado.TRACK] Baliza muy cerca (área=64240) → BACKWARD
+[16:27:29] [Estado.TRACK] Baliza muy cerca (área=66528) → BACKWARD
+[16:27:29] [Estado.TRACK] Baliza muy cerca (área=56160) → BACKWARD
+[16:27:30] [Estado.TRACK] Baliza muy cerca (área=59616) → BACKWARD
+[16:27:30] [Estado.TRACK] Baliza muy cerca (área=56448) → BACKWARD
+[16:27:30] [Estado.TRACK] Baliza muy cerca (área=38688) → BACKWARD
+[16:27:30] [Estado.TRACK] Corrigiendo (ruedas) error_x=-264
+[16:27:30] [Estado.TRACK] Corrigiendo (ruedas) error_x=-286
+[16:27:30] [Estado.TRACK] Corrigiendo (ruedas) error_x=-304
+[16:27:30] [Estado.TRACK] Corrigiendo (ruedas) error_x=-284
+[16:27:30] [Estado.TRACK] Corrigiendo (ruedas) error_x=-272
+[16:27:30] [Estado.TRACK] Corrigiendo (ruedas) error_x=-262
+[16:27:31] [Estado.TRACK] Baliza muy cerca (área=40848) → BACKWARD
+[16:27:31] [Estado.TRACK] Baliza muy cerca (área=56000) → BACKWARD
+[16:27:31] [Estado.TRACK] Baliza muy cerca (área=51888) → BACKWARD
+[16:27:31] [Estado.TRACK] Baliza muy cerca (área=43056) → BACKWARD
+[16:27:31] [Estado.TRACK] Corrigiendo (ruedas) error_x=-260
+[16:27:31] [Estado.TRACK] Corrigiendo (ruedas) error_x=-276
+[16:27:31] [Estado.TRACK] Corrigiendo (ruedas) error_x=-290
+[16:27:31] [Estado.TRACK] Corrigiendo (ruedas) error_x=-276
+[16:27:31] [Estado.TRACK] Corrigiendo (ruedas) error_x=-262
+[16:27:32] [Estado.TRACK] Baliza muy cerca (área=43200) → BACKWARD
+[16:27:32] [Estado.TRACK] Baliza muy cerca (área=54000) → BACKWARD
+[16:27:32] [Estado.TRACK] Baliza muy cerca (área=51120) → BACKWARD
+[16:27:32] [Estado.TRACK] Baliza muy cerca (área=43200) → BACKWARD
+[16:27:32] [Estado.TRACK] Corrigiendo (ruedas) error_x=-262
+[16:27:32] [Estado.TRACK] Corrigiendo (ruedas) error_x=-272
+[16:27:32] [Estado.TRACK] Corrigiendo (ruedas) error_x=-286
+[16:27:32] [Estado.TRACK] Corrigiendo (ruedas) error_x=-266
+[16:27:32] [Estado.TRACK] Baliza muy cerca (área=40880) → BACKWARD
+[16:27:33] [Estado.TRACK] Baliza muy cerca (área=54000) → BACKWARD
+[16:27:33] [Estado.TRACK] Baliza muy cerca (área=49728) → BACKWARD
+[16:27:33] [Estado.TRACK] Baliza muy cerca (área=40256) → BACKWARD
+[16:27:33] [Estado.TRACK] Corrigiendo (ruedas) error_x=-274
+[16:27:33] [Estado.TRACK] Corrigiendo (ruedas) error_x=-296
+[16:27:33] [Estado.TRACK] Corrigiendo (ruedas) error_x=-302
+[16:27:33] [Estado.TRACK] Corrigiendo (ruedas) error_x=-296
+[16:27:33] [Estado.TRACK] Corrigiendo (ruedas) error_x=-280
+[16:27:33] [Estado.TRACK] Baliza muy cerca (área=36000) → BACKWARD
+[16:27:34] [Estado.TRACK] Baliza muy cerca (área=45584) → BACKWARD
+[16:27:34] [Estado.TRACK] Baliza muy cerca (área=46080) → BACKWARD
+[16:27:34] [Estado.TRACK] Corrigiendo (ruedas) error_x=-264
+[16:27:34] [Estado.TRACK] Baliza muy cerca (h=304) → BACKWARD
+[16:27:34] [Estado.TRACK] Corrigiendo (ruedas) error_x=-302
+[16:27:34] [Estado.TRACK] Corrigiendo (ruedas) error_x=-298
+[16:27:34] [Estado.TRACK] Baliza muy cerca (h=324) → BACKWARD
+[16:27:34] [Estado.TRACK] Baliza muy cerca (h=328) → BACKWARD
+[16:27:34] [Estado.TRACK] Baliza muy cerca (h=312) → BACKWARD
+[16:27:35] [Estado.TRACK] Corrigiendo (ruedas) error_x=-304
+[16:27:35] [Estado.TRACK] Perdida baliza → SEARCH
+[16:27:35] [Estado.SEARCH] Entrando en SEARCH
+[16:27:35] [Estado.SEARCH] Paneo → derecha
+[16:27:35] [Estado.SEARCH] 3 corregir con cámara → derecha
+[16:27:37] [Estado.SEARCH] Cambio → izquierda
+[16:27:37] [Estado.SEARCH] 4 corregir con cámara → izquierda
+[16:27:38] [Estado.SEARCH] Det valid=True is_centered=True n=1 w=48 h=40 area=1920 x=280 y=236
+[16:27:39] [Estado.SEARCH] Det valid=True is_centered=False n=2 w=44 h=308 area=13552 x=22 y=190
+[16:27:39] [Estado.SEARCH] 2 corregir con cámara → izquierda
+[16:28:30] [Estado.SEARCH] [SEC] CRITICAL: object < 24.03 cm
+[16:28:31] [Estado.RESET] Entrando en RESET
+[16:28:32] [Estado.SEARCH] Det valid=True is_centered=False n=1 w=56 h=268 area=15008 x=28 y=190
+[16:28:32] [Estado.SEARCH] 2 corregir con cámara → izquierda
+[16:28:33] [Estado.SEARCH] [SEC] CRITICAL: object < 14.62 cm
+[16:28:34] [Estado.RESET] Entrando en RESET
+[16:28:34] [Estado.SEARCH] 2 corregir con cámara → izquierda
+[16:28:35] [Estado.SEARCH] Baliza encontrada → RECENTER
+[16:28:35] [Estado.RECENTER] Entrando en RECENTER
+[16:28:36] [Estado.RECENTER] [SEC] CRITICAL: object < 20.29 cm
+[16:28:37] [Estado.RESET] Entrando en RESET
+[16:28:37] [Estado.SEARCH] Entrando en SEARCH
+[16:28:37] [Estado.SEARCH] 1 corregir con cámara → derecha
+[16:28:37] [Estado.SEARCH] Baliza encontrada → RECENTER
+[16:28:37] [Estado.RECENTER] Entrando en RECENTER
+[16:28:37] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[16:28:38] [Estado.TRACK] Entrando en TRACK
+[16:28:38] [Estado.TRACK] Avanzando hacia baliza
+[16:28:38] [Estado.TRACK] [SEC] CRITICAL: object < 19.04 cm
+[16:28:38] [Estado.RESET] [SEC] CRITICAL: object < 19.04 cm
+[16:28:39] [Estado.RESET] Entrando en RESET
+[16:28:39] [Estado.SEARCH] Entrando en SEARCH
+[16:28:39] [Estado.SEARCH] 1 corregir con cámara → derecha
+[16:28:39] [Estado.SEARCH] Baliza encontrada → RECENTER
+[16:28:39] [Estado.RECENTER] Entrando en RECENTER
+[16:28:41] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[16:28:41] [Estado.TRACK] Entrando en TRACK
+[16:28:41] [Estado.TRACK] Avanzando hacia baliza
+[16:28:41] [Estado.TRACK] Baliza muy cerca (área=36192) → BACKWARD
+[16:28:41] [Estado.TRACK] Baliza muy cerca (área=42640) → BACKWARD
+[16:28:41] [Estado.TRACK] Corrigiendo (ruedas) error_x=96
+[16:28:41] [Estado.TRACK] Baliza muy cerca (área=38400) → BACKWARD
+[16:28:42] [Estado.TRACK] Baliza muy cerca (área=36080) → BACKWARD
+[16:28:42] [Estado.TRACK] Baliza muy cerca (área=40320) → BACKWARD
+[16:28:42] [Estado.TRACK] Baliza muy cerca (área=36192) → BACKWARD
+[16:28:42] [Estado.TRACK] Baliza muy cerca (área=36080) → BACKWARD
+[16:28:42] [Estado.TRACK] Corrigiendo (ruedas) error_x=290
+[16:28:43] [Estado.TRACK] Det valid=False is_centered=True n=1 w=0 h=0 area=0 x=320.0 y=240.0
+[16:28:43] [Estado.TRACK] Perdida baliza → SEARCH
+[16:28:43] [Estado.SEARCH] Entrando en SEARCH
+[16:28:43] [Estado.SEARCH] Paneo → derecha
+[16:28:43] [Estado.SEARCH] 3 corregir con cámara → derecha
+[16:28:43] [Estado.SEARCH] 1 corregir con cámara → derecha
+[16:30:42] [Estado.SEARCH] Cambio → izquierda
+[16:30:42] [Estado.SEARCH] 4 corregir con cámara → izquierda
+[16:30:44] [Estado.SEARCH] Det valid=False is_centered=True n=1 w=0 h=0 area=0 x=320.0 y=240.0
+[16:30:44] [Estado.SEARCH] Cambio → derecha
+[16:30:44] [Estado.SEARCH] 6 corregir con cámara → derecha
+[16:30:44] [Estado.SEARCH] Det valid=False is_centered=True n=2 w=0 h=0 area=0 x=320.0 y=240.0
+[16:30:46] [Estado.SEARCH] Cambio → izquierda
+[16:30:46] [Estado.SEARCH] 4 corregir con cámara → izquierda
+[16:30:48] [Estado.SEARCH] Det valid=False is_centered=True n=1 w=0 h=0 area=0 x=320.0 y=240.0
+[16:30:48] [Estado.SEARCH] 2 corregir con cámara → izquierda
+[16:30:48] [Estado.SEARCH] Cambio → derecha
+[16:30:48] [Estado.SEARCH] 6 corregir con cámara → derecha
+[16:30:48] [Estado.SEARCH] Det valid=False is_centered=True n=2 w=0 h=0 area=0 x=320.0 y=240.0
+[16:30:50] [Estado.SEARCH] Det valid=False is_centered=True n=1 w=0 h=0 area=0 x=320.0 y=240.0
+[16:30:50] [Estado.SEARCH] Det valid=True is_centered=False n=6 w=52 h=96 area=4992 x=418 y=356
+[16:30:50] [Estado.SEARCH] 1 corregir con cámara → derecha
+[16:30:50] [Estado.SEARCH] Baliza encontrada → RECENTER
+[16:30:50] [Estado.RECENTER] Entrando en RECENTER
+[16:30:52] [Estado.RECENTER] RECENTER sin detección → SEARCH
+[16:30:52] [Estado.SEARCH] Entrando en SEARCH
+[16:30:52] [Estado.SEARCH] Paneo → derecha
+[16:30:52] [Estado.SEARCH] 3 corregir con cámara → derecha
+[16:30:52] [Estado.SEARCH] Cambio → izquierda
+[16:30:52] [Estado.SEARCH] 4 corregir con cámara → izquierda
+[16:30:53] [Estado.SEARCH] Det valid=True is_centered=False n=3 w=32 h=68 area=2176 x=16 y=366
+[16:30:53] [Estado.SEARCH] 2 corregir con cámara → izquierda
+[16:30:54] [Estado.SEARCH] Baliza encontrada → RECENTER
+[16:30:54] [Estado.RECENTER] Entrando en RECENTER
+[16:30:54] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[16:30:54] [Estado.TRACK] Entrando en TRACK
+[16:30:54] [Estado.TRACK] Avanzando hacia baliza
+[16:30:54] [Estado.TRACK] Baliza muy cerca (área=35712) → BACKWARD
+[16:30:54] [Estado.TRACK] Baliza muy cerca (área=36960) → BACKWARD
+[16:30:55] [Estado.TRACK] Baliza muy cerca (área=36112) → BACKWARD
+[16:30:55] [Estado.TRACK] Corrigiendo (ruedas) error_x=-76
+[16:30:55] [Estado.TRACK] Corrigiendo (ruedas) error_x=-124
+[16:30:55] [Estado.TRACK] Corrigiendo (ruedas) error_x=-144
+[16:30:55] [Estado.TRACK] Corrigiendo (ruedas) error_x=-118
+[16:30:55] [Estado.TRACK] Corrigiendo (ruedas) error_x=-92
+[16:30:55] [Estado.TRACK] Baliza muy cerca (área=35520) → BACKWARD
+[16:30:56] [Estado.TRACK] Baliza muy cerca (área=36704) → BACKWARD
+[16:30:56] [Estado.TRACK] Baliza muy cerca (área=35520) → BACKWARD
+[16:30:56] [Estado.TRACK] Baliza muy cerca (área=36112) → BACKWARD
+[16:30:56] [Estado.TRACK] Corrigiendo (ruedas) error_x=-130
+[16:30:56] [Estado.TRACK] Baliza muy cerca (área=35264) → BACKWARD
+[16:30:56] [Estado.TRACK] Corrigiendo (ruedas) error_x=-190
+[16:30:56] [Estado.TRACK] Corrigiendo (ruedas) error_x=-180
+[16:30:56] [Estado.TRACK] Corrigiendo (ruedas) error_x=-178
+[16:30:57] [Estado.TRACK] Baliza muy cerca (área=38912) → BACKWARD
+[16:30:57] [Estado.TRACK] Baliza muy cerca (área=38480) → BACKWARD
+[16:30:57] [Estado.TRACK] Baliza muy cerca (área=38912) → BACKWARD
+[16:30:57] [Estado.TRACK] Baliza muy cerca (área=39312) → BACKWARD
+[16:30:57] [Estado.TRACK] Corrigiendo (ruedas) error_x=-214
+[16:30:57] [Estado.TRACK] Corrigiendo (ruedas) error_x=-254
+[16:30:57] [Estado.TRACK] Corrigiendo (ruedas) error_x=-268
+[16:30:57] [Estado.TRACK] Corrigiendo (ruedas) error_x=-254
+[16:30:57] [Estado.TRACK] Baliza muy cerca (área=37696) → BACKWARD
+[16:30:58] [Estado.TRACK] Baliza muy cerca (área=39936) → BACKWARD
+[16:30:58] [Estado.TRACK] Baliza muy cerca (área=38304) → BACKWARD
+[16:30:58] [Estado.TRACK] Baliza muy cerca (área=40848) → BACKWARD
+[16:30:58] [Estado.TRACK] Corrigiendo (ruedas) error_x=-268
+[16:30:58] [Estado.TRACK] Corrigiendo (ruedas) error_x=-292
+[16:30:58] [Estado.TRACK] Corrigiendo (ruedas) error_x=-304
+[16:30:58] [Estado.TRACK] Corrigiendo (ruedas) error_x=-298
+[16:30:58] [Estado.TRACK] Corrigiendo (ruedas) error_x=-282
+[16:30:58] [Estado.TRACK] Corrigiendo (ruedas) error_x=-272
+[16:30:59] [Estado.TRACK] Corrigiendo (ruedas) error_x=-258
+[16:30:59] [Estado.TRACK] Baliza muy cerca (área=42624) → BACKWARD
+[16:30:59] [Estado.TRACK] Baliza muy cerca (área=43680) → BACKWARD
+[16:30:59] [Estado.TRACK] Baliza muy cerca (área=47472) → BACKWARD
+[16:30:59] [Estado.TRACK] Baliza muy cerca (área=42048) → BACKWARD
+[16:30:59] [Estado.TRACK] Corrigiendo (ruedas) error_x=-264
+[16:30:59] [Estado.TRACK] Corrigiendo (ruedas) error_x=-298
+[16:31:00] [Estado.TRACK] Corrigiendo (ruedas) error_x=-292
+[16:31:00] [Estado.TRACK] Baliza muy cerca (h=316) → BACKWARD
+[16:31:00] [Estado.TRACK] Baliza muy cerca (área=46480) → BACKWARD
+[16:31:00] [Estado.TRACK] Baliza muy cerca (área=39360) → BACKWARD
+[16:31:00] [Estado.TRACK] Baliza muy cerca (h=352) → BACKWARD
+[16:31:00] [Estado.TRACK] Corrigiendo (ruedas) error_x=-292
+[16:31:00] [Estado.TRACK] Corrigiendo (ruedas) error_x=-304
+[16:31:00] [Estado.TRACK] Det valid=False is_centered=True n=2 w=0 h=0 area=0 x=320.0 y=240.0
+[16:31:01] [Estado.TRACK] Perdida baliza → SEARCH
+[16:31:01] [Estado.SEARCH] Entrando en SEARCH
+[16:31:01] [Estado.SEARCH] Paneo → derecha
+[16:31:01] [Estado.SEARCH] 3 corregir con cámara → derecha
+[16:31:02] [Estado.SEARCH] Cambio → izquierda
+[16:31:02] [Estado.SEARCH] 4 corregir con cámara → izquierda
+[16:31:04] [Estado.SEARCH] Det valid=True is_centered=True n=3 w=32 h=44 area=1408 x=248 y=258
+[16:31:04] [Estado.SEARCH] 2 corregir con cámara → izquierda
+[16:32:05] [Estado.SEARCH] Baliza encontrada → RECENTER
+[16:32:05] [Estado.RECENTER] Entrando en RECENTER
+[16:32:06] [Estado.RECENTER] RECENTER sin detección → SEARCH
+[16:32:06] [Estado.SEARCH] Entrando en SEARCH
+[16:32:06] [Estado.SEARCH] Paneo → derecha
+[16:32:06] [Estado.SEARCH] 3 corregir con cámara → derecha
+[16:32:07] [Estado.SEARCH] Det valid=False is_centered=True n=1 w=0 h=0 area=0 x=320.0 y=240.0
+[16:32:08] [Estado.SEARCH] Det valid=True is_centered=False n=1 w=32 h=276 area=8832 x=600 y=342
+[16:32:08] [Estado.SEARCH] 1 corregir con cámara → derecha
+[16:32:08] [Estado.SEARCH] Cambio → izquierda
+[16:32:08] [Estado.SEARCH] 4 corregir con cámara → izquierda
+[16:32:10] [Estado.SEARCH] 2 corregir con cámara → izquierda
+[16:32:10] [Estado.SEARCH] 1 corregir con cámara → derecha
+[16:32:10] [Estado.SEARCH] Baliza encontrada → RECENTER
+[16:32:10] [Estado.RECENTER] Entrando en RECENTER
+[16:32:11] [Estado.RECENTER] RECENTER sin detección → SEARCH
+[16:32:11] [Estado.SEARCH] Entrando en SEARCH
+[16:32:11] [Estado.SEARCH] Paneo → derecha
+[16:32:11] [Estado.SEARCH] 3 corregir con cámara → derecha
+[16:32:11] [Estado.SEARCH] 1 corregir con cámara → derecha
+[16:32:11] [Estado.SEARCH] 2 corregir con cámara → izquierda
+[16:32:12] [Estado.SEARCH] 1 corregir con cámara → derecha
+[16:32:13] [Estado.SEARCH] Cambio → izquierda
+[16:32:13] [Estado.SEARCH] 4 corregir con cámara → izquierda
+[16:32:13] [Estado.SEARCH] 1 corregir con cámara → derecha
+[16:32:20] [Estado.SEARCH] Cambio → derecha
+[16:32:20] [Estado.SEARCH] 6 corregir con cámara → derecha
+[16:32:21] [Estado.SEARCH] Det valid=False is_centered=True n=1 w=0 h=0 area=0 x=320.0 y=240.0
+[16:32:21] [Estado.SEARCH] Baliza encontrada → RECENTER
+[16:32:22] [Estado.RECENTER] Entrando en RECENTER
+[16:32:22] [Estado.RECENTER] RECENTER sin detección → SEARCH
+[16:32:22] [Estado.SEARCH] Entrando en SEARCH
+[16:32:22] [Estado.SEARCH] Paneo → derecha
+[16:32:22] [Estado.SEARCH] 3 corregir con cámara → derecha
+[16:32:23] [Estado.SEARCH] Cambio → izquierda
+[16:32:23] [Estado.SEARCH] 4 corregir con cámara → izquierda
+[16:32:24] [Estado.SEARCH] Det valid=False is_centered=True n=1 w=0 h=0 area=0 x=320.0 y=240.0
+[16:32:24] [Estado.SEARCH] 2 corregir con cámara → izquierda
+[16:32:24] [Estado.SEARCH] Baliza encontrada → RECENTER
+[16:32:25] [Estado.RECENTER] Entrando en RECENTER
+[16:32:41] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[16:32:41] [Estado.TRACK] Entrando en TRACK
+[16:32:41] [Estado.TRACK] Avanzando hacia baliza
+[16:32:55] [Estado.TRACK] Corrigiendo (ruedas) error_x=-42
+[16:32:56] [Estado.TRACK] Avanzando hacia baliza
+[16:33:12] [Estado.TRACK] Corrigiendo (ruedas) error_x=42
+[16:33:12] [Estado.TRACK] Avanzando hacia baliza
+[16:33:13] [Estado.TRACK] Corrigiendo (ruedas) error_x=42
+[16:33:13] [Estado.TRACK] Corrigiendo (ruedas) error_x=44
+[16:33:13] [Estado.TRACK] Corrigiendo (ruedas) error_x=48
+[16:33:13] [Estado.TRACK] Corrigiendo (ruedas) error_x=50
+[16:33:13] [Estado.TRACK] Corrigiendo (ruedas) error_x=48
+[16:33:14] [Estado.TRACK] Corrigiendo (ruedas) error_x=52
+[16:33:14] [Estado.TRACK] Corrigiendo (ruedas) error_x=50
+[16:33:14] [Estado.TRACK] Corrigiendo (ruedas) error_x=52
+[16:33:14] [Estado.TRACK] Corrigiendo (ruedas) error_x=56
+[16:33:14] [Estado.TRACK] Corrigiendo (ruedas) error_x=54
+[16:33:14] [Estado.TRACK] Corrigiendo (ruedas) error_x=52
+[16:33:15] [Estado.TRACK] Corrigiendo (ruedas) error_x=48
+[16:33:15] [Estado.TRACK] Avanzando hacia baliza
+[16:33:36] [Estado.TRACK] [SEC] CRITICAL: object < 11.61 cm
+[16:33:37] [Estado.RESET] [SEC] CRITICAL: object < 11.61 cm
+[16:33:38] [Estado.RESET] Entrando en RESET
+[16:33:38] [Estado.SEARCH] Entrando en SEARCH
+[16:33:38] [Estado.SEARCH] 2 corregir con cámara → izquierda
+[16:33:38] [Estado.SEARCH] Baliza encontrada → RECENTER
+[16:33:38] [Estado.RECENTER] Entrando en RECENTER
+[16:33:39] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[16:33:39] [Estado.TRACK] Entrando en TRACK
+[16:33:39] [Estado.TRACK] Avanzando hacia baliza
+[16:33:40] [Estado.TRACK] Corrigiendo (ruedas) error_x=52
+[16:33:40] [Estado.TRACK] Corrigiendo (ruedas) error_x=72
+[16:33:40] [Estado.TRACK] Corrigiendo (ruedas) error_x=60
+[16:33:40] [Estado.TRACK] [SEC] CRITICAL: object < 2.0 cm
+[16:33:40] [Estado.RESET] [SEC] CRITICAL: object < 2.0 cm
+[16:33:42] [Estado.RESET] Entrando en RESET
+[16:33:42] [Estado.SEARCH] Entrando en SEARCH
+[16:33:42] [Estado.SEARCH] Paneo → derecha
+[16:33:42] [Estado.SEARCH] 3 corregir con cámara → derecha
+[16:33:42] [Estado.SEARCH] Det valid=False is_centered=True n=1 w=0 h=0 area=0 x=320.0 y=240.0
+[16:33:43] [Estado.SEARCH] Cambio → izquierda
+[16:33:43] [Estado.SEARCH] 4 corregir con cámara → izquierda
+[16:33:43] [Estado.SEARCH] Det valid=False is_centered=True n=1 w=0 h=0 area=0 x=320.0 y=240.0
