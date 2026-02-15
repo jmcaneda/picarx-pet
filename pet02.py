@@ -449,11 +449,13 @@ def search_not_see(px):
         if px.last_pan < PAN_MAX:
             if px.last_paneo != "right":
                 log_event(px, Estado.SEARCH, "Paneo → derecha")
+                log_event(px, Estado.SEARCH, "3 corregir con cámara → derecha")
                 px.last_paneo = "right"
             return Estado.SEARCH, Cmd.CAM_PAN_RIGHT
         else:
             px.search_dir = -1
             log_event(px, Estado.SEARCH, "Cambio → izquierda")
+            log_event(px, Estado.SEARCH, "4 corregir con cámara → izquierda")
             px.last_paneo = "left"
             return Estado.SEARCH, Cmd.CAM_PAN_LEFT
 
@@ -462,11 +464,13 @@ def search_not_see(px):
         if px.last_pan > PAN_MIN:
             if px.last_paneo != "left":
                 log_event(px, Estado.SEARCH, "Paneo → izquierda")
+                log_event(px, Estado.SEARCH, "5 corregir con cámara → izquierda")
                 px.last_paneo = "left"
             return Estado.SEARCH, Cmd.CAM_PAN_LEFT
         else:
             px.search_dir = 1
             log_event(px, Estado.SEARCH, "Cambio → derecha")
+            log_event(px, Estado.SEARCH, "6 corregir con cámara → derecha")
             px.last_paneo = "right"
             return Estado.SEARCH, Cmd.CAM_PAN_RIGHT
 
@@ -522,9 +526,11 @@ def state_search(px, dist, estado, accion):
 
         # Si no está centrada → corregir con cámara
         if det.error_x > 40:
+            log_event(px, estado, "1 corregir con cámara → derecha")
             return Estado.SEARCH, Cmd.CAM_PAN_RIGHT
 
         if det.error_x < -40:
+            log_event(px, estado, "2 corregir con cámara → izquierda")
             return Estado.SEARCH, Cmd.CAM_PAN_LEFT
 
         # Detección válida pero no centrada → no panees
@@ -533,8 +539,9 @@ def state_search(px, dist, estado, accion):
     # ------------------------------------------------------------
     # 2. Si NO hay detección válida → paneo
     # ------------------------------------------------------------
-    px.search_seen = 0
-    return search_not_see(px)
+    else:
+        px.search_seen = 0
+        return search_not_see(px)
 
 def state_recenter(px, dist, estado, accion, robot_state):
     det = get_detection(px)
