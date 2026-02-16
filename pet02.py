@@ -20,10 +20,12 @@ PAN_MAX = 35
 TILT_MIN = -35
 TILT_MAX = 35
 
+SERVO_ANGLE_MIN = -30
+SERVO_ANGLE_MAX = 30
+
 CX = 320
 CY = 240
 
-# Real
 FAST_SPEED = 20 
 SLOW_SPEED = 5
 TURN_SPEED = 1 
@@ -216,18 +218,18 @@ def backward(px, speed=SLOW_SPEED):
     px.backward(speed)
 
 def turn_left(px, speed=TURN_SPEED):
-    px.set_dir_servo_angle(-35)
+    px.set_dir_servo_angle(SERVO_ANGLE_MIN)
     px.forward(speed)
 
 def turn_right(px, speed=TURN_SPEED):
-    px.set_dir_servo_angle(35)
+    px.set_dir_servo_angle(SERVO_ANGLE_MAX)
     px.forward(speed)
 
 def scape_danger(px, speed=SLOW_SPEED):
-    px.set_dir_servo_angle(-35)
+    px.set_dir_servo_angle(SERVO_ANGLE_MIN)
     px.backward(speed)
     time.sleep(0.5)
-    px.set_dir_servo_angle(35)
+    px.set_dir_servo_angle(SERVO_ANGLE_MAX)
     px.backward(speed)
     time.sleep(0.5)
 
@@ -443,37 +445,102 @@ def search_see(px, det):
     return Estado.TRACK, Cmd.STOP
 
 def search_not_see(px):
+    """
+    Lógica de búsqueda cuando NO se ve la baliza:
+      - Fase 1: paneo de cámara izquierda/derecha (como ahora).
+      - Fase 2: si pasa demasiado tiempo sin ver nada → círculo suave con ruedas.
+      - Anti-bucle: cambio de sentido y reseteo periódico.
+    """
 
-    # Paneo derecha
-    if px.search_dir == 1:
-        if px.last_pan < PAN_MAX:
-            if px.last_paneo != "right":
-                log_event(px, Estado.SEARCH, "Paneo → derecha")
-                log_event(px, Estado.SEARCH, "3 corregir con cámara → derecha")
-                px.last_paneo = "right"
-            return Estado.SEARCH, Cmd.CAM_PAN_RIGHT
-        else:
-            px.search_dir = -1
-            log_event(px, Estado.SEARCH, "Cambio → izquierda")
-            log_event(px, Estado.SEARCH, "4 corregir con cámara → izquierda")
-            px.last_paneo = "left"
-            return Estado.SEARCH, Cmd.CAM_PAN_LEFT
+    # Parámetros de comportamiento
+    MAX_PAN_STEPS_BEFORE_CIRCLE = 40   # ~4 s si el loop va a 0.1 s
+    CIRCLE_SWITCH_STEPS = 60           # pasos antes de invertir giro en círculo
+    FULL_RESET_STEPS = 200             # hard reset de búsqueda
 
-    # Paneo izquierda
-    if px.search_dir == -1:
-        if px.last_pan > PAN_MIN:
-            if px.last_paneo != "left":
-                log_event(px, Estado.SEARCH, "Paneo → izquierda")
-                log_event(px, Estado.SEARCH, "5 corregir con cámara → izquierda")
+    # Inicialización defensiva
+    if not hasattr(px, "search_phase"):
+        px.search_phase = "pan"
+    if not hasattr(px, "search_steps"):
+        px.search_steps = 0
+    if not hasattr(px, "search_dir"):
+        px.search_dir = 1
+
+    px.search_steps += 1
+
+    # ------------------------------------------------------------
+    # 0. Hard reset anti-bucle
+    # ------------------------------------------------------------
+    if px.search_steps >= FULL_RESET_STEPS:
+        log_event(px, Estado.SEARCH, "SEARCH hard reset → centrar cámara y reiniciar paneo")
+        px.search_phase = "pan"
+        px.search_steps = 0
+        px.search_dir = 1
+        px.last_pan = 0
+        px.set_cam_pan_angle(0)
+        px.last_paneo = None
+        return Estado.SEARCH, Cmd.STOP
+
+    # ============================================================
+    # FASE 1: PANEOS DE CÁMARA (búsqueda estática)
+    # ============================================================
+    if px.search_phase == "pan":
+
+        # Si llevamos demasiado tiempo paneando sin ver nada → pasar a círculo
+        if px.search_steps >= MAX_PAN_STEPS_BEFORE_CIRCLE:
+            log_event(px, Estado.SEARCH, "SEARCH → cambio a círculo suave (ruedas)")
+            px.search_phase = "circle"
+            px.search_steps = 0
+            # centramos un poco la cámara para que el gesto sea natural
+            px.last_pan = 0
+            px.set_cam_pan_angle(0)
+            return Estado.SEARCH, Cmd.WHEELS_TURN_LEFT if px.search_dir < 0 else Cmd.WHEELS_TURN_RIGHT
+
+        # -------- Paneo derecha --------
+        if px.search_dir == 1:
+            if px.last_pan < PAN_MAX:
+                if px.last_paneo != "right":
+                    log_event(px, Estado.SEARCH, "Paneo → derecha")
+                    log_event(px, Estado.SEARCH, "3 corregir con cámara → derecha")
+                    px.last_paneo = "right"
+                return Estado.SEARCH, Cmd.CAM_PAN_RIGHT
+            else:
+                px.search_dir = -1
+                log_event(px, Estado.SEARCH, "Cambio → izquierda")
+                log_event(px, Estado.SEARCH, "4 corregir con cámara → izquierda")
                 px.last_paneo = "left"
-            return Estado.SEARCH, Cmd.CAM_PAN_LEFT
-        else:
-            px.search_dir = 1
-            log_event(px, Estado.SEARCH, "Cambio → derecha")
-            log_event(px, Estado.SEARCH, "6 corregir con cámara → derecha")
-            px.last_paneo = "right"
-            return Estado.SEARCH, Cmd.CAM_PAN_RIGHT
+                return Estado.SEARCH, Cmd.CAM_PAN_LEFT
 
+        # -------- Paneo izquierda --------
+        if px.search_dir == -1:
+            if px.last_pan > PAN_MIN:
+                if px.last_paneo != "left":
+                    log_event(px, Estado.SEARCH, "Paneo → izquierda")
+                    log_event(px, Estado.SEARCH, "5 corregir con cámara → izquierda")
+                    px.last_paneo = "left"
+                return Estado.SEARCH, Cmd.CAM_PAN_LEFT
+            else:
+                px.search_dir = 1
+                log_event(px, Estado.SEARCH, "Cambio → derecha")
+                log_event(px, Estado.SEARCH, "6 corregir con cámara → derecha")
+                px.last_paneo = "right"
+                return Estado.SEARCH, Cmd.CAM_PAN_RIGHT
+
+    # ============================================================
+    # FASE 2: CÍRCULO SUAVE CON RUEDAS
+    # ============================================================
+    if px.search_phase == "circle":
+        # Cada cierto tiempo invertimos el giro para no quedar atrapados
+        if px.search_steps % CIRCLE_SWITCH_STEPS == 0:
+            px.search_dir *= -1
+            log_event(px, Estado.SEARCH, "SEARCH círculo → invertir sentido de giro")
+
+        # Giro suave: usamos los mismos comandos que en RECENTER/TRACK
+        if px.search_dir >= 0:
+            # círculo hacia la derecha
+            return Estado.SEARCH, Cmd.WHEELS_TURN_RIGHT
+        else:
+            # círculo hacia la izquierda
+            return Estado.SEARCH, Cmd.WHEELS_TURN_LEFT
 
 # ============================================================
 # ESTADOS
