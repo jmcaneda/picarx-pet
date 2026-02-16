@@ -446,20 +446,19 @@ def search_see(px, det):
 
 def search_not_see(px):
     """
-    Lógica de búsqueda cuando NO se ve la baliza:
-      - Fase 1: paneo de cámara izquierda/derecha (como ahora).
-      - Fase 2: si pasa demasiado tiempo sin ver nada → círculo suave con ruedas.
-      - Anti-bucle: cambio de sentido y reseteo periódico.
+    SEARCH cuando NO hay detección válida:
+    - Cámara centrada (mirada al frente)
+    - Giro continuo del cuerpo
+    - Ignorar detecciones basura
+    - En cuanto aparezca una detección válida → RECENTER
+    - Anti-bucle: invertir giro o resetear
     """
 
-    # Parámetros de comportamiento
-    MAX_PAN_STEPS_BEFORE_CIRCLE = 40   # ~4 s si el loop va a 0.1 s
-    CIRCLE_SWITCH_STEPS = 60           # pasos antes de invertir giro en círculo
-    FULL_RESET_STEPS = 200             # hard reset de búsqueda
+    # Parámetros
+    CIRCLE_SWITCH_STEPS = 80      # invertir giro cada X pasos
+    FULL_RESET_STEPS = 300        # hard reset si nada aparece
 
     # Inicialización defensiva
-    if not hasattr(px, "search_phase"):
-        px.search_phase = "pan"
     if not hasattr(px, "search_steps"):
         px.search_steps = 0
     if not hasattr(px, "search_dir"):
@@ -467,80 +466,51 @@ def search_not_see(px):
 
     px.search_steps += 1
 
-    # ------------------------------------------------------------
-    # 0. Hard reset anti-bucle
-    # ------------------------------------------------------------
+    # --- 0. Hard reset anti-bucle ---
     if px.search_steps >= FULL_RESET_STEPS:
-        log_event(px, Estado.SEARCH, "SEARCH hard reset → centrar cámara y reiniciar paneo")
-        px.search_phase = "pan"
+        log_event(px, Estado.SEARCH, "SEARCH hard reset → centrar cámara y reiniciar")
         px.search_steps = 0
         px.search_dir = 1
         px.last_pan = 0
         px.set_cam_pan_angle(0)
-        px.last_paneo = None
-        return Estado.SEARCH, Cmd.STOP
+        return Estado.SEARCH, Cmd.WHEELS_TURN_RIGHT
 
-    # ============================================================
-    # FASE 1: PANEOS DE CÁMARA (búsqueda estática)
-    # ============================================================
-    if px.search_phase == "pan":
+    # --- 1. Cámara SIEMPRE centrada en modo búsqueda circular ---
+    if px.last_pan != 0:
+        px.last_pan = 0
+        px.set_cam_pan_angle(0)
 
-        # Si llevamos demasiado tiempo paneando sin ver nada → pasar a círculo
-        if px.search_steps >= MAX_PAN_STEPS_BEFORE_CIRCLE:
-            log_event(px, Estado.SEARCH, "SEARCH → cambio a círculo suave (ruedas)")
-            px.search_phase = "circle"
-            px.search_steps = 0
-            # centramos un poco la cámara para que el gesto sea natural
-            px.last_pan = 0
-            px.set_cam_pan_angle(0)
-            return Estado.SEARCH, Cmd.WHEELS_TURN_LEFT if px.search_dir < 0 else Cmd.WHEELS_TURN_RIGHT
+    # --- 2. Giro continuo del cuerpo ---
+    # Invertir sentido cada cierto tiempo para evitar bucles
+    if px.search_steps % CIRCLE_SWITCH_STEPS == 0:
+        px.search_dir *= -1
+        log_event(px, Estado.SEARCH, "SEARCH → invertir sentido de giro")
 
-        # -------- Paneo derecha --------
-        if px.search_dir == 1:
-            if px.last_pan < PAN_MAX:
-                if px.last_paneo != "right":
-                    log_event(px, Estado.SEARCH, "Paneo → derecha")
-                    log_event(px, Estado.SEARCH, "3 corregir con cámara → derecha")
-                    px.last_paneo = "right"
-                return Estado.SEARCH, Cmd.CAM_PAN_RIGHT
-            else:
-                px.search_dir = -1
-                log_event(px, Estado.SEARCH, "Cambio → izquierda")
-                log_event(px, Estado.SEARCH, "4 corregir con cámara → izquierda")
-                px.last_paneo = "left"
-                return Estado.SEARCH, Cmd.CAM_PAN_LEFT
+    if px.search_dir > 0:
+        return Estado.SEARCH, Cmd.WHEELS_TURN_RIGHT
+    else:
+        return Estado.SEARCH, Cmd.WHEELS_TURN_LEFT
 
-        # -------- Paneo izquierda --------
-        if px.search_dir == -1:
-            if px.last_pan > PAN_MIN:
-                if px.last_paneo != "left":
-                    log_event(px, Estado.SEARCH, "Paneo → izquierda")
-                    log_event(px, Estado.SEARCH, "5 corregir con cámara → izquierda")
-                    px.last_paneo = "left"
-                return Estado.SEARCH, Cmd.CAM_PAN_LEFT
-            else:
-                px.search_dir = 1
-                log_event(px, Estado.SEARCH, "Cambio → derecha")
-                log_event(px, Estado.SEARCH, "6 corregir con cámara → derecha")
-                px.last_paneo = "right"
-                return Estado.SEARCH, Cmd.CAM_PAN_RIGHT
+def do_yes(px):
 
-    # ============================================================
-    # FASE 2: CÍRCULO SUAVE CON RUEDAS
-    # ============================================================
-    if px.search_phase == "circle":
-        # Cada cierto tiempo invertimos el giro para no quedar atrapados
-        if px.search_steps % CIRCLE_SWITCH_STEPS == 0:
-            px.search_dir *= -1
-            log_event(px, Estado.SEARCH, "SEARCH círculo → invertir sentido de giro")
+    try:
+        for _ in range(2):
+            # Pequeño gesto hacia arriba
+            px.set_cam_tilt_angle(TILT_MAX)
+            time.sleep(0.12)
 
-        # Giro suave: usamos los mismos comandos que en RECENTER/TRACK
-        if px.search_dir >= 0:
-            # círculo hacia la derecha
-            return Estado.SEARCH, Cmd.WHEELS_TURN_RIGHT
-        else:
-            # círculo hacia la izquierda
-            return Estado.SEARCH, Cmd.WHEELS_TURN_LEFT
+            # Pequeño gesto hacia abajo
+            px.set_cam_tilt_angle(TILT_MIN)
+            time.sleep(0.12)
+
+            # Volver al centro
+            px.set_cam_tilt_angle(0)
+            time.sleep(0.05)
+
+    except Exception as e:
+        # No queremos que un fallo de tilt rompa la FSM
+        print(f"[WARN] Error en gesto de 'sí': {e}")
+
 
 # ============================================================
 # ESTADOS
@@ -692,7 +662,8 @@ def state_track(px, dist, estado, accion, robot_state):
 
     if dist <= SAFE_DISTANCE:
         log_event(px, estado, "Distancia segura alcanzada → STOP")
-        return Estado.TRACK, Cmd.STOP
+        do_yes(px)
+        return Estado.IDLE, Cmd.STOP
 
     # ------------------------------------------------------------
     # 2. Si NO hay detección válida → tolerar 3 frames

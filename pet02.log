@@ -1,168 +1,417 @@
 === Start of pet02.log ===
-[17:18:32] [Estado.CHK] [CHK] ==============================
-[17:18:32] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[17:18:32] [Estado.CHK] [CHK] ==============================
-[17:18:32] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[17:18:32] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[17:18:32] [Estado.CHK] [CHK] State wheels:     0
-[17:18:32] [Estado.CHK] [CHK] ==============================
-[17:18:32] [Estado.IDLE] Inicio del sistema
-[17:18:32] [Estado.IDLE] Entrando en IDLE
-[17:18:32] [Estado.RESET] Entrando en RESET
-[17:18:32] [Estado.SEARCH] Det valid=True is_centered=False n=1 w=76 h=68 area=5168 x=602 y=278
-[17:18:32] [Estado.SEARCH] Entrando en SEARCH
-[17:18:32] [Estado.SEARCH] 1 corregir con cámara → derecha
-[17:18:33] [Estado.SEARCH] Baliza encontrada → RECENTER
-[17:18:33] [Estado.RECENTER] Entrando en RECENTER
-[17:18:36] [Estado.RECENTER] Alineado ✔ (cuerpo)
-[17:18:36] [Estado.TRACK] Entrando en TRACK
-[17:18:36] [Estado.TRACK] Baliza muy cerca (área=35200) → BACKWARD
-[17:18:36] [Estado.TRACK] Baliza muy cerca (área=41600) → BACKWARD
-[17:18:36] [Estado.TRACK] Baliza muy cerca (área=40800) → BACKWARD
-[17:18:36] [Estado.TRACK] Baliza muy cerca (área=40768) → BACKWARD
-[17:18:37] [Estado.TRACK] Corrigiendo (ruedas) error_x=-44
-[17:18:37] [Estado.TRACK] Corrigiendo (ruedas) error_x=-106
-[17:18:37] [Estado.TRACK] Distancia segura alcanzada → STOP
-[17:18:38] [Estado.TRACK] Corrigiendo (ruedas) error_x=-44
-[17:18:38] [Estado.TRACK] Corrigiendo (ruedas) error_x=-42
-[17:18:38] [Estado.TRACK] Baliza muy cerca (área=44880) → BACKWARD
-[17:18:38] [Estado.TRACK] Baliza muy cerca (área=55440) → BACKWARD
-[17:18:38] [Estado.TRACK] Baliza muy cerca (área=45792) → BACKWARD
-[17:18:38] [Estado.TRACK] Baliza muy cerca (área=46512) → BACKWARD
-[17:18:38] [Estado.TRACK] Baliza muy cerca (área=44800) → BACKWARD
-[17:18:39] [Estado.TRACK] Corrigiendo (ruedas) error_x=-240
-[17:18:39] [Estado.TRACK] Corrigiendo (ruedas) error_x=-282
-[17:18:39] [Estado.TRACK] Corrigiendo (ruedas) error_x=-296
-[17:18:39] [Estado.TRACK] Distancia segura alcanzada → STOP
-[17:18:39] [Estado.TRACK] Corrigiendo (ruedas) error_x=-234
-[17:18:39] [Estado.TRACK] Corrigiendo (ruedas) error_x=-226
-[17:18:39] [Estado.TRACK] Corrigiendo (ruedas) error_x=-188
-[17:18:39] [Estado.TRACK] Corrigiendo (ruedas) error_x=-126
-[17:18:39] [Estado.TRACK] Corrigiendo (ruedas) error_x=-60
-[17:18:40] [Estado.TRACK] Avanzando hacia baliza
-[17:18:40] [Estado.TRACK] Corrigiendo (ruedas) error_x=80
-[17:18:40] [Estado.TRACK] Baliza muy cerca (área=39648) → BACKWARD
-[17:18:40] [Estado.TRACK] Baliza muy cerca (área=47840) → BACKWARD
-[17:18:40] [Estado.TRACK] Baliza muy cerca (área=43920) → BACKWARD
-[17:18:40] [Estado.TRACK] Baliza muy cerca (área=36064) → BACKWARD
-[17:18:40] [Estado.TRACK] Corrigiendo (ruedas) error_x=244
-[17:18:40] [Estado.TRACK] Corrigiendo (ruedas) error_x=266
-[17:18:40] [Estado.TRACK] Corrigiendo (ruedas) error_x=280
-[17:18:41] [Estado.TRACK] Corrigiendo (ruedas) error_x=260
-[17:18:41] [Estado.TRACK] Corrigiendo (ruedas) error_x=244
-[17:18:41] [Estado.TRACK] Corrigiendo (ruedas) error_x=234
-[17:18:41] [Estado.TRACK] Corrigiendo (ruedas) error_x=228
-[17:18:41] [Estado.TRACK] Baliza muy cerca (área=38352) → BACKWARD
-[17:18:41] [Estado.TRACK] Baliza muy cerca (área=42400) → BACKWARD
-[17:18:41] [Estado.TRACK] Corrigiendo (ruedas) error_x=242
-[17:18:41] [Estado.TRACK] Corrigiendo (ruedas) error_x=290
-[17:18:42] [Estado.TRACK] Perdida baliza → SEARCH
-[17:18:42] [Estado.SEARCH] Entrando en SEARCH
-[17:18:42] [Estado.SEARCH] Cambio → izquierda
-[17:18:44] [Estado.SEARCH] Cambio → derecha
-[17:18:44] [Estado.SEARCH] [SEC] CRITICAL: object < 11.78 cm
-[17:18:46] [Estado.RESET] Entrando en RESET
-[17:18:47] [Estado.SEARCH] [SEC] CRITICAL: object < 16.1 cm
-[17:18:48] [Estado.RESET] Entrando en RESET
-[17:18:48] [Estado.SEARCH] [SEC] CRITICAL: object < 23.08 cm
-[17:18:49] [Estado.RESET] Entrando en RESET
-[17:18:51] [Estado.SEARCH] [SEC] CRITICAL: object < 23.43 cm
-[17:18:52] [Estado.RESET] Entrando en RESET
-[17:18:53] [Estado.SEARCH] Cambio → izquierda
-[17:18:53] [Estado.SEARCH] Det valid=False is_centered=True n=1 w=0 h=0 area=0 x=320.0 y=240.0
-[17:18:54] [Estado.SEARCH] [SEC] CRITICAL: object < 11.78 cm
-[17:18:55] [Estado.RESET] Entrando en RESET
-[17:18:55] [Estado.SEARCH] [SEC] CRITICAL: object < 20.54 cm
-[17:18:56] [Estado.RESET] Entrando en RESET
-[17:18:57] [Estado.SEARCH] [SEC] CRITICAL: object < 24.85 cm
-[17:18:58] [Estado.RESET] Entrando en RESET
-[17:18:59] [Estado.SEARCH] Cambio → derecha
-[17:19:00] [Estado.SEARCH] [SEC] CRITICAL: object < 18.59 cm
-[17:19:01] [Estado.RESET] Entrando en RESET
-[17:19:02] [Estado.SEARCH] [SEC] CRITICAL: object < 24.62 cm
-[17:19:03] [Estado.RESET] Entrando en RESET
-[17:19:04] [Estado.SEARCH] [SEC] CRITICAL: object < 24.76 cm
-[17:19:05] [Estado.RESET] Entrando en RESET
-[17:19:06] [Estado.SEARCH] Det valid=False is_centered=True n=1 w=0 h=0 area=0 x=320.0 y=240.0
-[17:19:06] [Estado.SEARCH] Cambio → izquierda
-[17:19:06] [Estado.SEARCH] 1 corregir con cámara → derecha
-[17:19:07] [Estado.SEARCH] Det valid=False is_centered=True n=1 w=0 h=0 area=0 x=320.0 y=240.0
-[17:19:07] [Estado.SEARCH] [SEC] CRITICAL: object < 12.89 cm
-[17:19:08] [Estado.RESET] Entrando en RESET
-[17:19:09] [Estado.SEARCH] [SEC] CRITICAL: object < 22.47 cm
-[17:19:10] [Estado.RESET] Entrando en RESET
-[17:19:11] [Estado.SEARCH] [SEC] CRITICAL: object < 24.89 cm
-[17:19:12] [Estado.RESET] Entrando en RESET
-[17:19:13] [Estado.SEARCH] Cambio → derecha
-[17:19:14] [Estado.SEARCH] [SEC] CRITICAL: object < 14.6 cm
-[17:19:15] [Estado.RESET] Entrando en RESET
-[17:19:15] [Estado.SEARCH] [SEC] CRITICAL: object < 23.99 cm
-[17:19:16] [Estado.RESET] Entrando en RESET
-[17:19:17] [Estado.SEARCH] Det valid=False is_centered=True n=1 w=384 h=208 area=79872 x=380 y=376
-[17:19:18] [Estado.SEARCH] [SEC] CRITICAL: object < 24.17 cm
-[17:19:19] [Estado.RESET] Entrando en RESET
-[17:19:20] [Estado.SEARCH] Det valid=True is_centered=False n=3 w=56 h=88 area=4928 x=612 y=288
-[17:19:20] [Estado.SEARCH] 1 corregir con cámara → derecha
-[17:19:20] [Estado.SEARCH] Baliza encontrada → RECENTER
-[17:19:20] [Estado.RECENTER] Entrando en RECENTER
-[17:19:21] [Estado.RECENTER] Alineado ✔ (cuerpo)
-[17:19:22] [Estado.TRACK] Entrando en TRACK
-[17:19:22] [Estado.TRACK] Avanzando hacia baliza
-[17:19:22] [Estado.TRACK] Corrigiendo (ruedas) error_x=-46
-[17:19:22] [Estado.TRACK] Corrigiendo (ruedas) error_x=-104
-[17:19:22] [Estado.TRACK] Det valid=False is_centered=True n=1 w=0 h=0 area=0 x=320.0 y=240.0
-[17:19:22] [Estado.TRACK] Perdida baliza → SEARCH
-[17:19:22] [Estado.SEARCH] Entrando en SEARCH
-[17:19:22] [Estado.SEARCH] Cambio → izquierda
-[17:19:23] [Estado.SEARCH] Baliza encontrada → RECENTER
-[17:19:23] [Estado.RECENTER] Entrando en RECENTER
-[17:19:23] [Estado.RECENTER] Det valid=False is_centered=True n=1 w=0 h=0 area=0 x=320.0 y=240.0
-[17:19:23] [Estado.RECENTER] RECENTER sin detección → SEARCH
-[17:19:23] [Estado.SEARCH] Entrando en SEARCH
-[17:19:23] [Estado.SEARCH] Cambio → izquierda
-[17:19:23] [Estado.SEARCH] Det valid=False is_centered=True n=2 w=0 h=0 area=0 x=320.0 y=240.0
-[17:19:24] [Estado.SEARCH] Det valid=False is_centered=True n=1 w=0 h=0 area=0 x=320.0 y=240.0
-[17:19:25] [Estado.SEARCH] Cambio → derecha
-[17:19:25] [Estado.SEARCH] [SEC] CRITICAL: object < 14.67 cm
-[17:19:27] [Estado.RESET] Entrando en RESET
-[17:19:27] [Estado.SEARCH] [SEC] CRITICAL: object < 16.42 cm
-[17:19:28] [Estado.RESET] Entrando en RESET
-[17:19:28] [Estado.SEARCH] [SEC] CRITICAL: object < 24.51 cm
-[17:19:29] [Estado.RESET] Entrando en RESET
-[17:19:30] [Estado.SEARCH] Det valid=True is_centered=False n=1 w=96 h=124 area=11904 x=592 y=334
-[17:19:30] [Estado.SEARCH] 1 corregir con cámara → derecha
-[17:19:30] [Estado.SEARCH] Baliza encontrada → RECENTER
-[17:19:30] [Estado.RECENTER] Entrando en RECENTER
-[17:19:31] [Estado.RECENTER] Alineado ✔ (cuerpo)
-[17:19:31] [Estado.TRACK] Entrando en TRACK
-[17:19:31] [Estado.TRACK] Baliza muy cerca (área=48160) → BACKWARD
-[17:19:31] [Estado.TRACK] Baliza muy cerca (área=57936) → BACKWARD
-[17:19:31] [Estado.TRACK] Baliza muy cerca (área=48240) → BACKWARD
-[17:19:31] [Estado.TRACK] Baliza muy cerca (área=36864) → BACKWARD
-[17:19:31] [Estado.TRACK] Baliza muy cerca (w=256) → BACKWARD
-[17:19:31] [Estado.TRACK] Corrigiendo (ruedas) error_x=220
-[17:19:31] [Estado.TRACK] Corrigiendo (ruedas) error_x=298
-[17:19:32] [Estado.TRACK] Perdida baliza → SEARCH
-[17:19:32] [Estado.SEARCH] Entrando en SEARCH
-[17:19:32] [Estado.SEARCH] Paneo → derecha
-[17:19:32] [Estado.SEARCH] Cambio → izquierda
-[17:19:33] [Estado.SEARCH] [SEC] CRITICAL: object < 14.31 cm
-[17:19:34] [Estado.RESET] Entrando en RESET
-[17:19:36] [Estado.SEARCH] Cambio → derecha
-[17:19:36] [Estado.SEARCH] [SEC] CRITICAL: object < 23.74 cm
-[17:19:37] [Estado.RESET] Entrando en RESET
-[17:19:39] [Estado.SEARCH] [SEC] CRITICAL: object < 24.56 cm
-[17:19:40] [Estado.RESET] Entrando en RESET
-[17:19:41] [Estado.SEARCH] Cambio → izquierda
-[17:19:42] [Estado.SEARCH] Det valid=True is_centered=True n=2 w=32 h=48 area=1536 x=332 y=168
-[17:19:42] [Estado.SEARCH] [SEC] CRITICAL: object < 11.36 cm
-[17:19:43] [Estado.RESET] Entrando en RESET
-[17:19:44] [Estado.SEARCH] [SEC] CRITICAL: object < 23.47 cm
-[17:19:45] [Estado.RESET] Entrando en RESET
-[17:19:46] [Estado.SEARCH] [SEC] CRITICAL: object < 23.5 cm
-[17:19:47] [Estado.RESET] Entrando en RESET
-[17:19:48] [Estado.SEARCH] Cambio → derecha
-[17:19:49] [Estado.SEARCH] [SEC] CRITICAL: object < 16.7 cm
-[17:19:50] [Estado.RESET] Entrando en RESET
-[17:19:50] [Estado.SEARCH] [SEC] CRITICAL: object < 24.55 cm
-[17:19:51] [Estado.RESET] Entrando en RESET
+[10:39:00] [Estado.CHK] [CHK] ==============================
+[10:39:00] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[10:39:00] [Estado.CHK] [CHK] ==============================
+[10:39:00] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[10:39:00] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[10:39:00] [Estado.CHK] [CHK] State wheels:     0
+[10:39:00] [Estado.CHK] [CHK] ==============================
+[10:39:00] [Estado.IDLE] Inicio del sistema
+[10:39:00] [Estado.IDLE] Entrando en IDLE
+[10:39:01] [Estado.RESET] Entrando en RESET
+[10:39:01] [Estado.SEARCH] Det valid=True is_centered=False n=1 w=40 h=32 area=1280 x=552 y=244
+[10:39:01] [Estado.SEARCH] Entrando en SEARCH
+[10:39:01] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:39:01] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:39:01] [Estado.RECENTER] Entrando en RECENTER
+[10:39:02] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[10:39:02] [Estado.TRACK] Entrando en TRACK
+[10:39:03] [Estado.TRACK] Avanzando hacia baliza
+[10:39:03] [Estado.TRACK] Corrigiendo (ruedas) error_x=46
+[10:39:03] [Estado.TRACK] Corrigiendo (ruedas) error_x=86
+[10:39:04] [Estado.TRACK] Corrigiendo (ruedas) error_x=82
+[10:39:04] [Estado.TRACK] Corrigiendo (ruedas) error_x=46
+[10:39:04] [Estado.TRACK] Avanzando hacia baliza
+[10:39:04] [Estado.TRACK] Corrigiendo (ruedas) error_x=-52
+[10:39:04] [Estado.TRACK] Corrigiendo (ruedas) error_x=-110
+[10:39:04] [Estado.TRACK] Corrigiendo (ruedas) error_x=-124
+[10:39:04] [Estado.TRACK] Corrigiendo (ruedas) error_x=-100
+[10:39:04] [Estado.TRACK] Corrigiendo (ruedas) error_x=-76
+[10:39:05] [Estado.TRACK] Corrigiendo (ruedas) error_x=66
+[10:39:05] [Estado.TRACK] Corrigiendo (ruedas) error_x=100
+[10:39:05] [Estado.TRACK] Corrigiendo (ruedas) error_x=104
+[10:39:05] [Estado.TRACK] Corrigiendo (ruedas) error_x=64
+[10:39:06] [Estado.TRACK] Corrigiendo (ruedas) error_x=-58
+[10:39:06] [Estado.TRACK] Corrigiendo (ruedas) error_x=-108
+[10:39:06] [Estado.TRACK] Corrigiendo (ruedas) error_x=-114
+[10:39:06] [Estado.TRACK] Corrigiendo (ruedas) error_x=-80
+[10:39:06] [Estado.TRACK] Corrigiendo (ruedas) error_x=48
+[10:39:06] [Estado.TRACK] Corrigiendo (ruedas) error_x=98
+[10:39:06] [Estado.TRACK] Corrigiendo (ruedas) error_x=94
+[10:39:06] [Estado.TRACK] Corrigiendo (ruedas) error_x=50
+[10:39:07] [Estado.TRACK] Avanzando hacia baliza
+[10:39:07] [Estado.TRACK] Corrigiendo (ruedas) error_x=-56
+[10:39:07] [Estado.TRACK] Corrigiendo (ruedas) error_x=-124
+[10:39:07] [Estado.TRACK] Corrigiendo (ruedas) error_x=-122
+[10:39:07] [Estado.TRACK] Corrigiendo (ruedas) error_x=-78
+[10:39:07] [Estado.TRACK] Corrigiendo (ruedas) error_x=-56
+[10:39:08] [Estado.TRACK] Perdida baliza → SEARCH
+[10:39:08] [Estado.SEARCH] Entrando en SEARCH
+[10:39:08] [Estado.SEARCH] Det valid=True is_centered=True n=1 w=64 h=180 area=11520 x=388 y=238
+[10:39:08] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:39:08] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:39:08] [Estado.RECENTER] Entrando en RECENTER
+[10:39:10] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[10:39:10] [Estado.TRACK] Entrando en TRACK
+[10:39:10] [Estado.TRACK] Avanzando hacia baliza
+[10:39:10] [Estado.TRACK] Distancia segura alcanzada → STOP
+[10:39:11] [Estado.IDLE] Entrando en IDLE
+[10:39:11] [Estado.RESET] Entrando en RESET
+[10:39:11] [Estado.SEARCH] Entrando en SEARCH
+[10:39:11] [Estado.SEARCH] Det valid=True is_centered=False n=2 w=44 h=184 area=8096 x=618 y=224
+[10:39:11] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:39:12] [Estado.SEARCH] [SEC] CRITICAL: object < 23.47 cm
+[10:39:13] [Estado.RESET] Entrando en RESET
+[10:39:13] [Estado.SEARCH] Det valid=False is_centered=True n=5 w=0 h=0 area=0 x=320.0 y=240.0
+[10:39:13] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:39:13] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:39:14] [Estado.RECENTER] Entrando en RECENTER
+[10:39:14] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[10:39:15] [Estado.TRACK] Entrando en TRACK
+[10:39:15] [Estado.TRACK] Avanzando hacia baliza
+[10:39:15] [Estado.TRACK] Baliza muy cerca (área=69488) → BACKWARD
+[10:39:15] [Estado.TRACK] Baliza muy cerca (h=440) → BACKWARD
+[10:39:15] [Estado.TRACK] Baliza muy cerca (w=308) → BACKWARD
+[10:39:15] [Estado.TRACK] Baliza muy cerca (w=252) → BACKWARD
+[10:39:15] [Estado.TRACK] Baliza muy cerca (w=236) → BACKWARD
+[10:39:15] [Estado.TRACK] Baliza muy cerca (w=228) → BACKWARD
+[10:39:16] [Estado.TRACK] Baliza muy cerca (área=74400) → BACKWARD
+[10:39:16] [Estado.TRACK] Distancia segura alcanzada → STOP
+[10:39:16] [Estado.IDLE] Entrando en IDLE
+[10:39:16] [Estado.RESET] Entrando en RESET
+[10:39:17] [Estado.SEARCH] Entrando en SEARCH
+[10:39:17] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:39:17] [Estado.RECENTER] Entrando en RECENTER
+[10:39:17] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[10:39:17] [Estado.TRACK] Entrando en TRACK
+[10:39:17] [Estado.TRACK] Avanzando hacia baliza
+[10:39:18] [Estado.TRACK] Distancia segura alcanzada → STOP
+[10:39:18] [Estado.IDLE] Entrando en IDLE
+[10:39:18] [Estado.RESET] [SEC] CRITICAL: object < 23.51 cm
+[10:39:20] [Estado.RESET] Entrando en RESET
+[10:39:20] [Estado.SEARCH] Entrando en SEARCH
+[10:39:20] [Estado.SEARCH] Det valid=True is_centered=False n=2 w=44 h=40 area=1760 x=198 y=420
+[10:39:20] [Estado.SEARCH] 2 corregir con cámara → izquierda
+[10:39:20] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:39:20] [Estado.RECENTER] Entrando en RECENTER
+[10:39:20] [Estado.RECENTER] RECENTER sin detección → SEARCH
+[10:39:21] [Estado.SEARCH] Entrando en SEARCH
+[10:39:21] [Estado.SEARCH] Det valid=True is_centered=True n=1 w=52 h=56 area=2912 x=334 y=216
+[10:39:21] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:39:21] [Estado.RECENTER] Entrando en RECENTER
+[10:39:21] [Estado.RECENTER] RECENTER sin detección → SEARCH
+[10:39:22] [Estado.SEARCH] Entrando en SEARCH
+[10:39:22] [Estado.SEARCH] Det valid=True is_centered=True n=1 w=40 h=44 area=1760 x=240 y=258
+[10:39:22] [Estado.SEARCH] 2 corregir con cámara → izquierda
+[10:39:22] [Estado.SEARCH] Det valid=True is_centered=True n=2 w=44 h=52 area=2288 x=302 y=238
+[10:39:23] [Estado.SEARCH] Det valid=True is_centered=False n=1 w=44 h=36 area=1584 x=586 y=218
+[10:39:23] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:39:24] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:39:24] [Estado.RECENTER] Entrando en RECENTER
+[10:39:24] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[10:39:24] [Estado.TRACK] Entrando en TRACK
+[10:39:24] [Estado.TRACK] Avanzando hacia baliza
+[10:39:25] [Estado.TRACK] Corrigiendo (ruedas) error_x=-54
+[10:39:25] [Estado.TRACK] Corrigiendo (ruedas) error_x=-116
+[10:39:25] [Estado.TRACK] Corrigiendo (ruedas) error_x=-150
+[10:39:25] [Estado.TRACK] Corrigiendo (ruedas) error_x=-142
+[10:39:25] [Estado.TRACK] Corrigiendo (ruedas) error_x=-124
+[10:39:25] [Estado.TRACK] Corrigiendo (ruedas) error_x=-98
+[10:39:25] [Estado.TRACK] Corrigiendo (ruedas) error_x=-68
+[10:39:25] [Estado.TRACK] Corrigiendo (ruedas) error_x=-50
+[10:39:26] [Estado.TRACK] Corrigiendo (ruedas) error_x=48
+[10:39:26] [Estado.TRACK] Corrigiendo (ruedas) error_x=84
+[10:39:26] [Estado.TRACK] Corrigiendo (ruedas) error_x=72
+[10:39:26] [Estado.TRACK] Corrigiendo (ruedas) error_x=-56
+[10:39:26] [Estado.TRACK] Corrigiendo (ruedas) error_x=-124
+[10:39:26] [Estado.TRACK] Corrigiendo (ruedas) error_x=-166
+[10:39:26] [Estado.TRACK] Corrigiendo (ruedas) error_x=-164
+[10:39:26] [Estado.TRACK] Corrigiendo (ruedas) error_x=-150
+[10:39:27] [Estado.TRACK] Corrigiendo (ruedas) error_x=-138
+[10:39:27] [Estado.TRACK] Corrigiendo (ruedas) error_x=-114
+[10:39:27] [Estado.TRACK] Corrigiendo (ruedas) error_x=-90
+[10:39:27] [Estado.TRACK] Corrigiendo (ruedas) error_x=-68
+[10:39:27] [Estado.TRACK] Corrigiendo (ruedas) error_x=46
+[10:39:28] [Estado.TRACK] Corrigiendo (ruedas) error_x=72
+[10:39:28] [Estado.TRACK] Corrigiendo (ruedas) error_x=70
+[10:39:28] [Estado.TRACK] Baliza muy cerca (área=36096) → BACKWARD
+[10:39:28] [Estado.TRACK] Baliza muy cerca (área=46592) → BACKWARD
+[10:39:28] [Estado.TRACK] Baliza muy cerca (área=51920) → BACKWARD
+[10:39:28] [Estado.TRACK] Baliza muy cerca (área=46592) → BACKWARD
+[10:39:28] [Estado.TRACK] Corrigiendo (ruedas) error_x=50
+[10:39:29] [Estado.TRACK] [SEC] CRITICAL: object < 23.9 cm
+[10:39:29] [Estado.RESET] [SEC] CRITICAL: object < 23.9 cm
+[10:39:30] [Estado.RESET] Entrando en RESET
+[10:39:30] [Estado.SEARCH] Entrando en SEARCH
+[10:39:30] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:39:30] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:39:31] [Estado.RECENTER] Entrando en RECENTER
+[10:39:31] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[10:39:31] [Estado.TRACK] Entrando en TRACK
+[10:39:31] [Estado.TRACK] Avanzando hacia baliza
+[10:39:31] [Estado.TRACK] Distancia segura alcanzada → STOP
+[10:39:32] [Estado.IDLE] Entrando en IDLE
+[10:39:32] [Estado.RESET] [SEC] CRITICAL: object < 23.98 cm
+[10:39:33] [Estado.RESET] Entrando en RESET
+[10:39:33] [Estado.SEARCH] Entrando en SEARCH
+[10:39:33] [Estado.SEARCH] Det valid=True is_centered=False n=1 w=40 h=36 area=1440 x=620 y=182
+[10:39:33] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:39:34] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:39:34] [Estado.RECENTER] Entrando en RECENTER
+[10:39:36] [Estado.RECENTER] [SEC] CRITICAL: object < 9.78 cm
+[10:39:37] [Estado.RESET] Entrando en RESET
+[10:39:38] [Estado.SEARCH] Entrando en SEARCH
+[10:39:38] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:39:39] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:39:39] [Estado.RECENTER] Entrando en RECENTER
+[10:39:39] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[10:39:39] [Estado.TRACK] Entrando en TRACK
+[10:39:39] [Estado.TRACK] Corrigiendo (ruedas) error_x=42
+[10:39:39] [Estado.TRACK] Distancia segura alcanzada → STOP
+[10:39:40] [Estado.IDLE] Entrando en IDLE
+[10:39:40] [Estado.RESET] Entrando en RESET
+[10:39:40] [Estado.SEARCH] Entrando en SEARCH
+[10:39:41] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:39:41] [Estado.RECENTER] Entrando en RECENTER
+[10:39:42] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[10:39:42] [Estado.TRACK] Entrando en TRACK
+[10:39:42] [Estado.TRACK] Avanzando hacia baliza
+[10:39:42] [Estado.TRACK] Baliza muy cerca (área=38400) → BACKWARD
+[10:39:43] [Estado.TRACK] Baliza muy cerca (área=45872) → BACKWARD
+[10:39:43] [Estado.TRACK] Baliza muy cerca (área=49280) → BACKWARD
+[10:39:43] [Estado.TRACK] Baliza muy cerca (área=45120) → BACKWARD
+[10:39:43] [Estado.TRACK] Corrigiendo (ruedas) error_x=-50
+[10:39:43] [Estado.TRACK] Corrigiendo (ruedas) error_x=-108
+[10:39:43] [Estado.TRACK] Corrigiendo (ruedas) error_x=-184
+[10:39:43] [Estado.TRACK] Baliza muy cerca (área=48336) → BACKWARD
+[10:39:43] [Estado.TRACK] Baliza muy cerca (área=53808) → BACKWARD
+[10:39:44] [Estado.TRACK] Baliza muy cerca (área=41600) → BACKWARD
+[10:39:44] [Estado.TRACK] Corrigiendo (ruedas) error_x=-200
+[10:39:44] [Estado.TRACK] Corrigiendo (ruedas) error_x=-252
+[10:39:44] [Estado.TRACK] Corrigiendo (ruedas) error_x=-278
+[10:39:44] [Estado.TRACK] Corrigiendo (ruedas) error_x=-272
+[10:39:44] [Estado.TRACK] Corrigiendo (ruedas) error_x=-268
+[10:39:44] [Estado.TRACK] Baliza muy cerca (área=47840) → BACKWARD
+[10:39:44] [Estado.TRACK] Baliza muy cerca (área=61360) → BACKWARD
+[10:39:44] [Estado.TRACK] Baliza muy cerca (área=39360) → BACKWARD
+[10:39:45] [Estado.TRACK] Corrigiendo (ruedas) error_x=-260
+[10:39:45] [Estado.TRACK] Corrigiendo (ruedas) error_x=-288
+[10:39:45] [Estado.TRACK] Corrigiendo (ruedas) error_x=-294
+[10:39:45] [Estado.TRACK] Distancia segura alcanzada → STOP
+[10:39:46] [Estado.IDLE] Entrando en IDLE
+[10:39:46] [Estado.RESET] [SEC] CRITICAL: object < 10.66 cm
+[10:39:47] [Estado.RESET] Entrando en RESET
+[10:39:47] [Estado.SEARCH] Entrando en SEARCH
+[10:39:47] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:39:47] [Estado.SEARCH] [SEC] CRITICAL: object < 16.46 cm
+[10:39:48] [Estado.RESET] Entrando en RESET
+[10:39:48] [Estado.SEARCH] [SEC] CRITICAL: object < 10.08 cm
+[10:39:50] [Estado.RESET] Entrando en RESET
+[10:39:50] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:39:50] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:39:50] [Estado.RECENTER] Entrando en RECENTER
+[10:39:51] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[10:39:51] [Estado.TRACK] Entrando en TRACK
+[10:39:51] [Estado.TRACK] Avanzando hacia baliza
+[10:39:51] [Estado.TRACK] Corrigiendo (ruedas) error_x=-56
+[10:39:51] [Estado.TRACK] Corrigiendo (ruedas) error_x=-116
+[10:39:51] [Estado.TRACK] Corrigiendo (ruedas) error_x=-130
+[10:39:51] [Estado.TRACK] Corrigiendo (ruedas) error_x=-96
+[10:39:52] [Estado.TRACK] Distancia segura alcanzada → STOP
+[10:39:52] [Estado.IDLE] Entrando en IDLE
+[10:39:52] [Estado.RESET] Entrando en RESET
+[10:39:52] [Estado.SEARCH] Entrando en SEARCH
+[10:39:52] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:39:53] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:39:53] [Estado.RECENTER] Entrando en RECENTER
+[10:39:53] [Estado.RECENTER] [SEC] CRITICAL: object < 22.54 cm
+[10:39:55] [Estado.RESET] Entrando en RESET
+[10:39:55] [Estado.SEARCH] Entrando en SEARCH
+[10:39:55] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:39:55] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:39:55] [Estado.RECENTER] Entrando en RECENTER
+[10:39:55] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[10:39:56] [Estado.TRACK] Entrando en TRACK
+[10:39:56] [Estado.TRACK] Distancia segura alcanzada → STOP
+[10:39:56] [Estado.IDLE] Entrando en IDLE
+[10:39:56] [Estado.RESET] Entrando en RESET
+[10:39:57] [Estado.SEARCH] Entrando en SEARCH
+[10:39:57] [Estado.SEARCH] 2 corregir con cámara → izquierda
+[10:39:57] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:39:57] [Estado.RECENTER] Entrando en RECENTER
+[10:39:58] [Estado.RECENTER] RECENTER sin detección → SEARCH
+[10:39:59] [Estado.SEARCH] Entrando en SEARCH
+[10:39:59] [Estado.SEARCH] 2 corregir con cámara → izquierda
+[10:39:59] [Estado.SEARCH] Det valid=True is_centered=True n=2 w=176 h=112 area=19712 x=320 y=96
+[10:40:00] [Estado.SEARCH] [SEC] CRITICAL: object < 2.66 cm
+[10:40:01] [Estado.RESET] Entrando en RESET
+[10:40:01] [Estado.SEARCH] Det valid=True is_centered=False n=4 w=36 h=112 area=4032 x=622 y=88
+[10:40:01] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:40:02] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:40:02] [Estado.RECENTER] Entrando en RECENTER
+[10:40:02] [Estado.RECENTER] [SEC] CRITICAL: object < 23.04 cm
+[10:40:03] [Estado.RESET] Entrando en RESET
+[10:40:04] [Estado.SEARCH] Entrando en SEARCH
+[10:40:04] [Estado.SEARCH] 2 corregir con cámara → izquierda
+[10:40:04] [Estado.SEARCH] [SEC] CRITICAL: object < 22.88 cm
+[10:40:05] [Estado.RESET] Entrando en RESET
+[10:40:05] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:40:05] [Estado.RECENTER] Entrando en RECENTER
+[10:40:05] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[10:40:06] [Estado.TRACK] Entrando en TRACK
+[10:40:06] [Estado.TRACK] Avanzando hacia baliza
+[10:40:06] [Estado.TRACK] Distancia segura alcanzada → STOP
+[10:40:07] [Estado.IDLE] Entrando en IDLE
+[10:40:07] [Estado.RESET] Entrando en RESET
+[10:40:07] [Estado.SEARCH] Entrando en SEARCH
+[10:40:08] [Estado.SEARCH] Det valid=False is_centered=True n=1 w=0 h=0 area=0 x=320.0 y=240.0
+[10:40:08] [Estado.SEARCH] Det valid=True is_centered=False n=1 w=40 h=92 area=3680 x=620 y=170
+[10:40:08] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:40:09] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:40:09] [Estado.RECENTER] Entrando en RECENTER
+[10:40:09] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[10:40:09] [Estado.TRACK] Entrando en TRACK
+[10:40:09] [Estado.TRACK] Distancia segura alcanzada → STOP
+[10:40:10] [Estado.IDLE] Entrando en IDLE
+[10:40:10] [Estado.RESET] Entrando en RESET
+[10:40:10] [Estado.SEARCH] Entrando en SEARCH
+[10:40:10] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:40:11] [Estado.RECENTER] Entrando en RECENTER
+[10:40:11] [Estado.RECENTER] RECENTER sin detección → SEARCH
+[10:40:11] [Estado.SEARCH] Entrando en SEARCH
+[10:40:12] [Estado.SEARCH] Det valid=True is_centered=False n=3 w=32 h=32 area=1024 x=448 y=448
+[10:40:12] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:40:12] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:40:12] [Estado.RECENTER] Entrando en RECENTER
+[10:40:13] [Estado.RECENTER] RECENTER sin detección → SEARCH
+[10:40:13] [Estado.SEARCH] Entrando en SEARCH
+[10:40:13] [Estado.SEARCH] Det valid=False is_centered=True n=3 w=0 h=0 area=0 x=320.0 y=240.0
+[10:40:14] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:40:14] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:40:14] [Estado.RECENTER] Entrando en RECENTER
+[10:40:15] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[10:40:15] [Estado.TRACK] Entrando en TRACK
+[10:40:15] [Estado.TRACK] Avanzando hacia baliza
+[10:40:15] [Estado.TRACK] Corrigiendo (ruedas) error_x=42
+[10:40:15] [Estado.TRACK] Corrigiendo (ruedas) error_x=68
+[10:40:15] [Estado.TRACK] Corrigiendo (ruedas) error_x=82
+[10:40:16] [Estado.TRACK] Corrigiendo (ruedas) error_x=-56
+[10:40:16] [Estado.TRACK] Corrigiendo (ruedas) error_x=-130
+[10:40:16] [Estado.TRACK] Corrigiendo (ruedas) error_x=-148
+[10:40:16] [Estado.TRACK] Corrigiendo (ruedas) error_x=-120
+[10:40:16] [Estado.TRACK] Corrigiendo (ruedas) error_x=-84
+[10:40:16] [Estado.TRACK] Corrigiendo (ruedas) error_x=-56
+[10:40:17] [Estado.TRACK] Avanzando hacia baliza
+[10:40:17] [Estado.TRACK] Distancia segura alcanzada → STOP
+[10:40:17] [Estado.IDLE] Entrando en IDLE
+[10:40:17] [Estado.RESET] Entrando en RESET
+[10:40:18] [Estado.SEARCH] Entrando en SEARCH
+[10:40:19] [Estado.SEARCH] Det valid=False is_centered=True n=3 w=0 h=0 area=0 x=320.0 y=240.0
+[10:40:19] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:40:19] [Estado.SEARCH] [SEC] CRITICAL: object < 14.01 cm
+[10:40:20] [Estado.RESET] Entrando en RESET
+[10:40:20] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:40:21] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:40:21] [Estado.RECENTER] Entrando en RECENTER
+[10:40:21] [Estado.RECENTER] [SEC] CRITICAL: object < 21.56 cm
+[10:40:22] [Estado.RESET] Entrando en RESET
+[10:40:22] [Estado.SEARCH] Entrando en SEARCH
+[10:40:22] [Estado.SEARCH] [SEC] CRITICAL: object < 18.01 cm
+[10:40:24] [Estado.RESET] Entrando en RESET
+[10:40:24] [Estado.SEARCH] Det valid=True is_centered=False n=2 w=60 h=72 area=4320 x=610 y=360
+[10:40:24] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:40:24] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:40:24] [Estado.RECENTER] Entrando en RECENTER
+[10:40:25] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[10:40:25] [Estado.TRACK] Entrando en TRACK
+[10:40:25] [Estado.TRACK] Distancia segura alcanzada → STOP
+[10:40:26] [Estado.IDLE] Entrando en IDLE
+[10:40:26] [Estado.RESET] Entrando en RESET
+[10:40:26] [Estado.SEARCH] Entrando en SEARCH
+[10:40:26] [Estado.SEARCH] SEARCH → invertir sentido de giro
+[10:40:27] [Estado.SEARCH] Det valid=True is_centered=True n=3 w=32 h=40 area=1280 x=320 y=240
+[10:40:27] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:40:27] [Estado.RECENTER] Entrando en RECENTER
+[10:40:27] [Estado.RECENTER] Det valid=False is_centered=True n=1 w=0 h=0 area=0 x=320.0 y=240.0
+[10:40:27] [Estado.RECENTER] RECENTER sin detección → SEARCH
+[10:40:27] [Estado.SEARCH] Entrando en SEARCH
+[10:40:27] [Estado.SEARCH] Det valid=False is_centered=True n=1 w=0 h=0 area=0 x=320.0 y=240.0
+[10:40:28] [Estado.SEARCH] Det valid=True is_centered=True n=3 w=44 h=32 area=1408 x=338 y=228
+[10:40:29] [Estado.SEARCH] Det valid=False is_centered=True n=1 w=0 h=0 area=0 x=320.0 y=240.0
+[10:40:31] [Estado.SEARCH] Det valid=True is_centered=False n=1 w=52 h=52 area=2704 x=598 y=202
+[10:40:31] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:40:32] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:40:32] [Estado.RECENTER] Entrando en RECENTER
+[10:40:32] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[10:40:33] [Estado.TRACK] Entrando en TRACK
+[10:40:33] [Estado.TRACK] Corrigiendo (ruedas) error_x=-252
+[10:40:33] [Estado.TRACK] Corrigiendo (ruedas) error_x=-230
+[10:40:33] [Estado.TRACK] Corrigiendo (ruedas) error_x=60
+[10:40:33] [Estado.TRACK] Corrigiendo (ruedas) error_x=108
+[10:40:33] [Estado.TRACK] Distancia segura alcanzada → STOP
+[10:40:34] [Estado.IDLE] Entrando en IDLE
+[10:40:34] [Estado.RESET] Entrando en RESET
+[10:40:34] [Estado.SEARCH] Entrando en SEARCH
+[10:40:35] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:40:35] [Estado.RECENTER] Entrando en RECENTER
+[10:40:35] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[10:40:36] [Estado.TRACK] Entrando en TRACK
+[10:40:36] [Estado.TRACK] Baliza muy cerca (área=39104) → BACKWARD
+[10:40:36] [Estado.TRACK] Baliza muy cerca (área=47200) → BACKWARD
+[10:40:36] [Estado.TRACK] Baliza muy cerca (área=40768) → BACKWARD
+[10:40:36] [Estado.TRACK] Corrigiendo (ruedas) error_x=-70
+[10:40:36] [Estado.TRACK] Corrigiendo (ruedas) error_x=-142
+[10:40:37] [Estado.TRACK] Corrigiendo (ruedas) error_x=-180
+[10:40:37] [Estado.TRACK] Corrigiendo (ruedas) error_x=-174
+[10:40:37] [Estado.TRACK] Corrigiendo (ruedas) error_x=-158
+[10:40:37] [Estado.TRACK] Baliza muy cerca (área=52896) → BACKWARD
+[10:40:37] [Estado.TRACK] Baliza muy cerca (área=47520) → BACKWARD
+[10:40:37] [Estado.TRACK] Baliza muy cerca (área=40000) → BACKWARD
+[10:40:38] [Estado.TRACK] [SEC] CRITICAL: object < 17.4 cm
+[10:40:38] [Estado.RESET] [SEC] CRITICAL: object < 17.4 cm
+[10:40:39] [Estado.RESET] Entrando en RESET
+[10:40:39] [Estado.SEARCH] Entrando en SEARCH
+[10:40:39] [Estado.SEARCH] 2 corregir con cámara → izquierda
+[10:40:39] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:40:39] [Estado.RECENTER] Entrando en RECENTER
+[10:40:39] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[10:40:39] [Estado.TRACK] Entrando en TRACK
+[10:40:39] [Estado.TRACK] Distancia segura alcanzada → STOP
+[10:40:40] [Estado.IDLE] Entrando en IDLE
+[10:40:40] [Estado.RESET] Entrando en RESET
+[10:40:40] [Estado.SEARCH] Entrando en SEARCH
+[10:40:40] [Estado.SEARCH] 2 corregir con cámara → izquierda
+[10:40:41] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:40:41] [Estado.RECENTER] Entrando en RECENTER
+[10:40:41] [Estado.RECENTER] [SEC] CRITICAL: object < 17.0 cm
+[10:40:42] [Estado.RESET] Entrando en RESET
+[10:40:42] [Estado.SEARCH] Entrando en SEARCH
+[10:40:42] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:40:43] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:40:43] [Estado.RECENTER] Entrando en RECENTER
+[10:40:44] [Estado.RECENTER] [SEC] CRITICAL: object < 23.09 cm
+[10:40:45] [Estado.RESET] Entrando en RESET
+[10:40:45] [Estado.SEARCH] Entrando en SEARCH
+[10:40:49] [Estado.SEARCH] Det valid=False is_centered=True n=2 w=0 h=0 area=0 x=320.0 y=240.0
+[10:40:49] [Estado.SEARCH] 1 corregir con cámara → derecha
+[10:40:49] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:40:50] [Estado.RECENTER] Entrando en RECENTER
+[10:40:50] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[10:40:50] [Estado.TRACK] Entrando en TRACK
+[10:40:50] [Estado.TRACK] Avanzando hacia baliza
+[10:40:51] [Estado.TRACK] Distancia segura alcanzada → STOP
+[10:40:52] [Estado.IDLE] Entrando en IDLE
+[10:40:52] [Estado.RESET] Entrando en RESET
+[10:40:52] [Estado.SEARCH] Entrando en SEARCH
+[10:40:52] [Estado.SEARCH] Det valid=True is_centered=True n=5 w=36 h=40 area=1440 x=358 y=148
+[10:40:52] [Estado.SEARCH] Baliza encontrada → RECENTER
+[10:40:53] [Estado.RECENTER] Entrando en RECENTER
+[10:40:53] [Estado.RECENTER] [SEC] CRITICAL: object < 25.0 cm
+[10:40:54] [Estado.RESET] Entrando en RESET
+[10:40:54] [Estado.SEARCH] Entrando en SEARCH
+[10:40:54] [Estado.SEARCH] SEARCH → invertir sentido de giro
+[10:40:55] [Estado.SEARCH] Det valid=False is_centered=True n=2 w=0 h=0 area=0 x=320.0 y=240.0
+[10:40:55] [Estado.SEARCH] [SEC] CRITICAL: object < 24.73 cm
+[10:40:56] [Estado.RESET] Entrando en RESET
+[10:40:56] [Estado.SEARCH] 2 corregir con cámara → izquierda
+[10:40:57] [Estado.SEARCH] [SEC] CRITICAL: object < 24.31 cm
