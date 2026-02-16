@@ -7,7 +7,7 @@ import time
 from vilib import Vilib
 from enum import Enum
 from libs import hello_px, check_robot
-from sound import sound_dog
+# from sound import sound_dog
 
 # ============================================================
 # CONSTANTES
@@ -175,7 +175,6 @@ def init_flags(px):
     px.estado_actual = None
     px.last_raw = {}
     px.last_state = None
-    # px.last_cmd = None
     px.last_raw_n = 0
     px.last_sec = "safe"
     px.dist = 999
@@ -217,6 +216,7 @@ def forward_slow(px, speed=SLOW_SPEED):
 
 def backward(px, speed=SLOW_SPEED):
     px.backward(speed)
+    time.sleep(0.15)
 
 def turn_left(px, speed=TURN_SPEED):
     px.set_dir_servo_angle(SERVO_ANGLE_MIN)
@@ -376,10 +376,6 @@ def update_safety(px):
 
 def apply_safety(px, d, estado, accion):
 
-    # --- Cooldown de seguridad ---
-    #if time() - px.safety_cooldown < 1.0:
-    #    return estado, Cmd.STOP
-
     # --- Zona segura ---
     if d > SAFE_DISTANCE:
         px.last_sec = "safe"
@@ -396,8 +392,6 @@ def apply_safety(px, d, estado, accion):
             log_event(px, estado, f"[SEC] CRITICAL: object < {d} cm")
         px.last_sec = "critical"
 
-        # SCAPE se ejecutará en el bucle principal
-        #px.safety_cooldown = time()
         return Estado.RESET, Cmd.SCAPE
 
     return estado, accion
@@ -499,7 +493,7 @@ def do_yes(px):
     """
     try:
         # Sonido solo una vez
-        sound_dog()
+        # sound_dog()
 
         for _ in range(2):
             # Gesto hacia arriba
@@ -669,7 +663,7 @@ def state_track(px, dist, estado, accion, robot_state):
     if dist <= SAFE_DISTANCE:
         log_event(px, estado, "Distancia segura alcanzada → STOP")
         do_yes(px)
-        return Estado.IDLE, Cmd.STOP
+        return Estado.TRACK, Cmd.STOP
 
     # ------------------------------------------------------------
     # 2. Si NO hay detección válida → tolerar 3 frames
@@ -693,13 +687,11 @@ def state_track(px, dist, estado, accion, robot_state):
     if abs(det.error_x) > 40:
         if det.error_x > 0:
             log_event(px, estado, f"Corrigiendo (ruedas) error_x={det.error_x}")
-            # px.last_pan = 0
-            # px.set_cam_pan_angle(0)
+            
             return Estado.TRACK, Cmd.WHEELS_TURN_RIGHT
         else:
             log_event(px, estado, f"Corrigiendo (ruedas) error_x={det.error_x}")
-            # px.last_pan = 0
-            # px.set_cam_pan_angle(0)
+            
             return Estado.TRACK, Cmd.WHEELS_TURN_LEFT
 
     # ------------------------------------------------------------
@@ -749,12 +741,6 @@ def pet_mode(px, test_mode):
             estado, accion = state_recenter(px, px.dist, estado, accion, state)
         elif estado == Estado.TRACK:
             estado, accion = state_track(px, px.dist, estado, accion, state)
-
-        """
-        if px.last_cmd != accion:
-            log_event(px, estado, f"CMD {accion.name}")
-        px.last_cmd = accion
-        """
 
         estado, accion = apply_safety(px, px.dist, estado, accion)
 
