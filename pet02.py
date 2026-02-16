@@ -446,7 +446,6 @@ def search_see(px, det):
 
 def search_not_see(px):
     """
-<<<<<<< HEAD
     Lógica de búsqueda cuando NO se ve la baliza:
       - Fase 1: paneo de cámara izquierda/derecha (como ahora).
       - Fase 2: si pasa demasiado tiempo sin ver nada → círculo suave con ruedas.
@@ -542,54 +541,6 @@ def search_not_see(px):
         else:
             # círculo hacia la izquierda
             return Estado.SEARCH, Cmd.WHEELS_TURN_LEFT
-=======
-    SEARCH sin detección:
-    - Paneo de cámara izquierda/derecha
-    - Giro circular suave del cuerpo en la misma dirección
-    - Cambio de dirección al llegar a los límites
-    """
-
-    # === 1. Paneo hacia la derecha ===
-    if px.search_dir == 1:
-        if px.last_pan < PAN_MAX:
-            # Solo log cuando cambia de sentido
-            if px.last_paneo != "right":
-                log_event(px, Estado.SEARCH, "Paneo → derecha")
-                px.last_paneo = "right"
-
-            # Cámara barre a la derecha
-            pan_right(px)
-
-            # Giro suave del cuerpo hacia la derecha
-            return Estado.SEARCH, Cmd.WHEELS_TURN_RIGHT
-
-        else:
-            # Límite alcanzado → cambiar dirección
-            px.search_dir = -1
-            log_event(px, Estado.SEARCH, "Cambio → izquierda")
-            px.last_paneo = "left"
-            return Estado.SEARCH, Cmd.WHEELS_TURN_LEFT
-
-    # === 2. Paneo hacia la izquierda ===
-    if px.search_dir == -1:
-        if px.last_pan > PAN_MIN:
-            if px.last_paneo != "left":
-                log_event(px, Estado.SEARCH, "Paneo → izquierda")
-                px.last_paneo = "left"
-
-            # Cámara barre a la izquierda
-            pan_left(px)
-
-            # Giro suave del cuerpo hacia la izquierda
-            return Estado.SEARCH, Cmd.WHEELS_TURN_LEFT
-
-        else:
-            # Límite alcanzado → cambiar dirección
-            px.search_dir = 1
-            log_event(px, Estado.SEARCH, "Cambio → derecha")
-            px.last_paneo = "right"
-            return Estado.SEARCH, Cmd.WHEELS_TURN_RIGHT
->>>>>>> a576012d60c6342592ff6b03a86254acb8ce25d0
 
 # ============================================================
 # ESTADOS
