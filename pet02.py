@@ -174,7 +174,7 @@ def init_flags(px):
     px.estado_actual = None
     px.last_raw = {}
     px.last_state = None
-    px.last_cmd = None
+    # px.last_cmd = None
     px.last_raw_n = 0
     px.last_sec = "safe"
     px.dist = 999
@@ -446,6 +446,7 @@ def search_see(px, det):
 
 def search_not_see(px):
     """
+<<<<<<< HEAD
     Lógica de búsqueda cuando NO se ve la baliza:
       - Fase 1: paneo de cámara izquierda/derecha (como ahora).
       - Fase 2: si pasa demasiado tiempo sin ver nada → círculo suave con ruedas.
@@ -541,6 +542,54 @@ def search_not_see(px):
         else:
             # círculo hacia la izquierda
             return Estado.SEARCH, Cmd.WHEELS_TURN_LEFT
+=======
+    SEARCH sin detección:
+    - Paneo de cámara izquierda/derecha
+    - Giro circular suave del cuerpo en la misma dirección
+    - Cambio de dirección al llegar a los límites
+    """
+
+    # === 1. Paneo hacia la derecha ===
+    if px.search_dir == 1:
+        if px.last_pan < PAN_MAX:
+            # Solo log cuando cambia de sentido
+            if px.last_paneo != "right":
+                log_event(px, Estado.SEARCH, "Paneo → derecha")
+                px.last_paneo = "right"
+
+            # Cámara barre a la derecha
+            pan_right(px)
+
+            # Giro suave del cuerpo hacia la derecha
+            return Estado.SEARCH, Cmd.WHEELS_TURN_RIGHT
+
+        else:
+            # Límite alcanzado → cambiar dirección
+            px.search_dir = -1
+            log_event(px, Estado.SEARCH, "Cambio → izquierda")
+            px.last_paneo = "left"
+            return Estado.SEARCH, Cmd.WHEELS_TURN_LEFT
+
+    # === 2. Paneo hacia la izquierda ===
+    if px.search_dir == -1:
+        if px.last_pan > PAN_MIN:
+            if px.last_paneo != "left":
+                log_event(px, Estado.SEARCH, "Paneo → izquierda")
+                px.last_paneo = "left"
+
+            # Cámara barre a la izquierda
+            pan_left(px)
+
+            # Giro suave del cuerpo hacia la izquierda
+            return Estado.SEARCH, Cmd.WHEELS_TURN_LEFT
+
+        else:
+            # Límite alcanzado → cambiar dirección
+            px.search_dir = 1
+            log_event(px, Estado.SEARCH, "Cambio → derecha")
+            px.last_paneo = "right"
+            return Estado.SEARCH, Cmd.WHEELS_TURN_RIGHT
+>>>>>>> a576012d60c6342592ff6b03a86254acb8ce25d0
 
 # ============================================================
 # ESTADOS
@@ -587,7 +636,7 @@ def state_search(px, dist, estado, accion):
         px.search_seen += 1
 
         # Si está centrada → RECENTER
-        if det.is_centered and px.search_seen >= 2:
+        if det.valid_for_search and det.is_centered and px.search_seen >= 2:
             log_event(px, Estado.SEARCH, "Baliza encontrada → RECENTER")
             return Estado.RECENTER, Cmd.STOP
 
@@ -663,17 +712,25 @@ def state_recenter(px, dist, estado, accion, robot_state):
 
 def state_track(px, dist, estado, accion, robot_state):
     det = get_detection(px)
-    """
-    # Si la baliza está demasiado cerca visualmente → STOP
-    if det.area > 20000:   # ajustable según tu baliza
-        log_event(px, estado, "Baliza muy cerca (área grande) → STOP")
-        return Estado.TRACK, Cmd.STOP
-    """
+
     # Entrada al estado
     if px.last_state != estado:
         log_event(px, estado, "Entrando en TRACK")
         robot_state.track_lost_frames = 0
         px.last_state = estado
+
+    # --- Protección visual: si la baliza es demasiado grande, detener ---
+    if det.valid_for_search and det.area > 35000:
+        log_event(px, estado, f"Baliza muy cerca (área={det.area}) → BACKWARD")
+        return Estado.TRACK, Cmd.BACKWARD
+
+    if det.w > 200:
+        log_event(px, estado, f"Baliza muy cerca (w={det.w}) → BACKWARD")
+        return Estado.TRACK, Cmd.BACKWARD
+
+    if det.h > 300:
+        log_event(px, estado, f"Baliza muy cerca (h={det.h}) → BACKWARD")
+        return Estado.TRACK, Cmd.BACKWARD
 
     # ------------------------------------------------------------
     # 1. Seguridad: si está demasiado cerca → STOP
@@ -708,13 +765,13 @@ def state_track(px, dist, estado, accion, robot_state):
     if abs(det.error_x) > 40:
         if det.error_x > 0:
             log_event(px, estado, f"Corrigiendo (ruedas) error_x={det.error_x}")
-            px.last_pan = 0
-            px.set_cam_pan_angle(0)
+            # px.last_pan = 0
+            # px.set_cam_pan_angle(0)
             return Estado.TRACK, Cmd.WHEELS_TURN_RIGHT
         else:
             log_event(px, estado, f"Corrigiendo (ruedas) error_x={det.error_x}")
-            px.last_pan = 0
-            px.set_cam_pan_angle(0)
+            # px.last_pan = 0
+            # px.set_cam_pan_angle(0)
             return Estado.TRACK, Cmd.WHEELS_TURN_LEFT
 
     # ------------------------------------------------------------
@@ -765,9 +822,11 @@ def pet_mode(px, test_mode):
         elif estado == Estado.TRACK:
             estado, accion = state_track(px, px.dist, estado, accion, state)
 
+        """
         if px.last_cmd != accion:
             log_event(px, estado, f"CMD {accion.name}")
         px.last_cmd = accion
+        """
 
         estado, accion = apply_safety(px, px.dist, estado, accion)
 
