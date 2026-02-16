@@ -7,6 +7,7 @@ import time
 from vilib import Vilib
 from enum import Enum
 from libs import hello_px, check_robot
+from sound import sound_dog
 
 # ============================================================
 # CONSTANTES
@@ -492,14 +493,20 @@ def search_not_see(px):
         return Estado.SEARCH, Cmd.WHEELS_TURN_LEFT
 
 def do_yes(px):
-
+    """
+    Gesto doble de 'sí' acompañado de un sonido de perro.
+    Se ejecuta una sola vez por evento.
+    """
     try:
+        # Sonido solo una vez
+        sound_dog()
+
         for _ in range(2):
-            # Pequeño gesto hacia arriba
+            # Gesto hacia arriba
             px.set_cam_tilt_angle(TILT_MAX)
             time.sleep(0.12)
 
-            # Pequeño gesto hacia abajo
+            # Gesto hacia abajo
             px.set_cam_tilt_angle(TILT_MIN)
             time.sleep(0.12)
 
@@ -508,7 +515,6 @@ def do_yes(px):
             time.sleep(0.05)
 
     except Exception as e:
-        # No queremos que un fallo de tilt rompa la FSM
         print(f"[WARN] Error en gesto de 'sí': {e}")
 
 

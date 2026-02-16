@@ -29,5 +29,5 @@ def sound_caution():
 def sound_danger():
     _play("car-double-horn.wav")
 
-def sound_angry():
+def sound_dog():
     _play("sounds_angry.wav")
