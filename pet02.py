@@ -48,6 +48,7 @@ class Estado(Enum):
     SEARCH = 3
     RECENTER = 5
     TRACK = 10
+    NEAR = 15
     ERR = 89
     CHK = 99
 
@@ -133,20 +134,16 @@ class Det:
 
 class RobotState:
     def __init__(self):
-        # TRACK anti-spam
-        self.last_track_action = None
-        self.last_error_x = None
-        self.last_track_log = 0
 
-        # RECENTER anti-spam
-        self.last_recenter_action = None
-        self.last_recenter_error_x = None
-        self.last_recenter_log = 0
-
-        # --- NUEVO: MEMORIA REAL ---
-        self.search_valid_frames = 0
+        # RECENTER
         self.recenter_centered_frames = 0
+        self.recenter_lost_frames = 0
+
+        # TRACK
         self.track_lost_frames = 0
+
+        # NEAR (nuevo)
+        self.near_done_backward = False
         
 # ============================================================
 # INICIALIZACIÓN
@@ -160,27 +157,37 @@ def init_camera(px):
     Vilib.display(local=False, web=False)
 
     # Activar detección de color predefinido
-    # (tu baliza funciona con "red")
     Vilib.color_detect(BALIZA_COLOR)
 
     time.sleep(0.5)
 
-def init_internal_state(px):
 
+def init_internal_state(px):
     return Estado.IDLE, Cmd.STOP
 
+
 def init_flags(px):
+    # Logging
     px.last_log = None
-    px.last_track_log = None
+
+    # Estado previo
     px.estado_actual = None
-    px.last_raw = {}
     px.last_state = None
+
+    # Detección
     px.last_raw_n = 0
+
+    # Seguridad
     px.last_sec = "safe"
     px.dist = 999
-    px.search_dir = 1      # 1 = derecha, -1 = izquierda
+
+    # SEARCH
+    px.search_dir = 1          # 1 = derecha, -1 = izquierda
+    px.search_steps = 0
+    px.search_seen = 0
+
+    # Cámara
     px.last_pan = 0
-    px.last_paneo = None
     px.last_tilt = 0
 
 # ============================================================
@@ -453,12 +460,6 @@ def search_not_see(px):
     CIRCLE_SWITCH_STEPS = 80      # invertir giro cada X pasos
     FULL_RESET_STEPS = 300        # hard reset si nada aparece
 
-    # Inicialización defensiva
-    if not hasattr(px, "search_steps"):
-        px.search_steps = 0
-    if not hasattr(px, "search_dir"):
-        px.search_dir = 1
-
     px.search_steps += 1
 
     # --- 0. Hard reset anti-bucle ---
@@ -506,7 +507,7 @@ def do_yes(px):
 
             # Volver al centro
             px.set_cam_tilt_angle(0)
-            time.sleep(0.05)
+            time.sleep(0.12)
 
     except Exception as e:
         print(f"[WARN] Error en gesto de 'sí': {e}")
@@ -527,7 +528,6 @@ def state_reset(px):
     px.set_dir_servo_angle(0)
     px.last_pan = 0
     px.last_tilt = 0
-    px.last_dir = 0
 
     return Estado.SEARCH, Cmd.STOP
 
@@ -538,7 +538,6 @@ def state_search(px, dist, estado, accion):
     if px.last_state != Estado.SEARCH:
         log_event(px, Estado.SEARCH, "Entrando en SEARCH")
         px.search_dir = 1
-        px.last_paneo = None
         px.search_seen = 0
 
     px.last_state = Estado.SEARCH
@@ -640,18 +639,10 @@ def state_track(px, dist, estado, accion, robot_state):
         robot_state.track_lost_frames = 0
         px.last_state = estado
 
-    # --- Protección visual: si la baliza es demasiado grande, detener ---
-    if det.valid_for_search and det.area > 35000:
-        log_event(px, estado, f"Baliza muy cerca (área={det.area}) → BACKWARD")
-        return Estado.TRACK, Cmd.BACKWARD
-
-    if det.w > 200:
-        log_event(px, estado, f"Baliza muy cerca (w={det.w}) → BACKWARD")
-        return Estado.TRACK, Cmd.BACKWARD
-
-    if det.h > 300:
-        log_event(px, estado, f"Baliza muy cerca (h={det.h}) → BACKWARD")
-        return Estado.TRACK, Cmd.BACKWARD
+    # --- Protección visual: si la baliza es demasiado grande ---
+    if det.valid_for_search and (det.area > 35000 or det.w > 200 or det.h > 300):
+        log_event(px, estado, f"Baliza muy cerca (área={det.area}) → NEAR")
+        return Estado.NEAR, Cmd.STOP
 
     # ------------------------------------------------------------
     # 1. Seguridad: si está demasiado cerca → STOP
@@ -709,6 +700,31 @@ def state_track(px, dist, estado, accion, robot_state):
     log_event(px, estado, "Avanzando hacia baliza")
     return Estado.TRACK, Cmd.FORWARD_SLOW
 
+def state_near(px, dist, estado, accion, robot_state):
+    det = get_detection(px)
+
+    if px.last_state != Estado.NEAR:
+        log_event(px, Estado.NEAR, "Entrando en NEAR")
+        robot_state.near_done_backward = False
+        px.last_state = Estado.NEAR
+
+    # Seguridad
+    estado, accion = apply_safety(px, dist, estado, accion)
+    if estado != Estado.NEAR:
+        return estado, accion
+
+    # Si no hay detección → volver a SEARCH
+    if not det.valid_for_search:
+        return Estado.SEARCH, Cmd.STOP
+
+    # --- Solo un backward corto ---
+    if not robot_state.near_done_backward:
+        robot_state.near_done_backward = True
+        return Estado.NEAR, Cmd.BACKWARD
+
+    # --- Después del backward: STOP estable ---
+    return Estado.NEAR, Cmd.STOP
+
 # ============================================================
 # BUCLE PRINCIPAL
 # ============================================================
@@ -741,6 +757,8 @@ def pet_mode(px, test_mode):
             estado, accion = state_recenter(px, px.dist, estado, accion, state)
         elif estado == Estado.TRACK:
             estado, accion = state_track(px, px.dist, estado, accion, state)
+        elif estado == Estado.NEAR:
+            estado, accion = state_near(px, px.dist, estado, accion, state)
 
         estado, accion = apply_safety(px, px.dist, estado, accion)
 
