@@ -104,7 +104,8 @@ class Det:
 
     @property
     def is_centered(self):
-        # Más preciso: evita que RECENTER pase a TRACK demasiado pronto
+        if self.w == 0 or self.h == 0:
+            return False
         return abs(self.error_x) <= 40
 
     @property
@@ -230,10 +231,18 @@ def backward(px, speed=SLOW_SPEED):
     time.sleep(0.15)
 
 def turn_left(px, speed=TURN_SPEED):
+    # 1. Centrar servo SIEMPRE
+    px.set_dir_servo_angle(0)
+    time.sleep(0.05)
+    
     px.set_dir_servo_angle(SERVO_ANGLE_MIN)
     px.forward(speed)
-
+    
 def turn_right(px, speed=TURN_SPEED):
+    # 1. Centrar servo SIEMPRE
+    px.set_dir_servo_angle(0)
+    time.sleep(0.05)
+
     px.set_dir_servo_angle(SERVO_ANGLE_MAX)
     px.forward(speed)
 
@@ -453,6 +462,10 @@ def get_detection(px):
         w = raw["color_w"],
         h = raw["color_h"]
     )
+
+    # 🔥 Filtro anti-fantasma
+    if det.n >= 1 and det.w == 0 and det.h == 0:
+        det.n = 0
 
     # Log solo cuando aparece una detección nueva
     if raw["color_n"] > 0 and px.last_raw_n == 0:
@@ -716,7 +729,7 @@ def state_track(px, dist, estado, accion, robot_state):
     # STOP solo si está centrada y cerca
     if dist <= SAFE_DISTANCE and abs(det.error_x) < 40:
         log_event(px, estado, "Distancia segura alcanzada → STOP")
-        do_yes(px)
+        # do_yes(px)
         return Estado.TRACK, Cmd.STOP
 
     # ------------------------------------------------------------
