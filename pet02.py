@@ -33,8 +33,11 @@ TURN_SPEED = 1
 
 CAM_STEP = 4
 
-SAFE_DISTANCE = 45      # cm
-DANGER_DISTANCE = 25    # cm
+SAFE_DISTANCE = 30
+DANGER_DISTANCE = 15
+
+NEAR_ENTER_AREA = 70000
+NEAR_EXIT_AREA = 50000
 
 LOG_PATH = os.path.join(os.path.dirname(__file__), "pet02.log")
 
@@ -93,10 +96,6 @@ class Det:
         return self.y - self.cy
 
     @property
-    def is_centered(self):
-        return abs(self.error_x) <= 80
-
-    @property
     def valid(self):
         return (
             self.n > 0 and
@@ -104,16 +103,20 @@ class Det:
         )
 
     @property
+    def is_centered(self):
+        # Más preciso: evita que RECENTER pase a TRACK demasiado pronto
+        return abs(self.error_x) <= 40
+
+    @property
     def valid_for_search(self):
-        # Ignorar detecciones basura
         if self.w == 0 or self.h == 0:
             return False
 
         return (
             self.n >= 1 and
-            20 < self.w < 300 and
+            20 < self.w < 350 and     # coherente con NEAR
             20 < self.h < 480 and
-            800 < self.area < 80000 and
+            800 < self.area < 90000 and
             0 < self.x < 640 and
             0 < self.y < 480
         )
@@ -383,6 +386,19 @@ def update_safety(px):
 
 def apply_safety(px, d, estado, accion):
 
+    # Filtro anti-ruido del ultrasonido
+    if not hasattr(px, "us_counter"):
+        px.us_counter = 0
+
+    if d < DANGER_DISTANCE:
+        px.us_counter += 1
+    else:
+        px.us_counter = 0
+
+    # Si el peligro no persiste 3 frames, ignorar
+    if px.us_counter < 3:
+        return estado, accion
+
     # --- Zona segura ---
     if d > SAFE_DISTANCE:
         px.last_sec = "safe"
@@ -398,11 +414,9 @@ def apply_safety(px, d, estado, accion):
         if px.last_sec != "critical":
             log_event(px, estado, f"[SEC] CRITICAL: object < {d} cm")
         px.last_sec = "critical"
-
         return Estado.RESET, Cmd.SCAPE
 
     return estado, accion
-
 
 # ============================================================
 # FUNCIONES
@@ -539,7 +553,7 @@ def state_search(px, dist, estado, accion):
         log_event(px, Estado.SEARCH, "Entrando en SEARCH")
         px.search_dir = 1
         px.search_seen = 0
-
+        px.search_steps = 0   # importante: reset del giro
     px.last_state = Estado.SEARCH
 
     # Seguridad primero
@@ -548,15 +562,18 @@ def state_search(px, dist, estado, accion):
         return estado, accion
 
     # ------------------------------------------------------------
-    # 1. Si hay detección válida → detener paneo y centrar
+    # 1. Si hay detección válida → detener giro del cuerpo
     # ------------------------------------------------------------
     if det.valid_for_search:
+
+        # Detener giro del cuerpo inmediatamente
+        px.search_steps = 0
 
         # Acumular frames válidos
         px.search_seen += 1
 
         # Si está centrada → RECENTER
-        if det.valid_for_search and det.is_centered and px.search_seen >= 2:
+        if det.is_centered and px.search_seen >= 2:
             log_event(px, Estado.SEARCH, "Baliza encontrada → RECENTER")
             return Estado.RECENTER, Cmd.STOP
 
@@ -569,11 +586,11 @@ def state_search(px, dist, estado, accion):
             log_event(px, estado, "2 corregir con cámara → izquierda")
             return Estado.SEARCH, Cmd.CAM_PAN_LEFT
 
-        # Detección válida pero no centrada → no panees
+        # Detección válida pero no centrada → quieto
         return Estado.SEARCH, Cmd.STOP
 
     # ------------------------------------------------------------
-    # 2. Si NO hay detección válida → paneo
+    # 2. Si NO hay detección válida → paneo circular
     # ------------------------------------------------------------
     else:
         px.search_seen = 0
@@ -587,6 +604,10 @@ def state_recenter(px, dist, estado, accion, robot_state):
         robot_state.recenter_centered_frames = 0
         robot_state.recenter_lost_frames = 0
         log_event(px, estado, "Entrando en RECENTER")
+
+        # Detener cualquier giro residual del cuerpo
+        px.set_dir_servo_angle(0)
+
     px.last_state = estado
 
     # Seguridad
@@ -595,12 +616,12 @@ def state_recenter(px, dist, estado, accion, robot_state):
         return estado, accion
 
     # ------------------------------------------------------------
-    # 1. Si NO hay detección válida → tolerar 3 frames
+    # 1. Si NO hay detección válida → tolerar 5 frames
     # ------------------------------------------------------------
     if not det.valid_for_search:
         robot_state.recenter_lost_frames += 1
 
-        if robot_state.recenter_lost_frames >= 3:
+        if robot_state.recenter_lost_frames >= 5:
             log_event(px, estado, "RECENTER sin detección → SEARCH")
             return Estado.SEARCH, Cmd.STOP
 
@@ -610,7 +631,7 @@ def state_recenter(px, dist, estado, accion, robot_state):
     robot_state.recenter_lost_frames = 0
 
     # ------------------------------------------------------------
-    # 2. Corregir orientación del cuerpo
+    # 2. Corrección gruesa con ruedas (error grande)
     # ------------------------------------------------------------
     if abs(det.error_x) > 40:
         robot_state.recenter_centered_frames = 0
@@ -620,11 +641,21 @@ def state_recenter(px, dist, estado, accion, robot_state):
             return Estado.RECENTER, Cmd.WHEELS_TURN_LEFT
 
     # ------------------------------------------------------------
-    # 3. Centrado → acumular frames
+    # 3. Corrección fina con cámara (error medio)
+    # ------------------------------------------------------------
+    if abs(det.error_x) > 10:
+        robot_state.recenter_centered_frames = 0
+        if det.error_x > 0:
+            return Estado.RECENTER, Cmd.CAM_PAN_RIGHT
+        else:
+            return Estado.RECENTER, Cmd.CAM_PAN_LEFT
+
+    # ------------------------------------------------------------
+    # 4. Centrado → acumular frames
     # ------------------------------------------------------------
     robot_state.recenter_centered_frames += 1
 
-    if robot_state.recenter_centered_frames >= 3:
+    if robot_state.recenter_centered_frames >= 2:
         log_event(px, estado, "Alineado ✔ (cuerpo)")
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
@@ -639,50 +670,46 @@ def state_track(px, dist, estado, accion, robot_state):
         robot_state.track_lost_frames = 0
         px.last_state = estado
 
-    # --- Protección visual: si la baliza es demasiado grande ---
-    if det.valid_for_search and (det.area > 35000 or det.w > 200 or det.h > 300):
+    # ------------------------------------------------------------
+    # 0. Protección visual: NEAR solo si está cerca Y centrada
+    # ------------------------------------------------------------
+    if det.valid_for_search and det.area > NEAR_ENTER_AREA and abs(det.error_x) < 60:
         log_event(px, estado, f"Baliza muy cerca (área={det.area}) → NEAR")
         return Estado.NEAR, Cmd.STOP
 
     # ------------------------------------------------------------
-    # 1. Seguridad: si está demasiado cerca → STOP
+    # 1. Seguridad por ultrasonido
     # ------------------------------------------------------------
     if dist <= DANGER_DISTANCE:
         log_event(px, estado, f"[SEC] CRITICAL: object < {dist} cm")
         return Estado.RESET, Cmd.SCAPE
 
-    if dist <= SAFE_DISTANCE:
+    # STOP solo si está centrada y cerca
+    if dist <= SAFE_DISTANCE and abs(det.error_x) < 40:
         log_event(px, estado, "Distancia segura alcanzada → STOP")
         do_yes(px)
         return Estado.TRACK, Cmd.STOP
 
     # ------------------------------------------------------------
-    # 2. Si NO hay detección válida → tolerar 3 frames
+    # 2. Si NO hay detección válida → tolerar 8 frames
     # ------------------------------------------------------------
     if not det.valid_for_search:
         robot_state.track_lost_frames += 1
 
-        if robot_state.track_lost_frames >= 3:
+        if robot_state.track_lost_frames >= 8:
             log_event(px, estado, "Perdida baliza → SEARCH")
             return Estado.SEARCH, Cmd.STOP
 
-        # No perder TRACK inmediatamente
         return Estado.TRACK, Cmd.STOP
 
     # Si hay detección válida, resetear memoria
     robot_state.track_lost_frames = 0
 
-    # ------------------------------------------------------------
-    # 3. Corrección gruesa con ruedas (error grande)
-    # ------------------------------------------------------------
-    if abs(det.error_x) > 40:
+    # Corrección gruesa con ruedas solo si la baliza está lejos
+    if abs(det.error_x) > 40 and det.area < (NEAR_EXIT_AREA * 0.7):
         if det.error_x > 0:
-            log_event(px, estado, f"Corrigiendo (ruedas) error_x={det.error_x}")
-            
             return Estado.TRACK, Cmd.WHEELS_TURN_RIGHT
         else:
-            log_event(px, estado, f"Corrigiendo (ruedas) error_x={det.error_x}")
-            
             return Estado.TRACK, Cmd.WHEELS_TURN_LEFT
 
     # ------------------------------------------------------------
@@ -697,15 +724,17 @@ def state_track(px, dist, estado, accion, robot_state):
     # ------------------------------------------------------------
     # 5. Centrado → avanzar
     # ------------------------------------------------------------
-    log_event(px, estado, "Avanzando hacia baliza")
     return Estado.TRACK, Cmd.FORWARD_SLOW
 
 def state_near(px, dist, estado, accion, robot_state):
     det = get_detection(px)
 
+    # Entrada al estado
     if px.last_state != Estado.NEAR:
         log_event(px, Estado.NEAR, "Entrando en NEAR")
         robot_state.near_done_backward = False
+        robot_state.near_lost_frames = 0
+        px.set_dir_servo_angle(0)
         px.last_state = Estado.NEAR
 
     # Seguridad
@@ -713,17 +742,47 @@ def state_near(px, dist, estado, accion, robot_state):
     if estado != Estado.NEAR:
         return estado, accion
 
-    # Si no hay detección → volver a SEARCH
+    # ------------------------------------------------------------
+    # 1. Si NO hay detección válida → tolerar 3 frames
+    # ------------------------------------------------------------
     if not det.valid_for_search:
-        return Estado.SEARCH, Cmd.STOP
+        robot_state.near_lost_frames += 1
+        if robot_state.near_lost_frames >= 3:
+            return Estado.SEARCH, Cmd.STOP
+        return Estado.NEAR, Cmd.STOP
 
-    # --- Solo un backward corto ---
+    robot_state.near_lost_frames = 0
+
+    # 🔥 MUY IMPORTANTE: bloquear giro de ruedas en NEAR 
+    px.set_dir_servo_angle(0)
+
+    # ------------------------------------------------------------
+    # 2. Salida natural de NEAR
+    # ------------------------------------------------------------
+    if det.area < NEAR_EXIT_AREA and abs(det.error_x) < 40 and dist > SAFE_DISTANCE:
+        return Estado.TRACK, Cmd.STOP
+
+    # ------------------------------------------------------------
+    # 3. Corrección fina con cámara si está muy cerca pero descentrada
+    # ------------------------------------------------------------
+    if abs(det.error_x) > 40:
+        if det.error_x > 0:
+            return Estado.NEAR, Cmd.CAM_PAN_RIGHT
+        else:
+            return Estado.NEAR, Cmd.CAM_PAN_LEFT
+
+    # ------------------------------------------------------------
+    # 4. Solo un backward corto al entrar
+    # ------------------------------------------------------------
     if not robot_state.near_done_backward:
         robot_state.near_done_backward = True
         return Estado.NEAR, Cmd.BACKWARD
 
-    # --- Después del backward: STOP estable ---
+    # ------------------------------------------------------------
+    # 5. Después del backward → STOP estable
+    # ------------------------------------------------------------
     return Estado.NEAR, Cmd.STOP
+
 
 # ============================================================
 # BUCLE PRINCIPAL
