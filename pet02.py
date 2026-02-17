@@ -223,20 +223,29 @@ def backward(px, speed=SLOW_SPEED):
     time.sleep(0.15)
 
 def turn_left(px, speed=TURN_SPEED):
-    # 1. Centrar servo SIEMPRE
+    # 1. Centrar servo
     px.set_dir_servo_angle(0)
     time.sleep(0.05)
 
+    # 2. Girar un poco
     px.set_dir_servo_angle(SERVO_ANGLE_MIN)
     px.forward(speed)
-    
+    time.sleep(0.25)   # giro acotado
+
+    # 3. Centrar servo SIEMPRE
+    px.set_dir_servo_angle(0)
+    time.sleep(0.05)
+
 def turn_right(px, speed=TURN_SPEED):
-    # 1. Centrar servo SIEMPRE
     px.set_dir_servo_angle(0)
     time.sleep(0.05)
 
     px.set_dir_servo_angle(SERVO_ANGLE_MAX)
     px.forward(speed)
+    time.sleep(0.25)
+
+    px.set_dir_servo_angle(0)
+    time.sleep(0.05)
 
 def scape_danger(px, speed=SLOW_SPEED):
     # 1. Centrar servo SIEMPRE
@@ -249,6 +258,7 @@ def scape_danger(px, speed=SLOW_SPEED):
 
     # 3. Girar un poco y retroceder
     px.set_dir_servo_angle(SERVO_ANGLE_MIN)
+    time.sleep(0.05)
     px.backward(speed)
     time.sleep(0.4)
 
@@ -418,17 +428,32 @@ def apply_safety(px, d, estado, accion):
 
     # --- Zona de peligro crítico ---
     if d <= DANGER_DISTANCE:
-        # Si vemos la baliza y está centrada → ignorar ultrasonido
+
+        # 🔥 1. Si vemos la baliza → ignorar ultrasonido
         det = get_detection(px)
-        if det.valid_for_search and det.is_centered:
-            # visión manda, no activar SCAPE
+        if det.valid_for_search:
             return estado, accion
 
-        # Si NO vemos baliza → SCAPE real
+        # 🔥 2. Si estamos en TRACK o RECENTER → ignorar ultrasonido
+        if estado in (Estado.TRACK, Estado.RECENTER):
+            return estado, accion
+
+        # 🔥 3. Si la cámara está moviéndose → ignorar ultrasonido
+        if px.last_pan != 0 or px.last_tilt != 0:
+            return estado, accion
+
+        # 🔥 4. Si venimos de ver la baliza hace poco → ignorar ultrasonido
+        if hasattr(px, "last_raw_n") and px.last_raw_n > 0:
+            return estado, accion
+
+        # --- Si nada de lo anterior aplica → SCAPE real ---
         if px.last_sec != "critical":
             log_event(px, estado, f"[SEC] CRITICAL: object < {d} cm")
+
         px.last_sec = "critical"
         return Estado.RESET, Cmd.SCAPE
+
+    return estado, accion
 
 # ============================================================
 # FUNCIONES
@@ -698,7 +723,9 @@ def state_recenter(px, dist, estado, accion, robot_state):
 def state_track(px, dist, estado, accion, robot_state):
     det = get_detection(px)
 
+    # ------------------------------------------------------------
     # Entrada al estado
+    # ------------------------------------------------------------
     if px.last_state != estado:
         log_event(px, estado, "Entrando en TRACK")
         robot_state.track_lost_frames = 0
@@ -712,40 +739,47 @@ def state_track(px, dist, estado, accion, robot_state):
         return Estado.NEAR, Cmd.STOP
 
     # ------------------------------------------------------------
-    # 1. Seguridad por ultrasonido
+    # 1. Seguridad por ultrasonido (solo si NO vemos baliza)
     # ------------------------------------------------------------
     if dist <= DANGER_DISTANCE:
-        log_event(px, estado, f"[SEC] CRITICAL: object < {dist} cm")
-        return Estado.RESET, Cmd.SCAPE
+        # Si vemos la baliza, ignoramos ultrasonido
+        if not det.valid_for_search:
+            log_event(px, estado, f"[SEC] CRITICAL: object < {dist} cm")
+            return Estado.RESET, Cmd.SCAPE
 
     # STOP solo si está centrada y cerca
-    if dist <= SAFE_DISTANCE and abs(det.error_x) < 40:
+    if dist <= SAFE_DISTANCE and det.valid_for_search and abs(det.error_x) < 40:
         log_event(px, estado, "Distancia segura alcanzada → STOP")
-        # do_yes(px)
         return Estado.TRACK, Cmd.STOP
 
     # ------------------------------------------------------------
-    # 2. Si NO hay detección válida → tolerar 8 frames
+    # 2. Si NO hay detección válida → recaptura activa
     # ------------------------------------------------------------
     if not det.valid_for_search:
         robot_state.track_lost_frames += 1
 
-        # Ignorar frames basura aislados
-        if robot_state.track_lost_frames <= 3:
+        # 1–2 frames basura → STOP
+        if robot_state.track_lost_frames <= 2:
             return Estado.TRACK, Cmd.STOP
 
-        # Si ya son muchos → SEARCH
-        if robot_state.track_lost_frames >= 8:
-            log_event(px, estado, "Perdida baliza → SEARCH")
-            return Estado.SEARCH, Cmd.STOP
+        # 3–6 frames → buscar con cámara (mini‑SEARCH)
+        if robot_state.track_lost_frames <= 6:
+            # barrido suave izquierda/derecha
+            if px.last_pan <= 0:
+                return Estado.TRACK, Cmd.CAM_PAN_RIGHT
+            else:
+                return Estado.TRACK, Cmd.CAM_PAN_LEFT
 
-        return Estado.TRACK, Cmd.STOP
+        # 7+ frames → SEARCH completo
+        log_event(px, estado, "Perdida baliza → SEARCH")
+        return Estado.SEARCH, Cmd.STOP
 
     # Si hay detección válida, resetear memoria
     robot_state.track_lost_frames = 0
 
-    # Corrección gruesa con ruedas solo si la baliza está MUY lejos
-    # (evita zig‑zag cuando está cerca)
+    # ------------------------------------------------------------
+    # 3. Corrección gruesa con ruedas (solo si está lejos)
+    # ------------------------------------------------------------
     if abs(det.error_x) > 80 and det.area < (NEAR_EXIT_AREA * 0.5):
         if det.error_x > 0:
             return Estado.TRACK, Cmd.WHEELS_TURN_RIGHT
@@ -753,7 +787,7 @@ def state_track(px, dist, estado, accion, robot_state):
             return Estado.TRACK, Cmd.WHEELS_TURN_LEFT
 
     # ------------------------------------------------------------
-    # 4. Corrección fina con cámara (error pequeño)
+    # 4. Corrección fina horizontal con cámara
     # ------------------------------------------------------------
     if abs(det.error_x) > 5:
         if det.error_x > 0:
@@ -761,7 +795,9 @@ def state_track(px, dist, estado, accion, robot_state):
         else:
             return Estado.TRACK, Cmd.CAM_PAN_LEFT
 
-    # Corrección vertical
+    # ------------------------------------------------------------
+    # 5. Corrección vertical (TILT)
+    # ------------------------------------------------------------
     if abs(det.error_y) > 40:
         if det.error_y > 0:
             return Estado.TRACK, Cmd.CAM_TILT_TOP
@@ -769,7 +805,7 @@ def state_track(px, dist, estado, accion, robot_state):
             return Estado.TRACK, Cmd.CAM_TILT_BOTTOM
 
     # ------------------------------------------------------------
-    # 5. Centrado → avanzar
+    # 6. Centrado → avanzar
     # ------------------------------------------------------------
     return Estado.TRACK, Cmd.FORWARD_SLOW
 
