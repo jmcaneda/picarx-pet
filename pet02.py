@@ -415,19 +415,20 @@ def apply_safety(px, d, estado, accion):
         px.last_sec = "safe"
         return estado, accion
 
-    # --- Zona de advertencia ---
-    if SAFE_DISTANCE >= d > DANGER_DISTANCE:
-        px.last_sec = "safe"
-        return estado, accion
-
     # --- Zona de peligro crítico ---
     if d <= DANGER_DISTANCE:
+
+        # Si vemos la baliza y está centrada → ignorar ultrasonido
+        det = get_detection(px)
+        if det.valid_for_search and det.is_centered:
+            # visión manda, no activar SCAPE
+            return estado, accion
+
+        # Si NO vemos baliza → SCAPE real
         if px.last_sec != "critical":
             log_event(px, estado, f"[SEC] CRITICAL: object < {d} cm")
         px.last_sec = "critical"
         return Estado.RESET, Cmd.SCAPE
-
-    return estado, accion
 
 # ============================================================
 # FUNCIONES
@@ -707,6 +708,11 @@ def state_track(px, dist, estado, accion, robot_state):
     if not det.valid_for_search:
         robot_state.track_lost_frames += 1
 
+        # Ignorar frames basura aislados
+        if robot_state.track_lost_frames <= 3:
+            return Estado.TRACK, Cmd.STOP
+
+        # Si ya son muchos → SEARCH
         if robot_state.track_lost_frames >= 8:
             log_event(px, estado, "Perdida baliza → SEARCH")
             return Estado.SEARCH, Cmd.STOP
@@ -716,8 +722,9 @@ def state_track(px, dist, estado, accion, robot_state):
     # Si hay detección válida, resetear memoria
     robot_state.track_lost_frames = 0
 
-    # Corrección gruesa con ruedas solo si la baliza está lejos
-    if abs(det.error_x) > 40 and det.area < (NEAR_EXIT_AREA * 0.7):
+    # Corrección gruesa con ruedas solo si la baliza está MUY lejos
+    # (evita zig‑zag cuando está cerca)
+    if abs(det.error_x) > 80 and det.area < (NEAR_EXIT_AREA * 0.5):
         if det.error_x > 0:
             return Estado.TRACK, Cmd.WHEELS_TURN_RIGHT
         else:
@@ -726,7 +733,7 @@ def state_track(px, dist, estado, accion, robot_state):
     # ------------------------------------------------------------
     # 4. Corrección fina con cámara (error pequeño)
     # ------------------------------------------------------------
-    if abs(det.error_x) > 10:
+    if abs(det.error_x) > 5:
         if det.error_x > 0:
             return Estado.TRACK, Cmd.CAM_PAN_RIGHT
         else:
