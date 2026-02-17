@@ -96,15 +96,8 @@ class Det:
         return self.y - self.cy
 
     @property
-    def valid(self):
-        return (
-            self.n > 0 and
-            200 < self.area < 20000
-        )
-
-    @property
     def is_centered(self):
-        if self.w == 0 or self.h == 0:
+        if not self.valid_for_search:
             return False
         return abs(self.error_x) <= 40
 
@@ -131,7 +124,6 @@ class Det:
             f"area={self.area}, "
             f"error_x={self.error_x}, error_y={self.error_y}, "
             f"is_centered={self.is_centered}, "
-            f"valid={self.valid}, "
             f"valid_for_search={self.valid_for_search}"
             ")"
         )
@@ -234,7 +226,7 @@ def turn_left(px, speed=TURN_SPEED):
     # 1. Centrar servo SIEMPRE
     px.set_dir_servo_angle(0)
     time.sleep(0.05)
-    
+
     px.set_dir_servo_angle(SERVO_ANGLE_MIN)
     px.forward(speed)
     
@@ -471,7 +463,7 @@ def get_detection(px):
     if raw["color_n"] > 0 and px.last_raw_n == 0:
         log_event(
             px, px.estado_actual,
-            f"Det valid={det.valid} is_centered={det.is_centered} "
+            f"Det valid_for_search={det.valid_for_search} is_centered={det.is_centered} "
             f"n={raw['color_n']} w={raw['color_w']} h={raw['color_h']} "
             f"area={det.area} x={raw['color_x']} y={raw['color_y']}"
         )
