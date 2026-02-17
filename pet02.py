@@ -657,14 +657,11 @@ def state_recenter(px, dist, estado, accion, robot_state):
 
     # Entrada al estado
     if px.last_state != estado:
+        log_event(px, estado, "Entrando en RECENTER")
         robot_state.recenter_centered_frames = 0
         robot_state.recenter_lost_frames = 0
-        log_event(px, estado, "Entrando en RECENTER")
-
-        # Detener cualquier giro residual del cuerpo
         px.set_dir_servo_angle(0)
-
-    px.last_state = estado
+        px.last_state = estado
 
     # Seguridad
     estado, accion = apply_safety(px, dist, estado, accion)
@@ -676,46 +673,33 @@ def state_recenter(px, dist, estado, accion, robot_state):
     # ------------------------------------------------------------
     if not det.valid_for_search:
         robot_state.recenter_lost_frames += 1
-
         if robot_state.recenter_lost_frames >= 5:
             log_event(px, estado, "RECENTER sin detección → SEARCH")
             return Estado.SEARCH, Cmd.STOP
-
         return Estado.RECENTER, Cmd.STOP
 
-    # Si hay detección válida, resetear memoria
     robot_state.recenter_lost_frames = 0
 
     # ------------------------------------------------------------
-    # 3. Corrección con tilt en cámara
-    # ------------------------------------------------------------
-
-    if abs(det.error_y) > 40:
-        robot_state.recenter_centered_frames = 0
-        if det.error_y > 0:
-            return Estado.RECENTER, Cmd.CAM_TILT_TOP
-        else:
-            return Estado.RECENTER, Cmd.CAM_TILT_BOTTOM
-    
-    # ------------------------------------------------------------
-    # 2. Corrección gruesa con ruedas (error grande)
+    # 2. Corrección horizontal (PAN)
     # ------------------------------------------------------------
     if abs(det.error_x) > 40:
-        robot_state.recenter_centered_frames = 0
-        if det.error_x > 0:
-            return Estado.RECENTER, Cmd.WHEELS_TURN_RIGHT
-        else:
-            return Estado.RECENTER, Cmd.WHEELS_TURN_LEFT
-
-    # ------------------------------------------------------------
-    # 3. Corrección fina con cámara (error medio)
-    # ------------------------------------------------------------
-    if abs(det.error_x) > 10:
         robot_state.recenter_centered_frames = 0
         if det.error_x > 0:
             return Estado.RECENTER, Cmd.CAM_PAN_RIGHT
         else:
             return Estado.RECENTER, Cmd.CAM_PAN_LEFT
+
+    # ------------------------------------------------------------
+    # 3. Corrección vertical SOLO si la baliza está lejos
+    # ------------------------------------------------------------
+    if det.area < NEAR_ENTER_AREA * 0.6:
+        if abs(det.error_y) > 40:
+            robot_state.recenter_centered_frames = 0
+            if det.error_y > 0:
+                return Estado.RECENTER, Cmd.CAM_TILT_TOP
+            else:
+                return Estado.RECENTER, Cmd.CAM_TILT_BOTTOM
 
     # ------------------------------------------------------------
     # 4. Centrado → acumular frames
