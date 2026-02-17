@@ -147,6 +147,7 @@ class RobotState:
 
         # NEAR (nuevo)
         self.near_done_backward = False
+        self.near_lost_frames = 0
         
 # ============================================================
 # INICIALIZACIÓN
@@ -237,12 +238,22 @@ def turn_right(px, speed=TURN_SPEED):
     px.forward(speed)
 
 def scape_danger(px, speed=SLOW_SPEED):
+    # 1. Centrar servo SIEMPRE
+    px.set_dir_servo_angle(0)
+    time.sleep(0.05)
+
+    # 2. Retroceder recto
+    px.backward(speed)
+    time.sleep(0.4)
+
+    # 3. Girar un poco y retroceder
     px.set_dir_servo_angle(SERVO_ANGLE_MIN)
     px.backward(speed)
-    time.sleep(0.5)
-    px.set_dir_servo_angle(SERVO_ANGLE_MAX)
-    px.backward(speed)
-    time.sleep(0.5)
+    time.sleep(0.4)
+
+    # 4. Centrar servo otra vez
+    px.set_dir_servo_angle(0)
+    time.sleep(0.05)
 
 # ============================================================
 # MOVIMIENTOS DE CÁMARA SEGUROS
