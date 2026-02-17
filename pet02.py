@@ -417,7 +417,6 @@ def apply_safety(px, d, estado, accion):
 
     # --- Zona de peligro crítico ---
     if d <= DANGER_DISTANCE:
-
         # Si vemos la baliza y está centrada → ignorar ultrasonido
         det = get_detection(px)
         if det.valid_for_search and det.is_centered:
@@ -566,6 +565,13 @@ def state_search(px, dist, estado, accion):
         px.search_dir = 1
         px.search_seen = 0
         px.search_steps = 0   # importante: reset del giro
+
+        # 🔥 Reset completo de cámara
+        px.set_cam_pan_angle(0)
+        px.last_pan = 0
+        px.set_cam_tilt_angle(0)   
+        px.last_tilt = 0            
+
     px.last_state = Estado.SEARCH
 
     # Seguridad primero
@@ -642,6 +648,17 @@ def state_recenter(px, dist, estado, accion, robot_state):
     # Si hay detección válida, resetear memoria
     robot_state.recenter_lost_frames = 0
 
+    # ------------------------------------------------------------
+    # 3. Corrección con tilt en cámara
+    # ------------------------------------------------------------
+
+    if abs(det.error_y) > 40:
+        robot_state.recenter_centered_frames = 0
+        if det.error_y > 0:
+            return Estado.RECENTER, Cmd.CAM_TILT_TOP
+        else:
+            return Estado.RECENTER, Cmd.CAM_TILT_BOTTOM
+    
     # ------------------------------------------------------------
     # 2. Corrección gruesa con ruedas (error grande)
     # ------------------------------------------------------------
@@ -739,6 +756,13 @@ def state_track(px, dist, estado, accion, robot_state):
         else:
             return Estado.TRACK, Cmd.CAM_PAN_LEFT
 
+    # Corrección vertical
+    if abs(det.error_y) > 40:
+        if det.error_y > 0:
+            return Estado.TRACK, Cmd.CAM_TILT_TOP
+        else:
+            return Estado.TRACK, Cmd.CAM_TILT_BOTTOM
+
     # ------------------------------------------------------------
     # 5. Centrado → avanzar
     # ------------------------------------------------------------
@@ -788,6 +812,13 @@ def state_near(px, dist, estado, accion, robot_state):
             return Estado.NEAR, Cmd.CAM_PAN_RIGHT
         else:
             return Estado.NEAR, Cmd.CAM_PAN_LEFT
+
+    if abs(det.error_y) > 40:
+        robot_state.recenter_centered_frames = 0
+        if det.error_y > 0:
+            return Estado.NEAR, Cmd.CAM_TILT_TOP
+        else:
+            return Estado.NEAR, Cmd.CAM_TILT_BOTTOM
 
     # ------------------------------------------------------------
     # 4. Solo un backward corto al entrar
