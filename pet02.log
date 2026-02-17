@@ -1,0 +1,30 @@
+=== Start of pet02.log ===
+[21:02:54] [Estado.CHK] [CHK] ==============================
+[21:02:54] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[21:02:54] [Estado.CHK] [CHK] ==============================
+[21:02:54] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[21:02:54] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[21:02:54] [Estado.CHK] [CHK] State wheels:     0
+[21:02:54] [Estado.CHK] [CHK] ==============================
+[21:02:54] [Estado.IDLE] Inicio del sistema
+[21:02:54] [Estado.IDLE] Entrando en IDLE
+[21:02:55] [Estado.RESET] Entrando en RESET
+[21:02:55] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=1 w=68 h=56 area=3808 x=486 y=236
+[21:02:55] [Estado.SEARCH] Entrando en SEARCH
+[21:02:55] [Estado.SEARCH] 1 corregir con cámara → derecha
+[21:02:55] [Estado.SEARCH] Baliza encontrada → RECENTER
+[21:02:55] [Estado.RECENTER] Entrando en RECENTER
+[21:02:56] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[21:02:56] [Estado.TRACK] Entrando en TRACK
+[21:02:59] [Estado.TRACK] Baliza muy cerca (área=70176) → NEAR
+[21:02:59] [Estado.NEAR] Entrando en NEAR
+[21:03:00] [Estado.TRACK] Entrando en TRACK
+[21:03:01] [Estado.TRACK] Perdida baliza → SEARCH
+[21:03:02] [Estado.SEARCH] Entrando en SEARCH
+[21:03:02] [Estado.SEARCH] 2 corregir con cámara → izquierda
+[21:03:03] [Estado.SEARCH] Baliza encontrada → RECENTER
+[21:03:03] [Estado.RECENTER] Entrando en RECENTER
+[21:03:04] [Estado.RECENTER] RECENTER sin detección → SEARCH
+[21:03:04] [Estado.SEARCH] Entrando en SEARCH
+[21:03:05] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=2 w=52 h=196 area=10192 x=26 y=246
+[21:03:05] [Estado.SEARCH] 2 corregir con cámara → izquierda

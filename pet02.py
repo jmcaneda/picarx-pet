@@ -18,8 +18,8 @@ BALIZA_COLOR = "red"
 PAN_MIN = -35
 PAN_MAX = 35
 
-TILT_MIN = -35
-TILT_MAX = 35
+TILT_MIN = -20
+TILT_MAX = 20
 
 SERVO_ANGLE_MIN = -30
 SERVO_ANGLE_MAX = 30
@@ -803,14 +803,16 @@ def state_track(px, dist, estado, accion, robot_state):
         else:
             return Estado.TRACK, Cmd.CAM_PAN_LEFT
 
-    # ------------------------------------------------------------
-    # 5. Corrección vertical (TILT)
-    # ------------------------------------------------------------
-    if abs(det.error_y) > 40:
-        if det.error_y > 0:
-            return Estado.TRACK, Cmd.CAM_TILT_TOP
-        else:
-            return Estado.TRACK, Cmd.CAM_TILT_BOTTOM
+    # 🔥 Si la baliza está cerca, NO tocar TILT
+    if det.area > NEAR_ENTER_AREA * 0.6:
+        pass  # ignorar corrección vertical
+    else:
+        # Corrección vertical solo si está lejos
+        if abs(det.error_y) > 40:
+            if det.error_y > 0:
+                return Estado.TRACK, Cmd.CAM_TILT_TOP
+            else:
+                return Estado.TRACK, Cmd.CAM_TILT_BOTTOM
 
     # ------------------------------------------------------------
     # 6. Centrado → avanzar
@@ -854,33 +856,30 @@ def state_near(px, dist, estado, accion, robot_state):
         return Estado.TRACK, Cmd.STOP
 
     # ------------------------------------------------------------
-    # 3. Corrección fina con cámara si está muy cerca pero descentrada
+    # 3. Corrección horizontal SOLO si está MUY descentrada
     # ------------------------------------------------------------
-    if abs(det.error_x) > 40:
+    if abs(det.error_x) > 80:
         if det.error_x > 0:
             return Estado.NEAR, Cmd.CAM_PAN_RIGHT
         else:
             return Estado.NEAR, Cmd.CAM_PAN_LEFT
 
-    if abs(det.error_y) > 40:
-        robot_state.recenter_centered_frames = 0
-        if det.error_y > 0:
-            return Estado.NEAR, Cmd.CAM_TILT_TOP
-        else:
-            return Estado.NEAR, Cmd.CAM_TILT_BOTTOM
+    # ------------------------------------------------------------
+    # 4. NO tocar TILT en NEAR (prohibido)
+    # ------------------------------------------------------------
+    # (eliminar completamente la corrección vertical)
 
     # ------------------------------------------------------------
-    # 4. Solo un backward corto al entrar
+    # 5. Solo un backward corto al entrar
     # ------------------------------------------------------------
     if not robot_state.near_done_backward:
         robot_state.near_done_backward = True
         return Estado.NEAR, Cmd.BACKWARD
 
     # ------------------------------------------------------------
-    # 5. Después del backward → STOP estable
+    # 6. Después del backward → STOP estable
     # ------------------------------------------------------------
     return Estado.NEAR, Cmd.STOP
-
 
 # ============================================================
 # BUCLE PRINCIPAL
