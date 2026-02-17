@@ -223,18 +223,23 @@ def backward(px, speed=SLOW_SPEED):
     time.sleep(0.15)
 
 def turn_left(px, speed=TURN_SPEED):
-    # 1. Centrar servo
+    # 1. Centrar servo SIEMPRE
     px.set_dir_servo_angle(0)
     time.sleep(0.05)
 
     # 2. Girar un poco
     px.set_dir_servo_angle(SERVO_ANGLE_MIN)
     px.forward(speed)
-    time.sleep(0.25)   # giro acotado
+    time.sleep(0.20)   # giro acotado
 
-    # 3. Centrar servo SIEMPRE
+    # 3. STOP
+    px.stop()
+    time.sleep(0.05)
+
+    # 4. Centrar servo SIEMPRE
     px.set_dir_servo_angle(0)
     time.sleep(0.05)
+
 
 def turn_right(px, speed=TURN_SPEED):
     px.set_dir_servo_angle(0)
@@ -242,7 +247,10 @@ def turn_right(px, speed=TURN_SPEED):
 
     px.set_dir_servo_angle(SERVO_ANGLE_MAX)
     px.forward(speed)
-    time.sleep(0.25)
+    time.sleep(0.20)
+
+    px.stop()
+    time.sleep(0.05)
 
     px.set_dir_servo_angle(0)
     time.sleep(0.05)
