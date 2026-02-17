@@ -744,27 +744,23 @@ def state_track(px, dist, estado, accion, robot_state):
         log_event(px, estado, "Distancia segura alcanzada → STOP")
         return Estado.TRACK, Cmd.STOP
 
-    # ------------------------------------------------------------
-    # 2. Si NO hay detección válida → recaptura activa
-    # ------------------------------------------------------------
+    # 2. Si NO hay detección válida
     if not det.valid_for_search:
         robot_state.track_lost_frames += 1
 
-        # 1–2 frames basura → STOP
-        if robot_state.track_lost_frames <= 2:
+        # Si estoy en zona segura → me quedo quieto, no hago SEARCH
+        if dist <= SAFE_DISTANCE + 5:   # pequeño margen
             return Estado.TRACK, Cmd.STOP
 
-        # 3–6 frames → buscar con cámara (mini‑SEARCH)
-        if robot_state.track_lost_frames <= 6:
-            # barrido suave izquierda/derecha
-            if px.last_pan <= 0:
-                return Estado.TRACK, Cmd.CAM_PAN_RIGHT
-            else:
-                return Estado.TRACK, Cmd.CAM_PAN_LEFT
+        # Si estoy lejos → lógica normal de pérdida
+        if robot_state.track_lost_frames <= 3:
+            return Estado.TRACK, Cmd.STOP
 
-        # 7+ frames → SEARCH completo
-        log_event(px, estado, "Perdida baliza → SEARCH")
-        return Estado.SEARCH, Cmd.STOP
+        if robot_state.track_lost_frames >= 8:
+            log_event(px, estado, "Perdida baliza → SEARCH")
+            return Estado.SEARCH, Cmd.STOP
+
+        return Estado.TRACK, Cmd.STOP
 
     # Si hay detección válida, resetear memoria
     robot_state.track_lost_frames = 0
