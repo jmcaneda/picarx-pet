@@ -585,10 +585,18 @@ def state_search(px, dist, estado, accion):
     # 2. Si NO hay detección válida → barrido suave con cámara
     px.search_seen = 0
 
-    if px.last_pan <= 0:
+    # Cambiar dirección si estamos en un límite
+    if px.last_pan >= PAN_MAX:
+        px.search_dir = -1
+    elif px.last_pan <= PAN_MIN:
+        px.search_dir = 1
+
+    # Mover cámara según la dirección
+    if px.search_dir == 1:
         return Estado.SEARCH, Cmd.CAM_PAN_RIGHT
     else:
         return Estado.SEARCH, Cmd.CAM_PAN_LEFT
+
 
 def state_recenter(px, dist, estado, accion, robot_state):
     det = get_detection(px)
