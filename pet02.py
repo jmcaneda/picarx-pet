@@ -727,6 +727,11 @@ def state_track(px, dist, estado, accion, robot_state):
     # 4. Corrección horizontal con cámara
     # ------------------------------------------------------------
     if abs(det.error_x) > 5:
+        # Si PAN está en el límite → corregir con ruedas 
+        if px.last_pan == PAN_MAX: 
+            return Estado.TRACK, Cmd.WHEELS_TURN_RIGHT 
+        if px.last_pan == PAN_MIN: 
+            return Estado.TRACK, Cmd.WHEELS_TURN_LEFT
         if det.error_x > 0:
             return Estado.TRACK, Cmd.CAM_PAN_RIGHT
         else:
