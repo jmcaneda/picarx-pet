@@ -108,12 +108,31 @@ class Det:
 
         return (
             self.n >= 1 and
-            20 < self.w < 350 and     # coherente con NEAR
+            20 < self.w < 350 and     # coherente con Search
             20 < self.h < 480 and
             800 < self.area < 90000 and
             0 < self.x < 640 and
             0 < self.y < 480
         )
+    
+    @property
+    def valid_for_near(self):
+        if not self.valid_for_search:
+            return False
+
+        # 1. Área suficientemente grande (cerca)
+        if self.area < 12000:   # calibrable
+            return False
+
+        # 2. Centrado horizontal razonable
+        if abs(self.error_x) > 80:
+            return False
+
+        # 3. Centrado vertical razonable
+        if abs(self.error_y) > 120:
+            return False
+
+        return True
 
     def __repr__(self):
         return (
@@ -124,7 +143,8 @@ class Det:
             f"area={self.area}, "
             f"error_x={self.error_x}, error_y={self.error_y}, "
             f"is_centered={self.is_centered}, "
-            f"valid_for_search={self.valid_for_search}"
+            f"valid_for_search={self.valid_for_search}, "
+            f"valid_for_near={self.valid_for_near}"
             ")"
         )
 
