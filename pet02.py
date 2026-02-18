@@ -636,6 +636,7 @@ def state_recenter(px, dist, estado, accion, robot_state):
         else:
             return Estado.RECENTER, Cmd.CAM_PAN_LEFT
 
+    """
     # ------------------------------------------------------------
     # 3. Corrección vertical SOLO si la baliza está lejos
     # ------------------------------------------------------------
@@ -648,7 +649,8 @@ def state_recenter(px, dist, estado, accion, robot_state):
             else:
                 log_event(px, estado, f"det.error_y={det.error_y} Corrección vertical → TILT BOTTOM")
                 return Estado.RECENTER, Cmd.CAM_TILT_BOTTOM
-
+    """
+    
     # ------------------------------------------------------------
     # 4. Centrado → acumular frames
     # ------------------------------------------------------------
