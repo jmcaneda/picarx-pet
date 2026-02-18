@@ -701,7 +701,7 @@ def state_track(px, dist, estado, accion, robot_state):
     # ------------------------------------------------------------
     # 0. Si está MUY cerca y centrada → NEAR
     # ------------------------------------------------------------
-    if det.valid_for_search and det.area > NEAR_ENTER_AREA and abs(det.error_x) < 60:
+    if det.valid_for_near:
         log_event(px, Estado.TRACK, f"Baliza muy cerca (área={det.area}) → NEAR")
         return Estado.NEAR, Cmd.STOP
 
