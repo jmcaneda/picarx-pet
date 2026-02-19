@@ -1,63 +1,20 @@
 === Start of pet02.log ===
-[10:41:42] [Estado.CHK] [CHK] ==============================
-[10:41:42] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[10:41:42] [Estado.CHK] [CHK] ==============================
-[10:41:42] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[10:41:42] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[10:41:42] [Estado.CHK] [CHK] State wheels:     0
-[10:41:42] [Estado.CHK] [CHK] ==============================
-[10:41:42] [Estado.IDLE] Inicio del sistema
-[10:41:42] [Estado.IDLE] Entrando en IDLE
-[10:41:42] [Estado.RESET] Entrando en RESET
-[10:41:42] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=1 w=72 h=96 area=6912 x=548 y=260
-[10:41:42] [Estado.SEARCH] Entrando en SEARCH
-[10:41:43] [Estado.SEARCH] Baliza encontrada → RECENTER
-[10:41:43] [Estado.RECENTER] Entrando en RECENTER
-[10:41:43] [Estado.RECENTER] Alineado ✔ (cuerpo)
-[10:41:43] [Estado.TRACK] Entrando en TRACK
-[10:41:44] [Estado.TRACK] Baliza muy cerca (área=12960) → NEAR
-[10:41:44] [Estado.NEAR] Entrando en NEAR
-[10:41:44] [Estado.NEAR] Baliza fuera de zona NEAR → TRACK
-[10:41:45] [Estado.TRACK] Entrando en TRACK
-[10:41:45] [Estado.TRACK] Baliza muy cerca (área=13440) → NEAR
-[10:41:45] [Estado.NEAR] Entrando en NEAR
-[10:41:49] [Estado.NEAR] Baliza fuera de zona NEAR → TRACK
-[10:41:49] [Estado.TRACK] Entrando en TRACK
-[10:41:49] [Estado.TRACK] Baliza muy cerca (área=12160) → NEAR
-[10:41:49] [Estado.NEAR] Entrando en NEAR
-[10:41:49] [Estado.NEAR] Baliza fuera de zona NEAR → TRACK
-[10:41:49] [Estado.TRACK] Entrando en TRACK
-[10:41:49] [Estado.TRACK] Baliza muy cerca (área=12768) → NEAR
-[10:41:50] [Estado.NEAR] Entrando en NEAR
-[10:41:50] [Estado.NEAR] Baliza fuera de zona NEAR → TRACK
-[10:41:50] [Estado.TRACK] Entrando en TRACK
-[10:41:50] [Estado.TRACK] Baliza muy cerca (área=12464) → NEAR
-[10:41:50] [Estado.NEAR] Entrando en NEAR
-[10:41:50] [Estado.NEAR] Baliza fuera de zona NEAR → TRACK
-[10:41:51] [Estado.TRACK] Entrando en TRACK
-[10:41:51] [Estado.TRACK] Baliza muy cerca (área=13376) → NEAR
-[10:41:51] [Estado.NEAR] Entrando en NEAR
-[10:41:51] [Estado.NEAR] Baliza fuera de zona NEAR → TRACK
-[10:41:51] [Estado.TRACK] Entrando en TRACK
-[10:41:51] [Estado.TRACK] Baliza muy cerca (área=12464) → NEAR
-[10:41:52] [Estado.NEAR] Entrando en NEAR
-[10:41:52] [Estado.NEAR] Baliza fuera de zona NEAR → TRACK
-[10:41:52] [Estado.TRACK] Entrando en TRACK
-[10:41:52] [Estado.TRACK] Baliza muy cerca (área=12768) → NEAR
-[10:41:52] [Estado.NEAR] Entrando en NEAR
-[10:41:52] [Estado.NEAR] Baliza fuera de zona NEAR → TRACK
-[10:41:53] [Estado.TRACK] Entrando en TRACK
-[10:41:53] [Estado.TRACK] Baliza muy cerca (área=12160) → NEAR
-[10:41:53] [Estado.NEAR] Entrando en NEAR
-[10:41:54] [Estado.NEAR] Baliza fuera de zona NEAR → TRACK
-[10:41:54] [Estado.TRACK] Entrando en TRACK
-[10:41:54] [Estado.TRACK] Baliza muy cerca (área=12384) → NEAR
-[10:41:54] [Estado.NEAR] Entrando en NEAR
-[10:41:54] [Estado.NEAR] Baliza fuera de zona NEAR → TRACK
-[10:41:54] [Estado.TRACK] Entrando en TRACK
-[10:41:55] [Estado.TRACK] Baliza muy cerca (área=13760) → NEAR
-[10:41:55] [Estado.NEAR] Entrando en NEAR
-[10:41:56] [Estado.NEAR] Baliza fuera de zona NEAR → TRACK
-[10:41:56] [Estado.TRACK] Entrando en TRACK
-[10:41:56] [Estado.TRACK] Baliza muy cerca (área=12800) → NEAR
-[10:41:56] [Estado.NEAR] Entrando en NEAR
+[11:06:20] [Estado.CHK] [CHK] ==============================
+[11:06:20] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[11:06:20] [Estado.CHK] [CHK] ==============================
+[11:06:20] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[11:06:20] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[11:06:20] [Estado.CHK] [CHK] State wheels:     0
+[11:06:20] [Estado.CHK] [CHK] ==============================
+[11:06:20] [Estado.IDLE] Inicio del sistema
+[11:06:20] [Estado.IDLE] Entrando en IDLE
+[11:06:20] [Estado.RESET] Entrando en RESET
+[11:06:20] [Estado.SEARCH] Entrando en SEARCH
+[11:06:20] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=2 w=36 h=32 area=1152 x=130 y=372 error_x=-190 error_y=132
+[11:06:21] [Estado.SEARCH] Baliza encontrada → RECENTER
+[11:06:21] [Estado.RECENTER] Entrando en RECENTER
+[11:06:21] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[11:06:21] [Estado.TRACK] Entrando en TRACK
+[11:06:22] [Estado.TRACK] NEAR confirmado (3 frames) → NEAR
+[11:06:22] [Estado.NEAR] Entrando en NEAR
+[11:06:23] [Estado.NEAR] Salida NEAR confirmada (5 frames) → TRACK

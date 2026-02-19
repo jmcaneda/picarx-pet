@@ -483,7 +483,6 @@ def apply_safety(px, d, estado, accion):
 def get_detection(px):
     params = Vilib.detect_obj_parameter
 
-    # RAW para log
     raw = {
         "color_x": params.get("color_x", -1),
         "color_y": params.get("color_y", -1),
@@ -492,7 +491,6 @@ def get_detection(px):
         "color_n": params.get("color_n", 0),
     }
 
-    # Crear objeto Det (solo una vez)
     det = Det(
         n = raw["color_n"],
         x = raw["color_x"],
@@ -509,14 +507,28 @@ def get_detection(px):
     if raw["color_n"] > 0 and px.last_raw_n == 0:
         log_event(
             px, px.estado_actual,
-            f"Det valid_for_search={det.valid_for_search} is_centered={det.is_centered} "
-            f"n={raw['color_n']} w={raw['color_w']} h={raw['color_h']} area={det.area} "
-            f"x={raw['color_x']} y={raw['color_y']} error_x={det.error_x} error_y={det.error_y}"
+            f"Det valid_for_search={det.valid_for_search} "
+            f"is_centered={det.is_centered} "
+            f"n={raw['color_n']} w={raw['color_w']} h={raw['color_h']} "
+            f"area={det.area} x={raw['color_x']} y={raw['color_y']} "
+            f"error_x={det.error_x} error_y={det.error_y}"
         )
 
     px.last_raw_n = 1 if raw["color_n"] > 0 else 0
 
-    return det
+    return det, raw
+
+def log_det(px, estado, det, raw, prefix=""):
+    msg = (
+        f"{prefix}"
+        f"valid_for_search={det.valid_for_search} "
+        f"valid_for_near={det.valid_for_near} "
+        f"is_centered={det.is_centered} "
+        f"n={raw['color_n']} w={raw['color_w']} h={raw['color_h']} "
+        f"area={det.area} x={raw['color_x']} y={raw['color_y']} "
+        f"error_x={det.error_x} error_y={det.error_y}"
+    )
+    log_event(px, estado, msg)
 
 def search_see(px, det):
     
