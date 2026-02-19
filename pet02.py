@@ -654,7 +654,7 @@ def state_recenter(px, dist, estado, accion, robot_state):
         robot_state.recenter_lost_frames += 1
         if robot_state.recenter_lost_frames >= 5:
             log_event(px, estado, "RECENTER sin detección → SEARCH")
-            log_det(px, estado, det, raw, prefix="INFO DEBUG")
+            log_det(px, estado, det, raw, prefix="INFO DEBUG ")
             return Estado.SEARCH, Cmd.STOP
         return Estado.RECENTER, Cmd.STOP
 
@@ -732,7 +732,7 @@ def state_track(px, dist, estado, accion, robot_state):
                 return Estado.TRACK, Cmd.CAM_PAN_LEFT
 
         log_event(px, Estado.TRACK, "Perdida baliza → SEARCH")
-        log_det(px, Estado.TRACK, det, raw, prefix="INFO DEBUG")
+        log_det(px, Estado.TRACK, det, raw, prefix="INFO DEBUG ")
         return Estado.SEARCH, Cmd.STOP
 
     # ------------------------------------------------------------
@@ -816,7 +816,7 @@ def state_near(px, dist, estado, accion, robot_state):
 
     if robot_state.near_exit_frames >= 5:
         log_event(px, Estado.NEAR, "Salida NEAR confirmada (5 frames) → TRACK")
-        log_det(px, Estado.NEAR, det, raw, prefix="INFO DEBUG")
+        log_det(px, Estado.NEAR, det, raw, prefix="INFO DEBUG ")
         return Estado.TRACK, Cmd.STOP
 
     # ------------------------------------------------------------
