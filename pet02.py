@@ -7,7 +7,9 @@ import time
 from vilib import Vilib
 from enum import Enum
 from libs import hello_px, check_robot
-# from sound import sound_dog
+# from picarx.music import Music
+
+# music = Music()
 
 # ============================================================
 # CONSTANTES
@@ -37,6 +39,8 @@ SAFE_DISTANCE = 35
 DANGER_DISTANCE = 20
 
 LOG_PATH = os.path.join(os.path.dirname(__file__), "pet02.log")
+
+# SOUNDS_DIR = "/home/jmcaneda/picarx-projects/autonomous/sounds"
 
 # ============================================================
 # CLASES
@@ -232,19 +236,15 @@ def stop(px):
     px.stop()
     # No tocamos el servo. La FSM decide cuándo centrarlo.
 
-
 def forward(px, speed=FAST_SPEED):
     px.forward(speed)
-
 
 def forward_slow(px, speed=SLOW_SPEED):
     px.forward(speed)
 
-
 def backward(px, speed=SLOW_SPEED):
     px.backward(speed)
     # No bloqueamos la FSM. NEAR controla su propio backward.
-
 
 # ------------------------------------------------------------
 # GIRO CONTINUO REAL
@@ -522,7 +522,7 @@ def do_yes(px):
     
     try:
         # Sonido solo una vez
-        # sound_dog()
+        music.sound_play(os.path.join(SOUNDS_DIR, "sounds_angry.wav"))
 
         for _ in range(2):
             # Gesto hacia arriba
@@ -758,6 +758,7 @@ def state_near(px, dist, estado, accion, robot_state):
         px.last_tilt = 0
 
         px.last_state = Estado.NEAR
+        robot_state.near_did_yes = False
 
     # ------------------------------------------------------------
     # Seguridad
@@ -814,7 +815,15 @@ def state_near(px, dist, estado, accion, robot_state):
         return Estado.NEAR, Cmd.BACKWARD
 
     # ------------------------------------------------------------
-    # 6. Después del backward → STOP estable
+    # 6. Después del backward → gesto de "sí" una vez
+    # ------------------------------------------------------------
+    if not robot_state.near_did_yes:
+        robot_state.near_did_yes = True
+        do_yes(px)
+        return Estado.NEAR, Cmd.STOP
+
+    # ------------------------------------------------------------
+    # 7. Estado estable en NEAR
     # ------------------------------------------------------------
     return Estado.NEAR, Cmd.STOP
 
@@ -827,6 +836,11 @@ def pet_mode(px, test_mode):
 
     with open(LOG_PATH, "w", encoding="utf-8") as f:
         f.write("=== Start of pet02.log ===\n")
+
+    # music.music_set_volume(20)
+    # sound_path = os.path.join(SOUNDS_DIR, "sounds_angry.wav")
+    # music.sound_play(sound_path)
+    #time.sleep(0.05)
 
     hello_px(px)
     init_camera(px)
@@ -849,7 +863,8 @@ def pet_mode(px, test_mode):
         elif estado == Estado.RECENTER:
             estado, accion = state_recenter(px, px.dist, estado, accion, state)
         elif estado == Estado.TRACK:
-            estado, accion = state_track(px, px.dist, estado, accion, state)
+            det, raw = get_detection(px)
+            estado, accion = state_track(px, det, raw, state)
         elif estado == Estado.NEAR:
             estado, accion = state_near(px, px.dist, estado, accion, state)
 
@@ -865,6 +880,7 @@ def pet_mode(px, test_mode):
 
 if __name__ == "__main__":
     import sys
+    import os
     from picarx import Picarx
     from libs import get_px
 
