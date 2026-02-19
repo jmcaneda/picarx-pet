@@ -36,9 +36,6 @@ CAM_STEP = 4
 SAFE_DISTANCE = 30
 DANGER_DISTANCE = 15
 
-NEAR_ENTER_AREA = 25000
-NEAR_EXIT_AREA = 18000
-
 LOG_PATH = os.path.join(os.path.dirname(__file__), "pet02.log")
 
 # ============================================================
@@ -656,20 +653,6 @@ def state_recenter(px, dist, estado, accion, robot_state):
         else:
             return Estado.RECENTER, Cmd.CAM_PAN_LEFT
 
-    """
-    # ------------------------------------------------------------
-    # 3. Corrección vertical SOLO si la baliza está lejos
-    # ------------------------------------------------------------
-    if det.area < NEAR_ENTER_AREA * 0.6:
-        if abs(det.error_y) > 40:
-            robot_state.recenter_centered_frames = 0
-            if det.error_y > 0:
-                log_event(px, estado, f"det.error_y={det.error_y} Corrección vertical → TILT TOP")
-                return Estado.RECENTER, Cmd.CAM_TILT_TOP
-            else:
-                log_event(px, estado, f"det.error_y={det.error_y} Corrección vertical → TILT BOTTOM")
-                return Estado.RECENTER, Cmd.CAM_TILT_BOTTOM
-    """
     
     # ------------------------------------------------------------
     # 4. Centrado → acumular frames
@@ -699,7 +682,7 @@ def state_track(px, dist, estado, accion, robot_state):
         px.last_state = Estado.TRACK
 
     # ------------------------------------------------------------
-    # 0. Si está MUY cerca y centrada → NEAR
+    # 0. Si estamos realmente cerca → NEAR
     # ------------------------------------------------------------
     if det.valid_for_near:
         log_event(px, Estado.TRACK, f"Baliza muy cerca (área={det.area}) → NEAR")
@@ -715,27 +698,16 @@ def state_track(px, dist, estado, accion, robot_state):
     # ------------------------------------------------------------
     # 2. Si NO hay detección válida → buscar con PAN
     # ------------------------------------------------------------
-    if not det.valid_for_search:
-
-        robot_state.track_lost_frames += 1
-
-        # Cerca → quieto pero buscando con PAN
-        if dist <= SAFE_DISTANCE + 5:
-            robot_state.track_lost_frames = 0
-            if px.last_pan <= 0:
-                return Estado.TRACK, Cmd.CAM_PAN_RIGHT
-            else:
-                return Estado.TRACK, Cmd.CAM_PAN_LEFT
-
-        # Lejos → buscar con PAN durante unos frames
-        if robot_state.track_lost_frames <= 6:
-            if px.last_pan <= 0:
-                return Estado.TRACK, Cmd.CAM_PAN_RIGHT
-            else:
-                return Estado.TRACK, Cmd.CAM_PAN_LEFT
-
-        # Si tras buscar no aparece → SEARCH real
-        log_event(px, Estado.TRACK, "Perdida baliza → SEARCH")
+    if not det.valid_for_search: 
+        robot_state.track_lost_frames += 1 
+        # PAN suave para buscar 
+        if robot_state.track_lost_frames <= 6: 
+            if px.last_pan <= 0: 
+                return Estado.TRACK, Cmd.CAM_PAN_RIGHT 
+            else: 
+                return Estado.TRACK, Cmd.CAM_PAN_LEFT 
+        # Si tras buscar no aparece → SEARCH real 
+        log_event(px, Estado.TRACK, "Perdida baliza → SEARCH") 
         return Estado.SEARCH, Cmd.STOP
 
     # ------------------------------------------------------------
@@ -744,24 +716,25 @@ def state_track(px, dist, estado, accion, robot_state):
     robot_state.track_lost_frames = 0
 
     # ------------------------------------------------------------
-    # 4. Corrección horizontal con cámara
+    # 4. Corrección horizontal con cámara o ruedas
     # ------------------------------------------------------------
-    if abs(det.error_x) > 5:
+    if abs(det.error_x) > 10:
         # Si PAN está en el límite → corregir con ruedas 
         if px.last_pan == PAN_MAX: 
             return Estado.TRACK, Cmd.WHEELS_TURN_RIGHT 
         if px.last_pan == PAN_MIN: 
             return Estado.TRACK, Cmd.WHEELS_TURN_LEFT
+        # Corrección normal con PAN
         if det.error_x > 0:
             return Estado.TRACK, Cmd.CAM_PAN_RIGHT
         else:
             return Estado.TRACK, Cmd.CAM_PAN_LEFT
 
     # ------------------------------------------------------------
-    # 5. Corrección vertical SOLO si está lejos
+    # 5. Corrección vertical SOLO si NO estamos cerca
     # ------------------------------------------------------------
-    if det.area < NEAR_ENTER_AREA * 0.6:
-        if abs(det.error_y) > 40:
+    if not det.valid_for_near:
+        if abs(det.error_y) > 60:
             if det.error_y > 0:
                 log_event(px, estado, f"det.error_y={det.error_y} Corrección vertical → TILT TOP")
                 return Estado.TRACK, Cmd.CAM_TILT_TOP
@@ -770,16 +743,9 @@ def state_track(px, dist, estado, accion, robot_state):
                 return Estado.TRACK, Cmd.CAM_TILT_BOTTOM
 
     # ------------------------------------------------------------
-    # 6. Si está centrada y NO está demasiado cerca → avanzar
+    # 6. Si está centrada y lejos → avanzar
     # ------------------------------------------------------------
-    if dist > SAFE_DISTANCE:
-        return Estado.TRACK, Cmd.FORWARD_SLOW
-
-    # ------------------------------------------------------------
-    # 7. Si está centrada y cerca → STOP
-    # ------------------------------------------------------------
-    return Estado.TRACK, Cmd.STOP
-
+    return Estado.TRACK, Cmd.FORWARD_SLOW
 
 def state_near(px, dist, estado, accion, robot_state):
     det = get_detection(px)
