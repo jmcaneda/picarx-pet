@@ -652,25 +652,34 @@ def state_recenter(px, dist, estado, accion, robot_state):
         else:
             return Estado.RECENTER, Cmd.CAM_PAN_LEFT
 
-    
     # ------------------------------------------------------------
     # 4. Centrado → acumular frames
     # ------------------------------------------------------------
     # 🔥 Si la cámara está en el límite y la baliza sigue visible → pasar a TRACK
     if (px.last_pan == PAN_MAX or px.last_pan == PAN_MIN) and det.valid_for_search:
         log_event(px, estado, "PAN en límite → pasar a TRACK para corregir con ruedas")
+        robot_state.just_recentered = time.time()
         return Estado.TRACK, Cmd.STOP
 
     robot_state.recenter_centered_frames += 1
 
     if robot_state.recenter_centered_frames >= 2:
         log_event(px, estado, "Alineado ✔ (cuerpo)")
+        robot_state.just_recentered = time.time()
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
     return Estado.RECENTER, Cmd.STOP
 
 def state_track(px, det, raw, robot_state):
 
+    # ------------------------------------------------------------
+    # COOLDOWN tras RECENTER (evita bloqueos)
+    # ------------------------------------------------------------
+    if robot_state.just_recentered:
+        if time.time() - robot_state.just_recentered < 0.3:
+            return Estado.TRACK, Cmd.STOP
+        robot_state.just_recentered = None
+    
     # ------------------------------------------------------------
     # 0. Si no hay detección → SEARCH
     # ------------------------------------------------------------
@@ -682,6 +691,12 @@ def state_track(px, det, raw, robot_state):
         return Estado.TRACK, Cmd.STOP
 
     robot_state.track_lost_frames = 0
+
+    # ------------------------------------------------------------
+    # BLOQUEO DE GIRO EN ZONA NEAR (evita bloqueos mecánicos)
+    # ------------------------------------------------------------
+    if det.area > 26000:   # zona NEAR aproximada
+        return Estado.TRACK, Cmd.STOP
 
     # ------------------------------------------------------------
     # 1. ZONA SEGURA LATERAL (CRÍTICO)
