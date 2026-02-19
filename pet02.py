@@ -454,7 +454,7 @@ def apply_safety(px, d, estado, accion):
         det, raw = get_detection(px)
 
         if det.valid_for_search:
-            log_det(px, estado, det, raw, prefix="Ignorando ultrasonido por detección válida")
+            log_det(px, estado, det, raw, prefix="Ignorando ultrasonido por detección válida ")
             return estado, accion
 
         # 🔥 2. Si estamos en TRACK o RECENTER → ignorar ultrasonido
@@ -474,7 +474,7 @@ def apply_safety(px, d, estado, accion):
             log_event(px, estado, f"[SEC] CRITICAL: object < {d} cm")
 
         px.last_sec = "critical"
-        return Estado.RESET, Cmd.SCAPE
+        return estado, Cmd.STOP
 
     return estado, accion
 
