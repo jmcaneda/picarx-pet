@@ -118,7 +118,7 @@ class Det:
             return False
 
         # 1. Área suficientemente grande (cerca)
-        if self.area < 12000:   # calibrable
+        if self.area < 26000:  # ajustar su valor según pruebas
             return False
 
         # 2. Centrado horizontal razonable

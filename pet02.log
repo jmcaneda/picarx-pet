@@ -1,141 +1,24 @@
 === Start of pet02.log ===
-[11:35:18] [Estado.CHK] [CHK] ==============================
-[11:35:18] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[11:35:18] [Estado.CHK] [CHK] ==============================
-[11:35:18] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[11:35:18] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[11:35:18] [Estado.CHK] [CHK] State wheels:     0
-[11:35:18] [Estado.CHK] [CHK] ==============================
-[11:35:18] [Estado.IDLE] Inicio del sistema
-[11:35:18] [Estado.IDLE] Entrando en IDLE
-[11:35:18] [Estado.RESET] [SIM] Ejecutado: STOP
-[11:35:18] [Estado.RESET] Entrando en RESET
-[11:35:18] [Estado.SEARCH] [SIM] Ejecutado: STOP
-[11:35:18] [Estado.SEARCH] Entrando en SEARCH
-[11:35:18] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_RIGHT
-[11:35:19] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[11:35:19] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_RIGHT
-[11:35:25] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_LEFT
-[11:35:25] [Estado.SEARCH] Baliza encontrada → RECENTER
-[11:35:25] [Estado.RECENTER] [SIM] Ejecutado: STOP
-[11:35:25] [Estado.RECENTER] Entrando en RECENTER
-[11:35:26] [Estado.RECENTER] [SIM] Ejecutado: CAM_PAN_LEFT
-[11:35:26] [Estado.RECENTER] [SIM] Ejecutado: STOP
-[11:35:26] [Estado.RECENTER] [SIM] Ejecutado: CAM_PAN_LEFT
-[11:35:26] [Estado.RECENTER] [SIM] Ejecutado: STOP
-[11:35:26] [Estado.RECENTER] Alineado ✔ (cuerpo)
-[11:35:26] [Estado.TRACK] [SIM] BLOQUEADO (solo imprimir): FORWARD_SLOW
-[11:35:26] [Estado.TRACK] Entrando en TRACK
-[11:35:26] [Estado.TRACK] [SIM] Ejecutado: CAM_PAN_LEFT
-[11:35:26] [Estado.TRACK] [SIM] BLOQUEADO (solo imprimir): FORWARD_SLOW
-[11:35:27] [Estado.TRACK] NEAR confirmado (3 frames) → NEAR | valid_for_search=True valid_for_near=True is_centered=True n=4 w=128 h=144 area=18432 x=316 y=300 error_x=-4 error_y=60
-[11:35:27] [Estado.NEAR] [SIM] Ejecutado: STOP
-[11:35:27] [Estado.NEAR] Entrando en NEAR
-[11:35:27] [Estado.NEAR] [SIM] BLOQUEADO (solo imprimir): BACKWARD
-[11:35:27] [Estado.NEAR] [SIM] Ejecutado: STOP
-[11:35:31] [Estado.NEAR] Salida NEAR confirmada (5 frames) → TRACK
-[11:35:31] [Estado.NEAR] INFO DEBUGvalid_for_search=True valid_for_near=False is_centered=False n=6 w=80 h=72 area=5760 x=276 y=300 error_x=-44 error_y=60
-[11:35:31] [Estado.TRACK] [SIM] Ejecutado: STOP
-[11:35:31] [Estado.TRACK] Entrando en TRACK
-[11:35:31] [Estado.TRACK] [SIM] Ejecutado: CAM_PAN_LEFT
-[11:35:31] [Estado.TRACK] [SIM] Ejecutado: CAM_PAN_RIGHT
-[11:35:31] [Estado.TRACK] [SIM] Ejecutado: CAM_PAN_LEFT
-[11:35:31] [Estado.TRACK] NEAR confirmado (3 frames) → NEAR | valid_for_search=True valid_for_near=True is_centered=True n=3 w=152 h=216 area=32832 x=336 y=288 error_x=16 error_y=48
-[11:35:31] [Estado.NEAR] [SIM] Ejecutado: STOP
-[11:35:31] [Estado.NEAR] Entrando en NEAR
-[11:35:31] [Estado.NEAR] [SIM] BLOQUEADO (solo imprimir): BACKWARD
-[11:35:31] [Estado.NEAR] [SIM] Ejecutado: STOP
-[11:35:33] [Estado.NEAR] Salida NEAR confirmada (5 frames) → TRACK
-[11:35:33] [Estado.NEAR] INFO DEBUGvalid_for_search=True valid_for_near=False is_centered=False n=2 w=128 h=76 area=9728 x=276 y=246 error_x=-44 error_y=6
-[11:35:33] [Estado.TRACK] [SIM] Ejecutado: STOP
-[11:35:33] [Estado.TRACK] Entrando en TRACK
-[11:35:33] [Estado.TRACK] [SIM] Ejecutado: CAM_PAN_LEFT
-[11:35:33] [Estado.TRACK] [SIM] BLOQUEADO (solo imprimir): FORWARD_SLOW
-[11:35:33] [Estado.TRACK] [SIM] Ejecutado: CAM_PAN_LEFT
-[11:35:34] [Estado.TRACK] [SIM] Ejecutado: CAM_PAN_RIGHT
-[11:35:34] [Estado.TRACK] NEAR confirmado (3 frames) → NEAR | valid_for_search=True valid_for_near=True is_centered=True n=3 w=144 h=92 area=13248 x=308 y=242 error_x=-12 error_y=2
-[11:35:34] [Estado.NEAR] [SIM] Ejecutado: STOP
-[11:35:34] [Estado.NEAR] Entrando en NEAR
-[11:35:34] [Estado.NEAR] [SIM] BLOQUEADO (solo imprimir): BACKWARD
-[11:35:34] [Estado.NEAR] [SIM] Ejecutado: STOP
-[11:35:35] [Estado.NEAR] Salida NEAR confirmada (5 frames) → TRACK
-[11:35:35] [Estado.NEAR] INFO DEBUGvalid_for_search=True valid_for_near=False is_centered=False n=7 w=56 h=56 area=3136 x=236 y=252 error_x=-84 error_y=12
-[11:35:35] [Estado.TRACK] [SIM] Ejecutado: STOP
-[11:35:35] [Estado.TRACK] Entrando en TRACK
-[11:35:35] [Estado.TRACK] [SIM] Ejecutado: CAM_PAN_LEFT
-[11:35:36] [Estado.TRACK] [SIM] Ejecutado: CAM_PAN_RIGHT
-[11:35:36] [Estado.TRACK] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[11:35:36] [Estado.TRACK] [SIM] Ejecutado: CAM_PAN_RIGHT
-[11:35:36] [Estado.TRACK] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[11:35:36] [Estado.TRACK] [SIM] Ejecutado: CAM_PAN_RIGHT
-[11:35:36] [Estado.TRACK] Perdida baliza → SEARCH
-[11:35:36] [Estado.TRACK] INFO DEBUGvalid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[11:35:36] [Estado.SEARCH] [SIM] Ejecutado: STOP
-[11:35:37] [Estado.SEARCH] Entrando en SEARCH
-[11:35:37] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_RIGHT
-[11:35:37] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[11:35:37] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_RIGHT
-[11:35:38] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[11:35:38] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_RIGHT
-[11:35:43] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_LEFT
-[11:35:47] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_RIGHT
-[11:35:47] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[11:35:47] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_RIGHT
-[11:35:48] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_LEFT
-[11:35:48] [Estado.SEARCH] Baliza encontrada → RECENTER
-[11:35:48] [Estado.RECENTER] [SIM] Ejecutado: STOP
-[11:35:48] [Estado.RECENTER] Entrando en RECENTER
-[11:35:48] [Estado.RECENTER] [SIM] Ejecutado: STOP
-[11:35:48] [Estado.RECENTER] Det valid_for_search=True is_centered=False n=2 w=44 h=172 area=7568 x=22 y=262 error_x=-298 error_y=22
-[11:35:48] [Estado.RECENTER] [SIM] Ejecutado: CAM_PAN_LEFT
-[11:35:49] [Estado.RECENTER] [SIM] Ejecutado: STOP
-[11:35:49] [Estado.RECENTER] Alineado ✔ (cuerpo)
-[11:35:49] [Estado.TRACK] [SIM] BLOQUEADO (solo imprimir): FORWARD_SLOW
-[11:35:49] [Estado.TRACK] Entrando en TRACK
-[11:35:49] [Estado.TRACK] [SIM] Ejecutado: CAM_PAN_RIGHT
-[11:35:49] [Estado.TRACK] [SIM] BLOQUEADO (solo imprimir): FORWARD_SLOW
-[11:35:49] [Estado.TRACK] NEAR confirmado (3 frames) → NEAR | valid_for_search=True valid_for_near=True is_centered=True n=1 w=112 h=156 area=17472 x=316 y=246 error_x=-4 error_y=6
-[11:35:49] [Estado.NEAR] [SIM] Ejecutado: STOP
-[11:35:49] [Estado.NEAR] Entrando en NEAR
-[11:35:49] [Estado.NEAR] [SIM] BLOQUEADO (solo imprimir): BACKWARD
-[11:35:50] [Estado.NEAR] [SIM] Ejecutado: STOP
-[11:35:53] [Estado.NEAR] Det valid_for_search=True is_centered=False n=9 w=32 h=48 area=1536 x=392 y=312 error_x=72 error_y=72
-[11:35:53] [Estado.NEAR] [SIM] Ejecutado: STOP
-[11:35:53] [Estado.NEAR] Salida NEAR confirmada (5 frames) → TRACK
-[11:35:53] [Estado.NEAR] INFO DEBUGvalid_for_search=True valid_for_near=False is_centered=False n=4 w=68 h=80 area=5440 x=370 y=396 error_x=50 error_y=156
-[11:35:53] [Estado.TRACK] [SIM] Ejecutado: STOP
-[11:35:53] [Estado.TRACK] Entrando en TRACK
-[11:35:53] [Estado.TRACK] [SIM] Ejecutado: CAM_PAN_RIGHT
-[11:35:53] [Estado.TRACK] Det valid_for_search=False is_centered=False n=3 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[11:35:53] [Estado.TRACK] [SEC] CRITICAL: object < 8.08 cm
-[11:35:53] [Estado.RESET] [SIM] BLOQUEADO (solo imprimir): SCAPE
-[11:35:53] [Estado.RESET] Entrando en RESET
-[11:35:53] [Estado.SEARCH] [SIM] Ejecutado: STOP
-[11:35:54] [Estado.SEARCH] Entrando en SEARCH
-[11:35:54] [Estado.SEARCH] Ignorando ultrasonido por detección válidavalid_for_search=True valid_for_near=False is_centered=False n=1 w=96 h=68 area=6528 x=388 y=282 error_x=68 error_y=42
-[11:35:54] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_RIGHT
-[11:35:54] [Estado.SEARCH] Baliza encontrada → RECENTER
-[11:35:54] [Estado.RECENTER] [SIM] Ejecutado: STOP
-[11:35:54] [Estado.RECENTER] Entrando en RECENTER
-[11:35:54] [Estado.RECENTER] [SIM] Ejecutado: STOP
-[11:35:54] [Estado.RECENTER] Ignorando ultrasonido por detección válidavalid_for_search=True valid_for_near=False is_centered=False n=2 w=80 h=48 area=3840 x=368 y=256 error_x=48 error_y=16
-[11:35:54] [Estado.RECENTER] [SIM] Ejecutado: CAM_PAN_RIGHT
-[11:35:54] [Estado.RECENTER] Ignorando ultrasonido por detección válidavalid_for_search=True valid_for_near=False is_centered=True n=1 w=112 h=100 area=11200 x=304 y=282 error_x=-16 error_y=42
-[11:35:54] [Estado.RECENTER] [SIM] Ejecutado: STOP
-[11:35:54] [Estado.RECENTER] Ignorando ultrasonido por detección válidavalid_for_search=True valid_for_near=False is_centered=True n=1 w=100 h=96 area=9600 x=310 y=276 error_x=-10 error_y=36
-[11:35:54] [Estado.RECENTER] Alineado ✔ (cuerpo)
-[11:35:54] [Estado.TRACK] Ignorando ultrasonido por detección válidavalid_for_search=True valid_for_near=False is_centered=True n=1 w=100 h=96 area=9600 x=310 y=276 error_x=-10 error_y=36
-[11:35:54] [Estado.TRACK] [SIM] BLOQUEADO (solo imprimir): FORWARD_SLOW
-[11:35:54] [Estado.TRACK] Entrando en TRACK
-[11:35:54] [Estado.TRACK] Ignorando ultrasonido por detección válidavalid_for_search=True valid_for_near=False is_centered=True n=2 w=84 h=60 area=5040 x=290 y=306 error_x=-30 error_y=66
-[11:35:54] [Estado.TRACK] [SIM] Ejecutado: CAM_PAN_LEFT
-[11:35:54] [Estado.TRACK] Ignorando ultrasonido por detección válidavalid_for_search=True valid_for_near=False is_centered=True n=1 w=96 h=88 area=8448 x=344 y=280 error_x=24 error_y=40
-[11:35:54] [Estado.TRACK] [SIM] Ejecutado: CAM_PAN_RIGHT
-[11:35:55] [Estado.TRACK] Ignorando ultrasonido por detección válidavalid_for_search=True valid_for_near=False is_centered=True n=2 w=76 h=84 area=6384 x=310 y=278 error_x=-10 error_y=38
-[11:35:55] [Estado.TRACK] [SIM] BLOQUEADO (solo imprimir): FORWARD_SLOW
-[11:35:55] [Estado.TRACK] Ignorando ultrasonido por detección válidavalid_for_search=True valid_for_near=False is_centered=True n=6 w=84 h=48 area=4032 x=306 y=276 error_x=-14 error_y=36
-[11:35:55] [Estado.TRACK] [SIM] Ejecutado: CAM_PAN_LEFT
-[11:35:55] [Estado.TRACK] Ignorando ultrasonido por detección válidavalid_for_search=True valid_for_near=False is_centered=True n=4 w=44 h=32 area=1408 x=318 y=288 error_x=-2 error_y=48
-[11:35:55] [Estado.TRACK] [SIM] BLOQUEADO (solo imprimir): FORWARD_SLOW
-[11:35:55] [Estado.TRACK] [SIM] Ejecutado: CAM_PAN_RIGHT
-[11:35:55] [Estado.TRACK] [SIM] Ejecutado: CAM_PAN_LEFT
+[11:48:46] [Estado.CHK] [CHK] ==============================
+[11:48:46] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[11:48:46] [Estado.CHK] [CHK] ==============================
+[11:48:46] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[11:48:46] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[11:48:46] [Estado.CHK] [CHK] State wheels:     0
+[11:48:46] [Estado.CHK] [CHK] ==============================
+[11:48:46] [Estado.IDLE] Inicio del sistema
+[11:48:46] [Estado.IDLE] Entrando en IDLE
+[11:48:46] [Estado.RESET] Entrando en RESET
+[11:48:46] [Estado.SEARCH] Det valid_for_search=True is_centered=True n=5 w=116 h=268 area=31088 x=314 y=314 error_x=-6 error_y=74
+[11:48:46] [Estado.SEARCH] Entrando en SEARCH
+[11:48:46] [Estado.SEARCH] Baliza encontrada → RECENTER
+[11:48:46] [Estado.RECENTER] Entrando en RECENTER
+[11:48:46] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[11:48:47] [Estado.TRACK] Entrando en TRACK
+[11:48:47] [Estado.TRACK] NEAR confirmado (3 frames) → NEAR | valid_for_search=True valid_for_near=True is_centered=True n=2 w=136 h=232 area=31552 x=312 y=272 error_x=-8 error_y=32
+[11:48:47] [Estado.NEAR] Entrando en NEAR
+[11:48:48] [Estado.NEAR] Salida NEAR confirmada (5 frames) → TRACK
+[11:48:48] [Estado.NEAR] INFO DEBUG valid_for_search=True valid_for_near=False is_centered=True n=1 w=128 h=192 area=24576 x=320 y=268 error_x=0 error_y=28
+[11:48:49] [Estado.TRACK] Entrando en TRACK
+[11:48:49] [Estado.TRACK] NEAR confirmado (3 frames) → NEAR | valid_for_search=True valid_for_near=True is_centered=True n=1 w=152 h=252 area=38304 x=328 y=274 error_x=8 error_y=34
+[11:48:49] [Estado.NEAR] Entrando en NEAR
