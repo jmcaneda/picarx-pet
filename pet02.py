@@ -122,7 +122,7 @@ class Det:
             return False
 
         # 2. Centrado horizontal razonable
-        if abs(self.error_x) > 80:
+        if abs(self.error_x) > 200:
             return False
 
         # 3. Centrado vertical razonable
@@ -798,16 +798,22 @@ def state_near(px, dist, estado, accion, robot_state):
         return estado, accion
 
     # ------------------------------------------------------------
-    # 1. Si NO hay detección válida → quedarse quieto
+    # 1. Si NO hay detección válida → contar pérdida
     # ------------------------------------------------------------
     if not det.valid_for_search:
         robot_state.near_lost_frames += 1
+
+        # 🔥 Si la baliza desaparece estando cerca → SEARCH
+        if robot_state.near_lost_frames >= 5:
+            log_event(px, Estado.NEAR, "Baliza perdida en NEAR → SEARCH")
+            return Estado.SEARCH, Cmd.STOP
+
         return Estado.NEAR, Cmd.STOP
 
     robot_state.near_lost_frames = 0
 
     # ------------------------------------------------------------
-    # 2. Histeresis para salida de NEAR
+    # 2. Histeresis para salida de NEAR (solo por distancia)
     # ------------------------------------------------------------
     if not det.valid_for_near:
         robot_state.near_exit_frames += 1
@@ -815,12 +821,12 @@ def state_near(px, dist, estado, accion, robot_state):
         robot_state.near_exit_frames = 0
 
     if robot_state.near_exit_frames >= 5:
-        log_event(px, Estado.NEAR, "Salida NEAR confirmada (5 frames) → TRACK")
-        log_det(px, Estado.NEAR, det, raw, prefix="INFO DEBUG ")
+        log_det(px, Estado.NEAR, det, raw, prefix="Salida NEAR confirmada (5 frames) → TRACK | ")
         return Estado.TRACK, Cmd.STOP
 
     # ------------------------------------------------------------
-    # 3. Corrección horizontal SOLO si la baliza se sale del cuadro
+    # 3. Corrección horizontal si la baliza está muy lateral
+    #    (pero seguimos en NEAR, no salimos)
     # ------------------------------------------------------------
     if det.x <= 20:
         return Estado.NEAR, Cmd.CAM_PAN_RIGHT
@@ -832,7 +838,7 @@ def state_near(px, dist, estado, accion, robot_state):
     # ------------------------------------------------------------
 
     # ------------------------------------------------------------
-    # 5. Solo un backward corto al entrar
+    # 5. Backward corto solo una vez al entrar
     # ------------------------------------------------------------
     if not robot_state.near_done_backward:
         robot_state.near_done_backward = True
