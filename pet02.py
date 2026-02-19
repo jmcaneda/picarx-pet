@@ -155,7 +155,9 @@ class RobotState:
         # TRACK
         self.track_lost_frames = 0
 
-        # NEAR (nuevo)
+        # Histeresis para NEAR 
+        self.near_enter_frames = 0 
+        self.near_exit_frames = 0
         self.near_done_backward = False
         self.near_lost_frames = 0
         
@@ -508,8 +510,8 @@ def get_detection(px):
         log_event(
             px, px.estado_actual,
             f"Det valid_for_search={det.valid_for_search} is_centered={det.is_centered} "
-            f"n={raw['color_n']} w={raw['color_w']} h={raw['color_h']} "
-            f"area={det.area} x={raw['color_x']} y={raw['color_y']}"
+            f"n={raw['color_n']} w={raw['color_w']} h={raw['color_h']} area={det.area} "
+            f"x={raw['color_x']} y={raw['color_y']} error_x={det.error_x} error_y={det.error_y}"
         )
 
     px.last_raw_n = 1 if raw["color_n"] > 0 else 0
@@ -679,13 +681,19 @@ def state_track(px, dist, estado, accion, robot_state):
     if px.last_state != Estado.TRACK:
         log_event(px, Estado.TRACK, "Entrando en TRACK")
         robot_state.track_lost_frames = 0
+        robot_state.near_enter_frames = 0
         px.last_state = Estado.TRACK
 
     # ------------------------------------------------------------
-    # 0. Si estamos realmente cerca → NEAR
+    # 0. Histeresis para entrada a NEAR
     # ------------------------------------------------------------
     if det.valid_for_near:
-        log_event(px, Estado.TRACK, f"Baliza muy cerca (área={det.area}) → NEAR")
+        robot_state.near_enter_frames += 1
+    else:
+        robot_state.near_enter_frames = 0
+
+    if robot_state.near_enter_frames >= 3:
+        log_event(px, Estado.TRACK, "NEAR confirmado (3 frames) → NEAR")
         return Estado.NEAR, Cmd.STOP
 
     # ------------------------------------------------------------
@@ -698,16 +706,23 @@ def state_track(px, dist, estado, accion, robot_state):
     # ------------------------------------------------------------
     # 2. Si NO hay detección válida → buscar con PAN
     # ------------------------------------------------------------
-    if not det.valid_for_search: 
-        robot_state.track_lost_frames += 1 
-        # PAN suave para buscar 
-        if robot_state.track_lost_frames <= 6: 
-            if px.last_pan <= 0: 
-                return Estado.TRACK, Cmd.CAM_PAN_RIGHT 
-            else: 
-                return Estado.TRACK, Cmd.CAM_PAN_LEFT 
-        # Si tras buscar no aparece → SEARCH real 
-        log_event(px, Estado.TRACK, "Perdida baliza → SEARCH") 
+    if not det.valid_for_search:
+
+        robot_state.track_lost_frames += 1
+
+        if robot_state.track_lost_frames <= 6:
+            if px.last_pan <= 0:
+                return Estado.TRACK, Cmd.CAM_PAN_RIGHT
+            else:
+                return Estado.TRACK, Cmd.CAM_PAN_LEFT
+
+        log_event(px, Estado.TRACK, "Perdida baliza → SEARCH")
+        log_event(
+            px, Estado.TRACK,
+            f"Det valid_for_search={det.valid_for_search} is_centered={det.is_centered} "
+            f"n={raw['color_n']} w={raw['color_w']} h={raw['color_h']} area={det.area} "
+            f"x={raw['color_x']} y={raw['color_y']} error_x={det.error_x} error_y={det.error_y}"
+        )
         return Estado.SEARCH, Cmd.STOP
 
     # ------------------------------------------------------------
@@ -719,12 +734,12 @@ def state_track(px, dist, estado, accion, robot_state):
     # 4. Corrección horizontal con cámara o ruedas
     # ------------------------------------------------------------
     if abs(det.error_x) > 10:
-        # Si PAN está en el límite → corregir con ruedas 
-        if px.last_pan == PAN_MAX: 
-            return Estado.TRACK, Cmd.WHEELS_TURN_RIGHT 
-        if px.last_pan == PAN_MIN: 
+
+        if px.last_pan == PAN_MAX:
+            return Estado.TRACK, Cmd.WHEELS_TURN_RIGHT
+        if px.last_pan == PAN_MIN:
             return Estado.TRACK, Cmd.WHEELS_TURN_LEFT
-        # Corrección normal con PAN
+
         if det.error_x > 0:
             return Estado.TRACK, Cmd.CAM_PAN_RIGHT
         else:
@@ -736,16 +751,15 @@ def state_track(px, dist, estado, accion, robot_state):
     if not det.valid_for_near:
         if abs(det.error_y) > 60:
             if det.error_y > 0:
-                log_event(px, estado, f"det.error_y={det.error_y} Corrección vertical → TILT TOP")
                 return Estado.TRACK, Cmd.CAM_TILT_TOP
             else:
-                log_event(px, estado, f"det.error_y={det.error_y} Corrección vertical → TILT BOTTOM")
                 return Estado.TRACK, Cmd.CAM_TILT_BOTTOM
 
     # ------------------------------------------------------------
     # 6. Si está centrada y lejos → avanzar
     # ------------------------------------------------------------
     return Estado.TRACK, Cmd.FORWARD_SLOW
+
 
 def state_near(px, dist, estado, accion, robot_state):
     det = get_detection(px)
@@ -758,11 +772,9 @@ def state_near(px, dist, estado, accion, robot_state):
 
         robot_state.near_done_backward = False
         robot_state.near_lost_frames = 0
+        robot_state.near_exit_frames = 0
 
-        # 🔥 Bloquear ruedas SIEMPRE
         px.set_dir_servo_angle(0)
-
-        # 🔥 Resetear TILT para evitar inclinación residual
         px.set_cam_tilt_angle(0)
         px.last_tilt = 0
 
@@ -776,7 +788,7 @@ def state_near(px, dist, estado, accion, robot_state):
         return estado, accion
 
     # ------------------------------------------------------------
-    # 1. Si NO hay detección válida → quedarse quieto SIEMPRE
+    # 1. Si NO hay detección válida → quedarse quieto
     # ------------------------------------------------------------
     if not det.valid_for_search:
         robot_state.near_lost_frames += 1
@@ -784,26 +796,34 @@ def state_near(px, dist, estado, accion, robot_state):
 
     robot_state.near_lost_frames = 0
 
-    # 🔥 Bloquear giro de ruedas en NEAR
-    px.set_dir_servo_angle(0)
+    # ------------------------------------------------------------
+    # 2. Histeresis para salida de NEAR
+    # ------------------------------------------------------------
+    if not det.valid_for_near:
+        robot_state.near_exit_frames += 1
+    else:
+        robot_state.near_exit_frames = 0
 
-    # ------------------------------------------------------------ 
-    # 2. Si YA NO estamos en zona NEAR → volver a TRACK 
-    # ------------------------------------------------------------ 
-    if not det.valid_for_near: 
-        log_event(px, Estado.NEAR, "Baliza fuera de zona NEAR → TRACK") 
+    if robot_state.near_exit_frames >= 5:
+        log_event(px, Estado.NEAR, "Salida NEAR confirmada (5 frames) → TRACK")
+        log_event(
+            px, Estado.NEAR,
+            f"Det valid_for_search={det.valid_for_search} is_centered={det.is_centered} "
+            f"n={raw['color_n']} w={raw['color_w']} h={raw['color_h']} area={det.area} "
+            f"x={raw['color_x']} y={raw['color_y']} error_x={det.error_x} error_y={det.error_y}"
+        )
         return Estado.TRACK, Cmd.STOP
 
-    # ------------------------------------------------------------ 
-    # 3. Corrección horizontal SOLO si la baliza se sale del cuadro 
-    # ------------------------------------------------------------ 
-    if det.x <= 20: 
-        return Estado.NEAR, Cmd.CAM_PAN_RIGHT 
-    if det.x >= 620: 
-        return Estado.NEAR, Cmd.CAM_PAN_LEFT 
-    
-    # ------------------------------------------------------------ 
-    # 4. NO tocar TILT en NEAR (bloqueado) 
+    # ------------------------------------------------------------
+    # 3. Corrección horizontal SOLO si la baliza se sale del cuadro
+    # ------------------------------------------------------------
+    if det.x <= 20:
+        return Estado.NEAR, Cmd.CAM_PAN_RIGHT
+    if det.x >= 620:
+        return Estado.NEAR, Cmd.CAM_PAN_LEFT
+
+    # ------------------------------------------------------------
+    # 4. NO tocar TILT en NEAR
     # ------------------------------------------------------------
 
     # ------------------------------------------------------------
