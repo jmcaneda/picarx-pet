@@ -122,7 +122,7 @@ class Det:
             return False
 
         # 1. Área suficientemente grande (cerca)
-        if self.area < 26000:  # ajustar su valor según pruebas
+        if self.area < 10000:  # ajustar su valor según pruebas
             return False
 
         # 2. Centrado horizontal razonable
@@ -392,6 +392,7 @@ def execute_motion(px, estado, cmd: Cmd, test_mode=False):
             stop(px)
             return False
 
+        log_event(px, estado, f"Ejecutado: {cmd.name}")
         return True
 
     except Exception as e:
@@ -521,9 +522,7 @@ def search_see(px, det):
 def do_yes(px):
     
     try:
-        # Sonido solo una vez
-        music.sound_play(os.path.join(SOUNDS_DIR, "sounds_angry.wav"))
-
+        log_event(px, Estado.NEAR, "Ejecutando gesto de 'sí' (tilt arriba-abajo)")
         for _ in range(2):
             # Gesto hacia arriba
             px.set_cam_tilt_angle(TILT_MAX)

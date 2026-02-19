@@ -1,73 +1,57 @@
 === Start of pet02.log ===
-[20:07:48] [Estado.CHK] [CHK] ==============================
-[20:07:48] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[20:07:48] [Estado.CHK] [CHK] ==============================
-[20:07:48] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[20:07:48] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[20:07:48] [Estado.CHK] [CHK] State wheels:     0
-[20:07:48] [Estado.CHK] [CHK] ==============================
-[20:07:48] [Estado.IDLE] Inicio del sistema
-[20:07:48] [Estado.IDLE] Entrando en IDLE
-[20:07:48] [Estado.RESET] [SIM] Ejecutado: STOP
-[20:07:48] [Estado.RESET] Entrando en RESET
-[20:07:48] [Estado.SEARCH] [SIM] Ejecutado: STOP
-[20:07:48] [Estado.SEARCH] Entrando en SEARCH
-[20:07:48] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_RIGHT
-[20:07:50] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_LEFT
-[20:07:50] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[20:07:50] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_LEFT
-[20:07:51] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=3 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[20:07:51] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_LEFT
-[20:07:52] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_RIGHT
-[20:07:52] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[20:07:52] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_RIGHT
-[20:07:52] [Estado.SEARCH] Baliza encontrada → RECENTER
-[20:07:52] [Estado.RECENTER] [SIM] Ejecutado: STOP
-[20:07:52] [Estado.RECENTER] Entrando en RECENTER
-[20:07:52] [Estado.RECENTER] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=True n=5 w=52 h=76 area=3952 x=318 y=326 error_x=-2 error_y=86
-[20:07:52] [Estado.RECENTER] [SIM] Ejecutado: STOP
-[20:07:53] [Estado.RECENTER] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=True n=8 w=152 h=156 area=23712 x=308 y=174 error_x=-12 error_y=-66
-[20:07:53] [Estado.RECENTER] Alineado ✔ (cuerpo)
-[20:07:53] [Estado.TRACK] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=True n=8 w=152 h=156 area=23712 x=308 y=174 error_x=-12 error_y=-66
-[20:07:53] [Estado.TRACK] [SIM] BLOQUEADO (solo imprimir): FORWARD_SLOW
-[20:07:53] [Estado.TRACK] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=True n=5 w=152 h=140 area=21280 x=324 y=222 error_x=4 error_y=-18
-[20:07:53] [Estado.TRACK] [SIM] Ejecutado: STOP
-[20:07:53] [Estado.TRACK] [SIM] BLOQUEADO (solo imprimir): WHEELS_TURN_LEFT
-[20:07:53] [Estado.TRACK] [SIM] BLOQUEADO (solo imprimir): FORWARD_SLOW
-[20:07:53] [Estado.TRACK] [SIM] BLOQUEADO (solo imprimir): WHEELS_TURN_RIGHT
-[20:07:54] [Estado.TRACK] [SIM] BLOQUEADO (solo imprimir): WHEELS_TURN_LEFT
-[20:07:54] [Estado.TRACK] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=True n=4 w=100 h=128 area=12800 x=302 y=136 error_x=-18 error_y=-104
-[20:07:54] [Estado.TRACK] [SIM] BLOQUEADO (solo imprimir): FORWARD_SLOW
-[20:07:54] [Estado.TRACK] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=True n=4 w=124 h=136 area=16864 x=350 y=196 error_x=30 error_y=-44
-[20:07:54] [Estado.TRACK] [SIM] BLOQUEADO (solo imprimir): WHEELS_TURN_RIGHT
-[20:07:54] [Estado.TRACK] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=3 w=108 h=112 area=12096 x=390 y=232 error_x=70 error_y=-8
-[20:07:54] [Estado.TRACK] [SIM] BLOQUEADO (solo imprimir): WHEELS_TURN_RIGHT
-[20:07:54] [Estado.TRACK] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=84 h=68 area=5712 x=426 y=238 error_x=106 error_y=-2
-[20:07:54] [Estado.TRACK] [SIM] BLOQUEADO (solo imprimir): WHEELS_TURN_RIGHT
-[20:07:54] [Estado.TRACK] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=2 w=104 h=76 area=7904 x=412 y=250 error_x=92 error_y=10
-[20:07:54] [Estado.TRACK] [SIM] BLOQUEADO (solo imprimir): WHEELS_TURN_RIGHT
-[20:07:55] [Estado.TRACK] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=2 w=72 h=88 area=6336 x=420 y=252 error_x=100 error_y=12
-[20:07:55] [Estado.TRACK] [SIM] BLOQUEADO (solo imprimir): WHEELS_TURN_RIGHT
-[20:07:55] [Estado.TRACK] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=True is_centered=True n=1 w=180 h=148 area=26640 x=330 y=242 error_x=10 error_y=2
-[20:07:55] [Estado.TRACK] [SIM] Ejecutado: STOP
-[20:07:55] [Estado.TRACK] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=True is_centered=True n=1 w=192 h=160 area=30720 x=328 y=220 error_x=8 error_y=-20
-[20:07:55] [Estado.TRACK] [SIM] Ejecutado: STOP
-[20:07:55] [Estado.TRACK] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=56 h=48 area=2688 x=400 y=188 error_x=80 error_y=-52
-[20:07:55] [Estado.TRACK] [SIM] BLOQUEADO (solo imprimir): WHEELS_TURN_RIGHT
-[20:07:55] [Estado.TRACK] [SIM] Ejecutado: STOP
-[20:07:55] [Estado.TRACK] Perdida baliza → SEARCH
-[20:07:55] [Estado.SEARCH] [SIM] Ejecutado: STOP
-[20:07:55] [Estado.SEARCH] Entrando en SEARCH
-[20:07:55] [Estado.SEARCH] [SEC] CRITICAL: object < 6.68 cm
-[20:07:55] [Estado.SEARCH] [SIM] Ejecutado: STOP
-[20:07:56] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[20:07:56] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_RIGHT
-[20:07:56] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=52 h=84 area=4368 x=190 y=286 error_x=-130 error_y=46
-[20:07:56] [Estado.SEARCH] [SIM] Ejecutado: CAM_PAN_LEFT
-[20:07:57] [Estado.SEARCH] Baliza encontrada → RECENTER
-[20:07:57] [Estado.RECENTER] [SIM] Ejecutado: STOP
-[20:07:57] [Estado.RECENTER] Entrando en RECENTER
-[20:07:57] [Estado.RECENTER] [SIM] Ejecutado: STOP
-[20:07:57] [Estado.RECENTER] Alineado ✔ (cuerpo)
-[20:07:57] [Estado.TRACK] [SIM] BLOQUEADO (solo imprimir): FORWARD_SLOW
-[20:07:57] [Estado.TRACK] [SIM] Ejecutado: STOP
+[20:44:28] [Estado.CHK] [CHK] ==============================
+[20:44:28] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[20:44:28] [Estado.CHK] [CHK] ==============================
+[20:44:28] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[20:44:28] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[20:44:28] [Estado.CHK] [CHK] State wheels:     0
+[20:44:28] [Estado.CHK] [CHK] ==============================
+[20:44:28] [Estado.IDLE] Inicio del sistema
+[20:44:28] [Estado.IDLE] Entrando en IDLE
+[20:44:28] [Estado.RESET] Ejecutado: STOP
+[20:44:28] [Estado.RESET] Entrando en RESET
+[20:44:28] [Estado.SEARCH] Ejecutado: STOP
+[20:44:29] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=1 w=44 h=52 area=2288 x=22 y=262 error_x=-298 error_y=22
+[20:44:29] [Estado.SEARCH] Entrando en SEARCH
+[20:44:29] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[20:44:29] [Estado.SEARCH] Baliza encontrada → RECENTER
+[20:44:29] [Estado.RECENTER] Ejecutado: STOP
+[20:44:30] [Estado.RECENTER] Entrando en RECENTER
+[20:44:30] [Estado.RECENTER] Ejecutado: STOP
+[20:44:30] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[20:44:30] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:44:30] [Estado.TRACK] Ejecutado: STOP
+[20:44:30] [Estado.TRACK] Ejecutado: WHEELS_TURN_LEFT
+[20:44:31] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:44:31] [Estado.TRACK] Ejecutado: WHEELS_TURN_RIGHT
+[20:44:31] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:44:32] [Estado.TRACK] Ejecutado: WHEELS_TURN_LEFT
+[20:44:33] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:44:33] [Estado.TRACK] Ejecutado: WHEELS_TURN_RIGHT
+[20:44:33] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:44:34] [Estado.TRACK] Ejecutado: WHEELS_TURN_LEFT
+[20:44:35] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:44:35] [Estado.TRACK] Ejecutado: WHEELS_TURN_RIGHT
+[20:44:35] [Estado.TRACK] Ejecutado: STOP
+[20:44:43] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:44:43] [Estado.TRACK] Ejecutado: WHEELS_TURN_LEFT
+[20:44:44] [Estado.TRACK] Ejecutado: STOP
+[20:44:44] [Estado.TRACK] Ejecutado: WHEELS_TURN_LEFT
+[20:44:45] [Estado.TRACK] Ejecutado: STOP
+[20:44:45] [Estado.TRACK] Perdida baliza → SEARCH
+[20:44:45] [Estado.SEARCH] Ejecutado: STOP
+[20:44:45] [Estado.SEARCH] Entrando en SEARCH
+[20:44:45] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[20:44:46] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[20:44:48] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[20:44:50] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[20:44:52] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[20:44:52] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[20:45:03] [Estado.SEARCH] Baliza encontrada → RECENTER
+[20:45:03] [Estado.RECENTER] Ejecutado: STOP
+[20:45:03] [Estado.RECENTER] Entrando en RECENTER
+[20:45:03] [Estado.RECENTER] Ejecutado: CAM_PAN_RIGHT
+[20:45:04] [Estado.RECENTER] Ejecutado: STOP
+[20:45:04] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[20:45:04] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:45:04] [Estado.TRACK] Ejecutado: STOP
