@@ -1,30 +1,49 @@
 === Start of pet02.log ===
-[12:32:06] [Estado.CHK] [CHK] ==============================
-[12:32:06] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[12:32:06] [Estado.CHK] [CHK] ==============================
-[12:32:06] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[12:32:06] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[12:32:06] [Estado.CHK] [CHK] State wheels:     0
-[12:32:06] [Estado.CHK] [CHK] ==============================
-[12:32:06] [Estado.IDLE] Inicio del sistema
-[12:32:06] [Estado.IDLE] Entrando en IDLE
-[12:32:06] [Estado.RESET] Entrando en RESET
-[12:32:07] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=1 w=68 h=116 area=7888 x=410 y=278 error_x=90 error_y=38
-[12:32:07] [Estado.SEARCH] Entrando en SEARCH
-[12:32:07] [Estado.SEARCH] Baliza encontrada → RECENTER
-[12:32:07] [Estado.RECENTER] Entrando en RECENTER
-[12:32:07] [Estado.RECENTER] Alineado ✔ (cuerpo)
-[12:32:07] [Estado.TRACK] Entrando en TRACK
-[12:32:13] [Estado.TRACK] NEAR confirmado (3 frames) → NEAR | valid_for_search=True valid_for_near=True is_centered=False n=2 w=240 h=264 area=63360 x=444 y=348 error_x=124 error_y=108
-[12:32:13] [Estado.NEAR] Entrando en NEAR
-[12:32:15] [Estado.NEAR] Salida NEAR confirmada (5 frames) → TRACK | valid_for_search=True valid_for_near=False is_centered=False n=1 w=56 h=100 area=5600 x=440 y=222 error_x=120 error_y=-18
-[12:32:15] [Estado.TRACK] Entrando en TRACK
-[12:32:19] [Estado.TRACK] Det valid_for_search=False is_centered=False n=3 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[12:32:20] [Estado.TRACK] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[12:32:21] [Estado.TRACK] Det valid_for_search=True is_centered=False n=1 w=32 h=32 area=1024 x=256 y=216 error_x=-64 error_y=-24
-[12:32:21] [Estado.TRACK] Det valid_for_search=True is_centered=True n=2 w=40 h=44 area=1760 x=284 y=214 error_x=-36 error_y=-26
-[12:32:22] [Estado.TRACK] Ignorando ultrasonido por detección válidavalid_for_search=True valid_for_near=False is_centered=True n=2 w=76 h=116 area=8816 x=294 y=250 error_x=-26 error_y=10
-[12:32:22] [Estado.TRACK] Ignorando ultrasonido por detección válidavalid_for_search=True valid_for_near=False is_centered=True n=3 w=92 h=68 area=6256 x=310 y=234 error_x=-10 error_y=-6
-[12:32:22] [Estado.TRACK] Ignorando ultrasonido por detección válidavalid_for_search=True valid_for_near=False is_centered=True n=4 w=92 h=164 area=15088 x=282 y=262 error_x=-38 error_y=22
-[12:32:22] [Estado.TRACK] Ignorando ultrasonido por detección válidavalid_for_search=True valid_for_near=False is_centered=False n=3 w=120 h=152 area=18240 x=264 y=264 error_x=-56 error_y=24
-[12:32:22] [Estado.TRACK] [SEC] CRITICAL: object < 2.73 cm
+[13:06:39] [Estado.CHK] [CHK] ==============================
+[13:06:39] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[13:06:39] [Estado.CHK] [CHK] ==============================
+[13:06:39] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[13:06:39] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[13:06:39] [Estado.CHK] [CHK] State wheels:     0
+[13:06:39] [Estado.CHK] [CHK] ==============================
+[13:06:39] [Estado.IDLE] Inicio del sistema
+[13:06:39] [Estado.IDLE] Entrando en IDLE
+[13:06:39] [Estado.RESET] Entrando en RESET
+[13:06:39] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=3 w=68 h=92 area=6256 x=410 y=258 error_x=90 error_y=18
+[13:06:39] [Estado.SEARCH] Entrando en SEARCH
+[13:06:39] [Estado.SEARCH] Baliza encontrada → RECENTER
+[13:06:39] [Estado.RECENTER] Entrando en RECENTER
+[13:06:39] [Estado.RECENTER] Alineado ✔ (cuerpo)
+[13:06:40] [Estado.TRACK] Entrando en TRACK
+[13:06:41] [Estado.TRACK] NEAR confirmado (3 frames) → NEAR | valid_for_search=True valid_for_near=True is_centered=True n=2 w=152 h=172 area=26144 x=316 y=254 error_x=-4 error_y=14
+[13:06:41] [Estado.NEAR] Entrando en NEAR
+[13:06:44] [Estado.NEAR] Salida NEAR confirmada (5 frames) → TRACK | valid_for_search=True valid_for_near=False is_centered=False n=3 w=124 h=152 area=18848 x=114 y=260 error_x=-206 error_y=20
+[13:06:44] [Estado.TRACK] Entrando en TRACK
+[13:06:45] [Estado.TRACK] NEAR confirmado (3 frames) → NEAR | valid_for_search=True valid_for_near=True is_centered=False n=2 w=160 h=200 area=32000 x=204 y=236 error_x=-116 error_y=-4
+[13:06:45] [Estado.NEAR] Entrando en NEAR
+[13:06:46] [Estado.NEAR] Salida NEAR confirmada (5 frames) → TRACK | valid_for_search=True valid_for_near=False is_centered=False n=3 w=80 h=128 area=10240 x=188 y=264 error_x=-132 error_y=24
+[13:06:46] [Estado.TRACK] Entrando en TRACK
+[13:06:46] [Estado.TRACK] NEAR confirmado (3 frames) → NEAR | valid_for_search=True valid_for_near=True is_centered=False n=2 w=136 h=212 area=28832 x=236 y=226 error_x=-84 error_y=-14
+[13:06:46] [Estado.NEAR] Entrando en NEAR
+[13:06:48] [Estado.NEAR] Salida NEAR confirmada (5 frames) → TRACK | valid_for_search=True valid_for_near=False is_centered=False n=4 w=92 h=116 area=10672 x=154 y=142 error_x=-166 error_y=-98
+[13:06:48] [Estado.TRACK] Entrando en TRACK
+[13:06:50] [Estado.TRACK] NEAR confirmado (3 frames) → NEAR | valid_for_search=True valid_for_near=True is_centered=False n=2 w=112 h=244 area=27328 x=204 y=210 error_x=-116 error_y=-30
+[13:06:51] [Estado.NEAR] Entrando en NEAR
+[13:06:51] [Estado.NEAR] Salida NEAR confirmada (5 frames) → TRACK | valid_for_search=True valid_for_near=False is_centered=False n=3 w=72 h=128 area=9216 x=252 y=264 error_x=-68 error_y=24
+[13:06:51] [Estado.TRACK] Entrando en TRACK
+[13:06:57] [Estado.TRACK] NEAR confirmado (3 frames) → NEAR | valid_for_search=True valid_for_near=True is_centered=True n=1 w=196 h=316 area=61936 x=306 y=218 error_x=-14 error_y=-22
+[13:06:57] [Estado.NEAR] Entrando en NEAR
+[13:06:59] [Estado.NEAR] Salida NEAR confirmada (5 frames) → TRACK | valid_for_search=True valid_for_near=False is_centered=False n=4 w=108 h=164 area=17712 x=154 y=266 error_x=-166 error_y=26
+[13:06:59] [Estado.TRACK] Entrando en TRACK
+[13:07:07] [Estado.TRACK] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[13:07:07] [Estado.TRACK] Perdida baliza → SEARCH
+[13:07:07] [Estado.TRACK] INFO DEBUG valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[13:07:07] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[13:07:07] [Estado.SEARCH] Entrando en SEARCH
+[13:07:13] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[13:07:23] [Estado.SEARCH] Baliza encontrada → RECENTER
+[13:07:23] [Estado.RECENTER] Entrando en RECENTER
+[13:07:30] [Estado.RECENTER] PAN en límite → pasar a TRACK para corregir con ruedas
+[13:07:30] [Estado.TRACK] Entrando en TRACK
+[13:07:31] [Estado.TRACK] NEAR confirmado (3 frames) → NEAR | valid_for_search=True valid_for_near=True is_centered=True n=5 w=128 h=248 area=31744 x=316 y=336 error_x=-4 error_y=96
+[13:07:31] [Estado.NEAR] Entrando en NEAR

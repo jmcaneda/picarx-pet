@@ -225,73 +225,55 @@ def log_event(px, estado, msg):
 
 
 # ============================================================
-# ACCIONES BÁSICAS
+# ACCIONES BÁSICAS v2 — Movimiento fluido y continuo
 # ============================================================
 
 def stop(px):
     px.stop()
+    # No tocamos el servo. La FSM decide cuándo centrarlo.
+
 
 def forward(px, speed=FAST_SPEED):
     px.forward(speed)
 
+
 def forward_slow(px, speed=SLOW_SPEED):
     px.forward(speed)
 
+
 def backward(px, speed=SLOW_SPEED):
     px.backward(speed)
-    time.sleep(0.15)
+    # No bloqueamos la FSM. NEAR controla su propio backward.
+
+
+# ------------------------------------------------------------
+# GIRO CONTINUO REAL
+# ------------------------------------------------------------
 
 def turn_left(px, speed=TURN_SPEED):
-    # 1. Centrar servo SIEMPRE
-    px.set_dir_servo_angle(0)
-    time.sleep(0.05)
-
-    # 2. Girar un poco
+    # Mantener el servo girado continuamente
     px.set_dir_servo_angle(SERVO_ANGLE_MIN)
     px.forward(speed)
-    time.sleep(0.20)   # giro acotado
-
-    # 3. STOP
-    px.stop()
-    time.sleep(0.05)
-
-    # 4. Centrar servo SIEMPRE
-    px.set_dir_servo_angle(0)
-    time.sleep(0.05)
+    # Sin STOP, sin servo=0, sin sleeps.
+    # La FSM decidirá cuándo parar o centrar.
 
 
 def turn_right(px, speed=TURN_SPEED):
-    px.set_dir_servo_angle(0)
-    time.sleep(0.05)
-
     px.set_dir_servo_angle(SERVO_ANGLE_MAX)
     px.forward(speed)
-    time.sleep(0.20)
+    # Igual que turn_left: giro continuo real.
 
-    px.stop()
-    time.sleep(0.05)
 
-    px.set_dir_servo_angle(0)
-    time.sleep(0.05)
+# ------------------------------------------------------------
+# SCAPE seguro (solo si se usa)
+# ------------------------------------------------------------
 
 def scape_danger(px, speed=SLOW_SPEED):
-    # 1. Centrar servo SIEMPRE
+    # Retroceso suave sin giros bruscos
     px.set_dir_servo_angle(0)
-    time.sleep(0.05)
-
-    # 2. Retroceder recto
     px.backward(speed)
-    time.sleep(0.4)
-
-    # 3. Girar un poco y retroceder
-    px.set_dir_servo_angle(SERVO_ANGLE_MIN)
-    time.sleep(0.05)
-    px.backward(speed)
-    time.sleep(0.4)
-
-    # 4. Centrar servo otra vez
-    px.set_dir_servo_angle(0)
-    time.sleep(0.05)
+    time.sleep(0.3)
+    px.stop()
 
 # ============================================================
 # MOVIMIENTOS DE CÁMARA SEGUROS
