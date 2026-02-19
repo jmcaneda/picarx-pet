@@ -787,25 +787,24 @@ def state_near(px, dist, estado, accion, robot_state):
     # 🔥 Bloquear giro de ruedas en NEAR
     px.set_dir_servo_angle(0)
 
-    # ------------------------------------------------------------
-    # 2. Salida natural de NEAR (cuando la baliza se aleja)
-    # ------------------------------------------------------------
-    if det.area < NEAR_EXIT_AREA and abs(det.error_x) < 40 and dist > SAFE_DISTANCE:
+    # ------------------------------------------------------------ 
+    # 2. Si YA NO estamos en zona NEAR → volver a TRACK 
+    # ------------------------------------------------------------ 
+    if not det.valid_for_near: 
+        log_event(px, Estado.NEAR, "Baliza fuera de zona NEAR → TRACK") 
         return Estado.TRACK, Cmd.STOP
 
+    # ------------------------------------------------------------ 
+    # 3. Corrección horizontal SOLO si la baliza se sale del cuadro 
+    # ------------------------------------------------------------ 
+    if det.x <= 20: 
+        return Estado.NEAR, Cmd.CAM_PAN_RIGHT 
+    if det.x >= 620: 
+        return Estado.NEAR, Cmd.CAM_PAN_LEFT 
+    
+    # ------------------------------------------------------------ 
+    # 4. NO tocar TILT en NEAR (bloqueado) 
     # ------------------------------------------------------------
-    # 3. Corrección horizontal SOLO si está MUY descentrada
-    # ------------------------------------------------------------
-    if abs(det.error_x) > 80:
-        if det.error_x > 0:
-            return Estado.NEAR, Cmd.CAM_PAN_RIGHT
-        else:
-            return Estado.NEAR, Cmd.CAM_PAN_LEFT
-
-    # ------------------------------------------------------------
-    # 4. NO tocar TILT en NEAR (prohibido)
-    # ------------------------------------------------------------
-    # (TILT queda bloqueado en 0 desde la entrada)
 
     # ------------------------------------------------------------
     # 5. Solo un backward corto al entrar
