@@ -33,8 +33,8 @@ TURN_SPEED = 1
 
 CAM_STEP = 4
 
-SAFE_DISTANCE = 30
-DANGER_DISTANCE = 15
+SAFE_DISTANCE = 35
+DANGER_DISTANCE = 20
 
 LOG_PATH = os.path.join(os.path.dirname(__file__), "pet02.log")
 
