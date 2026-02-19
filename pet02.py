@@ -451,8 +451,10 @@ def apply_safety(px, d, estado, accion):
     if d <= DANGER_DISTANCE:
 
         # 🔥 1. Si vemos la baliza → ignorar ultrasonido
-        det = get_detection(px)
+        det, raw = get_detection(px)
+
         if det.valid_for_search:
+            log_det(px, estado, det, raw, prefix="Ignorando ultrasonido por detección válida")
             return estado, accion
 
         # 🔥 2. Si estamos en TRACK o RECENTER → ignorar ultrasonido
@@ -576,7 +578,7 @@ def state_reset(px):
     return Estado.SEARCH, Cmd.STOP
 
 def state_search(px, dist, estado, accion):
-    det = get_detection(px)
+    det, raw = get_detection(px)
 
     # Entrada
     if px.last_state != Estado.SEARCH:
@@ -630,7 +632,7 @@ def state_search(px, dist, estado, accion):
 
 
 def state_recenter(px, dist, estado, accion, robot_state):
-    det = get_detection(px)
+    det, raw = get_detection(px)
 
     # Entrada al estado
     if px.last_state != estado:
@@ -652,6 +654,7 @@ def state_recenter(px, dist, estado, accion, robot_state):
         robot_state.recenter_lost_frames += 1
         if robot_state.recenter_lost_frames >= 5:
             log_event(px, estado, "RECENTER sin detección → SEARCH")
+            log_det(px, estado, det, raw, prefix="INFO DEBUG")
             return Estado.SEARCH, Cmd.STOP
         return Estado.RECENTER, Cmd.STOP
 
@@ -685,7 +688,7 @@ def state_recenter(px, dist, estado, accion, robot_state):
     return Estado.RECENTER, Cmd.STOP
 
 def state_track(px, dist, estado, accion, robot_state):
-    det = get_detection(px)
+    det, raw = get_detection(px)
 
     # ------------------------------------------------------------
     # Entrada al estado
@@ -705,7 +708,7 @@ def state_track(px, dist, estado, accion, robot_state):
         robot_state.near_enter_frames = 0
 
     if robot_state.near_enter_frames >= 3:
-        log_event(px, Estado.TRACK, "NEAR confirmado (3 frames) → NEAR")
+        log_det(px, Estado.TRACK, det, raw, prefix="NEAR confirmado (3 frames) → NEAR | ")
         return Estado.NEAR, Cmd.STOP
 
     # ------------------------------------------------------------
@@ -729,12 +732,7 @@ def state_track(px, dist, estado, accion, robot_state):
                 return Estado.TRACK, Cmd.CAM_PAN_LEFT
 
         log_event(px, Estado.TRACK, "Perdida baliza → SEARCH")
-        log_event(
-            px, Estado.TRACK,
-            f"Det valid_for_search={det.valid_for_search} is_centered={det.is_centered} "
-            f"n={raw['color_n']} w={raw['color_w']} h={raw['color_h']} area={det.area} "
-            f"x={raw['color_x']} y={raw['color_y']} error_x={det.error_x} error_y={det.error_y}"
-        )
+        log_det(px, Estado.TRACK, det, raw, prefix="INFO DEBUG")
         return Estado.SEARCH, Cmd.STOP
 
     # ------------------------------------------------------------
@@ -774,7 +772,7 @@ def state_track(px, dist, estado, accion, robot_state):
 
 
 def state_near(px, dist, estado, accion, robot_state):
-    det = get_detection(px)
+    det, raw = get_detection(px)
 
     # ------------------------------------------------------------
     # Entrada al estado NEAR
@@ -818,12 +816,7 @@ def state_near(px, dist, estado, accion, robot_state):
 
     if robot_state.near_exit_frames >= 5:
         log_event(px, Estado.NEAR, "Salida NEAR confirmada (5 frames) → TRACK")
-        log_event(
-            px, Estado.NEAR,
-            f"Det valid_for_search={det.valid_for_search} is_centered={det.is_centered} "
-            f"n={raw['color_n']} w={raw['color_w']} h={raw['color_h']} area={det.area} "
-            f"x={raw['color_x']} y={raw['color_y']} error_x={det.error_x} error_y={det.error_y}"
-        )
+        log_det(px, Estado.NEAR, det, raw, prefix="INFO DEBUG")
         return Estado.TRACK, Cmd.STOP
 
     # ------------------------------------------------------------
