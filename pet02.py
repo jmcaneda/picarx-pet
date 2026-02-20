@@ -695,8 +695,7 @@ def state_track(px, estado, accion, robot_state):
         if robot_state.track_lost_frames >= 3:
             log_det(px, Estado.TRACK, det, raw, prefix="Perdida baliza → SEARCH | ")
             return Estado.SEARCH, Cmd.STOP
-        return Estado.TRACK, Cmd.STOP
-
+        return Estado.TRACK, accion   # ← mantener último comando
     robot_state.track_lost_frames = 0
 
     # ------------------------------------------------------------
@@ -707,32 +706,22 @@ def state_track(px, estado, accion, robot_state):
         if robot_state.near_enter_frames >= 3:
             log_det(px, Estado.TRACK, det, raw, prefix="NEAR confirmado (3 frames) → NEAR | ")
             return Estado.NEAR, Cmd.STOP
-        return Estado.TRACK, Cmd.STOP
-
+        return Estado.TRACK, accion   # ← mantener último comando
     robot_state.near_enter_frames = 0
 
     # ------------------------------------------------------------
     # 2. Corrección lateral con 3 niveles
     # ------------------------------------------------------------
 
-    # Giro fuerte (evita perder la baliza)
-    if abs(det.error_x) > 80:
-        if det.error_x < 0:
-            return Estado.TRACK, Cmd.WHEELS_TURN_LEFT_FAST
-        else:
-            return Estado.TRACK, Cmd.WHEELS_TURN_RIGHT_FAST
-
     # Giro suave
     if abs(det.error_x) > 40:
-        if det.error_x < 0:
-            return Estado.TRACK, Cmd.WHEELS_TURN_LEFT
-        else:
-            return Estado.TRACK, Cmd.WHEELS_TURN_RIGHT
+        return Estado.TRACK, (Cmd.WHEELS_TURN_LEFT if det.error_x < 0 else Cmd.WHEELS_TURN_RIGHT)
 
     # ------------------------------------------------------------
     # 3. Avance continuo si está centrado
     # ------------------------------------------------------------
     return Estado.TRACK, Cmd.FORWARD_SLOW
+
 
 def state_near(px, estado, accion, robot_state):
     det, raw = get_detection(px)
