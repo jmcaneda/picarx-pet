@@ -121,22 +121,15 @@ class Det:
         if not self.valid_for_search:
             return False
 
-        # ------------------------------------------------------------
-        # 1. Modo NEAR por proximidad extrema (área gigante)
-        #    → entra aunque esté lateral
-        # ------------------------------------------------------------
-        if self.area > 25000:
-            return True
-
-        # ------------------------------------------------------------
-        # 2. Modo NEAR normal (cerca + centrado)
-        # ------------------------------------------------------------
-        if self.area < 10000:
+        # 1. Área realmente grande (cerca de verdad)
+        if self.area < 15000:
             return False
 
-        if abs(self.error_x) > 80:
+        # 2. Centrado horizontal más estricto
+        if abs(self.error_x) > 60:
             return False
 
+        # 3. Centrado vertical razonable
         if abs(self.error_y) > 120:
             return False
 
