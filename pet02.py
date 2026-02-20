@@ -104,7 +104,7 @@ class Det:
 
     @property
     def valid_for_search(self):
-        if self.w == 0 or self.h == 0:
+        if self.w == 0 or self.h == 0 or self.n == 0:
             return False
 
         return (
@@ -203,7 +203,7 @@ def init_flags(px):
 
     # SEARCH
     px.search_dir = 1          # 1 = derecha, -1 = izquierda
-    px.search_steps = 0
+    # px.search_steps = 0
     px.search_seen = 0
 
     # Cámara
@@ -416,7 +416,7 @@ def apply_safety(px, d, estado, accion):
     if not hasattr(px, "us_counter"):
         px.us_counter = 0
 
-    if d < DANGER_DISTANCE:
+    if d <= DANGER_DISTANCE:
         px.us_counter += 1
     else:
         px.us_counter = 0
@@ -433,7 +433,7 @@ def apply_safety(px, d, estado, accion):
     # --- Zona de peligro crítico ---
     if d <= DANGER_DISTANCE:
 
-        # 🔥 1. Si vemos la baliza → ignorar ultrasonido
+        # 🔥 1. Si vemos la baliza lejos → ignorar ultrasonido
         det, raw = get_detection(px)
 
         if det.valid_for_search:
@@ -449,7 +449,7 @@ def apply_safety(px, d, estado, accion):
             return estado, accion
 
         # 🔥 4. Si venimos de ver la baliza hace poco → ignorar ultrasonido
-        if hasattr(px, "last_raw_n") and px.last_raw_n > 0:
+        if px.last_raw_n > 0:
             return estado, accion
 
         # --- Si nada de lo anterior aplica → SCAPE real ---
@@ -514,10 +514,6 @@ def log_det(px, estado, det, raw, prefix=""):
         f"error_x={det.error_x} error_y={det.error_y}"
     )
     log_event(px, estado, msg)
-
-def search_see(px, det):
-    
-    return Estado.TRACK, Cmd.STOP
 
 def do_yes(px):
     
