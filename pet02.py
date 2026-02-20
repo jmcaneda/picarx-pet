@@ -122,7 +122,7 @@ class Det:
             return False
 
         # 1. Área realmente grande (cerca de verdad)
-        if self.area < 20000:
+        if self.area < 22000:
             return False
 
         # 2. Centrado horizontal más estricto
@@ -518,7 +518,7 @@ def log_det(px, estado, det, raw, prefix=""):
 def do_yes(px, estado=Estado.NEAR):
     
     try:
-        log_event(px, estado, "Ejecutando gesto de 'sí' (tilt arriba-abajo)")
+        log_event(px, estado, "Ejecutando gesto de 'SI' (tilt arriba-abajo)")
         for _ in range(2):
             # Gesto hacia arriba
             px.set_cam_tilt_angle(TILT_MAX)
@@ -581,7 +581,8 @@ def state_search(px, estado, accion):
 
         # Si está centrada → RECENTER
         if abs(det.error_x) < 40 and px.search_seen >= 2:
-            log_event(px, Estado.SEARCH, "Baliza encontrada → RECENTER")
+            # log_event(px, Estado.SEARCH, "Baliza encontrada → RECENTER")
+            log_det(px, estado, det, raw, prefix="Baliza encontrada → RECENTER | ")
             return Estado.RECENTER, Cmd.STOP
 
         # Si no está centrada → corregir con cámara
@@ -669,7 +670,7 @@ def state_recenter(px, estado, accion, robot_state):
     robot_state.recenter_centered_frames += 1
 
     if robot_state.recenter_centered_frames >= 2:
-        log_event(px, estado, "Alineado ✔ (cuerpo)")
+        log_event(px, estado, f"px.last_pan={px.last_pan} Alineado ✔ (cuerpo)")
         robot_state.just_recentered = time.time()
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
@@ -691,7 +692,8 @@ def state_track(px, estado, accion, robot_state):
     if not det.valid_for_search:
         robot_state.track_lost_frames += 1
         if robot_state.track_lost_frames >= 3:
-            log_event(px, Estado.TRACK, "Perdida baliza → SEARCH")
+            # log_event(px, Estado.TRACK, "Perdida baliza → SEARCH")
+            log_det(px, Estado.TRACK, det, raw, prefix="Perdida baliza → SEARCH | ")
             return Estado.SEARCH, Cmd.STOP
         return Estado.TRACK, Cmd.STOP
 
@@ -703,7 +705,8 @@ def state_track(px, estado, accion, robot_state):
     if det.valid_for_near:
         robot_state.near_enter_frames += 1
         if robot_state.near_enter_frames >= 3:
-            log_event(px, Estado.TRACK, "NEAR confirmado (3 frames) → NEAR")
+            # log_event(px, Estado.TRACK, "NEAR confirmado (3 frames) → NEAR")
+            log_det(px, Estado.TRACK, det, raw, prefix="NEAR confirmado (3 frames) → NEAR | ")
             return Estado.NEAR, Cmd.STOP
         return Estado.TRACK, Cmd.STOP
 
