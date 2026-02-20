@@ -698,38 +698,7 @@ def state_track(px, det, raw, robot_state):
     robot_state.track_lost_frames = 0
 
     # ------------------------------------------------------------
-    # BLOQUEO DE GIRO EN ZONA NEAR (evita bloqueos mecánicos)
-    # ------------------------------------------------------------
-    if det.area > 26000:   # zona NEAR aproximada
-        return Estado.TRACK, Cmd.STOP
-
-    # ------------------------------------------------------------
-    # 1. ZONA SEGURA LATERAL (CRÍTICO)
-    # Si la baliza está cerca y lateral → GIRAR, NO AVANZAR
-    # ------------------------------------------------------------
-    if det.area > 20000 and abs(det.error_x) > 40:
-        if det.error_x < 0:
-            return Estado.TRACK, Cmd.WHEELS_TURN_LEFT
-        else:
-            return Estado.TRACK, Cmd.WHEELS_TURN_RIGHT
-
-    # ------------------------------------------------------------
-    # 2. Corrección lateral normal (baliza lejos)
-    # ------------------------------------------------------------
-    if abs(det.error_x) > 20:
-        if det.error_x < 0:
-            return Estado.TRACK, Cmd.WHEELS_TURN_LEFT
-        else:
-            return Estado.TRACK, Cmd.WHEELS_TURN_RIGHT
-
-    # ------------------------------------------------------------
-    # 3. Si está centrada → avanzar
-    # ------------------------------------------------------------
-    if det.is_centered:
-        return Estado.TRACK, Cmd.FORWARD_SLOW
-
-    # ------------------------------------------------------------
-    # 4. Si está cerca y centrada → NEAR
+    # 1. Si está cerca → NEAR
     # ------------------------------------------------------------
     if det.valid_for_near:
         robot_state.near_enter_frames += 1
@@ -741,7 +710,19 @@ def state_track(px, det, raw, robot_state):
     robot_state.near_enter_frames = 0
 
     # ------------------------------------------------------------
-    # 5. Por defecto, avanzar lento
+    # 2. Corrección lateral con deadband + histéresis
+    # ------------------------------------------------------------
+    if abs(det.error_x) > 45:   # histéresis alta
+        if det.error_x < 0:
+            return Estado.TRACK, Cmd.WHEELS_TURN_LEFT
+        else:
+            return Estado.TRACK, Cmd.WHEELS_TURN_RIGHT
+
+    if abs(det.error_x) < 25:   # deadband
+        return Estado.TRACK, Cmd.FORWARD_SLOW
+
+    # ------------------------------------------------------------
+    # 3. Avance suave si está razonablemente centrada
     # ------------------------------------------------------------
     return Estado.TRACK, Cmd.FORWARD_SLOW
 
