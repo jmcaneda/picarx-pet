@@ -554,7 +554,7 @@ def state_reset(px):
 
     return Estado.SEARCH, Cmd.STOP
 
-def state_search(px, dist, estado, accion):
+def state_search(px, estado, accion):
     det, raw = get_detection(px)
 
     # Entrada
@@ -608,7 +608,7 @@ def state_search(px, dist, estado, accion):
         return Estado.SEARCH, Cmd.CAM_PAN_LEFT
 
 
-def state_recenter(px, dist, estado, accion, robot_state):
+def state_recenter(px, estado, accion, robot_state):
     det, raw = get_detection(px)
 
     # Entrada al estado
@@ -745,7 +745,7 @@ def state_track(px, det, raw, robot_state):
     # ------------------------------------------------------------
     return Estado.TRACK, Cmd.FORWARD_SLOW
 
-def state_near(px, dist, estado, accion, robot_state):
+def state_near(px, estado, accion, robot_state):
     det, raw = get_detection(px)
 
     # ------------------------------------------------------------
@@ -768,7 +768,7 @@ def state_near(px, dist, estado, accion, robot_state):
     # ------------------------------------------------------------
     # Seguridad
     # ------------------------------------------------------------
-    estado, accion = apply_safety(px, dist, estado, accion)
+    estado, accion = apply_safety(px, update_safety(px), estado, accion)
     if estado != Estado.NEAR:
         return estado, accion
 
@@ -857,23 +857,22 @@ def pet_mode(px, test_mode):
 
     while True:
         px.estado_actual = estado
-        px.dist = update_safety(px)
 
         if estado == Estado.IDLE:
             estado, accion = state_idle(px)
         elif estado == Estado.RESET:
             estado, accion = state_reset(px)
         elif estado == Estado.SEARCH:
-            estado, accion = state_search(px, px.dist, estado, accion)
+            estado, accion = state_search(px, estado, accion)
         elif estado == Estado.RECENTER:
-            estado, accion = state_recenter(px, px.dist, estado, accion, state)
+            estado, accion = state_recenter(px, estado, accion, state)
         elif estado == Estado.TRACK:
             det, raw = get_detection(px)
             estado, accion = state_track(px, det, raw, state)
         elif estado == Estado.NEAR:
-            estado, accion = state_near(px, px.dist, estado, accion, state)
+            estado, accion = state_near(px, estado, accion, state)
 
-        estado, accion = apply_safety(px, px.dist, estado, accion)
+        estado, accion = apply_safety(px, update_safety(px), estado, accion)
 
         execute_motion(px, estado, accion, test_mode)
 
