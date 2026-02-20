@@ -715,14 +715,22 @@ def state_track(px, estado, accion, robot_state):
     # ------------------------------------------------------------
     # 2. Corrección lateral con deadband + histéresis
     # ------------------------------------------------------------
-    if abs(det.error_x) > 45:   # histéresis alta
+    if abs(det.error_x) > 60:   # histéresis alta (antes 45)
         if det.error_x < 0:
             return Estado.TRACK, Cmd.WHEELS_TURN_LEFT
         else:
             return Estado.TRACK, Cmd.WHEELS_TURN_RIGHT
 
-    if abs(det.error_x) < 25:   # deadband
+    if abs(det.error_x) < 20:   # deadband (antes 25)
         return Estado.TRACK, Cmd.FORWARD_SLOW
+
+    # ------------------------------------------------------------ 
+    # 4. Si está entre 20 y 60 → giro suave 
+    # ------------------------------------------------------------ 
+    if det.error_x < 0: 
+        return Estado.TRACK, Cmd.WHEELS_TURN_LEFT 
+    else: 
+        return Estado.TRACK, Cmd.WHEELS_TURN_RIGHT
 
     # ------------------------------------------------------------
     # 3. Avance suave si está razonablemente centrada
