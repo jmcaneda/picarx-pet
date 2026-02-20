@@ -111,7 +111,7 @@ class Det:
             self.n >= 1 and
             20 < self.w < 350 and     # coherente con Search
             20 < self.h < 480 and
-            800 < self.area < 90000 and
+            800 < self.area < 80000 and
             0 < self.x < 640 and
             0 < self.y < 480
         )
@@ -121,15 +121,22 @@ class Det:
         if not self.valid_for_search:
             return False
 
-        # 1. Área suficientemente grande (cerca)
-        if self.area < 10000:  # ajustar su valor según pruebas
+        # ------------------------------------------------------------
+        # 1. Modo NEAR por proximidad extrema (área gigante)
+        #    → entra aunque esté lateral
+        # ------------------------------------------------------------
+        if self.area > 25000:
+            return True
+
+        # ------------------------------------------------------------
+        # 2. Modo NEAR normal (cerca + centrado)
+        # ------------------------------------------------------------
+        if self.area < 10000:
             return False
 
-        # 2. Centrado horizontal razonable
         if abs(self.error_x) > 80:
             return False
 
-        # 3. Centrado vertical razonable
         if abs(self.error_y) > 120:
             return False
 
@@ -675,8 +682,8 @@ def state_recenter(px, estado, accion, robot_state):
 
     return Estado.RECENTER, Cmd.STOP
 
-def state_track(px, det, raw, robot_state):
-
+def state_track(px, estado, accion, robot_state):
+    det, raw = get_detection(px)
     # ------------------------------------------------------------
     # COOLDOWN tras RECENTER (evita bloqueos)
     # ------------------------------------------------------------
@@ -738,13 +745,13 @@ def state_near(px, estado, accion, robot_state):
         robot_state.near_done_backward = False
         robot_state.near_lost_frames = 0
         robot_state.near_exit_frames = 0
+        robot_state.near_did_yes = False
 
         px.set_dir_servo_angle(0)
         px.set_cam_tilt_angle(0)
         px.last_tilt = 0
 
         px.last_state = Estado.NEAR
-        robot_state.near_did_yes = False
 
     # ------------------------------------------------------------
     # Seguridad
@@ -758,12 +765,9 @@ def state_near(px, estado, accion, robot_state):
     # ------------------------------------------------------------
     if not det.valid_for_search:
         robot_state.near_lost_frames += 1
-
-        # 🔥 Si la baliza desaparece estando cerca → SEARCH
         if robot_state.near_lost_frames >= 5:
             log_event(px, Estado.NEAR, "Baliza perdida en NEAR → SEARCH")
             return Estado.SEARCH, Cmd.STOP
-
         return Estado.NEAR, Cmd.STOP
 
     robot_state.near_lost_frames = 0
@@ -781,27 +785,23 @@ def state_near(px, estado, accion, robot_state):
         return Estado.TRACK, Cmd.STOP
 
     # ------------------------------------------------------------
-    # 3. Corrección horizontal si la baliza está muy lateral
-    #    (pero seguimos en NEAR, no salimos)
+    # 3. Corrección horizontal suave si está muy lateral
     # ------------------------------------------------------------
-    if det.x <= 20:
-        return Estado.NEAR, Cmd.CAM_PAN_RIGHT
-    if det.x >= 620:
-        return Estado.NEAR, Cmd.CAM_PAN_LEFT
+    if abs(det.error_x) > 120:
+        if det.error_x < 0:
+            return Estado.NEAR, Cmd.CAM_PAN_LEFT
+        else:
+            return Estado.NEAR, Cmd.CAM_PAN_RIGHT
 
     # ------------------------------------------------------------
-    # 4. NO tocar TILT en NEAR
-    # ------------------------------------------------------------
-
-    # ------------------------------------------------------------
-    # 5. Backward corto solo una vez al entrar
+    # 4. Backward corto solo una vez al entrar
     # ------------------------------------------------------------
     if not robot_state.near_done_backward:
         robot_state.near_done_backward = True
         return Estado.NEAR, Cmd.BACKWARD
 
     # ------------------------------------------------------------
-    # 6. Después del backward → gesto de "sí" una vez
+    # 5. Después del backward → gesto de "sí" una vez
     # ------------------------------------------------------------
     if not robot_state.near_did_yes:
         robot_state.near_did_yes = True
@@ -809,7 +809,7 @@ def state_near(px, estado, accion, robot_state):
         return Estado.NEAR, Cmd.STOP
 
     # ------------------------------------------------------------
-    # 7. Estado estable en NEAR
+    # 6. Estado estable en NEAR
     # ------------------------------------------------------------
     return Estado.NEAR, Cmd.STOP
 
@@ -848,8 +848,7 @@ def pet_mode(px, test_mode):
         elif estado == Estado.RECENTER:
             estado, accion = state_recenter(px, estado, accion, state)
         elif estado == Estado.TRACK:
-            det, raw = get_detection(px)
-            estado, accion = state_track(px, det, raw, state)
+            estado, accion = state_track(px, estado, accion, state)
         elif estado == Estado.NEAR:
             estado, accion = state_near(px, estado, accion, state)
 
