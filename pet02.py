@@ -515,10 +515,10 @@ def log_det(px, estado, det, raw, prefix=""):
     )
     log_event(px, estado, msg)
 
-def do_yes(px):
+def do_yes(px, estado=Estado.NEAR):
     
     try:
-        log_event(px, Estado.NEAR, "Ejecutando gesto de 'sí' (tilt arriba-abajo)")
+        log_event(px, estado, "Ejecutando gesto de 'sí' (tilt arriba-abajo)")
         for _ in range(2):
             # Gesto hacia arriba
             px.set_cam_tilt_angle(TILT_MAX)
@@ -570,7 +570,7 @@ def state_search(px, dist, estado, accion):
         px.last_tilt = 0
 
     # Seguridad
-    estado, accion = apply_safety(px, dist, estado, accion)
+    estado, accion = apply_safety(px, update_safety(px), estado, accion)
     if estado != Estado.SEARCH:
         return estado, accion
 
@@ -620,7 +620,7 @@ def state_recenter(px, dist, estado, accion, robot_state):
         px.last_state = estado
 
     # Seguridad
-    estado, accion = apply_safety(px, dist, estado, accion)
+    estado, accion = apply_safety(px, update_safety(px), estado, accion)
     if estado != Estado.RECENTER:
         return estado, accion
 
@@ -630,8 +630,7 @@ def state_recenter(px, dist, estado, accion, robot_state):
     if not det.valid_for_search:
         robot_state.recenter_lost_frames += 1
         if robot_state.recenter_lost_frames >= 5:
-            log_event(px, estado, "RECENTER sin detección → SEARCH")
-            log_det(px, estado, det, raw, prefix="INFO DEBUG ")
+            log_det(px, estado, det, raw, prefix="RECENTER sin detección → SEARCH ")
             return Estado.SEARCH, Cmd.STOP
         return Estado.RECENTER, Cmd.STOP
 
@@ -650,8 +649,19 @@ def state_recenter(px, dist, estado, accion, robot_state):
     # ------------------------------------------------------------
     # 4. Centrado → acumular frames
     # ------------------------------------------------------------
-    # 🔥 Si la cámara está en el límite y la baliza sigue visible → pasar a TRACK
+    # 🔥 Si la cámara está en el límite y la baliza sigue visible
     if (px.last_pan == PAN_MAX or px.last_pan == PAN_MIN) and det.valid_for_search:
+
+        # Caso especial: baliza muy lateral y muy cerca → micro-backward
+        if abs(det.error_x) > 120 and det.area > 12000:
+            log_event(px, estado, "PAN límite + baliza lateral → micro-backward para recolocar")
+            px.set_dir_servo_angle(0)
+            backward(px, speed=SLOW_SPEED)
+            time.sleep(0.15)
+            stop(px)
+            return Estado.RECENTER, Cmd.STOP
+
+        # Caso normal → pasar a TRACK
         log_event(px, estado, "PAN en límite → pasar a TRACK para corregir con ruedas")
         robot_state.just_recentered = time.time()
         return Estado.TRACK, Cmd.STOP
@@ -814,7 +824,7 @@ def state_near(px, dist, estado, accion, robot_state):
     # ------------------------------------------------------------
     if not robot_state.near_did_yes:
         robot_state.near_did_yes = True
-        do_yes(px)
+        do_yes(px, estado)
         return Estado.NEAR, Cmd.STOP
 
     # ------------------------------------------------------------
