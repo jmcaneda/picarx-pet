@@ -164,6 +164,12 @@ class RobotState:
         self.near_exit_frames = 0
         self.near_done_backward = False
         self.near_lost_frames = 0
+
+        # Cooldown tras backward en NEAR
+        self.near_cooldown = None
+
+        # Cooldown tras RECENTER
+        self.just_recentered = None
         
 # ============================================================
 # INICIALIZACIÓN
@@ -653,19 +659,15 @@ def state_recenter(px, estado, accion, robot_state):
     # 🔥 Si la cámara está en el límite y la baliza sigue visible
     if (px.last_pan == PAN_MAX or px.last_pan == PAN_MIN) and det.valid_for_search:
 
-        # Caso especial: baliza muy lateral y muy cerca → micro-backward
         if abs(det.error_x) > 120 and det.area > 12000:
-            log_event(px, estado, "PAN límite + baliza lateral → micro-backward para recolocar")
-            px.set_dir_servo_angle(0)
-            backward(px, speed=SLOW_SPEED)
-            time.sleep(0.15)
-            stop(px)
-            return Estado.RECENTER, Cmd.STOP
+            log_event(px, estado, "PAN límite + baliza lateral → micro-backward FSM")
+            robot_state.just_recentered = time.time()
+            return Estado.RECENTER, Cmd.BACKWARD
 
         # Caso normal → pasar a TRACK
         log_event(px, estado, "PAN en límite → pasar a TRACK para corregir con ruedas")
         robot_state.just_recentered = time.time()
-        return Estado.TRACK, Cmd.STOP
+        return Estado.TRACK, Cmd.FORWARD_SLOW
 
     robot_state.recenter_centered_frames += 1
 
@@ -674,7 +676,7 @@ def state_recenter(px, estado, accion, robot_state):
         robot_state.just_recentered = time.time()
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
-    return Estado.RECENTER, Cmd.STOP
+    return Estado.RECENTER, accion
 
 def state_track(px, estado, accion, robot_state):
     det, raw = get_detection(px)
@@ -684,7 +686,7 @@ def state_track(px, estado, accion, robot_state):
     # ------------------------------------------------------------
     if robot_state.just_recentered:
         if time.time() - robot_state.just_recentered < 0.3:
-            return Estado.TRACK, Cmd.STOP
+            return Estado.TRACK, accion
         robot_state.just_recentered = None
 
     # ------------------------------------------------------------
@@ -713,9 +715,20 @@ def state_track(px, estado, accion, robot_state):
     # 2. Corrección lateral con 3 niveles
     # ------------------------------------------------------------
 
-    # Giro suave
+    # Giro suave con amplitud variable
     if abs(det.error_x) > 40:
-        return Estado.TRACK, (Cmd.WHEELS_TURN_LEFT if det.error_x < 0 else Cmd.WHEELS_TURN_RIGHT)
+        # Normalizar error_x a rango 0–1
+        k = min(abs(det.error_x) / 160, 1.0)
+
+        # Ángulo dinámico entre 10° y 30°
+        angle = 10 + k * 20
+
+        if det.error_x < 0:
+            px.set_dir_servo_angle(+angle)   # gira izquierda
+            return Estado.TRACK, Cmd.FORWARD_SLOW
+        else:
+            px.set_dir_servo_angle(-angle)   # gira derecha
+            return Estado.TRACK, Cmd.FORWARD_SLOW
 
     # ------------------------------------------------------------
     # 3. Avance continuo si está centrado
@@ -726,9 +739,7 @@ def state_track(px, estado, accion, robot_state):
 def state_near(px, estado, accion, robot_state):
     det, raw = get_detection(px)
 
-    # ------------------------------------------------------------
     # Entrada al estado NEAR
-    # ------------------------------------------------------------
     if px.last_state != Estado.NEAR:
         log_event(px, Estado.NEAR, "Entrando en NEAR")
 
@@ -736,6 +747,7 @@ def state_near(px, estado, accion, robot_state):
         robot_state.near_lost_frames = 0
         robot_state.near_exit_frames = 0
         robot_state.near_did_yes = False
+        robot_state.near_cooldown = None
 
         px.set_dir_servo_angle(0)
         px.set_cam_tilt_angle(0)
@@ -743,16 +755,12 @@ def state_near(px, estado, accion, robot_state):
 
         px.last_state = Estado.NEAR
 
-    # ------------------------------------------------------------
     # Seguridad
-    # ------------------------------------------------------------
     estado, accion = apply_safety(px, update_safety(px), estado, accion)
     if estado != Estado.NEAR:
         return estado, accion
 
-    # ------------------------------------------------------------
-    # 1. Si NO hay detección válida → contar pérdida
-    # ------------------------------------------------------------
+    # 1. Pérdida de baliza
     if not det.valid_for_search:
         robot_state.near_lost_frames += 1
         if robot_state.near_lost_frames >= 5:
@@ -762,9 +770,7 @@ def state_near(px, estado, accion, robot_state):
 
     robot_state.near_lost_frames = 0
 
-    # ------------------------------------------------------------
-    # 2. Histeresis para salida de NEAR (solo por distancia)
-    # ------------------------------------------------------------
+    # 2. Salida de NEAR
     if not det.valid_for_near:
         robot_state.near_exit_frames += 1
     else:
@@ -774,33 +780,29 @@ def state_near(px, estado, accion, robot_state):
         log_det(px, Estado.NEAR, det, raw, prefix="Salida NEAR confirmada (5 frames) → TRACK | ")
         return Estado.TRACK, Cmd.STOP
 
-    # ------------------------------------------------------------
-    # 3. Corrección horizontal suave si está muy lateral
-    # ------------------------------------------------------------
+    # 3. Corrección horizontal
     if abs(det.error_x) > 120:
-        if det.error_x < 0:
-            return Estado.NEAR, Cmd.CAM_PAN_LEFT
-        else:
-            return Estado.NEAR, Cmd.CAM_PAN_RIGHT
+        return Estado.NEAR, Cmd.CAM_PAN_LEFT if det.error_x < 0 else Cmd.CAM_PAN_RIGHT
 
-    # ------------------------------------------------------------
-    # 4. Backward corto solo una vez al entrar
-    # ------------------------------------------------------------
+    # 4. Backward corto solo una vez
     if not robot_state.near_done_backward:
         robot_state.near_done_backward = True
+        robot_state.near_cooldown = time.time()
         return Estado.NEAR, Cmd.BACKWARD
 
-    # ------------------------------------------------------------
-    # 5. Después del backward → gesto de "sí" una vez
-    # ------------------------------------------------------------
+    # Cooldown tras backward (evita conflicto con forward)
+    if robot_state.near_cooldown:
+        if time.time() - robot_state.near_cooldown < 0.3:
+            return Estado.NEAR, Cmd.STOP
+        robot_state.near_cooldown = None
+
+    # 5. Gesto de "sí"
     if not robot_state.near_did_yes:
         robot_state.near_did_yes = True
         do_yes(px, estado)
         return Estado.NEAR, Cmd.STOP
 
-    # ------------------------------------------------------------
-    # 6. Estado estable en NEAR
-    # ------------------------------------------------------------
+    # 6. Estado estable
     return Estado.NEAR, Cmd.STOP
 
 # ============================================================
