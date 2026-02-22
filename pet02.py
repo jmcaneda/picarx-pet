@@ -152,6 +152,9 @@ class Det:
 class RobotState:
     def __init__(self):
 
+        # SEARCH
+        self.search_no_det_frames = 0
+
         # RECENTER
         self.recenter_centered_frames = 0
         self.recenter_lost_frames = 0
@@ -561,6 +564,7 @@ def state_search(px, estado, accion):
     if px.last_state != Estado.SEARCH:
         log_event(px, Estado.SEARCH, "Entrando en SEARCH")
         px.search_seen = 0
+        px.search_no_det_frames = 0
         px.last_state = Estado.SEARCH
 
         # Cámara al centro
@@ -574,18 +578,15 @@ def state_search(px, estado, accion):
     if estado != Estado.SEARCH:
         return estado, accion
 
-    # 1. Si hay detección válida
+    # 1. Si hay detección válida → RECENTER
     if det.valid_for_search:
-
         px.search_seen += 1
+        px.search_no_det_frames = 0
 
-        # Si está centrada → RECENTER
         if abs(det.error_x) < 40 and px.search_seen >= 2:
-            # log_event(px, Estado.SEARCH, "Baliza encontrada → RECENTER")
             log_det(px, estado, det, raw, prefix="Baliza encontrada → RECENTER | ")
             return Estado.RECENTER, Cmd.STOP
 
-        # Si no está centrada → corregir con cámara
         if det.error_x > 40:
             return Estado.SEARCH, Cmd.CAM_PAN_RIGHT
         if det.error_x < -40:
@@ -593,21 +594,23 @@ def state_search(px, estado, accion):
 
         return Estado.SEARCH, Cmd.STOP
 
-    # 2. Si NO hay detección válida → barrido suave con cámara
+    # 2. Si NO hay detección válida
     px.search_seen = 0
+    px.search_no_det_frames += 1
 
-    # Cambiar dirección si estamos en un límite
+    # 🔥 Plan B: búsqueda activa si llevamos mucho sin ver nada
+    if px.search_no_det_frames > 20:
+        # Giro circular suave
+        px.set_dir_servo_angle(20)
+        return Estado.SEARCH, Cmd.FORWARD_SLOW
+
+    # Barrido suave con cámara (plan A)
     if px.last_pan >= PAN_MAX:
         px.search_dir = -1
     elif px.last_pan <= PAN_MIN:
         px.search_dir = 1
 
-    # Mover cámara según la dirección
-    if px.search_dir == 1:
-        return Estado.SEARCH, Cmd.CAM_PAN_RIGHT
-    else:
-        return Estado.SEARCH, Cmd.CAM_PAN_LEFT
-
+    return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if px.search_dir == 1 else Cmd.CAM_PAN_LEFT
 
 def state_recenter(px, estado, accion, robot_state):
     det, raw = get_detection(px)
