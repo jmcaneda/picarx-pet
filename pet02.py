@@ -545,7 +545,7 @@ def state_reset(px):
     px.dir_current_angle = 0
     px.set_dir_servo_angle(0)
     px.dir_current_angle = 0
-    log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
+    log_event(px, Estado.RESET, f"[ENTER] servo_angle={px.dir_current_angle}")
     px.last_pan = 0
     px.last_tilt = 0
 
@@ -694,9 +694,12 @@ def state_track(px, estado, accion, robot_state):
 
     # Asegurar servo centrado al entrar en TRACK
     if px.last_state != Estado.TRACK:
+        px.set_cam_pan_angle(0)
+        px.set_cam_tilt_angle(0)
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
-        log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
+        px.last_pan = 0
+        log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle} servo_pan={px.last_pan}")
         px.last_state = Estado.TRACK
 
     # Cooldown tras RECENTER

@@ -1,119 +1,171 @@
 === Start of pet02.log ===
-[19:37:33] [Estado.CHK] [CHK] ==============================
-[19:37:33] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[19:37:33] [Estado.CHK] [CHK] ==============================
-[19:37:33] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[19:37:33] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[19:37:33] [Estado.CHK] [CHK] State wheels:     0
-[19:37:33] [Estado.CHK] [CHK] ==============================
-[19:37:33] [Estado.IDLE] Inicio del sistema
-[19:37:33] [Estado.IDLE] Entrando en IDLE
-[19:37:33] [Estado.RESET] Ejecutado: STOP
-[19:37:34] [Estado.RESET] Entrando en RESET
-[19:37:34] [Estado.SEARCH] Ejecutado: STOP
-[19:37:34] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=1 w=52 h=48 area=2496 x=490 y=236 error_x=170 error_y=-4
-[19:37:34] [Estado.SEARCH] Entrando en SEARCH
-[19:37:34] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[19:37:34] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=1 w=56 h=48 area=2688 x=332 y=240 error_x=12 error_y=0
-[19:37:34] [Estado.RECENTER] Ejecutado: STOP
-[19:37:34] [Estado.RECENTER] Entrando en RECENTER
-[19:37:34] [Estado.RECENTER] Ejecutado: STOP
-[19:37:34] [Estado.RECENTER] px.last_pan=16 Alineado ✔ (cuerpo)
-[19:37:34] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[19:37:37] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[19:37:37] [Estado.SEARCH] Ejecutado: STOP
-[19:37:37] [Estado.SEARCH] Entrando en SEARCH
-[19:37:37] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[19:37:38] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[19:37:39] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=3 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[19:37:39] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[19:37:40] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=1 w=80 h=120 area=9600 x=288 y=268 error_x=-32 error_y=28
-[19:37:40] [Estado.RECENTER] Ejecutado: STOP
-[19:37:40] [Estado.RECENTER] Entrando en RECENTER
-[19:37:40] [Estado.RECENTER] Ejecutado: STOP
-[19:37:40] [Estado.RECENTER] Ejecutado: CAM_PAN_LEFT
-[19:37:40] [Estado.RECENTER] PAN en límite → pasar a TRACK para corregir con ruedas
-[19:37:40] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[19:37:41] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[19:37:41] [Estado.SEARCH] Ejecutado: STOP
-[19:37:42] [Estado.SEARCH] Entrando en SEARCH
-[19:37:42] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[19:37:43] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[19:37:44] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
-[19:37:44] [Estado.SEARCH] [SEC] SCAPE por avance sin visión (d=54.4cm)
-[19:37:44] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[19:37:45] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[19:37:46] [Estado.SEARCH] [SEC] DANGER: sin visión y objeto a 28.59 cm → SCAPE
-[19:37:46] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[19:37:46] [Estado.SEARCH] [SEC] DANGER: sin visión y objeto a 23.97 cm → SCAPE
-[19:37:46] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[19:37:46] [Estado.SEARCH] [SEC] DANGER: sin visión y objeto a 22.21 cm → SCAPE
-[19:37:46] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[19:37:46] [Estado.SEARCH] [SEC] DANGER: sin visión y objeto a 20.78 cm → SCAPE
-[19:37:46] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
-[19:37:46] [Estado.SEARCH] [SEC] SCAPE por avance sin visión (d=20.52cm)
-[19:37:46] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[19:37:47] [Estado.SEARCH] [SEC] CRITICAL: objeto a 18.89 cm → SCAPE
-[19:37:47] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[19:37:47] [Estado.SEARCH] [SEC] CRITICAL: objeto a 17.09 cm → SCAPE
-[19:37:47] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[19:37:47] [Estado.SEARCH] [SEC] CRITICAL: objeto a 16.18 cm → SCAPE
-[19:37:47] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[19:37:47] [Estado.SEARCH] [SEC] CRITICAL: objeto a 13.91 cm → SCAPE
-[19:37:47] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[19:37:47] [Estado.SEARCH] [SEC] CRITICAL: objeto a 11.78 cm → SCAPE
-[19:37:47] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[19:37:47] [Estado.SEARCH] [SEC] CRITICAL: objeto a 12.53 cm → SCAPE
-[19:37:47] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[19:37:47] [Estado.SEARCH] [SEC] CRITICAL: objeto a 11.16 cm → SCAPE
-[19:37:47] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[19:37:47] [Estado.SEARCH] [SEC] CRITICAL: objeto a 10.73 cm → SCAPE
-[19:37:47] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[19:37:49] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
-[19:37:49] [Estado.SEARCH] [SEC] SCAPE por avance sin visión (d=93.26cm)
-[19:37:49] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[19:37:49] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[19:37:49] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[19:37:49] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[19:37:49] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[19:37:49] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[19:37:49] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[19:37:49] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=2 w=44 h=108 area=4752 x=314 y=114 error_x=-6 error_y=-126
-[19:37:49] [Estado.RECENTER] Ejecutado: STOP
-[19:37:50] [Estado.RECENTER] Entrando en RECENTER
-[19:37:50] [Estado.RECENTER] Ejecutado: STOP
-[19:37:50] [Estado.RECENTER] px.last_pan=31 Alineado ✔ (cuerpo)
-[19:37:50] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[19:37:52] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[19:37:52] [Estado.SEARCH] Ejecutado: STOP
-[19:37:52] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[19:37:52] [Estado.SEARCH] Entrando en SEARCH
-[19:37:52] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[19:37:53] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=3 w=56 h=176 area=9856 x=296 y=128 error_x=-24 error_y=-112
-[19:37:53] [Estado.RECENTER] Ejecutado: STOP
-[19:37:53] [Estado.RECENTER] Entrando en RECENTER
-[19:37:53] [Estado.RECENTER] Ejecutado: STOP
-[19:37:53] [Estado.RECENTER] px.last_pan=-16 Alineado ✔ (cuerpo)
-[19:37:53] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[19:37:54] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[19:37:54] [Estado.SEARCH] Ejecutado: STOP
-[19:37:54] [Estado.SEARCH] Entrando en SEARCH
-[19:37:54] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[19:37:54] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[19:37:54] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[19:37:55] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[19:37:56] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[19:37:56] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[19:37:57] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=1 w=84 h=112 area=9408 x=354 y=264 error_x=34 error_y=24
-[19:37:57] [Estado.RECENTER] Ejecutado: STOP
-[19:37:57] [Estado.RECENTER] Entrando en RECENTER
-[19:37:57] [Estado.RECENTER] Ejecutado: STOP
-[19:37:57] [Estado.RECENTER] px.last_pan=25 Alineado ✔ (cuerpo)
-[19:37:57] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[19:37:58] [Estado.TRACK] NEAR confirmado (3 frames) → NEAR | valid_for_search=True valid_for_near=True is_centered=True n=1 w=100 h=156 area=15600 x=306 y=258 error_x=-14 error_y=18
-[19:37:58] [Estado.NEAR] Ejecutado: STOP
-[19:37:58] [Estado.NEAR] Entrando en NEAR
-[19:37:58] [Estado.NEAR] Ejecutado: BACKWARD
-[19:37:58] [Estado.NEAR] Ejecutado: STOP
-[19:37:58] [Estado.NEAR] Ejecutando gesto de 'SI' (tilt arriba-abajo)
-[19:37:59] [Estado.NEAR] Ejecutado: STOP
+[20:17:56] [Estado.CHK] [CHK] ==============================
+[20:17:56] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[20:17:56] [Estado.CHK] [CHK] ==============================
+[20:17:56] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[20:17:56] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[20:17:56] [Estado.CHK] [CHK] State wheels:     0
+[20:17:56] [Estado.CHK] [CHK] ==============================
+[20:17:56] [Estado.IDLE] Inicio del sistema
+[20:17:56] [Estado.IDLE] Entrando en IDLE
+[20:17:56] [Estado.RESET] Ejecutado: STOP
+[20:17:56] [Estado.RESET] Entrando en RESET
+[20:17:56] [Estado.RESET] [ENTER] servo_angle=0
+[20:17:56] [Estado.SEARCH] Ejecutado: STOP
+[20:17:56] [Estado.SEARCH] Entrando en SEARCH
+[20:17:56] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[20:17:56] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[20:17:56] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[20:17:57] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=3 w=36 h=44 area=1584 x=354 y=242 error_x=34 error_y=2
+[20:17:57] [Estado.RECENTER] Ejecutado: STOP
+[20:17:57] [Estado.RECENTER] Entrando en RECENTER
+[20:17:57] [Estado.RECENTER] [ENTER] servo_angle=0
+[20:17:57] [Estado.RECENTER] Ejecutado: STOP
+[20:17:57] [Estado.RECENTER] px.last_pan=24 Alineado ✔ (cuerpo)
+[20:17:57] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:57] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:57] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:57] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:57] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:57] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:57] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:57] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:57] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:57] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:57] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:58] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:58] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:58] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:58] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:58] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:58] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:58] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:58] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:58] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:58] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:58] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:58] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:58] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:58] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:58] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:58] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:58] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:58] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:59] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:59] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:59] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:59] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:59] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:59] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:59] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:59] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:59] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:59] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:59] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:59] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:59] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:59] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:59] [Estado.TRACK] [ENTER] servo_angle=0
+[20:17:59] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:59] [Estado.TRACK] [ENTER] servo_angle=15.25
+[20:17:59] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:17:59] [Estado.TRACK] [ENTER] servo_angle=15.25
+[20:17:59] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:00] [Estado.TRACK] [ENTER] servo_angle=19.5
+[20:18:00] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:00] [Estado.TRACK] [ENTER] servo_angle=25.0
+[20:18:00] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:00] [Estado.TRACK] [ENTER] servo_angle=30.0
+[20:18:00] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:00] [Estado.TRACK] [ENTER] servo_angle=30.0
+[20:18:00] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:00] [Estado.TRACK] [ENTER] servo_angle=30.0
+[20:18:00] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:00] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[20:18:00] [Estado.SEARCH] Ejecutado: STOP
+[20:18:00] [Estado.SEARCH] Entrando en SEARCH
+[20:18:00] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[20:18:01] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=1 w=32 h=32 area=1024 x=16 y=244 error_x=-304 error_y=4
+[20:18:01] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[20:18:01] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=2 w=60 h=76 area=4560 x=282 y=250 error_x=-38 error_y=10
+[20:18:01] [Estado.RECENTER] Ejecutado: STOP
+[20:18:01] [Estado.RECENTER] Entrando en RECENTER
+[20:18:01] [Estado.RECENTER] [ENTER] servo_angle=0
+[20:18:01] [Estado.RECENTER] Ejecutado: STOP
+[20:18:02] [Estado.RECENTER] px.last_pan=-24 Alineado ✔ (cuerpo)
+[20:18:02] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:02] [Estado.TRACK] [ENTER] servo_angle=0
+[20:18:02] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:02] [Estado.TRACK] [ENTER] servo_angle=21.0
+[20:18:02] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:02] [Estado.TRACK] [ENTER] servo_angle=22.25
+[20:18:02] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:02] [Estado.TRACK] [ENTER] servo_angle=29.0
+[20:18:02] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:02] [Estado.TRACK] [ENTER] servo_angle=30.0
+[20:18:02] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:02] [Estado.TRACK] [ENTER] servo_angle=30.0
+[20:18:02] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:03] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[20:18:03] [Estado.SEARCH] Ejecutado: STOP
+[20:18:03] [Estado.SEARCH] Entrando en SEARCH
+[20:18:03] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[20:18:04] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[20:18:05] [Estado.SEARCH] [SEC] CRITICAL: objeto a 16.22 cm → SCAPE
+[20:18:05] [Estado.SEARCH] [ENTER] servo_angle=25
+[20:18:05] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
+[20:18:05] [Estado.SEARCH] [SEC] SCAPE por avance sin visión (d=50.01cm)
+[20:18:05] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[20:18:06] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[20:18:07] [Estado.SEARCH] [ENTER] servo_angle=25
+[20:18:07] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
+[20:18:07] [Estado.SEARCH] [SEC] SCAPE por avance sin visión (d=31.95cm)
+[20:18:07] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[20:18:08] [Estado.SEARCH] [SEC] DANGER: sin visión y objeto a 29.76 cm → SCAPE
+[20:18:08] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[20:18:08] [Estado.SEARCH] [SEC] DANGER: sin visión y objeto a 27.26 cm → SCAPE
+[20:18:08] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[20:18:08] [Estado.SEARCH] [SEC] DANGER: sin visión y objeto a 27.66 cm → SCAPE
+[20:18:08] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[20:18:10] [Estado.SEARCH] [ENTER] servo_angle=25
+[20:18:10] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
+[20:18:10] [Estado.SEARCH] [SEC] SCAPE por avance sin visión (d=86.17cm)
+[20:18:10] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[20:18:10] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[20:18:11] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[20:18:11] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[20:18:11] [Estado.SEARCH] Ejecutado: STOP
+[20:18:11] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[20:18:11] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=1 w=32 h=84 area=2688 x=316 y=66 error_x=-4 error_y=-174
+[20:18:11] [Estado.RECENTER] Ejecutado: STOP
+[20:18:11] [Estado.RECENTER] Entrando en RECENTER
+[20:18:11] [Estado.RECENTER] [ENTER] servo_angle=0
+[20:18:11] [Estado.RECENTER] Ejecutado: STOP
+[20:18:12] [Estado.RECENTER] px.last_pan=-23 Alineado ✔ (cuerpo)
+[20:18:12] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:12] [Estado.TRACK] [ENTER] servo_angle=0
+[20:18:12] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:12] [Estado.TRACK] [ENTER] servo_angle=0
+[20:18:12] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:12] [Estado.TRACK] [ENTER] servo_angle=0
+[20:18:12] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:12] [Estado.TRACK] [ENTER] servo_angle=0
+[20:18:12] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:12] [Estado.TRACK] [ENTER] servo_angle=17.0
+[20:18:12] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:12] [Estado.TRACK] [ENTER] servo_angle=17.75
+[20:18:12] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:12] [Estado.TRACK] [ENTER] servo_angle=23.25
+[20:18:12] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:12] [Estado.TRACK] [ENTER] servo_angle=30.0
+[20:18:12] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:13] [Estado.TRACK] [ENTER] servo_angle=30.0
+[20:18:13] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:13] [Estado.TRACK] [ENTER] servo_angle=30.0
+[20:18:13] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[20:18:13] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[20:18:13] [Estado.SEARCH] Ejecutado: STOP
+[20:18:13] [Estado.SEARCH] Entrando en SEARCH
+[20:18:13] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[20:18:14] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=1 w=56 h=52 area=2912 x=592 y=242 error_x=272 error_y=2
+[20:18:14] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
