@@ -563,14 +563,18 @@ def state_reset(px):
 
     return Estado.SEARCH, Cmd.STOP
 
-def state_search(px, estado, accion):
+def state_search(px, estado, accion, robot_state):
     det, raw = get_detection(px)
 
-    # Entrada
+    # ------------------------------------------------------------
+    # Entrada al estado SEARCH
+    # ------------------------------------------------------------
     if px.last_state != Estado.SEARCH:
         log_event(px, Estado.SEARCH, "Entrando en SEARCH")
+
         px.search_seen = 0
-        px.search_no_det_frames = 0
+        robot_state.search_no_det_frames = 0   # ← ahora sí, en robot_state
+
         px.last_state = Estado.SEARCH
 
         # Cámara al centro
@@ -579,20 +583,27 @@ def state_search(px, estado, accion):
         px.set_cam_tilt_angle(0)
         px.last_tilt = 0
 
+    # ------------------------------------------------------------
     # Seguridad
+    # ------------------------------------------------------------
     estado, accion = apply_safety(px, update_safety(px), estado, accion)
     if estado != Estado.SEARCH:
         return estado, accion
 
+    # ------------------------------------------------------------
     # 1. Si hay detección válida → RECENTER
+    # ------------------------------------------------------------
     if det.valid_for_search:
-        px.search_seen += 1
-        px.search_no_det_frames = 0
 
+        px.search_seen += 1
+        robot_state.search_no_det_frames = 0   # reset del plan B
+
+        # Centrada → RECENTER
         if abs(det.error_x) < 40 and px.search_seen >= 2:
             log_det(px, estado, det, raw, prefix="Baliza encontrada → RECENTER | ")
             return Estado.RECENTER, Cmd.STOP
 
+        # Corregir con cámara
         if det.error_x > 40:
             return Estado.SEARCH, Cmd.CAM_PAN_RIGHT
         if det.error_x < -40:
@@ -600,23 +611,28 @@ def state_search(px, estado, accion):
 
         return Estado.SEARCH, Cmd.STOP
 
-    # 2. Si NO hay detección válida
+    # ------------------------------------------------------------
+    # 2. NO hay detección → plan A y plan B
+    # ------------------------------------------------------------
     px.search_seen = 0
-    px.search_no_det_frames += 1
+    robot_state.search_no_det_frames += 1
 
-    # 🔥 Plan B: búsqueda activa si llevamos mucho sin ver nada
-    if px.search_no_det_frames > 20:
+    # 🔥 PLAN B: búsqueda activa si llevamos mucho sin ver nada
+    if robot_state.search_no_det_frames > 20:
         # Giro circular suave
         px.set_dir_servo_angle(20)
         return Estado.SEARCH, Cmd.FORWARD_SLOW
 
-    # Barrido suave con cámara (plan A)
+    # ------------------------------------------------------------
+    # PLAN A: barrido suave con cámara
+    # ------------------------------------------------------------
     if px.last_pan >= PAN_MAX:
         px.search_dir = -1
     elif px.last_pan <= PAN_MIN:
         px.search_dir = 1
 
     return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if px.search_dir == 1 else Cmd.CAM_PAN_LEFT
+
 
 def state_recenter(px, estado, accion, robot_state):
     det, raw = get_detection(px)
@@ -839,7 +855,7 @@ def pet_mode(px, test_mode):
         elif estado == Estado.RESET:
             estado, accion = state_reset(px)
         elif estado == Estado.SEARCH:
-            estado, accion = state_search(px, estado, accion)
+            estado, accion = state_search(px, estado, accion, state)
         elif estado == Estado.RECENTER:
             estado, accion = state_recenter(px, estado, accion, state)
         elif estado == Estado.TRACK:
