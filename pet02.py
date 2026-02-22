@@ -215,6 +215,9 @@ def init_flags(px):
     px.last_pan = 0
     px.last_tilt = 0
 
+    # Direccion sevo angle
+    px.dir_current_angle = 0
+
 # ============================================================
 # LOGGING
 # ============================================================
@@ -258,6 +261,8 @@ def backward(px, speed=SLOW_SPEED):
 def turn_left(px, speed=TURN_SPEED):
     # Mantener el servo girado continuamente
     px.set_dir_servo_angle(SERVO_ANGLE_MIN)
+    px.dir_current_angle = SERVO_ANGLE_MIN
+    log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
     px.forward(speed)
     # Sin STOP, sin servo=0, sin sleeps.
     # La FSM decidirá cuándo parar o centrar.
@@ -265,6 +270,8 @@ def turn_left(px, speed=TURN_SPEED):
 
 def turn_right(px, speed=TURN_SPEED):
     px.set_dir_servo_angle(SERVO_ANGLE_MAX)
+    px.dir_current_angle = SERVO_ANGLE_MAX
+    log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
     px.forward(speed)
     # Igual que turn_left: giro continuo real.
 
@@ -275,7 +282,10 @@ def turn_right(px, speed=TURN_SPEED):
 
 def scape_danger(px, speed=SLOW_SPEED):
     # Retroceso suave sin giros bruscos
+    px.dir_current_angle = 0
     px.set_dir_servo_angle(0)
+    px.dir_current_angle = 0
+    log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
     px.backward(speed)
     time.sleep(0.3)
     px.stop()
@@ -532,7 +542,10 @@ def state_reset(px):
     log_event(px, Estado.RESET, "Entrando en RESET")
     px.set_cam_pan_angle(0)
     px.set_cam_tilt_angle(0)
+    px.dir_current_angle = 0
     px.set_dir_servo_angle(0)
+    px.dir_current_angle = 0
+    log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
     px.last_pan = 0
     px.last_tilt = 0
 
@@ -596,6 +609,8 @@ def state_search(px, estado, accion, robot_state):
     if robot_state.search_no_det_frames > 20:
         robot_state.search_no_det_frames = 0
         px.set_dir_servo_angle(25)
+        px.dir_current_angle = 25
+        log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
         return Estado.SEARCH, Cmd.FORWARD_SLOW
 
     # ------------------------------------------------------------
@@ -618,6 +633,8 @@ def state_recenter(px, estado, accion, robot_state):
         robot_state.recenter_centered_frames = 0
         robot_state.recenter_lost_frames = 0
         px.set_dir_servo_angle(0)
+        px.dir_current_angle = 0
+        log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
         px.last_state = estado
 
     # Seguridad
@@ -675,6 +692,13 @@ def state_recenter(px, estado, accion, robot_state):
 def state_track(px, estado, accion, robot_state):
     det, raw = get_detection(px)
 
+    # Asegurar servo centrado al entrar en TRACK
+    if px.last_state != Estado.TRACK:
+        px.set_dir_servo_angle(0)
+        px.dir_current_angle = 0
+        log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
+        px.last_state = Estado.TRACK
+
     # Cooldown tras RECENTER
     if robot_state.just_recentered:
         if time.time() - robot_state.just_recentered < 0.3:
@@ -709,10 +733,14 @@ def state_track(px, estado, accion, robot_state):
 
         # Aplicar giro suave
         px.set_dir_servo_angle(angle if det.error_x < 0 else -angle)
+        px.dir_current_angle = angle if det.error_x < 0 else -angle
+        log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
     # 3. Avance recto si está centrado
     px.set_dir_servo_angle(0)
+    px.dir_current_angle = 0
+    log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
     return Estado.TRACK, Cmd.FORWARD_SLOW
 
 def state_near(px, estado, accion, robot_state):
@@ -729,6 +757,8 @@ def state_near(px, estado, accion, robot_state):
         robot_state.near_cooldown = None
 
         px.set_dir_servo_angle(0)
+        px.dir_current_angle = 0
+        log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
         px.set_cam_tilt_angle(0)
         px.last_tilt = 0
 
