@@ -415,53 +415,26 @@ def update_safety(px):
     distance = round(raw, 2)
     return distance
 
-def apply_safety(px, d, estado, accion):
+def apply_safety(px, safety, estado, accion):
+    d = safety.get("distance", 999)
 
-    # Filtro anti-ruido del ultrasonido
-    if not hasattr(px, "us_counter"):
-        px.us_counter = 0
+    # --- 1. Si no hay detección válida, el ultrasonido manda ---
+    det, raw = get_detection(px)
+    no_vision = not det.valid_for_search
 
-    if d <= DANGER_DISTANCE:
-        px.us_counter += 1
-    else:
-        px.us_counter = 0
+    # --- 2. Si estamos avanzando recto sin visión → SCAPE inmediato ---
+    if no_vision and accion in (Cmd.FORWARD_SLOW, Cmd.FORWARD_FAST):
+        log_event(px, estado, f"[SEC] SCAPE por avance sin visión (d={d}cm)")
+        return estado, Cmd.SCAPE
 
-    # Si el peligro no persiste 3 frames, ignorar
-    if px.us_counter < 3:
-        return estado, accion
+    # --- 3. Si distancia es crítica (< 20 cm) → SCAPE siempre ---
+    if d < 20:
+        log_event(px, estado, f"[SEC] CRITICAL: objeto a {d} cm → SCAPE")
+        return estado, Cmd.SCAPE
 
-    # --- Zona segura ---
-    if d > SAFE_DISTANCE:
-        px.last_sec = "safe"
-        return estado, accion
-
-    # --- Zona de peligro crítico ---
-    if d <= DANGER_DISTANCE:
-
-        # 🔥 1. Si vemos la baliza lejos → ignorar ultrasonido
-        det, raw = get_detection(px)
-
-        if det.valid_for_search:
-            log_det(px, estado, det, raw, prefix="Ignorando ultrasonido por detección válida ")
-            return estado, accion
-
-        # 🔥 2. Si estamos en TRACK o RECENTER → ignorar ultrasonido
-        if estado in (Estado.TRACK, Estado.RECENTER):
-            return estado, accion
-
-        # 🔥 3. Si la cámara está moviéndose → ignorar ultrasonido
-        if px.last_pan != 0 or px.last_tilt != 0:
-            return estado, accion
-
-        # 🔥 4. Si venimos de ver la baliza hace poco → ignorar ultrasonido
-        if px.last_raw_n > 0:
-            return estado, accion
-
-        # --- Si nada de lo anterior aplica → SCAPE real ---
-        if px.last_sec != "critical":
-            log_event(px, estado, f"[SEC] CRITICAL: object < {d} cm")
-
-        px.last_sec = "critical"
+    # --- 4. Si distancia es peligrosa (< 30 cm) y no vemos la baliza → SCAPE ---
+    if d < 30 and no_vision:
+        log_event(px, estado, f"[SEC] DANGER: sin visión y objeto a {d} cm → SCAPE")
         return estado, Cmd.SCAPE
 
     return estado, accion
