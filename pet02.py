@@ -595,7 +595,7 @@ def state_search(px, estado, accion, robot_state):
     # 🔥 PLAN B: búsqueda activa si llevamos mucho sin ver nada
     if robot_state.search_no_det_frames > 20:
         robot_state.search_no_det_frames = 0
-        px.set_dir_servo_angle(20)
+        px.set_dir_servo_angle(25)
         return Estado.SEARCH, Cmd.FORWARD_SLOW
 
     # ------------------------------------------------------------
