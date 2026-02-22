@@ -726,7 +726,8 @@ def state_track(px, estado, accion, robot_state):
     robot_state.near_enter_frames = 0
 
     # 2. Corrección lateral proporcional
-    if abs(det.error_x) > 40:
+    if abs(det.error_x) > 80:
+        log_det(px, Estado.TRACK, det, raw, prefix="Corrección lateral proporcional | ")
         # Normalizar error_x a rango 0–1
         k = min(abs(det.error_x) / 160, 1.0)
 
