@@ -700,58 +700,47 @@ def state_recenter(px, estado, accion, robot_state):
 def state_track(px, estado, accion, robot_state):
     det, raw = get_detection(px)
 
-    # ------------------------------------------------------------
-    # COOLDOWN tras RECENTER
-    # ------------------------------------------------------------
+    # Cooldown tras RECENTER
     if robot_state.just_recentered:
         if time.time() - robot_state.just_recentered < 0.3:
             return Estado.TRACK, accion
         robot_state.just_recentered = None
 
-    # ------------------------------------------------------------
     # 0. Si no hay detección → SEARCH
-    # ------------------------------------------------------------
     if not det.valid_for_search:
         robot_state.track_lost_frames += 1
         if robot_state.track_lost_frames >= 3:
             log_det(px, Estado.TRACK, det, raw, prefix="Perdida baliza → SEARCH | ")
             return Estado.SEARCH, Cmd.STOP
-        return Estado.TRACK, accion   # ← mantener último comando
+        return Estado.TRACK, accion
     robot_state.track_lost_frames = 0
 
-    # ------------------------------------------------------------
     # 1. Si está cerca → NEAR
-    # ------------------------------------------------------------
     if det.valid_for_near:
         robot_state.near_enter_frames += 1
         if robot_state.near_enter_frames >= 3:
             log_det(px, Estado.TRACK, det, raw, prefix="NEAR confirmado (3 frames) → NEAR | ")
             return Estado.NEAR, Cmd.STOP
-        return Estado.TRACK, accion   # ← mantener último comando
+        return Estado.TRACK, accion
     robot_state.near_enter_frames = 0
 
-    # ------------------------------------------------------------
-    # 2. Corrección lateral con 3 niveles
-    # ------------------------------------------------------------
-
-    # Giro suave con amplitud variable
-    if abs(det.error_x) > 40:
-        # Normalizar error_x a rango 0–1
+    # 2. Corrección lateral proporcional
+    if abs(det.error_x) > 80:
+        # Giro fuerte sin avanzar
         k = min(abs(det.error_x) / 160, 1.0)
+        angle = 15 + k * 15  # 15–30°
+        px.set_dir_servo_angle(angle if det.error_x < 0 else -angle)
+        return Estado.TRACK, (Cmd.WHEELS_TURN_LEFT if det.error_x < 0 else Cmd.WHEELS_TURN_RIGHT)
 
-        # Ángulo dinámico entre 10° y 30°
-        angle = 10 + k * 20
+    if abs(det.error_x) > 40:
+        # Giro suave con avance
+        k = min(abs(det.error_x) / 160, 1.0)
+        angle = 10 + k * 10  # 10–20°
+        px.set_dir_servo_angle(angle if det.error_x < 0 else -angle)
+        return Estado.TRACK, Cmd.FORWARD_SLOW
 
-        if det.error_x < 0:
-            px.set_dir_servo_angle(+angle)   # gira izquierda
-            return Estado.TRACK, Cmd.FORWARD_SLOW
-        else:
-            px.set_dir_servo_angle(-angle)   # gira derecha
-            return Estado.TRACK, Cmd.FORWARD_SLOW
-
-    # ------------------------------------------------------------
-    # 3. Avance continuo si está centrado
-    # ------------------------------------------------------------
+    # 3. Avance recto si está centrado
+    px.set_dir_servo_angle(0)
     return Estado.TRACK, Cmd.FORWARD_SLOW
 
 

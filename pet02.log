@@ -1,393 +1,173 @@
 === Start of pet02.log ===
-[10:25:01] [Estado.CHK] [CHK] ==============================
-[10:25:01] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[10:25:01] [Estado.CHK] [CHK] ==============================
-[10:25:01] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[10:25:01] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[10:25:01] [Estado.CHK] [CHK] State wheels:     0
-[10:25:01] [Estado.CHK] [CHK] ==============================
-[10:25:01] [Estado.IDLE] Inicio del sistema
-[10:25:01] [Estado.IDLE] Entrando en IDLE
-[10:25:01] [Estado.RESET] Ejecutado: STOP
-[10:25:01] [Estado.RESET] Entrando en RESET
-[10:25:01] [Estado.SEARCH] Ejecutado: STOP
-[10:25:01] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=1 w=68 h=132 area=8976 x=382 y=274 error_x=62 error_y=34
-[10:25:01] [Estado.SEARCH] Entrando en SEARCH
-[10:25:01] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:01] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=2 w=72 h=144 area=10368 x=348 y=280 error_x=28 error_y=40
-[10:25:01] [Estado.RECENTER] Ejecutado: STOP
-[10:25:01] [Estado.RECENTER] Entrando en RECENTER
-[10:25:01] [Estado.RECENTER] Ejecutado: STOP
-[10:25:01] [Estado.RECENTER] px.last_pan=4 Alineado ✔ (cuerpo)
-[10:25:01] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[10:25:01] [Estado.TRACK] Ejecutado: STOP
-[10:25:02] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[10:25:03] [Estado.TRACK] Ejecutado: WHEELS_TURN_LEFT
-[10:25:04] [Estado.TRACK] NEAR confirmado (3 frames) → NEAR | valid_for_search=True valid_for_near=True is_centered=True n=1 w=100 h=228 area=22800 x=322 y=306 error_x=2 error_y=66
-[10:25:04] [Estado.NEAR] Ejecutado: STOP
-[10:25:04] [Estado.NEAR] Entrando en NEAR
-[10:25:04] [Estado.NEAR] Ejecutado: BACKWARD
-[10:25:04] [Estado.NEAR] Ejecutando gesto de 'SI' (tilt arriba-abajo)
-[10:25:05] [Estado.NEAR] Ejecutado: STOP
-[10:25:05] [Estado.NEAR] Salida NEAR confirmada (5 frames) → TRACK | valid_for_search=True valid_for_near=False is_centered=False n=3 w=88 h=180 area=15840 x=396 y=298 error_x=76 error_y=58
-[10:25:05] [Estado.TRACK] Ejecutado: STOP
-[10:25:05] [Estado.TRACK] Ejecutado: WHEELS_TURN_RIGHT
-[10:25:06] [Estado.TRACK] Ejecutado: WHEELS_TURN_LEFT
-[10:25:07] [Estado.TRACK] NEAR confirmado (3 frames) → NEAR | valid_for_search=True valid_for_near=True is_centered=True n=1 w=152 h=216 area=32832 x=316 y=284 error_x=-4 error_y=44
-[10:25:07] [Estado.NEAR] Ejecutado: STOP
-[10:25:07] [Estado.NEAR] Salida NEAR confirmada (5 frames) → TRACK | valid_for_search=True valid_for_near=False is_centered=False n=2 w=144 h=224 area=32256 x=372 y=272 error_x=52 error_y=32
-[10:25:07] [Estado.TRACK] Ejecutado: STOP
-[10:25:07] [Estado.TRACK] Ejecutado: WHEELS_TURN_RIGHT
-[10:25:08] [Estado.TRACK] Ejecutado: WHEELS_TURN_LEFT
-[10:25:09] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=1 w=264 h=384 area=101376 x=156 y=288 error_x=-164 error_y=48
-[10:25:09] [Estado.SEARCH] Ejecutado: STOP
-[10:25:09] [Estado.SEARCH] Entrando en SEARCH
-[10:25:09] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:10] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:11] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:11] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:11] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:12] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:12] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:12] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:12] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:13] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:13] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:13] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:13] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:13] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:14] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:14] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:14] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:15] [Estado.SEARCH] Ejecutado: STOP
-[10:25:15] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=True is_centered=True n=1 w=220 h=324 area=71280 x=314 y=190 error_x=-6 error_y=-50
-[10:25:15] [Estado.RECENTER] Ejecutado: STOP
-[10:25:15] [Estado.RECENTER] Entrando en RECENTER
-[10:25:15] [Estado.RECENTER] Ejecutado: STOP
-[10:25:15] [Estado.RECENTER] px.last_pan=32 Alineado ✔ (cuerpo)
-[10:25:15] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[10:25:15] [Estado.TRACK] Ejecutado: STOP
-[10:25:16] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[10:25:16] [Estado.TRACK] Ejecutado: WHEELS_TURN_RIGHT
-[10:25:16] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[10:25:16] [Estado.TRACK] Ejecutado: WHEELS_TURN_LEFT
-[10:25:18] [Estado.TRACK] Ejecutado: WHEELS_TURN_RIGHT
-[10:25:19] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=1 w=236 h=392 area=92512 x=118 y=284 error_x=-202 error_y=44
-[10:25:19] [Estado.SEARCH] Ejecutado: STOP
-[10:25:19] [Estado.SEARCH] Entrando en SEARCH
-[10:25:19] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:19] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:20] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=160 h=416 area=66560 x=80 y=272 error_x=-240 error_y=32
-[10:25:20] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:20] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:20] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:20] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=2 w=164 h=420 area=68880 x=82 y=270 error_x=-238 error_y=30
-[10:25:20] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:20] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:21] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=3 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:21] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=3 w=164 h=420 area=68880 x=82 y=270 error_x=-238 error_y=30
-[10:25:21] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:21] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:21] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=424 area=71232 x=84 y=268 error_x=-236 error_y=28
-[10:25:21] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:21] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:21] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=164 h=420 area=68880 x=82 y=270 error_x=-238 error_y=30
-[10:25:21] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:21] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:21] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=2 w=168 h=424 area=71232 x=84 y=268 error_x=-236 error_y=28
-[10:25:21] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:22] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:22] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=164 h=420 area=68880 x=82 y=270 error_x=-238 error_y=30
-[10:25:22] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:22] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:22] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=2 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:22] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:22] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:22] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=164 h=416 area=68224 x=82 y=272 error_x=-238 error_y=32
-[10:25:22] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:22] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:22] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=164 h=420 area=68880 x=82 y=270 error_x=-238 error_y=30
-[10:25:22] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:23] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:23] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:23] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:23] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:23] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=164 h=420 area=68880 x=82 y=270 error_x=-238 error_y=30
-[10:25:23] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:23] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:23] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=424 area=71232 x=84 y=268 error_x=-236 error_y=28
-[10:25:23] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:23] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:23] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:24] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:24] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:24] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:24] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=424 area=71232 x=84 y=268 error_x=-236 error_y=28
-[10:25:24] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:24] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:24] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:24] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:24] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:24] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:24] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:25] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=424 area=71232 x=84 y=268 error_x=-236 error_y=28
-[10:25:25] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:25] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:25] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:25] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=164 h=420 area=68880 x=82 y=270 error_x=-238 error_y=30
-[10:25:25] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:25] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:25] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=164 h=416 area=68224 x=82 y=272 error_x=-238 error_y=32
-[10:25:25] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:25] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:25] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=424 area=71232 x=84 y=268 error_x=-236 error_y=28
-[10:25:25] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:26] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:26] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=164 h=416 area=68224 x=82 y=272 error_x=-238 error_y=32
-[10:25:26] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:26] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:26] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=172 h=420 area=72240 x=86 y=270 error_x=-234 error_y=30
-[10:25:26] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:26] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:26] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=424 area=71232 x=84 y=268 error_x=-236 error_y=28
-[10:25:26] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:26] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:26] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=164 h=420 area=68880 x=82 y=270 error_x=-238 error_y=30
-[10:25:26] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:27] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:27] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:27] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:27] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:27] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:27] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:27] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:27] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=424 area=71232 x=84 y=268 error_x=-236 error_y=28
-[10:25:27] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:27] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:27] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:27] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:28] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:28] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=412 area=69216 x=84 y=274 error_x=-236 error_y=34
-[10:25:28] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:28] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:28] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:28] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:28] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:28] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=164 h=412 area=67568 x=82 y=274 error_x=-238 error_y=34
-[10:25:28] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:28] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:29] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:29] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:29] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=164 h=416 area=68224 x=82 y=272 error_x=-238 error_y=32
-[10:25:29] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:29] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:29] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:29] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:29] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:29] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=424 area=71232 x=84 y=268 error_x=-236 error_y=28
-[10:25:29] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:29] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:30] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=164 h=416 area=68224 x=82 y=272 error_x=-238 error_y=32
-[10:25:30] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:30] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:30] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=2 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:30] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=416 area=69888 x=84 y=272 error_x=-236 error_y=32
-[10:25:30] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:30] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:30] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:30] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:30] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:30] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=164 h=416 area=68224 x=82 y=272 error_x=-238 error_y=32
-[10:25:30] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:31] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:31] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:31] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:31] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:31] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=164 h=420 area=68880 x=82 y=270 error_x=-238 error_y=30
-[10:25:31] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:31] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:31] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=424 area=71232 x=84 y=268 error_x=-236 error_y=28
-[10:25:31] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:31] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:31] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:31] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=416 area=69888 x=84 y=272 error_x=-236 error_y=32
-[10:25:31] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:32] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:32] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:32] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:32] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:32] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=412 area=69216 x=84 y=274 error_x=-236 error_y=34
-[10:25:32] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:32] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:32] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:32] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:32] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:33] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=416 area=69888 x=84 y=272 error_x=-236 error_y=32
-[10:25:33] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=164 h=416 area=68224 x=82 y=272 error_x=-238 error_y=32
-[10:25:33] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:33] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:33] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:33] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:33] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:33] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:33] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=2 w=164 h=424 area=69536 x=82 y=268 error_x=-238 error_y=28
-[10:25:33] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:33] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:33] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:34] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:34] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:34] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:34] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=416 area=69888 x=84 y=272 error_x=-236 error_y=32
-[10:25:34] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:34] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:34] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=416 area=69888 x=84 y=272 error_x=-236 error_y=32
-[10:25:34] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=164 h=420 area=68880 x=82 y=270 error_x=-238 error_y=30
-[10:25:34] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:34] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:34] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=164 h=420 area=68880 x=82 y=270 error_x=-238 error_y=30
-[10:25:34] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:35] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:35] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=416 area=69888 x=84 y=272 error_x=-236 error_y=32
-[10:25:35] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:35] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:35] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:35] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=164 h=420 area=68880 x=82 y=270 error_x=-238 error_y=30
-[10:25:35] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:35] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:35] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=424 area=71232 x=84 y=268 error_x=-236 error_y=28
-[10:25:35] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:35] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:35] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:35] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=2 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:35] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=164 h=420 area=68880 x=82 y=270 error_x=-238 error_y=30
-[10:25:35] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:36] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:36] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:36] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:36] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:36] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:36] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:36] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:36] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=164 h=412 area=67568 x=82 y=274 error_x=-238 error_y=34
-[10:25:36] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=2 w=164 h=412 area=67568 x=82 y=274 error_x=-238 error_y=34
-[10:25:36] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:36] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:37] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=2 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:37] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=164 h=420 area=68880 x=82 y=270 error_x=-238 error_y=30
-[10:25:37] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:37] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:37] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:37] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:37] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:37] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:37] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:37] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:37] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=416 area=69888 x=84 y=272 error_x=-236 error_y=32
-[10:25:37] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:37] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:38] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=2 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:38] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:38] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:38] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:38] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:38] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:38] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=416 area=69888 x=84 y=272 error_x=-236 error_y=32
-[10:25:38] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:38] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:38] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=424 area=71232 x=84 y=268 error_x=-236 error_y=28
-[10:25:38] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:39] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:39] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=2 w=168 h=416 area=69888 x=84 y=272 error_x=-236 error_y=32
-[10:25:39] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:39] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:39] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=168 h=420 area=70560 x=84 y=270 error_x=-236 error_y=30
-[10:25:39] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:39] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:39] [Estado.SEARCH] Ignorando ultrasonido por detección válida valid_for_search=True valid_for_near=False is_centered=False n=1 w=160 h=416 area=66560 x=80 y=272 error_x=-240 error_y=32
-[10:25:39] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:39] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:40] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:41] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=3 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[10:25:41] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:42] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[10:25:42] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:43] [Estado.SEARCH] Ejecutado: STOP
-[10:25:44] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=5 w=100 h=36 area=3600 x=290 y=274 error_x=-30 error_y=34
-[10:25:44] [Estado.RECENTER] Ejecutado: STOP
-[10:25:44] [Estado.RECENTER] Entrando en RECENTER
-[10:25:44] [Estado.RECENTER] Ejecutado: STOP
-[10:25:44] [Estado.RECENTER] px.last_pan=-29 Alineado ✔ (cuerpo)
-[10:25:44] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[10:25:44] [Estado.TRACK] Ejecutado: STOP
-[10:25:44] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[10:25:45] [Estado.TRACK] Ejecutado: WHEELS_TURN_LEFT
-[10:25:45] [Estado.TRACK] Ejecutado: WHEELS_TURN_RIGHT
-[10:25:45] [Estado.TRACK] Ejecutado: WHEELS_TURN_LEFT
-[10:25:45] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[10:25:45] [Estado.TRACK] Ejecutado: WHEELS_TURN_LEFT
-[10:25:47] [Estado.TRACK] Det valid_for_search=True is_centered=True n=1 w=124 h=32 area=3968 x=330 y=268 error_x=10 error_y=28
-[10:25:47] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[10:25:47] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[10:25:47] [Estado.SEARCH] Ejecutado: STOP
-[10:25:47] [Estado.SEARCH] Entrando en SEARCH
-[10:25:47] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:47] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=4 w=68 h=32 area=2176 x=270 y=276 error_x=-50 error_y=36
-[10:25:47] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:48] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=3 w=56 h=32 area=1792 x=288 y=276 error_x=-32 error_y=36
-[10:25:48] [Estado.RECENTER] Ejecutado: STOP
-[10:25:48] [Estado.RECENTER] Entrando en RECENTER
-[10:25:48] [Estado.RECENTER] Ejecutado: STOP
-[10:25:48] [Estado.RECENTER] Ejecutado: CAM_PAN_LEFT
-[10:25:48] [Estado.RECENTER] Ejecutado: CAM_PAN_RIGHT
-[10:25:49] [Estado.RECENTER] Ejecutado: CAM_PAN_LEFT
-[10:25:49] [Estado.RECENTER] Ejecutado: STOP
-[10:25:49] [Estado.RECENTER] px.last_pan=-28 Alineado ✔ (cuerpo)
-[10:25:49] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[10:25:49] [Estado.TRACK] Ejecutado: STOP
-[10:25:49] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=4 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[10:25:49] [Estado.SEARCH] Ejecutado: STOP
-[10:25:49] [Estado.SEARCH] Entrando en SEARCH
-[10:25:49] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:50] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=4 w=60 h=32 area=1920 x=326 y=264 error_x=6 error_y=24
-[10:25:50] [Estado.RECENTER] Ejecutado: STOP
-[10:25:50] [Estado.RECENTER] Entrando en RECENTER
-[10:25:50] [Estado.RECENTER] Ejecutado: CAM_PAN_LEFT
-[10:25:50] [Estado.RECENTER] Ejecutado: STOP
-[10:25:50] [Estado.RECENTER] px.last_pan=-20 Alineado ✔ (cuerpo)
-[10:25:50] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[10:25:51] [Estado.TRACK] Ejecutado: STOP
-[10:25:51] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=4 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[10:25:51] [Estado.SEARCH] Ejecutado: STOP
-[10:25:51] [Estado.SEARCH] Entrando en SEARCH
-[10:25:51] [Estado.SEARCH] Ejecutado: STOP
-[10:25:51] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:52] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=3 w=52 h=32 area=1664 x=358 y=260 error_x=38 error_y=20
-[10:25:52] [Estado.RECENTER] Ejecutado: STOP
-[10:25:52] [Estado.RECENTER] Entrando en RECENTER
-[10:25:52] [Estado.RECENTER] Ejecutado: CAM_PAN_LEFT
-[10:25:52] [Estado.RECENTER] Ejecutado: STOP
-[10:25:53] [Estado.RECENTER] px.last_pan=-32 Alineado ✔ (cuerpo)
-[10:25:53] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[10:25:53] [Estado.TRACK] Ejecutado: STOP
-[10:25:53] [Estado.TRACK] Det valid_for_search=False is_centered=False n=4 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[10:25:53] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=4 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[10:25:53] [Estado.SEARCH] Ejecutado: STOP
-[10:25:53] [Estado.SEARCH] Entrando en SEARCH
-[10:25:53] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[10:25:54] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=4 w=44 h=36 area=1584 x=326 y=262 error_x=6 error_y=22
-[10:25:54] [Estado.RECENTER] Ejecutado: STOP
-[10:25:54] [Estado.RECENTER] Entrando en RECENTER
-[10:25:54] [Estado.RECENTER] Ejecutado: CAM_PAN_LEFT
-[10:25:54] [Estado.RECENTER] Ejecutado: STOP
-[10:25:54] [Estado.RECENTER] px.last_pan=-20 Alineado ✔ (cuerpo)
-[10:25:54] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[10:25:54] [Estado.TRACK] Ejecutado: STOP
-[10:25:54] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[10:25:55] [Estado.TRACK] Ejecutado: WHEELS_TURN_LEFT
-[10:25:55] [Estado.TRACK] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[10:25:55] [Estado.TRACK] Ejecutado: WHEELS_TURN_LEFT
-[10:25:58] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[10:25:58] [Estado.SEARCH] Ejecutado: STOP
-[10:25:58] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[10:25:58] [Estado.SEARCH] Entrando en SEARCH
-[10:25:58] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[10:44:51] [Estado.CHK] [CHK] ==============================
+[10:44:51] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[10:44:51] [Estado.CHK] [CHK] ==============================
+[10:44:51] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[10:44:51] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[10:44:51] [Estado.CHK] [CHK] State wheels:     0
+[10:44:51] [Estado.CHK] [CHK] ==============================
+[10:44:51] [Estado.IDLE] Inicio del sistema
+[10:44:51] [Estado.IDLE] Entrando en IDLE
+[10:44:51] [Estado.RESET] Ejecutado: STOP
+[10:44:51] [Estado.RESET] Entrando en RESET
+[10:44:51] [Estado.SEARCH] Ejecutado: STOP
+[10:44:51] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=1 w=52 h=92 area=4784 x=434 y=266 error_x=114 error_y=26
+[10:44:51] [Estado.SEARCH] Entrando en SEARCH
+[10:44:51] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:44:51] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=2 w=64 h=96 area=6144 x=344 y=272 error_x=24 error_y=32
+[10:44:52] [Estado.RECENTER] Ejecutado: STOP
+[10:44:52] [Estado.RECENTER] Entrando en RECENTER
+[10:44:52] [Estado.RECENTER] Ejecutado: STOP
+[10:44:52] [Estado.RECENTER] px.last_pan=8 Alineado ✔ (cuerpo)
+[10:44:52] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:44:55] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:44:55] [Estado.SEARCH] Ejecutado: STOP
+[10:44:55] [Estado.SEARCH] Entrando en SEARCH
+[10:44:55] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:44:56] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:44:56] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[10:44:57] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:44:57] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[10:44:58] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
+[10:44:58] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:44:58] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
+[10:44:58] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=3 w=36 h=32 area=1152 x=618 y=464 error_x=298 error_y=224
+[10:44:58] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:44:59] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[10:44:59] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=1 w=36 h=36 area=1296 x=418 y=174 error_x=98 error_y=-66
+[10:45:00] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:45:00] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[10:45:00] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:01] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[10:45:01] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:01] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:45:03] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
+[10:45:06] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:06] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
+[10:45:07] [Estado.SEARCH] Det valid_for_search=True is_centered=True n=1 w=36 h=40 area=1440 x=342 y=188 error_x=22 error_y=-52
+[10:45:07] [Estado.SEARCH] Ejecutado: STOP
+[10:45:07] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=2 w=40 h=44 area=1760 x=328 y=186 error_x=8 error_y=-54
+[10:45:07] [Estado.RECENTER] Ejecutado: STOP
+[10:45:07] [Estado.RECENTER] Entrando en RECENTER
+[10:45:07] [Estado.RECENTER] Ejecutado: STOP
+[10:45:07] [Estado.RECENTER] px.last_pan=17 Alineado ✔ (cuerpo)
+[10:45:07] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:45:08] [Estado.TRACK] Det valid_for_search=True is_centered=True n=1 w=36 h=32 area=1152 x=338 y=232 error_x=18 error_y=-8
+[10:45:08] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:45:08] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:08] [Estado.SEARCH] Ejecutado: STOP
+[10:45:08] [Estado.SEARCH] Entrando en SEARCH
+[10:45:08] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:45:08] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=2 w=32 h=44 area=1408 x=244 y=246 error_x=-76 error_y=6
+[10:45:08] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[10:45:08] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:45:09] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:09] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:45:09] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:09] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:45:10] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[10:45:10] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=2 w=32 h=36 area=1152 x=244 y=250 error_x=-76 error_y=10
+[10:45:10] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[10:45:10] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=1 w=52 h=52 area=2704 x=290 y=234 error_x=-30 error_y=-6
+[10:45:10] [Estado.RECENTER] Ejecutado: STOP
+[10:45:11] [Estado.RECENTER] Entrando en RECENTER
+[10:45:11] [Estado.RECENTER] Ejecutado: STOP
+[10:45:11] [Estado.RECENTER] px.last_pan=15 Alineado ✔ (cuerpo)
+[10:45:11] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:45:11] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:11] [Estado.SEARCH] Ejecutado: STOP
+[10:45:11] [Estado.SEARCH] Entrando en SEARCH
+[10:45:11] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[10:45:11] [Estado.SEARCH] Det valid_for_search=True is_centered=True n=2 w=36 h=44 area=1584 x=282 y=250 error_x=-38 error_y=10
+[10:45:11] [Estado.SEARCH] Ejecutado: STOP
+[10:45:12] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[10:45:13] [Estado.SEARCH] Det valid_for_search=True is_centered=True n=2 w=32 h=32 area=1024 x=292 y=216 error_x=-28 error_y=-24
+[10:45:13] [Estado.SEARCH] Ejecutado: STOP
+[10:45:13] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[10:45:13] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:45:14] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:14] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:45:14] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:15] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:45:15] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=1 w=32 h=32 area=1024 x=292 y=236 error_x=-28 error_y=-4
+[10:45:15] [Estado.RECENTER] Ejecutado: STOP
+[10:45:15] [Estado.RECENTER] Entrando en RECENTER
+[10:45:15] [Estado.RECENTER] Ejecutado: STOP
+[10:45:15] [Estado.RECENTER] px.last_pan=17 Alineado ✔ (cuerpo)
+[10:45:15] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:45:15] [Estado.TRACK] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:15] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:45:15] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:15] [Estado.SEARCH] Ejecutado: STOP
+[10:45:16] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:16] [Estado.SEARCH] Entrando en SEARCH
+[10:45:16] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:45:16] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:16] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:45:16] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:16] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:45:17] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[10:45:17] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:17] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[10:45:17] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:45:17] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[10:45:17] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:45:18] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=2 w=44 h=88 area=3872 x=346 y=232 error_x=26 error_y=-8
+[10:45:18] [Estado.RECENTER] Ejecutado: STOP
+[10:45:18] [Estado.RECENTER] Entrando en RECENTER
+[10:45:18] [Estado.RECENTER] PAN en límite → pasar a TRACK para corregir con ruedas
+[10:45:18] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:45:20] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:20] [Estado.SEARCH] Ejecutado: STOP
+[10:45:20] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:20] [Estado.SEARCH] Entrando en SEARCH
+[10:45:20] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[10:45:21] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:45:22] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
+[10:45:23] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:23] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
+[10:45:23] [Estado.SEARCH] Ejecutado: STOP
+[10:45:23] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=2 w=76 h=40 area=3040 x=282 y=232 error_x=-38 error_y=-8
+[10:45:23] [Estado.RECENTER] Ejecutado: STOP
+[10:45:23] [Estado.RECENTER] Entrando en RECENTER
+[10:45:24] [Estado.RECENTER] Ejecutado: STOP
+[10:45:24] [Estado.RECENTER] Ejecutado: CAM_PAN_LEFT
+[10:45:24] [Estado.RECENTER] Ejecutado: STOP
+[10:45:24] [Estado.RECENTER] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:24] [Estado.RECENTER] Ejecutado: STOP
+[10:45:25] [Estado.RECENTER] RECENTER sin detección → SEARCH valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:25] [Estado.SEARCH] Ejecutado: STOP
+[10:45:25] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:25] [Estado.SEARCH] Entrando en SEARCH
+[10:45:25] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:45:25] [Estado.SEARCH] Ejecutado: STOP
+[10:45:25] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=1 w=60 h=32 area=1920 x=298 y=288 error_x=-22 error_y=48
+[10:45:25] [Estado.RECENTER] Ejecutado: STOP
+[10:45:25] [Estado.RECENTER] Entrando en RECENTER
+[10:45:25] [Estado.RECENTER] Ejecutado: STOP
+[10:45:26] [Estado.RECENTER] px.last_pan=4 Alineado ✔ (cuerpo)
+[10:45:26] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:45:26] [Estado.TRACK] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:26] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:45:26] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:26] [Estado.SEARCH] Ejecutado: STOP
+[10:45:26] [Estado.SEARCH] Entrando en SEARCH
+[10:45:26] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:45:27] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:27] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:45:27] [Estado.SEARCH] Det valid_for_search=True is_centered=True n=2 w=36 h=92 area=3312 x=322 y=230 error_x=2 error_y=-10
+[10:45:27] [Estado.SEARCH] Ejecutado: STOP
+[10:45:28] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:45:34] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=4 w=40 h=44 area=1760 x=292 y=234 error_x=-28 error_y=-6
+[10:45:34] [Estado.RECENTER] Ejecutado: STOP
+[10:45:34] [Estado.RECENTER] Entrando en RECENTER
+[10:45:35] [Estado.RECENTER] Ejecutado: CAM_PAN_RIGHT
+[10:45:35] [Estado.RECENTER] PAN en límite → pasar a TRACK para corregir con ruedas
+[10:45:35] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:45:37] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:45:37] [Estado.SEARCH] Ejecutado: STOP
+[10:45:37] [Estado.SEARCH] Entrando en SEARCH
+[10:45:37] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:45:37] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=4 w=76 h=52 area=3952 x=274 y=174 error_x=-46 error_y=-66
+[10:45:37] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[10:45:37] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=3 w=72 h=84 area=6048 x=336 y=182 error_x=16 error_y=-58
