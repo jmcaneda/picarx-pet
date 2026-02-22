@@ -409,11 +409,12 @@ def execute_motion(px, estado, cmd: Cmd, test_mode=False):
 # SEGURIDAD
 # ============================================================
 def update_safety(px):
-    raw = px.ultrasonic.read()
-    if raw is None or raw < 0:
-        return 999
-    distance = round(raw, 2)
-    return distance
+    d = px.get_distance()
+    return {
+        "distance": d,
+        "timestamp": time.time(),
+        "raw": d
+    }
 
 def apply_safety(px, safety, estado, accion):
     d = safety.get("distance", 999)
