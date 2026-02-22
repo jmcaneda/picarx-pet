@@ -122,7 +122,7 @@ class Det:
             return False
 
         # 1. Área realmente grande (cerca de verdad)
-        if self.area < 18000:
+        if self.area < 12000:
             return False
 
         # 2. Centrado horizontal más estricto
@@ -282,7 +282,6 @@ def turn_right(px, speed=TURN_SPEED):
 
 def scape_danger(px, speed=SLOW_SPEED):
     # Retroceso suave sin giros bruscos
-    px.dir_current_angle = 0
     px.set_dir_servo_angle(0)
     px.dir_current_angle = 0
     log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
@@ -419,39 +418,21 @@ def execute_motion(px, estado, cmd: Cmd, test_mode=False):
 # SEGURIDAD
 # ============================================================
 def update_safety(px):
-    d = px.get_distance()
+    distance = round(px.ultrasonic.read(), 2)
 
     # Filtro de valores basura
-    if d <= 0 or d > 400:   # ajusta 400 si tu sensor tiene otro rango
+    if distance <= 0 or distance >= 400:   # ajusta 400 si tu sensor tiene otro rango
         d = 999
+    else:
+        d = distance
+    return d
 
-    return {
-        "distance": d,
-        "timestamp": time.time(),
-        "raw": d
-    }
+def apply_safety(px, estado, accion):
+    d = update_safety(px)
 
-def apply_safety(px, safety, estado, accion):
-    d = safety.get("distance", 999)
-
-    # --- 1. Si no hay detección válida, el ultrasonido manda ---
-    det, raw = get_detection(px)
-    no_vision = not det.valid_for_search
-
-    # --- 2. Si estamos avanzando recto sin visión → SCAPE inmediato ---
-    if no_vision and accion == Cmd.FORWARD_SLOW:
-        log_event(px, estado, f"[SEC] SCAPE por avance sin visión (d={d}cm)")
-        return estado, Cmd.SCAPE
-
-    # --- 3. Si distancia es crítica (< 20 cm) → SCAPE siempre ---
-    if d < 20:
-        log_event(px, estado, f"[SEC] CRITICAL: objeto a {d} cm → SCAPE")
-        return estado, Cmd.SCAPE
-
-    # --- 4. Si distancia es peligrosa (< 30 cm) y no vemos la baliza → SCAPE ---
-    if d < 30 and no_vision:
-        log_event(px, estado, f"[SEC] DANGER: sin visión y objeto a {d} cm → SCAPE")
-        return estado, Cmd.SCAPE
+    if d < DANGER_DISTANCE:
+        log_event(px, estado, f"[SEC] DANGER: objeto a {d} cm → SCAPE")
+        return Estado.IDLE, Cmd.SCAPE
 
     return estado, accion
 
@@ -574,7 +555,7 @@ def state_search(px, estado, accion, robot_state):
     # ------------------------------------------------------------
     # Seguridad
     # ------------------------------------------------------------
-    estado, accion = apply_safety(px, update_safety(px), estado, accion)
+    estado, accion = apply_safety(px, estado, accion)
     if estado != Estado.SEARCH:
         return estado, accion
 
