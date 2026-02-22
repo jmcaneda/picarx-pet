@@ -1,10 +1,24 @@
 === Start of pet02.log ===
-[11:15:32] [Estado.CHK] [CHK] ==============================
-[11:15:32] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[11:15:32] [Estado.CHK] [CHK] ==============================
-[11:15:32] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[11:15:32] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[11:15:32] [Estado.CHK] [CHK] State wheels:     0
-[11:15:32] [Estado.CHK] [CHK] ==============================
-[11:15:32] [Estado.IDLE] Inicio del sistema
-[11:15:32] [Estado.IDLE] Entrando en IDLE
+[11:18:18] [Estado.CHK] [CHK] ==============================
+[11:18:18] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[11:18:18] [Estado.CHK] [CHK] ==============================
+[11:18:18] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[11:18:18] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[11:18:18] [Estado.CHK] [CHK] State wheels:     0
+[11:18:18] [Estado.CHK] [CHK] ==============================
+[11:18:18] [Estado.IDLE] Inicio del sistema
+[11:18:18] [Estado.IDLE] Entrando en IDLE
+[11:18:18] [Estado.IDLE] Det valid_for_search=True is_centered=False n=4 w=80 h=132 area=10560 x=236 y=266 error_x=-84 error_y=26
+[11:18:18] [Estado.RESET] Ejecutado: STOP
+[11:18:18] [Estado.RESET] Entrando en RESET
+[11:18:18] [Estado.SEARCH] Ejecutado: STOP
+[11:18:18] [Estado.SEARCH] Entrando en SEARCH
+[11:18:19] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[11:18:19] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=1 w=84 h=124 area=10416 x=302 y=266 error_x=-18 error_y=26
+[11:18:19] [Estado.RECENTER] Ejecutado: STOP
+[11:18:19] [Estado.RECENTER] Entrando en RECENTER
+[11:18:19] [Estado.RECENTER] Ejecutado: STOP
+[11:18:19] [Estado.RECENTER] px.last_pan=-8 Alineado ✔ (cuerpo)
+[11:18:19] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[11:18:21] [Estado.TRACK] [SEC] CRITICAL: objeto a -2 cm → SCAPE
+[11:18:21] [Estado.TRACK] Ejecutado: SCAPE

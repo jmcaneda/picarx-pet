@@ -424,7 +424,7 @@ def apply_safety(px, safety, estado, accion):
     no_vision = not det.valid_for_search
 
     # --- 2. Si estamos avanzando recto sin visión → SCAPE inmediato ---
-    if no_vision and accion in (Cmd.FORWARD_SLOW, Cmd.FORWARD_FAST):
+    if no_vision and accion == Cmd.FORWARD_SLOW:
         log_event(px, estado, f"[SEC] SCAPE por avance sin visión (d={d}cm)")
         return estado, Cmd.SCAPE
 
@@ -589,7 +589,7 @@ def state_search(px, estado, accion, robot_state):
 
     # 🔥 PLAN B: búsqueda activa si llevamos mucho sin ver nada
     if robot_state.search_no_det_frames > 20:
-        # Giro circular suave
+        robot_state.search_no_det_frames = 0
         px.set_dir_servo_angle(20)
         return Estado.SEARCH, Cmd.FORWARD_SLOW
 
