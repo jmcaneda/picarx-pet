@@ -703,7 +703,7 @@ def state_track(px, estado, accion, robot_state):
     # Cooldown tras RECENTER
     if robot_state.just_recentered:
         if time.time() - robot_state.just_recentered < 0.3:
-            return Estado.TRACK, accion
+            return Estado.TRACK, Cmd.FORWARD_SLOW
         robot_state.just_recentered = None
 
     # 0. Si no hay detección → SEARCH
@@ -712,7 +712,7 @@ def state_track(px, estado, accion, robot_state):
         if robot_state.track_lost_frames >= 3:
             log_det(px, Estado.TRACK, det, raw, prefix="Perdida baliza → SEARCH | ")
             return Estado.SEARCH, Cmd.STOP
-        return Estado.TRACK, accion
+        return Estado.TRACK, Cmd.FORWARD_SLOW
     robot_state.track_lost_frames = 0
 
     # 1. Si está cerca → NEAR
@@ -721,21 +721,18 @@ def state_track(px, estado, accion, robot_state):
         if robot_state.near_enter_frames >= 3:
             log_det(px, Estado.TRACK, det, raw, prefix="NEAR confirmado (3 frames) → NEAR | ")
             return Estado.NEAR, Cmd.STOP
-        return Estado.TRACK, accion
+        return Estado.TRACK, Cmd.FORWARD_SLOW
     robot_state.near_enter_frames = 0
 
     # 2. Corrección lateral proporcional
-    if abs(det.error_x) > 80:
-        # Giro fuerte sin avanzar
-        k = min(abs(det.error_x) / 160, 1.0)
-        angle = 15 + k * 15  # 15–30°
-        px.set_dir_servo_angle(angle if det.error_x < 0 else -angle)
-        return Estado.TRACK, (Cmd.WHEELS_TURN_LEFT if det.error_x < 0 else Cmd.WHEELS_TURN_RIGHT)
-
     if abs(det.error_x) > 40:
-        # Giro suave con avance
+        # Normalizar error_x a rango 0–1
         k = min(abs(det.error_x) / 160, 1.0)
-        angle = 10 + k * 10  # 10–20°
+
+        # Ángulo dinámico entre 10° y 30°
+        angle = 10 + k * 20
+
+        # Aplicar giro suave
         px.set_dir_servo_angle(angle if det.error_x < 0 else -angle)
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
