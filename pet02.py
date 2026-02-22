@@ -122,15 +122,11 @@ class Det:
             return False
 
         # 1. Área realmente grande (cerca de verdad)
-        if self.area < 22000:
+        if self.area < 12000:
             return False
 
         # 2. Centrado horizontal más estricto
         if abs(self.error_x) > 40:
-            return False
-
-        # 3. Centrado vertical razonable
-        if abs(self.error_y) > 100:
             return False
 
         return True
