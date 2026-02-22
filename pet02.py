@@ -466,7 +466,7 @@ def apply_safety(px, d, estado, accion):
             log_event(px, estado, f"[SEC] CRITICAL: object < {d} cm")
 
         px.last_sec = "critical"
-        return estado, Cmd.STOP
+        return estado, Cmd.SCAPE
 
     return estado, accion
 
@@ -739,7 +739,6 @@ def state_track(px, estado, accion, robot_state):
     # 3. Avance recto si está centrado
     px.set_dir_servo_angle(0)
     return Estado.TRACK, Cmd.FORWARD_SLOW
-
 
 def state_near(px, estado, accion, robot_state):
     det, raw = get_detection(px)
