@@ -122,7 +122,7 @@ class Det:
             return False
 
         # 1. Área realmente grande (cerca de verdad)
-        if self.area < 12000:
+        if self.area < 18000:
             return False
 
         # 2. Centrado horizontal más estricto
