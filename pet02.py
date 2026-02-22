@@ -410,6 +410,11 @@ def execute_motion(px, estado, cmd: Cmd, test_mode=False):
 # ============================================================
 def update_safety(px):
     d = px.get_distance()
+
+    # Filtro de valores basura
+    if d <= 0 or d > 400:   # ajusta 400 si tu sensor tiene otro rango
+        d = 999
+
     return {
         "distance": d,
         "timestamp": time.time(),
@@ -817,8 +822,6 @@ def pet_mode(px, test_mode):
             estado, accion = state_track(px, estado, accion, state)
         elif estado == Estado.NEAR:
             estado, accion = state_near(px, estado, accion, state)
-
-        estado, accion = apply_safety(px, update_safety(px), estado, accion)
 
         execute_motion(px, estado, accion, test_mode)
 
