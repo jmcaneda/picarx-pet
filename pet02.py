@@ -694,11 +694,10 @@ def state_track(px, estado, accion, robot_state):
 
     # Asegurar servo centrado al entrar en TRACK
     if px.last_state != Estado.TRACK:
-        px.set_cam_pan_angle(0)
-        px.set_cam_tilt_angle(0)
+        # No tocar la cámara al entrar en TRACK 
+        # Solo centrar el servo de dirección
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
-        px.last_pan = 0
         log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle} servo_pan={px.last_pan}")
         px.last_state = Estado.TRACK
 
