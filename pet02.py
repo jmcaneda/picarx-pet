@@ -665,9 +665,8 @@ def state_recenter(px, estado, accion, robot_state):
             return Estado.RECENTER, Cmd.CAM_PAN_LEFT
 
     # ------------------------------------------------------------
-    # 4. Centrado → acumular frames
+    # 3. PAN en límite
     # ------------------------------------------------------------
-    # 🔥 Si la cámara está en el límite y la baliza sigue visible
     if (px.last_pan == PAN_MAX or px.last_pan == PAN_MIN) and det.valid_for_search:
 
         if abs(det.error_x) > 120 and det.area > 12000:
@@ -675,15 +674,27 @@ def state_recenter(px, estado, accion, robot_state):
             robot_state.just_recentered = time.time()
             return Estado.RECENTER, Cmd.BACKWARD
 
-        # Caso normal → pasar a TRACK
-        log_event(px, estado, "PAN en límite → pasar a TRACK para corregir con ruedas")
+        # 🔥 MEJORA: centrar cámara ANTES de pasar a TRACK
+        log_event(px, estado, "PAN en límite → centrar cámara y pasar a TRACK")
+        px.set_cam_pan_angle(0)
+        px.last_pan = 0
+
         robot_state.just_recentered = time.time()
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
+    # ------------------------------------------------------------
+    # 4. Centrado normal
+    # ------------------------------------------------------------
     robot_state.recenter_centered_frames += 1
 
     if robot_state.recenter_centered_frames >= 2:
         log_event(px, estado, f"px.last_pan={px.last_pan} Alineado ✔ (cuerpo)")
+
+        # 🔥 MEJORA: centrar cámara ANTES de pasar a TRACK
+        px.set_cam_pan_angle(0)
+        px.last_pan = 0
+        log_event(px, estado, "[RECENTER] Cámara centrada antes de TRACK")
+
         robot_state.just_recentered = time.time()
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
@@ -735,8 +746,10 @@ def state_track(px, estado, accion, robot_state):
         angle = 10 + k * 20
 
         # Aplicar giro suave
-        px.set_dir_servo_angle(angle if det.error_x < 0 else -angle)
-        px.dir_current_angle = angle if det.error_x < 0 else -angle
+        # px.set_dir_servo_angle(angle if det.error_x < 0 else -angle)
+        # px.dir_current_angle = angle if det.error_x < 0 else -angle
+        px.set_dir_servo_angle(px.last_pan)
+        px.dir_current_angle = px.last_pan
         log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
