@@ -619,7 +619,7 @@ def state_recenter(px, estado, accion, robot_state):
         px.last_state = estado
 
     # Seguridad
-    estado, accion = apply_safety(px, update_safety(px), estado, accion)
+    estado, accion = apply_safety(px, estado, accion)
     if estado != Estado.RECENTER:
         return estado, accion
 
@@ -762,7 +762,7 @@ def state_near(px, estado, accion, robot_state):
         px.last_state = Estado.NEAR
 
     # Seguridad
-    estado, accion = apply_safety(px, update_safety(px), estado, accion)
+    estado, accion = apply_safety(px, estado, accion)
     if estado != Estado.NEAR:
         return estado, accion
 
