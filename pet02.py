@@ -764,7 +764,7 @@ def state_track(px, estado, accion, robot_state):
         px.set_dir_servo_angle(target_angle)
         px.dir_current_angle = target_angle
         # log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
-        print_dashboard(px, estado, accion, dist, state)
+        px.set_dir_servo_angle(target_angle)
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
     # 3. Avance recto si está centrado
