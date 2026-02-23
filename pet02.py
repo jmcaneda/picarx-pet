@@ -169,6 +169,11 @@ class RobotState:
 
         # Cooldown tras RECENTER
         self.just_recentered = None
+
+        # Animación YES
+        self.yes_step = 0          # En qué paso de la animación vamos
+        self.yes_next_time = 0.0   # Cuándo toca ejecutar el siguiente paso
+        self.near_did_yes = False  # Para que no se queje si lo llamas antes
         
 # ============================================================
 # INICIALIZACIÓN
@@ -480,25 +485,42 @@ def log_det(px, estado, det, raw, prefix=""):
     )
     log_event(px, estado, msg)
 
-def do_yes(px, estado=Estado.NEAR):
-    
-    try:
-        log_event(px, estado, "Ejecutando gesto de 'SI' (tilt arriba-abajo)")
-        for _ in range(2):
-            # Gesto hacia arriba
-            px.set_cam_tilt_angle(TILT_MAX)
-            time.sleep(0.12)
+def do_yes(px, robot_state):
+    """
+    Ejecuta el gesto de 'sí' de forma NO bloqueante.
+    Devuelve True cuando la animación ha terminado por completo.
+    """
+    current_time = time.time()
 
-            # Gesto hacia abajo
-            px.set_cam_tilt_angle(TILT_MIN)
-            time.sleep(0.12)
+    # Si aún no ha pasado el tiempo necesario para el siguiente movimiento, seguimos esperando
+    if current_time < robot_state.yes_next_time:
+        return False 
 
-            # Volver al centro
-            px.set_cam_tilt_angle(0)
-            time.sleep(0.12)
+    # Definimos la secuencia de ángulos: (Arriba, Abajo, Centro) x 2
+    secuencia = [
+        TILT_MAX, TILT_MIN, 0,
+        TILT_MAX, TILT_MIN, 0
+    ]
 
-    except Exception as e:
-        print(f"[WARN] Error en gesto de 'sí': {e}")
+    # Si todavía quedan pasos en la animación
+    if robot_state.yes_step < len(secuencia):
+        angulo = secuencia[robot_state.yes_step]
+        px.set_cam_tilt_angle(angulo)
+        
+        # Preparamos el temporizador para el siguiente frame (ej. 0.15 seg de pausa)
+        robot_state.yes_next_time = current_time + 0.15
+        robot_state.yes_step += 1
+        
+        # Opcional: Log solo en el primer paso para no saturar
+        if robot_state.yes_step == 1:
+            log_event(px, px.estado_actual, "Iniciando gesto de 'SI' (no bloqueante)")
+            
+        return False # La animación sigue en curso
+
+    else:
+        # La animación ha terminado, reseteamos las variables por si queremos volver a usarla
+        robot_state.yes_step = 0
+        return True
 
 
 # ============================================================
@@ -546,7 +568,7 @@ def state_search(px, estado, accion, robot_state):
     # Seguridad
     # ------------------------------------------------------------
     estado, accion = apply_safety(px, estado, accion)
-    if estado != Estado.SEARCH:
+    if accion == Cmd.SCAPE:
         return estado, accion
 
     # ------------------------------------------------------------
@@ -608,9 +630,11 @@ def state_recenter(px, estado, accion, robot_state):
         log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
         px.last_state = estado
 
+    # ------------------------------------------------------------
     # Seguridad
+    # ------------------------------------------------------------
     estado, accion = apply_safety(px, estado, accion)
-    if estado != Estado.RECENTER:
+    if accion == Cmd.SCAPE:
         return estado, accion
 
     # ------------------------------------------------------------
@@ -689,6 +713,13 @@ def state_track(px, estado, accion, robot_state):
             return Estado.TRACK, Cmd.FORWARD_SLOW
         robot_state.just_recentered = None
 
+    # ------------------------------------------------------------
+    # Seguridad
+    # ------------------------------------------------------------
+    estado, accion = apply_safety(px, estado, accion)
+    if accion == Cmd.SCAPE:
+        return estado, accion
+
     # 0. Si no hay detección → SEARCH
     if not det.valid_for_search:
         robot_state.track_lost_frames += 1
@@ -751,9 +782,11 @@ def state_near(px, estado, accion, robot_state):
 
         px.last_state = Estado.NEAR
 
+    # ------------------------------------------------------------
     # Seguridad
+    # ------------------------------------------------------------
     estado, accion = apply_safety(px, estado, accion)
-    if estado != Estado.NEAR:
+    if accion == Cmd.SCAPE:
         return estado, accion
 
     # 1. Pérdida de baliza
@@ -794,8 +827,13 @@ def state_near(px, estado, accion, robot_state):
 
     # 5. Gesto de "sí"
     if not robot_state.near_did_yes:
-        robot_state.near_did_yes = True
-        do_yes(px, estado)
+        terminado = do_yes(px, robot_state)
+        
+        if terminado:
+            log_event(px, estado, "Gesto de 'SI' finalizado")
+            robot_state.near_did_yes = True
+            
+        # Mientras anima (o al terminar), seguimos devolviendo STOP para que no avance
         return Estado.NEAR, Cmd.STOP
 
     # 6. Estado estable
