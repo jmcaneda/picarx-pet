@@ -68,6 +68,7 @@ class Cmd(Enum):
     CAM_PAN_RIGHT = 10
     CAM_TILT_TOP = 20
     CAM_TILT_BOTTOM = 30
+    KEEP_ALIVE = 99 # Comando ficticio para mantener maniobra activa sin cambiar estado
 
 class Det:
     """
@@ -290,11 +291,11 @@ def scape_danger(px, robot_state, speed=SLOW_SPEED):
         
         px.backward(speed)
         robot_state.is_escaping = True
-        robot_state.escape_end_time = time.time() + 1.0
+        robot_state.escape_end_time = time.time() + 1.5
         return False
 
     # Si ya pasó el tiempo, paramos
-    if time.time() > robot_state.escape_end_time:
+    if time.time() >= robot_state.escape_end_time:
         px.stop()
         robot_state.is_escaping = False
         return True # Maniobra terminada
@@ -412,7 +413,9 @@ def execute_motion(px, estado, cmd: Cmd, robot_state, test_mode=False):
 
         elif cmd == Cmd.CAM_TILT_BOTTOM:
             tilt_bottom(px)
-
+        elif cmd == Cmd.KEEP_ALIVE:
+            # No hacemos nada, solo mantenemos la maniobra activa
+            pass
         else:
             log_event(px, Estado.ERR, f"Comando desconocido: {cmd}")
             stop(px)
@@ -442,16 +445,21 @@ def update_safety(px):
 def apply_safety(px, estado, accion, robot_state):
     d = update_safety(px)
 
-    # Si ya estamos en medio de un escape, continuamos
+    # Si estamos escapando, mandamos un comando especial o ignoramos execute_motion
     if robot_state.is_escaping:
         terminado = scape_danger(px, robot_state)
         if not terminado:
-            return estado, Cmd.STOP # El comando de movimiento ya lo dio scape_danger
-            
+            # Importante: devolvemos un comando que NO sea STOP 
+            # para que execute_motion no apague los motores
+            return estado, Cmd.KEEP_ALIVE 
+        else:
+            log_event(px, estado, "[SEC] Objeto evadido")
+            return Estado.SEARCH, Cmd.STOP
+
     if d < DANGER_DISTANCE:
         log_event(px, estado, f"[SEC] DANGER: {d} cm → Iniciando SCAPE")
         scape_danger(px, robot_state)
-        return estado, Cmd.STOP
+        return estado, Cmd.KEEP_ALIVE
 
     return estado, accion
 
