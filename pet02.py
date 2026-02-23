@@ -601,7 +601,7 @@ def state_search(px, estado, accion, robot_state):
     # ------------------------------------------------------------
     # Seguridad
     # ------------------------------------------------------------
-    estado, accion = apply_safety(px, estado, accion)
+    estado, accion = apply_safety(px, estado, accion, state)
     if accion == Cmd.SCAPE:
         return estado, accion
 
@@ -667,7 +667,7 @@ def state_recenter(px, estado, accion, robot_state):
     # ------------------------------------------------------------
     # Seguridad
     # ------------------------------------------------------------
-    estado, accion = apply_safety(px, estado, accion)
+    estado, accion = apply_safety(px, estado, accion, state)
     if accion == Cmd.SCAPE:
         return estado, accion
 
@@ -750,7 +750,7 @@ def state_track(px, estado, accion, robot_state):
     # ------------------------------------------------------------
     # Seguridad
     # ------------------------------------------------------------
-    estado, accion = apply_safety(px, estado, accion)
+    estado, accion = apply_safety(px, estado, accion, state)
     if accion == Cmd.SCAPE:
         return estado, accion
 
@@ -817,7 +817,7 @@ def state_near(px, estado, accion, robot_state):
     # ------------------------------------------------------------
     # Seguridad
     # ------------------------------------------------------------
-    estado, accion = apply_safety(px, estado, accion)
+    estado, accion = apply_safety(px, estado, accion, state)
     if accion == Cmd.SCAPE:
         return estado, accion
 
