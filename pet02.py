@@ -186,10 +186,8 @@ def init_camera(px):
 
     time.sleep(0.5)
 
-
 def init_internal_state(px):
     return Estado.IDLE, Cmd.STOP
-
 
 def init_flags(px):
     # Logging
@@ -262,19 +260,12 @@ def turn_left(px, speed=TURN_SPEED):
     # Mantener el servo girado continuamente
     px.set_dir_servo_angle(SERVO_ANGLE_MIN)
     px.dir_current_angle = SERVO_ANGLE_MIN
-    log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
     px.forward(speed)
-    # Sin STOP, sin servo=0, sin sleeps.
-    # La FSM decidirá cuándo parar o centrar.
-
 
 def turn_right(px, speed=TURN_SPEED):
     px.set_dir_servo_angle(SERVO_ANGLE_MAX)
     px.dir_current_angle = SERVO_ANGLE_MAX
-    log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
     px.forward(speed)
-    # Igual que turn_left: giro continuo real.
-
 
 # ------------------------------------------------------------
 # SCAPE seguro (solo si se usa)
@@ -284,7 +275,6 @@ def scape_danger(px, speed=SLOW_SPEED):
     # Retroceso suave sin giros bruscos
     px.set_dir_servo_angle(0)
     px.dir_current_angle = 0
-    log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
     px.backward(speed)
     time.sleep(0.3)
     px.stop()
@@ -432,7 +422,7 @@ def apply_safety(px, estado, accion):
 
     if d < DANGER_DISTANCE:
         log_event(px, estado, f"[SEC] DANGER: objeto a {d} cm → SCAPE")
-        return Estado.IDLE, Cmd.SCAPE
+        return estado, Cmd.SCAPE
 
     return estado, accion
 
