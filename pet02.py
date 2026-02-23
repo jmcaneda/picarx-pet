@@ -175,6 +175,10 @@ class RobotState:
         self.yes_next_time = 0.0   # Cuándo toca ejecutar el siguiente paso
         self.near_did_yes = False  # Para que no se queje si lo llamas antes
         
+        # SCAPE
+        self.is_escaping = False
+        self.escape_end_time = 0
+
 # ============================================================
 # INICIALIZACIÓN
 # ============================================================
@@ -276,13 +280,22 @@ def turn_right(px, speed=TURN_SPEED):
 # SCAPE seguro (solo si se usa)
 # ------------------------------------------------------------
 
-def scape_danger(px, speed=SLOW_SPEED):
-    # Retroceso suave sin giros bruscos
-    px.set_dir_servo_angle(0)
-    px.dir_current_angle = 0
-    px.backward(speed)
-    time.sleep(0.3)
-    px.stop()
+def scape_danger(px, robot_state, speed=SLOW_SPEED):
+    # Si no estamos escapando, iniciamos la maniobra
+    if not robot_state.is_escaping:
+        px.set_dir_servo_angle(0)
+        px.backward(speed)
+        robot_state.is_escaping = True
+        robot_state.escape_end_time = time.time() + 0.6  # Retroceder durante 0.6s
+        return False # Aún no termina
+
+    # Si ya pasó el tiempo, paramos
+    if time.time() > robot_state.escape_end_time:
+        px.stop()
+        robot_state.is_escaping = False
+        return True # Maniobra terminada
+    
+    return False # Aún en maniobra
 
 # ============================================================
 # MOVIMIENTOS DE CÁMARA SEGUROS
@@ -381,7 +394,7 @@ def execute_motion(px, estado, cmd: Cmd, test_mode=False):
             backward(px)
 
         elif cmd == Cmd.SCAPE:
-            scape_danger(px, TURN_SPEED)
+            scape_danger(px, robot_state, TURN_SPEED)
 
         # --- Cámara ---
         elif cmd == Cmd.CAM_PAN_LEFT:
@@ -422,12 +435,19 @@ def update_safety(px):
         d = distance
     return d
 
-def apply_safety(px, estado, accion):
+def apply_safety(px, estado, accion, robot_state):
     d = update_safety(px)
 
+    # Si ya estamos en medio de un escape, continuamos
+    if robot_state.is_escaping:
+        terminado = scape_danger(px, robot_state)
+        if not terminado:
+            return estado, Cmd.STOP # El comando de movimiento ya lo dio scape_danger
+            
     if d < DANGER_DISTANCE:
-        log_event(px, estado, f"[SEC] DANGER: objeto a {d} cm → SCAPE")
-        return estado, Cmd.SCAPE
+        log_event(px, estado, f"[SEC] DANGER: {d} cm → Iniciando SCAPE")
+        scape_danger(px, robot_state)
+        return estado, Cmd.STOP
 
     return estado, accion
 
@@ -522,6 +542,20 @@ def do_yes(px, robot_state):
         robot_state.yes_step = 0
         return True
 
+def print_dashboard(px, estado, accion, dist, state):
+    # Limpiar terminal (funciona en Linux/Raspberry Pi)
+    os.system('clear')
+    print("="*45)
+    print(f" 🐾 PICAR-X DASHBOARD | Estado: {estado.name}")
+    print("="*45)
+    print(f" MOVIMIENTO: {accion.name}")
+    print(f" DISTANCIA:  {dist} cm " + ("⚠️ DANGER" if dist < DANGER_DISTANCE else "✅ SAFE"))
+    print("-"*45)
+    print(f" SERVO DIR:  {px.dir_current_angle:>5.1f}°")
+    print(f" CAM PAN:    {px.last_pan:>5.1f}°")
+    print(f" ESCAPANDO:  {state.is_escaping}")
+    print("="*45)
+    print(" Presiona Ctrl+C para detener")
 
 # ============================================================
 # ESTADOS
@@ -738,20 +772,18 @@ def state_track(px, estado, accion, robot_state):
         return Estado.TRACK, Cmd.FORWARD_SLOW
     robot_state.near_enter_frames = 0
 
-    # 2. Corrección lateral proporcional
-    if abs(det.error_x) > 80:
-        log_det(px, Estado.TRACK, det, raw, prefix="Corrección lateral proporcional | ")
-        # Normalizar error_x a rango 0–1
-        k = min(abs(det.error_x) / 160, 1.0)
-
-        # Ángulo dinámico entre 10° y 30°
-        angle = 10 + k * 20
-
-        # Aplicar giro suave
-        # px.set_dir_servo_angle(angle if det.error_x < 0 else -angle)
-        # px.dir_current_angle = angle if det.error_x < 0 else -angle
-        px.set_dir_servo_angle(px.last_pan)
-        px.dir_current_angle = px.last_pan
+    # 2. Corrección lateral proporcional (USA EL ERROR DE LA CÁMARA)
+    if abs(det.error_x) > 40:
+        # Mapeamos el error de la cámara (-320 a 320) al ángulo del servo (-30 a 30)
+        # Un factor de 0.1 suele funcionar bien: 100px de error = 10 grados de giro
+        KP = 0.15 
+        target_angle = det.error_x * KP
+        
+        # Limitamos el ángulo para no forzar el servo
+        target_angle = max(min(target_angle, SERVO_ANGLE_MAX), SERVO_ANGLE_MIN)
+        
+        px.set_dir_servo_angle(target_angle)
+        px.dir_current_angle = target_angle
         log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
@@ -864,21 +896,43 @@ def pet_mode(px, test_mode):
 
     while True:
         px.estado_actual = estado
+        distancia_real = update_safety(px)
 
-        if estado == Estado.IDLE:
-            estado, accion = state_idle(px)
-        elif estado == Estado.RESET:
-            estado, accion = state_reset(px)
-        elif estado == Estado.SEARCH:
-            estado, accion = state_search(px, estado, accion, state)
-        elif estado == Estado.RECENTER:
-            estado, accion = state_recenter(px, estado, accion, state)
-        elif estado == Estado.TRACK:
-            estado, accion = state_track(px, estado, accion, state)
-        elif estado == Estado.NEAR:
-            estado, accion = state_near(px, estado, accion, state)
+        # 1. CAPA DE SEGURIDAD PRIORITARIA (Escape No Bloqueante)
+        if state.is_escaping:
+            terminado = scape_danger(px, state)
+            accion = Cmd.STOP # Para el log de execute_motion
+            if terminado:
+                log_event(px, estado, "[SEC] Objeto evadido")
+                estado = Estado.SEARCH # Tras escapar, buscamos de nuevo
+        
+        # 2. EVALUACIÓN NORMAL (Solo si no hay peligro inmediato)
+        elif distancia_real < DANGER_DISTANCE:
+            # Iniciamos maniobra de escape
+            log_event(px, estado, f"[SEC] Peligro a {distancia_real}cm")
+            scape_danger(px, state)
+            accion = Cmd.STOP
+        else:
+            # Lógica normal de tu FSM
+            if estado == Estado.IDLE:
+                estado, accion = state_idle(px)
+            elif estado == Estado.RESET:
+                estado, accion = state_reset(px)
+            elif estado == Estado.SEARCH:
+                estado, accion = state_search(px, estado, accion, state)
+            elif estado == Estado.RECENTER:
+                estado, accion = state_recenter(px, estado, accion, state)
+            elif estado == Estado.TRACK:
+                estado, accion = state_track(px, estado, accion, state)
+            elif estado == Estado.NEAR:
+                estado, accion = state_near(px, estado, accion, state)
 
+        # 3. EJECUCIÓN Y VISUALIZACIÓN
         execute_motion(px, estado, accion, test_mode)
+        
+        # Imprimir el dashboard para que tú veas qué pasa
+        if not test_mode:
+            print_dashboard(px, estado, accion, distancia_real, state)
 
         time.sleep(0.1)
 

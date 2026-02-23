@@ -1,405 +1,184 @@
 === Start of pet02.log ===
-[09:50:13] [Estado.CHK] [CHK] ==============================
-[09:50:13] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[09:50:13] [Estado.CHK] [CHK] ==============================
-[09:50:13] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[09:50:13] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[09:50:13] [Estado.CHK] [CHK] State wheels:     0
-[09:50:13] [Estado.CHK] [CHK] ==============================
-[09:50:13] [Estado.IDLE] Inicio del sistema
-[09:50:13] [Estado.IDLE] Entrando en IDLE
-[09:50:13] [Estado.RESET] Ejecutado: STOP
-[09:50:13] [Estado.RESET] Entrando en RESET
-[09:50:13] [Estado.RESET] [ENTER] servo_angle=0
-[09:50:13] [Estado.SEARCH] Ejecutado: STOP
-[09:50:14] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=3 w=56 h=48 area=2688 x=612 y=240 error_x=292 error_y=0
-[09:50:14] [Estado.SEARCH] Entrando en SEARCH
-[09:50:14] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:50:14] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=4 w=108 h=108 area=11664 x=326 y=278 error_x=6 error_y=38
-[09:50:14] [Estado.RECENTER] Ejecutado: STOP
-[09:50:14] [Estado.RECENTER] Entrando en RECENTER
-[09:50:14] [Estado.RECENTER] [ENTER] servo_angle=0
-[09:50:14] [Estado.RECENTER] Ejecutado: STOP
-[09:50:15] [Estado.RECENTER] px.last_pan=24 Alineado ✔ (cuerpo)
-[09:50:15] [Estado.RECENTER] [RECENTER] Cámara centrada antes de TRACK
-[09:50:15] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:15] [Estado.TRACK] [ENTER] servo_angle=0 servo_pan=0
-[09:50:15] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:15] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=4 w=60 h=84 area=5040 x=586 y=258 error_x=266 error_y=18
-[09:50:15] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:15] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:15] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=56 h=80 area=4480 x=576 y=260 error_x=256 error_y=20
-[09:50:15] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:15] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:15] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=56 h=76 area=4256 x=572 y=262 error_x=252 error_y=22
-[09:50:15] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:15] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:15] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=60 h=92 area=5520 x=566 y=254 error_x=246 error_y=14
-[09:50:15] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:15] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:15] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=56 h=80 area=4480 x=560 y=256 error_x=240 error_y=16
-[09:50:15] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:15] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:15] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=60 h=52 area=3120 x=558 y=242 error_x=238 error_y=2
-[09:50:15] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:15] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:15] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=3 w=60 h=52 area=3120 x=554 y=238 error_x=234 error_y=-2
-[09:50:15] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:15] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:16] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=60 h=52 area=3120 x=550 y=238 error_x=230 error_y=-2
-[09:50:16] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:16] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:16] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=60 h=68 area=4080 x=546 y=238 error_x=226 error_y=-2
-[09:50:16] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:16] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:16] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=60 h=56 area=3360 x=538 y=244 error_x=218 error_y=4
-[09:50:16] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:16] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:16] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=60 h=108 area=6480 x=530 y=266 error_x=210 error_y=26
-[09:50:16] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:16] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:16] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=3 w=64 h=56 area=3584 x=528 y=240 error_x=208 error_y=0
-[09:50:16] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:16] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:16] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=64 h=116 area=7424 x=520 y=258 error_x=200 error_y=18
-[09:50:16] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:16] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:16] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=64 h=120 area=7680 x=516 y=272 error_x=196 error_y=32
-[09:50:16] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:16] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:16] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=64 h=100 area=6400 x=512 y=266 error_x=192 error_y=26
-[09:50:16] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:16] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:16] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=64 h=100 area=6400 x=504 y=262 error_x=184 error_y=22
-[09:50:16] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:16] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:16] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=68 h=108 area=7344 x=502 y=250 error_x=182 error_y=10
-[09:50:16] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:16] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:17] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=68 h=112 area=7616 x=494 y=264 error_x=174 error_y=24
-[09:50:17] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:17] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:17] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=68 h=104 area=7072 x=490 y=264 error_x=170 error_y=24
-[09:50:17] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:17] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:17] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=72 h=112 area=8064 x=484 y=268 error_x=164 error_y=28
-[09:50:17] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:17] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:17] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=72 h=116 area=8352 x=476 y=262 error_x=156 error_y=22
-[09:50:17] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:17] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:17] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=72 h=120 area=8640 x=468 y=268 error_x=148 error_y=28
-[09:50:17] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:17] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:17] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=72 h=120 area=8640 x=464 y=260 error_x=144 error_y=20
-[09:50:17] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:17] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:17] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=3 w=76 h=120 area=9120 x=458 y=260 error_x=138 error_y=20
-[09:50:17] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:17] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:17] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=72 h=132 area=9504 x=452 y=266 error_x=132 error_y=26
-[09:50:17] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:17] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:17] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=76 h=152 area=11552 x=446 y=272 error_x=126 error_y=32
-[09:50:17] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:17] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:18] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=3 w=80 h=128 area=10240 x=440 y=268 error_x=120 error_y=28
-[09:50:18] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:18] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:18] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=80 h=136 area=10880 x=432 y=268 error_x=112 error_y=28
-[09:50:18] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:18] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:18] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=80 h=140 area=11200 x=424 y=262 error_x=104 error_y=22
-[09:50:18] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:18] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:18] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=84 h=152 area=12768 x=418 y=280 error_x=98 error_y=40
-[09:50:18] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:18] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:18] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=84 h=160 area=13440 x=414 y=268 error_x=94 error_y=28
-[09:50:18] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:18] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:18] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=84 h=152 area=12768 x=406 y=272 error_x=86 error_y=32
-[09:50:18] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:18] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:18] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=84 h=144 area=12096 x=402 y=272 error_x=82 error_y=32
-[09:50:18] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:18] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:18] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:18] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:18] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:18] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:18] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:18] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:19] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:19] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:19] [Estado.TRACK] [ENTER] servo_angle=0
-[09:50:19] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:50:19] [Estado.TRACK] NEAR confirmado (3 frames) → NEAR | valid_for_search=True valid_for_near=True is_centered=True n=2 w=100 h=192 area=19200 x=338 y=284 error_x=18 error_y=44
-[09:50:19] [Estado.NEAR] Ejecutado: STOP
-[09:50:19] [Estado.NEAR] Entrando en NEAR
-[09:50:19] [Estado.NEAR] [ENTER] servo_angle=0
-[09:50:19] [Estado.NEAR] Ejecutado: BACKWARD
-[09:50:19] [Estado.NEAR] Ejecutado: STOP
-[09:50:19] [Estado.NEAR] Ejecutando gesto de 'SI' (tilt arriba-abajo)
-[09:50:20] [Estado.NEAR] Ejecutado: STOP
-[09:53:28] [Estado.NEAR] Ejecutado: CAM_PAN_LEFT
-[09:53:29] [Estado.NEAR] Ejecutado: STOP
-[09:53:29] [Estado.NEAR] Salida NEAR confirmada (5 frames) → TRACK | valid_for_search=True valid_for_near=False is_centered=True n=1 w=44 h=32 area=1408 x=282 y=276 error_x=-38 error_y=36
-[09:53:29] [Estado.TRACK] Ejecutado: STOP
-[09:53:29] [Estado.TRACK] [ENTER] servo_angle=0 servo_pan=-4
-[09:53:29] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:29] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:29] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:29] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:29] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[09:53:29] [Estado.SEARCH] Ejecutado: STOP
-[09:53:30] [Estado.SEARCH] Entrando en SEARCH
-[09:53:30] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:30] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[09:53:30] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:31] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:32] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[09:53:32] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:32] [Estado.SEARCH] Ejecutado: STOP
-[09:53:32] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:32] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=3 w=120 h=36 area=4320 x=292 y=270 error_x=-28 error_y=30
-[09:53:32] [Estado.RECENTER] Ejecutado: STOP
-[09:53:32] [Estado.RECENTER] Entrando en RECENTER
-[09:53:32] [Estado.RECENTER] [ENTER] servo_angle=0
-[09:53:32] [Estado.RECENTER] Ejecutado: STOP
-[09:53:32] [Estado.RECENTER] px.last_pan=-13 Alineado ✔ (cuerpo)
-[09:53:32] [Estado.RECENTER] [RECENTER] Cámara centrada antes de TRACK
-[09:53:32] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:33] [Estado.TRACK] [ENTER] servo_angle=0 servo_pan=0
-[09:53:33] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:33] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[09:53:33] [Estado.SEARCH] Ejecutado: STOP
-[09:53:33] [Estado.SEARCH] Entrando en SEARCH
-[09:53:33] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:33] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=3 w=68 h=32 area=2176 x=278 y=280 error_x=-42 error_y=40
-[09:53:33] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:33] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=3 w=44 h=32 area=1408 x=306 y=280 error_x=-14 error_y=40
-[09:53:33] [Estado.RECENTER] Ejecutado: STOP
-[09:53:33] [Estado.RECENTER] Entrando en RECENTER
-[09:53:33] [Estado.RECENTER] [ENTER] servo_angle=0
-[09:53:33] [Estado.RECENTER] Ejecutado: STOP
-[09:53:34] [Estado.RECENTER] px.last_pan=-16 Alineado ✔ (cuerpo)
-[09:53:34] [Estado.RECENTER] [RECENTER] Cámara centrada antes de TRACK
-[09:53:34] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:34] [Estado.TRACK] [ENTER] servo_angle=0 servo_pan=0
-[09:53:34] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:34] [Estado.TRACK] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[09:53:34] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[09:53:34] [Estado.SEARCH] Ejecutado: STOP
-[09:53:34] [Estado.SEARCH] Entrando en SEARCH
-[09:53:34] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:34] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[09:53:34] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:34] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=5 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[09:53:35] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:35] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=5 w=148 h=32 area=4736 x=326 y=272 error_x=6 error_y=32
-[09:53:35] [Estado.RECENTER] Ejecutado: STOP
-[09:53:35] [Estado.RECENTER] Entrando en RECENTER
-[09:53:35] [Estado.RECENTER] [ENTER] servo_angle=0
-[09:53:35] [Estado.RECENTER] Ejecutado: CAM_PAN_LEFT
-[09:53:35] [Estado.RECENTER] PAN en límite → centrar cámara y pasar a TRACK
-[09:53:35] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:36] [Estado.TRACK] [ENTER] servo_angle=0 servo_pan=0
-[09:53:36] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:36] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[09:53:36] [Estado.SEARCH] Ejecutado: STOP
-[09:53:36] [Estado.SEARCH] Entrando en SEARCH
-[09:53:36] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:36] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[09:53:36] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:37] [Estado.SEARCH] Ejecutado: STOP
-[09:53:37] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:37] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=1 w=52 h=32 area=1664 x=298 y=272 error_x=-22 error_y=32
-[09:53:37] [Estado.RECENTER] Ejecutado: STOP
-[09:53:37] [Estado.RECENTER] Entrando en RECENTER
-[09:53:37] [Estado.RECENTER] [ENTER] servo_angle=0
-[09:53:37] [Estado.RECENTER] Ejecutado: STOP
-[09:53:37] [Estado.RECENTER] px.last_pan=-24 Alineado ✔ (cuerpo)
-[09:53:37] [Estado.RECENTER] [RECENTER] Cámara centrada antes de TRACK
-[09:53:37] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:37] [Estado.TRACK] [ENTER] servo_angle=0 servo_pan=0
-[09:53:37] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:37] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[09:53:37] [Estado.SEARCH] Ejecutado: STOP
-[09:53:37] [Estado.SEARCH] Entrando en SEARCH
-[09:53:37] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:38] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[09:53:38] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:38] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[09:53:38] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:39] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:39] [Estado.SEARCH] Ejecutado: STOP
-[09:53:39] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=3 w=116 h=32 area=3712 x=318 y=272 error_x=-2 error_y=32
-[09:53:39] [Estado.RECENTER] Ejecutado: STOP
-[09:53:39] [Estado.RECENTER] Entrando en RECENTER
-[09:53:39] [Estado.RECENTER] [ENTER] servo_angle=0
-[09:53:39] [Estado.RECENTER] Ejecutado: STOP
-[09:53:39] [Estado.RECENTER] px.last_pan=-27 Alineado ✔ (cuerpo)
-[09:53:39] [Estado.RECENTER] [RECENTER] Cámara centrada antes de TRACK
-[09:53:39] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:39] [Estado.TRACK] [ENTER] servo_angle=0 servo_pan=0
-[09:53:39] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:39] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[09:53:39] [Estado.SEARCH] Ejecutado: STOP
-[09:53:40] [Estado.SEARCH] Entrando en SEARCH
-[09:53:40] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:41] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:42] [Estado.SEARCH] [ENTER] servo_angle=25
-[09:53:42] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
-[09:53:42] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[09:53:42] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:43] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:43] [Estado.SEARCH] [SEC] DANGER: objeto a 17.72 cm → SCAPE
-[09:53:43] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:43] [Estado.SEARCH] [SEC] DANGER: objeto a 16.81 cm → SCAPE
-[09:53:43] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:43] [Estado.SEARCH] [SEC] DANGER: objeto a 14.57 cm → SCAPE
-[09:53:43] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:43] [Estado.SEARCH] [SEC] DANGER: objeto a 11.75 cm → SCAPE
-[09:53:43] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:43] [Estado.SEARCH] [SEC] DANGER: objeto a 11.13 cm → SCAPE
-[09:53:43] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:44] [Estado.SEARCH] [SEC] DANGER: objeto a 10.13 cm → SCAPE
-[09:53:44] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:44] [Estado.SEARCH] [SEC] DANGER: objeto a 7.89 cm → SCAPE
-[09:53:44] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:44] [Estado.SEARCH] [SEC] DANGER: objeto a 6.5 cm → SCAPE
-[09:53:44] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:44] [Estado.SEARCH] [SEC] DANGER: objeto a 5.33 cm → SCAPE
-[09:53:44] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:44] [Estado.SEARCH] [SEC] DANGER: objeto a 4.63 cm → SCAPE
-[09:53:44] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:44] [Estado.SEARCH] [SEC] DANGER: objeto a 2.84 cm → SCAPE
-[09:53:44] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:44] [Estado.SEARCH] [SEC] DANGER: objeto a 3.35 cm → SCAPE
-[09:53:44] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:44] [Estado.SEARCH] [SEC] DANGER: objeto a 4.62 cm → SCAPE
-[09:53:44] [Estado.SEARCH] [ENTER] servo_angle=25
-[09:53:44] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
-[09:53:44] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:45] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:47] [Estado.SEARCH] [ENTER] servo_angle=25
-[09:53:48] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
-[09:53:48] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:48] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:49] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[09:53:49] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:50] [Estado.SEARCH] [ENTER] servo_angle=25
-[09:53:50] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
-[09:53:50] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:50] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:50] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=1 w=60 h=92 area=5520 x=610 y=46 error_x=290 error_y=-194
-[09:53:50] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[09:53:51] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=2 w=80 h=92 area=7360 x=312 y=190 error_x=-8 error_y=-50
-[09:53:51] [Estado.RECENTER] Ejecutado: STOP
-[09:53:51] [Estado.RECENTER] Entrando en RECENTER
-[09:53:51] [Estado.RECENTER] [ENTER] servo_angle=0
-[09:53:51] [Estado.RECENTER] Ejecutado: CAM_PAN_LEFT
-[09:53:51] [Estado.RECENTER] px.last_pan=23 Alineado ✔ (cuerpo)
-[09:53:51] [Estado.RECENTER] [RECENTER] Cámara centrada antes de TRACK
-[09:53:51] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:51] [Estado.TRACK] [ENTER] servo_angle=0 servo_pan=0
-[09:53:51] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:51] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=96 h=168 area=16128 x=592 y=268 error_x=272 error_y=28
-[09:53:51] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:51] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:51] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=104 h=172 area=17888 x=588 y=270 error_x=268 error_y=30
-[09:53:51] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:51] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:52] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=108 h=180 area=19440 x=586 y=262 error_x=266 error_y=22
-[09:53:52] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:52] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:52] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=108 h=180 area=19440 x=586 y=270 error_x=266 error_y=30
-[09:53:52] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:52] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:52] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=108 h=196 area=21168 x=586 y=262 error_x=266 error_y=22
-[09:53:52] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:52] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:52] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=112 h=184 area=20608 x=584 y=264 error_x=264 error_y=24
-[09:53:52] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:52] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:52] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=108 h=200 area=21600 x=586 y=268 error_x=266 error_y=28
-[09:53:52] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:52] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:52] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=108 h=216 area=23328 x=586 y=264 error_x=266 error_y=24
-[09:53:52] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:52] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:52] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=108 h=216 area=23328 x=586 y=264 error_x=266 error_y=24
-[09:53:52] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:52] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:52] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=108 h=220 area=23760 x=586 y=266 error_x=266 error_y=26
-[09:53:52] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:52] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:52] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=104 h=224 area=23296 x=588 y=272 error_x=268 error_y=32
-[09:53:52] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:52] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:53] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=100 h=252 area=25200 x=590 y=274 error_x=270 error_y=34
-[09:53:53] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:53] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:53] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=104 h=268 area=27872 x=588 y=274 error_x=268 error_y=34
-[09:53:53] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:53] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:53] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=100 h=240 area=24000 x=590 y=272 error_x=270 error_y=32
-[09:53:53] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:53] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:53] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=96 h=296 area=28416 x=592 y=268 error_x=272 error_y=28
-[09:53:53] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:53] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:53] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=96 h=260 area=24960 x=592 y=270 error_x=272 error_y=30
-[09:53:53] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:53] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:53] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=92 h=304 area=27968 x=594 y=276 error_x=274 error_y=36
-[09:53:53] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:53] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:53] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=92 h=316 area=29072 x=594 y=278 error_x=274 error_y=38
-[09:53:53] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:53] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:53] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=88 h=324 area=28512 x=596 y=274 error_x=276 error_y=34
-[09:53:53] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:53] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:53] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=84 h=328 area=27552 x=598 y=284 error_x=278 error_y=44
-[09:53:53] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:53] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:53] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=72 h=328 area=23616 x=604 y=292 error_x=284 error_y=52
-[09:53:53] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:53] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:54] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=64 h=352 area=22528 x=608 y=284 error_x=288 error_y=44
-[09:53:54] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:54] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:54] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=56 h=328 area=18368 x=612 y=296 error_x=292 error_y=56
-[09:53:54] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:54] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:54] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=44 h=180 area=7920 x=618 y=222 error_x=298 error_y=-18
-[09:53:54] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:54] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:54] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=32 h=160 area=5120 x=624 y=216 error_x=304 error_y=-24
-[09:53:54] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:54] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:54] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=32 h=164 area=5248 x=624 y=206 error_x=304 error_y=-34
-[09:53:54] [Estado.TRACK] [ENTER] servo_angle=0
-[09:53:54] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:54] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[09:53:54] [Estado.SEARCH] Ejecutado: STOP
-[09:53:54] [Estado.SEARCH] Entrando en SEARCH
-[09:53:54] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:55] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[09:53:55] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:56] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=4 w=32 h=124 area=3968 x=296 y=130 error_x=-24 error_y=-110
-[09:53:56] [Estado.RECENTER] Ejecutado: STOP
-[09:53:56] [Estado.RECENTER] Entrando en RECENTER
-[09:53:56] [Estado.RECENTER] [ENTER] servo_angle=0
-[09:53:56] [Estado.RECENTER] PAN en límite → centrar cámara y pasar a TRACK
-[09:53:56] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:56] [Estado.TRACK] [ENTER] servo_angle=0 servo_pan=0
-[09:53:56] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[09:53:56] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[09:53:56] [Estado.SEARCH] Ejecutado: STOP
-[09:53:56] [Estado.SEARCH] Entrando en SEARCH
-[09:53:56] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[09:53:56] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[09:53:56] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[10:24:18] [Estado.CHK] [CHK] ==============================
+[10:24:18] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[10:24:18] [Estado.CHK] [CHK] ==============================
+[10:24:18] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[10:24:18] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[10:24:18] [Estado.CHK] [CHK] State wheels:     0
+[10:24:18] [Estado.CHK] [CHK] ==============================
+[10:24:18] [Estado.IDLE] Inicio del sistema
+[10:24:18] [Estado.IDLE] Entrando en IDLE
+[10:24:18] [Estado.RESET] Ejecutado: STOP
+[10:24:18] [Estado.RESET] Entrando en RESET
+[10:24:18] [Estado.RESET] [ENTER] servo_angle=0
+[10:24:18] [Estado.SEARCH] Ejecutado: STOP
+[10:24:18] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=3 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:24:18] [Estado.SEARCH] Entrando en SEARCH
+[10:24:18] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:24:19] [Estado.SEARCH] Baliza encontrada → RECENTER | valid_for_search=True valid_for_near=False is_centered=True n=5 w=68 h=140 area=9520 x=350 y=286 error_x=30 error_y=46
+[10:24:19] [Estado.RECENTER] Ejecutado: STOP
+[10:24:19] [Estado.RECENTER] Entrando en RECENTER
+[10:24:19] [Estado.RECENTER] [ENTER] servo_angle=0
+[10:24:19] [Estado.RECENTER] Ejecutado: STOP
+[10:24:19] [Estado.RECENTER] px.last_pan=28 Alineado ✔ (cuerpo)
+[10:24:19] [Estado.RECENTER] [RECENTER] Cámara centrada antes de TRACK
+[10:24:19] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:19] [Estado.TRACK] [ENTER] servo_angle=0 servo_pan=0
+[10:24:19] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:19] [Estado.TRACK] Det valid_for_search=True is_centered=False n=1 w=32 h=64 area=2048 x=624 y=224 error_x=304 error_y=-16
+[10:24:19] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:19] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=40 h=76 area=3040 x=620 y=242 error_x=300 error_y=2
+[10:24:19] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:19] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:19] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=44 h=92 area=4048 x=618 y=254 error_x=298 error_y=14
+[10:24:19] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:19] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:20] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=52 h=136 area=7072 x=614 y=276 error_x=294 error_y=36
+[10:24:20] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:20] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:20] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=60 h=104 area=6240 x=610 y=260 error_x=290 error_y=20
+[10:24:20] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:20] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:20] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=60 h=96 area=5760 x=610 y=260 error_x=290 error_y=20
+[10:24:20] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:20] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:20] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=64 h=108 area=6912 x=608 y=254 error_x=288 error_y=14
+[10:24:20] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:20] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:20] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=72 h=112 area=8064 x=604 y=264 error_x=284 error_y=24
+[10:24:20] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:20] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:20] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=72 h=80 area=5760 x=600 y=252 error_x=280 error_y=12
+[10:24:20] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:20] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:20] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=76 h=96 area=7296 x=594 y=256 error_x=274 error_y=16
+[10:24:20] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:20] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:20] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=76 h=104 area=7904 x=594 y=252 error_x=274 error_y=12
+[10:24:20] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:20] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:20] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=80 h=108 area=8640 x=588 y=266 error_x=268 error_y=26
+[10:24:20] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:20] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:21] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=76 h=116 area=8816 x=582 y=262 error_x=262 error_y=22
+[10:24:21] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:21] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:21] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=3 w=76 h=100 area=7600 x=578 y=262 error_x=258 error_y=22
+[10:24:21] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:21] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:21] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=80 h=108 area=8640 x=572 y=262 error_x=252 error_y=22
+[10:24:21] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:21] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:21] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=80 h=108 area=8640 x=572 y=258 error_x=252 error_y=18
+[10:24:21] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:21] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:21] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=6 w=80 h=116 area=9280 x=564 y=270 error_x=244 error_y=30
+[10:24:21] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:21] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:21] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=3 w=80 h=116 area=9280 x=560 y=254 error_x=240 error_y=14
+[10:24:21] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:21] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:21] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=5 w=84 h=124 area=10416 x=558 y=274 error_x=238 error_y=34
+[10:24:21] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:21] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:21] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=84 h=128 area=10752 x=554 y=272 error_x=234 error_y=32
+[10:24:21] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:21] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:21] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=84 h=144 area=12096 x=542 y=256 error_x=222 error_y=16
+[10:24:21] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:21] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:22] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=88 h=132 area=11616 x=540 y=258 error_x=220 error_y=18
+[10:24:22] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:22] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:22] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=88 h=132 area=11616 x=540 y=266 error_x=220 error_y=26
+[10:24:22] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:22] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:22] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=92 h=136 area=12512 x=538 y=256 error_x=218 error_y=16
+[10:24:22] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:22] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:22] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=88 h=136 area=11968 x=532 y=272 error_x=212 error_y=32
+[10:24:22] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:22] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:22] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=96 h=136 area=13056 x=528 y=256 error_x=208 error_y=16
+[10:24:22] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:22] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:22] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=96 h=136 area=13056 x=524 y=268 error_x=204 error_y=28
+[10:24:22] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:22] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:22] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=96 h=148 area=14208 x=520 y=266 error_x=200 error_y=26
+[10:24:22] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:22] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:22] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=100 h=136 area=13600 x=514 y=260 error_x=194 error_y=20
+[10:24:22] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:22] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:23] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=100 h=144 area=14400 x=510 y=272 error_x=190 error_y=32
+[10:24:23] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:23] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:23] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=104 h=144 area=14976 x=504 y=260 error_x=184 error_y=20
+[10:24:23] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:23] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:23] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=108 h=144 area=15552 x=502 y=264 error_x=182 error_y=24
+[10:24:23] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:23] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:23] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=108 h=152 area=16416 x=498 y=264 error_x=178 error_y=24
+[10:24:23] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:23] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:23] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=112 h=164 area=18368 x=496 y=250 error_x=176 error_y=10
+[10:24:23] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:23] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:23] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=3 w=116 h=192 area=22272 x=490 y=268 error_x=170 error_y=28
+[10:24:23] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:23] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:23] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=4 w=120 h=164 area=19680 x=488 y=270 error_x=168 error_y=30
+[10:24:23] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:23] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:23] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=4 w=120 h=168 area=20160 x=484 y=272 error_x=164 error_y=32
+[10:24:23] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:23] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:23] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=124 h=176 area=21824 x=478 y=272 error_x=158 error_y=32
+[10:24:23] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:23] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:24] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=128 h=180 area=23040 x=476 y=270 error_x=156 error_y=30
+[10:24:24] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:24] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:24] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=128 h=204 area=26112 x=472 y=274 error_x=152 error_y=34
+[10:24:24] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:24] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:24] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=132 h=192 area=25344 x=466 y=276 error_x=146 error_y=36
+[10:24:24] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:24] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:24] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=140 h=192 area=26880 x=462 y=276 error_x=142 error_y=36
+[10:24:24] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:24] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:24] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=140 h=208 area=29120 x=454 y=280 error_x=134 error_y=40
+[10:24:24] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:24] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:24] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=148 h=220 area=32560 x=454 y=278 error_x=134 error_y=38
+[10:24:24] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:24] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:24] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=152 h=232 area=35264 x=448 y=280 error_x=128 error_y=40
+[10:24:24] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:24] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:24] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=160 h=236 area=37760 x=444 y=278 error_x=124 error_y=38
+[10:24:24] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:24] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:24] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=3 w=172 h=252 area=43344 x=438 y=278 error_x=118 error_y=38
+[10:24:24] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:24] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:25] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=2 w=180 h=264 area=47520 x=434 y=276 error_x=114 error_y=36
+[10:24:25] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:25] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:25] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=4 w=188 h=304 area=57152 x=434 y=288 error_x=114 error_y=48
+[10:24:25] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:25] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:25] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=1 w=184 h=292 area=53728 x=432 y=290 error_x=112 error_y=50
+[10:24:25] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:25] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:25] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=3 w=204 h=344 area=70176 x=422 y=296 error_x=102 error_y=56
+[10:24:25] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:25] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:25] [Estado.TRACK] Corrección lateral proporcional | valid_for_search=True valid_for_near=False is_centered=False n=3 w=216 h=344 area=74304 x=420 y=296 error_x=100 error_y=56
+[10:24:25] [Estado.TRACK] [ENTER] servo_angle=0
+[10:24:25] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:24:25] [Estado.TRACK] [SEC] DANGER: objeto a 19.31 cm → SCAPE
+[10:24:26] [Estado.TRACK] Ejecutado: SCAPE
