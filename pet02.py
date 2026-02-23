@@ -281,13 +281,17 @@ def turn_right(px, speed=TURN_SPEED):
 # ------------------------------------------------------------
 
 def scape_danger(px, robot_state, speed=SLOW_SPEED):
-    # Si no estamos escapando, iniciamos la maniobra
     if not robot_state.is_escaping:
-        px.set_dir_servo_angle(0)
+        # Limitamos el ángulo para que no exceda los límites físicos de las ruedas
+        target_angle = max(min(px.last_pan, SERVO_ANGLE_MAX), SERVO_ANGLE_MIN)
+        
+        px.set_dir_servo_angle(target_angle)
+        px.dir_current_angle = target_angle
+        
         px.backward(speed)
         robot_state.is_escaping = True
-        robot_state.escape_end_time = time.time() + 0.6  # Retroceder durante 0.6s
-        return False # Aún no termina
+        robot_state.escape_end_time = time.time() + 1.0
+        return False
 
     # Si ya pasó el tiempo, paramos
     if time.time() > robot_state.escape_end_time:
