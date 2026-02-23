@@ -1,16 +1,16 @@
 === Start of pet02.log ===
-[10:58:43] [Estado.CHK] [CHK] ==============================
-[10:58:43] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[10:58:43] [Estado.CHK] [CHK] ==============================
-[10:58:43] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[10:58:43] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[10:58:43] [Estado.CHK] [CHK] State wheels:     0
-[10:58:43] [Estado.CHK] [CHK] ==============================
-[10:58:43] [Estado.IDLE] Inicio del sistema
-[10:58:43] [Estado.IDLE] Entrando en IDLE
-[10:58:43] [Estado.RESET] Ejecutado: STOP
-[10:58:44] [Estado.RESET] Entrando en RESET
-[10:58:44] [Estado.RESET] [ENTER] servo_angle=0
-[10:58:44] [Estado.SEARCH] Ejecutado: STOP
-[10:58:44] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=4 w=64 h=32 area=2048 x=52 y=16 error_x=-268 error_y=-224
-[10:58:44] [Estado.SEARCH] Entrando en SEARCH
+[11:05:48] [Estado.CHK] [CHK] ==============================
+[11:05:48] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[11:05:48] [Estado.CHK] [CHK] ==============================
+[11:05:48] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[11:05:48] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[11:05:48] [Estado.CHK] [CHK] State wheels:     0
+[11:05:48] [Estado.CHK] [CHK] ==============================
+[11:05:48] [Estado.IDLE] Inicio del sistema
+[11:05:48] [Estado.IDLE] Entrando en IDLE
+[11:05:48] [Estado.RESET] Ejecutado: STOP
+[11:05:48] [Estado.RESET] Entrando en RESET
+[11:05:48] [Estado.RESET] [ENTER] servo_angle=0
+[11:05:48] [Estado.SEARCH] Ejecutado: STOP
+[11:05:49] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=5 w=84 h=52 area=4368 x=262 y=302 error_x=-58 error_y=62
+[11:05:49] [Estado.SEARCH] Entrando en SEARCH

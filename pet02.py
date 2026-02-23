@@ -334,7 +334,7 @@ def tilt_bottom(px, step=CAM_STEP):
 # MAPEO DE COMANDOS
 # ============================================================
 
-def execute_motion(px, estado, cmd: Cmd, test_mode=False):
+def execute_motion(px, estado, cmd: Cmd, robot_state, test_mode=False):
 
     # ============================================================
     # MODO SIMULADO
@@ -394,7 +394,7 @@ def execute_motion(px, estado, cmd: Cmd, test_mode=False):
             backward(px)
 
         elif cmd == Cmd.SCAPE:
-            scape_danger(px, robot_state, TURN_SPEED)
+            scape_danger(px, robot_state, SLOW_SPEED)
 
         # --- Cámara ---
         elif cmd == Cmd.CAM_PAN_LEFT:
@@ -599,13 +599,6 @@ def state_search(px, estado, accion, robot_state):
         px.last_tilt = 0
 
     # ------------------------------------------------------------
-    # Seguridad
-    # ------------------------------------------------------------
-    estado, accion = apply_safety(px, estado, accion, state)
-    if accion == Cmd.SCAPE:
-        return estado, accion
-
-    # ------------------------------------------------------------
     # 1. Si hay detección válida → RECENTER
     # ------------------------------------------------------------
     if det.valid_for_search:
@@ -663,13 +656,6 @@ def state_recenter(px, estado, accion, robot_state):
         px.dir_current_angle = 0
         log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
         px.last_state = estado
-
-    # ------------------------------------------------------------
-    # Seguridad
-    # ------------------------------------------------------------
-    estado, accion = apply_safety(px, estado, accion, state)
-    if accion == Cmd.SCAPE:
-        return estado, accion
 
     # ------------------------------------------------------------
     # 1. Si NO hay detección válida → tolerar 5 frames
@@ -747,13 +733,6 @@ def state_track(px, estado, accion, robot_state):
             return Estado.TRACK, Cmd.FORWARD_SLOW
         robot_state.just_recentered = None
 
-    # ------------------------------------------------------------
-    # Seguridad
-    # ------------------------------------------------------------
-    estado, accion = apply_safety(px, estado, accion, state)
-    if accion == Cmd.SCAPE:
-        return estado, accion
-
     # 0. Si no hay detección → SEARCH
     if not det.valid_for_search:
         robot_state.track_lost_frames += 1
@@ -784,7 +763,8 @@ def state_track(px, estado, accion, robot_state):
         
         px.set_dir_servo_angle(target_angle)
         px.dir_current_angle = target_angle
-        log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
+        # log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
+        print_dashboard(px, estado, accion, dist, state)
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
     # 3. Avance recto si está centrado
@@ -813,13 +793,6 @@ def state_near(px, estado, accion, robot_state):
         px.last_tilt = 0
 
         px.last_state = Estado.NEAR
-
-    # ------------------------------------------------------------
-    # Seguridad
-    # ------------------------------------------------------------
-    estado, accion = apply_safety(px, estado, accion, state)
-    if accion == Cmd.SCAPE:
-        return estado, accion
 
     # 1. Pérdida de baliza
     if not det.valid_for_search:
@@ -928,7 +901,7 @@ def pet_mode(px, test_mode):
                 estado, accion = state_near(px, estado, accion, state)
 
         # 3. EJECUCIÓN Y VISUALIZACIÓN
-        execute_motion(px, estado, accion, test_mode)
+        execute_motion(px, estado, accion, state, test_mode)
         
         # Imprimir el dashboard para que tú veas qué pasa
         if not test_mode:
