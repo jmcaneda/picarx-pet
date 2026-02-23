@@ -874,21 +874,23 @@ def pet_mode(px, test_mode):
     while True:
         px.estado_actual = estado
         distancia_real = update_safety(px)
+        maniobra_activa = False # Nueva bandera local
 
         # 1. CAPA DE SEGURIDAD PRIORITARIA (Escape No Bloqueante)
         if state.is_escaping:
             terminado = scape_danger(px, state)
-            accion = Cmd.STOP # Para el log de execute_motion
+            maniobra_activa = True # Marcamos que el escape tiene el control
             if terminado:
                 log_event(px, estado, "[SEC] Objeto evadido")
                 estado = Estado.SEARCH # Tras escapar, buscamos de nuevo
+                maniobra_activa = False
         
         # 2. EVALUACIÓN NORMAL (Solo si no hay peligro inmediato)
         elif distancia_real < DANGER_DISTANCE:
             # Iniciamos maniobra de escape
             log_event(px, estado, f"[SEC] Peligro a {distancia_real}cm")
             scape_danger(px, state)
-            accion = Cmd.STOP
+            maniobra_activa = True
         else:
             # Lógica normal de tu FSM
             if estado == Estado.IDLE:
