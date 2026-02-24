@@ -609,7 +609,7 @@ def state_reset(px):
     px.set_cam_tilt_angle(0)
     px.dir_current_angle = 0
     px.set_dir_servo_angle(0)
-    px.dir_current_angle = 0
+    # px.dir_current_angle = 0
     log_event(px, Estado.RESET, f"[ENTER] servo_angle={px.dir_current_angle}")
     px.last_pan = 0
     px.last_tilt = 0
