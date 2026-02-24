@@ -35,8 +35,9 @@ TURN_SPEED = 1
 
 CAM_STEP = 4
 
-SAFE_DISTANCE = 35
-DANGER_DISTANCE = 20
+SAFE_DISTANCE = 999
+WARNING_DISTANCE = 35.0
+DANGER_DISTANCE = 20.0
 
 LOG_PATH = os.path.join(os.path.dirname(__file__), "pet02.log")
 
@@ -283,24 +284,39 @@ def turn_right(px, speed=TURN_SPEED):
 
 def scape_danger(px, robot_state, speed=SLOW_SPEED):
     if not robot_state.is_escaping:
-        # Limitamos el ángulo para que no exceda los límites físicos de las ruedas
-        target_angle = max(min(px.last_pan, SERVO_ANGLE_MAX), SERVO_ANGLE_MIN)
+        log_event(px, "SEC", "Iniciando maniobra de escape activa")
         
+        # PLAN: Si la cámara estaba mirando a la derecha, el obstáculo 
+        # probablemente está ahí. Giramos ruedas al lado OPUESTO (espejo).
+        escape_angle = -px.last_pan 
+        
+        # Asegurar límites y aplicar
+        target_angle = max(min(escape_angle, SERVO_ANGLE_MAX), SERVO_ANGLE_MIN)
         px.set_dir_servo_angle(target_angle)
         px.dir_current_angle = target_angle
         
-        px.backward(speed)
+        # Retroceso más agresivo inicialmente
+        px.backward(speed + 10) 
         robot_state.is_escaping = True
-        robot_state.escape_end_time = time.time() + 1.5
+        # Aumentamos el tiempo de escape a 2 segundos para dar espacio real
+        robot_state.escape_end_time = time.time() + 2.0
         return False
 
-    # Si ya pasó el tiempo, paramos
+    # Durante el escape, si el sensor sigue detectando algo crítico, 
+    # podemos extender el tiempo (re-trigger)
+    dist = px.get_distance()
+    if 0 < dist < 10: 
+        robot_state.escape_end_time += 0.1 # Añadir tiempo extra si sigue cerca
+
     if time.time() >= robot_state.escape_end_time:
         px.stop()
+        px.set_dir_servo_angle(0) # Enderezar al terminar
+        px.dir_current_angle = 0
         robot_state.is_escaping = False
-        return True # Maniobra terminada
+        log_event(px, "SEC", "Zona segura alcanzada")
+        return True 
     
-    return False # Aún en maniobra
+    return False
 
 # ============================================================
 # MOVIMIENTOS DE CÁMARA SEGUROS
@@ -447,19 +463,26 @@ def apply_safety(px, estado, accion, robot_state):
 
     # Si estamos escapando, mandamos un comando especial o ignoramos execute_motion
     if robot_state.is_escaping:
-        terminado = scape_danger(px, robot_state)
+        terminado = scape_danger(px, robot_state, speed=SLOW_SPEED)
         if not terminado:
             # Importante: devolvemos un comando que NO sea STOP 
             # para que execute_motion no apague los motores
             return estado, Cmd.KEEP_ALIVE 
         else:
-            log_event(px, estado, "[SEC] Objeto evadido")
+            log_event(px, estado, f"[SEC] Zona segura ({d}cm). Reanudando...")
             return Estado.SEARCH, Cmd.STOP
 
     if d < DANGER_DISTANCE:
         log_event(px, estado, f"[SEC] DANGER: {d} cm → Iniciando SCAPE")
-        scape_danger(px, robot_state)
+        scape_danger(px, robot_state, speed=SLOW_SPEED)
         return estado, Cmd.KEEP_ALIVE
+    
+    # Si detectamos algo a media distancia y vamos hacia adelante, frenamos.
+    if d < WARNING_DISTANCE and accion in [Cmd.FORWARD, Cmd.FORWARD_SLOW]:
+        # Si el error_x de la baliza es grande, quizás el "obstáculo" es la baliza.
+        # Pero por seguridad, bajamos la velocidad o paramos.
+        log_event(px, estado, f"[SEC] Precaución: objeto a {d}cm. Reduciendo velocidad.")
+        return estado, Cmd.FORWARD_SLOW
 
     return estado, accion
 
@@ -600,7 +623,7 @@ def state_search(px, estado, accion, robot_state):
         log_event(px, Estado.SEARCH, "Entrando en SEARCH")
 
         px.search_seen = 0
-        robot_state.search_no_det_frames = 0   # ← ahora sí, en robot_state
+        robot_state.search_no_det_frames = 0 
 
         px.last_state = Estado.SEARCH
 
@@ -618,8 +641,13 @@ def state_search(px, estado, accion, robot_state):
         px.search_seen += 1
         robot_state.search_no_det_frames = 0   # reset del plan B
 
+        # Si está detectando, nos aseguramos que las ruedas estén rectas
+        if px.dir_current_angle != 0:
+            px.set_dir_servo_angle(0)
+            px.dir_current_angle = 0
+
         # Centrada → RECENTER
-        if abs(det.error_x) < 40 and px.search_seen >= 2:
+        if abs(det.error_x) <= 40 and px.search_seen >= 2:
             log_det(px, estado, det, raw, prefix="Baliza encontrada → RECENTER | ")
             return Estado.RECENTER, Cmd.STOP
 
@@ -638,11 +666,17 @@ def state_search(px, estado, accion, robot_state):
     robot_state.search_no_det_frames += 1
 
     # 🔥 PLAN B: búsqueda activa si llevamos mucho sin ver nada
-    if robot_state.search_no_det_frames > 20:
+    if robot_state.search_no_det_frames > 80:
         robot_state.search_no_det_frames = 0
-        px.set_dir_servo_angle(25)
-        px.dir_current_angle = 25
+        px.set_dir_servo_angle(SERVO_ANGLE_MAX)
+        px.dir_current_angle = SERVO_ANGLE_MAX
         log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
+
+        # Mientras gira el cuerpo, la cámara hace un barrido rápido opuesto
+        # para cubrir más área (Efecto Radar)
+        if px.last_pan >= PAN_MAX: px.search_dir = -1
+        elif px.last_pan <= PAN_MIN: px.search_dir = 1
+
         return Estado.SEARCH, Cmd.FORWARD_SLOW
 
     # ------------------------------------------------------------
