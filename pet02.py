@@ -214,8 +214,8 @@ def init_flags(px):
     px.last_raw_n = 0
 
     # Seguridad
-    px.last_sec = "safe"
-    px.dist = 999
+    # px.last_sec = "safe"
+    # px.dist = 999
 
     # SEARCH
     # px.search_dir = 1          # 1 = derecha, -1 = izquierda
@@ -460,6 +460,7 @@ def update_safety(px):
         d = distance
     return d
 
+"""
 def apply_safety(px, estado, accion, robot_state):
     d = update_safety(px)
 
@@ -487,7 +488,7 @@ def apply_safety(px, estado, accion, robot_state):
         return estado, Cmd.FORWARD_SLOW
 
     return estado, accion
-
+"""
 # ============================================================
 # FUNCIONES
 # ============================================================
@@ -804,7 +805,7 @@ def state_track(px, estado, accion, robot_state):
         px.set_dir_servo_angle(target_angle)
         px.dir_current_angle = target_angle
         # log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
-        px.set_dir_servo_angle(target_angle)
+        # px.set_dir_servo_angle(target_angle)
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
     # 3. Avance recto si está centrado
