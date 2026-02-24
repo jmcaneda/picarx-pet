@@ -283,40 +283,38 @@ def turn_right(px, speed=TURN_SPEED):
 # ------------------------------------------------------------
 
 def scape_danger(px, robot_state, speed=SLOW_SPEED):
+    """
+    Gestiona la maniobra de retroceso y giro de seguridad.
+    Devuelve True si la maniobra ha terminado, False si sigue en curso.
+    """
+    # Fase 1: Inicio de la maniobra
     if not robot_state.is_escaping:
-        log_event(px, "SEC", "Iniciando maniobra de escape activa")
+        log_event(px, "SEC", "¡ESCAPE ACTIVO! Retrocediendo...")
         
-        # PLAN: Si la cámara estaba mirando a la derecha, el obstáculo 
-        # probablemente está ahí. Giramos ruedas al lado OPUESTO (espejo).
+        # Girar ruedas al lado opuesto de donde miraba la cámara para librar el obstáculo
         escape_angle = -px.last_pan 
-        
-        # Asegurar límites y aplicar
         target_angle = max(min(escape_angle, SERVO_ANGLE_MAX), SERVO_ANGLE_MIN)
+        
         px.set_dir_servo_angle(target_angle)
         px.dir_current_angle = target_angle
         
-        # Retroceso más agresivo inicialmente
-        px.backward(speed + 10) 
+        # Aplicamos el movimiento físico inmediatamente
+        px.backward(speed + 5) 
+        
         robot_state.is_escaping = True
-        # Aumentamos el tiempo de escape a 2 segundos para dar espacio real
-        robot_state.escape_end_time = time.time() + 2.0
+        robot_state.escape_end_time = time.time() + 1.8  # Duración de la huida
         return False
 
-    # Durante el escape, si el sensor sigue detectando algo crítico, 
-    # podemos extender el tiempo (re-trigger)
-    dist = px.get_distance()
-    if 0 < dist < 10: 
-        robot_state.escape_end_time += 0.1 # Añadir tiempo extra si sigue cerca
-
+    # Fase 2: Control de tiempo (mientras is_escaping es True)
     if time.time() >= robot_state.escape_end_time:
         px.stop()
-        px.set_dir_servo_angle(0) # Enderezar al terminar
+        px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
         robot_state.is_escaping = False
-        log_event(px, "SEC", "Zona segura alcanzada")
-        return True 
+        log_event(px, "SEC", "Maniobra terminada.")
+        return True # Indica que ya podemos volver al control normal
     
-    return False
+    return False # Sigue escapando
 
 # ============================================================
 # MOVIMIENTOS DE CÁMARA SEGUROS
@@ -822,10 +820,11 @@ def state_track(px, estado, accion, robot_state):
 def state_near(px, estado, accion, robot_state):
     det, raw = get_detection(px)
 
-    # Entrada al estado NEAR
+    # --- 1. ENTRADA AL ESTADO (Frenado de Emergencia) ---
     if px.last_state != Estado.NEAR:
-        log_event(px, Estado.NEAR, "Entrando en NEAR")
-
+        log_event(px, Estado.NEAR, "Entrando en NEAR: ¡Frenando!")
+        px.stop()  # Detenemos motores inmediatamente para mitigar inercia
+        
         robot_state.near_done_backward = False
         robot_state.near_lost_frames = 0
         robot_state.near_exit_frames = 0
@@ -834,60 +833,60 @@ def state_near(px, estado, accion, robot_state):
 
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
-        log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
         px.set_cam_tilt_angle(0)
         px.last_tilt = 0
-
         px.last_state = Estado.NEAR
+        
+        # Forzamos un ciclo de STOP para asegurar que los motores cortan
+        return Estado.NEAR, Cmd.STOP
 
-    # 1. Pérdida de baliza
+    # --- 2. VALIDACIÓN DE PRESENCIA ---
     if not det.valid_for_search:
         robot_state.near_lost_frames += 1
         if robot_state.near_lost_frames >= 5:
             log_event(px, Estado.NEAR, "Baliza perdida en NEAR → SEARCH")
             return Estado.SEARCH, Cmd.STOP
         return Estado.NEAR, Cmd.STOP
-
     robot_state.near_lost_frames = 0
 
-    # 2. Salida de NEAR
+    # --- 3. RETROCESO DE CORTESÍA (Espaciado) ---
+    # Lo hacemos al principio para alejarnos del obstáculo/baliza antes del gesto
+    if not robot_state.near_done_backward:
+        log_event(px, Estado.NEAR, "Espaciado de seguridad (Backward)")
+        robot_state.near_done_backward = True
+        robot_state.near_cooldown = time.time() + 0.4 # Aumentamos un poco el tiempo
+        return Estado.NEAR, Cmd.BACKWARD
+
+    # Esperar a que el retroceso termine realmente
+    if robot_state.near_cooldown:
+        if time.time() < robot_state.near_cooldown:
+            return Estado.NEAR, Cmd.KEEP_ALIVE # Mantenemos el BACKWARD activo
+        else:
+            px.stop() # Frenar tras el retroceso
+            robot_state.near_cooldown = None
+            return Estado.NEAR, Cmd.STOP
+
+    # --- 4. GESTO DE RECONOCIMIENTO ("SÍ") ---
+    if not robot_state.near_did_yes:
+        terminado = do_yes(px, robot_state)
+        if terminado:
+            log_event(px, Estado.NEAR, "Gesto de 'SI' finalizado")
+            robot_state.near_did_yes = True
+        return Estado.NEAR, Cmd.STOP
+
+    # --- 5. LÓGICA DE SALIDA O MANTENIMIENTO ---
     if not det.valid_for_near:
         robot_state.near_exit_frames += 1
+        if robot_state.near_exit_frames >= 10: # Más margen para evitar tirones
+            log_event(px, Estado.NEAR, "Baliza alejada → Volviendo a TRACK")
+            return Estado.TRACK, Cmd.STOP
     else:
         robot_state.near_exit_frames = 0
 
-    if robot_state.near_exit_frames >= 5:
-        log_det(px, Estado.NEAR, det, raw, prefix="Salida NEAR confirmada (5 frames) → TRACK | ")
-        return Estado.TRACK, Cmd.STOP
-
-    # 3. Corrección horizontal
-    if abs(det.error_x) > 120:
+    # Si la baliza se desplaza mucho lateralmente, corregimos solo con cámara
+    if abs(det.error_x) > 100:
         return Estado.NEAR, Cmd.CAM_PAN_LEFT if det.error_x < 0 else Cmd.CAM_PAN_RIGHT
 
-    # 4. Backward corto solo una vez
-    if not robot_state.near_done_backward:
-        robot_state.near_done_backward = True
-        robot_state.near_cooldown = time.time()
-        return Estado.NEAR, Cmd.BACKWARD
-
-    # Cooldown tras backward (evita conflicto con forward)
-    if robot_state.near_cooldown:
-        if time.time() - robot_state.near_cooldown < 0.3:
-            return Estado.NEAR, Cmd.STOP
-        robot_state.near_cooldown = None
-
-    # 5. Gesto de "sí"
-    if not robot_state.near_did_yes:
-        terminado = do_yes(px, robot_state)
-        
-        if terminado:
-            log_event(px, estado, "Gesto de 'SI' finalizado")
-            robot_state.near_did_yes = True
-            
-        # Mientras anima (o al terminar), seguimos devolviendo STOP para que no avance
-        return Estado.NEAR, Cmd.STOP
-
-    # 6. Estado estable
     return Estado.NEAR, Cmd.STOP
 
 # ============================================================
@@ -917,7 +916,8 @@ def pet_mode(px, test_mode):
         px.estado_actual = estado
         distancia_real = update_safety(px) 
 
-        # 1. LÓGICA DE ESTADOS (Cálculo de intención)
+        # --- NIVEL 1: CÁLCULO DE INTENCIÓN (FSM) ---
+        # Decidimos qué "querría" hacer el robot según la baliza
         if estado == Estado.IDLE: estado, accion = state_idle(px)
         elif estado == Estado.RESET: estado, accion = state_reset(px)
         elif estado == Estado.SEARCH: estado, accion = state_search(px, estado, accion, state)
@@ -925,30 +925,31 @@ def pet_mode(px, test_mode):
         elif estado == Estado.TRACK: estado, accion = state_track(px, estado, accion, state)
         elif estado == Estado.NEAR: estado, accion = state_near(px, estado, accion, state)
 
-        # 2. CAPA DE SEGURIDAD (Sobrescribe la intención si es necesario)
-        if state.is_escaping:
+        # --- NIVEL 2: FILTRO DE SEGURIDAD (SOBREESCRITURA) ---
+        # Si el sensor detecta peligro o ya estamos en medio de un escape...
+        if state.is_escaping or distancia_real < DANGER_DISTANCE:
+            # Llamamos a escape. Si acaba de empezar, configurará motores a BACKWARD.
             terminado = scape_danger(px, state)
-            accion = Cmd.KEEP_ALIVE # Impedimos que execute_motion haga otra cosa
-            if terminado:
-                log_event(px, estado, "[SEC] Objeto evadido")
-                estado = Estado.SEARCH # Reset de búsqueda tras el susto
-
-        elif distancia_real < DANGER_DISTANCE:
-            log_event(px, estado, f"[SEC] Peligro a {distancia_real}cm")
-            scape_danger(px, state)
-            accion = Cmd.KEEP_ALIVE
             
-        elif distancia_real < WARNING_DISTANCE and accion in [Cmd.FORWARD, Cmd.FORWARD_SLOW]:
-            # Frenado preventivo si la FSM quiere avanzar pero hay algo cerca
+            # BLOQUEO CRÍTICO: Sobreescribimos la acción de la FSM
+            # Usamos un comando neutro para que execute_motion no haga nada nuevo
+            accion = Cmd.KEEP_ALIVE 
+            
+            if terminado:
+                estado = Estado.SEARCH # Tras el susto, buscamos de nuevo
+        
+        # Precaución: si no hay peligro inminente pero hay algo cerca, bajamos velocidad
+        elif distancia_real < WARNING_DISTANCE and accion == Cmd.FORWARD:
             accion = Cmd.FORWARD_SLOW
 
-        # 3. EJECUCIÓN (Solo un punto de salida)
+        # --- NIVEL 3: EJECUCIÓN ---
+        # Solo llamamos a execute_motion UNA vez por ciclo
         execute_motion(px, estado, accion, state, test_mode)
         
         if not test_mode:
             print_dashboard(px, estado, accion, distancia_real, state)
 
-        time.sleep(0.05) # Más rápido para reaccionar mejor
+        time.sleep(0.05) # Mayor frecuencia = respuesta más rápida
 
 # ============================================================
 # ENTRYPOINT
