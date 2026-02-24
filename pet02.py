@@ -915,47 +915,40 @@ def pet_mode(px, test_mode):
 
     while True:
         px.estado_actual = estado
-        distancia_real = update_safety(px)
-        maniobra_activa = False # Nueva bandera local
+        distancia_real = update_safety(px) 
 
-        # 1. CAPA DE SEGURIDAD PRIORITARIA (Escape No Bloqueante)
+        # 1. LÓGICA DE ESTADOS (Cálculo de intención)
+        if estado == Estado.IDLE: estado, accion = state_idle(px)
+        elif estado == Estado.RESET: estado, accion = state_reset(px)
+        elif estado == Estado.SEARCH: estado, accion = state_search(px, estado, accion, state)
+        elif estado == Estado.RECENTER: estado, accion = state_recenter(px, estado, accion, state)
+        elif estado == Estado.TRACK: estado, accion = state_track(px, estado, accion, state)
+        elif estado == Estado.NEAR: estado, accion = state_near(px, estado, accion, state)
+
+        # 2. CAPA DE SEGURIDAD (Sobrescribe la intención si es necesario)
         if state.is_escaping:
             terminado = scape_danger(px, state)
-            maniobra_activa = True # Marcamos que el escape tiene el control
+            accion = Cmd.KEEP_ALIVE # Impedimos que execute_motion haga otra cosa
             if terminado:
                 log_event(px, estado, "[SEC] Objeto evadido")
-                estado = Estado.SEARCH # Tras escapar, buscamos de nuevo
-                maniobra_activa = False
-        
-        # 2. EVALUACIÓN NORMAL (Solo si no hay peligro inmediato)
+                estado = Estado.SEARCH # Reset de búsqueda tras el susto
+
         elif distancia_real < DANGER_DISTANCE:
-            # Iniciamos maniobra de escape
             log_event(px, estado, f"[SEC] Peligro a {distancia_real}cm")
             scape_danger(px, state)
-            maniobra_activa = True
-        else:
-            # Lógica normal de tu FSM
-            if estado == Estado.IDLE:
-                estado, accion = state_idle(px)
-            elif estado == Estado.RESET:
-                estado, accion = state_reset(px)
-            elif estado == Estado.SEARCH:
-                estado, accion = state_search(px, estado, accion, state)
-            elif estado == Estado.RECENTER:
-                estado, accion = state_recenter(px, estado, accion, state)
-            elif estado == Estado.TRACK:
-                estado, accion = state_track(px, estado, accion, state)
-            elif estado == Estado.NEAR:
-                estado, accion = state_near(px, estado, accion, state)
+            accion = Cmd.KEEP_ALIVE
+            
+        elif distancia_real < WARNING_DISTANCE and accion in [Cmd.FORWARD, Cmd.FORWARD_SLOW]:
+            # Frenado preventivo si la FSM quiere avanzar pero hay algo cerca
+            accion = Cmd.FORWARD_SLOW
 
-        # 3. EJECUCIÓN Y VISUALIZACIÓN
+        # 3. EJECUCIÓN (Solo un punto de salida)
         execute_motion(px, estado, accion, state, test_mode)
         
-        # Imprimir el dashboard para que tú veas qué pasa
         if not test_mode:
             print_dashboard(px, estado, accion, distancia_real, state)
 
-        time.sleep(0.1)
+        time.sleep(0.05) # Más rápido para reaccionar mejor
 
 # ============================================================
 # ENTRYPOINT
