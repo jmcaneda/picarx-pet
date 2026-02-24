@@ -628,17 +628,27 @@ def state_search(px, estado, accion, robot_state):
         return Estado.SEARCH, Cmd.STOP
 
     # --- 2. DETECCIÓN FIABLE (ZONA CENTRAL) ---
+    # Solo consideramos "fiable" si no está tocando los bordes (margen de 60px)
     is_reliable = det.valid_for_search and (60 < det.x < 580)
+    
+    # Si la baliza está en el borde, NO movemos cámara, mejor giramos el cuerpo
+    is_in_edge = det.valid_for_search and not is_reliable
+
     if is_reliable:
         robot_state.search_no_det_frames = 0
         px.search_seen += 1
         
-        # Si la vemos bien, ruedas rectas y a RECENTER
         if abs(det.error_x) <= 40 and px.search_seen >= 3:
             return Estado.RECENTER, Cmd.STOP
         
-        # Corregir cámara para centrar
         return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT
+
+    if is_in_edge:
+        # Si está en el borde, forzamos el Plan B (girar cuerpo) en esa dirección
+        # Esto evita que la cámara la pierda al intentar centrarla
+        robot_state.search_no_det_frames = 81 # Disparamos Plan B
+        robot_state.search_direction = 1 if det.x > 320 else -1
+        log_event(px, Estado.SEARCH, f"Baliza en borde ({det.x}): Pivotando chasis...")
 
     # --- 3. LÓGICA DE BÚSQUEDA (PLAN A Y B) ---
     px.search_seen = 0
