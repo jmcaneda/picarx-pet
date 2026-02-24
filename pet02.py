@@ -218,7 +218,8 @@ def init_flags(px):
     px.dist = 999
 
     # SEARCH
-    px.search_dir = 1          # 1 = derecha, -1 = izquierda
+    # px.search_dir = 1          # 1 = derecha, -1 = izquierda
+    px.search_cam_dir = 1      # Dirección del barrido de cámara en SEARCH  
     # px.search_steps = 0
     px.search_seen = 0
 
