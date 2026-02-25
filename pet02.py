@@ -404,7 +404,8 @@ def scape_danger(px, robot_state, speed=SLOW_SPEED):
         log_event(px, "SEC", "¡ESCAPE ACTIVO! Retrocediendo...")
 
         # 1. Retroceso inicial
-        px.backward(speed + 5)
+        if not px.test_mode:
+            px.backward(speed + 5)
 
         # 2. Elegir dirección fija de escape
         #    Alternamos para evitar patrones repetitivos
@@ -1289,8 +1290,8 @@ def pet_mode(px, test_mode):
         # ------------------------------------------------------------
         # 6. DASHBOARD
         # ------------------------------------------------------------
-        if not test_mode:
-            print_dashboard(px, estado, accion, distancia_real, state)
+        
+        print_dashboard(px, estado, accion, distancia_real, state)
 
         # ------------------------------------------------------------
         # 7. FRECUENCIA
