@@ -252,6 +252,7 @@ def init_flags(px):
     # ESTADOS
     # ============================================================
     px.last_state = None          # último estado ejecutado
+    px.estado_actual = None       # estado actual del robot (para logging)
     px.last_cmd = None            # último comando enviado al robot
 
     # ============================================================
