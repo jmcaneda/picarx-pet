@@ -693,9 +693,17 @@ def apply_safety(px, estado, accion, state):
     # SIM: SCAPE lógico pero sin movimiento
     # ------------------------------------------------------------
     if px.test_mode:
+        # En SIM, SCAPE debe activarse lógicamente pero terminar al instante
         if d < DANGER_DISTANCE:
-            log_event(px, estado, "[SIM] SCAPE (lógico) → SEARCH")
+            log_event(px, estado, "[SIM] SCAPE lógico → SEARCH")
+            state.is_escaping = False
             return Estado.SEARCH, Cmd.STOP
+
+        # Si SCAPE estaba activo, lo limpiamos
+        if state.is_escaping:
+            log_event(px, estado, "[SIM] Limpieza de SCAPE")
+            state.is_escaping = False
+
         return estado, accion
 
     # ------------------------------------------------------------
@@ -1245,18 +1253,11 @@ def pet_mode(px, test_mode):
         # ------------------------------------------------------------
         # 3. SEGURIDAD (TIENE PRIORIDAD ABSOLUTA)
         # ------------------------------------------------------------
-        escape_done = scape_danger(px, state)
+        # Seguridad centralizada en apply_safety()
+        estado, accion = apply_safety(px, estado, accion, state)
 
-        if state.is_escaping:
-            # SCAPE controla el movimiento, no ejecutamos FSM
-            execute_motion(px, estado, accion, state, test_mode)
-            time.sleep(0.05)
-            continue
-
-        if escape_done:
-            # SCAPE terminó → volvemos a SEARCH limpio
-            estado = Estado.SEARCH
-            accion = Cmd.STOP
+        # Si SCAPE está activo, apply_safety ya devolvió SCAPE + KEEP_ALIVE
+        if estado == Estado.SCAPE:
             execute_motion(px, estado, accion, state, test_mode)
             time.sleep(0.05)
             continue
