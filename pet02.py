@@ -598,7 +598,6 @@ def state_reset(px):
     px.set_cam_tilt_angle(0)
     px.set_dir_servo_angle(0)
     px.dir_current_angle = 0
-    log_event(px, Estado.RESET, f"[ENTER] servo_angle={px.dir_current_angle}")
     px.last_pan = 0
     px.last_tilt = 0
 
@@ -683,7 +682,6 @@ def state_recenter(px, estado, accion, robot_state):
         robot_state.recenter_lost_frames = 0
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
-        log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
         px.last_state = estado
 
     # ------------------------------------------------------------

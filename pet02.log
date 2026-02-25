@@ -1,283 +1,77 @@
 === Start of pet02.log ===
-[22:40:53] [Estado.CHK] [CHK] ==============================
-[22:40:53] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[22:40:53] [Estado.CHK] [CHK] ==============================
-[22:40:53] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[22:40:53] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[22:40:53] [Estado.CHK] [CHK] State wheels:     0
-[22:40:53] [Estado.CHK] [CHK] ==============================
-[22:40:53] [Estado.IDLE] Inicio del sistema
-[22:40:53] [Estado.IDLE] Entrando en IDLE
-[22:40:53] [Estado.RESET] Ejecutado: STOP
-[22:40:53] [Estado.RESET] Entrando en RESET
-[22:40:53] [Estado.RESET] [ENTER] servo_angle=0
-[22:40:53] [Estado.SEARCH] Ejecutado: STOP
-[22:40:53] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320 y=240 error_x=0 error_y=0
-[22:40:53] [Estado.SEARCH] Entrando en SEARCH
-[22:40:53] [Estado.SEARCH] Ejecutado: STOP
-[22:40:53] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:40:53] [Estado.RECENTER] Ejecutado: STOP
-[22:40:53] [Estado.RECENTER] Entrando en RECENTER
-[22:40:53] [Estado.RECENTER] [ENTER] servo_angle=0
-[22:40:53] [Estado.RECENTER] Ejecutado: STOP
-[22:40:54] [Estado.RECENTER] px.last_pan=28 Alineado ✔ (cuerpo)
-[22:40:54] [Estado.RECENTER] [RECENTER] Cámara centrada antes de TRACK
-[22:40:54] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:40:54] [Estado.TRACK] [ENTER] servo_angle=0 servo_pan=0
-[22:40:54] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:40:54] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:40:54] [Estado.SEARCH] Ejecutado: STOP
-[22:40:54] [Estado.SEARCH] Entrando en SEARCH
-[22:40:54] [Estado.SEARCH] Ejecutado: STOP
-[22:40:54] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:40:55] [Estado.RECENTER] Ejecutado: STOP
-[22:40:55] [Estado.RECENTER] Entrando en RECENTER
-[22:40:55] [Estado.RECENTER] [ENTER] servo_angle=0
-[22:40:55] [Estado.RECENTER] Ejecutado: STOP
-[22:40:55] [Estado.RECENTER] px.last_pan=28 Alineado ✔ (cuerpo)
-[22:40:55] [Estado.RECENTER] [RECENTER] Cámara centrada antes de TRACK
-[22:40:55] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:40:55] [Estado.TRACK] [ENTER] servo_angle=0 servo_pan=0
-[22:40:55] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:40:56] [Estado.TRACK] [ENTER] servo_angle=0
-[22:40:56] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:40:56] [Estado.TRACK] [ENTER] servo_angle=0
-[22:40:56] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:40:56] [Estado.TRACK] [ENTER] servo_angle=0
-[22:40:56] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:40:56] [Estado.TRACK] [ENTER] servo_angle=0
-[22:40:56] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:40:56] [Estado.TRACK] [ENTER] servo_angle=0
-[22:40:56] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:40:56] [Estado.TRACK] [ENTER] servo_angle=0
-[22:40:56] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:40:56] [Estado.TRACK] [ENTER] servo_angle=0
-[22:40:56] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:40:56] [Estado.TRACK] [ENTER] servo_angle=0
-[22:40:56] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:40:56] [Estado.TRACK] [ENTER] servo_angle=0
-[22:40:56] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:40:58] [Estado.TRACK] [ENTER] servo_angle=0
-[22:40:58] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:40:58] [Estado.TRACK] [ENTER] servo_angle=0
-[22:40:58] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:40:58] [Estado.TRACK] [ENTER] servo_angle=0
-[22:40:58] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:40:59] [Estado.TRACK] NEAR confirmado (3 frames) → NEAR | valid_for_search=True valid_for_near=True is_centered=True n=2 w=136 h=192 area=26112 x=284 y=276 error_x=-36 error_y=36
-[22:40:59] [Estado.NEAR] Ejecutado: STOP
-[22:40:59] [Estado.NEAR] Entrando en NEAR: ¡Frenando!
-[22:40:59] [Estado.NEAR] Ejecutado: STOP
-[22:40:59] [Estado.NEAR] Espaciado de seguridad (Backward)
-[22:40:59] [Estado.NEAR] Ejecutado: BACKWARD
-[22:40:59] [Estado.NEAR] Ejecutado: KEEP_ALIVE
-[22:41:00] [Estado.NEAR] Ejecutado: STOP
-[22:41:00] [Estado.NEAR] Iniciando gesto de 'SI' (no bloqueante)
-[22:41:00] [Estado.NEAR] Ejecutado: STOP
-[22:41:01] [Estado.NEAR] Gesto de 'SI' finalizado
-[22:41:01] [Estado.NEAR] Ejecutado: STOP
-[22:41:09] [Estado.NEAR] Ejecutado: CAM_PAN_LEFT
-[22:41:09] [Estado.NEAR] Ejecutado: STOP
-[22:41:09] [Estado.NEAR] Ejecutado: CAM_PAN_LEFT
-[22:41:09] [Estado.NEAR] Baliza alejada → Volviendo a TRACK
-[22:41:09] [Estado.TRACK] Ejecutado: STOP
-[22:41:10] [Estado.TRACK] [ENTER] servo_angle=0 servo_pan=-16
-[22:41:10] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:41:10] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:10] [Estado.SEARCH] Ejecutado: STOP
-[22:41:10] [Estado.SEARCH] Entrando en SEARCH
-[22:41:10] [Estado.SEARCH] Ejecutado: STOP
-[22:41:10] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:11] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:12] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:14] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:16] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:17] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
-[22:41:18] [SEC] ¡ESCAPE ACTIVO! Retrocediendo...
-[22:41:18] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
-[22:41:18] [Estado.SEARCH] Colisión detectada: Cambiando giro a IZQ
-[22:41:18] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
-[22:41:20] [SEC] Maniobra terminada.
-[22:41:20] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
-[22:41:20] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
-[22:41:22] [SEC] ¡ESCAPE ACTIVO! Retrocediendo...
-[22:41:22] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
-[22:41:22] [Estado.SEARCH] Colisión detectada: Cambiando giro a DER
-[22:41:22] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
-[22:41:24] [SEC] Maniobra terminada.
-[22:41:24] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
-[22:41:24] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
-[22:41:27] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=1 w=40 h=44 area=1760 x=620 y=30 error_x=300 error_y=-210
-[22:41:27] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
-[22:41:27] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:27] [Estado.RECENTER] Ejecutado: STOP
-[22:41:27] [Estado.RECENTER] Entrando en RECENTER
-[22:41:27] [Estado.RECENTER] [ENTER] servo_angle=0
-[22:41:27] [Estado.RECENTER] Ejecutado: CAM_PAN_LEFT
-[22:41:28] [Estado.RECENTER] px.last_pan=13 Alineado ✔ (cuerpo)
-[22:41:28] [Estado.RECENTER] [RECENTER] Cámara centrada antes de TRACK
-[22:41:28] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:41:28] [Estado.TRACK] [ENTER] servo_angle=0 servo_pan=0
-[22:41:28] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:41:29] [Estado.TRACK] [ENTER] servo_angle=0
-[22:41:29] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:41:29] [Estado.TRACK] [ENTER] servo_angle=0
-[22:41:29] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:41:29] [Estado.TRACK] [ENTER] servo_angle=0
-[22:41:29] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:41:29] [Estado.TRACK] [ENTER] servo_angle=0
-[22:41:29] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:41:29] [Estado.TRACK] [ENTER] servo_angle=0
-[22:41:29] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:41:29] [Estado.TRACK] [ENTER] servo_angle=0
-[22:41:29] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:41:29] [Estado.TRACK] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:29] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[22:41:29] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:29] [Estado.SEARCH] Ejecutado: STOP
-[22:41:29] [Estado.SEARCH] Entrando en SEARCH
-[22:41:29] [Estado.SEARCH] Ejecutado: STOP
-[22:41:29] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:29] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:29] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:30] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:30] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:30] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:30] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:30] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:30] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:30] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:30] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:30] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:30] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:30] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:31] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=1 w=32 h=32 area=1024 x=556 y=116 error_x=236 error_y=-124
-[22:41:31] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:31] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:31] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:32] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:32] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:32] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:32] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:32] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:32] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:32] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:32] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:32] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:32] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:33] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:33] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:33] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:33] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:34] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=2 w=32 h=80 area=2560 x=596 y=120 error_x=276 error_y=-120
-[22:41:34] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:34] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:34] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:34] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:34] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:34] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:34] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:34] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:34] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:34] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:35] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:35] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:35] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:35] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:36] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:36] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:36] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:36] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:36] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=4 w=36 h=32 area=1152 x=594 y=36 error_x=274 error_y=-204
-[22:41:36] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:36] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:36] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:36] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:36] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=2 w=32 h=92 area=2944 x=624 y=46 error_x=304 error_y=-194
-[22:41:36] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:37] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:37] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:37] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:37] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:37] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:37] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:37] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:38] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:38] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:38] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:38] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:38] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=4 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:38] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:39] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:39] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:39] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:39] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=2 w=32 h=156 area=4992 x=624 y=78 error_x=304 error_y=-162
-[22:41:39] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:39] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:39] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:40] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:40] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:40] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:40] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:40] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:41] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:41] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:41] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:41] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:41] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:42] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:42] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:42] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:42] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:42] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:42] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:43] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:43] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:43] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=3 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:43] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:43] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:43] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:43] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:44] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:44] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:44] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:44] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:45] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:45] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:45] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:45] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:45] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:45] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:45] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=2 w=32 h=32 area=1024 x=396 y=188 error_x=76 error_y=-52
-[22:41:45] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:45] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:46] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:46] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:46] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:46] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=1 w=32 h=188 area=6016 x=624 y=94 error_x=304 error_y=-146
-[22:41:46] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:47] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:47] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:47] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:47] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:47] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:47] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:47] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:47] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:47] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:48] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=2 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:48] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:48] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=3 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[22:41:48] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:48] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:48] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:48] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:48] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:48] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:48] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:48] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:49] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:49] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:49] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[22:41:49] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[22:41:49] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=1 w=32 h=192 area=6144 x=624 y=96 error_x=304 error_y=-144
-[22:41:49] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:26:57] [Estado.CHK] [CHK] ==============================
+[10:26:57] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[10:26:57] [Estado.CHK] [CHK] ==============================
+[10:26:57] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[10:26:57] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[10:26:57] [Estado.CHK] [CHK] State wheels:     0
+[10:26:57] [Estado.CHK] [CHK] ==============================
+[10:26:57] [Estado.IDLE] Inicio del sistema
+[10:26:58] [Estado.IDLE] Entrando en IDLE
+[10:26:58] [Estado.RESET] Ejecutado: STOP
+[10:26:58] [Estado.RESET] Entrando en RESET
+[10:26:58] [Estado.SEARCH] Ejecutado: STOP
+[10:26:58] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=3 w=0 h=0 area=0 x=320 y=240 error_x=0 error_y=0
+[10:26:58] [Estado.SEARCH] Entrando en SEARCH
+[10:26:58] [Estado.SEARCH] Ejecutado: STOP
+[10:26:58] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:26:58] [Estado.SEARCH] Baliza en borde (614): Pivotando chasis...
+[10:26:58] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
+[10:26:58] [Estado.SEARCH] Baliza en borde (608): Pivotando chasis...
+[10:26:58] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
+[10:26:58] [Estado.SEARCH] Baliza en borde (590): Pivotando chasis...
+[10:26:58] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
+[10:26:58] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:26:59] [Estado.RECENTER] Ejecutado: STOP
+[10:26:59] [Estado.RECENTER] Entrando en RECENTER
+[10:26:59] [Estado.RECENTER] Ejecutado: STOP
+[10:26:59] [Estado.RECENTER] Ejecutado: CAM_PAN_LEFT
+[10:27:00] [Estado.RECENTER] Ejecutado: CAM_PAN_RIGHT
+[10:27:00] [Estado.RECENTER] Ejecutado: CAM_PAN_LEFT
+[10:27:00] [Estado.RECENTER] px.last_pan=4 Alineado ✔ (cuerpo)
+[10:27:00] [Estado.RECENTER] [RECENTER] Cámara centrada antes de TRACK
+[10:27:00] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:27:00] [Estado.TRACK] [ENTER] servo_angle=0 servo_pan=0
+[10:27:01] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:27:01] [Estado.TRACK] Corrección lateral: error_x=-172 → servo_angle=-25.8
+[10:27:01] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:27:01] [Estado.TRACK] Corrección lateral: error_x=-192 → servo_angle=-28.8
+[10:27:01] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:27:01] [Estado.TRACK] Corrección lateral: error_x=-214 → servo_angle=-30.0
+[10:27:01] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:27:01] [Estado.TRACK] Corrección lateral: error_x=58 → servo_angle=8.7
+[10:27:01] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:27:01] [Estado.TRACK] Corrección lateral: error_x=54 → servo_angle=8.1
+[10:27:01] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:27:01] [Estado.TRACK] Corrección lateral: error_x=-214 → servo_angle=-30.0
+[10:27:01] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:27:01] [Estado.TRACK] Corrección lateral: error_x=48 → servo_angle=7.2
+[10:27:01] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:27:01] [Estado.TRACK] Corrección lateral: error_x=-268 → servo_angle=-30.0
+[10:27:01] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:27:02] [Estado.TRACK] Corrección lateral: error_x=-300 → servo_angle=-30.0
+[10:27:02] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:27:02] [Estado.TRACK] Corrección lateral: error_x=-76 → servo_angle=-11.4
+[10:27:02] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:27:02] [Estado.TRACK] Corrección lateral: error_x=-302 → servo_angle=-30.0
+[10:27:02] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:27:02] [Estado.TRACK] Corrección lateral: error_x=-66 → servo_angle=-9.9
+[10:27:02] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:27:02] [Estado.TRACK] Corrección lateral: error_x=-302 → servo_angle=-30.0
+[10:27:02] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:27:02] [Estado.TRACK] Corrección lateral: error_x=-302 → servo_angle=-30.0
+[10:27:02] [Estado.TRACK] Ejecutado: FORWARD_SLOW
+[10:27:03] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:27:03] [Estado.SEARCH] Ejecutado: STOP
+[10:27:03] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
+[10:27:03] [Estado.SEARCH] Entrando en SEARCH
+[10:27:03] [Estado.SEARCH] Ejecutado: STOP
+[10:27:03] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[10:27:04] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[10:27:05] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=1 w=32 h=40 area=1280 x=28 y=460 error_x=-292 error_y=220
+[10:27:05] [Estado.SEARCH] Baliza en borde (28): Pivotando chasis...
+[10:27:05] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
+[10:27:05] [Estado.SEARCH] Baliza en borde (22): Pivotando chasis...
+[10:27:05] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
+[10:27:05] [Estado.SEARCH] Baliza en borde (24): Pivotando chasis...
+[10:27:05] [Estado.SEARCH] Ejecutado: FORWARD_SLOW
