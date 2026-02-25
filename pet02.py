@@ -529,7 +529,10 @@ def execute_motion(px, estado, cmd: Cmd, robot_state, test_mode=False):
     # 0. PRIORIDAD ABSOLUTA: SCAPE
     # ------------------------------------------------------------
     if robot_state.is_escaping:
-        # SCAPE controla el movimiento
+        if test_mode:
+            log_event(px, estado, "[SIM] SCAPE BLOQUEADO")
+            return True
+
         scape_danger(px, robot_state, SLOW_SPEED)
         px.last_cmd = "SCAPE"
         return True
@@ -635,10 +638,20 @@ def _cmd_allowed_in_state(cmd, estado):
     return cmd in allowed.get(estado, {Cmd.STOP})
 
 def _execute_motion_sim(px, estado, cmd):
+    """
+    En modo SIM:
+    - Se ejecutan SOLO comandos de cámara y STOP.
+    - Todo movimiento físico (ruedas) se bloquea.
+    - La FSM sigue funcionando normalmente.
+    """
     try:
         if cmd == Cmd.STOP:
-            stop(px)
-        elif cmd == Cmd.CAM_PAN_LEFT:
+            # No llamamos a px.stop() para evitar movimiento real
+            log_event(px, estado, "[SIM] STOP")
+            return True
+
+        # Cámara permitida
+        if cmd == Cmd.CAM_PAN_LEFT:
             pan_left(px)
         elif cmd == Cmd.CAM_PAN_RIGHT:
             pan_right(px)
@@ -646,6 +659,10 @@ def _execute_motion_sim(px, estado, cmd):
             tilt_top(px)
         elif cmd == Cmd.CAM_TILT_BOTTOM:
             tilt_bottom(px)
+        else:
+            # TODO lo demás se bloquea
+            log_event(px, estado, f"[SIM] BLOQUEADO: {cmd.name}")
+            return True
 
         log_event(px, estado, f"[SIM] Ejecutado: {cmd.name}")
         return True
@@ -653,6 +670,7 @@ def _execute_motion_sim(px, estado, cmd):
     except Exception as e:
         log_event(px, estado, f"[SIM] Error ejecutando {cmd}: {e}")
         return False
+
 
 # ============================================================
 # SEGURIDAD
@@ -671,17 +689,24 @@ def apply_safety(px, estado, accion, state):
     d = update_safety(px)
 
     # ------------------------------------------------------------
+    # SIM: SCAPE lógico pero sin movimiento
+    # ------------------------------------------------------------
+    if px.test_mode:
+        if d < DANGER_DISTANCE:
+            log_event(px, estado, "[SIM] SCAPE (lógico) → SEARCH")
+            return Estado.SEARCH, Cmd.STOP
+        return estado, accion
+
+    # ------------------------------------------------------------
     # 1. PELIGRO — activar SCAPE
     # ------------------------------------------------------------
     if d < DANGER_DISTANCE or state.is_escaping:
 
         terminado = scape_danger(px, state, SLOW_SPEED)
 
-        # Mientras SCAPE está activo, la FSM no debe ejecutar nada
         if not terminado:
             return Estado.SCAPE, Cmd.KEEP_ALIVE
 
-        # SCAPE terminó → volver a SEARCH limpio
         state.search_lost_frames = 0
         state.search_found_frames = 0
         state.search_edge_frames = 0
@@ -689,14 +714,11 @@ def apply_safety(px, estado, accion, state):
         return Estado.SEARCH, Cmd.STOP
 
     # ------------------------------------------------------------
-    # 2. ZONA DE PRECAUCIÓN — reducir velocidad
+    # 2. ZONA DE PRECAUCIÓN
     # ------------------------------------------------------------
     if d < WARNING_DISTANCE and accion == Cmd.FORWARD:
         return estado, Cmd.FORWARD_SLOW
 
-    # ------------------------------------------------------------
-    # 3. SEGURO — no tocar nada
-    # ------------------------------------------------------------
     return estado, accion
 
 
