@@ -213,14 +213,8 @@ def init_flags(px):
     # Detección
     px.last_raw_n = 0
 
-    # Seguridad
-    # px.last_sec = "safe"
-    # px.dist = 999
-
     # SEARCH
-    # px.search_dir = 1          # 1 = derecha, -1 = izquierda
     px.search_cam_dir = 1      # Dirección del barrido de cámara en SEARCH  
-    # px.search_steps = 0
     px.search_seen = 0
 
     # Cámara
@@ -460,35 +454,30 @@ def update_safety(px):
         d = distance
     return d
 
-"""
-def apply_safety(px, estado, accion, robot_state):
+
+def apply_safety(px, estado, accion, state):
+
     d = update_safety(px)
-
-    # Si estamos escapando, mandamos un comando especial o ignoramos execute_motion
-    if robot_state.is_escaping:
-        terminado = scape_danger(px, robot_state, speed=SLOW_SPEED)
-        if not terminado:
-            # Importante: devolvemos un comando que NO sea STOP 
-            # para que execute_motion no apague los motores
-            return estado, Cmd.KEEP_ALIVE 
-        else:
+    # --- NIVEL 2: FILTRO DE SEGURIDAD (SOBREESCRITURA) ---
+    # Si el sensor detecta peligro o ya estamos en medio de un escape...
+    if state.is_escaping or d < DANGER_DISTANCE:
+        # Llamamos a escape. Si acaba de empezar, configurará motores a BACKWARD.
+        terminado = scape_danger(px, state, SLOW_SPEED)
+        
+        # BLOQUEO CRÍTICO: Sobreescribimos la acción de la FSM
+        # Usamos un comando neutro para que execute_motion no haga nada nuevo
+        accion = Cmd.KEEP_ALIVE 
+        
+        if terminado:
             log_event(px, estado, f"[SEC] Zona segura ({d}cm). Reanudando...")
-            return Estado.SEARCH, Cmd.STOP
-
-    if d < DANGER_DISTANCE:
-        log_event(px, estado, f"[SEC] DANGER: {d} cm → Iniciando SCAPE")
-        scape_danger(px, robot_state, speed=SLOW_SPEED)
-        return estado, Cmd.KEEP_ALIVE
+            estado = Estado.SEARCH # Tras el susto, buscamos de nuevo
     
-    # Si detectamos algo a media distancia y vamos hacia adelante, frenamos.
-    if d < WARNING_DISTANCE and accion in [Cmd.FORWARD, Cmd.FORWARD_SLOW]:
-        # Si el error_x de la baliza es grande, quizás el "obstáculo" es la baliza.
-        # Pero por seguridad, bajamos la velocidad o paramos.
-        log_event(px, estado, f"[SEC] Precaución: objeto a {d}cm. Reduciendo velocidad.")
-        return estado, Cmd.FORWARD_SLOW
+    # Precaución: si no hay peligro inminente pero hay algo cerca, bajamos velocidad
+    elif d < WARNING_DISTANCE and accion == Cmd.FORWARD:
+        accion = Cmd.FORWARD_SLOW
 
     return estado, accion
-"""
+
 # ============================================================
 # FUNCIONES
 # ============================================================
@@ -607,9 +596,8 @@ def state_reset(px):
     log_event(px, Estado.RESET, "Entrando en RESET")
     px.set_cam_pan_angle(0)
     px.set_cam_tilt_angle(0)
-    px.dir_current_angle = 0
     px.set_dir_servo_angle(0)
-    # px.dir_current_angle = 0
+    px.dir_current_angle = 0
     log_event(px, Estado.RESET, f"[ENTER] servo_angle={px.dir_current_angle}")
     px.last_pan = 0
     px.last_tilt = 0
@@ -804,8 +792,7 @@ def state_track(px, estado, accion, robot_state):
         
         px.set_dir_servo_angle(target_angle)
         px.dir_current_angle = target_angle
-        # log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
-        # px.set_dir_servo_angle(target_angle)
+        log_event(px, estado, f"Corrección lateral: error_x={det.error_x} → servo_angle={px.dir_current_angle:.1f}")
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
     # 3. Avance recto si está centrado
@@ -922,24 +909,9 @@ def pet_mode(px, test_mode):
         elif estado == Estado.TRACK: estado, accion = state_track(px, estado, accion, state)
         elif estado == Estado.NEAR: estado, accion = state_near(px, estado, accion, state)
 
-        # --- NIVEL 2: FILTRO DE SEGURIDAD (SOBREESCRITURA) ---
-        # Si el sensor detecta peligro o ya estamos en medio de un escape...
-        if state.is_escaping or distancia_real < DANGER_DISTANCE:
-            # Llamamos a escape. Si acaba de empezar, configurará motores a BACKWARD.
-            terminado = scape_danger(px, state)
-            
-            # BLOQUEO CRÍTICO: Sobreescribimos la acción de la FSM
-            # Usamos un comando neutro para que execute_motion no haga nada nuevo
-            accion = Cmd.KEEP_ALIVE 
-            
-            if terminado:
-                estado = Estado.SEARCH # Tras el susto, buscamos de nuevo
-        
-        # Precaución: si no hay peligro inminente pero hay algo cerca, bajamos velocidad
-        elif distancia_real < WARNING_DISTANCE and accion == Cmd.FORWARD:
-            accion = Cmd.FORWARD_SLOW
+        # Actualiza la distancia y maneja la seguridad (puede modificar estado y accion)
+        estado, accion = apply_safety(px, estado, accion, state) 
 
-        # --- NIVEL 3: EJECUCIÓN ---
         # Solo llamamos a execute_motion UNA vez por ciclo
         execute_motion(px, estado, accion, state, test_mode)
         
