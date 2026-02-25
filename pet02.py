@@ -895,6 +895,7 @@ def pet_mode(px, test_mode):
     log_event(px, estado, "Inicio del sistema")
 
     while True:
+        px.last_state = px.estado_actual
         px.estado_actual = estado
         distancia_real = update_safety(px) 
 
