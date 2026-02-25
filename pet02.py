@@ -100,27 +100,56 @@ class Det:
 
     @property
     def is_centered(self):
-        if not self.valid_for_search:
-            return False
+        """
+        Centrado geométrico puro.
+        No depende de validadores.
+        """
         return abs(self.error_x) <= 40
 
     @property
     def valid_for_search(self):
+        """
+        Cualquier detección razonable que merezca ser tenida en cuenta.
+        Amplio y tolerante.
+        """
         if self.w == 0 or self.h == 0 or self.n == 0:
             return False
 
         return (
             self.n >= 1 and
-            20 < self.w < 350 and     # coherente con Search
-            20 < self.h < 480 and
-            400 < self.area < 120000 and
+            10 < self.w < 640 and
+            10 < self.h < 480 and
+            200 < self.area < 240000 and
             0 < self.x < 640 and
             0 < self.y < 480
         )
-    
+
+    @property
+    def valid_for_track(self):
+        """
+        Detección suficientemente buena como para mover el chasis.
+        Más estricta que search, pero no tan exigente como NEAR.
+        """
+        if not self.valid_for_search:
+            return False
+
+        # Evitar cosas demasiado pequeñas o gigantescas
+        if not (800 < self.area < 160000):
+            return False
+
+        # Mantenernos dentro de una zona útil (no pegado al borde)
+        if not (40 < self.x < 600):
+            return False
+
+        return True
+
     @property
     def valid_for_near(self):
-        if not self.valid_for_search:
+        """
+        Detección de 'muy cerca y bastante centrada'.
+        Subconjunto de valid_for_track.
+        """
+        if not self.valid_for_track:
             return False
 
         # 1. Área realmente grande (cerca de verdad)
@@ -143,6 +172,7 @@ class Det:
             f"error_x={self.error_x}, error_y={self.error_y}, "
             f"is_centered={self.is_centered}, "
             f"valid_for_search={self.valid_for_search}, "
+            f"valid_for_track={self.valid_for_track}, "
             f"valid_for_near={self.valid_for_near}"
             ")"
         )
@@ -150,38 +180,48 @@ class Det:
 class RobotState:
     def __init__(self):
 
+        # ============================================================
         # SEARCH
-        self.search_no_det_frames = 0
-        self.search_direction = 1 # 1 para derecha, -1 para izquierda
+        # ============================================================
+        self.search_lost_frames = 0          # frames sin detección válida
+        self.search_found_frames = 0         # frames con detección válida
+        self.search_cam_dir = 1              # dirección del barrido PAN
+        self.search_wheels_dir = 1           # dirección del giro del chasis
+        self.search_edge_frames = 0          # cuántos frames la baliza está en el borde
 
+        # ============================================================
         # RECENTER
-        self.recenter_centered_frames = 0
-        self.recenter_lost_frames = 0
+        # ============================================================
+        self.recenter_centered_frames = 0    # frames centrados
+        self.recenter_lost_frames = 0        # frames sin detección
+        self.just_recentered = None          # cooldown tras RECENTER
 
+        # ============================================================
         # TRACK
-        self.track_lost_frames = 0
+        # ============================================================
+        self.track_lost_frames = 0           # frames sin detección válida
+        self.track_centered_frames = 0       # frames centrado durante TRACK
 
-        # Histeresis para NEAR 
-        self.near_enter_frames = 0 
+        # ============================================================
+        # NEAR
+        # ============================================================
+        self.near_enter_frames = 0
         self.near_exit_frames = 0
-        self.near_done_backward = False
         self.near_lost_frames = 0
-
-        # Cooldown tras backward en NEAR
+        self.near_done_backward = False
         self.near_cooldown = None
-
-        # Cooldown tras RECENTER
-        self.just_recentered = None
+        self.near_did_yes = False
 
         # Animación YES
-        self.yes_step = 0          # En qué paso de la animación vamos
-        self.yes_next_time = 0.0   # Cuándo toca ejecutar el siguiente paso
-        self.near_did_yes = False  # Para que no se queje si lo llamas antes
-        
+        self.yes_step = 0
+        self.yes_next_time = 0.0
+
+        # ============================================================
         # SCAPE
+        # ============================================================
         self.is_escaping = False
         self.escape_end_time = 0
-        self.last_sec_active = False # Para detectar activación de seguridad en SEARCH
+        self.last_sec_active = False
 
 # ============================================================
 # INICIALIZACIÓN
@@ -203,26 +243,36 @@ def init_internal_state(px):
     return Estado.IDLE, Cmd.STOP
 
 def init_flags(px):
-    # Logging
+    # ============================================================
+    # LOGGING
+    # ============================================================
     px.last_log = None
 
-    # Estado previo
-    px.estado_actual = None
-    px.last_state = None
+    # ============================================================
+    # ESTADOS
+    # ============================================================
+    px.last_state = None          # último estado ejecutado
+    px.last_cmd = None            # último comando enviado al robot
 
-    # Detección
-    px.last_raw_n = 0
+    # ============================================================
+    # DETECCIÓN (últimos valores vistos)
+    # ============================================================
+    px.last_det = None            # última detección válida
+    px.last_error_x = 0           # último error horizontal
+    px.last_error_y = 0           # último error vertical
+    px.last_area = 0              # última área detectada
 
-    # SEARCH
-    px.search_cam_dir = 1      # Dirección del barrido de cámara en SEARCH  
-    px.search_seen = 0
+    # ============================================================
+    # CÁMARA
+    # ============================================================
+    px.last_pan = 0               # ángulo actual de PAN
+    px.last_tilt = 0              # ángulo actual de TILT (si lo usas)
+    
+    # ============================================================
+    # DIRECCIÓN DEL CHASIS
+    # ============================================================
+    px.dir_current_angle = 0      # ángulo actual del servo de dirección
 
-    # Cámara
-    px.last_pan = 0
-    px.last_tilt = 0
-
-    # Direccion sevo angle
-    px.dir_current_angle = 0
 
 # ============================================================
 # LOGGING
@@ -243,174 +293,268 @@ def log_event(px, estado, msg):
 
 
 # ============================================================
-# ACCIONES BÁSICAS v2 — Movimiento fluido y continuo
+# ACCIONES BÁSICAS v3 — Movimiento fluido, seguro y con retorno
 # ============================================================
 
 def stop(px):
+    """
+    Detiene el robot sin tocar el servo de dirección.
+    Devuelve True si realmente se detuvo.
+    """
+    if px.last_cmd == "STOP":
+        return False  # comando redundante
+
     px.stop()
-    # No tocamos el servo. La FSM decide cuándo centrarlo.
+    px.last_cmd = "STOP"
+    return True
+
 
 def forward(px, speed=FAST_SPEED):
+    """
+    Avance normal.
+    """
+    if px.last_cmd == ("FWD", speed):
+        return False
+
     px.forward(speed)
+    px.last_cmd = ("FWD", speed)
+    return True
+
 
 def forward_slow(px, speed=SLOW_SPEED):
+    """
+    Avance suave para TRACK y SEARCH.
+    """
+    if px.last_cmd == ("FWD_SLOW", speed):
+        return False
+
     px.forward(speed)
+    px.last_cmd = ("FWD_SLOW", speed)
+    return True
+
 
 def backward(px, speed=SLOW_SPEED):
+    """
+    Retroceso seguro.
+    """
+    if px.last_cmd == ("BACK", speed):
+        return False
+
     px.backward(speed)
-    # No bloqueamos la FSM. NEAR controla su propio backward.
+    px.last_cmd = ("BACK", speed)
+    return True
+
 
 # ------------------------------------------------------------
 # GIRO CONTINUO REAL
 # ------------------------------------------------------------
 
 def turn_left(px, speed=TURN_SPEED):
-    # Mantener el servo girado continuamente
-    px.set_dir_servo_angle(SERVO_ANGLE_MIN)
-    px.dir_current_angle = SERVO_ANGLE_MIN
+    """
+    Gira suavemente a la izquierda.
+    No reescribe el servo si ya está en ese ángulo.
+    """
+    if px.dir_current_angle != SERVO_ANGLE_MIN:
+        px.set_dir_servo_angle(SERVO_ANGLE_MIN)
+        px.dir_current_angle = SERVO_ANGLE_MIN
+
+    if px.last_cmd == ("TURN_LEFT", speed):
+        return False
+
     px.forward(speed)
+    px.last_cmd = ("TURN_LEFT", speed)
+    return True
+
 
 def turn_right(px, speed=TURN_SPEED):
-    px.set_dir_servo_angle(SERVO_ANGLE_MAX)
-    px.dir_current_angle = SERVO_ANGLE_MAX
+    """
+    Gira suavemente a la derecha.
+    """
+    if px.dir_current_angle != SERVO_ANGLE_MAX:
+        px.set_dir_servo_angle(SERVO_ANGLE_MAX)
+        px.dir_current_angle = SERVO_ANGLE_MAX
+
+    if px.last_cmd == ("TURN_RIGHT", speed):
+        return False
+
     px.forward(speed)
+    px.last_cmd = ("TURN_RIGHT", speed)
+    return True
+
 
 # ------------------------------------------------------------
-# SCAPE seguro (solo si se usa)
+# SCAPE
 # ------------------------------------------------------------
 
 def scape_danger(px, robot_state, speed=SLOW_SPEED):
     """
-    Maniobra de evasión mejorada:
-    - Retrocede
-    - Gira según la cámara
-    - Extiende escape si el obstáculo sigue cerca
-    - Centra cámara y ruedas al terminar
+    Maniobra de evasión determinista:
+    - Retrocede recto
+    - Gira el chasis un ángulo fijo
+    - Retrocede un poco más
+    - Centra cámara y ruedas
+    - Devuelve control limpio a SEARCH
     """
 
-    # --- FASE 1: INICIO ---
+    # ------------------------------------------------------------
+    # FASE 1: INICIO
+    # ------------------------------------------------------------
     if not robot_state.is_escaping:
         log_event(px, "SEC", "¡ESCAPE ACTIVO! Retrocediendo...")
 
-        # 1. Ángulo de escape más robusto
-        if abs(px.last_pan) > 10:
-            escape_angle = -px.last_pan
-        else:
-            escape_angle = SERVO_ANGLE_MIN  # giro fijo a la izquierda si la cámara estaba centrada
-
-        target_angle = max(min(escape_angle, SERVO_ANGLE_MAX), SERVO_ANGLE_MIN)
-        px.set_dir_servo_angle(target_angle)
-        px.dir_current_angle = target_angle
-
-        # 2. Retroceso inmediato
+        # 1. Retroceso inicial
         px.backward(speed + 5)
 
-        # 3. Señalización
+        # 2. Elegir dirección fija de escape
+        #    Alternamos para evitar patrones repetitivos
+        robot_state.search_wheels_dir *= -1
+        escape_angle = SERVO_ANGLE_MAX * robot_state.search_wheels_dir
+
+        px.set_dir_servo_angle(escape_angle)
+        px.dir_current_angle = escape_angle
+
+        # 3. Duración fija
+        robot_state.escape_end_time = time.time() + 1.2
         robot_state.is_escaping = True
         robot_state.last_sec_active = True
-        robot_state.escape_end_time = time.time() + 1.2
+
         return False
 
-    # --- FASE 2: MANTENER ESCAPE ---
+    # ------------------------------------------------------------
+    # FASE 2: MANTENER ESCAPE
+    # ------------------------------------------------------------
     dist = update_safety(px)
 
-    # Si el obstáculo sigue muy cerca, extendemos escape
+    # Si el obstáculo sigue muy cerca, extendemos un poco
     if 0 < dist < 15:
         robot_state.escape_end_time = time.time() + 0.3
 
-    # --- FASE 3: FINALIZAR ---
+    # ------------------------------------------------------------
+    # FASE 3: FINALIZAR
+    # ------------------------------------------------------------
     if time.time() >= robot_state.escape_end_time:
         px.stop()
+
+        # Centrar ruedas
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
 
-        # Cámara centrada para recuperación
+        # Centrar cámara
         px.set_cam_pan_angle(0)
         px.last_pan = 0
 
+        # Reset de flags
         robot_state.is_escaping = False
+        robot_state.search_lost_frames = 0
+        robot_state.search_found_frames = 0
+        robot_state.search_edge_frames = 0
+
         log_event(px, "SEC", "Maniobra terminada.")
         return True
 
     return False
+
 
 # ============================================================
 # MOVIMIENTOS DE CÁMARA SEGUROS
 # ============================================================
 
 def pan_right(px, step=CAM_STEP):
+    """
+    Mueve PAN a la derecha.
+    Devuelve:
+        +1 si se movió
+         0 si ya estaba en el límite
+    """
     new_angle = px.last_pan + step
     if new_angle >= PAN_MAX:
-        new_angle = PAN_MAX
+        px.last_pan = PAN_MAX
+        px.set_cam_pan_angle(px.last_pan)
+        return 0  # no hubo movimiento real
+
     px.last_pan = new_angle
     px.set_cam_pan_angle(px.last_pan)
+    return 1
+
 
 def pan_left(px, step=CAM_STEP):
+    """
+    Mueve PAN a la izquierda.
+    Devuelve:
+        +1 si se movió
+         0 si ya estaba en el límite
+    """
     new_angle = px.last_pan - step
     if new_angle <= PAN_MIN:
-        new_angle = PAN_MIN
+        px.last_pan = PAN_MIN
+        px.set_cam_pan_angle(px.last_pan)
+        return 0
+
     px.last_pan = new_angle
     px.set_cam_pan_angle(px.last_pan)
+    return 1
+
 
 def tilt_top(px, step=CAM_STEP):
     new_angle = px.last_tilt + step
     if new_angle >= TILT_MAX:
-        new_angle = TILT_MAX
+        px.last_tilt = TILT_MAX
+        px.set_cam_tilt_angle(px.last_tilt)
+        return 0
+
     px.last_tilt = new_angle
     px.set_cam_tilt_angle(px.last_tilt)
+    return 1
+
 
 def tilt_bottom(px, step=CAM_STEP):
     new_angle = px.last_tilt - step
     if new_angle <= TILT_MIN:
-        new_angle = TILT_MIN
+        px.last_tilt = TILT_MIN
+        px.set_cam_tilt_angle(px.last_tilt)
+        return 0
+
     px.last_tilt = new_angle
     px.set_cam_tilt_angle(px.last_tilt)
-
+    return 1
 
 # ============================================================
-# MAPEO DE COMANDOS
+# MAPEO DE COMANDOS — v3 (determinista, seguro, sin redundancias)
 # ============================================================
 
 def execute_motion(px, estado, cmd: Cmd, robot_state, test_mode=False):
 
-    # ============================================================
-    # MODO SIMULADO
-    # ============================================================
+    # ------------------------------------------------------------
+    # 0. PRIORIDAD ABSOLUTA: SCAPE
+    # ------------------------------------------------------------
+    if robot_state.is_escaping:
+        # SCAPE controla el movimiento
+        scape_danger(px, robot_state, SLOW_SPEED)
+        px.last_cmd = "SCAPE"
+        return True
+
+    # ------------------------------------------------------------
+    # 1. MODO SIMULADO
+    # ------------------------------------------------------------
     if test_mode:
+        return _execute_motion_sim(px, estado, cmd)
 
-        # --- Comandos permitidos en sim ---
-        if cmd in (Cmd.CAM_PAN_LEFT, Cmd.CAM_PAN_RIGHT,
-                   Cmd.CAM_TILT_TOP, Cmd.CAM_TILT_BOTTOM,
-                   Cmd.STOP):
+    # ------------------------------------------------------------
+    # 2. EVITAR COMANDOS REDUNDANTES
+    # ------------------------------------------------------------
+    if px.last_cmd == cmd:
+        return False
 
-            # Ejecutar realmente (para ver movimiento en sim)
-            try:
-                if cmd == Cmd.STOP:
-                    stop(px)
-                elif cmd == Cmd.CAM_PAN_LEFT:
-                    pan_left(px)
-                elif cmd == Cmd.CAM_PAN_RIGHT:
-                    pan_right(px)
-                elif cmd == Cmd.CAM_TILT_TOP:
-                    tilt_top(px)
-                elif cmd == Cmd.CAM_TILT_BOTTOM:
-                    tilt_bottom(px)
+    # ------------------------------------------------------------
+    # 3. VALIDACIÓN POR ESTADO
+    # ------------------------------------------------------------
+    if not _cmd_allowed_in_state(cmd, estado):
+        log_event(px, estado, f"Comando bloqueado en {estado.name}: {cmd.name}")
+        return False
 
-                log_event(px, estado or Estado.CHK, f"[SIM] Ejecutado: {cmd.name}")
-                return True
-
-            except Exception as e:
-                log_event(px, estado or Estado.ERR, f"[SIM] Error ejecutando {cmd}: {e}")
-                return False
-
-        # --- Comandos bloqueados en sim ---
-        else:
-            log_event(px, estado or Estado.CHK, f"[SIM] BLOQUEADO (solo imprimir): {cmd.name}")
-            return True
-
-    # ============================================================
-    # MODO REAL
-    # ============================================================
+    # ------------------------------------------------------------
+    # 4. EJECUCIÓN REAL
+    # ------------------------------------------------------------
     try:
         if cmd == Cmd.STOP:
             stop(px)
@@ -421,19 +565,16 @@ def execute_motion(px, estado, cmd: Cmd, robot_state, test_mode=False):
         elif cmd == Cmd.FORWARD_SLOW:
             forward_slow(px, SLOW_SPEED)
 
+        elif cmd == Cmd.BACKWARD:
+            backward(px, SLOW_SPEED)
+
         elif cmd == Cmd.WHEELS_TURN_LEFT:
             turn_left(px)
 
         elif cmd == Cmd.WHEELS_TURN_RIGHT:
             turn_right(px)
 
-        elif cmd == Cmd.BACKWARD:
-            backward(px)
-
-        elif cmd == Cmd.SCAPE:
-            scape_danger(px, robot_state, SLOW_SPEED)
-
-        # --- Cámara ---
+        # Cámara
         elif cmd == Cmd.CAM_PAN_LEFT:
             pan_left(px)
 
@@ -445,14 +586,16 @@ def execute_motion(px, estado, cmd: Cmd, robot_state, test_mode=False):
 
         elif cmd == Cmd.CAM_TILT_BOTTOM:
             tilt_bottom(px)
+
         elif cmd == Cmd.KEEP_ALIVE:
-            # No hacemos nada, solo mantenemos la maniobra activa
             pass
+
         else:
             log_event(px, Estado.ERR, f"Comando desconocido: {cmd}")
             stop(px)
             return False
 
+        px.last_cmd = cmd
         log_event(px, estado, f"Ejecutado: {cmd.name}")
         return True
 
@@ -461,42 +604,100 @@ def execute_motion(px, estado, cmd: Cmd, robot_state, test_mode=False):
         stop(px)
         return False
 
+def _cmd_allowed_in_state(cmd, estado):
+
+    allowed = {
+        Estado.SEARCH: {
+            Cmd.CAM_PAN_LEFT, Cmd.CAM_PAN_RIGHT,
+            Cmd.FORWARD_SLOW, Cmd.WHEELS_TURN_LEFT, Cmd.WHEELS_TURN_RIGHT,
+            Cmd.STOP
+        },
+
+        Estado.RECENTER: {
+            Cmd.CAM_PAN_LEFT, Cmd.CAM_PAN_RIGHT,
+            Cmd.STOP
+        },
+
+        Estado.TRACK: {
+            Cmd.FORWARD_SLOW, Cmd.WHEELS_TURN_LEFT, Cmd.WHEELS_TURN_RIGHT,
+            Cmd.STOP
+        },
+
+        Estado.NEAR: {
+            Cmd.BACKWARD, Cmd.STOP
+        },
+
+        Estado.IDLE: {Cmd.STOP},
+        Estado.RESET: {Cmd.STOP},
+    }
+
+    return cmd in allowed.get(estado, {Cmd.STOP})
+
+def _execute_motion_sim(px, estado, cmd):
+    try:
+        if cmd == Cmd.STOP:
+            stop(px)
+        elif cmd == Cmd.CAM_PAN_LEFT:
+            pan_left(px)
+        elif cmd == Cmd.CAM_PAN_RIGHT:
+            pan_right(px)
+        elif cmd == Cmd.CAM_TILT_TOP:
+            tilt_top(px)
+        elif cmd == Cmd.CAM_TILT_BOTTOM:
+            tilt_bottom(px)
+
+        log_event(px, estado, f"[SIM] Ejecutado: {cmd.name}")
+        return True
+
+    except Exception as e:
+        log_event(px, estado, f"[SIM] Error ejecutando {cmd}: {e}")
+        return False
+
 # ============================================================
 # SEGURIDAD
 # ============================================================
 def update_safety(px):
-    distance = round(px.ultrasonic.read(), 2)
+    raw = px.ultrasonic.read()
 
-    # Filtro de valores basura
-    if distance <= 0 or distance >= 400:   # ajusta 400 si tu sensor tiene otro rango
-        d = 999
-    else:
-        d = distance
-    return d
+    if raw <= 0 or raw >= 400:
+        return 999  # sin obstáculo
+
+    return round(raw, 2)
 
 
 def apply_safety(px, estado, accion, state):
 
     d = update_safety(px)
-    # --- NIVEL 2: FILTRO DE SEGURIDAD (SOBREESCRITURA) ---
-    # Si el sensor detecta peligro o ya estamos en medio de un escape...
-    if state.is_escaping or d < DANGER_DISTANCE:
-        # Llamamos a escape. Si acaba de empezar, configurará motores a BACKWARD.
-        terminado = scape_danger(px, state, SLOW_SPEED)
-        
-        # BLOQUEO CRÍTICO: Sobreescribimos la acción de la FSM
-        # Usamos un comando neutro para que execute_motion no haga nada nuevo
-        accion = Cmd.KEEP_ALIVE 
-        
-        if terminado:
-            log_event(px, estado, f"[SEC] Zona segura ({d}cm). Reanudando...")
-            estado = Estado.SEARCH # Tras el susto, buscamos de nuevo
-    
-    # Precaución: si no hay peligro inminente pero hay algo cerca, bajamos velocidad
-    elif d < WARNING_DISTANCE and accion == Cmd.FORWARD:
-        accion = Cmd.FORWARD_SLOW
 
+    # ------------------------------------------------------------
+    # 1. PELIGRO — activar SCAPE
+    # ------------------------------------------------------------
+    if d < DANGER_DISTANCE or state.is_escaping:
+
+        terminado = scape_danger(px, state, SLOW_SPEED)
+
+        # Mientras SCAPE está activo, la FSM no debe ejecutar nada
+        if not terminado:
+            return Estado.SCAPE, Cmd.KEEP_ALIVE
+
+        # SCAPE terminó → volver a SEARCH limpio
+        state.search_lost_frames = 0
+        state.search_found_frames = 0
+        state.search_edge_frames = 0
+
+        return Estado.SEARCH, Cmd.STOP
+
+    # ------------------------------------------------------------
+    # 2. ZONA DE PRECAUCIÓN — reducir velocidad
+    # ------------------------------------------------------------
+    if d < WARNING_DISTANCE and accion == Cmd.FORWARD:
+        return estado, Cmd.FORWARD_SLOW
+
+    # ------------------------------------------------------------
+    # 3. SEGURO — no tocar nada
+    # ------------------------------------------------------------
     return estado, accion
+
 
 # ============================================================
 # FUNCIONES
@@ -506,103 +707,102 @@ def get_detection(px):
     params = Vilib.detect_obj_parameter
 
     raw = {
-        "color_x": params.get("color_x", -1),
-        "color_y": params.get("color_y", -1),
-        "color_w": params.get("color_w", 0),
-        "color_h": params.get("color_h", 0),
-        "color_n": params.get("color_n", 0),
+        "x": params.get("color_x", -1),
+        "y": params.get("color_y", -1),
+        "w": params.get("color_w", 0),
+        "h": params.get("color_h", 0),
+        "n": params.get("color_n", 0),
     }
 
     det = Det(
-        n = raw["color_n"],
-        x = raw["color_x"],
-        y = raw["color_y"],
-        w = raw["color_w"],
-        h = raw["color_h"]
+        n = raw["n"],
+        x = raw["x"],
+        y = raw["y"],
+        w = raw["w"],
+        h = raw["h"]
     )
 
-    # 🔥 Filtro anti-fantasma
-    if det.n >= 1 and det.w == 0 and det.h == 0:
+    # ------------------------------------------------------------
+    # FILTRO ANTI-FANTASMA
+    # ------------------------------------------------------------
+    # Fantasma típico: n>=1 pero w/h = 0
+    if det.n >= 1 and (det.w == 0 or det.h == 0):
         det.n = 0
 
-    # Log solo cuando aparece una detección nueva
-    if raw["color_n"] > 0 and px.last_raw_n == 0:
-        log_event(
-            px, px.estado_actual,
-            f"Det valid_for_search={det.valid_for_search} "
-            f"is_centered={det.is_centered} "
-            f"n={raw['color_n']} w={raw['color_w']} h={raw['color_h']} "
-            f"area={det.area} x={raw['color_x']} y={raw['color_y']} "
-            f"error_x={det.error_x} error_y={det.error_y}"
-        )
+    # Fantasma por área incoherente
+    if det.area < 50:
+        det.n = 0
 
-    px.last_raw_n = 1 if raw["color_n"] > 0 else 0
+    # ------------------------------------------------------------
+    # LOG SOLO CUANDO APARECE UNA DETECCIÓN REAL
+    # ------------------------------------------------------------
+    if det.valid_for_search and not px.last_det:
+        log_det(px, px.estado_actual, det, raw, prefix="NEW DET → ")
+
+    # Guardar última detección válida
+    px.last_det = det if det.valid_for_search else None
+    px.last_error_x = det.error_x
+    px.last_error_y = det.error_y
+    px.last_area = det.area
 
     return det, raw
+
 
 def log_det(px, estado, det, raw, prefix=""):
     msg = (
         f"{prefix}"
-        f"valid_for_search={det.valid_for_search} "
-        f"valid_for_near={det.valid_for_near} "
-        f"is_centered={det.is_centered} "
-        f"n={raw['color_n']} w={raw['color_w']} h={raw['color_h']} "
-        f"area={det.area} x={raw['color_x']} y={raw['color_y']} "
-        f"error_x={det.error_x} error_y={det.error_y}"
+        f"search={det.valid_for_search} "
+        f"track={det.valid_for_track} "
+        f"near={det.valid_for_near} "
+        f"centered={det.is_centered} "
+        f"n={raw['n']} w={raw['w']} h={raw['h']} "
+        f"area={det.area} x={raw['x']} y={raw['y']} "
+        f"err_x={det.error_x} err_y={det.error_y}"
     )
     log_event(px, estado, msg)
 
+
 def do_yes(px, robot_state):
-    """
-    Ejecuta el gesto de 'sí' de forma NO bloqueante.
-    Devuelve True cuando la animación ha terminado por completo.
-    """
     current_time = time.time()
 
-    # Si aún no ha pasado el tiempo necesario para el siguiente movimiento, seguimos esperando
     if current_time < robot_state.yes_next_time:
-        return False 
+        return False
 
-    # Definimos la secuencia de ángulos: (Arriba, Abajo, Centro) x 2
-    secuencia = [
-        TILT_MAX, TILT_MIN, 0,
-        TILT_MAX, TILT_MIN, 0
-    ]
+    secuencia = [TILT_MAX, TILT_MIN, 0, TILT_MAX, TILT_MIN, 0]
 
-    # Si todavía quedan pasos en la animación
     if robot_state.yes_step < len(secuencia):
         angulo = secuencia[robot_state.yes_step]
         px.set_cam_tilt_angle(angulo)
-        
-        # Preparamos el temporizador para el siguiente frame (ej. 0.15 seg de pausa)
+
         robot_state.yes_next_time = current_time + 0.15
         robot_state.yes_step += 1
-        
-        # Opcional: Log solo en el primer paso para no saturar
-        if robot_state.yes_step == 1:
-            log_event(px, px.estado_actual, "Iniciando gesto de 'SI' (no bloqueante)")
-            
-        return False # La animación sigue en curso
 
-    else:
-        # La animación ha terminado, reseteamos las variables por si queremos volver a usarla
-        robot_state.yes_step = 0
-        return True
+        if robot_state.yes_step == 1:
+            log_event(px, px.estado_actual, "Iniciando gesto 'SI'")
+
+        return False
+
+    # Animación terminada
+    robot_state.yes_step = 0
+    robot_state.yes_next_time = 0
+    return True
+
 
 def print_dashboard(px, estado, accion, dist, state):
-    # Limpiar terminal (funciona en Linux/Raspberry Pi)
     os.system('clear')
     print("="*45)
     print(f" 🐾 PICAR-X DASHBOARD | Estado: {estado.name}")
     print("="*45)
     print(f" MOVIMIENTO: {accion.name}")
-    print(f" DISTANCIA:  {dist} cm " + ("⚠️ DANGER" if dist < DANGER_DISTANCE else "✅ SAFE"))
+    print(f" DISTANCIA:  {dist} cm " + ("⚠️ DANGER" if dist < DANGER_DISTANCE else "SAFE"))
     print("-"*45)
     print(f" SERVO DIR:  {px.dir_current_angle:>5.1f}°")
     print(f" CAM PAN:    {px.last_pan:>5.1f}°")
+    print(f" AREA:       {px.last_area}")
+    print(f" ERR_X:      {px.last_error_x}")
     print(f" ESCAPANDO:  {state.is_escaping}")
     print("="*45)
-    print(" Presiona Ctrl+C para detener")
+
 
 # ============================================================
 # ESTADOS
@@ -614,16 +814,41 @@ def state_idle(px):
 
 def state_reset(px):
     log_event(px, Estado.RESET, "Entrando en RESET")
+
+    # ------------------------------------------------------------
+    # CENTRAR HARDWARE
+    # ------------------------------------------------------------
     px.set_cam_pan_angle(0)
     px.set_cam_tilt_angle(0)
     px.set_dir_servo_angle(0)
-    px.dir_current_angle = 0
+
+    # ------------------------------------------------------------
+    # SINCRONIZAR FLAGS FÍSICOS
+    # ------------------------------------------------------------
     px.last_pan = 0
     px.last_tilt = 0
+    px.dir_current_angle = 0
 
+    # ------------------------------------------------------------
+    # LIMPIAR FLAGS DE DETECCIÓN
+    # ------------------------------------------------------------
+    px.last_det = None
+    px.last_error_x = 0
+    px.last_error_y = 0
+    px.last_area = 0
+
+    # ------------------------------------------------------------
+    # LIMPIAR ÚLTIMO COMANDO
+    # ------------------------------------------------------------
+    px.last_cmd = None
+
+    # ------------------------------------------------------------
+    # PASAR A SEARCH
+    # ------------------------------------------------------------
     return Estado.SEARCH, Cmd.STOP
 
-def state_search(px, estado, accion, robot_state):
+
+def state_search(px, estado, accion, st):
     det, raw = get_detection(px)
 
     # ============================================================
@@ -632,322 +857,334 @@ def state_search(px, estado, accion, robot_state):
     if px.last_state != Estado.SEARCH:
         log_event(px, Estado.SEARCH, "Entrando en SEARCH")
 
-        px.search_seen = 0
-        robot_state.search_no_det_frames = 0
-        robot_state.search_direction = 1  # giro inicial a la derecha
+        st.search_lost_frames = 0
+        st.search_found_frames = 0
+        st.search_edge_frames = 0
+        st.search_cam_dir = 1
+        st.search_wheels_dir = 1
 
-        # Cámara centrada al entrar
         px.set_cam_pan_angle(0)
         px.last_pan = 0
 
-        px.last_state = Estado.SEARCH
         return Estado.SEARCH, Cmd.STOP
-
 
     # ============================================================
     # 2. RECUPERACIÓN TRAS SCAPE
     # ============================================================
-    if robot_state.last_sec_active:
-        log_event(px, Estado.SEARCH, "[SEC] Recuperación tras evasión")
+    if st.last_sec_active:
+        log_event(px, Estado.SEARCH, "[SEC] Recuperación tras SCAPE")
 
         px.set_cam_pan_angle(0)
         px.last_pan = 0
 
-        robot_state.search_no_det_frames = 0
-        px.search_seen = 0
+        st.search_lost_frames = 0
+        st.search_found_frames = 0
+        st.search_edge_frames = 0
 
-        px.search_cam_dir = 1
-        robot_state.last_sec_active = False
-
+        st.last_sec_active = False
         return Estado.SEARCH, Cmd.CAM_PAN_RIGHT
 
+    # ============================================================
+    # 3. DETECCIÓN VÁLIDA
+    # ============================================================
+    if det.valid_for_search:
+        st.search_lost_frames = 0
+        st.search_found_frames += 1
+
+        # -------------------------
+        # ZONA A — CENTRADO
+        # -------------------------
+        if det.valid_for_track and det.is_centered:
+            if st.search_found_frames >= 3:
+                return Estado.RECENTER, Cmd.STOP
+            return Estado.SEARCH, Cmd.STOP
+
+        # -------------------------
+        # ZONA B — LATERAL
+        # -------------------------
+        if 40 < det.x < 600:
+            return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT
+
+        # -------------------------
+        # ZONA C — BORDE
+        # -------------------------
+        st.search_edge_frames += 1
+
+        # Si PAN puede moverse → PAN
+        if (det.x < 40 and px.last_pan > PAN_MIN) or (det.x > 600 and px.last_pan < PAN_MAX):
+            return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT
+
+        # PAN en límite → GIRO DE CHASIS
+        log_event(px, Estado.SEARCH, "Borde + PAN límite → GIRO DE CHASIS")
+        st.search_wheels_dir = 1 if det.x > 320 else -1
+        return Estado.SEARCH, Cmd.WHEELS_TURN_RIGHT if st.search_wheels_dir == 1 else Cmd.WHEELS_TURN_LEFT
 
     # ============================================================
-    # 3. DETECCIÓN FIABLE
+    # 4. SIN DETECCIÓN — ZONA D
     # ============================================================
-    is_reliable = det.valid_for_search and (60 < det.x < 580)
-    is_in_edge = det.valid_for_search and not is_reliable
+    st.search_found_frames = 0
+    st.search_lost_frames += 1
 
-    if is_reliable:
-        robot_state.search_no_det_frames = 0
-        px.search_seen += 1
-
-        if abs(det.error_x) <= 30 and px.search_seen >= 4:
-            return Estado.RECENTER, Cmd.STOP
-
-        return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT
-
-
-    # ============================================================
-    # 4. BALIZA EN BORDE
-    # ============================================================
-
-    if is_in_edge and (px.last_pan == PAN_MAX or px.last_pan == PAN_MIN):
-    log_event(px, Estado.SEARCH, "Baliza en borde + PAN límite → GIRO DE CHASIS (Plan B inmediato)")
-
-    # Elegir dirección de giro según el borde
-    robot_state.search_direction = 1 if det.x > 320 else -1
-
-    angulo = SERVO_ANGLE_MAX * robot_state.search_direction
-    px.set_dir_servo_angle(angulo)
-    px.dir_current_angle = angulo
-
-    return Estado.SEARCH, Cmd.FORWARD_SLOW
-
-
-    # Si aún podemos mover PAN, corregimos con cámara
-    if is_in_edge:
-        log_event(px, Estado.SEARCH, f"Baliza en borde ({det.x}) → corrigiendo cámara")
-        robot_state.search_no_det_frames = max(robot_state.search_no_det_frames - 5, 0)
-        return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT
-
-
-    # ============================================================
-    # 5. SIN DETECCIÓN → PLAN A / PLAN B
-    # ============================================================
-    px.search_seen = 0
-    robot_state.search_no_det_frames += 1
-
-
-    # ============================================================
-    # 5A. PLAN B — GIRO DEL CHASIS
-    # ============================================================
-    if robot_state.search_no_det_frames > 80:
-
-        angulo_giro = SERVO_ANGLE_MAX * robot_state.search_direction
-        px.set_dir_servo_angle(angulo_giro)
-        px.dir_current_angle = angulo_giro
-
-        if px.last_pan >= PAN_MAX:
-            px.search_cam_dir = -1
-        elif px.last_pan <= PAN_MIN:
-            px.search_cam_dir = 1
-
-        return Estado.SEARCH, Cmd.FORWARD_SLOW
-
-
-    # ============================================================
-    # 5B. PLAN A — BARRIDO PAN
-    # ============================================================
+    # Barrido PAN
     if px.last_pan >= PAN_MAX:
-        px.search_cam_dir = -1
+        st.search_cam_dir = -1
     elif px.last_pan <= PAN_MIN:
-        px.search_cam_dir = 1
+        st.search_cam_dir = 1
 
-    return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if px.search_cam_dir == 1 else Cmd.CAM_PAN_LEFT
+    # Si llevamos mucho sin ver nada → GIRO DE CHASIS
+    if st.search_lost_frames > 60:
+        log_event(px, Estado.SEARCH, "Perdido → GIRO DE CHASIS")
+        return Estado.SEARCH, Cmd.WHEELS_TURN_RIGHT if st.search_wheels_dir == 1 else Cmd.WHEELS_TURN_LEFT
+
+    # PAN normal
+    return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if st.search_cam_dir == 1 else Cmd.CAM_PAN_LEFT
 
 
-def state_recenter(px, estado, accion, robot_state):
+def state_recenter(px, estado, accion, st):
     det, raw = get_detection(px)
 
-    # ------------------------------------------------------------
-    # 1. Entrada al estado
-    # ------------------------------------------------------------
-    if px.last_state != estado:
-        log_event(px, estado, "Entrando en RECENTER")
-        robot_state.recenter_centered_frames = 0
-        robot_state.recenter_lost_frames = 0
+    # ============================================================
+    # 1. ENTRADA AL ESTADO
+    # ============================================================
+    if px.last_state != Estado.RECENTER:
+        log_event(px, Estado.RECENTER, "Entrando en RECENTER")
 
-        # El chasis SIEMPRE debe empezar centrado
+        st.recenter_centered_frames = 0
+        st.recenter_lost_frames = 0
+
+        # El chasis SIEMPRE centrado en RECENTER
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
 
-        px.last_state = estado
         return Estado.RECENTER, Cmd.STOP
 
-
-    # ------------------------------------------------------------
-    # 2. Si NO hay detección válida → tolerar 5 frames
-    # ------------------------------------------------------------
+    # ============================================================
+    # 2. SIN DETECCIÓN → tolerancia 5 frames
+    # ============================================================
     if not det.valid_for_search:
-        robot_state.recenter_lost_frames += 1
-        if robot_state.recenter_lost_frames >= 5:
-            log_det(px, estado, det, raw, prefix="RECENTER sin detección → SEARCH ")
+        st.recenter_lost_frames += 1
+
+        if st.recenter_lost_frames >= 5:
+            log_event(px, Estado.RECENTER, "Sin detección → SEARCH")
             return Estado.SEARCH, Cmd.STOP
+
         return Estado.RECENTER, Cmd.STOP
 
-    robot_state.recenter_lost_frames = 0
+    # Reset de pérdida
+    st.recenter_lost_frames = 0
 
+    # ============================================================
+    # 3. ERROR GRANDE → corregir PAN
+    # ============================================================
+    if abs(det.error_x) > 30:
+        st.recenter_centered_frames = 0
 
-    # ------------------------------------------------------------
-    # 3. Corrección horizontal (PAN)
-    # ------------------------------------------------------------
-    if abs(det.error_x) > 30:   # más estricto que antes
-        robot_state.recenter_centered_frames = 0
-
-        # Si PAN está en límite y error_x sigue grande → RECENTER no puede resolverlo
+        # PAN en límite y error grande → RECENTER no puede resolverlo
         if px.last_pan in (PAN_MAX, PAN_MIN) and abs(det.error_x) > 60:
-            log_event(px, estado, "RECENTER: PAN límite + error grande → SEARCH")
+            log_event(px, Estado.RECENTER, "PAN límite + error grande → SEARCH")
             return Estado.SEARCH, Cmd.STOP
 
-        # Corrección normal con PAN
-        return Estado.RECENTER, Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT
+        # Corrección normal
+        return Estado.RECENTER, (
+            Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT
+        )
 
-
-    # ------------------------------------------------------------
-    # 4. PAN en límite (pero solo si realmente está centrado)
-    # ------------------------------------------------------------
+    # ============================================================
+    # 4. PAN en límite pero error pequeño → TRACK
+    # ============================================================
     if px.last_pan in (PAN_MAX, PAN_MIN):
+        log_event(px, Estado.RECENTER, "PAN límite + centrado → TRACK")
 
-        # Si error_x sigue siendo grande → NO pasar a TRACK
-        if abs(det.error_x) > 60:
-            log_event(px, estado, "RECENTER: PAN límite pero error_x grande → STOP")
-            robot_state.recenter_centered_frames = 0
-            return Estado.RECENTER, Cmd.STOP
-
-        # Si está realmente centrado → TRACK
-        log_event(px, estado, "RECENTER: PAN límite + centrado → TRACK")
         px.set_cam_pan_angle(0)
         px.last_pan = 0
-        robot_state.just_recentered = time.time()
+        st.just_recentered = time.time()
+
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
+    # ============================================================
+    # 5. CENTRADO NORMAL
+    # ============================================================
+    st.recenter_centered_frames += 1
 
-    # ------------------------------------------------------------
-    # 5. Centrado normal
-    # ------------------------------------------------------------
-    robot_state.recenter_centered_frames += 1
-
-    # Necesitamos varios frames centrados para evitar falsos positivos
-    if robot_state.recenter_centered_frames >= 4:
-        log_event(px, estado, f"px.last_pan={px.last_pan} Alineado ✔ (cuerpo)")
+    if st.recenter_centered_frames >= 3:
+        log_event(px, Estado.RECENTER, "Centrado ✔ → TRACK")
 
         px.set_cam_pan_angle(0)
         px.last_pan = 0
+        st.just_recentered = time.time()
 
-        robot_state.just_recentered = time.time()
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
     return Estado.RECENTER, Cmd.STOP
 
-def state_track(px, estado, accion, robot_state):
+
+def state_track(px, estado, accion, st):
     det, raw = get_detection(px)
 
-    # Asegurar servo centrado al entrar en TRACK
+    # ============================================================
+    # 1. ENTRADA AL ESTADO
+    # ============================================================
     if px.last_state != Estado.TRACK:
-        # No tocar la cámara al entrar en TRACK 
-        # Solo centrar el servo de dirección
+        log_event(px, Estado.TRACK, "Entrando en TRACK")
+
+        # Servo SIEMPRE centrado al entrar
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
-        log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle} servo_pan={px.last_pan}")
-        px.last_state = Estado.TRACK
 
-    # Cooldown tras RECENTER
-    if robot_state.just_recentered:
-        if time.time() - robot_state.just_recentered < 0.3:
+        st.track_lost_frames = 0
+        st.near_enter_frames = 0
+
+        return Estado.TRACK, Cmd.FORWARD_SLOW
+
+    # ============================================================
+    # 2. COOLDOWN TRAS RECENTER
+    # ============================================================
+    if st.just_recentered:
+        if time.time() - st.just_recentered < 0.3:
             return Estado.TRACK, Cmd.FORWARD_SLOW
-        robot_state.just_recentered = None
+        st.just_recentered = None
 
-    # 0. Si no hay detección → SEARCH
-    if not det.valid_for_search:
-        robot_state.track_lost_frames += 1
-        if robot_state.track_lost_frames >= 3:
-            log_det(px, Estado.TRACK, det, raw, prefix="Perdida baliza → SEARCH | ")
+    # ============================================================
+    # 3. PÉRDIDA DE BALIZA → SEARCH
+    # ============================================================
+    if not det.valid_for_track:
+        st.track_lost_frames += 1
+
+        if st.track_lost_frames >= 3:
+            log_event(px, Estado.TRACK, "Perdida baliza → SEARCH")
             return Estado.SEARCH, Cmd.STOP
-        return Estado.TRACK, Cmd.FORWARD_SLOW
-    robot_state.track_lost_frames = 0
 
-    # 1. Si está cerca → NEAR
+        return Estado.TRACK, Cmd.FORWARD_SLOW
+
+    # Reset de pérdida
+    st.track_lost_frames = 0
+
+    # ============================================================
+    # 4. ENTRADA A NEAR
+    # ============================================================
     if det.valid_for_near:
-        robot_state.near_enter_frames += 1
-        if robot_state.near_enter_frames >= 3:
-            log_det(px, Estado.TRACK, det, raw, prefix="NEAR confirmado (3 frames) → NEAR | ")
+        st.near_enter_frames += 1
+
+        if st.near_enter_frames >= 3:
+            log_event(px, Estado.TRACK, "NEAR confirmado → NEAR")
             return Estado.NEAR, Cmd.STOP
-        return Estado.TRACK, Cmd.FORWARD_SLOW
-    robot_state.near_enter_frames = 0
 
-    # 2. Corrección lateral proporcional (USA EL ERROR DE LA CÁMARA)
+        return Estado.TRACK, Cmd.FORWARD_SLOW
+
+    st.near_enter_frames = 0
+
+    # ============================================================
+    # 5. CORRECCIÓN LATERAL PROPORCIONAL
+    # ============================================================
     if abs(det.error_x) > 40:
-        # Mapeamos el error de la cámara (-320 a 320) al ángulo del servo (-30 a 30)
-        # Un factor de 0.1 suele funcionar bien: 100px de error = 10 grados de giro
-        KP = 0.15 
+        KP = 0.15
         target_angle = det.error_x * KP
-        
-        # Limitamos el ángulo para no forzar el servo
+
+        # Limitar ángulo
         target_angle = max(min(target_angle, SERVO_ANGLE_MAX), SERVO_ANGLE_MIN)
-        
-        px.set_dir_servo_angle(target_angle)
-        px.dir_current_angle = target_angle
-        log_event(px, estado, f"Corrección lateral: error_x={det.error_x} → servo_angle={px.dir_current_angle:.1f}")
+
+        # Solo mover si cambia
+        if px.dir_current_angle != target_angle:
+            px.set_dir_servo_angle(target_angle)
+            px.dir_current_angle = target_angle
+
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
-    # 3. Avance recto si está centrado
-    px.set_dir_servo_angle(0)
-    px.dir_current_angle = 0
-    log_event(px, estado, f"[ENTER] servo_angle={px.dir_current_angle}")
+    # ============================================================
+    # 6. AVANCE RECTO (error pequeño)
+    # ============================================================
+    if px.dir_current_angle != 0:
+        px.set_dir_servo_angle(0)
+        px.dir_current_angle = 0
+
     return Estado.TRACK, Cmd.FORWARD_SLOW
 
-def state_near(px, estado, accion, robot_state):
+
+def state_near(px, estado, accion, st):
     det, raw = get_detection(px)
 
-    # --- 1. ENTRADA AL ESTADO (Frenado de Emergencia) ---
+    # ============================================================
+    # 1. ENTRADA AL ESTADO
+    # ============================================================
     if px.last_state != Estado.NEAR:
-        log_event(px, Estado.NEAR, "Entrando en NEAR: ¡Frenando!")
-        px.stop()  # Detenemos motores inmediatamente para mitigar inercia
-        
-        robot_state.near_done_backward = False
-        robot_state.near_lost_frames = 0
-        robot_state.near_exit_frames = 0
-        robot_state.near_did_yes = False
-        robot_state.near_cooldown = None
+        log_event(px, Estado.NEAR, "Entrando en NEAR: frenado inmediato")
 
+        px.stop()
+
+        st.near_done_backward = False
+        st.near_lost_frames = 0
+        st.near_exit_frames = 0
+        st.near_did_yes = False
+        st.near_cooldown = None
+
+        # Chasis siempre centrado
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
+
+        # Cámara estable
         px.set_cam_tilt_angle(0)
         px.last_tilt = 0
-        px.last_state = Estado.NEAR
-        
-        # Forzamos un ciclo de STOP para asegurar que los motores cortan
+
         return Estado.NEAR, Cmd.STOP
 
-    # --- 2. VALIDACIÓN DE PRESENCIA ---
+    # ============================================================
+    # 2. VALIDACIÓN DE PRESENCIA
+    # ============================================================
     if not det.valid_for_search:
-        robot_state.near_lost_frames += 1
-        if robot_state.near_lost_frames >= 5:
-            log_event(px, Estado.NEAR, "Baliza perdida en NEAR → SEARCH")
-            return Estado.SEARCH, Cmd.STOP
-        return Estado.NEAR, Cmd.STOP
-    robot_state.near_lost_frames = 0
+        st.near_lost_frames += 1
 
-    # --- 3. RETROCESO DE CORTESÍA (Espaciado) ---
-    # Lo hacemos al principio para alejarnos del obstáculo/baliza antes del gesto
-    if not robot_state.near_done_backward:
-        log_event(px, Estado.NEAR, "Espaciado de seguridad (Backward)")
-        robot_state.near_done_backward = True
-        robot_state.near_cooldown = time.time() + 0.4 # Aumentamos un poco el tiempo
+        if st.near_lost_frames >= 5:
+            log_event(px, Estado.NEAR, "Baliza perdida → SEARCH")
+            return Estado.SEARCH, Cmd.STOP
+
+        return Estado.NEAR, Cmd.STOP
+
+    st.near_lost_frames = 0
+
+    # ============================================================
+    # 3. RETROCESO DE CORTESÍA
+    # ============================================================
+    if not st.near_done_backward:
+        log_event(px, Estado.NEAR, "Retroceso de cortesía")
+        st.near_done_backward = True
+        st.near_cooldown = time.time() + 0.4
         return Estado.NEAR, Cmd.BACKWARD
 
-    # Esperar a que el retroceso termine realmente
-    if robot_state.near_cooldown:
-        if time.time() < robot_state.near_cooldown:
-            return Estado.NEAR, Cmd.KEEP_ALIVE # Mantenemos el BACKWARD activo
+    # Esperar a que termine el backward
+    if st.near_cooldown:
+        if time.time() < st.near_cooldown:
+            return Estado.NEAR, Cmd.KEEP_ALIVE
         else:
-            px.stop() # Frenar tras el retroceso
-            robot_state.near_cooldown = None
+            px.stop()
+            st.near_cooldown = None
             return Estado.NEAR, Cmd.STOP
 
-    # --- 4. GESTO DE RECONOCIMIENTO ("SÍ") ---
-    if not robot_state.near_did_yes:
-        terminado = do_yes(px, robot_state)
+    # ============================================================
+    # 4. GESTO “SÍ”
+    # ============================================================
+    if not st.near_did_yes:
+        terminado = do_yes(px, st)
         if terminado:
-            log_event(px, Estado.NEAR, "Gesto de 'SI' finalizado")
-            robot_state.near_did_yes = True
+            log_event(px, Estado.NEAR, "Gesto 'sí' completado")
+            st.near_did_yes = True
         return Estado.NEAR, Cmd.STOP
 
-    # --- 5. LÓGICA DE SALIDA O MANTENIMIENTO ---
+    # ============================================================
+    # 5. MANTENIMIENTO / SALIDA
+    # ============================================================
     if not det.valid_for_near:
-        robot_state.near_exit_frames += 1
-        if robot_state.near_exit_frames >= 10: # Más margen para evitar tirones
-            log_event(px, Estado.NEAR, "Baliza alejada → Volviendo a TRACK")
+        st.near_exit_frames += 1
+
+        if st.near_exit_frames >= 10:
+            log_event(px, Estado.NEAR, "Baliza alejada → TRACK")
             return Estado.TRACK, Cmd.STOP
-    else:
-        robot_state.near_exit_frames = 0
 
-    # Si la baliza se desplaza mucho lateralmente, corregimos solo con cámara
-    if abs(det.error_x) > 100:
-        return Estado.NEAR, Cmd.CAM_PAN_LEFT if det.error_x < 0 else Cmd.CAM_PAN_RIGHT
+        return Estado.NEAR, Cmd.STOP
 
+    # Baliza sigue cerca → mantener
+    st.near_exit_frames = 0
     return Estado.NEAR, Cmd.STOP
+
 
 # ============================================================
 # BUCLE PRINCIPAL
@@ -959,43 +1196,84 @@ def pet_mode(px, test_mode):
     with open(LOG_PATH, "w", encoding="utf-8") as f:
         f.write("=== Start of pet02.log ===\n")
 
-    # music.music_set_volume(20)
-    # sound_path = os.path.join(SOUNDS_DIR, "sounds_angry.wav")
-    # music.sound_play(sound_path)
-    #time.sleep(0.05)
-
     hello_px(px)
     init_camera(px)
     init_flags(px)
+
     estado, accion = init_internal_state(px)
-    check_robot(px,log_event)
     state = RobotState()
+
     log_event(px, estado, "Inicio del sistema")
 
     while True:
+
+        # ------------------------------------------------------------
+        # 1. ACTUALIZAR ESTADO PREVIO
+        # ------------------------------------------------------------
         px.last_state = px.estado_actual
         px.estado_actual = estado
-        distancia_real = update_safety(px) 
 
-        # --- NIVEL 1: CÁLCULO DE INTENCIÓN (FSM) ---
-        # Decidimos qué "querría" hacer el robot según la baliza
-        if estado == Estado.IDLE: estado, accion = state_idle(px)
-        elif estado == Estado.RESET: estado, accion = state_reset(px)
-        elif estado == Estado.SEARCH: estado, accion = state_search(px, estado, accion, state)
-        elif estado == Estado.RECENTER: estado, accion = state_recenter(px, estado, accion, state)
-        elif estado == Estado.TRACK: estado, accion = state_track(px, estado, accion, state)
-        elif estado == Estado.NEAR: estado, accion = state_near(px, estado, accion, state)
+        # ------------------------------------------------------------
+        # 2. LECTURA DE SENSORES
+        # ------------------------------------------------------------
+        distancia_real = update_safety(px)
 
-        # Actualiza la distancia y maneja la seguridad (puede modificar estado y accion)
-        estado, accion = apply_safety(px, estado, accion, state) 
+        # ------------------------------------------------------------
+        # 3. SEGURIDAD (TIENE PRIORIDAD ABSOLUTA)
+        # ------------------------------------------------------------
+        escape_done = scape_danger(px, state)
 
-        # Solo llamamos a execute_motion UNA vez por ciclo
+        if state.is_escaping:
+            # SCAPE controla el movimiento, no ejecutamos FSM
+            execute_motion(px, estado, accion, state, test_mode)
+            time.sleep(0.05)
+            continue
+
+        if escape_done:
+            # SCAPE terminó → volvemos a SEARCH limpio
+            estado = Estado.SEARCH
+            accion = Cmd.STOP
+            execute_motion(px, estado, accion, state, test_mode)
+            time.sleep(0.05)
+            continue
+
+        # ------------------------------------------------------------
+        # 4. FSM (solo si no hay SCAPE)
+        # ------------------------------------------------------------
+        if estado == Estado.IDLE:
+            estado, accion = state_idle(px)
+
+        elif estado == Estado.RESET:
+            estado, accion = state_reset(px)
+
+        elif estado == Estado.SEARCH:
+            estado, accion = state_search(px, estado, accion, state)
+
+        elif estado == Estado.RECENTER:
+            estado, accion = state_recenter(px, estado, accion, state)
+
+        elif estado == Estado.TRACK:
+            estado, accion = state_track(px, estado, accion, state)
+
+        elif estado == Estado.NEAR:
+            estado, accion = state_near(px, estado, accion, state)
+
+        # ------------------------------------------------------------
+        # 5. EJECUTAR MOVIMIENTO (UNA SOLA VEZ)
+        # ------------------------------------------------------------
         execute_motion(px, estado, accion, state, test_mode)
-        
+
+        # ------------------------------------------------------------
+        # 6. DASHBOARD
+        # ------------------------------------------------------------
         if not test_mode:
             print_dashboard(px, estado, accion, distancia_real, state)
 
-        time.sleep(0.05) # Mayor frecuencia = respuesta más rápida
+        # ------------------------------------------------------------
+        # 7. FRECUENCIA
+        # ------------------------------------------------------------
+        time.sleep(0.05)
+
 
 # ============================================================
 # ENTRYPOINT
