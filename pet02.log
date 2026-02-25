@@ -1,111 +1,29 @@
 === Start of pet02.log ===
-[11:06:08] [Estado.CHK] [CHK] ==============================
-[11:06:08] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[11:06:08] [Estado.CHK] [CHK] ==============================
-[11:06:08] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[11:06:08] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[11:06:08] [Estado.CHK] [CHK] State wheels:     0
-[11:06:08] [Estado.CHK] [CHK] ==============================
-[11:06:08] [Estado.IDLE] Inicio del sistema
-[11:06:08] [Estado.IDLE] Entrando en IDLE
-[11:06:08] [Estado.RESET] Ejecutado: STOP
-[11:06:09] [Estado.RESET] Entrando en RESET
-[11:06:09] [Estado.SEARCH] Ejecutado: STOP
-[11:06:09] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=2 w=40 h=88 area=3520 x=620 y=256 error_x=300 error_y=16
-[11:06:09] [Estado.SEARCH] Entrando en SEARCH
-[11:06:09] [Estado.SEARCH] Ejecutado: STOP
-[11:06:09] [Estado.SEARCH] Baliza en borde (618) → corrigiendo cámara
-[11:06:09] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[11:06:09] [Estado.SEARCH] Baliza en borde (612) → corrigiendo cámara
-[11:06:09] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[11:06:10] [Estado.RECENTER] Ejecutado: STOP
-[11:06:10] [Estado.RECENTER] Entrando en RECENTER
-[11:06:10] [Estado.RECENTER] Ejecutado: CAM_PAN_RIGHT
-[11:06:12] [Estado.RECENTER] PAN en límite → centrar cámara y pasar a TRACK
-[11:06:12] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:12] [Estado.TRACK] [ENTER] servo_angle=0 servo_pan=0
-[11:06:12] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:12] [Estado.TRACK] Corrección lateral: error_x=292 → servo_angle=30.0
-[11:06:12] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:12] [Estado.TRACK] Corrección lateral: error_x=288 → servo_angle=30.0
-[11:06:12] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:12] [Estado.TRACK] Corrección lateral: error_x=268 → servo_angle=30.0
-[11:06:12] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:12] [Estado.TRACK] Corrección lateral: error_x=222 → servo_angle=30.0
-[11:06:12] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:12] [Estado.TRACK] Corrección lateral: error_x=160 → servo_angle=24.0
-[11:06:12] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:12] [Estado.TRACK] Corrección lateral: error_x=92 → servo_angle=13.8
-[11:06:12] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:13] [Estado.TRACK] Corrección lateral: error_x=206 → servo_angle=30.0
-[11:06:13] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:13] [Estado.TRACK] Corrección lateral: error_x=182 → servo_angle=27.3
-[11:06:13] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:13] [Estado.TRACK] Corrección lateral: error_x=150 → servo_angle=22.5
-[11:06:13] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:13] [Estado.TRACK] Corrección lateral: error_x=72 → servo_angle=10.8
-[11:06:13] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:13] [Estado.TRACK] Corrección lateral: error_x=-56 → servo_angle=-8.4
-[11:06:13] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:14] [Estado.TRACK] Corrección lateral: error_x=-82 → servo_angle=-12.3
-[11:06:14] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:14] [Estado.TRACK] Corrección lateral: error_x=-130 → servo_angle=-19.5
-[11:06:14] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:14] [Estado.TRACK] Corrección lateral: error_x=-150 → servo_angle=-22.5
-[11:06:14] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:14] [Estado.TRACK] Corrección lateral: error_x=-106 → servo_angle=-15.9
-[11:06:14] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:14] [Estado.TRACK] Corrección lateral: error_x=-94 → servo_angle=-14.1
-[11:06:14] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:14] [Estado.TRACK] Corrección lateral: error_x=-112 → servo_angle=-16.8
-[11:06:14] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:14] [Estado.TRACK] Corrección lateral: error_x=-302 → servo_angle=-30.0
-[11:06:14] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:15] [Estado.TRACK] Corrección lateral: error_x=-284 → servo_angle=-30.0
-[11:06:15] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:15] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[11:06:15] [Estado.SEARCH] Ejecutado: STOP
-[11:06:15] [Estado.SEARCH] Entrando en SEARCH
-[11:06:15] [Estado.SEARCH] Ejecutado: STOP
-[11:06:15] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[11:06:15] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[11:06:15] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[11:06:16] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[11:06:17] [Estado.SEARCH] Det valid_for_search=True is_centered=False n=2 w=44 h=148 area=6512 x=22 y=286 error_x=-298 error_y=46
-[11:06:17] [Estado.SEARCH] Baliza en borde (22) → corrigiendo cámara
-[11:06:17] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[11:06:17] [Estado.SEARCH] Baliza en borde (44) → corrigiendo cámara
-[11:06:17] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[11:06:18] [Estado.RECENTER] Ejecutado: STOP
-[11:06:18] [Estado.RECENTER] Entrando en RECENTER
-[11:06:18] [Estado.RECENTER] PAN en límite → centrar cámara y pasar a TRACK
-[11:06:18] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:18] [Estado.TRACK] [ENTER] servo_angle=0 servo_pan=0
-[11:06:18] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:19] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[11:06:19] [Estado.SEARCH] Ejecutado: STOP
-[11:06:19] [Estado.SEARCH] Entrando en SEARCH
-[11:06:19] [Estado.SEARCH] Ejecutado: STOP
-[11:06:19] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[11:06:19] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[11:06:19] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[11:06:19] [Estado.SEARCH] Baliza en borde (22) → corrigiendo cámara
-[11:06:19] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[11:06:19] [Estado.SEARCH] Baliza en borde (58) → corrigiendo cámara
-[11:06:19] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[11:06:21] [Estado.RECENTER] Ejecutado: STOP
-[11:06:21] [Estado.RECENTER] Entrando en RECENTER
-[11:06:21] [Estado.RECENTER] Ejecutado: CAM_PAN_LEFT
-[11:06:21] [Estado.RECENTER] PAN en límite → centrar cámara y pasar a TRACK
-[11:06:21] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:21] [Estado.TRACK] [ENTER] servo_angle=0 servo_pan=0
-[11:06:21] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[11:06:21] [Estado.TRACK] Perdida baliza → SEARCH | valid_for_search=False valid_for_near=False is_centered=False n=0 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[11:06:21] [Estado.SEARCH] Ejecutado: STOP
-[11:06:22] [Estado.SEARCH] Entrando en SEARCH
-[11:06:22] [Estado.SEARCH] Ejecutado: STOP
-[11:06:22] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[11:06:22] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=3 w=0 h=0 area=0 x=320.0 y=240.0 error_x=0.0 error_y=0.0
-[11:06:22] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[11:06:22] [Estado.SEARCH] Baliza en borde (46) → corrigiendo cámara
-[11:06:22] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[11:13:15] [Estado.CHK] [CHK] ==============================
+[11:13:15] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[11:13:15] [Estado.CHK] [CHK] ==============================
+[11:13:15] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[11:13:15] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[11:13:15] [Estado.CHK] [CHK] State wheels:     0
+[11:13:15] [Estado.CHK] [CHK] ==============================
+[11:13:15] [Estado.IDLE] Inicio del sistema
+[11:13:15] [Estado.IDLE] Entrando en IDLE
+[11:13:15] [Estado.RESET] Ejecutado: STOP
+[11:13:15] [Estado.RESET] Entrando en RESET
+[11:13:15] [Estado.SEARCH] Ejecutado: STOP
+[11:13:16] [Estado.SEARCH] Entrando en SEARCH
+[11:13:16] [Estado.SEARCH] Ejecutado: STOP
+[11:13:16] [Estado.SEARCH] Det valid_for_search=False is_centered=False n=1 w=0 h=0 area=0 x=320 y=240 error_x=0 error_y=0
+[11:13:16] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[11:13:16] [Estado.SEARCH] Baliza en borde (618) → corrigiendo cámara
+[11:13:16] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[11:13:17] [Estado.RECENTER] Ejecutado: STOP
+[11:13:17] [Estado.RECENTER] Entrando en RECENTER
+[11:13:17] [Estado.RECENTER] Ejecutado: STOP
+[11:13:17] [Estado.RECENTER] Ejecutado: CAM_PAN_RIGHT
+[11:13:17] [Estado.RECENTER] Ejecutado: STOP
+[11:13:17] [Estado.RECENTER] Ejecutado: CAM_PAN_RIGHT
+[11:13:17] [Estado.RECENTER] Ejecutado: STOP
+[11:13:17] [Estado.RECENTER] Ejecutado: CAM_PAN_LEFT
+[11:13:18] [Estado.RECENTER] Ejecutado: CAM_PAN_RIGHT
+[11:13:18] [Estado.RECENTER] Ejecutado: STOP

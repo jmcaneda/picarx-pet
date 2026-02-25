@@ -764,15 +764,15 @@ def state_recenter(px, estado, accion, robot_state):
     # ------------------------------------------------------------
     # 3. Corrección horizontal (PAN)
     # ------------------------------------------------------------
-    if abs(det.error_x) > 30:   # antes 40 → ahora más estricto
+    if abs(det.error_x) > 30:   # más estricto que antes
         robot_state.recenter_centered_frames = 0
 
-        # Si la cámara está en límite, NO pasar a TRACK
-        if px.last_pan == PAN_MAX and det.error_x > 0:
-            return Estado.RECENTER, Cmd.STOP
-        if px.last_pan == PAN_MIN and det.error_x < 0:
-            return Estado.RECENTER, Cmd.STOP
+        # Si PAN está en límite y error_x sigue grande → RECENTER no puede resolverlo
+        if px.last_pan in (PAN_MAX, PAN_MIN) and abs(det.error_x) > 60:
+            log_event(px, estado, "RECENTER: PAN límite + error grande → SEARCH")
+            return Estado.SEARCH, Cmd.STOP
 
+        # Corrección normal con PAN
         return Estado.RECENTER, Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT
 
 
@@ -783,12 +783,12 @@ def state_recenter(px, estado, accion, robot_state):
 
         # Si error_x sigue siendo grande → NO pasar a TRACK
         if abs(det.error_x) > 60:
-            log_event(px, estado, "PAN límite pero error_x grande → NO TRACK")
+            log_event(px, estado, "RECENTER: PAN límite pero error_x grande → STOP")
             robot_state.recenter_centered_frames = 0
             return Estado.RECENTER, Cmd.STOP
 
         # Si está realmente centrado → TRACK
-        log_event(px, estado, "PAN límite + centrado → TRACK")
+        log_event(px, estado, "RECENTER: PAN límite + centrado → TRACK")
         px.set_cam_pan_angle(0)
         px.last_pan = 0
         robot_state.just_recentered = time.time()
@@ -800,7 +800,7 @@ def state_recenter(px, estado, accion, robot_state):
     # ------------------------------------------------------------
     robot_state.recenter_centered_frames += 1
 
-    # Necesitamos más frames centrados para evitar falsos positivos
+    # Necesitamos varios frames centrados para evitar falsos positivos
     if robot_state.recenter_centered_frames >= 4:
         log_event(px, estado, f"px.last_pan={px.last_pan} Alineado ✔ (cuerpo)")
 
@@ -811,7 +811,6 @@ def state_recenter(px, estado, accion, robot_state):
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
     return Estado.RECENTER, Cmd.STOP
-
 
 def state_track(px, estado, accion, robot_state):
     det, raw = get_detection(px)
