@@ -611,25 +611,20 @@ def update_safety(px):
 
 
 def apply_safety(px, estado, accion, state):
-
     d = update_safety(px)
-    # --- NIVEL 2: FILTRO DE SEGURIDAD (SOBREESCRITURA) ---
-    # Si el sensor detecta peligro o ya estamos en medio de un escape...
-    if state.is_escaping or d < DANGER_DISTANCE:
-        # Llamamos a escape. Si acaba de empezar, configurará motores a BACKWARD.
-        terminado = scape_danger(px, state, SLOW_SPEED)
-        
-        # BLOQUEO CRÍTICO: Sobreescribimos la acción de la FSM
-        # Usamos un comando neutro para que execute_motion no haga nada nuevo
-        accion = Cmd.KEEP_ALIVE 
-        
-        if terminado:
-            log_event(px, estado, f"[SEC] Zona segura ({d}cm). Reanudando...")
-            estado = Estado.SEARCH # Tras el susto, buscamos de nuevo
     
-    # Precaución: si no hay peligro inminente pero hay algo cerca, bajamos velocidad
-    elif d < WARNING_DISTANCE and accion == Cmd.FORWARD:
-        accion = Cmd.FORWARD_SLOW
+    if state.is_escaping:
+        terminado = scape_danger(px, state, SLOW_SPEED)
+        if terminado:
+            # Forzamos un RESET limpio de los contadores de búsqueda
+            state.search_lost_frames = 0
+            return Estado.SEARCH, Cmd.STOP
+        return estado, Cmd.KEEP_ALIVE # Bloquea cualquier otra acción
+    
+    if d < DANGER_DISTANCE:
+        # Iniciamos escape en el siguiente ciclo
+        state.is_escaping = True
+        return estado, Cmd.STOP
 
     return estado, accion
 
@@ -637,9 +632,9 @@ def apply_safety(px, estado, accion, state):
 # FUNCIONES
 # ============================================================
 
-def get_detection(px):
+def get_detection(px, state=None):
     params = Vilib.detect_obj_parameter
-
+    
     raw = {
         "x": params.get("color_x", -1),
         "y": params.get("color_y", -1),
@@ -671,7 +666,7 @@ def get_detection(px):
     # LOG SOLO CUANDO APARECE UNA DETECCIÓN REAL
     # ------------------------------------------------------------
     if det.valid_for_search and not px.last_det:
-        log_det(px, px.estado_actual, det, raw, prefix="NEW DET → ")
+        log_det(px, px.estado_actual, det, raw, state, prefix="NEW DET → ")
 
     # Guardar última detección válida
     px.last_det = det if det.valid_for_search else None
@@ -694,9 +689,9 @@ def log_event(px, estado, msg):
     with open(LOG_PATH, "a", encoding="utf-8") as f:
         f.write(line)
 
-def log_det(px, estado, det, raw, prefix=""):
+def log_det(px, estado, det, raw, state, prefix=""):
     msg = (
-        f"{prefix}"
+        f"{prefix} f_lost={state.recenter_lost_frames}"
         f"search={det.valid_for_search} "
         f"track={det.valid_for_track} "
         f"near={det.valid_for_near} "
@@ -795,7 +790,7 @@ def state_reset(px):
 
 
 def state_search(px, estado, accion, st):
-    det, raw = get_detection(px)
+    det, raw = get_detection(px, state=st)
 
     # ============================================================
     # 1. ENTRADA AL ESTADO
@@ -887,7 +882,7 @@ def state_search(px, estado, accion, st):
 
 
 def state_recenter(px, estado, accion, st):
-    det, raw = get_detection(px)
+    det, raw = get_detection(px, state=st)
 
     # ============================================================
     # 1. ENTRADA AL ESTADO
@@ -965,7 +960,7 @@ def state_recenter(px, estado, accion, st):
 
 
 def state_track(px, estado, accion, st):
-    det, raw = get_detection(px)
+    det, raw = get_detection(px, state=st)
 
     # ============================================================
     # 1. ENTRADA AL ESTADO
@@ -1047,7 +1042,7 @@ def state_track(px, estado, accion, st):
 
 
 def state_near(px, estado, accion, st):
-    det, raw = get_detection(px)
+    det, raw = get_detection(px, state=st)
 
     # ============================================================
     # 1. ENTRADA AL ESTADO
@@ -1154,7 +1149,7 @@ def pet_mode(px, test_mode):
     check_robot(px,log_event)
     state = RobotState()
     log_event(px, estado, "Inicio del sistema")
-
+    ciclo = 0
     while True:
         px.last_state = px.estado_actual
         px.estado_actual = estado
@@ -1174,8 +1169,8 @@ def pet_mode(px, test_mode):
 
         # Solo llamamos a execute_motion UNA vez por ciclo
         execute_motion(px, estado, accion, state, test_mode)
-        
-        if not test_mode:
+        ciclo += 1
+        if not test_mode and ciclo % 5 == 0: # Imprimir cada 5 ciclos
             print_dashboard(px, estado, accion, distancia_real, state)
 
         time.sleep(0.05) # Mayor frecuencia = respuesta más rápida
