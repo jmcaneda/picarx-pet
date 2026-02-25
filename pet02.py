@@ -113,7 +113,7 @@ class Det:
             self.n >= 1 and
             20 < self.w < 350 and     # coherente con Search
             20 < self.h < 480 and
-            800 < self.area < 80000 and
+            400 < self.area < 120000 and
             0 < self.x < 640 and
             0 < self.y < 480
         )
@@ -281,38 +281,58 @@ def turn_right(px, speed=TURN_SPEED):
 
 def scape_danger(px, robot_state, speed=SLOW_SPEED):
     """
-    Gestiona la maniobra de retroceso y giro de seguridad.
-    Devuelve True si la maniobra ha terminado, False si sigue en curso.
+    Maniobra de evasión mejorada:
+    - Retrocede
+    - Gira según la cámara
+    - Extiende escape si el obstáculo sigue cerca
+    - Centra cámara y ruedas al terminar
     """
-    # Fase 1: Inicio de la maniobra
+
+    # --- FASE 1: INICIO ---
     if not robot_state.is_escaping:
         log_event(px, "SEC", "¡ESCAPE ACTIVO! Retrocediendo...")
-        
-        # Girar ruedas al lado opuesto de donde miraba la cámara para librar el obstáculo
-        escape_angle = -px.last_pan 
+
+        # 1. Ángulo de escape más robusto
+        if abs(px.last_pan) > 10:
+            escape_angle = -px.last_pan
+        else:
+            escape_angle = SERVO_ANGLE_MIN  # giro fijo a la izquierda si la cámara estaba centrada
+
         target_angle = max(min(escape_angle, SERVO_ANGLE_MAX), SERVO_ANGLE_MIN)
-        
         px.set_dir_servo_angle(target_angle)
         px.dir_current_angle = target_angle
-        
-        # Aplicamos el movimiento físico inmediatamente
-        px.backward(speed + 5) 
-        
+
+        # 2. Retroceso inmediato
+        px.backward(speed + 5)
+
+        # 3. Señalización
         robot_state.is_escaping = True
-        robot_state.last_sec_active = True # Marcamos que la seguridad se activó para que SEARCH pueda reaccionar
-        robot_state.escape_end_time = time.time() + 1.8  # Duración de la huida
+        robot_state.last_sec_active = True
+        robot_state.escape_end_time = time.time() + 1.2
         return False
 
-    # Fase 2: Control de tiempo (mientras is_escaping es True)
+    # --- FASE 2: MANTENER ESCAPE ---
+    dist = update_safety(px)
+
+    # Si el obstáculo sigue muy cerca, extendemos escape
+    if 0 < dist < 15:
+        robot_state.escape_end_time = time.time() + 0.3
+
+    # --- FASE 3: FINALIZAR ---
     if time.time() >= robot_state.escape_end_time:
         px.stop()
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
+
+        # Cámara centrada para recuperación
+        px.set_cam_pan_angle(0)
+        px.last_pan = 0
+
         robot_state.is_escaping = False
         log_event(px, "SEC", "Maniobra terminada.")
-        return True # Indica que ya podemos volver al control normal
-    
-    return False # Sigue escapando
+        return True
+
+    return False
 
 # ============================================================
 # MOVIMIENTOS DE CÁMARA SEGUROS
@@ -605,72 +625,109 @@ def state_reset(px):
 
 def state_search(px, estado, accion, robot_state):
     det, raw = get_detection(px)
-    
-    # --- 1. ENTRADA AL ESTADO ---
+
+    # ============================================================
+    # 1. ENTRADA AL ESTADO
+    # ============================================================
     if px.last_state != Estado.SEARCH:
         log_event(px, Estado.SEARCH, "Entrando en SEARCH")
+
         px.search_seen = 0
-        robot_state.search_no_det_frames = 0 
-        robot_state.search_direction = 1 # Empezamos girando a la derecha
+        robot_state.search_no_det_frames = 0
+        robot_state.search_direction = 1  # giro inicial a la derecha
+
+        # Cámara centrada al entrar
+        px.set_cam_pan_angle(0)
+        px.last_pan = 0
+
         px.last_state = Estado.SEARCH
         return Estado.SEARCH, Cmd.STOP
 
-    # --- 2. DETECCIÓN FIABLE (ZONA CENTRAL) ---
-    # Solo consideramos "fiable" si no está tocando los bordes (margen de 60px)
+
+    # ============================================================
+    # 2. RECUPERACIÓN TRAS SCAPE (MUY IMPORTANTE)
+    # ============================================================
+    if robot_state.last_sec_active:
+        log_event(px, Estado.SEARCH, "[SEC] Recuperación tras evasión")
+
+        # Reset de cámara
+        px.set_cam_pan_angle(0)
+        px.last_pan = 0
+
+        # Reset de contadores
+        robot_state.search_no_det_frames = 0
+        px.search_seen = 0
+
+        # Empezamos un barrido completo
+        px.search_cam_dir = 1
+
+        robot_state.last_sec_active = False
+        return Estado.SEARCH, Cmd.CAM_PAN_RIGHT
+
+
+    # ============================================================
+    # 3. DETECCIÓN FIABLE
+    # ============================================================
     is_reliable = det.valid_for_search and (60 < det.x < 580)
-    
-    # Si la baliza está en el borde, NO movemos cámara, mejor giramos el cuerpo
     is_in_edge = det.valid_for_search and not is_reliable
 
     if is_reliable:
         robot_state.search_no_det_frames = 0
         px.search_seen += 1
-        
+
+        # Si está centrada → RECENTER
         if abs(det.error_x) <= 40 and px.search_seen >= 3:
             return Estado.RECENTER, Cmd.STOP
-        
+
+        # Si no, corregimos con cámara
         return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT
 
-    if is_in_edge:
-        # Si está en el borde, forzamos el Plan B (girar cuerpo) en esa dirección
-        # Esto evita que la cámara la pierda al intentar centrarla
-        robot_state.search_no_det_frames = 81 # Disparamos Plan B
-        robot_state.search_direction = 1 if det.x > 320 else -1
-        log_event(px, Estado.SEARCH, f"Baliza en borde ({det.x}): Pivotando chasis...")
 
-    # --- 3. LÓGICA DE BÚSQUEDA (PLAN A Y B) ---
+    # ============================================================
+    # 4. DETECCIÓN EN BORDE (NO DISPARAR PLAN B)
+    # ============================================================
+    if is_in_edge:
+        # Solo corregimos con cámara, NO giramos el chasis todavía
+        log_event(px, Estado.SEARCH, f"Baliza en borde ({det.x}) → corrigiendo cámara")
+        robot_state.search_no_det_frames = max(robot_state.search_no_det_frames - 5, 0)
+        return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT
+
+
+    # ============================================================
+    # 5. SIN DETECCIÓN → PLAN A / PLAN B
+    # ============================================================
     px.search_seen = 0
     robot_state.search_no_det_frames += 1
 
-    # Detección de colisión durante Plan B
-    # Si el sistema de seguridad (SEC) se activó en el último ciclo:
-    if getattr(robot_state, 'last_sec_active', False):
-        # ¡IMPORTANTE! Invertimos el sentido del giro para el Plan B
-        robot_state.search_direction *= -1
-        robot_state.search_no_det_frames = 60 # Le damos un margen para que empiece el Plan B rápido
-        log_event(px, Estado.SEARCH, f"Colisión detectada: Cambiando giro a {'DER' if robot_state.search_direction == 1 else 'IZQ'}")
-        robot_state.last_sec_active = False # Limpiamos flag
 
-    # 🔥 PLAN B: Búsqueda con chasis (Giro activo)
+    # ============================================================
+    # 5A. PLAN B — GIRO DEL CHASIS
+    # ============================================================
     if robot_state.search_no_det_frames > 80:
-        # Usamos la dirección guardada (SERVO_ANGLE_MAX o -SERVO_ANGLE_MAX)
+
+        # Ángulo de giro según la dirección guardada
         angulo_giro = SERVO_ANGLE_MAX * robot_state.search_direction
         px.set_dir_servo_angle(angulo_giro)
         px.dir_current_angle = angulo_giro
-        
-        # Barrido de cámara "Efecto Radar"
-        if px.last_pan >= PAN_MAX: px.search_cam_dir = -1
-        elif px.last_pan <= PAN_MIN: px.search_cam_dir = 1
-        
-        # El comando de movimiento es FORWARD_SLOW para pivotar
+
+        # Barrido de cámara mientras gira (efecto radar)
+        if px.last_pan >= PAN_MAX:
+            px.search_cam_dir = -1
+        elif px.last_pan <= PAN_MIN:
+            px.search_cam_dir = 1
+
         return Estado.SEARCH, Cmd.FORWARD_SLOW
 
-    # PLAN A: Barrido de cámara estático
-    if px.last_pan >= PAN_MAX: px.search_cam_dir = -1
-    elif px.last_pan <= PAN_MIN: px.search_cam_dir = 1
-    
-    return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if px.search_cam_dir == 1 else Cmd.CAM_PAN_LEFT
 
+    # ============================================================
+    # 5B. PLAN A — BARRIDO PAN SUAVE
+    # ============================================================
+    if px.last_pan >= PAN_MAX:
+        px.search_cam_dir = -1
+    elif px.last_pan <= PAN_MIN:
+        px.search_cam_dir = 1
+
+    return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if px.search_cam_dir == 1 else Cmd.CAM_PAN_LEFT
 
 def state_recenter(px, estado, accion, robot_state):
     det, raw = get_detection(px)
