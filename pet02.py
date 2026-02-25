@@ -682,11 +682,18 @@ def state_search(px, estado, accion, robot_state):
     # 4. BALIZA EN BORDE
     # ============================================================
 
-    # 🔥 NUEVO: si la cámara ya está en límite → activar Plan B
     if is_in_edge and (px.last_pan == PAN_MAX or px.last_pan == PAN_MIN):
-        log_event(px, Estado.SEARCH, "Baliza en borde + PAN límite → Activando Plan B")
-        robot_state.search_no_det_frames = 999  # fuerza Plan B
-        return Estado.SEARCH, Cmd.FORWARD_SLOW
+    log_event(px, Estado.SEARCH, "Baliza en borde + PAN límite → GIRO DE CHASIS (Plan B inmediato)")
+
+    # Elegir dirección de giro según el borde
+    robot_state.search_direction = 1 if det.x > 320 else -1
+
+    angulo = SERVO_ANGLE_MAX * robot_state.search_direction
+    px.set_dir_servo_angle(angulo)
+    px.dir_current_angle = angulo
+
+    return Estado.SEARCH, Cmd.FORWARD_SLOW
+
 
     # Si aún podemos mover PAN, corregimos con cámara
     if is_in_edge:
