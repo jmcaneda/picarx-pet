@@ -645,23 +645,20 @@ def state_search(px, estado, accion, robot_state):
 
 
     # ============================================================
-    # 2. RECUPERACIÓN TRAS SCAPE (MUY IMPORTANTE)
+    # 2. RECUPERACIÓN TRAS SCAPE
     # ============================================================
     if robot_state.last_sec_active:
         log_event(px, Estado.SEARCH, "[SEC] Recuperación tras evasión")
 
-        # Reset de cámara
         px.set_cam_pan_angle(0)
         px.last_pan = 0
 
-        # Reset de contadores
         robot_state.search_no_det_frames = 0
         px.search_seen = 0
 
-        # Empezamos un barrido completo
         px.search_cam_dir = 1
-
         robot_state.last_sec_active = False
+
         return Estado.SEARCH, Cmd.CAM_PAN_RIGHT
 
 
@@ -675,19 +672,24 @@ def state_search(px, estado, accion, robot_state):
         robot_state.search_no_det_frames = 0
         px.search_seen += 1
 
-        # Si está centrada → RECENTER
-        if abs(det.error_x) <= 40 and px.search_seen >= 3:
+        if abs(det.error_x) <= 30 and px.search_seen >= 4:
             return Estado.RECENTER, Cmd.STOP
 
-        # Si no, corregimos con cámara
         return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT
 
 
     # ============================================================
-    # 4. DETECCIÓN EN BORDE (NO DISPARAR PLAN B)
+    # 4. BALIZA EN BORDE
     # ============================================================
+
+    # 🔥 NUEVO: si la cámara ya está en límite → activar Plan B
+    if is_in_edge and (px.last_pan == PAN_MAX or px.last_pan == PAN_MIN):
+        log_event(px, Estado.SEARCH, "Baliza en borde + PAN límite → Activando Plan B")
+        robot_state.search_no_det_frames = 999  # fuerza Plan B
+        return Estado.SEARCH, Cmd.FORWARD_SLOW
+
+    # Si aún podemos mover PAN, corregimos con cámara
     if is_in_edge:
-        # Solo corregimos con cámara, NO giramos el chasis todavía
         log_event(px, Estado.SEARCH, f"Baliza en borde ({det.x}) → corrigiendo cámara")
         robot_state.search_no_det_frames = max(robot_state.search_no_det_frames - 5, 0)
         return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT
@@ -705,12 +707,10 @@ def state_search(px, estado, accion, robot_state):
     # ============================================================
     if robot_state.search_no_det_frames > 80:
 
-        # Ángulo de giro según la dirección guardada
         angulo_giro = SERVO_ANGLE_MAX * robot_state.search_direction
         px.set_dir_servo_angle(angulo_giro)
         px.dir_current_angle = angulo_giro
 
-        # Barrido de cámara mientras gira (efecto radar)
         if px.last_pan >= PAN_MAX:
             px.search_cam_dir = -1
         elif px.last_pan <= PAN_MIN:
@@ -720,7 +720,7 @@ def state_search(px, estado, accion, robot_state):
 
 
     # ============================================================
-    # 5B. PLAN A — BARRIDO PAN SUAVE
+    # 5B. PLAN A — BARRIDO PAN
     # ============================================================
     if px.last_pan >= PAN_MAX:
         px.search_cam_dir = -1
@@ -728,6 +728,7 @@ def state_search(px, estado, accion, robot_state):
         px.search_cam_dir = 1
 
     return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if px.search_cam_dir == 1 else Cmd.CAM_PAN_LEFT
+
 
 def state_recenter(px, estado, accion, robot_state):
     det, raw = get_detection(px)
