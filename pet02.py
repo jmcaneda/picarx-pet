@@ -849,16 +849,19 @@ def state_search(px, estado, accion, st):
         # -------------------------
         # ZONA C — BORDE
         # -------------------------
+        # --- ZONA C — BORDE (Modificación Crítica) ---
         st.search_edge_frames += 1
 
-        # Si PAN puede moverse → PAN
-        if (det.x < 40 and px.last_pan > PAN_MIN) or (det.x > 600 and px.last_pan < PAN_MAX):
+        # Si la baliza está en el borde extremo (x < 40 o x > 600)
+        if det.x < 40 or det.x > 600:
+            # Si el PAN ya está al límite, el movimiento de cámara no basta
+            if (det.x < 40 and px.last_pan <= PAN_MIN) or (det.x > 600 and px.last_pan >= PAN_MAX):
+                log_event(px, Estado.SEARCH, "Baliza en borde + PAN al límite -> GIRANDO CHASIS")
+                # Girar el chasis en la dirección de la baliza
+                return Estado.SEARCH, Cmd.WHEELS_TURN_RIGHT if det.error_x > 0 else Cmd.WHEELS_TURN_LEFT
+            
+            # Si aún hay margen de PAN, seguimos paneando
             return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT
-
-        # PAN en límite → GIRO DE CHASIS
-        log_event(px, Estado.SEARCH, "Borde + PAN límite → GIRO DE CHASIS")
-        st.search_wheels_dir = 1 if det.x > 320 else -1
-        return Estado.SEARCH, Cmd.WHEELS_TURN_RIGHT if st.search_wheels_dir == 1 else Cmd.WHEELS_TURN_LEFT
 
     # ============================================================
     # 4. SIN DETECCIÓN — ZONA D
@@ -882,82 +885,74 @@ def state_search(px, estado, accion, st):
 
 
 def state_recenter(px, estado, accion, st):
-    det, raw = get_detection(px, state=st)
+    det, raw = get_detection(px)
 
     # ============================================================
     # 1. ENTRADA AL ESTADO
     # ============================================================
     if px.last_state != Estado.RECENTER:
         log_event(px, Estado.RECENTER, "Entrando en RECENTER")
-
         st.recenter_centered_frames = 0
         st.recenter_lost_frames = 0
 
-        # El chasis SIEMPRE centrado en RECENTER
-        px.set_dir_servo_angle(0)
-        px.dir_current_angle = 0
-
+        # En RECENTER empezamos deteniendo el avance pero permitiendo giro
         return Estado.RECENTER, Cmd.STOP
 
     # ============================================================
-    # 2. SIN DETECCIÓN → tolerancia 5 frames
+    # 2. SIN DETECCIÓN → Tolerancia aumentada (Histéresis)
     # ============================================================
     if not det.valid_for_search:
         st.recenter_lost_frames += 1
-
-        if st.recenter_lost_frames >= 5:
-            log_event(px, Estado.RECENTER, "Sin detección → SEARCH")
+        # Aumentado a 15 frames para mayor estabilidad
+        if st.recenter_lost_frames >= 15:
+            log_event(px, Estado.RECENTER, "Sin detección persistente → SEARCH")
             return Estado.SEARCH, Cmd.STOP
-
         return Estado.RECENTER, Cmd.STOP
 
-    # Reset de pérdida
     st.recenter_lost_frames = 0
 
     # ============================================================
-    # 3. ERROR GRANDE → corregir PAN
+    # 3. ALINEACIÓN CRÍTICA: CUERPO SIGUE A CÁMARA
+    # ============================================================
+    # Si la cámara está muy girada (> 15°), obligamos al chasis a rotar
+    # para que el robot "mire" de frente a la baliza con su cuerpo.
+    if abs(px.last_pan) > 15:
+        log_event(px, Estado.RECENTER, f"Cuerpo desalineado (PAN: {px.last_pan}°). Girando chasis...")
+        st.recenter_centered_frames = 0
+        
+        # Giramos chasis en la dirección donde está mirando la cámara
+        return Estado.RECENTER, Cmd.WHEELS_TURN_RIGHT if px.last_pan > 0 else Cmd.WHEELS_TURN_LEFT
+
+    # ============================================================
+    # 4. ERROR DE CÁMARA (PAN) → Ajuste fino de servos
     # ============================================================
     if abs(det.error_x) > 30:
         st.recenter_centered_frames = 0
-
-        # PAN en límite y error grande → RECENTER no puede resolverlo
-        if px.last_pan in (PAN_MAX, PAN_MIN) and abs(det.error_x) > 60:
-            log_event(px, Estado.RECENTER, "PAN límite + error grande → SEARCH")
-            return Estado.SEARCH, Cmd.STOP
-
-        # Corrección normal
-        return Estado.RECENTER, (
-            Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT
-        )
+        
+        # Si el PAN llegó al límite y seguimos con error, el chasis debe ayudar
+        if (det.error_x > 0 and px.last_pan >= PAN_MAX) or (det.error_x < 0 and px.last_pan <= PAN_MIN):
+             return Estado.RECENTER, Cmd.WHEELS_TURN_RIGHT if det.error_x > 0 else Cmd.WHEELS_TURN_LEFT
+        
+        return Estado.RECENTER, Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT
 
     # ============================================================
-    # 4. PAN en límite pero error pequeño → TRACK
-    # ============================================================
-    if px.last_pan in (PAN_MAX, PAN_MIN):
-        log_event(px, Estado.RECENTER, "PAN límite + centrado → TRACK")
-
-        px.set_cam_pan_angle(0)
-        px.last_pan = 0
-        st.just_recentered = time.time()
-
-        return Estado.TRACK, Cmd.FORWARD_SLOW
-
-    # ============================================================
-    # 5. CENTRADO NORMAL
+    # 5. PASO A TRACK (Solo si está alineado y centrado)
     # ============================================================
     st.recenter_centered_frames += 1
 
-    if st.recenter_centered_frames >= 3:
-        log_event(px, Estado.RECENTER, "Centrado ✔ → TRACK")
+    if st.recenter_centered_frames >= 5: # Un poco más de paciencia para confirmar
+        log_event(px, Estado.RECENTER, "✔ Alineado y Centrado → Iniciando TRACK")
 
+        # Centramos servos de dirección y cámara antes de avanzar
+        px.set_dir_servo_angle(0)
+        px.dir_current_angle = 0
         px.set_cam_pan_angle(0)
         px.last_pan = 0
+        
         st.just_recentered = time.time()
-
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
     return Estado.RECENTER, Cmd.STOP
-
 
 def state_track(px, estado, accion, st):
     det, raw = get_detection(px, state=st)
