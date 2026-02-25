@@ -732,17 +732,24 @@ def state_search(px, estado, accion, robot_state):
 def state_recenter(px, estado, accion, robot_state):
     det, raw = get_detection(px)
 
-    # Entrada al estado
+    # ------------------------------------------------------------
+    # 1. Entrada al estado
+    # ------------------------------------------------------------
     if px.last_state != estado:
         log_event(px, estado, "Entrando en RECENTER")
         robot_state.recenter_centered_frames = 0
         robot_state.recenter_lost_frames = 0
+
+        # El chasis SIEMPRE debe empezar centrado
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
+
         px.last_state = estado
+        return Estado.RECENTER, Cmd.STOP
+
 
     # ------------------------------------------------------------
-    # 1. Si NO hay detección válida → tolerar 5 frames
+    # 2. Si NO hay detección válida → tolerar 5 frames
     # ------------------------------------------------------------
     if not det.valid_for_search:
         robot_state.recenter_lost_frames += 1
@@ -753,51 +760,58 @@ def state_recenter(px, estado, accion, robot_state):
 
     robot_state.recenter_lost_frames = 0
 
+
     # ------------------------------------------------------------
-    # 2. Corrección horizontal (PAN)
+    # 3. Corrección horizontal (PAN)
     # ------------------------------------------------------------
-    if abs(det.error_x) > 40:
+    if abs(det.error_x) > 30:   # antes 40 → ahora más estricto
         robot_state.recenter_centered_frames = 0
-        if det.error_x > 0:
-            return Estado.RECENTER, Cmd.CAM_PAN_RIGHT
-        else:
-            return Estado.RECENTER, Cmd.CAM_PAN_LEFT
+
+        # Si la cámara está en límite, NO pasar a TRACK
+        if px.last_pan == PAN_MAX and det.error_x > 0:
+            return Estado.RECENTER, Cmd.STOP
+        if px.last_pan == PAN_MIN and det.error_x < 0:
+            return Estado.RECENTER, Cmd.STOP
+
+        return Estado.RECENTER, Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT
+
 
     # ------------------------------------------------------------
-    # 3. PAN en límite
+    # 4. PAN en límite (pero solo si realmente está centrado)
     # ------------------------------------------------------------
-    if (px.last_pan == PAN_MAX or px.last_pan == PAN_MIN) and det.valid_for_search:
+    if px.last_pan in (PAN_MAX, PAN_MIN):
 
-        if abs(det.error_x) > 120 and det.area > 12000:
-            log_event(px, estado, "PAN límite + baliza lateral → micro-backward FSM")
-            robot_state.just_recentered = time.time()
-            return Estado.RECENTER, Cmd.BACKWARD
+        # Si error_x sigue siendo grande → NO pasar a TRACK
+        if abs(det.error_x) > 60:
+            log_event(px, estado, "PAN límite pero error_x grande → NO TRACK")
+            robot_state.recenter_centered_frames = 0
+            return Estado.RECENTER, Cmd.STOP
 
-        # 🔥 MEJORA: centrar cámara ANTES de pasar a TRACK
-        log_event(px, estado, "PAN en límite → centrar cámara y pasar a TRACK")
+        # Si está realmente centrado → TRACK
+        log_event(px, estado, "PAN límite + centrado → TRACK")
         px.set_cam_pan_angle(0)
         px.last_pan = 0
-
         robot_state.just_recentered = time.time()
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
+
     # ------------------------------------------------------------
-    # 4. Centrado normal
+    # 5. Centrado normal
     # ------------------------------------------------------------
     robot_state.recenter_centered_frames += 1
 
-    if robot_state.recenter_centered_frames >= 2:
+    # Necesitamos más frames centrados para evitar falsos positivos
+    if robot_state.recenter_centered_frames >= 4:
         log_event(px, estado, f"px.last_pan={px.last_pan} Alineado ✔ (cuerpo)")
 
-        # 🔥 MEJORA: centrar cámara ANTES de pasar a TRACK
         px.set_cam_pan_angle(0)
         px.last_pan = 0
-        log_event(px, estado, "[RECENTER] Cámara centrada antes de TRACK")
 
         robot_state.just_recentered = time.time()
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
-    return Estado.RECENTER, accion
+    return Estado.RECENTER, Cmd.STOP
+
 
 def state_track(px, estado, accion, robot_state):
     det, raw = get_detection(px)
