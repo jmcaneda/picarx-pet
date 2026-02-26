@@ -1,21 +1,276 @@
 === Start of pet02.log ===
-[14:26:29] [Estado.CHK] [CHK] ==============================
-[14:26:29] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[14:26:29] [Estado.CHK] [CHK] ==============================
-[14:26:29] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[14:26:29] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[14:26:29] [Estado.CHK] [CHK] State wheels:     0
-[14:26:29] [Estado.CHK] [CHK] ==============================
-[14:26:29] [Estado.IDLE] Inicio del sistema
-[14:26:29] [Estado.IDLE] Entrando en IDLE
-[14:26:29] [Estado.RESET] Ejecutado: STOP
-[14:26:29] [Estado.RESET] Entrando en RESET
-[14:26:29] [Estado.SEARCH] Ejecutado: STOP
-[14:26:29] [Estado.SEARCH] Entrando en SEARCH
-[14:26:29] [Estado.SEARCH] Ejecutado: STOP
-[14:26:29] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[14:26:30] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[14:26:31] [Estado.SEARCH] NEW DET →  f_lost=0 search=True track=True near=False centered=False n=1 w=48 h=32 area=1536 x=56 y=448 err_x=-264 err_y=208
-[14:26:31] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[14:26:31] [Estado.SEARCH] NEW DET →  f_lost=0 search=True track=False near=False centered=False n=1 w=44 h=64 area=2816 x=22 y=256 err_x=-298 err_y=16
-[14:26:31] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[18:49:05] [Estado.CHK] [CHK] ==============================
+[18:49:05] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[18:49:05] [Estado.CHK] [CHK] ==============================
+[18:49:05] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[18:49:05] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[18:49:05] [Estado.CHK] [CHK] State wheels:     0
+[18:49:05] [Estado.CHK] [CHK] ==============================
+[18:49:05] [Estado.IDLE] Inicio del sistema
+[18:49:05] [Estado.IDLE] Entrando en IDLE
+[18:49:05] [Estado.RESET] Ejecutado: STOP
+[18:49:05] [Estado.RESET] Entrando en RESET
+[18:49:05] [Estado.SEARCH] Ejecutado: STOP
+[18:49:05] [Estado.SEARCH] Entrando en SEARCH
+[18:49:05] [Estado.SEARCH] Ejecutado: STOP
+[18:49:05] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[18:49:06] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[18:49:07] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:07] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:07] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:07] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:07] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:07] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:08] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:08] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:08] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:08] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:08] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:08] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:08] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:08] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:08] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:08] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:08] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:08] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:08] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:10] [Estado.SEARCH] Ejecutado: STOP
+[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:11] [SEC] Maniobra terminada.
+[18:49:11] [Estado.SEARCH] Ejecutado: STOP
+[18:49:11] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[18:49:11] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[18:49:12] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:12] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[18:49:12] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:12] [Estado.SEARCH] Ejecutado: STOP
+[18:49:12] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[18:49:13] [SEC] Maniobra terminada.
+[18:49:13] [Estado.SEARCH] Ejecutado: STOP
+[18:49:13] [SEC] Maniobra terminada.
+[18:49:13] [Estado.SEARCH] Ejecutado: STOP
+[18:49:13] [SEC] Maniobra terminada.
+[18:49:13] [Estado.SEARCH] Ejecutado: STOP
+[18:49:13] [SEC] Maniobra terminada.
+[18:49:13] [Estado.SEARCH] Ejecutado: STOP
+[18:49:13] [SEC] Maniobra terminada.
+[18:49:13] [Estado.SEARCH] Ejecutado: STOP
+[18:49:14] [SEC] Maniobra terminada.
+[18:49:14] [Estado.SEARCH] Ejecutado: STOP
+[18:49:14] [SEC] Maniobra terminada.
+[18:49:14] [Estado.SEARCH] Ejecutado: STOP
+[18:49:14] [SEC] Maniobra terminada.
+[18:49:14] [Estado.SEARCH] Ejecutado: STOP
+[18:49:14] [SEC] Maniobra terminada.
+[18:49:14] [Estado.SEARCH] Ejecutado: STOP
+[18:49:14] [SEC] Maniobra terminada.
+[18:49:14] [Estado.SEARCH] Ejecutado: STOP
+[18:49:15] [SEC] Maniobra terminada.
+[18:49:15] [Estado.SEARCH] Ejecutado: STOP
+[18:49:15] [SEC] Maniobra terminada.
+[18:49:15] [Estado.SEARCH] Ejecutado: STOP
+[18:49:15] [SEC] Maniobra terminada.
+[18:49:15] [Estado.SEARCH] Ejecutado: STOP
+[18:49:15] [SEC] Maniobra terminada.
+[18:49:15] [Estado.SEARCH] Ejecutado: STOP
+[18:49:15] [SEC] Maniobra terminada.
+[18:49:15] [Estado.SEARCH] Ejecutado: STOP
+[18:49:16] [SEC] Maniobra terminada.
+[18:49:16] [Estado.SEARCH] Ejecutado: STOP
+[18:49:16] [SEC] Maniobra terminada.
+[18:49:16] [Estado.SEARCH] Ejecutado: STOP
+[18:49:16] [SEC] Maniobra terminada.
+[18:49:16] [Estado.SEARCH] Ejecutado: STOP
+[18:49:16] [SEC] Maniobra terminada.
+[18:49:16] [Estado.SEARCH] Ejecutado: STOP
+[18:49:16] [SEC] Maniobra terminada.
+[18:49:16] [Estado.SEARCH] Ejecutado: STOP
+[18:49:17] [SEC] Maniobra terminada.
+[18:49:17] [Estado.SEARCH] Ejecutado: STOP
+[18:49:17] [SEC] Maniobra terminada.
+[18:49:17] [Estado.SEARCH] Ejecutado: STOP
+[18:49:17] [SEC] Maniobra terminada.
+[18:49:17] [Estado.SEARCH] Ejecutado: STOP
+[18:49:17] [SEC] Maniobra terminada.
+[18:49:17] [Estado.SEARCH] Ejecutado: STOP
+[18:49:17] [SEC] Maniobra terminada.
+[18:49:17] [Estado.SEARCH] Ejecutado: STOP
+[18:49:18] [SEC] Maniobra terminada.
+[18:49:18] [Estado.SEARCH] Ejecutado: STOP
+[18:49:18] [SEC] Maniobra terminada.
+[18:49:18] [Estado.SEARCH] Ejecutado: STOP
+[18:49:18] [SEC] Maniobra terminada.
+[18:49:18] [Estado.SEARCH] Ejecutado: STOP
+[18:49:18] [SEC] Maniobra terminada.
+[18:49:18] [Estado.SEARCH] Ejecutado: STOP
+[18:49:18] [SEC] Maniobra terminada.
+[18:49:18] [Estado.SEARCH] Ejecutado: STOP
+[18:49:19] [SEC] Maniobra terminada.
+[18:49:19] [Estado.SEARCH] Ejecutado: STOP
+[18:49:19] [SEC] Maniobra terminada.
+[18:49:19] [Estado.SEARCH] Ejecutado: STOP
+[18:49:19] [SEC] Maniobra terminada.
+[18:49:19] [Estado.SEARCH] Ejecutado: STOP
+[18:49:19] [SEC] Maniobra terminada.
+[18:49:19] [Estado.SEARCH] Ejecutado: STOP
+[18:49:19] [SEC] Maniobra terminada.
+[18:49:19] [Estado.SEARCH] Ejecutado: STOP
+[18:49:20] [SEC] Maniobra terminada.
+[18:49:20] [Estado.SEARCH] Ejecutado: STOP
+[18:49:20] [SEC] Maniobra terminada.
+[18:49:20] [Estado.SEARCH] Ejecutado: STOP
+[18:49:20] [SEC] Maniobra terminada.
+[18:49:20] [Estado.SEARCH] Ejecutado: STOP
+[18:49:20] [SEC] Maniobra terminada.
+[18:49:20] [Estado.SEARCH] Ejecutado: STOP
+[18:49:20] [SEC] Maniobra terminada.
+[18:49:20] [Estado.SEARCH] Ejecutado: STOP
+[18:49:21] [SEC] Maniobra terminada.
+[18:49:21] [Estado.SEARCH] Ejecutado: STOP
+[18:49:21] [SEC] Maniobra terminada.
+[18:49:21] [Estado.SEARCH] Ejecutado: STOP
+[18:49:21] [SEC] Maniobra terminada.
+[18:49:21] [Estado.SEARCH] Ejecutado: STOP
+[18:49:21] [SEC] Maniobra terminada.
+[18:49:21] [Estado.SEARCH] Ejecutado: STOP
+[18:49:22] [SEC] Maniobra terminada.
+[18:49:22] [Estado.SEARCH] Ejecutado: STOP
+[18:49:22] [SEC] Maniobra terminada.
+[18:49:22] [Estado.SEARCH] Ejecutado: STOP
+[18:49:22] [SEC] Maniobra terminada.
+[18:49:22] [Estado.SEARCH] Ejecutado: STOP
+[18:49:22] [SEC] Maniobra terminada.
+[18:49:22] [Estado.SEARCH] Ejecutado: STOP
+[18:49:22] [SEC] Maniobra terminada.
+[18:49:22] [Estado.SEARCH] Ejecutado: STOP
+[18:49:23] [SEC] Maniobra terminada.
+[18:49:23] [Estado.SEARCH] Ejecutado: STOP
+[18:49:23] [SEC] Maniobra terminada.
+[18:49:23] [Estado.SEARCH] Ejecutado: STOP
+[18:49:23] [SEC] Maniobra terminada.
+[18:49:23] [Estado.SEARCH] Ejecutado: STOP
+[18:49:23] [SEC] Maniobra terminada.
+[18:49:23] [Estado.SEARCH] Ejecutado: STOP
+[18:49:23] [SEC] Maniobra terminada.
+[18:49:23] [Estado.SEARCH] Ejecutado: STOP
+[18:49:24] [SEC] Maniobra terminada.
+[18:49:24] [Estado.SEARCH] Ejecutado: STOP
+[18:49:24] [SEC] Maniobra terminada.
+[18:49:24] [Estado.SEARCH] Ejecutado: STOP
+[18:49:24] [SEC] Maniobra terminada.
+[18:49:24] [Estado.SEARCH] Ejecutado: STOP
+[18:49:24] [SEC] Maniobra terminada.
+[18:49:24] [Estado.SEARCH] Ejecutado: STOP
+[18:49:24] [SEC] Maniobra terminada.
+[18:49:24] [Estado.SEARCH] Ejecutado: STOP
+[18:49:25] [SEC] Maniobra terminada.
+[18:49:25] [Estado.SEARCH] Ejecutado: STOP
+[18:49:25] [SEC] Maniobra terminada.
+[18:49:25] [Estado.SEARCH] Ejecutado: STOP
+[18:49:25] [SEC] Maniobra terminada.
+[18:49:25] [Estado.SEARCH] Ejecutado: STOP
+[18:49:25] [SEC] Maniobra terminada.
+[18:49:25] [Estado.SEARCH] Ejecutado: STOP
+[18:49:25] [SEC] Maniobra terminada.
+[18:49:25] [Estado.SEARCH] Ejecutado: STOP
+[18:49:26] [SEC] Maniobra terminada.
+[18:49:26] [Estado.SEARCH] Ejecutado: STOP
+[18:49:26] [SEC] Maniobra terminada.
+[18:49:26] [Estado.SEARCH] Ejecutado: STOP
+[18:49:26] [SEC] Maniobra terminada.
+[18:49:26] [Estado.SEARCH] Ejecutado: STOP
+[18:49:26] [SEC] Maniobra terminada.
+[18:49:26] [Estado.SEARCH] Ejecutado: STOP
+[18:49:26] [SEC] Maniobra terminada.
+[18:49:26] [Estado.SEARCH] Ejecutado: STOP
+[18:49:27] [SEC] Maniobra terminada.
+[18:49:27] [Estado.SEARCH] Ejecutado: STOP
+[18:49:27] [SEC] Maniobra terminada.
+[18:49:27] [Estado.SEARCH] Ejecutado: STOP
+[18:49:27] [SEC] Maniobra terminada.
+[18:49:27] [Estado.SEARCH] Ejecutado: STOP
+[18:49:27] [SEC] Maniobra terminada.
+[18:49:27] [Estado.SEARCH] Ejecutado: STOP
+[18:49:27] [SEC] Maniobra terminada.
+[18:49:27] [Estado.SEARCH] Ejecutado: STOP
+[18:49:28] [SEC] Maniobra terminada.
+[18:49:28] [Estado.SEARCH] Ejecutado: STOP
+[18:49:28] [SEC] Maniobra terminada.
+[18:49:28] [Estado.SEARCH] Ejecutado: STOP
+[18:49:28] [SEC] Maniobra terminada.
+[18:49:28] [Estado.SEARCH] Ejecutado: STOP
+[18:49:28] [SEC] Maniobra terminada.
+[18:49:28] [Estado.SEARCH] Ejecutado: STOP
+[18:49:28] [SEC] Maniobra terminada.
+[18:49:28] [Estado.SEARCH] Ejecutado: STOP
+[18:49:29] [SEC] Maniobra terminada.
+[18:49:29] [Estado.SEARCH] Ejecutado: STOP
+[18:49:29] [SEC] Maniobra terminada.
+[18:49:29] [Estado.SEARCH] Ejecutado: STOP
+[18:49:29] [SEC] Maniobra terminada.
+[18:49:29] [Estado.SEARCH] Ejecutado: STOP
+[18:49:29] [SEC] Maniobra terminada.
+[18:49:29] [Estado.SEARCH] Ejecutado: STOP
+[18:49:30] [SEC] Maniobra terminada.
+[18:49:30] [Estado.SEARCH] Ejecutado: STOP
+[18:49:30] [SEC] Maniobra terminada.
+[18:49:30] [Estado.SEARCH] Ejecutado: STOP
+[18:49:30] [SEC] Maniobra terminada.
+[18:49:30] [Estado.SEARCH] Ejecutado: STOP
+[18:49:30] [SEC] Maniobra terminada.
+[18:49:30] [Estado.SEARCH] Ejecutado: STOP
+[18:49:30] [SEC] Maniobra terminada.
+[18:49:30] [Estado.SEARCH] Ejecutado: STOP
+[18:49:31] [SEC] Maniobra terminada.
+[18:49:31] [Estado.SEARCH] Ejecutado: STOP
+[18:49:31] [SEC] Maniobra terminada.
+[18:49:31] [Estado.SEARCH] Ejecutado: STOP
+[18:49:31] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
+[18:49:31] [SEC] Maniobra terminada.
+[18:49:31] [Estado.SEARCH] Ejecutado: STOP
+[18:49:31] [SEC] Maniobra terminada.
+[18:49:31] [Estado.SEARCH] Ejecutado: STOP
+[18:49:32] [SEC] Maniobra terminada.
+[18:49:32] [Estado.SEARCH] Ejecutado: STOP
+[18:49:32] [SEC] Maniobra terminada.
+[18:49:32] [Estado.SEARCH] Ejecutado: STOP
+[18:49:32] [SEC] Maniobra terminada.
+[18:49:32] [Estado.SEARCH] Ejecutado: STOP
+[18:49:32] [SEC] Maniobra terminada.
+[18:49:32] [Estado.SEARCH] Ejecutado: STOP

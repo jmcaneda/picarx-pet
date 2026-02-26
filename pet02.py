@@ -410,73 +410,46 @@ def tilt_bottom(px, step=CAM_STEP):
 # ------------------------------------------------------------
 
 def scape_danger(px, robot_state, speed=SLOW_SPEED):
-    """
-    Maniobra de evasión determinista:
-    - Retrocede recto
-    - Gira el chasis un ángulo fijo
-    - Retrocede un poco más
-    - Centra cámara y ruedas
-    - Devuelve control limpio a SEARCH
-    """
-
-    # ------------------------------------------------------------
-    # FASE 1: INICIO
-    # ------------------------------------------------------------
+    # FASE 1: INICIO (Ahora sí entrará correctamente)
     if not robot_state.is_escaping:
-        log_event(px, "SEC", "¡ESCAPE ACTIVO! Retrocediendo...")
-
-        # 1. Retroceso inicial
+        log_event(px, "SEC", "Ejecutando retroceso de emergencia...")
         px.backward(speed + 5)
-
-        # 2. Elegir dirección fija de escape
-        #    Alternamos para evitar patrones repetitivos
+        
+        # Elegir dirección de escape (zig-zag)
         robot_state.search_wheels_dir *= -1
         escape_angle = SERVO_ANGLE_MAX * robot_state.search_wheels_dir
-
         px.set_dir_servo_angle(escape_angle)
         px.dir_current_angle = escape_angle
 
-        # 3. Duración fija
         robot_state.escape_end_time = time.time() + 1.2
-        robot_state.is_escaping = True
+        robot_state.is_escaping = True # Se activa AQUÍ
         robot_state.last_sec_active = True
-
         return False
 
-    # ------------------------------------------------------------
-    # FASE 2: MANTENER ESCAPE
-    # ------------------------------------------------------------
+    # FASE 2: MANTENER
     dist = update_safety(px)
+    # Si sigue habiendo algo pegado, extendemos el tiempo para no chocar al girar
+    if 0 < dist < 12:
+        robot_state.escape_end_time = time.time() + 0.2
 
-    # Si el obstáculo sigue muy cerca, extendemos un poco
-    if 0 < dist < 15:
-        robot_state.escape_end_time = time.time() + 0.3
-
-    # ------------------------------------------------------------
     # FASE 3: FINALIZAR
-    # ------------------------------------------------------------
     if time.time() >= robot_state.escape_end_time:
         px.stop()
-
-        # Centrar ruedas
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
-
-        # Centrar cámara
+        
+        # IMPORTANTE: Centrar cámara solo si estaba perdida
         px.set_cam_pan_angle(0)
         px.last_pan = 0
 
-        # Reset de flags
-        robot_state.is_escaping = False
+        # RESET TOTAL DE FLAGS
+        robot_state.is_escaping = False 
         robot_state.search_lost_frames = 0
-        robot_state.search_found_frames = 0
-        robot_state.search_edge_frames = 0
-
-        log_event(px, "SEC", "Maniobra terminada.")
+        
+        log_event(px, "SEC", ">>> Zona despejada. Control devuelto a FSM.")
         return True
 
     return False
-
 
 # ============================================================
 # MAPEO DE COMANDOS — v3 (determinista, seguro, sin redundancias)
@@ -590,20 +563,30 @@ def update_safety(px):
 def apply_safety(px, estado, accion, state):
     d = update_safety(px)
     
+    # 1. Si ya estamos escapando, que scape_danger tome el control total
     if state.is_escaping:
         terminado = scape_danger(px, state, SLOW_SPEED)
         if terminado:
-            # Forzamos un RESET limpio de los contadores de búsqueda
-            state.search_lost_frames = 0
+            # Al terminar, devolvemos SEARCH y STOP para limpiar
             return Estado.SEARCH, Cmd.STOP
-        return estado, Cmd.KEEP_ALIVE # Bloquea cualquier otra acción
+        # Mientras escape, bloqueamos con KEEP_ALIVE
+        return estado, Cmd.KEEP_ALIVE 
     
+    # 2. Filtro de sensores (ruido)
+    if d <= 2 or d >= 400:
+        return estado, accion
+
+    # 3. Disparador de emergencia
     if d < DANGER_DISTANCE:
-        # Iniciamos escape en el siguiente ciclo
-        state.is_escaping = True
+        log_event(px, "SEC", f"¡PELIGRO! Objeto a {d}cm. Activando protocolo.")
+        # IMPORTANTE: No activamos la flag aquí, dejamos que scape_danger 
+        # lo haga en su "Fase 1" para que ejecute el px.backward inicial.
+        state.is_escaping = False # Aseguramos que entre en Fase 1
+        scape_danger(px, state, SLOW_SPEED) # Llamada inmediata para activar
         return estado, Cmd.STOP
 
     return estado, accion
+
 
 # ============================================================
 # FUNCIONES
@@ -861,7 +844,7 @@ def state_search(px, estado, accion, st):
         st.search_cam_dir = 1
 
     # Si llevamos mucho sin ver nada → GIRO DE CHASIS
-    if st.search_lost_frames > 60:
+    if st.search_lost_frames > 20:
         log_event(px, Estado.SEARCH, "Perdido → GIRO DE CHASIS")
         return Estado.SEARCH, Cmd.WHEELS_TURN_RIGHT if st.search_wheels_dir == 1 else Cmd.WHEELS_TURN_LEFT
 
