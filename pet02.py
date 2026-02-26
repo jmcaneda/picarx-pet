@@ -798,13 +798,20 @@ def state_search(px, estado, accion, st):
         st.search_found_frames += 1
 
         # -------------------------
-        # ZONA A — CENTRADO
-        # Histeresis: 3 frames centrados y válidos para TRACK
+        # ZONA A — CENTRADO ESTABLE
         # -------------------------
-        if det.valid_for_track and det.is_centered and st.search_found_frames >= 3:
-            log_event(px, Estado.SEARCH,
-                      f"Centrado estable ({st.search_found_frames} frames) → RECENTER")
-            return Estado.RECENTER, Cmd.STOP
+        # ANTES:
+        # if det.valid_for_track and det.is_centered:
+        #     if st.search_found_frames >= 3:
+        #         ...
+
+        # DESPUÉS (más tolerante en SEARCH):
+        if det.is_centered:
+            if st.search_found_frames >= 3:
+                log_event(px, Estado.SEARCH,
+                        f"Centrado estable ({st.search_found_frames} frames) → RECENTER")
+                return Estado.RECENTER, Cmd.STOP
+            return Estado.SEARCH, Cmd.STOP
 
         # -------------------------
         # ZONA B — LATERAL
