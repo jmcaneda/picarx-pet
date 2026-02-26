@@ -126,22 +126,23 @@ class Det:
 
     @property
     def valid_for_track(self):
-        """
-        Detección suficientemente buena como para mover el chasis.
-        Más estricta que search, pero no tan exigente como NEAR.
-        """
         if not self.valid_for_search:
             return False
 
-        # Evitar cosas demasiado pequeñas o gigantescas
-        if not (800 < self.area < 160000):
+        # Evitar detecciones pequeñas o ruidosas
+        if not (2000 < self.area < 160000):
             return False
 
-        # Mantenernos dentro de una zona útil (no pegado al borde)
-        if not (40 < self.x < 600):
+        # Evitar bordes
+        if not (80 < self.x < 560):
+            return False
+
+        # Exigir centrado razonable (no perfecto)
+        if abs(self.error_x) > 120:
             return False
 
         return True
+
 
     @property
     def valid_for_near(self):
@@ -886,9 +887,17 @@ def state_recenter(px, estado, accion, st):
     if abs(px.last_pan) > 15:
         log_event(px, Estado.RECENTER, f"Cuerpo desalineado (PAN: {px.last_pan}°). Girando chasis...")
         st.recenter_centered_frames = 0
-        
-        # Giramos chasis en la dirección donde está mirando la cámara
-        return Estado.RECENTER, Cmd.WHEELS_TURN_RIGHT if px.last_pan > 0 else Cmd.WHEELS_TURN_LEFT
+
+        # --- GIRO DE CHASIS ---
+        cmd = Cmd.WHEELS_TURN_RIGHT if px.last_pan > 0 else Cmd.WHEELS_TURN_LEFT
+
+        # --- PARCHE CRÍTICO ---
+        # Después de girar el chasis, la cámara debe volver a 0
+        px.set_cam_pan_angle(0)
+        px.last_pan = 0
+
+        return Estado.RECENTER, cmd
+
 
     # ============================================================
     # 4. ERROR DE CÁMARA (PAN) → Ajuste fino de servos
@@ -920,6 +929,7 @@ def state_recenter(px, estado, accion, st):
         return Estado.TRACK, Cmd.FORWARD_SLOW
 
     return Estado.RECENTER, Cmd.STOP
+
 
 def state_track(px, estado, accion, st):
     det, raw = get_detection(px, state=st)
