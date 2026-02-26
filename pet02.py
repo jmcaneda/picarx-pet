@@ -688,10 +688,14 @@ def log_event(px, estado, msg):
 
     with open(LOG_PATH, "a", encoding="utf-8") as f:
         f.write(line)
+        
 
 def log_det(px, estado, det, raw, state, prefix=""):
+    # Si state es None, usamos "N/A", si no, el valor real
+    f_lost = state.recenter_lost_frames if state else "N/A"
+    
     msg = (
-        f"{prefix} f_lost={state.recenter_lost_frames}"
+        f"{prefix} f_lost={f_lost} "
         f"search={det.valid_for_search} "
         f"track={det.valid_for_track} "
         f"near={det.valid_for_near} "
@@ -886,7 +890,7 @@ def state_search(px, estado, accion, st):
 
 
 def state_recenter(px, estado, accion, st):
-    det, raw = get_detection(px)
+    det, raw = get_detection(px, state=st)
 
     # ============================================================
     # 1. ENTRADA AL ESTADO

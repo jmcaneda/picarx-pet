@@ -1,104 +1,47 @@
 === Start of pet02.log ===
-[16:47:13] [Estado.CHK] [CHK] ==============================
-[16:47:13] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[16:47:13] [Estado.CHK] [CHK] ==============================
-[16:47:13] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[16:47:13] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[16:47:13] [Estado.CHK] [CHK] State wheels:     0
-[16:47:13] [Estado.CHK] [CHK] ==============================
-[16:47:13] [Estado.IDLE] Inicio del sistema
-[16:47:14] [Estado.IDLE] Entrando en IDLE
-[16:47:14] [Estado.RESET] Ejecutado: STOP
-[16:47:14] [Estado.RESET] Entrando en RESET
-[16:47:14] [Estado.SEARCH] Ejecutado: STOP
-[16:47:14] [Estado.SEARCH] NEW DET →  f_lost=0search=True track=False near=False centered=False n=1 w=72 h=108 area=7776 x=604 y=258 err_x=284 err_y=18
-[16:47:14] [Estado.SEARCH] Entrando en SEARCH
-[16:47:14] [Estado.SEARCH] Ejecutado: STOP
-[16:47:14] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[16:47:15] [Estado.RECENTER] Ejecutado: STOP
-[16:47:15] [Estado.RECENTER] Entrando en RECENTER
-[16:47:15] [Estado.RECENTER] Ejecutado: STOP
-[16:47:15] [Estado.RECENTER] Ejecutado: CAM_PAN_RIGHT
-[16:47:15] [Estado.RECENTER] PAN límite + error grande → SEARCH
-[16:47:15] [Estado.SEARCH] Ejecutado: STOP
-[16:47:15] [Estado.SEARCH] Entrando en SEARCH
-[16:47:15] [Estado.SEARCH] Ejecutado: STOP
-[16:47:15] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[16:47:16] [Estado.RECENTER] Ejecutado: STOP
-[16:47:16] [Estado.RECENTER] Entrando en RECENTER
-[16:47:16] [Estado.RECENTER] Ejecutado: STOP
-[16:47:16] [Estado.RECENTER] Ejecutado: CAM_PAN_RIGHT
-[16:47:16] [Estado.RECENTER] Ejecutado: CAM_PAN_LEFT
-[16:47:16] [Estado.RECENTER] Ejecutado: CAM_PAN_RIGHT
-[16:47:17] [Estado.RECENTER] PAN límite + error grande → SEARCH
-[16:47:17] [Estado.SEARCH] Ejecutado: STOP
-[16:47:17] [Estado.SEARCH] Entrando en SEARCH
-[16:47:17] [Estado.SEARCH] Ejecutado: STOP
-[16:47:17] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[16:47:18] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[16:47:19] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[16:47:26] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[16:47:26] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[16:47:27] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[16:47:27] [Estado.RECENTER] Ejecutado: STOP
-[16:47:27] [Estado.RECENTER] Entrando en RECENTER
-[16:47:27] [Estado.RECENTER] Ejecutado: STOP
-[16:47:27] [Estado.RECENTER] Centrado ✔ → TRACK
-[16:47:27] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[16:47:27] [Estado.TRACK] Entrando en TRACK
-[16:47:27] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[16:47:29] [Estado.TRACK] NEAR confirmado → NEAR
-[16:47:29] [Estado.NEAR] Ejecutado: STOP
-[16:47:29] [Estado.NEAR] Entrando en NEAR: frenado inmediato
-[16:47:29] [Estado.NEAR] Ejecutado: STOP
-[16:47:29] [Estado.NEAR] Retroceso de cortesía
-[16:47:29] [Estado.NEAR] Ejecutado: BACKWARD
-[16:47:29] [Estado.NEAR] Ejecutado: KEEP_ALIVE
-[16:47:30] [Estado.NEAR] Ejecutado: STOP
-[16:47:30] [Estado.NEAR] Iniciando gesto 'SI'
-[16:47:30] [Estado.NEAR] Ejecutado: STOP
-[16:47:31] [Estado.NEAR] Gesto 'sí' completado
-[16:47:31] [Estado.NEAR] Ejecutado: STOP
-[16:47:32] [Estado.NEAR] Baliza alejada → TRACK
-[16:47:32] [Estado.TRACK] Ejecutado: STOP
-[16:47:32] [Estado.TRACK] Entrando en TRACK
-[16:47:32] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[16:47:33] [Estado.TRACK] NEAR confirmado → NEAR
-[16:47:33] [Estado.NEAR] Ejecutado: STOP
-[16:47:33] [Estado.NEAR] Entrando en NEAR: frenado inmediato
-[16:47:33] [Estado.NEAR] Ejecutado: STOP
-[16:47:33] [Estado.NEAR] Retroceso de cortesía
-[16:47:33] [Estado.NEAR] Ejecutado: BACKWARD
-[16:47:34] [Estado.NEAR] Ejecutado: KEEP_ALIVE
-[16:47:34] [Estado.NEAR] Ejecutado: STOP
-[16:47:34] [Estado.NEAR] Iniciando gesto 'SI'
-[16:47:34] [Estado.NEAR] Ejecutado: STOP
-[16:47:35] [Estado.NEAR] Gesto 'sí' completado
-[16:47:35] [Estado.NEAR] Ejecutado: STOP
-[16:47:40] [Estado.NEAR] Baliza alejada → TRACK
-[16:47:40] [Estado.TRACK] Ejecutado: STOP
-[16:47:41] [Estado.TRACK] Entrando en TRACK
-[16:47:41] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[16:47:41] [Estado.TRACK] Perdida baliza → SEARCH
-[16:47:41] [Estado.SEARCH] Ejecutado: STOP
-[16:47:41] [Estado.SEARCH] Entrando en SEARCH
-[16:47:41] [Estado.SEARCH] Ejecutado: STOP
-[16:47:42] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[16:47:43] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[16:47:46] [Estado.SEARCH] NEW DET →  f_lost=0search=True track=False near=False centered=False n=2 w=52 h=220 area=11440 x=26 y=290 err_x=-294 err_y=50
-[16:47:46] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[16:47:47] [Estado.RECENTER] Ejecutado: STOP
-[16:47:47] [Estado.RECENTER] Entrando en RECENTER
-[16:47:47] [Estado.RECENTER] Ejecutado: STOP
-[16:47:47] [Estado.RECENTER] PAN límite + centrado → TRACK
-[16:47:47] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[16:47:47] [Estado.TRACK] Entrando en TRACK
-[16:47:47] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[16:47:48] [Estado.TRACK] Perdida baliza → SEARCH
-[16:47:48] [Estado.SEARCH] Ejecutado: STOP
-[16:47:48] [Estado.SEARCH] Entrando en SEARCH
-[16:47:48] [Estado.SEARCH] Ejecutado: STOP
-[16:47:48] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[16:47:49] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[16:47:51] [Estado.SEARCH] NEW DET →  f_lost=0search=True track=False near=False centered=False n=3 w=68 h=260 area=17680 x=34 y=294 err_x=-286 err_y=54
-[16:47:51] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[13:31:10] [Estado.CHK] [CHK] ==============================
+[13:31:10] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[13:31:10] [Estado.CHK] [CHK] ==============================
+[13:31:10] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[13:31:10] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[13:31:10] [Estado.CHK] [CHK] State wheels:     0
+[13:31:10] [Estado.CHK] [CHK] ==============================
+[13:31:10] [Estado.IDLE] Inicio del sistema
+[13:31:10] [Estado.IDLE] Entrando en IDLE
+[13:31:10] [Estado.RESET] Ejecutado: STOP
+[13:31:10] [Estado.RESET] Entrando en RESET
+[13:31:10] [Estado.SEARCH] Ejecutado: STOP
+[13:31:10] [Estado.SEARCH] NEW DET →  f_lost=0search=True track=True near=False centered=False n=4 w=72 h=92 area=6624 x=568 y=258 err_x=248 err_y=18
+[13:31:10] [Estado.SEARCH] Entrando en SEARCH
+[13:31:10] [Estado.SEARCH] Ejecutado: STOP
+[13:31:10] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[13:31:11] [Estado.RECENTER] Ejecutado: STOP
+[13:31:11] [Estado.RECENTER] Entrando en RECENTER
+[13:31:11] [Estado.RECENTER] Ejecutado: STOP
+[13:31:11] [Estado.RECENTER] Cuerpo desalineado (PAN: 20°). Girando chasis...
+[13:31:11] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[13:31:11] [Estado.RECENTER] Cuerpo desalineado (PAN: 20°). Girando chasis...
+[13:31:11] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[13:31:11] [Estado.RECENTER] Cuerpo desalineado (PAN: 20°). Girando chasis...
+[13:31:11] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[13:31:12] [Estado.RECENTER] Cuerpo desalineado (PAN: 20°). Girando chasis...
+[13:31:12] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[13:31:12] [Estado.RECENTER] Cuerpo desalineado (PAN: 20°). Girando chasis...
+[13:31:12] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[13:31:12] [Estado.RECENTER] Cuerpo desalineado (PAN: 20°). Girando chasis...
+[13:31:12] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[13:31:12] [Estado.RECENTER] Cuerpo desalineado (PAN: 20°). Girando chasis...
+[13:31:12] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[13:31:12] [Estado.RECENTER] Cuerpo desalineado (PAN: 20°). Girando chasis...
+[13:31:12] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[13:31:12] [Estado.RECENTER] Cuerpo desalineado (PAN: 20°). Girando chasis...
+[13:31:12] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[13:31:12] [Estado.RECENTER] Cuerpo desalineado (PAN: 20°). Girando chasis...
+[13:31:12] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[13:31:12] [Estado.RECENTER] Cuerpo desalineado (PAN: 20°). Girando chasis...
+[13:31:12] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[13:31:12] [Estado.RECENTER] Cuerpo desalineado (PAN: 20°). Girando chasis...
+[13:31:12] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[13:31:12] [Estado.RECENTER] Cuerpo desalineado (PAN: 20°). Girando chasis...
+[13:31:12] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[13:31:12] [Estado.RECENTER] Ejecutado: STOP
