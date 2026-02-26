@@ -1,30 +1,21 @@
 === Start of pet02.log ===
-[13:46:34] [Estado.CHK] [CHK] ==============================
-[13:46:34] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[13:46:34] [Estado.CHK] [CHK] ==============================
-[13:46:34] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[13:46:34] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[13:46:34] [Estado.CHK] [CHK] State wheels:     0
-[13:46:34] [Estado.CHK] [CHK] ==============================
-[13:46:34] [Estado.IDLE] Inicio del sistema
-[13:46:34] [Estado.IDLE] Entrando en IDLE
-[13:46:34] [Estado.RESET] Ejecutado: STOP
-[13:46:35] [Estado.RESET] Entrando en RESET
-[13:46:35] [Estado.SEARCH] Ejecutado: STOP
-[13:46:35] [Estado.SEARCH] NEW DET →  f_lost=0 search=True track=True near=False centered=False n=6 w=136 h=72 area=9792 x=248 y=36 err_x=-72 err_y=-204
-[13:46:35] [Estado.SEARCH] Entrando en SEARCH
-[13:46:35] [Estado.SEARCH] Ejecutado: STOP
-[13:46:35] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[13:46:35] [Estado.RECENTER] Ejecutado: STOP
-[13:46:35] [Estado.RECENTER] Entrando en RECENTER
-[13:46:35] [Estado.RECENTER] Ejecutado: STOP
-[13:46:36] [Estado.RECENTER] ✔ Alineado y Centrado → Iniciando TRACK
-[13:46:36] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[13:46:36] [Estado.TRACK] Entrando en TRACK
-[13:46:36] [Estado.TRACK] Ejecutado: FORWARD_SLOW
-[13:46:37] [Estado.TRACK] Perdida baliza → SEARCH
-[13:46:37] [Estado.SEARCH] Ejecutado: STOP
-[13:46:37] [Estado.SEARCH] Entrando en SEARCH
-[13:46:37] [Estado.SEARCH] Ejecutado: STOP
-[13:46:37] [Estado.SEARCH] NEW DET →  f_lost=0 search=True track=False near=False centered=False n=1 w=32 h=32 area=1024 x=24 y=464 err_x=-296 err_y=224
-[13:46:37] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[14:26:29] [Estado.CHK] [CHK] ==============================
+[14:26:29] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[14:26:29] [Estado.CHK] [CHK] ==============================
+[14:26:29] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[14:26:29] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[14:26:29] [Estado.CHK] [CHK] State wheels:     0
+[14:26:29] [Estado.CHK] [CHK] ==============================
+[14:26:29] [Estado.IDLE] Inicio del sistema
+[14:26:29] [Estado.IDLE] Entrando en IDLE
+[14:26:29] [Estado.RESET] Ejecutado: STOP
+[14:26:29] [Estado.RESET] Entrando en RESET
+[14:26:29] [Estado.SEARCH] Ejecutado: STOP
+[14:26:29] [Estado.SEARCH] Entrando en SEARCH
+[14:26:29] [Estado.SEARCH] Ejecutado: STOP
+[14:26:29] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[14:26:30] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[14:26:31] [Estado.SEARCH] NEW DET →  f_lost=0 search=True track=True near=False centered=False n=1 w=48 h=32 area=1536 x=56 y=448 err_x=-264 err_y=208
+[14:26:31] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[14:26:31] [Estado.SEARCH] NEW DET →  f_lost=0 search=True track=False near=False centered=False n=1 w=44 h=64 area=2816 x=22 y=256 err_x=-298 err_y=16
+[14:26:31] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
