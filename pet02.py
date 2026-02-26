@@ -29,15 +29,15 @@ SERVO_ANGLE_MAX = 30
 CX = 320
 CY = 240
 
-FAST_SPEED = 20 
-SLOW_SPEED = 5
-TURN_SPEED = 1 
+FAST_SPEED = 35
+SLOW_SPEED = 10
+TURN_SPEED = 15
 
 CAM_STEP = 4
 
 SAFE_DISTANCE = 999
-WARNING_DISTANCE = 35.0
-DANGER_DISTANCE = 20.0
+WARNING_DISTANCE = 35
+DANGER_DISTANCE = 18
 
 LOG_PATH = os.path.join(os.path.dirname(__file__), "pet02.log")
 
@@ -333,16 +333,9 @@ def backward(px, speed=SLOW_SPEED):
 # ------------------------------------------------------------
 
 def turn_left(px, speed=TURN_SPEED):
-    """
-    Gira suavemente a la izquierda.
-    No reescribe el servo si ya está en ese ángulo.
-    """
-    if px.dir_current_angle != SERVO_ANGLE_MIN:
-        px.set_dir_servo_angle(SERVO_ANGLE_MIN)
-        px.dir_current_angle = SERVO_ANGLE_MIN
-
-    if px.last_cmd == ("TURN_LEFT", speed):
-        return False
+    
+    px.set_dir_servo_angle(SERVO_ANGLE_MIN)
+    px.dir_current_angle = SERVO_ANGLE_MIN
 
     px.forward(speed)
     px.last_cmd = ("TURN_LEFT", speed)
@@ -350,20 +343,67 @@ def turn_left(px, speed=TURN_SPEED):
 
 
 def turn_right(px, speed=TURN_SPEED):
-    """
-    Gira suavemente a la derecha.
-    """
-    if px.dir_current_angle != SERVO_ANGLE_MAX:
-        px.set_dir_servo_angle(SERVO_ANGLE_MAX)
-        px.dir_current_angle = SERVO_ANGLE_MAX
-
-    if px.last_cmd == ("TURN_RIGHT", speed):
-        return False
+    
+    px.set_dir_servo_angle(SERVO_ANGLE_MAX)
+    px.dir_current_angle = SERVO_ANGLE_MAX
 
     px.forward(speed)
     px.last_cmd = ("TURN_RIGHT", speed)
     return True
 
+
+# ============================================================
+# MOVIMIENTOS DE CÁMARA SEGUROS
+# ============================================================
+
+def pan_right(px, step=CAM_STEP):
+    
+    new_angle = px.last_pan + step
+    if new_angle >= PAN_MAX:
+        new_angle = PAN_MAX
+        px.last_pan = PAN_MAX
+        px.set_cam_pan_angle(px.last_pan)
+        return 0  # no hubo movimiento real
+
+    px.last_pan = new_angle
+    px.set_cam_pan_angle(px.last_pan)
+    return 1 # movimiento realizado
+
+def pan_left(px, step=CAM_STEP):
+   
+    new_angle = px.last_pan - step
+    if new_angle <= PAN_MIN:
+        new_angle = PAN_MIN
+        px.last_pan = PAN_MIN
+        px.set_cam_pan_angle(px.last_pan)
+        return 0 # no hubo movimiento real
+
+    px.last_pan = new_angle
+    px.set_cam_pan_angle(px.last_pan)
+    return 1 # movimiento realizado
+
+def tilt_top(px, step=CAM_STEP):
+    new_angle = px.last_tilt + step
+    if new_angle >= TILT_MAX:
+        px.last_tilt = TILT_MAX
+        px.set_cam_tilt_angle(px.last_tilt)
+        return 0
+
+    px.last_tilt = new_angle
+    px.set_cam_tilt_angle(px.last_tilt)
+    return 1
+
+
+def tilt_bottom(px, step=CAM_STEP):
+    new_angle = px.last_tilt - step
+    if new_angle <= TILT_MIN:
+        px.last_tilt = TILT_MIN
+        px.set_cam_tilt_angle(px.last_tilt)
+        return 0
+
+    px.last_tilt = new_angle
+    px.set_cam_tilt_angle(px.last_tilt)
+    return 1
 
 # ------------------------------------------------------------
 # SCAPE
@@ -437,69 +477,6 @@ def scape_danger(px, robot_state, speed=SLOW_SPEED):
 
     return False
 
-
-# ============================================================
-# MOVIMIENTOS DE CÁMARA SEGUROS
-# ============================================================
-
-def pan_right(px, step=CAM_STEP):
-    """
-    Mueve PAN a la derecha.
-    Devuelve:
-        +1 si se movió
-         0 si ya estaba en el límite
-    """
-    new_angle = px.last_pan + step
-    if new_angle >= PAN_MAX:
-        px.last_pan = PAN_MAX
-        px.set_cam_pan_angle(px.last_pan)
-        return 0  # no hubo movimiento real
-
-    px.last_pan = new_angle
-    px.set_cam_pan_angle(px.last_pan)
-    return 1
-
-
-def pan_left(px, step=CAM_STEP):
-    """
-    Mueve PAN a la izquierda.
-    Devuelve:
-        +1 si se movió
-         0 si ya estaba en el límite
-    """
-    new_angle = px.last_pan - step
-    if new_angle <= PAN_MIN:
-        px.last_pan = PAN_MIN
-        px.set_cam_pan_angle(px.last_pan)
-        return 0
-
-    px.last_pan = new_angle
-    px.set_cam_pan_angle(px.last_pan)
-    return 1
-
-
-def tilt_top(px, step=CAM_STEP):
-    new_angle = px.last_tilt + step
-    if new_angle >= TILT_MAX:
-        px.last_tilt = TILT_MAX
-        px.set_cam_tilt_angle(px.last_tilt)
-        return 0
-
-    px.last_tilt = new_angle
-    px.set_cam_tilt_angle(px.last_tilt)
-    return 1
-
-
-def tilt_bottom(px, step=CAM_STEP):
-    new_angle = px.last_tilt - step
-    if new_angle <= TILT_MIN:
-        px.last_tilt = TILT_MIN
-        px.set_cam_tilt_angle(px.last_tilt)
-        return 0
-
-    px.last_tilt = new_angle
-    px.set_cam_tilt_angle(px.last_tilt)
-    return 1
 
 # ============================================================
 # MAPEO DE COMANDOS — v3 (determinista, seguro, sin redundancias)
@@ -688,7 +665,7 @@ def log_event(px, estado, msg):
 
     with open(LOG_PATH, "a", encoding="utf-8") as f:
         f.write(line)
-        
+
 
 def log_det(px, estado, det, raw, state, prefix=""):
     # Si state es None, usamos "N/A", si no, el valor real
@@ -852,20 +829,23 @@ def state_search(px, estado, accion, st):
             return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT
 
         # -------------------------
-        # ZONA C — BORDE
+        # ZONA C — BORDE (REVISADA)
         # -------------------------
-        # --- ZONA C — BORDE (Modificación Crítica) ---
         st.search_edge_frames += 1
 
-        # Si la baliza está en el borde extremo (x < 40 o x > 600)
+        # Si la baliza está muy en el borde (x < 40 o x > 600)
         if det.x < 40 or det.x > 600:
-            # Si el PAN ya está al límite, el movimiento de cámara no basta
-            if (det.x < 40 and px.last_pan <= PAN_MIN) or (det.x > 600 and px.last_pan >= PAN_MAX):
-                log_event(px, Estado.SEARCH, "Baliza en borde + PAN al límite -> GIRANDO CHASIS")
-                # Girar el chasis en la dirección de la baliza
+            # Calculamos si el PAN está cerca del límite (margen de 5 grados)
+            cerca_limite_izq = (px.last_pan <= PAN_MIN + 5)
+            cerca_limite_der = (px.last_pan >= PAN_MAX - 5)
+
+            # Si está en el borde Y la cámara ya no puede girar más -> GIRAR CUERPO
+            if (det.x < 40 and cerca_limite_izq) or (det.x > 600 and cerca_limite_der):
+                log_event(px, Estado.SEARCH, f"Borde Crítico (PAN:{px.last_pan}) -> GIRO CHASIS")
                 return Estado.SEARCH, Cmd.WHEELS_TURN_RIGHT if det.error_x > 0 else Cmd.WHEELS_TURN_LEFT
             
-            # Si aún hay margen de PAN, seguimos paneando
+            # Si no ha llegado al límite, movemos cámara PERO con un paso más largo
+            # (Asegúrate de que execute_motion use un incremento mayor en SEARCH)
             return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT
 
     # ============================================================
@@ -966,11 +946,7 @@ def state_track(px, estado, accion, st):
     # 1. ENTRADA AL ESTADO
     # ============================================================
     if px.last_state != Estado.TRACK:
-        log_event(px, Estado.TRACK, "Entrando en TRACK")
-
-        # Servo SIEMPRE centrado al entrar
-        px.set_dir_servo_angle(0)
-        px.dir_current_angle = 0
+        log_event(px, Estado.TRACK, "Entrando en TRACK - Asegurando dirección")
 
         st.track_lost_frames = 0
         st.near_enter_frames = 0
