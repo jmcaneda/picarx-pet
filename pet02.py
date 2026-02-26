@@ -799,43 +799,56 @@ def state_search(px, estado, accion, st):
 
         # -------------------------
         # ZONA A — CENTRADO
+        # Histeresis: 3 frames centrados y válidos para TRACK
         # -------------------------
-        if det.valid_for_track and det.is_centered:
-            if st.search_found_frames >= 3:
-                return Estado.RECENTER, Cmd.STOP
-            return Estado.SEARCH, Cmd.STOP
+        if det.valid_for_track and det.is_centered and st.search_found_frames >= 3:
+            log_event(px, Estado.SEARCH,
+                      f"Centrado estable ({st.search_found_frames} frames) → RECENTER")
+            return Estado.RECENTER, Cmd.STOP
 
         # -------------------------
         # ZONA B — LATERAL
         # -------------------------
         if 40 < det.x < 600:
-            return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT
+            # Seguimos barriendo con PAN hacia la baliza
+            return Estado.SEARCH, (Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT)
 
         # -------------------------
-        # ZONA C — BORDE (REVISADA)
+        # ZONA C — BORDE
         # -------------------------
         st.search_edge_frames += 1
 
-        # Si la baliza está muy en el borde (x < 40 o x > 600)
+        # Baliza muy en el borde
         if det.x < 40 or det.x > 600:
-            # Calculamos si el PAN está cerca del límite (margen de 5 grados)
             cerca_limite_izq = (px.last_pan <= PAN_MIN + 5)
             cerca_limite_der = (px.last_pan >= PAN_MAX - 5)
 
-            # Si está en el borde Y la cámara ya no puede girar más -> GIRAR CUERPO
-            if (det.x < 40 and cerca_limite_izq) or (det.x > 600 and cerca_limite_der):
-                log_event(px, Estado.SEARCH, f"Borde Crítico (PAN:{px.last_pan}) -> GIRO CHASIS")
-                return Estado.SEARCH, Cmd.WHEELS_TURN_RIGHT if det.error_x > 0 else Cmd.WHEELS_TURN_LEFT
-            
-            # Si no ha llegado al límite, movemos cámara PERO con un paso más largo
-            # (Asegúrate de que execute_motion use un incremento mayor en SEARCH)
-            return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT
+            # 1) Si PAN está en el límite O llevamos muchos frames en el borde → GIRO CHASIS
+            if (cerca_limite_izq or cerca_limite_der) or st.search_edge_frames >= 5:
+                log_event(px, Estado.SEARCH,
+                          f"Borde crítico (x={det.x}, PAN:{px.last_pan}, edge_frames={st.search_edge_frames}) → GIRO CHASIS")
+
+                # Reset de contadores y PAN tras girar chasis para evitar bucles
+                st.search_lost_frames = 0
+                st.search_found_frames = 0
+                st.search_edge_frames = 0
+
+                cmd = Cmd.WHEELS_TURN_RIGHT if det.error_x > 0 else Cmd.WHEELS_TURN_LEFT
+
+                px.set_cam_pan_angle(0)
+                px.last_pan = 0
+
+                return Estado.SEARCH, cmd
+
+            # 2) Aún no en límite → PAN más agresivo (tu execute_motion puede usar paso mayor en SEARCH)
+            return Estado.SEARCH, (Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT)
 
     # ============================================================
     # 4. SIN DETECCIÓN — ZONA D
     # ============================================================
     st.search_found_frames = 0
     st.search_lost_frames += 1
+    st.search_edge_frames = 0  # si no vemos nada, olvidamos borde
 
     # Barrido PAN
     if px.last_pan >= PAN_MAX:
@@ -845,11 +858,25 @@ def state_search(px, estado, accion, st):
 
     # Si llevamos mucho sin ver nada → GIRO DE CHASIS
     if st.search_lost_frames > 20:
-        log_event(px, Estado.SEARCH, "Perdido → GIRO DE CHASIS")
-        return Estado.SEARCH, Cmd.WHEELS_TURN_RIGHT if st.search_wheels_dir == 1 else Cmd.WHEELS_TURN_LEFT
+        log_event(px, Estado.SEARCH,
+                  f"Perdido ({st.search_lost_frames} frames) → GIRO DE CHASIS")
 
-    # PAN normal
-    return Estado.SEARCH, Cmd.CAM_PAN_RIGHT if st.search_cam_dir == 1 else Cmd.CAM_PAN_LEFT
+        # Alternar dirección de giro para no marearse siempre al mismo lado
+        cmd = Cmd.WHEELS_TURN_RIGHT if st.search_wheels_dir == 1 else Cmd.WHEELS_TURN_LEFT
+        st.search_wheels_dir *= -1
+
+        # Reset de contadores y PAN tras giro
+        st.search_lost_frames = 0
+        st.search_found_frames = 0
+        st.search_edge_frames = 0
+
+        px.set_cam_pan_angle(0)
+        px.last_pan = 0
+
+        return Estado.SEARCH, cmd
+
+    # PAN normal de barrido
+    return Estado.SEARCH, (Cmd.CAM_PAN_RIGHT if st.search_cam_dir == 1 else Cmd.CAM_PAN_LEFT)
 
 
 def state_recenter(px, estado, accion, st):
