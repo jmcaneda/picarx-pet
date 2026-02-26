@@ -1,80 +1,89 @@
 === Start of pet02.log ===
-[23:39:37] [Estado.CHK] [CHK] ==============================
-[23:39:37] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[23:39:37] [Estado.CHK] [CHK] ==============================
-[23:39:37] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[23:39:37] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[23:39:37] [Estado.CHK] [CHK] State wheels:     0
-[23:39:37] [Estado.CHK] [CHK] ==============================
-[23:39:37] [Estado.IDLE] Inicio del sistema
-[23:39:37] [Estado.IDLE] Entrando en IDLE
-[23:39:37] [Estado.RESET] Ejecutado: STOP
-[23:39:37] [Estado.RESET] Entrando en RESET
-[23:39:37] [Estado.SEARCH] Ejecutado: STOP
-[23:39:37] [Estado.SEARCH] Entrando en SEARCH
-[23:39:37] [Estado.SEARCH] Ejecutado: STOP
-[23:39:38] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[23:39:38] [Estado.SEARCH] NEW DET →  f_lost=0 search=True track=False near=False centered=False n=1 w=52 h=36 area=1872 x=482 y=242 err_x=162 err_y=2
-[23:39:38] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[23:39:39] [Estado.SEARCH] Centrado estable (4 frames) → RECENTER
-[23:39:39] [Estado.RECENTER] Ejecutado: STOP
-[23:39:39] [Estado.RECENTER] Entrando en RECENTER
-[23:39:39] [Estado.RECENTER] Ejecutado: STOP
-[23:39:39] [Estado.RECENTER] Cuerpo desalineado (PAN: 28°). Girando chasis...
-[23:39:39] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
-[23:39:39] [Estado.RECENTER] Ejecutado: STOP
-[23:39:41] [Estado.RECENTER] NEW DET →  f_lost=14 search=True track=False near=False centered=False n=1 w=36 h=32 area=1152 x=542 y=240 err_x=222 err_y=0
-[23:39:41] [Estado.RECENTER] Ejecutado: CAM_PAN_RIGHT
-[23:39:42] [Estado.RECENTER] Ejecutado: STOP
-[23:39:42] [Estado.RECENTER] NEW DET →  f_lost=1 search=True track=False near=False centered=False n=1 w=36 h=32 area=1152 x=522 y=244 err_x=202 err_y=4
-[23:39:42] [Estado.RECENTER] Ejecutado: CAM_PAN_RIGHT
-[23:39:42] [Estado.RECENTER] Cuerpo desalineado (PAN: 16°). Girando chasis...
-[23:39:42] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
-[23:39:42] [Estado.RECENTER] Ejecutado: STOP
-[23:39:42] [Estado.RECENTER] NEW DET →  f_lost=2 search=True track=False near=False centered=False n=1 w=44 h=36 area=1584 x=486 y=242 err_x=166 err_y=2
-[23:39:42] [Estado.RECENTER] Ejecutado: CAM_PAN_RIGHT
-[23:39:43] [Estado.RECENTER] Cuerpo desalineado (PAN: 16°). Girando chasis...
-[23:39:43] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
-[23:39:43] [Estado.RECENTER] Ejecutado: STOP
-[23:39:43] [Estado.RECENTER] NEW DET →  f_lost=1 search=True track=False near=False centered=False n=1 w=56 h=40 area=2240 x=472 y=244 err_x=152 err_y=4
-[23:39:43] [Estado.RECENTER] Ejecutado: CAM_PAN_RIGHT
-[23:39:44] [Estado.RECENTER] Cuerpo desalineado (PAN: 16°). Girando chasis...
-[23:39:44] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
-[23:39:44] [Estado.RECENTER] Ejecutado: CAM_PAN_RIGHT
-[23:39:45] [Estado.RECENTER] Ejecutado: CAM_PAN_LEFT
-[23:39:45] [Estado.RECENTER] Ejecutado: STOP
-[23:39:47] [Estado.RECENTER] Sin detección persistente → SEARCH
-[23:39:47] [Estado.SEARCH] Ejecutado: STOP
-[23:39:47] [Estado.SEARCH] Entrando en SEARCH
-[23:39:47] [Estado.SEARCH] Ejecutado: STOP
-[23:39:47] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[23:39:48] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[23:39:50] [Estado.SEARCH] Perdido (21 frames) → GIRO DE CHASIS
-[23:39:50] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[23:39:50] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[23:39:52] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[23:39:52] [SEC] ¡PELIGRO! Objeto a 11.38cm. Activando protocolo.
-[23:39:52] [SEC] Ejecutando retroceso de emergencia...
-[23:39:52] [Estado.SEARCH] Ejecutado: STOP
-[23:39:52] [Estado.SEARCH] [SEC] Recuperación tras SCAPE
-[23:39:52] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
-[23:39:54] [Estado.SEARCH] Perdido (21 frames) → GIRO DE CHASIS
-[23:39:55] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
-[23:39:57] [Estado.SEARCH] Perdido (21 frames) → GIRO DE CHASIS
-[23:39:57] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
-[23:39:59] [Estado.SEARCH] Perdido (21 frames) → GIRO DE CHASIS
-[23:39:59] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
-[23:40:01] [Estado.SEARCH] Perdido (21 frames) → GIRO DE CHASIS
-[23:40:01] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
-[23:40:04] [Estado.SEARCH] Perdido (21 frames) → GIRO DE CHASIS
-[23:40:04] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
-[23:40:06] [Estado.SEARCH] Perdido (21 frames) → GIRO DE CHASIS
-[23:40:06] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
-[23:40:08] [Estado.SEARCH] Perdido (21 frames) → GIRO DE CHASIS
-[23:40:08] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
-[23:40:10] [Estado.SEARCH] Perdido (21 frames) → GIRO DE CHASIS
-[23:40:11] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
-[23:40:13] [Estado.SEARCH] Perdido (21 frames) → GIRO DE CHASIS
-[23:40:13] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
-[23:40:15] [Estado.SEARCH] Perdido (21 frames) → GIRO DE CHASIS
-[23:40:15] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
+[23:47:19] [Estado.CHK] [CHK] ==============================
+[23:47:19] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[23:47:19] [Estado.CHK] [CHK] ==============================
+[23:47:19] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[23:47:19] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[23:47:19] [Estado.CHK] [CHK] State wheels:     0
+[23:47:19] [Estado.CHK] [CHK] ==============================
+[23:47:19] [Estado.IDLE] Inicio del sistema
+[23:47:19] [Estado.IDLE] Entrando en IDLE
+[23:47:20] [Estado.RESET] Ejecutado: STOP
+[23:47:20] [Estado.RESET] Entrando en RESET
+[23:47:20] [Estado.SEARCH] Ejecutado: STOP
+[23:47:20] [Estado.SEARCH] Entrando en SEARCH
+[23:47:20] [Estado.SEARCH] Ejecutado: STOP
+[23:47:20] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[23:47:20] [Estado.SEARCH] NEW DET →  f_lost=0 search=True track=False near=False centered=False n=1 w=32 h=32 area=1024 x=512 y=244 err_x=192 err_y=4
+[23:47:20] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[23:47:21] [Estado.SEARCH] Centrado estable (5 frames) → RECENTER
+[23:47:21] [Estado.RECENTER] Ejecutado: STOP
+[23:47:21] [Estado.RECENTER] Entrando en RECENTER
+[23:47:21] [Estado.RECENTER] Ejecutado: STOP
+[23:47:21] [Estado.RECENTER] Cuerpo desalineado (PAN: 28°). Girando chasis...
+[23:47:21] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[23:47:21] [Estado.RECENTER] Ejecutado: STOP
+[23:47:22] [Estado.RECENTER] Sin detección persistente → SEARCH
+[23:47:22] [Estado.SEARCH] Ejecutado: STOP
+[23:47:22] [Estado.SEARCH] Entrando en SEARCH
+[23:47:22] [Estado.SEARCH] Ejecutado: STOP
+[23:47:23] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[23:47:23] [Estado.SEARCH] NEW DET →  f_lost=15 search=True track=False near=False centered=False n=2 w=52 h=40 area=2080 x=494 y=244 err_x=174 err_y=4
+[23:47:23] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[23:47:23] [Estado.SEARCH] Centrado estable (5 frames) → RECENTER
+[23:47:23] [Estado.RECENTER] Ejecutado: STOP
+[23:47:23] [Estado.RECENTER] Entrando en RECENTER
+[23:47:23] [Estado.RECENTER] Ejecutado: STOP
+[23:47:23] [Estado.RECENTER] Cuerpo desalineado (PAN: 28°). Girando chasis...
+[23:47:23] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[23:47:24] [Estado.RECENTER] Ejecutado: STOP
+[23:47:24] [Estado.RECENTER] NEW DET →  f_lost=5 search=True track=False near=False centered=False n=1 w=36 h=36 area=1296 x=514 y=238 err_x=194 err_y=-2
+[23:47:24] [Estado.RECENTER] Ejecutado: CAM_PAN_RIGHT
+[23:47:24] [Estado.RECENTER] Cuerpo desalineado (PAN: 16°). Girando chasis...
+[23:47:25] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[23:47:25] [Estado.RECENTER] Ejecutado: STOP
+[23:47:25] [Estado.RECENTER] NEW DET →  f_lost=1 search=True track=False near=False centered=False n=1 w=56 h=36 area=2016 x=488 y=242 err_x=168 err_y=2
+[23:47:25] [Estado.RECENTER] Ejecutado: CAM_PAN_RIGHT
+[23:47:25] [Estado.RECENTER] Cuerpo desalineado (PAN: 16°). Girando chasis...
+[23:47:25] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[23:47:25] [Estado.RECENTER] Ejecutado: CAM_PAN_RIGHT
+[23:47:26] [Estado.RECENTER] Ejecutado: CAM_PAN_LEFT
+[23:47:26] [Estado.RECENTER] Ejecutado: STOP
+[23:47:28] [Estado.RECENTER] Sin detección persistente → SEARCH
+[23:47:29] [Estado.SEARCH] Ejecutado: STOP
+[23:47:29] [Estado.SEARCH] Entrando en SEARCH
+[23:47:29] [Estado.SEARCH] Ejecutado: STOP
+[23:47:29] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[23:47:31] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[23:47:33] [Estado.SEARCH] NEW DET →  f_lost=15 search=True track=False near=False centered=False n=1 w=36 h=44 area=1584 x=22 y=258 err_x=-298 err_y=18
+[23:47:33] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[23:47:34] [Estado.SEARCH] Centrado estable (7 frames) → RECENTER
+[23:47:34] [Estado.RECENTER] Ejecutado: STOP
+[23:47:34] [Estado.RECENTER] Entrando en RECENTER
+[23:47:34] [Estado.RECENTER] Ejecutado: STOP
+[23:47:35] [Estado.RECENTER] Cuerpo desalineado (PAN: -35°). Girando chasis...
+[23:47:35] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[23:47:35] [Estado.RECENTER] Ejecutado: STOP
+[23:47:38] [Estado.RECENTER] Sin detección persistente → SEARCH
+[23:47:38] [Estado.SEARCH] Ejecutado: STOP
+[23:47:38] [Estado.SEARCH] Entrando en SEARCH
+[23:47:38] [Estado.SEARCH] Ejecutado: STOP
+[23:47:39] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[23:47:41] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[23:47:43] [Estado.SEARCH] Perdido (21 frames) → GIRO DE CHASIS
+[23:47:43] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[23:47:43] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[23:47:45] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[23:47:46] [SEC] ¡PELIGRO! Objeto a 14.66cm. Activando protocolo.
+[23:47:46] [SEC] Ejecutando retroceso de emergencia...
+[23:47:46] [Estado.SEARCH] Ejecutado: STOP
+[23:47:46] [Estado.SEARCH] [SEC] Recuperación tras SCAPE
+[23:47:46] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
+[23:47:48] [Estado.SEARCH] Perdido (21 frames) → GIRO DE CHASIS
+[23:47:48] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
+[23:47:50] [Estado.SEARCH] Perdido (21 frames) → GIRO DE CHASIS
+[23:47:50] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
+[23:47:52] [Estado.SEARCH] Perdido (21 frames) → GIRO DE CHASIS
+[23:47:52] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
+[23:47:55] [Estado.SEARCH] Perdido (21 frames) → GIRO DE CHASIS
+[23:47:55] [Estado.SEARCH] Ejecutado: KEEP_ALIVE

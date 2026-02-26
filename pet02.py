@@ -566,7 +566,11 @@ def scape_danger(px, robot_state, speed=SLOW_SPEED):
     dist = update_safety(px)
     # Si sigue habiendo algo pegado, extendemos el tiempo para no chocar al girar
     if 0 < dist < 12:
-        robot_state.escape_end_time = time.time() + 0.2
+        # En vez de extender tiempo, giramos para escapar
+        px.set_dir_servo_angle(30 * robot_state.search_wheels_dir)
+        px.dir_current_angle = 30 * robot_state.search_wheels_dir
+        robot_state.escape_end_time = time.time() + 0.5
+
 
     # FASE 3: FINALIZAR
     if time.time() >= robot_state.escape_end_time:
@@ -922,11 +926,9 @@ def state_recenter(px, estado, accion, st):
         log_event(px, Estado.RECENTER, f"Cuerpo desalineado (PAN: {px.last_pan}°). Girando chasis...")
         st.recenter_centered_frames = 0
 
-        # --- GIRO DE CHASIS ---
         cmd = Cmd.WHEELS_TURN_RIGHT if px.last_pan > 0 else Cmd.WHEELS_TURN_LEFT
 
-        # --- PARCHE CRÍTICO ---
-        # Después de girar el chasis, la cámara debe volver a 0
+        # 🔧 PARCHE CRÍTICO: después de girar el chasis, recentramos la cámara
         px.set_cam_pan_angle(0)
         px.last_pan = 0
 
