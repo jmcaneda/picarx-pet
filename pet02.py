@@ -37,7 +37,7 @@ CAM_STEP = 4
 
 SAFE_DISTANCE = 999
 WARNING_DISTANCE = 35
-DANGER_DISTANCE = 18
+DANGER_DISTANCE = 20
 
 LOG_PATH = os.path.join(os.path.dirname(__file__), "pet02.log")
 
@@ -405,51 +405,6 @@ def tilt_bottom(px, step=CAM_STEP):
     px.set_cam_tilt_angle(px.last_tilt)
     return 1
 
-# ------------------------------------------------------------
-# SCAPE
-# ------------------------------------------------------------
-
-def scape_danger(px, robot_state, speed=SLOW_SPEED):
-    # FASE 1: INICIO (Ahora sí entrará correctamente)
-    if not robot_state.is_escaping:
-        log_event(px, "SEC", "Ejecutando retroceso de emergencia...")
-        px.backward(speed + 5)
-        
-        # Elegir dirección de escape (zig-zag)
-        robot_state.search_wheels_dir *= -1
-        escape_angle = SERVO_ANGLE_MAX * robot_state.search_wheels_dir
-        px.set_dir_servo_angle(escape_angle)
-        px.dir_current_angle = escape_angle
-
-        robot_state.escape_end_time = time.time() + 1.2
-        robot_state.is_escaping = True # Se activa AQUÍ
-        robot_state.last_sec_active = True
-        return False
-
-    # FASE 2: MANTENER
-    dist = update_safety(px)
-    # Si sigue habiendo algo pegado, extendemos el tiempo para no chocar al girar
-    if 0 < dist < 12:
-        robot_state.escape_end_time = time.time() + 0.2
-
-    # FASE 3: FINALIZAR
-    if time.time() >= robot_state.escape_end_time:
-        px.stop()
-        px.set_dir_servo_angle(0)
-        px.dir_current_angle = 0
-        
-        # IMPORTANTE: Centrar cámara solo si estaba perdida
-        px.set_cam_pan_angle(0)
-        px.last_pan = 0
-
-        # RESET TOTAL DE FLAGS
-        robot_state.is_escaping = False 
-        robot_state.search_lost_frames = 0
-        
-        log_event(px, "SEC", ">>> Zona despejada. Control devuelto a FSM.")
-        return True
-
-    return False
 
 # ============================================================
 # MAPEO DE COMANDOS — v3 (determinista, seguro, sin redundancias)
@@ -567,7 +522,7 @@ def apply_safety(px, estado, accion, state):
     if state.is_escaping:
         terminado = scape_danger(px, state, SLOW_SPEED)
         if terminado:
-            # Al terminar, devolvemos SEARCH y STOP para limpiar
+            log_event(px, "SEC", ">>> Zona despejada. Control devuelto a FSM.")
             return Estado.SEARCH, Cmd.STOP
         # Mientras escape, bloqueamos con KEEP_ALIVE
         return estado, Cmd.KEEP_ALIVE 
@@ -586,6 +541,50 @@ def apply_safety(px, estado, accion, state):
         return estado, Cmd.STOP
 
     return estado, accion
+
+
+def scape_danger(px, robot_state, speed=SLOW_SPEED):
+    # FASE 1: INICIO (Ahora sí entrará correctamente)
+    if not robot_state.is_escaping:
+        log_event(px, "SEC", "Ejecutando retroceso de emergencia...")
+        
+        # Elegir dirección de escape (zig-zag)
+        robot_state.search_wheels_dir *= -1
+        escape_angle = SERVO_ANGLE_MAX * robot_state.search_wheels_dir
+        px.set_dir_servo_angle(escape_angle)
+        px.dir_current_angle = escape_angle
+
+        px.backward(speed + 5)
+
+        robot_state.escape_end_time = time.time() + 1.2
+        robot_state.is_escaping = True
+        robot_state.last_sec_active = True
+        return False
+
+    # FASE 2: MANTENER
+    dist = update_safety(px)
+    # Si sigue habiendo algo pegado, extendemos el tiempo para no chocar al girar
+    if 0 < dist < 12:
+        robot_state.escape_end_time = time.time() + 0.2
+
+    # FASE 3: FINALIZAR
+    if time.time() >= robot_state.escape_end_time:
+        px.stop()
+        px.set_dir_servo_angle(0)
+        px.dir_current_angle = 0
+        
+        # IMPORTANTE: Centrar cámara solo si estaba perdida
+        px.set_cam_pan_angle(0)
+        px.last_pan = 0
+
+        # RESET TOTAL DE FLAGS
+        robot_state.is_escaping = False 
+        robot_state.search_lost_frames = 0
+        
+        log_event(px, "SEC", ">>> Zona despejada. Control devuelto a FSM.")
+        return True
+
+    return False
 
 
 # ============================================================

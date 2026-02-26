@@ -1,276 +1,778 @@
 === Start of pet02.log ===
-[18:49:05] [Estado.CHK] [CHK] ==============================
-[18:49:05] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[18:49:05] [Estado.CHK] [CHK] ==============================
-[18:49:05] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[18:49:05] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[18:49:05] [Estado.CHK] [CHK] State wheels:     0
-[18:49:05] [Estado.CHK] [CHK] ==============================
-[18:49:05] [Estado.IDLE] Inicio del sistema
-[18:49:05] [Estado.IDLE] Entrando en IDLE
-[18:49:05] [Estado.RESET] Ejecutado: STOP
-[18:49:05] [Estado.RESET] Entrando en RESET
-[18:49:05] [Estado.SEARCH] Ejecutado: STOP
-[18:49:05] [Estado.SEARCH] Entrando en SEARCH
-[18:49:05] [Estado.SEARCH] Ejecutado: STOP
-[18:49:05] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[18:49:06] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[18:49:07] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:07] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:07] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:07] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:07] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:07] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:08] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:08] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:08] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:08] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:08] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:08] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:08] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:08] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:08] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:08] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:08] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:08] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:08] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:10] [Estado.SEARCH] Ejecutado: STOP
-[18:49:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:11] [SEC] Maniobra terminada.
-[18:49:11] [Estado.SEARCH] Ejecutado: STOP
-[18:49:11] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
-[18:49:11] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
-[18:49:12] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:12] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
-[18:49:12] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:12] [Estado.SEARCH] Ejecutado: STOP
-[18:49:12] [Estado.SEARCH] Perdido → GIRO DE CHASIS
-[18:49:13] [SEC] Maniobra terminada.
-[18:49:13] [Estado.SEARCH] Ejecutado: STOP
-[18:49:13] [SEC] Maniobra terminada.
-[18:49:13] [Estado.SEARCH] Ejecutado: STOP
-[18:49:13] [SEC] Maniobra terminada.
-[18:49:13] [Estado.SEARCH] Ejecutado: STOP
-[18:49:13] [SEC] Maniobra terminada.
-[18:49:13] [Estado.SEARCH] Ejecutado: STOP
-[18:49:13] [SEC] Maniobra terminada.
-[18:49:13] [Estado.SEARCH] Ejecutado: STOP
-[18:49:14] [SEC] Maniobra terminada.
-[18:49:14] [Estado.SEARCH] Ejecutado: STOP
-[18:49:14] [SEC] Maniobra terminada.
-[18:49:14] [Estado.SEARCH] Ejecutado: STOP
-[18:49:14] [SEC] Maniobra terminada.
-[18:49:14] [Estado.SEARCH] Ejecutado: STOP
-[18:49:14] [SEC] Maniobra terminada.
-[18:49:14] [Estado.SEARCH] Ejecutado: STOP
-[18:49:14] [SEC] Maniobra terminada.
-[18:49:14] [Estado.SEARCH] Ejecutado: STOP
-[18:49:15] [SEC] Maniobra terminada.
-[18:49:15] [Estado.SEARCH] Ejecutado: STOP
-[18:49:15] [SEC] Maniobra terminada.
-[18:49:15] [Estado.SEARCH] Ejecutado: STOP
-[18:49:15] [SEC] Maniobra terminada.
-[18:49:15] [Estado.SEARCH] Ejecutado: STOP
-[18:49:15] [SEC] Maniobra terminada.
-[18:49:15] [Estado.SEARCH] Ejecutado: STOP
-[18:49:15] [SEC] Maniobra terminada.
-[18:49:15] [Estado.SEARCH] Ejecutado: STOP
-[18:49:16] [SEC] Maniobra terminada.
-[18:49:16] [Estado.SEARCH] Ejecutado: STOP
-[18:49:16] [SEC] Maniobra terminada.
-[18:49:16] [Estado.SEARCH] Ejecutado: STOP
-[18:49:16] [SEC] Maniobra terminada.
-[18:49:16] [Estado.SEARCH] Ejecutado: STOP
-[18:49:16] [SEC] Maniobra terminada.
-[18:49:16] [Estado.SEARCH] Ejecutado: STOP
-[18:49:16] [SEC] Maniobra terminada.
-[18:49:16] [Estado.SEARCH] Ejecutado: STOP
-[18:49:17] [SEC] Maniobra terminada.
-[18:49:17] [Estado.SEARCH] Ejecutado: STOP
-[18:49:17] [SEC] Maniobra terminada.
-[18:49:17] [Estado.SEARCH] Ejecutado: STOP
-[18:49:17] [SEC] Maniobra terminada.
-[18:49:17] [Estado.SEARCH] Ejecutado: STOP
-[18:49:17] [SEC] Maniobra terminada.
-[18:49:17] [Estado.SEARCH] Ejecutado: STOP
-[18:49:17] [SEC] Maniobra terminada.
-[18:49:17] [Estado.SEARCH] Ejecutado: STOP
-[18:49:18] [SEC] Maniobra terminada.
-[18:49:18] [Estado.SEARCH] Ejecutado: STOP
-[18:49:18] [SEC] Maniobra terminada.
-[18:49:18] [Estado.SEARCH] Ejecutado: STOP
-[18:49:18] [SEC] Maniobra terminada.
-[18:49:18] [Estado.SEARCH] Ejecutado: STOP
-[18:49:18] [SEC] Maniobra terminada.
-[18:49:18] [Estado.SEARCH] Ejecutado: STOP
-[18:49:18] [SEC] Maniobra terminada.
-[18:49:18] [Estado.SEARCH] Ejecutado: STOP
-[18:49:19] [SEC] Maniobra terminada.
-[18:49:19] [Estado.SEARCH] Ejecutado: STOP
-[18:49:19] [SEC] Maniobra terminada.
-[18:49:19] [Estado.SEARCH] Ejecutado: STOP
-[18:49:19] [SEC] Maniobra terminada.
-[18:49:19] [Estado.SEARCH] Ejecutado: STOP
-[18:49:19] [SEC] Maniobra terminada.
-[18:49:19] [Estado.SEARCH] Ejecutado: STOP
-[18:49:19] [SEC] Maniobra terminada.
-[18:49:19] [Estado.SEARCH] Ejecutado: STOP
-[18:49:20] [SEC] Maniobra terminada.
-[18:49:20] [Estado.SEARCH] Ejecutado: STOP
-[18:49:20] [SEC] Maniobra terminada.
-[18:49:20] [Estado.SEARCH] Ejecutado: STOP
-[18:49:20] [SEC] Maniobra terminada.
-[18:49:20] [Estado.SEARCH] Ejecutado: STOP
-[18:49:20] [SEC] Maniobra terminada.
-[18:49:20] [Estado.SEARCH] Ejecutado: STOP
-[18:49:20] [SEC] Maniobra terminada.
-[18:49:20] [Estado.SEARCH] Ejecutado: STOP
-[18:49:21] [SEC] Maniobra terminada.
-[18:49:21] [Estado.SEARCH] Ejecutado: STOP
-[18:49:21] [SEC] Maniobra terminada.
-[18:49:21] [Estado.SEARCH] Ejecutado: STOP
-[18:49:21] [SEC] Maniobra terminada.
-[18:49:21] [Estado.SEARCH] Ejecutado: STOP
-[18:49:21] [SEC] Maniobra terminada.
-[18:49:21] [Estado.SEARCH] Ejecutado: STOP
-[18:49:22] [SEC] Maniobra terminada.
-[18:49:22] [Estado.SEARCH] Ejecutado: STOP
-[18:49:22] [SEC] Maniobra terminada.
-[18:49:22] [Estado.SEARCH] Ejecutado: STOP
-[18:49:22] [SEC] Maniobra terminada.
-[18:49:22] [Estado.SEARCH] Ejecutado: STOP
-[18:49:22] [SEC] Maniobra terminada.
-[18:49:22] [Estado.SEARCH] Ejecutado: STOP
-[18:49:22] [SEC] Maniobra terminada.
-[18:49:22] [Estado.SEARCH] Ejecutado: STOP
-[18:49:23] [SEC] Maniobra terminada.
-[18:49:23] [Estado.SEARCH] Ejecutado: STOP
-[18:49:23] [SEC] Maniobra terminada.
-[18:49:23] [Estado.SEARCH] Ejecutado: STOP
-[18:49:23] [SEC] Maniobra terminada.
-[18:49:23] [Estado.SEARCH] Ejecutado: STOP
-[18:49:23] [SEC] Maniobra terminada.
-[18:49:23] [Estado.SEARCH] Ejecutado: STOP
-[18:49:23] [SEC] Maniobra terminada.
-[18:49:23] [Estado.SEARCH] Ejecutado: STOP
-[18:49:24] [SEC] Maniobra terminada.
-[18:49:24] [Estado.SEARCH] Ejecutado: STOP
-[18:49:24] [SEC] Maniobra terminada.
-[18:49:24] [Estado.SEARCH] Ejecutado: STOP
-[18:49:24] [SEC] Maniobra terminada.
-[18:49:24] [Estado.SEARCH] Ejecutado: STOP
-[18:49:24] [SEC] Maniobra terminada.
-[18:49:24] [Estado.SEARCH] Ejecutado: STOP
-[18:49:24] [SEC] Maniobra terminada.
-[18:49:24] [Estado.SEARCH] Ejecutado: STOP
-[18:49:25] [SEC] Maniobra terminada.
-[18:49:25] [Estado.SEARCH] Ejecutado: STOP
-[18:49:25] [SEC] Maniobra terminada.
-[18:49:25] [Estado.SEARCH] Ejecutado: STOP
-[18:49:25] [SEC] Maniobra terminada.
-[18:49:25] [Estado.SEARCH] Ejecutado: STOP
-[18:49:25] [SEC] Maniobra terminada.
-[18:49:25] [Estado.SEARCH] Ejecutado: STOP
-[18:49:25] [SEC] Maniobra terminada.
-[18:49:25] [Estado.SEARCH] Ejecutado: STOP
-[18:49:26] [SEC] Maniobra terminada.
-[18:49:26] [Estado.SEARCH] Ejecutado: STOP
-[18:49:26] [SEC] Maniobra terminada.
-[18:49:26] [Estado.SEARCH] Ejecutado: STOP
-[18:49:26] [SEC] Maniobra terminada.
-[18:49:26] [Estado.SEARCH] Ejecutado: STOP
-[18:49:26] [SEC] Maniobra terminada.
-[18:49:26] [Estado.SEARCH] Ejecutado: STOP
-[18:49:26] [SEC] Maniobra terminada.
-[18:49:26] [Estado.SEARCH] Ejecutado: STOP
-[18:49:27] [SEC] Maniobra terminada.
-[18:49:27] [Estado.SEARCH] Ejecutado: STOP
-[18:49:27] [SEC] Maniobra terminada.
-[18:49:27] [Estado.SEARCH] Ejecutado: STOP
-[18:49:27] [SEC] Maniobra terminada.
-[18:49:27] [Estado.SEARCH] Ejecutado: STOP
-[18:49:27] [SEC] Maniobra terminada.
-[18:49:27] [Estado.SEARCH] Ejecutado: STOP
-[18:49:27] [SEC] Maniobra terminada.
-[18:49:27] [Estado.SEARCH] Ejecutado: STOP
-[18:49:28] [SEC] Maniobra terminada.
-[18:49:28] [Estado.SEARCH] Ejecutado: STOP
-[18:49:28] [SEC] Maniobra terminada.
-[18:49:28] [Estado.SEARCH] Ejecutado: STOP
-[18:49:28] [SEC] Maniobra terminada.
-[18:49:28] [Estado.SEARCH] Ejecutado: STOP
-[18:49:28] [SEC] Maniobra terminada.
-[18:49:28] [Estado.SEARCH] Ejecutado: STOP
-[18:49:28] [SEC] Maniobra terminada.
-[18:49:28] [Estado.SEARCH] Ejecutado: STOP
-[18:49:29] [SEC] Maniobra terminada.
-[18:49:29] [Estado.SEARCH] Ejecutado: STOP
-[18:49:29] [SEC] Maniobra terminada.
-[18:49:29] [Estado.SEARCH] Ejecutado: STOP
-[18:49:29] [SEC] Maniobra terminada.
-[18:49:29] [Estado.SEARCH] Ejecutado: STOP
-[18:49:29] [SEC] Maniobra terminada.
-[18:49:29] [Estado.SEARCH] Ejecutado: STOP
-[18:49:30] [SEC] Maniobra terminada.
-[18:49:30] [Estado.SEARCH] Ejecutado: STOP
-[18:49:30] [SEC] Maniobra terminada.
-[18:49:30] [Estado.SEARCH] Ejecutado: STOP
-[18:49:30] [SEC] Maniobra terminada.
-[18:49:30] [Estado.SEARCH] Ejecutado: STOP
-[18:49:30] [SEC] Maniobra terminada.
-[18:49:30] [Estado.SEARCH] Ejecutado: STOP
-[18:49:30] [SEC] Maniobra terminada.
-[18:49:30] [Estado.SEARCH] Ejecutado: STOP
-[18:49:31] [SEC] Maniobra terminada.
-[18:49:31] [Estado.SEARCH] Ejecutado: STOP
-[18:49:31] [SEC] Maniobra terminada.
-[18:49:31] [Estado.SEARCH] Ejecutado: STOP
-[18:49:31] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
-[18:49:31] [SEC] Maniobra terminada.
-[18:49:31] [Estado.SEARCH] Ejecutado: STOP
-[18:49:31] [SEC] Maniobra terminada.
-[18:49:31] [Estado.SEARCH] Ejecutado: STOP
-[18:49:32] [SEC] Maniobra terminada.
-[18:49:32] [Estado.SEARCH] Ejecutado: STOP
-[18:49:32] [SEC] Maniobra terminada.
-[18:49:32] [Estado.SEARCH] Ejecutado: STOP
-[18:49:32] [SEC] Maniobra terminada.
-[18:49:32] [Estado.SEARCH] Ejecutado: STOP
-[18:49:32] [SEC] Maniobra terminada.
-[18:49:32] [Estado.SEARCH] Ejecutado: STOP
+[22:10:56] [Estado.CHK] [CHK] ==============================
+[22:10:56] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[22:10:56] [Estado.CHK] [CHK] ==============================
+[22:10:56] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[22:10:56] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[22:10:56] [Estado.CHK] [CHK] State wheels:     0
+[22:10:56] [Estado.CHK] [CHK] ==============================
+[22:10:56] [Estado.IDLE] Inicio del sistema
+[22:10:56] [Estado.IDLE] Entrando en IDLE
+[22:10:56] [Estado.RESET] Ejecutado: STOP
+[22:10:56] [Estado.RESET] Entrando en RESET
+[22:10:56] [Estado.SEARCH] Ejecutado: STOP
+[22:10:56] [Estado.SEARCH] Entrando en SEARCH
+[22:10:56] [Estado.SEARCH] Ejecutado: STOP
+[22:10:56] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[22:10:56] [Estado.SEARCH] NEW DET →  f_lost=0 search=True track=True near=False centered=False n=1 w=40 h=44 area=1760 x=528 y=238 err_x=208 err_y=-2
+[22:10:56] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[22:10:57] [Estado.RECENTER] Ejecutado: STOP
+[22:10:57] [Estado.RECENTER] Entrando en RECENTER
+[22:10:57] [Estado.RECENTER] Ejecutado: STOP
+[22:10:57] [Estado.RECENTER] Cuerpo desalineado (PAN: 28°). Girando chasis...
+[22:10:57] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[22:10:57] [Estado.RECENTER] Cuerpo desalineado (PAN: 28°). Girando chasis...
+[22:10:57] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[22:10:57] [Estado.RECENTER] Cuerpo desalineado (PAN: 28°). Girando chasis...
+[22:10:57] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[22:10:57] [Estado.RECENTER] Cuerpo desalineado (PAN: 28°). Girando chasis...
+[22:10:57] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[22:10:57] [Estado.RECENTER] Cuerpo desalineado (PAN: 28°). Girando chasis...
+[22:10:57] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[22:10:58] [Estado.RECENTER] Cuerpo desalineado (PAN: 28°). Girando chasis...
+[22:10:58] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[22:10:58] [Estado.RECENTER] Cuerpo desalineado (PAN: 28°). Girando chasis...
+[22:10:58] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[22:10:58] [Estado.RECENTER] Cuerpo desalineado (PAN: 28°). Girando chasis...
+[22:10:58] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[22:10:58] [Estado.RECENTER] Ejecutado: STOP
+[22:10:59] [Estado.RECENTER] Sin detección persistente → SEARCH
+[22:10:59] [Estado.SEARCH] Ejecutado: STOP
+[22:10:59] [Estado.SEARCH] Entrando en SEARCH
+[22:10:59] [Estado.SEARCH] Ejecutado: STOP
+[22:10:59] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[22:10:59] [Estado.SEARCH] NEW DET →  f_lost=15 search=True track=True near=False centered=False n=1 w=48 h=84 area=4032 x=176 y=270 err_x=-144 err_y=30
+[22:10:59] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[22:11:00] [Estado.RECENTER] Ejecutado: STOP
+[22:11:00] [Estado.RECENTER] Entrando en RECENTER
+[22:11:00] [Estado.RECENTER] Ejecutado: STOP
+[22:11:00] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:00] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:00] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:00] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:00] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:00] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:00] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:00] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:00] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:00] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:01] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:01] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:01] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:01] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:01] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:01] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:01] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:01] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:01] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:01] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:01] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:01] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:01] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:01] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:01] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:01] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:01] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:01] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:01] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:01] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:01] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:01] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:02] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:02] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:02] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:02] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:02] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:02] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:02] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:02] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:02] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:02] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:02] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:02] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:02] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:02] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:02] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:02] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:02] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:02] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:02] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:02] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:03] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:03] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:03] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:03] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:03] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:03] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:03] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:03] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:03] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:03] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:03] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:03] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:03] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:03] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:03] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:03] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:03] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:03] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:03] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:03] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:03] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:04] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:04] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:04] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:04] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:04] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:04] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:04] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:04] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:04] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:04] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:04] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:04] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:04] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:04] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:04] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:04] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:04] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:04] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:04] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:04] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:04] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:05] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:05] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:05] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:05] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:05] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:05] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:05] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:05] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:05] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:05] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:05] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:05] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:05] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:05] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:05] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:05] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:05] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:05] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:05] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:05] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:05] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:05] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:05] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:06] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:06] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:06] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:06] [Estado.RECENTER] Cuerpo desalineado (PAN: -16°). Girando chasis...
+[22:11:06] [Estado.RECENTER] Ejecutado: WHEELS_TURN_LEFT
+[22:11:06] [Estado.RECENTER] Ejecutado: STOP
+[22:11:07] [Estado.RECENTER] Sin detección persistente → SEARCH
+[22:11:07] [Estado.SEARCH] Ejecutado: STOP
+[22:11:07] [Estado.SEARCH] Entrando en SEARCH
+[22:11:07] [Estado.SEARCH] Ejecutado: STOP
+[22:11:07] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[22:11:08] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[22:11:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:09] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:09] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:10] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:10] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:11] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:11] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:11] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:11] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:11] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:11] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:11] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:11] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:11] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:11] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:11] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:11] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:11] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:11] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:11] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:11] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:11] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:11] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:11] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:11] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:11] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:12] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:12] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:12] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:12] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:12] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:12] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:12] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:12] [SEC] ¡PELIGRO! Objeto a 11.59cm. Activando protocolo.
+[22:11:12] [SEC] Ejecutando retroceso de emergencia...
+[22:11:12] [Estado.SEARCH] Ejecutado: STOP
+[22:11:12] [Estado.SEARCH] [SEC] Recuperación tras SCAPE
+[22:11:12] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
+[22:11:13] [SEC] >>> Zona despejada. Control devuelto a FSM.
+[22:11:13] [Estado.SEARCH] Ejecutado: STOP
+[22:11:13] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[22:11:14] [Estado.SEARCH] NEW DET →  f_lost=15 search=True track=True near=False centered=True n=2 w=52 h=48 area=2496 x=314 y=344 err_x=-6 err_y=104
+[22:11:14] [Estado.SEARCH] Ejecutado: STOP
+[22:11:14] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[22:11:14] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[22:11:14] [Estado.SEARCH] NEW DET →  f_lost=15 search=True track=True near=False centered=False n=2 w=32 h=36 area=1152 x=384 y=182 err_x=64 err_y=-58
+[22:11:14] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[22:11:15] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[22:11:15] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[22:11:16] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:16] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:17] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:17] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:17] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:17] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:17] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:17] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:17] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:17] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:17] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:17] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:17] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:17] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:17] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:17] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:17] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:17] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:17] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:17] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:17] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:18] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:18] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:18] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:18] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:18] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:18] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:18] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:18] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:18] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:18] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:18] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:18] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:18] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:18] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:18] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:18] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:18] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:18] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:18] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:18] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:18] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:19] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:19] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:19] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:19] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:19] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:19] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:19] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:19] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:19] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:20] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:20] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:20] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:20] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:20] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:20] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:20] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:20] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:20] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:20] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:20] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:21] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:21] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:21] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:21] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:21] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:21] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:21] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:21] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:21] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:21] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:21] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:21] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:21] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:21] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:21] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:21] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:21] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:21] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:21] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:21] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:21] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:21] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:22] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:22] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:22] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:22] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:22] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:22] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:22] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:22] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:22] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:22] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:22] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:22] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:22] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:22] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:22] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:22] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:22] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:22] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:22] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:22] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:22] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:23] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:23] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:23] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:23] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:23] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:23] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:23] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:23] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:23] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:23] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:23] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:23] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:23] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:23] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:23] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:23] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:24] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:24] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:24] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:24] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:24] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:24] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:24] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:24] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:24] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:24] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:24] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:24] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:24] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:24] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:24] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:24] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:24] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:25] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:25] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:25] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:25] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:25] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:25] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:25] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:25] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:25] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:25] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:25] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:25] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:25] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:25] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:25] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:25] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:25] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:25] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:26] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:26] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:26] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:26] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:26] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:26] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:26] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:26] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:26] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:26] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:26] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:26] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:26] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:26] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:26] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:26] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:26] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:26] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:26] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:26] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:27] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:27] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:27] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:27] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:27] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:27] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:27] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:27] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:27] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:27] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:27] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:27] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:27] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:27] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:27] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:27] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:27] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:27] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:28] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:28] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:28] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:28] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:28] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:28] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:28] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:28] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:28] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:28] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:28] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:28] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:28] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:28] [Estado.SEARCH] Ejecutado: WHEELS_TURN_LEFT
+[22:11:28] [Estado.SEARCH] NEW DET →  f_lost=15 search=True track=True near=False centered=False n=1 w=32 h=40 area=1280 x=180 y=28 err_x=-140 err_y=-212
+[22:11:28] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[22:11:28] [Estado.SEARCH] Ejecutado: STOP
+[22:11:28] [Estado.RECENTER] Ejecutado: STOP
+[22:11:28] [Estado.RECENTER] Entrando en RECENTER
+[22:11:29] [Estado.RECENTER] Ejecutado: STOP
+[22:11:29] [SEC] ¡PELIGRO! Objeto a 3.76cm. Activando protocolo.
+[22:11:29] [SEC] Ejecutando retroceso de emergencia...
+[22:11:29] [Estado.RECENTER] Ejecutado: STOP
+[22:11:29] [Estado.RECENTER] Ejecutado: KEEP_ALIVE
+[22:11:29] [Estado.RECENTER] NEW DET →  f_lost=3 search=True track=True near=True centered=True n=4 w=484 h=292 area=141328 x=282 y=334 err_x=-38 err_y=94
+[22:11:29] [Estado.RECENTER] Cuerpo desalineado (PAN: 25°). Girando chasis...
+[22:11:29] [Estado.RECENTER] Ejecutado: KEEP_ALIVE
+[22:11:29] [Estado.RECENTER] Cuerpo desalineado (PAN: 25°). Girando chasis...
+[22:11:29] [Estado.RECENTER] Ejecutado: KEEP_ALIVE
+[22:11:29] [Estado.RECENTER] Cuerpo desalineado (PAN: 25°). Girando chasis...
+[22:11:29] [Estado.RECENTER] Ejecutado: KEEP_ALIVE
+[22:11:29] [Estado.RECENTER] Cuerpo desalineado (PAN: 25°). Girando chasis...
+[22:11:29] [Estado.RECENTER] Ejecutado: KEEP_ALIVE
+[22:11:29] [Estado.RECENTER] Cuerpo desalineado (PAN: 25°). Girando chasis...
+[22:11:29] [Estado.RECENTER] Ejecutado: KEEP_ALIVE
+[22:11:30] [Estado.RECENTER] Cuerpo desalineado (PAN: 25°). Girando chasis...
+[22:11:30] [Estado.RECENTER] Ejecutado: KEEP_ALIVE
+[22:11:30] [Estado.RECENTER] Cuerpo desalineado (PAN: 25°). Girando chasis...
+[22:11:30] [Estado.RECENTER] Ejecutado: KEEP_ALIVE
+[22:11:30] [Estado.RECENTER] Cuerpo desalineado (PAN: 25°). Girando chasis...
+[22:11:30] [Estado.RECENTER] Ejecutado: KEEP_ALIVE
+[22:11:30] [Estado.RECENTER] Cuerpo desalineado (PAN: 25°). Girando chasis...
+[22:11:30] [Estado.RECENTER] Ejecutado: KEEP_ALIVE
+[22:11:30] [Estado.RECENTER] Cuerpo desalineado (PAN: 25°). Girando chasis...
+[22:11:30] [Estado.RECENTER] Ejecutado: KEEP_ALIVE
+[22:11:31] [SEC] >>> Zona despejada. Control devuelto a FSM.
+[22:11:31] [Estado.SEARCH] Ejecutado: STOP
+[22:11:31] [Estado.SEARCH] Entrando en SEARCH
+[22:11:31] [Estado.SEARCH] Ejecutado: STOP
+[22:11:31] [Estado.SEARCH] [SEC] Recuperación tras SCAPE
+[22:11:31] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[22:11:32] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[22:11:33] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:33] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:33] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:33] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:33] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:33] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:33] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:33] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:33] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:34] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:34] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:34] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:34] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:34] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:34] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:34] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:34] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:34] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:34] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:34] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:34] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:34] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:34] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:34] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:34] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:34] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:34] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:34] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:34] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:34] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:35] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:35] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:35] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:35] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:35] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:35] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:35] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:35] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:35] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:35] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:35] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:35] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:35] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:35] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:35] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:35] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:35] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:35] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:35] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:35] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:35] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:35] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:36] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:36] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:36] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:36] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:36] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:36] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:36] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:36] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:36] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:36] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:36] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:36] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:36] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:36] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:36] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:36] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:36] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:36] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:36] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:36] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:36] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:37] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:37] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:37] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:37] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:37] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:37] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:37] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:37] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:37] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:37] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:37] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:37] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:37] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:37] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:37] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:38] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:38] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:38] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:38] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:38] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:38] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:38] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:38] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:38] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:38] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:38] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:38] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:38] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:38] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:38] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:39] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:39] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:39] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:39] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:39] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:39] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:39] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:39] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:39] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:39] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:39] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:39] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:40] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:40] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:40] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:40] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:40] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:40] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:40] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:40] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:40] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:41] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:41] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:41] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:41] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:41] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:41] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:41] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:41] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:42] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:42] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:42] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:42] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:42] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:42] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:42] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:42] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:42] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:42] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:43] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:43] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:43] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:43] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:43] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:43] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:43] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:43] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:44] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:44] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:44] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:44] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:44] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:44] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:44] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:44] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:44] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:44] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:45] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:45] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:45] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:45] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:45] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:45] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:45] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:45] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:45] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:45] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:45] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:46] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:46] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:46] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:46] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:46] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:46] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:46] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:46] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:46] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:46] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:46] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:47] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:47] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:47] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:47] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:47] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:47] [SEC] ¡PELIGRO! Objeto a 6.02cm. Activando protocolo.
+[22:11:47] [SEC] Ejecutando retroceso de emergencia...
+[22:11:47] [Estado.SEARCH] Ejecutado: STOP
+[22:11:47] [Estado.SEARCH] [SEC] Recuperación tras SCAPE
+[22:11:47] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
+[22:11:47] [Estado.SEARCH] NEW DET →  f_lost=4 search=True track=True near=False centered=False n=2 w=80 h=60 area=4800 x=416 y=450 err_x=96 err_y=210
+[22:11:47] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
+[22:11:48] [SEC] >>> Zona despejada. Control devuelto a FSM.
+[22:11:48] [Estado.SEARCH] Ejecutado: STOP
+[22:11:48] [SEC] ¡PELIGRO! Objeto a 14.26cm. Activando protocolo.
+[22:11:48] [SEC] Ejecutando retroceso de emergencia...
+[22:11:48] [Estado.SEARCH] Ejecutado: STOP
+[22:11:48] [Estado.SEARCH] [SEC] Recuperación tras SCAPE
+[22:11:48] [Estado.SEARCH] Ejecutado: KEEP_ALIVE
+[22:11:49] [SEC] >>> Zona despejada. Control devuelto a FSM.
+[22:11:49] [Estado.SEARCH] Ejecutado: STOP
+[22:11:49] [Estado.SEARCH] Ejecutado: CAM_PAN_LEFT
+[22:11:50] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[22:11:51] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:51] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:51] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:51] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:52] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:52] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:52] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:52] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:52] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:52] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:52] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:52] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:52] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:52] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:52] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:52] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:52] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:52] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:52] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:52] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:52] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:52] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:52] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:52] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:53] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:53] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:53] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:53] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:53] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:53] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:53] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:53] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:53] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:53] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:53] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:53] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:53] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:53] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:53] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:53] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:53] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:53] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:53] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:54] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:54] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:54] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:54] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:54] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:54] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:54] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:54] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:54] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:54] [Estado.SEARCH] Perdido → GIRO DE CHASIS
+[22:11:54] [Estado.SEARCH] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:54] [Estado.SEARCH] NEW DET →  f_lost=4 search=True track=False near=False centered=False n=1 w=52 h=180 area=9360 x=602 y=90 err_x=282 err_y=-150
+[22:11:54] [Estado.SEARCH] Ejecutado: CAM_PAN_RIGHT
+[22:11:54] [Estado.RECENTER] Ejecutado: STOP
+[22:11:54] [Estado.RECENTER] Entrando en RECENTER
+[22:11:54] [Estado.RECENTER] Ejecutado: STOP
+[22:11:54] [Estado.RECENTER] Cuerpo desalineado (PAN: 21°). Girando chasis...
+[22:11:54] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:55] [Estado.RECENTER] Cuerpo desalineado (PAN: 21°). Girando chasis...
+[22:11:55] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:55] [Estado.RECENTER] Cuerpo desalineado (PAN: 21°). Girando chasis...
+[22:11:55] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:55] [Estado.RECENTER] Cuerpo desalineado (PAN: 21°). Girando chasis...
+[22:11:55] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:55] [Estado.RECENTER] Cuerpo desalineado (PAN: 21°). Girando chasis...
+[22:11:55] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
+[22:11:55] [Estado.RECENTER] Cuerpo desalineado (PAN: 21°). Girando chasis...
+[22:11:55] [Estado.RECENTER] Ejecutado: WHEELS_TURN_RIGHT
