@@ -743,6 +743,7 @@ def print_dashboard(px, estado, accion, dist, state):
     print(f" ERR_X:      {px.last_error_x}")
     print(f" ESCAPANDO:  {state.is_escaping}")
     print("="*45)
+    print(" Presiona Ctrl+C para detener")
 
 
 # ============================================================
