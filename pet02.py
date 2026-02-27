@@ -663,7 +663,7 @@ def scape_danger(px, robot_state, speed=SLOW_SPEED):
 
 def get_detection(px, state=None):
     params = Vilib.detect_obj_parameter
-    
+
     raw = {
         "x": params.get("color_x", -1),
         "y": params.get("color_y", -1),
@@ -681,29 +681,26 @@ def get_detection(px, state=None):
     )
 
     # ------------------------------------------------------------
-    # FILTRO ANTI-FANTASMA
+    # FILTRO ANTI-FANTASMA 1: coordenadas inválidas
     # ------------------------------------------------------------
-    # Fantasma típico: n>=1 pero w/h = 0
-    if det.n >= 1 and (det.w == 0 or det.h == 0):
-        det.n = 0
-
-    # Fantasma por área incoherente
-    if det.area < 50:
+    if det.x < 0 or det.y < 0:
         det.n = 0
 
     # ------------------------------------------------------------
-    # LOG SOLO CUANDO APARECE UNA DETECCIÓN REAL
+    # FILTRO ANTI-FANTASMA 2: detección corrupta (n>=1 pero w/h=0)
     # ------------------------------------------------------------
-    if det.valid_for_search and not px.last_det:
-        log_det(px, px.estado_actual, det, raw, state, prefix="NEW DET → ")
+    if det.n >= 1 and (det.w <= 0 or det.h <= 0):
+        det.n = 0
 
-    # Guardar última detección válida
-    px.last_det = det if det.valid_for_search else None
-    px.last_error_x = det.error_x
-    px.last_error_y = det.error_y
-    px.last_area = det.area
+    # ------------------------------------------------------------
+    # FILTRO ANTI-FANTASMA 3: área demasiado pequeña
+    # (ruido típico de Vilib)
+    # ------------------------------------------------------------
+    if det.area < 300:
+        det.n = 0
 
     return det, raw
+
 
 def log_event(px, estado, msg):
     # Si es igual al último mensaje, no lo repitas
