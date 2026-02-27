@@ -784,245 +784,257 @@ def state_search(px, estado, st, distancia_real):
     return Estado.SEARCH
 
 
-def state_recenter(px, estado, accion, st):
+def state_recenter(px, estado, st, distancia_real):
     det, raw = get_detection(px, state=st)
 
     # ============================================================
-    # 1. ENTRADA AL ESTADO
+    # ENTRADA AL ESTADO
     # ============================================================
     if px.last_state != Estado.RECENTER:
         log_event(px, Estado.RECENTER, "Entrando en RECENTER")
+
         st.recenter_centered_frames = 0
         st.recenter_lost_frames = 0
+        st.just_recentered = None
 
-        # En RECENTER empezamos deteniendo el avance pero permitiendo giro
-        return Estado.RECENTER, Cmd.STOP
+        px.last_state = Estado.RECENTER
+        px.last_cmd = "STOP"
+        stop(px)
+
+        return Estado.RECENTER
 
     # ============================================================
-    # 2. SIN DETECCIÓN → Tolerancia aumentada (Histéresis)
+    # SEGURIDAD
+    # ============================================================
+    if distancia_real < DANGER_DISTANCE:
+        stop(px)
+        px.last_cmd = "STOP"
+        return Estado.SEARCH
+
+    # ============================================================
+    # SIN DETECCIÓN → volver a SEARCH
     # ============================================================
     if not det.valid_for_search:
         st.recenter_lost_frames += 1
-        # Aumentado a 15 frames para mayor estabilidad
-        if st.recenter_lost_frames >= 15:
-            log_event(px, Estado.RECENTER, "Sin detección persistente → SEARCH")
-            return Estado.SEARCH, Cmd.STOP
-        return Estado.RECENTER, Cmd.STOP
+        if st.recenter_lost_frames >= 3:
+            log_event(px, Estado.RECENTER, "Pérdida de detección → SEARCH")
+            return Estado.SEARCH
+        return Estado.RECENTER
 
+    # ============================================================
+    # DETECCIÓN VÁLIDA → alinear cuerpo
+    # ============================================================
     st.recenter_lost_frames = 0
 
-    # ============================================================
-    # 3. ALINEACIÓN CRÍTICA: CUERPO SIGUE A CÁMARA
-    # ============================================================
-    # Si la cámara está muy girada (> 15°), obligamos al chasis a rotar
-    # para que el robot "mire" de frente a la baliza con su cuerpo.
-    if abs(px.last_pan) > 15:
-        log_event(px, Estado.RECENTER, f"Cuerpo desalineado (PAN: {px.last_pan}°). Girando chasis...")
-        st.recenter_centered_frames = 0
-
-        cmd = Cmd.WHEELS_TURN_RIGHT if px.last_pan > 0 else Cmd.WHEELS_TURN_LEFT
-
-        # 🔧 PARCHE CRÍTICO: después de girar el chasis, recentramos la cámara
-        px.set_cam_pan_angle(0)
-        px.last_pan = 0
-
-        return Estado.RECENTER, cmd
-
+    # Si ya está centrado → TRACK
+    if abs(det.error_x) < 20:
+        st.recenter_centered_frames += 1
+        if st.recenter_centered_frames >= 3:
+            log_event(px, Estado.RECENTER, "Alineación completada → TRACK")
+            px.last_cmd = "STOP"
+            stop(px)
+            return Estado.TRACK
+        return Estado.RECENTER
 
     # ============================================================
-    # 4. ERROR DE CÁMARA (PAN) → Ajuste fino de servos
+    # AJUSTE DE DIRECCIÓN DEL CHASIS
     # ============================================================
-    if abs(det.error_x) > 30:
-        st.recenter_centered_frames = 0
-        
-        # Si el PAN llegó al límite y seguimos con error, el chasis debe ayudar
-        if (det.error_x > 0 and px.last_pan >= PAN_MAX) or (det.error_x < 0 and px.last_pan <= PAN_MIN):
-             return Estado.RECENTER, Cmd.WHEELS_TURN_RIGHT if det.error_x > 0 else Cmd.WHEELS_TURN_LEFT
-        
-        return Estado.RECENTER, Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT
+    if det.error_x > 0:
+        # Baliza a la derecha → girar chasis a la derecha
+        px.set_dir_servo_angle(+20)
+        px.last_cmd = "DIR_RIGHT"
+    else:
+        # Baliza a la izquierda → girar chasis a la izquierda
+        px.set_dir_servo_angle(-20)
+        px.last_cmd = "DIR_LEFT"
 
-    # ============================================================
-    # 5. PASO A TRACK (Solo si está alineado y centrado)
-    # ============================================================
-    st.recenter_centered_frames += 1
+    # Pequeño avance para completar el giro
+    px.forward(SLOW_SPEED)
+    time.sleep(0.15)
+    stop(px)
 
-    if st.recenter_centered_frames >= 5: # Un poco más de paciencia para confirmar
-        log_event(px, Estado.RECENTER, "✔ Alineado y Centrado → Iniciando TRACK")
+    # Resetear dirección
+    px.set_dir_servo_angle(0)
 
-        # Centramos servos de dirección y cámara antes de avanzar
-        px.set_dir_servo_angle(0)
-        px.dir_current_angle = 0
-        px.set_cam_pan_angle(0)
-        px.last_pan = 0
-        
-        st.just_recentered = time.time()
-        return Estado.TRACK, Cmd.FORWARD_SLOW
+    # Resetear PAN después del giro
+    px.set_cam_pan_angle(0)
+    px.last_pan = 0
 
-    return Estado.RECENTER, Cmd.STOP
+    return Estado.RECENTER
 
 
-def state_track(px, estado, accion, st):
+def state_track(px, estado, st, distancia_real):
     det, raw = get_detection(px, state=st)
 
     # ============================================================
-    # 1. ENTRADA AL ESTADO
+    # ENTRADA AL ESTADO
     # ============================================================
     if px.last_state != Estado.TRACK:
-        log_event(px, Estado.TRACK, "Entrando en TRACK - Asegurando dirección")
+        log_event(px, Estado.TRACK, "Entrando en TRACK")
 
         st.track_lost_frames = 0
-        st.near_enter_frames = 0
+        st.track_centered_frames = 0
 
-        return Estado.TRACK, Cmd.FORWARD_SLOW
+        px.last_state = Estado.TRACK
+        px.last_cmd = "STOP"
+        stop(px)
 
-    # ============================================================
-    # 2. COOLDOWN TRAS RECENTER
-    # ============================================================
-    if st.just_recentered:
-        if time.time() - st.just_recentered < 0.3:
-            return Estado.TRACK, Cmd.FORWARD_SLOW
-        st.just_recentered = None
+        return Estado.TRACK
 
     # ============================================================
-    # 3. PÉRDIDA DE BALIZA → SEARCH
+    # SEGURIDAD
     # ============================================================
-    if not det.valid_for_track:
+    if distancia_real < DANGER_DISTANCE:
+        stop(px)
+        px.last_cmd = "STOP"
+        return Estado.SEARCH
+
+    # ============================================================
+    # SIN DETECCIÓN → volver a SEARCH
+    # ============================================================
+    if not det.valid_for_search:
         st.track_lost_frames += 1
-
         if st.track_lost_frames >= 3:
-            log_event(px, Estado.TRACK, "Perdida baliza → SEARCH")
-            return Estado.SEARCH, Cmd.STOP
+            log_event(px, Estado.TRACK, "Pérdida de detección → SEARCH")
+            return Estado.SEARCH
+        return Estado.TRACK
 
-        return Estado.TRACK, Cmd.FORWARD_SLOW
-
-    # Reset de pérdida
+    # Detección válida
     st.track_lost_frames = 0
 
     # ============================================================
-    # 4. ENTRADA A NEAR
+    # NEAR → si estamos realmente cerca
     # ============================================================
     if det.valid_for_near:
-        st.near_enter_frames += 1
-
-        if st.near_enter_frames >= 3:
-            log_event(px, Estado.TRACK, "NEAR confirmado → NEAR")
-            return Estado.NEAR, Cmd.STOP
-
-        return Estado.TRACK, Cmd.FORWARD_SLOW
-
-    st.near_enter_frames = 0
+        log_event(px, Estado.TRACK, "Baliza muy cerca → NEAR")
+        stop(px)
+        px.last_cmd = "STOP"
+        return Estado.NEAR
 
     # ============================================================
-    # 5. CORRECCIÓN LATERAL PROPORCIONAL
+    # CORRECCIÓN DE DIRECCIÓN
     # ============================================================
-    if abs(det.error_x) > 40:
-        KP = 0.15
-        target_angle = det.error_x * KP
+    error = det.error_x
 
-        # Limitar ángulo
-        target_angle = max(min(target_angle, SERVO_ANGLE_MAX), SERVO_ANGLE_MIN)
-
-        # Solo mover si cambia
-        if px.dir_current_angle != target_angle:
-            px.set_dir_servo_angle(target_angle)
-            px.dir_current_angle = target_angle
-
-        return Estado.TRACK, Cmd.FORWARD_SLOW
-
-    # ============================================================
-    # 6. AVANCE RECTO (error pequeño)
-    # ============================================================
-    if px.dir_current_angle != 0:
+    if abs(error) < 20:
+        # Centrado razonable → avanzar recto
         px.set_dir_servo_angle(0)
-        px.dir_current_angle = 0
+        px.forward(SLOW_SPEED)
+        px.last_cmd = "FORWARD"
+        return Estado.TRACK
 
-    return Estado.TRACK, Cmd.FORWARD_SLOW
+    # Corrección suave
+    if error > 0:
+        # Baliza a la derecha
+        px.set_dir_servo_angle(+20)
+        px.last_cmd = "DIR_RIGHT"
+    else:
+        # Baliza a la izquierda
+        px.set_dir_servo_angle(-20)
+        px.last_cmd = "DIR_LEFT"
+
+    px.forward(SLOW_SPEED)
+    return Estado.TRACK
 
 
-def state_near(px, estado, accion, st):
+def state_near(px, estado, st, distancia_real):
     det, raw = get_detection(px, state=st)
 
     # ============================================================
-    # 1. ENTRADA AL ESTADO
+    # ENTRADA AL ESTADO
     # ============================================================
     if px.last_state != Estado.NEAR:
-        log_event(px, Estado.NEAR, "Entrando en NEAR: frenado inmediato")
+        log_event(px, Estado.NEAR, "Entrando en NEAR")
 
-        px.stop()
-
-        st.near_done_backward = False
-        st.near_lost_frames = 0
+        st.near_enter_frames = 0
         st.near_exit_frames = 0
+        st.near_lost_frames = 0
+        st.near_done_backward = False
         st.near_did_yes = False
-        st.near_cooldown = None
+        st.near_cooldown = time.time() + 1.0  # 1 segundo de interacción
 
-        # Chasis siempre centrado
-        px.set_dir_servo_angle(0)
-        px.dir_current_angle = 0
+        st.yes_step = 0
+        st.yes_next_time = 0.0
 
-        # Cámara estable
-        px.set_cam_tilt_angle(0)
-        px.last_tilt = 0
+        stop(px)
+        px.last_cmd = "STOP"
+        px.last_state = Estado.NEAR
 
-        return Estado.NEAR, Cmd.STOP
+        return Estado.NEAR
 
     # ============================================================
-    # 2. VALIDACIÓN DE PRESENCIA
+    # SEGURIDAD
+    # ============================================================
+    if distancia_real < 10:  # peligro extremo
+        stop(px)
+        px.backward(SLOW_SPEED)
+        time.sleep(0.4)
+        stop(px)
+        px.last_cmd = "BACK_DANGER"
+        return Estado.SEARCH
+
+    # ============================================================
+    # SIN DETECCIÓN → salir de NEAR
     # ============================================================
     if not det.valid_for_search:
         st.near_lost_frames += 1
-
-        if st.near_lost_frames >= 5:
-            log_event(px, Estado.NEAR, "Baliza perdida → SEARCH")
-            return Estado.SEARCH, Cmd.STOP
-
-        return Estado.NEAR, Cmd.STOP
-
-    st.near_lost_frames = 0
+        if st.near_lost_frames >= 3:
+            log_event(px, Estado.NEAR, "Pérdida de detección → SEARCH")
+            return Estado.SEARCH
+        return Estado.NEAR
 
     # ============================================================
-    # 3. RETROCESO DE CORTESÍA
+    # RETROCESO (solo una vez)
     # ============================================================
     if not st.near_done_backward:
         log_event(px, Estado.NEAR, "Retroceso de cortesía")
+        px.backward(SLOW_SPEED)
+        time.sleep(0.25)
+        stop(px)
+        px.last_cmd = "BACKWARD"
         st.near_done_backward = True
-        st.near_cooldown = time.time() + 0.4
-        return Estado.NEAR, Cmd.BACKWARD
-
-    # Esperar a que termine el backward
-    if st.near_cooldown:
-        if time.time() < st.near_cooldown:
-            return Estado.NEAR, Cmd.KEEP_ALIVE
-        else:
-            px.stop()
-            st.near_cooldown = None
-            return Estado.NEAR, Cmd.STOP
+        return Estado.NEAR
 
     # ============================================================
-    # 4. GESTO “SÍ”
+    # GESTO “SÍ” (solo una vez)
     # ============================================================
     if not st.near_did_yes:
-        terminado = do_yes(px, st)
-        if terminado:
-            log_event(px, Estado.NEAR, "Gesto 'sí' completado")
+        now = time.time()
+
+        if st.yes_step == 0:
+            st.yes_step = 1
+            st.yes_next_time = now + 0.15
+            px.set_cam_tilt_angle(+20)
+            px.last_cmd = "YES_UP"
+            return Estado.NEAR
+
+        if st.yes_step == 1 and now >= st.yes_next_time:
+            st.yes_step = 2
+            st.yes_next_time = now + 0.15
+            px.set_cam_tilt_angle(-20)
+            px.last_cmd = "YES_DOWN"
+            return Estado.NEAR
+
+        if st.yes_step == 2 and now >= st.yes_next_time:
+            st.yes_step = 3
+            st.yes_next_time = now + 0.15
+            px.set_cam_tilt_angle(0)
+            px.last_cmd = "YES_CENTER"
             st.near_did_yes = True
-        return Estado.NEAR, Cmd.STOP
+            return Estado.NEAR
+
+        return Estado.NEAR
 
     # ============================================================
-    # 5. MANTENIMIENTO / SALIDA
+    # SALIDA DE NEAR (cooldown terminado)
     # ============================================================
-    if not det.valid_for_near:
-        st.near_exit_frames += 1
+    if time.time() >= st.near_cooldown:
+        log_event(px, Estado.NEAR, "Fin de interacción → SEARCH")
+        stop(px)
+        px.last_cmd = "STOP"
+        return Estado.SEARCH
 
-        if st.near_exit_frames >= 10:
-            log_event(px, Estado.NEAR, "Baliza alejada → TRACK")
-            return Estado.TRACK, Cmd.STOP
-
-        return Estado.NEAR, Cmd.STOP
-
-    # Baliza sigue cerca → mantener
-    st.near_exit_frames = 0
-    return Estado.NEAR, Cmd.STOP
+    return Estado.NEAR
 
 
 # ============================================================
