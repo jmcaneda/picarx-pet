@@ -108,60 +108,43 @@ class Det:
 
     @property
     def valid_for_search(self):
-        """
-        Cualquier detección razonable que merezca ser tenida en cuenta.
-        Amplio y tolerante.
-        """
-        if self.w == 0 or self.h == 0 or self.n == 0:
+        # Detección inexistente o corrupta
+        if self.w <= 0 or self.h <= 0 or self.n <= 0:
             return False
 
-        return (
-            self.n >= 1 and
-            10 < self.w < 640 and
-            10 < self.h < 480 and
-            200 < self.area < 240000 and
-            0 < self.x < 640 and
-            0 < self.y < 480
-        )
-
-    @property
-    def valid_for_track(self):
-        if not self.valid_for_search:
+        # Tamaños razonables (evita ruido y blobs gigantes)
+        if not (12 < self.w < 640 and 12 < self.h < 480):
             return False
 
-        # Evitar detecciones pequeñas o ruidosas
-        if not (2000 < self.area < 160000):
+        # Área mínima para evitar falsos positivos
+        if not (300 < self.area < 240000):
             return False
 
-        # Evitar bordes
-        if not (80 < self.x < 560):
-            return False
-
-        # Exigir centrado razonable (no perfecto)
-        if abs(self.error_x) > 120:
+        # Dentro del frame
+        if not (0 < self.x < 640 and 0 < self.y < 480):
             return False
 
         return True
-
 
     @property
     def valid_for_near(self):
-        """
-        Detección de 'muy cerca y bastante centrada'.
-        Subconjunto de valid_for_track.
-        """
-        if not self.valid_for_track:
+        if not self.valid_for_search:
             return False
 
-        # 1. Área realmente grande (cerca de verdad)
-        if self.area < 12000:
+        # 1. Área realmente grande (muy cerca)
+        if self.area < 18000:
             return False
 
-        # 2. Centrado horizontal más estricto
+        # 2. Centrado horizontal estricto
         if abs(self.error_x) > 40:
             return False
 
+        # 3. Centrado vertical opcional (evita falsos NEAR mirando al suelo)
+        if abs(self.error_y) > 120:
+            return False
+
         return True
+
 
     def __repr__(self):
         return (
@@ -173,7 +156,6 @@ class Det:
             f"error_x={self.error_x}, error_y={self.error_y}, "
             f"is_centered={self.is_centered}, "
             f"valid_for_search={self.valid_for_search}, "
-            f"valid_for_track={self.valid_for_track}, "
             f"valid_for_near={self.valid_for_near}"
             ")"
         )
@@ -182,102 +164,182 @@ class RobotState:
     def __init__(self):
 
         # ============================================================
-        # SEARCH
+        # SEARCH — Exploración y adquisición de baliza
         # ============================================================
-        self.search_lost_frames = 0          # frames sin detección válida
-        self.search_found_frames = 0         # frames con detección válida
-        self.search_cam_dir = 1              # dirección del barrido PAN
-        self.search_wheels_dir = 1           # dirección del giro del chasis
-        self.search_edge_frames = 0          # cuántos frames la baliza está en el borde
+
+        # Número de frames consecutivos sin detección válida.
+        # Si supera un umbral → giro de chasis.
+        self.search_lost_frames = 0          
+
+        # Número de frames consecutivos con detección válida.
+        # Se usa para histéresis antes de pasar a RECENTER.
+        self.search_found_frames = 0         
+
+        # Dirección del barrido PAN: +1 derecha, -1 izquierda.
+        # Se invierte al llegar a los límites del servo.
+        self.search_cam_dir = 1              
+
+        # Dirección del giro del chasis cuando SEARCH está perdido.
+        # Se alterna para evitar bucles girando siempre al mismo lado.
+        self.search_wheels_dir = 1           
+
+        # Frames consecutivos en los que la baliza está en el borde.
+        # Si supera un umbral → giro de chasis.
+        self.search_edge_frames = 0          
+
 
         # ============================================================
-        # RECENTER
+        # RECENTER — Alineación fina cuerpo/cámara
         # ============================================================
-        self.recenter_centered_frames = 0    # frames centrados
-        self.recenter_lost_frames = 0        # frames sin detección
-        self.just_recentered = None          # cooldown tras RECENTER
+
+        # Frames consecutivos en los que la baliza está centrada.
+        # Si supera un umbral → pasar a TRACK.
+        self.recenter_centered_frames = 0    
+
+        # Frames consecutivos sin detección durante RECENTER.
+        # Si supera un umbral → volver a SEARCH.
+        self.recenter_lost_frames = 0        
+
+        # Marca temporal para evitar volver a RECENTER inmediatamente
+        # después de haberlo completado (cooldown).
+        self.just_recentered = None          
+
 
         # ============================================================
-        # TRACK
+        # TRACK — Seguimiento dinámico de la baliza
         # ============================================================
-        self.track_lost_frames = 0           # frames sin detección válida
-        self.track_centered_frames = 0       # frames centrado durante TRACK
+
+        # Frames consecutivos sin detección válida durante TRACK.
+        # Si supera un umbral → volver a SEARCH.
+        self.track_lost_frames = 0           
+
+        # Frames consecutivos centrado durante TRACK.
+        # Se usa para suavizar movimientos y evitar oscilaciones.
+        self.track_centered_frames = 0       
+
 
         # ============================================================
-        # NEAR
+        # NEAR — Interacción cercana (frenado, retroceso, gesto)
         # ============================================================
-        self.near_enter_frames = 0
-        self.near_exit_frames = 0
-        self.near_lost_frames = 0
-        self.near_done_backward = False
-        self.near_cooldown = None
-        self.near_did_yes = False
 
-        # Animación YES
+        # Frames consecutivos en los que se cumplen condiciones de NEAR.
+        # Evita entrar en NEAR por ruido.
+        self.near_enter_frames = 0           
+
+        # Frames consecutivos en los que se pierde la condición de NEAR.
+        # Controla la salida suave de NEAR.
+        self.near_exit_frames = 0            
+
+        # Frames sin detección durante NEAR.
+        # Si supera un umbral → volver a SEARCH.
+        self.near_lost_frames = 0            
+
+        # Indica si ya se ejecutó el retroceso de cortesía.
+        self.near_done_backward = False      
+
+        # Marca temporal para evitar reentradas rápidas en NEAR.
+        self.near_cooldown = None            
+
+        # Indica si ya se ejecutó el gesto "sí".
+        self.near_did_yes = False            
+
+
+        # Animación YES — control de pasos y temporización
         self.yes_step = 0
         self.yes_next_time = 0.0
 
+
         # ============================================================
-        # SCAPE
+        # SCAPE — Protocolo de emergencia por proximidad
         # ============================================================
-        self.is_escaping = False
-        self.escape_end_time = 0
-        self.last_sec_active = False
+
+        # Indica si el robot está actualmente escapando.
+        # Mientras sea True, la FSM queda bloqueada.
+        self.is_escaping = False             
+
+        # Tiempo en el que debe finalizar la maniobra de escape.
+        self.escape_end_time = 0             
+
+        # Indica si SEC ha estado activo recientemente.
+        # SEARCH lo usa para reiniciar PAN y contadores.
+        self.last_sec_active = False         
+
 
 # ============================================================
 # INICIALIZACIÓN
 # ============================================================
 
 def init_camera(px):
-    # Iniciar cámara
+    """
+    Inicializa la cámara y el sistema de visión del robot.
+    - Arranca la cámara física.
+    - Configura la vista (sin invertir).
+    - Activa la detección del color de la baliza.
+    """
+
+    # Iniciar cámara (sin volteos)
     Vilib.camera_start(vflip=False, hflip=False)
 
-    # Mostrar por web (local fallará si no hay GUI, es normal)
+    # Mostrar por web (local=False evita errores si no hay GUI)
     Vilib.display(local=False, web=False)
 
-    # Activar detección de color predefinido
+    # Activar detección del color objetivo (baliza)
     Vilib.color_detect(BALIZA_COLOR)
 
+    # Pequeña pausa para estabilizar la cámara
     time.sleep(0.5)
 
+
 def init_internal_state(px):
+    """
+    Devuelve el estado inicial de la FSM y el primer comando.
+    - Estado inicial: IDLE
+    - Comando inicial: STOP
+    """
     return Estado.IDLE, Cmd.STOP
 
+
 def init_flags(px):
+    """
+    Inicializa todas las variables internas del robot.
+    Estas variables NO pertenecen a la FSM, sino al hardware
+    y al registro de últimos valores.
+    """
+
     # ============================================================
     # LOGGING
     # ============================================================
-    px.last_log = None
+    px.last_log = None            # último mensaje registrado (para evitar spam)
 
     # ============================================================
     # ESTADOS
     # ============================================================
-    px.last_state = None          # último estado ejecutado
-    px.estado_actual = None       # estado actual del robot (para logging)
-    px.last_cmd = None            # último comando enviado al robot
+    px.last_state = None          # último estado ejecutado por la FSM
+    px.estado_actual = None       # estado actual (para dashboard/log)
+    px.last_cmd = "KEEP_ALIVE"    # último comando enviado al robot (*)
 
     # ============================================================
     # DETECCIÓN (últimos valores vistos)
     # ============================================================
-    px.last_det = None            # última detección válida
-    px.last_error_x = 0           # último error horizontal
+    px.last_det = None            # última detección válida (objeto Det)
+    px.last_error_x = 0           # último error horizontal (tracking)
     px.last_error_y = 0           # último error vertical
-    px.last_area = 0              # última área detectada
+    px.last_area = 0              # última área detectada (tamaño del objetivo)
 
     # ============================================================
     # CÁMARA
     # ============================================================
-    px.last_pan = 0               # ángulo actual de PAN
-    px.last_tilt = 0              # ángulo actual de TILT (si lo usas)
-    
+    px.last_pan = 0               # ángulo actual del servo PAN (*)
+    px.last_tilt = 0              # ángulo actual del servo TILT (si se usa)
+
     # ============================================================
     # DIRECCIÓN DEL CHASIS
     # ============================================================
-    px.dir_current_angle = 0      # ángulo actual del servo de dirección
+    px.dir_current_angle = 0      # ángulo actual del servo de dirección (*)
 
 
 # ============================================================
-# ACCIONES BÁSICAS v3 — Movimiento fluido, seguro y con retorno
+# ACCIONES BÁSICAS
 # ============================================================
 
 def stop(px):
@@ -286,46 +348,46 @@ def stop(px):
     Devuelve True si realmente se detuvo.
     """
     if px.last_cmd == "STOP":
-        return False  # comando redundante
+        return False 
 
     px.stop()
     px.last_cmd = "STOP"
     return True
 
 
-def forward(px, speed=FAST_SPEED):
+def forward(px):
     """
     Avance normal.
     """
-    if px.last_cmd == ("FWD", speed):
+    if px.last_cmd == "FORWARD":
         return False
 
-    px.forward(speed)
-    px.last_cmd = ("FWD", speed)
+    px.forward(FAST_SPEED)
+    px.last_cmd = "FORWARD"
     return True
 
 
-def forward_slow(px, speed=SLOW_SPEED):
+def forward_slow(px):
     """
     Avance suave para TRACK y SEARCH.
     """
-    if px.last_cmd == ("FWD_SLOW", speed):
+    if px.last_cmd == "FORWARD_SLOW":
         return False
 
-    px.forward(speed)
-    px.last_cmd = ("FWD_SLOW", speed)
+    px.forward(SLOW_SPEED)
+    px.last_cmd = "FORWARD_SLOW"
     return True
 
 
-def backward(px, speed=SLOW_SPEED):
+def backward(px):
     """
     Retroceso seguro.
     """
-    if px.last_cmd == ("BACK", speed):
+    if px.last_cmd == "BACKWARD":
         return False
 
     px.backward(speed)
-    px.last_cmd = ("BACK", speed)
+    px.last_cmd = "BACKWARD"
     return True
 
 
@@ -333,23 +395,26 @@ def backward(px, speed=SLOW_SPEED):
 # GIRO CONTINUO REAL
 # ------------------------------------------------------------
 
-def turn_left(px, speed=TURN_SPEED):
+def turn_left(px):
     
+    if px.last_cmd == "TURN_LEFT":
+        return False
+
     px.set_dir_servo_angle(SERVO_ANGLE_MIN)
     px.dir_current_angle = SERVO_ANGLE_MIN
 
-    px.forward(speed)
-    px.last_cmd = ("TURN_LEFT", speed)
+    px.last_cmd = "TURN_LEFT"
     return True
 
 
 def turn_right(px, speed=TURN_SPEED):
-    
+    if px.last_cmd == "TURN_RIGHT":
+        return False
+        
     px.set_dir_servo_angle(SERVO_ANGLE_MAX)
     px.dir_current_angle = SERVO_ANGLE_MAX
 
-    px.forward(speed)
-    px.last_cmd = ("TURN_RIGHT", speed)
+    px.last_cmd = "TURN_RIGHT"
     return True
 
 
@@ -697,12 +762,12 @@ def do_yes(px, robot_state):
     return True
 
 
-def print_dashboard(px, estado, accion, dist, state):
+def print_dashboard(px, estado, state, dist):
     os.system('clear')
     print("="*45)
     print(f" 🐾 PICAR-X DASHBOARD | Estado: {estado.name}")
     print("="*45)
-    print(f" MOVIMIENTO: {accion.name}")
+    print(f" MOVIMIENTO: {px.last_cmd}")
     print(f" DISTANCIA:  {dist} cm " + ("⚠️ DANGER" if dist < DANGER_DISTANCE else "SAFE"))
     print("-"*45)
     print(f" SERVO DIR:  {px.dir_current_angle:>5.1f}°")
@@ -750,7 +815,7 @@ def state_reset(px):
     # ------------------------------------------------------------
     # LIMPIAR ÚLTIMO COMANDO
     # ------------------------------------------------------------
-    px.last_cmd = None
+    px.last_cmd = "KEEP_ALIVE"
 
     # ------------------------------------------------------------
     # PASAR A SEARCH
@@ -1149,37 +1214,38 @@ def pet_mode(px, test_mode):
     hello_px(px)
     init_camera(px)
     init_flags(px)
-    estado, accion = init_internal_state(px)
+    estado = init_internal_state(px)
     check_robot(px,log_event)
     state = RobotState()
     log_event(px, estado, "Inicio del sistema")
-    ciclo = 0
+    ciclo_dashboard = 0
     while True:
-        px.last_state = px.estado_actual
-        px.estado_actual = estado
-        distancia_real = update_safety(px) 
 
-        # --- NIVEL 1: CÁLCULO DE INTENCIÓN (FSM) ---
-        # Decidimos qué "querría" hacer el robot según la baliza
-        if estado == Estado.IDLE: estado, accion = state_idle(px)
-        elif estado == Estado.RESET: estado, accion = state_reset(px)
-        elif estado == Estado.SEARCH: estado, accion = state_search(px, estado, accion, state)
-        elif estado == Estado.RECENTER: estado, accion = state_recenter(px, estado, accion, state)
-        elif estado == Estado.TRACK: estado, accion = state_track(px, estado, accion, state)
-        elif estado == Estado.NEAR: estado, accion = state_near(px, estado, accion, state)
+        distancia_real = update_safety(px)
 
-        # Actualiza la distancia y maneja la seguridad (puede modificar estado y accion)
-        estado, accion = apply_safety(px, estado, accion, state) 
+        if estado == Estado.IDLE:
+            estado = state_idle(px, estado, state, distancia_real)
 
-        # Solo llamamos a execute_motion UNA vez por ciclo
-        execute_motion(px, estado, accion, state, test_mode)
-        ciclo += 1
-        if not test_mode and ciclo % 5 == 0: # Imprimir cada 5 ciclos
-            print_dashboard(px, estado, accion, distancia_real, state)
+        elif estado == Estado.RESET:
+            estado = state_reset(px, estado, state, distancia_real)
 
-        time.sleep(0.05) # Mayor frecuencia = respuesta más rápida
+        elif estado == Estado.SEARCH:
+            estado = state_search(px, estado, state, distancia_real)
 
+        elif estado == Estado.RECENTER:
+            estado = state_recenter(px, estado, state, distancia_real)
 
+        elif estado == Estado.TRACK:
+            estado = state_track(px, estado, state, distancia_real)
+
+        elif estado == Estado.NEAR:
+            estado = state_near(px, estado, state, distancia_real)
+
+        ciclo_dashboard += 1
+        if not test_mode and ciclo_dashboard % 5 == 0:
+            print_dashboard(px, estado, state, distancia_real)
+
+        time.sleep(0.05)
 
 # ============================================================
 # ENTRYPOINT
