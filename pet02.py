@@ -294,9 +294,8 @@ def init_internal_state(px):
     """
     Devuelve el estado inicial de la FSM y el primer comando.
     - Estado inicial: IDLE
-    - Comando inicial: STOP
     """
-    return Estado.IDLE, Cmd.STOP
+    return Estado.IDLE
 
 
 def init_flags(px):
@@ -471,6 +470,7 @@ def tilt_bottom(px, step=CAM_STEP):
     px.set_cam_tilt_angle(px.last_tilt)
     return 1
 
+""" Movimientos de cámara que respetan los límites y actualizan el estado interno.
 
 # ============================================================
 # MAPEO DE COMANDOS — v3 (determinista, seguro, sin redundancias)
@@ -566,6 +566,7 @@ def execute_motion(px, estado, cmd: Cmd, robot_state, test_mode=False):
         stop(px)
         return False
 
+"""
 
 # ============================================================
 # SEGURIDAD
@@ -580,6 +581,7 @@ def update_safety(px):
         d = distance
     return d
 
+""" Función de seguridad que se ejecuta en cada ciclo de la FSM.
 
 def apply_safety(px, estado, accion, state):
     d = update_safety(px)
@@ -656,6 +658,7 @@ def scape_danger(px, robot_state, speed=SLOW_SPEED):
 
     return False
 
+"""
 
 # ============================================================
 # FUNCIONES
@@ -723,7 +726,6 @@ def log_det(px, estado, det, raw, state, prefix=""):
     msg = (
         f"{prefix} f_lost={f_lost} "
         f"search={det.valid_for_search} "
-        f"track={det.valid_for_track} "
         f"near={det.valid_for_near} "
         f"centered={det.is_centered} "
         f"n={raw['n']} w={raw['w']} h={raw['h']} "
@@ -782,7 +784,8 @@ def print_dashboard(px, estado, state, dist):
 
 def state_idle(px):
     log_event(px, Estado.IDLE, "Entrando en IDLE")
-    return Estado.RESET, Cmd.STOP
+    stop(px)
+    return Estado.RESET
 
 def state_reset(px):
     log_event(px, Estado.RESET, "Entrando en RESET")
@@ -1216,6 +1219,7 @@ def pet_mode(px, test_mode):
     state = RobotState()
     log_event(px, estado, "Inicio del sistema")
     ciclo_dashboard = 0
+
     while True:
 
         distancia_real = update_safety(px)
