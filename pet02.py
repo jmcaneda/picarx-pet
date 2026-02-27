@@ -184,7 +184,7 @@ class RobotState:
         self.search_wheels_dir = 1           
 
         # Frames consecutivos en los que la baliza está en el borde.
-        # Si supera un umbral → giro de chasis.
+        # Si supera un umbral → giro de chasis. (*)
         self.search_edge_frames = 0          
 
 
@@ -581,39 +581,72 @@ def do_yes(px, robot_state):
     return True
 
 
-def print_dashboard(px, estado, state, dist):
+def print_dashboard(px, estado, st, dist):
     os.system('clear')
     print("="*45)
     print(f" 🐾 PICAR-X DASHBOARD | Estado: {estado.name}")
     print("="*45)
+
+    # Movimiento reportado por el último estado
     print(f" MOVIMIENTO: {px.last_cmd}")
+
+    # Seguridad
     print(f" DISTANCIA:  {dist} cm " + ("⚠️ DANGER" if dist < DANGER_DISTANCE else "SAFE"))
     print("-"*45)
+
+    # Hardware
     print(f" SERVO DIR:  {px.dir_current_angle:>5.1f}°")
     print(f" CAM PAN:    {px.last_pan:>5.1f}°")
     print(f" CAM TILT:   {px.last_tilt:>5.1f}°")
-    print(f" AREA:       {state.area}")
-    print(f" ERR_X:      {state.error_x}")
-    print(f" ESCAPANDO:  {state.is_escaping}")
+
+    # Última detección
+    print(f" AREA:       {px.last_area}")
+    print(f" ERR_X:      {px.last_error_x}")
+
     print("="*45)
     print(" Presiona Ctrl+C para detener")
+
 
 
 # ============================================================
 # ESTADOS
 # ============================================================
 
-def state_idle(px):
-    log_event(px, Estado.IDLE, "Entrando en IDLE")
-    det, raw = get_detection(px, state=st)
+def state_idle(px, estado, state, distancia_real):
+    """
+    Estado IDLE:
+    - Estado inicial del sistema.
+    - No realiza detección ni movimiento.
+    - Solo ejecuta STOP y pasa a RESET.
+    """
+
+    if px.last_state != Estado.IDLE:
+        log_event(px, Estado.IDLE, "Entrando en IDLE")
 
     stop(px)
 
+    px.last_state = Estado.IDLE
     return Estado.RESET
 
-def state_reset(px):
-    log_event(px, Estado.RESET, "Entrando en RESET")
-    det, raw = get_detection(px, state=st)
+
+def state_reset(px, estado, st, distancia_real):
+    """
+    Estado RESET:
+    - Centra todos los servos.
+    - Limpia flags físicos.
+    - Limpia contadores del RobotState.
+    - Garantiza que el robot está quieto.
+    - Transiciona inmediatamente a SEARCH.
+    """
+
+    # Registrar entrada al estado solo una vez
+    if px.last_state != Estado.RESET:
+        log_event(px, Estado.RESET, "Entrando en RESET")
+
+    # ------------------------------------------------------------
+    # DETENER ROBOT
+    # ------------------------------------------------------------
+    stop(px)
 
     # ------------------------------------------------------------
     # CENTRAR HARDWARE
@@ -630,9 +663,39 @@ def state_reset(px):
     px.dir_current_angle = 0
 
     # ------------------------------------------------------------
-    # LIMPIAR ÚLTIMO COMANDO
+    # LIMPIAR CONTADORES DEL ESTADO INTERNO
     # ------------------------------------------------------------
-    px.last_cmd = "KEEP_ALIVE"
+    st.search_lost_frames = 0
+    st.search_found_frames = 0
+    st.search_edge_frames = 0
+    st.search_cam_dir = 1
+    st.search_wheels_dir = 1
+
+    st.recenter_centered_frames = 0
+    st.recenter_lost_frames = 0
+    st.just_recentered = None
+
+    st.track_lost_frames = 0
+    st.track_centered_frames = 0
+
+    st.near_enter_frames = 0
+    st.near_exit_frames = 0
+    st.near_lost_frames = 0
+    st.near_done_backward = False
+    st.near_cooldown = None
+    st.near_did_yes = False
+
+    st.yes_step = 0
+    st.yes_next_time = 0.0
+
+    st.is_escaping = False
+    st.escape_end_time = 0
+    st.last_sec_active = False
+
+    # ------------------------------------------------------------
+    # ACTUALIZAR ESTADO
+    # ------------------------------------------------------------
+    px.last_state = Estado.RESET
 
     # ------------------------------------------------------------
     # PASAR A SEARCH
@@ -640,21 +703,23 @@ def state_reset(px):
     return Estado.SEARCH
 
 
-def state_search(px, estado, accion, st):
+def state_search(px, estado, st, distancia_real):
     det, raw = get_detection(px, state=st)
 
     # ============================================================
-    # 1. ENTRADA AL ESTADO
+    # ENTRADA AL ESTADO
     # ============================================================
     if px.last_state != Estado.SEARCH:
         log_event(px, Estado.SEARCH, "Entrando en SEARCH")
 
+        # Reset de contadores
         st.search_lost_frames = 0
         st.search_found_frames = 0
         st.search_edge_frames = 0
         st.search_cam_dir = 1
         st.search_wheels_dir = 1
 
+        # Reset de hardware
         px.set_cam_pan_angle(0)
         px.last_pan = 0
         px.set_cam_tilt_angle(0)
@@ -662,105 +727,61 @@ def state_search(px, estado, accion, st):
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
 
+        px.last_state = Estado.SEARCH
+        px.last_cmd = "STOP"
+        stop(px)
+
         return Estado.SEARCH
 
     # ============================================================
-    # 2. RECUPERACIÓN TRAS SCAPE
+    # SEGURIDAD (integrada)
     # ============================================================
-    
+    if distancia_real < DANGER_DISTANCE:
+        stop(px)
+        px.last_cmd = "STOP"
+        return Estado.SEARCH
 
     # ============================================================
-    # 3. DETECCIÓN VÁLIDA
+    # DETECCIÓN VÁLIDA
     # ============================================================
     if det.valid_for_search:
         st.search_lost_frames = 0
         st.search_found_frames += 1
 
+        # Centrado estable → RECENTER
         if det.is_centered:
             if st.search_found_frames >= 3:
-                log_event(px, Estado.SEARCH, f"Centrado estable ({st.search_found_frames} frames) → RECENTER")
+                log_event(px, Estado.SEARCH,
+                          f"Centrado estable ({st.search_found_frames} frames) → RECENTER")
+                px.last_state = Estado.SEARCH
                 return Estado.RECENTER
 
-        if abs(det.error_x) > 30:
+        # Ajuste de PAN si error_x grande
+        if abs(det.error_x) > 40:
+            if det.error_x > 0:
+                log_event(px, Estado.SEARCH, "Baliza a la derecha → PAN DERECHA")
+                px.last_cmd = "PAN_RIGHT"
+                if pan_right(px) == 0:
+                    st.search_cam_dir *= -1
+            else:
+                log_event(px, Estado.SEARCH, "Baliza a la izquierda → PAN IZQUIERDA")
+                px.last_cmd = "PAN_LEFT"
+                if pan_left(px) == 0:
+                    st.search_cam_dir *= -1
 
-        
-        
-        
-        
-        
-        
-        
-        # -------------------------
-        # ZONA B — LATERAL
-        # -------------------------
-        if 40 < det.x < 600:
-            # Seguimos barriendo con PAN hacia la baliza
-            return Estado.SEARCH, (Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT)
-
-        # -------------------------
-        # ZONA C — BORDE
-        # -------------------------
-        st.search_edge_frames += 1
-
-        # Baliza muy en el borde
-        if det.x < 40 or det.x > 600:
-            cerca_limite_izq = (px.last_pan <= PAN_MIN + 5)
-            cerca_limite_der = (px.last_pan >= PAN_MAX - 5)
-
-            # 1) Si PAN está en el límite O llevamos muchos frames en el borde → GIRO CHASIS
-            if (cerca_limite_izq or cerca_limite_der) or st.search_edge_frames >= 5:
-                log_event(px, Estado.SEARCH,
-                          f"Borde crítico (x={det.x}, PAN:{px.last_pan}, edge_frames={st.search_edge_frames}) → GIRO CHASIS")
-
-                # Reset de contadores y PAN tras girar chasis para evitar bucles
-                st.search_lost_frames = 0
-                st.search_found_frames = 0
-                st.search_edge_frames = 0
-
-                cmd = Cmd.WHEELS_TURN_RIGHT if det.error_x > 0 else Cmd.WHEELS_TURN_LEFT
-
-                px.set_cam_pan_angle(0)
-                px.last_pan = 0
-
-                return Estado.SEARCH, cmd
-
-            # 2) Aún no en límite → PAN más agresivo (tu execute_motion puede usar paso mayor en SEARCH)
-            return Estado.SEARCH, (Cmd.CAM_PAN_RIGHT if det.error_x > 0 else Cmd.CAM_PAN_LEFT)
+            px.last_state = Estado.SEARCH
+            return Estado.SEARCH
 
     # ============================================================
-    # 4. SIN DETECCIÓN — ZONA D
+    # SIN DETECCIÓN
     # ============================================================
     st.search_found_frames = 0
     st.search_lost_frames += 1
-    st.search_edge_frames = 0  # si no vemos nada, olvidamos borde
+    st.search_edge_frames = 0
 
-    # Barrido PAN
-    if px.last_pan >= PAN_MAX:
-        st.search_cam_dir = -1
-    elif px.last_pan <= PAN_MIN:
-        st.search_cam_dir = 1
-
-    # Si llevamos mucho sin ver nada → GIRO DE CHASIS
-    if st.search_lost_frames > 20:
-        log_event(px, Estado.SEARCH,
-                  f"Perdido ({st.search_lost_frames} frames) → GIRO DE CHASIS")
-
-        # Alternar dirección de giro para no marearse siempre al mismo lado
-        cmd = Cmd.WHEELS_TURN_RIGHT if st.search_wheels_dir == 1 else Cmd.WHEELS_TURN_LEFT
-        st.search_wheels_dir *= -1
-
-        # Reset de contadores y PAN tras giro
-        st.search_lost_frames = 0
-        st.search_found_frames = 0
-        st.search_edge_frames = 0
-
-        px.set_cam_pan_angle(0)
-        px.last_pan = 0
-
-        return Estado.SEARCH, cmd
-
-    # PAN normal de barrido
-    return Estado.SEARCH, (Cmd.CAM_PAN_RIGHT if st.search_cam_dir == 1 else Cmd.CAM_PAN_LEFT)
+    px.last_cmd = "NO_DET"
+    px.last_state = Estado.SEARCH
+    return Estado.SEARCH
 
 
 def state_recenter(px, estado, accion, st):
@@ -1034,10 +1055,10 @@ def pet_mode(px, test_mode):
 
 
         if estado == Estado.IDLE:
-            estado = state_idle(px)
+            estado = state_idle(px, estado, state, distancia_real)
 
         elif estado == Estado.RESET:
-            estado = state_reset(px)
+            estado = state_reset(px, estado, state, distancia_real)
 
         elif estado == Estado.SEARCH:
             estado = state_search(px, estado, state, distancia_real)
