@@ -380,7 +380,7 @@ def backward(px):
     if px.last_cmd == "BACKWARD":
         return False
 
-    px.backward(speed)
+    px.backward(SLOW_SPEED)
     px.last_cmd = "BACKWARD"
     return True
 
@@ -779,7 +779,7 @@ def state_search(px, estado, st, distancia_real):
     st.search_lost_frames += 1
     st.search_edge_frames = 0
 
-    px.last_cmd = "NO_DET"
+    px.last_cmd = "KEEP_ALIVE"
     px.last_state = Estado.SEARCH
     return Estado.SEARCH
 
