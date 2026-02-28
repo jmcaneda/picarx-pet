@@ -476,7 +476,7 @@ def tilt_bottom(px, step=CAM_STEP):
     return 1
 
 def tilt_yes(px):
-    
+
     if px.last_cmd == "CAM_TILT_YES":
         return False
     
@@ -604,10 +604,11 @@ def do_yes(px, robot_state):
     return True
 
 
-def print_dashboard(px, estado, st, dist):
+def print_dashboard(px, estado, st, dist, test_mode):
     os.system('clear')
     print("="*45)
     print(f" 🐾 PICAR-X DASHBOARD | Estado: {estado.name}")
+    print(f" 🐾 TEST MODE: {test_mode}")
     print("="*45)
 
     # Movimiento reportado por el último estado
@@ -635,16 +636,18 @@ def print_dashboard(px, estado, st, dist):
 # ESTADOS
 # ============================================================
 
-def state_idle(px, estado, state, distancia_real):
+def state_idle(px, estado, state, distancia_real, test_mode):
     """
     Estado IDLE:
     - Estado inicial del sistema.
     - No realiza detección ni movimiento.
     - Solo ejecuta STOP y pasa a RESET.
     """
-
+    
     if px.last_state != Estado.IDLE:
-        log_event(px, Estado.IDLE, "Entrando en IDLE")
+        log_event(px, Estado.IDLE, f"Entrando en IDLE (test_mode={test_mode})")
+        if test_mode:
+            log_event(px, Estado.IDLE, "¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.")   
 
     stop(px)
 
@@ -652,7 +655,7 @@ def state_idle(px, estado, state, distancia_real):
     return Estado.RESET
 
 
-def state_reset(px, estado, st, distancia_real):
+def state_reset(px, estado, st, distancia_real, test_mode):
     """
     Estado RESET:
     - Centra todos los servos.
@@ -664,7 +667,9 @@ def state_reset(px, estado, st, distancia_real):
 
     # Registrar entrada al estado solo una vez
     if px.last_state != Estado.RESET:
-        log_event(px, Estado.RESET, "Entrando en RESET")
+        log_event(px, Estado.RESET, f"Entrando en RESET (test_mode={test_mode})")
+        if test_mode:
+            log_event(px, Estado.RESET, "¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.")   
 
     # ------------------------------------------------------------
     # DETENER ROBOT
@@ -726,14 +731,16 @@ def state_reset(px, estado, st, distancia_real):
     return Estado.SEARCH
 
 
-def state_search(px, estado, st, distancia_real):
+def state_search(px, estado, st, distancia_real, test_mode):
     det, raw = get_detection(px, state=st)
 
     # ============================================================
     # ENTRADA AL ESTADO
     # ============================================================
     if px.last_state != Estado.SEARCH:
-        log_event(px, Estado.SEARCH, "Entrando en SEARCH")
+        log_event(px, Estado.SEARCH, f"Entrando en SEARCH (test_mode={test_mode})")
+        if test_mode:
+            log_event(px, Estado.SEARCH, "¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.")   
 
         # Reset de contadores
         st.search_lost_frames = 0
@@ -807,14 +814,17 @@ def state_search(px, estado, st, distancia_real):
     return Estado.SEARCH
 
 
-def state_recenter(px, estado, st, distancia_real):
+def state_recenter(px, estado, st, distancia_real,test_mode):
     det, raw = get_detection(px, state=st)
 
     # ============================================================
     # ENTRADA AL ESTADO
     # ============================================================
     if px.last_state != Estado.RECENTER:
-        log_event(px, Estado.RECENTER, "Entrando en RECENTER")
+        log_event(px, Estado.RECENTER, f"Entrando en RECENTER (test_mode={test_mode})")
+        if test_mode:
+            log_event(px, Estado.RECENTER, "¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.") 
+            return Estado.SEARCH  # en modo test, no entramos a RECENTER para evitar movimientos
 
         st.recenter_centered_frames = 0
         st.recenter_lost_frames = 0
@@ -885,14 +895,17 @@ def state_recenter(px, estado, st, distancia_real):
     return Estado.RECENTER
 
 
-def state_track(px, estado, st, distancia_real):
+def state_track(px, estado, st, distancia_real,test_mode):
     det, raw = get_detection(px, state=st)
 
     # ============================================================
     # ENTRADA AL ESTADO
     # ============================================================
     if px.last_state != Estado.TRACK:
-        log_event(px, Estado.TRACK, "Entrando en TRACK")
+        log_event(px, Estado.TRACK, f"Entrando en TRACK (test_mode={test_mode})")
+        if test_mode:
+            log_event(px, Estado.TRACK, "¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.")
+            return Estado.SEARCH  # en modo test, no entramos a TRACK para evitar movimientos
 
         st.track_lost_frames = 0
         st.track_centered_frames = 0
@@ -957,14 +970,17 @@ def state_track(px, estado, st, distancia_real):
     return Estado.TRACK
 
 
-def state_near(px, estado, st, distancia_real):
+def state_near(px, estado, st, distancia_real, test_mode):
     det, raw = get_detection(px, state=st)
 
     # ============================================================
     # ENTRADA AL ESTADO
     # ============================================================
     if px.last_state != Estado.NEAR:
-        log_event(px, Estado.NEAR, "Entrando en NEAR")
+        log_event(px, Estado.NEAR, f"Entrando en NEAR (test_mode={test_mode})")
+        if test_mode:
+            log_event(px, Estado.NEAR, "¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.")
+            return Estado.SEARCH  # en modo test, no entramos a NEAR para evitar movimientos
 
         st.near_enter_frames = 0
         st.near_exit_frames = 0
@@ -1058,6 +1074,7 @@ def pet_mode(px, test_mode):
     state = RobotState()
     log_event(px, estado, "Inicio del sistema")
     ciclo_dashboard = 0
+    test = test_mode
 
     while True:
 
@@ -1065,26 +1082,26 @@ def pet_mode(px, test_mode):
 
 
         if estado == Estado.IDLE:
-            estado = state_idle(px, estado, state, distancia_real)
+            estado = state_idle(px, estado, state, distancia_real, test)
 
         elif estado == Estado.RESET:
-            estado = state_reset(px, estado, state, distancia_real)
+            estado = state_reset(px, estado, state, distancia_real, test)
 
         elif estado == Estado.SEARCH:
-            estado = state_search(px, estado, state, distancia_real)
+            estado = state_search(px, estado, state, distancia_real, test)
 
         elif estado == Estado.RECENTER:
-            estado = state_recenter(px, estado, state, distancia_real)
+            estado = state_recenter(px, estado, state, distancia_real, test)
 
         elif estado == Estado.TRACK:
-            estado = state_track(px, estado, state, distancia_real)
+            estado = state_track(px, estado, state, distancia_real, test)
 
         elif estado == Estado.NEAR:
-            estado = state_near(px, estado, state, distancia_real)
+            estado = state_near(px, estado, state, distancia_real, test)
 
         ciclo_dashboard += 1
         if not test_mode and ciclo_dashboard % 5 == 0:
-            print_dashboard(px, estado, state, distancia_real)
+            print_dashboard(px, estado, state, distancia_real, test)
 
         time.sleep(0.05)
 
