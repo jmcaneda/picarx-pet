@@ -69,6 +69,8 @@ class Cmd(Enum):
     CAM_PAN_RIGHT = 10
     CAM_TILT_TOP = 20
     CAM_TILT_BOTTOM = 30
+    CAM_TILT_YES = 40
+    CAM_PAN_NO = 50
     KEEP_ALIVE = 99 # Comando ficticio para mantener maniobra activa sin cambiar estado
 
 class Det:
@@ -391,24 +393,24 @@ def backward(px):
 
 def turn_left(px):
     
-    if px.last_cmd == "TURN_LEFT":
+    if px.last_cmd == "WHEELS_TURN_LEFT":
         return False
 
     px.set_dir_servo_angle(SERVO_ANGLE_MIN)
     px.dir_current_angle = SERVO_ANGLE_MIN
 
-    px.last_cmd = "TURN_LEFT"
+    px.last_cmd = "WHEELS_TURN_LEFT"
     return True
 
 
-def turn_right(px, speed=TURN_SPEED):
-    if px.last_cmd == "TURN_RIGHT":
+def turn_right(px):
+    if px.last_cmd == "WHEELS_TURN_RIGHT":
         return False
         
     px.set_dir_servo_angle(SERVO_ANGLE_MAX)
     px.dir_current_angle = SERVO_ANGLE_MAX
 
-    px.last_cmd = "TURN_RIGHT"
+    px.last_cmd = "WHEELS_TURN_RIGHT"
     return True
 
 
@@ -423,10 +425,12 @@ def pan_right(px, step=CAM_STEP):
         new_angle = PAN_MAX
         px.last_pan = PAN_MAX
         px.set_cam_pan_angle(px.last_pan)
+        px.last_cmd = "CAM_PAN_RIGHT"
         return 0  # no hubo movimiento real
 
     px.last_pan = new_angle
     px.set_cam_pan_angle(px.last_pan)
+    px.last_cmd = "CAM_PAN_RIGHT"
     return 1 # movimiento realizado
 
 def pan_left(px, step=CAM_STEP):
@@ -436,10 +440,12 @@ def pan_left(px, step=CAM_STEP):
         new_angle = PAN_MIN
         px.last_pan = PAN_MIN
         px.set_cam_pan_angle(px.last_pan)
+        px.last_cmd = "CAM_PAN_LEFT"
         return 0 # no hubo movimiento real
 
     px.last_pan = new_angle
     px.set_cam_pan_angle(px.last_pan)
+    px.last_cmd = "CAM_PAN_LEFT"
     return 1 # movimiento realizado
 
 def tilt_top(px, step=CAM_STEP):
@@ -447,10 +453,12 @@ def tilt_top(px, step=CAM_STEP):
     if new_angle >= TILT_MAX:
         px.last_tilt = TILT_MAX
         px.set_cam_tilt_angle(px.last_tilt)
+        px.last_cmd = "CAM_TILT_TOP"
         return 0
 
     px.last_tilt = new_angle
     px.set_cam_tilt_angle(px.last_tilt)
+    px.last_cmd = "CAM_TILT_TOP"
     return 1
 
 
@@ -459,12 +467,27 @@ def tilt_bottom(px, step=CAM_STEP):
     if new_angle <= TILT_MIN:
         px.last_tilt = TILT_MIN
         px.set_cam_tilt_angle(px.last_tilt)
+        px.last_cmd = "CAM_TILT_BOTTOM"
         return 0
 
     px.last_tilt = new_angle
     px.set_cam_tilt_angle(px.last_tilt)
+    px.last_cmd = "CAM_TILT_BOTTOM"
     return 1
 
+def tilt_yes(px):
+    
+    if px.last_cmd == "CAM_TILT_YES":
+        return False
+    
+    # Secuencia de ángulos para el gesto "sí"
+    secuencia = [TILT_MAX, TILT_MIN, 0, TILT_MAX, TILT_MIN, 0]
+
+    for angulo in secuencia:
+        px.set_cam_tilt_angle(angulo)
+        time.sleep(0.15)  # pequeña pausa entre movimientos
+    
+    px.last_cmd = "CAM_TILT_YES"
 
 # ============================================================
 # SEGURIDAD
@@ -841,20 +864,19 @@ def state_recenter(px, estado, st, distancia_real):
     # ============================================================
     if det.error_x > 0:
         # Baliza a la derecha → girar chasis a la derecha
-        px.set_dir_servo_angle(+20)
-        px.last_cmd = "DIR_RIGHT"
+        turn_right(px)
     else:
         # Baliza a la izquierda → girar chasis a la izquierda
-        px.set_dir_servo_angle(-20)
-        px.last_cmd = "DIR_LEFT"
+        turn_left(px)
 
     # Pequeño avance para completar el giro
-    px.forward(SLOW_SPEED)
+    forward(px)
     time.sleep(0.15)
     stop(px)
 
     # Resetear dirección
     px.set_dir_servo_angle(0)
+    px.dir_current_angle = 0
 
     # Resetear PAN después del giro
     px.set_cam_pan_angle(0)
@@ -919,21 +941,19 @@ def state_track(px, estado, st, distancia_real):
     if abs(error) < 20:
         # Centrado razonable → avanzar recto
         px.set_dir_servo_angle(0)
-        px.forward(SLOW_SPEED)
-        px.last_cmd = "FORWARD"
+        px.dir_current_angle = 0
+        forward(px)
         return Estado.TRACK
 
     # Corrección suave
     if error > 0:
         # Baliza a la derecha
-        px.set_dir_servo_angle(+20)
-        px.last_cmd = "DIR_RIGHT"
+        turn_right(px)
     else:
         # Baliza a la izquierda
-        px.set_dir_servo_angle(-20)
-        px.last_cmd = "DIR_LEFT"
+        turn_left(px)
 
-    px.forward(SLOW_SPEED)
+    forward(px)
     return Estado.TRACK
 
 
@@ -967,10 +987,10 @@ def state_near(px, estado, st, distancia_real):
     # ============================================================
     if distancia_real < 10:  # peligro extremo
         stop(px)
-        px.backward(SLOW_SPEED)
+        backward(px)
         time.sleep(0.4)
         stop(px)
-        px.last_cmd = "BACK_DANGER"
+        px.last_cmd = "SCAPE"
         return Estado.SEARCH
 
     # ============================================================
@@ -988,10 +1008,9 @@ def state_near(px, estado, st, distancia_real):
     # ============================================================
     if not st.near_done_backward:
         log_event(px, Estado.NEAR, "Retroceso de cortesía")
-        px.backward(SLOW_SPEED)
+        backward(px)
         time.sleep(0.25)
         stop(px)
-        px.last_cmd = "BACKWARD"
         st.near_done_backward = True
         return Estado.NEAR
 
@@ -1000,30 +1019,9 @@ def state_near(px, estado, st, distancia_real):
     # ============================================================
     if not st.near_did_yes:
         now = time.time()
-
-        if st.yes_step == 0:
-            st.yes_step = 1
-            st.yes_next_time = now + 0.15
-            px.set_cam_tilt_angle(+20)
-            px.last_cmd = "YES_UP"
-            return Estado.NEAR
-
-        if st.yes_step == 1 and now >= st.yes_next_time:
-            st.yes_step = 2
-            st.yes_next_time = now + 0.15
-            px.set_cam_tilt_angle(-20)
-            px.last_cmd = "YES_DOWN"
-            return Estado.NEAR
-
-        if st.yes_step == 2 and now >= st.yes_next_time:
-            st.yes_step = 3
-            st.yes_next_time = now + 0.15
-            px.set_cam_tilt_angle(0)
-            px.last_cmd = "YES_CENTER"
-            st.near_did_yes = True
-            return Estado.NEAR
-
-        return Estado.NEAR
+        tilt_yes(px)
+        st.near_did_yes = True
+        return Estado.NEAR  
 
     # ============================================================
     # SALIDA DE NEAR (cooldown terminado)
