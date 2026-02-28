@@ -482,6 +482,7 @@ def tilt_yes(px):
     
     # Secuencia de ángulos para el gesto "sí"
     secuencia = [TILT_MAX, TILT_MIN, 0, TILT_MAX, TILT_MIN, 0]
+    log_event(px, px.last_state, "Iniciando gesto 'SI'")
 
     for angulo in secuencia:
         px.set_cam_tilt_angle(angulo)
@@ -576,32 +577,6 @@ def log_det(px, estado, det, raw, state, prefix=""):
         f"err_x={det.error_x} err_y={det.error_y}"
     )
     log_event(px, estado, msg)
-
-
-def do_yes(px, robot_state):
-    current_time = time.time()
-
-    if current_time < robot_state.yes_next_time:
-        return False
-
-    secuencia = [TILT_MAX, TILT_MIN, 0, TILT_MAX, TILT_MIN, 0]
-
-    if robot_state.yes_step < len(secuencia):
-        angulo = secuencia[robot_state.yes_step]
-        px.set_cam_tilt_angle(angulo)
-
-        robot_state.yes_next_time = current_time + 0.15
-        robot_state.yes_step += 1
-
-        if robot_state.yes_step == 1:
-            log_event(px, px.estado_actual, "Iniciando gesto 'SI'")
-
-        return False
-
-    # Animación terminada
-    robot_state.yes_step = 0
-    robot_state.yes_next_time = 0
-    return True
 
 
 def print_dashboard(px, estado, st, dist, test_mode):
