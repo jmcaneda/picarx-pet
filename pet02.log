@@ -1,13 +1,9 @@
 === Start of pet02.log ===
-[20:59:25] [Estado.CHK] [CHK] ==============================
-[20:59:25] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[20:59:25] [Estado.CHK] [CHK] ==============================
-[20:59:25] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[20:59:25] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[20:59:25] [Estado.CHK] [CHK] State wheels:     0
-[20:59:25] [Estado.CHK] [CHK] ==============================
-[20:59:25] [Estado.IDLE] Inicio del sistema
-[20:59:25] [Estado.IDLE] Entrando en IDLE (test_mode=False)
-[20:59:25] [Estado.RESET] Entrando en RESET (test_mode=False)
-[20:59:25] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[20:59:25] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[21:24:04] [Estado.CHK] [CHK] ==============================
+[21:24:04] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[21:24:04] [Estado.CHK] [CHK] ==============================
+[21:24:04] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[21:24:04] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[21:24:04] [Estado.CHK] [CHK] State wheels:     0
+[21:24:04] [Estado.CHK] [CHK] ==============================
+[21:24:04] [Estado.IDLE] Inicio del sistema

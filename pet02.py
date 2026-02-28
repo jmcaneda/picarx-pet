@@ -509,7 +509,7 @@ def update_safety(px):
 # FUNCIONES
 # ============================================================
 
-def get_detection(px, state=None):
+def get_detection(px):
     params = Vilib.detect_obj_parameter
 
     raw = {
@@ -619,7 +619,7 @@ def state_idle(px, estado, state, distancia_real, test_mode):
     - No realiza detección ni movimiento.
     - Solo ejecuta STOP y pasa a RESET.
     """
-    det, raw = get_detection(px, state=st)
+    det, raw = get_detection(px)
     px.last_det = det
     if px.last_state != Estado.IDLE:
         log_event(px, Estado.IDLE, f"Entrando en IDLE (test_mode={test_mode})")
@@ -641,7 +641,7 @@ def state_reset(px, estado, st, distancia_real, test_mode):
     - Garantiza que el robot está quieto.
     - Transiciona inmediatamente a SEARCH.
     """
-    det, raw = get_detection(px, state=st)
+    det, raw = get_detection(px)
     px.last_det = det
     # Registrar entrada al estado solo una vez
     if px.last_state != Estado.RESET:
@@ -710,7 +710,7 @@ def state_reset(px, estado, st, distancia_real, test_mode):
 
 
 def state_search(px, estado, st, distancia_real, test_mode):
-    det, raw = get_detection(px, state=st)
+    det, raw = get_detection(px)
     px.last_det = det
 
     # ============================================================
@@ -794,7 +794,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
 
 
 def state_recenter(px, estado, st, distancia_real,test_mode):
-    det, raw = get_detection(px, state=st)
+    det, raw = get_detection(px)
     px.last_det = det
 
     # ============================================================
@@ -876,7 +876,7 @@ def state_recenter(px, estado, st, distancia_real,test_mode):
 
 
 def state_track(px, estado, st, distancia_real,test_mode):
-    det, raw = get_detection(px, state=st)
+    det, raw = get_detection(px)
     px.last_det = det
     # ============================================================
     # ENTRADA AL ESTADO
@@ -951,7 +951,7 @@ def state_track(px, estado, st, distancia_real,test_mode):
 
 
 def state_near(px, estado, st, distancia_real, test_mode):
-    det, raw = get_detection(px, state=st)
+    det, raw = get_detection(px)
     px.last_det = det
 
     # ============================================================
