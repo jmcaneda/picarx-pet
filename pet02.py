@@ -324,15 +324,12 @@ def init_flags(px):
     # ============================================================
     px.last_pan = 0               # ángulo actual del servo PAN (*)
     px.last_tilt = 0              # ángulo actual del servo TILT (si se usa)
-    px.set_cam_pan_angle = 0      # reset angulo pan
-    px.set_cam_tilt_angle = 0     # reset angulo tilt
 
     # ============================================================
     # DIRECCIÓN DEL CHASIS
     # ============================================================
     px.dir_current_angle = 0      # ángulo actual del servo de dirección (*)
-    px.set_dir_servo_angle = 0    # reset ángulo dirección
-
+    
 
 # ============================================================
 # ACCIONES BÁSICAS
