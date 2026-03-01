@@ -63,7 +63,8 @@ class Cmd(Enum):
     FORWARD_SLOW = 3
     WHEELS_TURN_LEFT = 4
     WHEELS_TURN_RIGHT = 5
-    BACKWARD = 6
+    WHEELS_ZIG_ZAG = 6
+    BACKWARD = 7
     SCAPE = 8
     CAM_PAN_LEFT = 9
     CAM_PAN_RIGHT = 10
@@ -413,6 +414,32 @@ def turn_right(px):
 
     px.last_cmd = "WHEELS_TURN_RIGHT"
     return True
+
+def zig_zag(px, k=0.3, max_angle=20):
+    """
+    Movimiento suave de zig-zag basado en el PAN de la cámara.
+    - k: factor de suavizado (0.2–0.4 recomendado)
+    - max_angle: límite del servo de dirección
+    """
+
+    # 1. Leer el pan actual de la cámara
+    pan = px.last_pan  # ya lo tienes actualizado en tu FSM
+
+    # 2. Convertir PAN en ángulo de dirección suavizado
+    servo_angle = k * pan
+
+    # 3. Limitar el ángulo para evitar sacudidas
+    if servo_angle >= SERVO_ANGLE_MAX:
+        servo_angle = SERVO_ANGLE_MAX
+    elif servo_angle <= SERVO_ANGLE_MIN:
+        servo_angle = SERVO_ANGLE_MIN
+
+    # 4. Aplicar el ángulo al servo de dirección
+    px.set_dir_servo_angle(servo_angle)
+    px.dir_current_angle = servo_angle
+    px.last_cmd = "WHEELS_ZIG_ZAG"
+
+    return servo_angle
 
 
 # ============================================================
@@ -961,15 +988,13 @@ def state_track(px, estado, st, distancia_real,test_mode):
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
         forward(px)
-        return Estado.TRACK
+        return Estado.NEAR
 
-    # Corrección suave
-    if error > 20:
-        # Baliza a la derecha
-        turn_right(px)
     else:
-        # Baliza a la izquierda
-        turn_left(px)
+        # Error significativo → zig-zag para corregir
+        angulo = zig_zag(px)
+        log_event(px, Estado.TRACK, f"Error significativo → zig-zag para corregir (ángulo={angulo})")
+        
 
     forward(px)
     return Estado.TRACK
