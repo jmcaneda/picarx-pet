@@ -1,63 +1,138 @@
 === Start of pet02.log ===
-[21:23:01] [Estado.CHK] [CHK] ==============================
-[21:23:01] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[21:23:01] [Estado.CHK] [CHK] ==============================
-[21:23:01] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[21:23:01] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[21:23:01] [Estado.CHK] [CHK] State wheels:     0
-[21:23:01] [Estado.CHK] [CHK] ==============================
-[21:23:01] [Estado.IDLE] Inicio del sistema
-[21:23:01] [Estado.IDLE] Entrando en IDLE (test_mode=True)
-[21:23:01] [Estado.IDLE] ¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.
-[21:23:01] [Estado.RESET] Entrando en RESET (test_mode=True)
-[21:23:01] [Estado.RESET] ¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.
-[21:23:01] [Estado.SEARCH] Entrando en SEARCH (test_mode=True)
-[21:23:01] [Estado.SEARCH] ¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.
-[21:23:01] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[21:23:01] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[21:23:01] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[21:23:02] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
-[21:23:02] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
-[21:23:02] [Estado.RECENTER] Entrando en RECENTER (test_mode=True)
-[21:23:02] [Estado.RECENTER] ¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.
-[21:23:02] [Estado.SEARCH] Centrado estable (4 frames) → RECENTER
-[21:23:02] [Estado.RECENTER] Entrando en RECENTER (test_mode=True)
-[21:23:02] [Estado.RECENTER] ¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.
-[21:23:02] [Estado.SEARCH] Centrado estable (5 frames) → RECENTER
-[21:23:02] [Estado.RECENTER] Entrando en RECENTER (test_mode=True)
-[21:23:02] [Estado.RECENTER] ¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.
-[21:23:02] [Estado.SEARCH] Centrado estable (6 frames) → RECENTER
-[21:23:02] [Estado.RECENTER] Entrando en RECENTER (test_mode=True)
-[21:23:02] [Estado.RECENTER] ¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.
-[21:23:02] [Estado.SEARCH] Centrado estable (7 frames) → RECENTER
-[21:23:02] [Estado.RECENTER] Entrando en RECENTER (test_mode=True)
-[21:23:02] [Estado.RECENTER] ¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.
-[21:23:02] [Estado.SEARCH] Centrado estable (8 frames) → RECENTER
-[21:23:03] [Estado.RECENTER] Entrando en RECENTER (test_mode=True)
-[21:23:03] [Estado.RECENTER] ¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.
-[21:23:03] [Estado.SEARCH] Centrado estable (9 frames) → RECENTER
-[21:23:03] [Estado.RECENTER] Entrando en RECENTER (test_mode=True)
-[21:23:03] [Estado.RECENTER] ¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.
-[21:23:03] [Estado.SEARCH] Centrado estable (10 frames) → RECENTER
-[21:23:03] [Estado.RECENTER] Entrando en RECENTER (test_mode=True)
-[21:23:03] [Estado.RECENTER] ¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.
-[21:23:03] [Estado.SEARCH] Centrado estable (11 frames) → RECENTER
-[21:23:03] [Estado.RECENTER] Entrando en RECENTER (test_mode=True)
-[21:23:03] [Estado.RECENTER] ¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.
-[21:23:03] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
-[21:23:03] [Estado.SEARCH] Centrado estable (13 frames) → RECENTER
-[21:23:03] [Estado.RECENTER] Entrando en RECENTER (test_mode=True)
-[21:23:03] [Estado.RECENTER] ¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.
-[21:23:03] [Estado.SEARCH] Centrado estable (14 frames) → RECENTER
-[21:23:03] [Estado.RECENTER] Entrando en RECENTER (test_mode=True)
-[21:23:03] [Estado.RECENTER] ¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.
-[21:23:04] [Estado.SEARCH] Centrado estable (15 frames) → RECENTER
-[21:23:04] [Estado.RECENTER] Entrando en RECENTER (test_mode=True)
-[21:23:04] [Estado.RECENTER] ¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.
-[21:23:04] [Estado.SEARCH] Centrado estable (16 frames) → RECENTER
-[21:23:04] [Estado.RECENTER] Entrando en RECENTER (test_mode=True)
-[21:23:04] [Estado.RECENTER] ¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.
-[21:23:04] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[21:23:04] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[21:23:04] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
-[21:23:05] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[21:37:06] [Estado.CHK] [CHK] ==============================
+[21:37:06] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[21:37:06] [Estado.CHK] [CHK] ==============================
+[21:37:06] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[21:37:06] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[21:37:06] [Estado.CHK] [CHK] State wheels:     0
+[21:37:06] [Estado.CHK] [CHK] ==============================
+[21:37:06] [Estado.IDLE] Inicio del sistema
+[21:37:06] [Estado.IDLE] Entrando en IDLE (test_mode=False)
+[21:37:06] [Estado.RESET] Entrando en RESET (test_mode=False)
+[21:37:06] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[21:37:06] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[21:37:06] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[21:37:07] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[21:37:07] [Estado.SEARCH] Centrado estable (5 frames) → RECENTER
+[21:37:07] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[21:37:07] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-32
+[21:37:08] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-46
+[21:37:08] [Estado.RECENTER] Pérdida de detección → SEARCH
+[21:37:08] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[21:37:08] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[21:37:09] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[21:37:09] [Estado.SEARCH] Centrado estable (4 frames) → RECENTER
+[21:37:09] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[21:37:09] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-24
+[21:37:09] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-44
+[21:37:10] [Estado.RECENTER] Pérdida de detección → SEARCH
+[21:37:10] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[21:37:10] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[21:37:10] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[21:37:11] [Estado.SEARCH] Centrado estable (6 frames) → RECENTER
+[21:37:11] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[21:37:11] [Estado.RECENTER] Alineación completada → TRACK
+[21:37:11] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[21:37:11] [Estado.TRACK] Corrigiendo dirección, error_x=-14
+[21:37:11] [Estado.TRACK] Corrigiendo dirección, error_x=-12
+[21:37:12] [Estado.TRACK] Corrigiendo dirección, error_x=-26
+[21:37:12] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
+[21:37:12] [Estado.TRACK] Corrigiendo dirección, error_x=-30
+[21:37:12] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
+[21:37:12] [Estado.TRACK] Corrigiendo dirección, error_x=-44
+[21:37:12] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
+[21:37:12] [Estado.TRACK] Corrigiendo dirección, error_x=-66
+[21:37:12] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
+[21:37:12] [Estado.TRACK] Corrigiendo dirección, error_x=-90
+[21:37:12] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
+[21:37:12] [Estado.TRACK] Corrigiendo dirección, error_x=-118
+[21:37:12] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
+[21:37:12] [Estado.TRACK] Corrigiendo dirección, error_x=-148
+[21:37:12] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
+[21:37:12] [Estado.TRACK] Corrigiendo dirección, error_x=-174
+[21:37:12] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
+[21:37:12] [Estado.TRACK] Corrigiendo dirección, error_x=-204
+[21:37:12] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
+[21:37:12] [Estado.TRACK] Corrigiendo dirección, error_x=-238
+[21:37:12] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
+[21:37:13] [Estado.TRACK] Corrigiendo dirección, error_x=-264
+[21:37:13] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
+[21:37:13] [Estado.TRACK] Corrigiendo dirección, error_x=-286
+[21:37:13] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
+[21:37:13] [Estado.TRACK] Corrigiendo dirección, error_x=-302
+[21:37:13] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
+[21:37:13] [Estado.TRACK] Pérdida de detección → SEARCH
+[21:37:13] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[21:37:13] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[21:37:13] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
+[21:37:14] [Estado.SEARCH] Centrado estable (8 frames) → RECENTER
+[21:37:14] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[21:37:14] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-48
+[21:37:14] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-96
+[21:37:15] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-300
+[21:37:15] [Estado.RECENTER] Pérdida de detección → SEARCH
+[21:37:15] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[21:37:15] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[21:37:17] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
+[21:37:18] [Estado.SEARCH] Centrado estable (8 frames) → RECENTER
+[21:37:18] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[21:37:18] [Estado.RECENTER] Alineación completada → TRACK
+[21:37:18] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[21:37:18] [Estado.TRACK] Baliza muy cerca → NEAR
+[21:37:18] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[21:37:18] [Estado.NEAR] Retroceso de cortesía
+[21:37:19] [Estado.NEAR] Ejecutando gesto 'SÍ'
+[21:37:19] [Estado.NEAR] Iniciando gesto 'SI'
+[21:37:20] [Estado.NEAR] Fin de interacción → SEARCH
+[21:37:20] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[21:37:20] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[21:37:21] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
+[21:37:22] [Estado.SEARCH] Centrado estable (8 frames) → RECENTER
+[21:37:22] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[21:37:22] [Estado.RECENTER] Alineación completada → TRACK
+[21:37:23] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[21:37:23] [Estado.TRACK] Baliza muy cerca → NEAR
+[21:37:23] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[21:37:23] [Estado.NEAR] Retroceso de cortesía
+[21:37:23] [Estado.NEAR] Ejecutando gesto 'SÍ'
+[21:37:23] [Estado.NEAR] Iniciando gesto 'SI'
+[21:37:24] [Estado.NEAR] Fin de interacción → SEARCH
+[21:37:24] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[21:37:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[21:37:24] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
+[21:37:25] [Estado.SEARCH] Centrado estable (10 frames) → RECENTER
+[21:37:25] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[21:37:26] [Estado.RECENTER] Alineación completada → TRACK
+[21:37:26] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[21:37:26] [Estado.TRACK] Corrigiendo dirección, error_x=6
+[21:37:26] [Estado.TRACK] Baliza muy cerca → NEAR
+[21:37:26] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[21:37:26] [Estado.NEAR] Retroceso de cortesía
+[21:37:26] [Estado.NEAR] Ejecutando gesto 'SÍ'
+[21:37:26] [Estado.NEAR] Iniciando gesto 'SI'
+[21:37:27] [Estado.NEAR] Fin de interacción → SEARCH
+[21:37:27] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[21:37:27] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[21:37:28] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
+[21:37:28] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[21:37:28] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
+[21:37:28] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[21:37:28] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
+[21:37:28] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[21:37:28] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
+[21:37:28] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[21:37:30] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
+[21:37:31] [Estado.SEARCH] Centrado estable (8 frames) → RECENTER
+[21:37:31] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[21:37:31] [Estado.RECENTER] Alineación completada → TRACK
+[21:37:31] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[21:37:31] [Estado.TRACK] Corrigiendo dirección, error_x=4
+[21:37:31] [Estado.TRACK] Baliza muy cerca → NEAR
+[21:37:31] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[21:37:31] [Estado.NEAR] Retroceso de cortesía
+[21:37:32] [Estado.NEAR] Ejecutando gesto 'SÍ'
+[21:37:32] [Estado.NEAR] Iniciando gesto 'SI'
+[21:37:33] [Estado.NEAR] Fin de interacción → SEARCH
+[21:37:33] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[21:37:33] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[21:37:33] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
