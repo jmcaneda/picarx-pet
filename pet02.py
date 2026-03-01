@@ -253,7 +253,7 @@ class RobotState:
 
 
         # ============================================================
-        # SCAPE — Protocolo de emergencia por proximidad
+        # SCAPE — Protocolos de seguridad y evasión
         # ============================================================
 
         # Indica si el robot está actualmente escapando.
@@ -265,8 +265,9 @@ class RobotState:
 
         # Indica si SEC ha estado activo recientemente.
         # SEARCH lo usa para reiniciar PAN y contadores.
-        self.last_sec_active = False         
+        self.last_sec_active = False
 
+        
 
 # ============================================================
 # INICIALIZACIÓN
@@ -336,6 +337,11 @@ def init_flags(px):
     # ============================================================
     px.last_det = None              # última detección procesada (objeto Det)
 
+    # ============================================================
+    # Flag para indicar si se ha cambiado la velocidad 
+    # ============================================================
+    px.changed_speed_slow = False 
+
 # ============================================================
 # ACCIONES BÁSICAS
 # ============================================================
@@ -355,12 +361,17 @@ def stop(px):
 
 def forward(px):
     """
-    Avance normal.
+    Avance normal o suave dependiendo del flag changed_speed_slow.
     """
     if px.last_cmd == "FORWARD":
         return False
 
-    px.forward(FAST_SPEED)
+    # Elegir velocidad según el flag 
+    if px.changed_speed_slow: 
+        px.forward(SLOW_SPEED) 
+    else: 
+        px.forward(FAST_SPEED)
+    
     px.last_cmd = "FORWARD"
     return True
 
@@ -694,6 +705,7 @@ def state_reset(px, estado, st, distancia_real, test_mode):
     px.last_pan = 0
     px.last_tilt = 0
     px.dir_current_angle = 0
+    px.changed_speed_slow = False
 
     # ------------------------------------------------------------
     # LIMPIAR CONTADORES DEL ESTADO INTERNO
@@ -754,6 +766,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
         st.search_edge_frames = 0
         st.search_cam_dir = 1
         st.search_wheels_dir = 1
+        st.is_escaping = False
 
         # Reset de hardware
         px.set_cam_pan_angle(0)
@@ -762,7 +775,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
         px.last_tilt = 0
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
-
+        px.changed_speed_slow = False
         px.last_state = Estado.SEARCH
         px.last_cmd = "STOP"
         stop(px)
@@ -770,16 +783,35 @@ def state_search(px, estado, st, distancia_real, test_mode):
         return Estado.SEARCH
 
     # ============================================================
-    # SEGURIDAD
+    # SEGURIDAD SEARCH
     # ============================================================
-    if distancia_real < DANGER_DISTANCE:
-        log_event(px, Estado.SEARCH, f"Peligro extremo distancia={distancia_real} durante SEARCH → SCAPE")
+    distancia_real = update_safety(px)
+
+    # 1. Peligro extremo → SCAPE inmediato
+    if distancia_real < DANGER_DISTANCE and not st.is_escaping:
+        log_event(px, Estado.SEARCH, f"🚨 Peligro extremo distancia={distancia_real} → SCAPE")
         stop(px)
         backward(px)
         time.sleep(0.4)
         stop(px)
+
+        st.is_escaping = True
+        st.escape_end_time = time.time() + 1.0
         px.last_cmd = "SCAPE"
         return Estado.SEARCH
+
+    # 2. Advertencia → frenar inercia (solo si no estamos escapando)
+    if distancia_real < WARNING_DISTANCE and not st.is_escaping:
+        if not px.changed_speed_slow:  # evita spam de logs
+            log_event(px, Estado.SEARCH, f"⚠️ Advertencia: objeto a {distancia_real} cm → frenado preventivo")
+        stop(px)
+        px.changed_speed_slow = True
+
+    # 3. Salida del modo escape
+    if st.is_escaping and time.time() >= st.escape_end_time:
+        st.is_escaping = False
+        px.changed_speed_slow = False
+
 
     # ============================================================
     # DETECCIÓN VÁLIDA
@@ -860,16 +892,33 @@ def state_recenter(px, estado, st, distancia_real,test_mode):
         return Estado.RECENTER
 
     # ============================================================
-    # SEGURIDAD
+    # SEGURIDAD RECENTER
     # ============================================================
-    if distancia_real < DANGER_DISTANCE:
-        log_event(px, Estado.RECENTER, f"Peligro extremo distancia={distancia_real} durante RECENTER → SCAPE")
+    distancia_real = update_safety(px)
+
+    # 1. Peligro extremo → SCAPE inmediato
+    if distancia_real < DANGER_DISTANCE and not st.is_escaping:
+        log_event(px, Estado.RECENTER, f"🚨 Peligro extremo distancia={distancia_real} → SCAPE")
         stop(px)
         backward(px)
         time.sleep(0.4)
         stop(px)
+
+        st.is_escaping = True
+        st.escape_end_time = time.time() + 1.0
         px.last_cmd = "SCAPE"
-        return Estado.RECENTER
+        return Estado.SEARCH   # ← IMPORTANTE: volver a SEARCH
+
+    # 2. Advertencia → frenar y salir de RECENTER
+    if distancia_real < WARNING_DISTANCE and not st.is_escaping:
+        log_event(px, Estado.RECENTER, f"⚠️ Advertencia: objeto a {distancia_real} cm → frenado preventivo")
+        stop(px)
+        return Estado.SEARCH   # ← IMPORTANTE: no continuar RECENTER
+
+    # 3. Salida del modo escape
+    if st.is_escaping and time.time() >= st.escape_end_time:
+        st.is_escaping = False
+
 
     # ============================================================
     # SIN DETECCIÓN → volver a SEARCH
@@ -945,16 +994,34 @@ def state_track(px, estado, st, distancia_real,test_mode):
         return Estado.TRACK
 
     # ============================================================
-    # SEGURIDAD
+    # SEGURIDAD TRACK
     # ============================================================
-    if distancia_real < DANGER_DISTANCE:
-        log_event(px, Estado.TRACK, f"Peligro extremo distancia={distancia_real} durante TRACK → SCAPE")
+    distancia_real = update_safety(px)
+
+    # 1. Peligro extremo → SCAPE inmediato
+    if distancia_real < DANGER_DISTANCE and not st.is_escaping:
+        log_event(px, Estado.TRACK, f"🚨 Peligro extremo distancia={distancia_real} → SCAPE")
         stop(px)
         backward(px)
         time.sleep(0.4)
         stop(px)
+
+        st.is_escaping = True
+        st.escape_end_time = time.time() + 1.0
         px.last_cmd = "SCAPE"
-        return Estado.TRACK
+        return Estado.SEARCH   # ← IMPORTANTE: volver a SEARCH
+
+    # 2. Advertencia → reducir velocidad y evitar empuje
+    if distancia_real < WARNING_DISTANCE and not st.is_escaping:
+        if not px.changed_speed_slow:  # evita spam de logs
+            log_event(px, Estado.TRACK, f"⚠️ Advertencia: objeto a {distancia_real} cm → velocidad reducida")
+        px.changed_speed_slow = True   # TRACK sí usa forward(), así que esto es útil
+
+    # 3. Salida del modo escape
+    if st.is_escaping and time.time() >= st.escape_end_time:
+        st.is_escaping = False
+        px.changed_speed_slow = False
+
 
     # ============================================================
     # SIN DETECCIÓN → volver a SEARCH
@@ -1030,16 +1097,34 @@ def state_near(px, estado, st, distancia_real, test_mode):
         return Estado.NEAR
 
     # ============================================================
-    # SEGURIDAD
+    # SEGURIDAD NEAR
     # ============================================================
-    if distancia_real < DANGER_DISTANCE:
-        log_event(px, Estado.NEAR, f"Peligro extremo distancia={distancia_real} durante NEAR → SCAPE")
+    distancia_real = update_safety(px)
+
+    # 1. Peligro extremo → SCAPE inmediato
+    if distancia_real < DANGER_DISTANCE and not st.is_escaping:
+        log_event(px, Estado.NEAR, f"🚨 Peligro extremo distancia={distancia_real} → SCAPE")
         stop(px)
         backward(px)
         time.sleep(0.4)
         stop(px)
+
+        st.is_escaping = True
+        st.escape_end_time = time.time() + 1.0
         px.last_cmd = "SCAPE"
-        return Estado.NEAR
+        return Estado.SEARCH   # ← IMPORTANTE: salir de NEAR
+
+    # 2. Advertencia → detener todo movimiento
+    if distancia_real < WARNING_DISTANCE and not st.is_escaping:
+        log_event(px, Estado.NEAR, f"⚠️ Advertencia: objeto a {distancia_real} cm → frenado total")
+        stop(px)
+        # En NEAR NO usamos velocidad lenta: simplemente NO debe avanzar
+        return Estado.NEAR   # ← permanecer en NEAR pero sin moverse
+
+    # 3. Salida del modo escape
+    if st.is_escaping and time.time() >= st.escape_end_time:
+        st.is_escaping = False
+
 
     # ============================================================
     # SIN DETECCIÓN → salir de NEAR
