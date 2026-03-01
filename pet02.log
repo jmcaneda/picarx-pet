@@ -1,9 +1,29 @@
 === Start of pet02.log ===
-[21:24:04] [Estado.CHK] [CHK] ==============================
-[21:24:04] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[21:24:04] [Estado.CHK] [CHK] ==============================
-[21:24:04] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[21:24:04] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[21:24:04] [Estado.CHK] [CHK] State wheels:     0
-[21:24:04] [Estado.CHK] [CHK] ==============================
-[21:24:04] [Estado.IDLE] Inicio del sistema
+[21:31:02] [Estado.CHK] [CHK] ==============================
+[21:31:02] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[21:31:02] [Estado.CHK] [CHK] ==============================
+[21:31:02] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[21:31:02] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[21:31:02] [Estado.CHK] [CHK] State wheels:     0
+[21:31:02] [Estado.CHK] [CHK] ==============================
+[21:31:02] [Estado.IDLE] Inicio del sistema
+[21:31:02] [Estado.IDLE] Entrando en IDLE (test_mode=False)
+[21:31:02] [Estado.RESET] Entrando en RESET (test_mode=False)
+[21:31:02] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[21:31:02] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[21:31:03] [Estado.SEARCH] Centrado estable (7 frames) → RECENTER
+[21:31:03] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[21:31:03] [Estado.RECENTER] Alineación completada → TRACK
+[21:31:03] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[21:31:07] [Estado.TRACK] Baliza muy cerca → NEAR
+[21:31:07] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[21:31:07] [Estado.NEAR] Retroceso de cortesía
+[21:31:07] [Estado.NEAR] Iniciando gesto 'SI'
+[21:31:08] [Estado.NEAR] Fin de interacción → SEARCH
+[21:31:08] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[21:31:09] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
+[21:31:09] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[21:31:09] [Estado.SEARCH] Centrado estable (7 frames) → RECENTER
+[21:31:09] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[21:31:13] [Estado.RECENTER] Pérdida de detección → SEARCH
+[21:31:13] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
