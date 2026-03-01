@@ -786,9 +786,20 @@ def state_search(px, estado, st, distancia_real, test_mode):
             return Estado.SEARCH
 
     # ============================================================
-    # SIN DETECCIÓN
+    # SIN DETECCIÓN → barrido de cámara
     # ============================================================
-    log_event(px, Estado.SEARCH, "SIN DETECCIÓN VÁLIDA")
+    log_event(px, Estado.SEARCH, "SIN DETECCIÓN VÁLIDA → PANEO")
+
+    # Barrido automático
+    if st.search_cam_dir > 0:
+        moved = pan_right(px)
+    else:
+        moved = pan_left(px)
+
+    # Si llegó al límite, invertir dirección
+    if moved == 0:
+        st.search_cam_dir *= -1
+
     st.search_found_frames = 0
     st.search_lost_frames += 1
     st.search_edge_frames = 0
