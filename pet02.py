@@ -1030,6 +1030,7 @@ def state_near(px, estado, st, distancia_real, test_mode):
     # GESTO “SÍ” (solo una vez)
     # ============================================================
     if not st.near_did_yes:
+        log_event(px, Estado.NEAR, "Ejecutando gesto 'SÍ'")
         now = time.time()
         tilt_yes(px)
         st.near_did_yes = True
