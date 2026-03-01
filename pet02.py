@@ -743,11 +743,15 @@ def state_search(px, estado, st, distancia_real, test_mode):
         return Estado.SEARCH
 
     # ============================================================
-    # SEGURIDAD (integrada)
+    # SEGURIDAD
     # ============================================================
     if distancia_real < DANGER_DISTANCE:
+        log_event(px, Estado.SEARCH, f"Peligro extremo distancia={distancia_real} durante SEARCH → SCAPE")
         stop(px)
-        px.last_cmd = "STOP"
+        backward(px)
+        time.sleep(0.4)
+        stop(px)
+        px.last_cmd = "SCAPE"
         return Estado.SEARCH
 
     # ============================================================
@@ -784,6 +788,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
     # ============================================================
     # SIN DETECCIÓN
     # ============================================================
+    log_event(px, Estado.SEARCH, "SIN DETECCIÓN VÁLIDA")
     st.search_found_frames = 0
     st.search_lost_frames += 1
     st.search_edge_frames = 0
@@ -820,9 +825,13 @@ def state_recenter(px, estado, st, distancia_real,test_mode):
     # SEGURIDAD
     # ============================================================
     if distancia_real < DANGER_DISTANCE:
+        log_event(px, Estado.RECENTER, f"Peligro extremo distancia={distancia_real} durante RECENTER → SCAPE")
         stop(px)
-        px.last_cmd = "STOP"
-        return Estado.SEARCH
+        backward(px)
+        time.sleep(0.4)
+        stop(px)
+        px.last_cmd = "SCAPE"
+        return Estado.RECENTER
 
     # ============================================================
     # SIN DETECCIÓN → volver a SEARCH
@@ -852,6 +861,7 @@ def state_recenter(px, estado, st, distancia_real,test_mode):
     # ============================================================
     # AJUSTE DE DIRECCIÓN DEL CHASIS
     # ============================================================
+    log_event(px, Estado.RECENTER, f"Ajustando dirección del chasis, error_x={det.error_x}")
     if det.error_x > 0:
         # Baliza a la derecha → girar chasis a la derecha
         turn_right(px)
@@ -900,9 +910,13 @@ def state_track(px, estado, st, distancia_real,test_mode):
     # SEGURIDAD
     # ============================================================
     if distancia_real < DANGER_DISTANCE:
+        log_event(px, Estado.TRACK, f"Peligro extremo distancia={distancia_real} durante TRACK → SCAPE")
         stop(px)
-        px.last_cmd = "STOP"
-        return Estado.SEARCH
+        backward(px)
+        time.sleep(0.4)
+        stop(px)
+        px.last_cmd = "SCAPE"
+        return Estado.TRACK
 
     # ============================================================
     # SIN DETECCIÓN → volver a SEARCH
@@ -929,9 +943,9 @@ def state_track(px, estado, st, distancia_real,test_mode):
     # ============================================================
     # CORRECCIÓN DE DIRECCIÓN
     # ============================================================
+    log_event(px, Estado.TRACK, f"Corrigiendo dirección, error_x={det.error_x}")
     error = det.error_x
-
-    if abs(error) < 20:
+    if abs(error) <= 20:
         # Centrado razonable → avanzar recto
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
@@ -939,7 +953,7 @@ def state_track(px, estado, st, distancia_real,test_mode):
         return Estado.TRACK
 
     # Corrección suave
-    if error > 0:
+    if error > 20:
         # Baliza a la derecha
         turn_right(px)
     else:
@@ -982,13 +996,14 @@ def state_near(px, estado, st, distancia_real, test_mode):
     # ============================================================
     # SEGURIDAD
     # ============================================================
-    if distancia_real < 10:  # peligro extremo
+    if distancia_real < DANGER_DISTANCE:
+        log_event(px, Estado.NEAR, f"Peligro extremo distancia={distancia_real} durante NEAR → SCAPE")
         stop(px)
         backward(px)
         time.sleep(0.4)
         stop(px)
         px.last_cmd = "SCAPE"
-        return Estado.SEARCH
+        return Estado.NEAR
 
     # ============================================================
     # SIN DETECCIÓN → salir de NEAR
