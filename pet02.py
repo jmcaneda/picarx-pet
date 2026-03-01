@@ -988,7 +988,7 @@ def state_track(px, estado, st, distancia_real,test_mode):
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
         forward(px)
-        return Estado.NEAR
+        return Estado.TRACK
 
     else:
         # Error significativo → zig-zag para corregir
