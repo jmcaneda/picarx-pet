@@ -362,17 +362,24 @@ def stop(px):
 def forward(px):
     """
     Avance normal o suave dependiendo del flag changed_speed_slow.
+    Evita reenviar el mismo comando, pero NO bloquea el avance.
     """
-    if px.last_cmd == "FORWARD":
-        return False
 
-    # Elegir velocidad según el flag 
-    if px.changed_speed_slow: 
-        px.forward(SLOW_SPEED) 
-    else: 
+    # Elegir comando según velocidad
+    cmd = Cmd.FORWARD_SLOW if px.changed_speed_slow else Cmd.FORWARD
+
+    # Si ya estamos enviando este comando, no reenviar
+    if px.last_cmd == cmd:
+        return True
+
+    # Enviar comando real
+    if cmd == Cmd.FORWARD:
         px.forward(FAST_SPEED)
-    
-    px.last_cmd = "FORWARD"
+    else:
+        px.forward(SLOW_SPEED)
+
+    # Guardar comando
+    px.last_cmd = cmd
     return True
 
 
