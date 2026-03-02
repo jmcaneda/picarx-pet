@@ -958,7 +958,7 @@ def state_recenter(px, estado, st, distancia_real,test_mode):
 
     # 3. Avance muy pequeño (solo para reposicionar)
     forward(px)
-    time.sleep(0.05)   # mucho más pequeño que antes
+    time.sleep(0.03)   # mucho más pequeño que antes
 
     # 4. No resetear servo ni cámara
     # px.set_dir_servo_angle(0)  ← NO
@@ -971,6 +971,7 @@ def state_recenter(px, estado, st, distancia_real,test_mode):
 def state_track(px, estado, st, distancia_real,test_mode):
     det, raw = get_detection(px)
     px.last_det = det
+
     # ============================================================
     # ENTRADA AL ESTADO
     # ============================================================
@@ -989,36 +990,7 @@ def state_track(px, estado, st, distancia_real,test_mode):
 
         return Estado.TRACK
 
-    # ============================================================
-    # SEGURIDAD TRACK
-    # ============================================================
-    distancia_real = update_safety(px)
-
-    # 1. Peligro extremo → SCAPE inmediato
-    if distancia_real < DANGER_DISTANCE and not st.is_escaping:
-        log_event(px, Estado.TRACK, f"🚨 Peligro extremo distancia={distancia_real} → SCAPE")
-        stop(px)
-        backward(px)
-        time.sleep(0.4)
-        stop(px)
-
-        st.is_escaping = True
-        st.escape_end_time = time.time() + 1.0
-        px.last_cmd = "SCAPE"
-        return Estado.SEARCH   # ← IMPORTANTE: volver a SEARCH
-
-    # 2. Advertencia → reducir velocidad y evitar empuje
-    if distancia_real < WARNING_DISTANCE and not st.is_escaping:
-        if not px.changed_speed_slow:  # evita spam de logs
-            log_event(px, Estado.TRACK, f"⚠️ Advertencia: objeto a {distancia_real} cm → velocidad reducida")
-        px.changed_speed_slow = True   # TRACK sí usa forward(), así que esto es útil
-
-    # 3. Salida del modo escape
-    if st.is_escaping and time.time() >= st.escape_end_time:
-        st.is_escaping = False
-        px.changed_speed_slow = False
-
-
+    
     # ============================================================
     # SIN DETECCIÓN → volver a SEARCH
     # ============================================================
@@ -1050,14 +1022,43 @@ def state_track(px, estado, st, distancia_real,test_mode):
         # Centrado razonable → avanzar recto
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
-        forward(px)
-        return Estado.TRACK
+        # forward(px)
+        # return Estado.TRACK
 
     else:
         # Error significativo → zig-zag para corregir
         angulo = zig_zag(px)
         log_event(px, Estado.TRACK, f"Error significativo → zig-zag para corregir (ángulo={angulo})")
-        
+    
+    # ============================================================
+    # SEGURIDAD TRACK
+    # ============================================================
+    distancia_real = update_safety(px)
+
+    # 1. Peligro extremo → SCAPE inmediato
+    if distancia_real < DANGER_DISTANCE and not st.is_escaping:
+        log_event(px, Estado.TRACK, f"🚨 Peligro extremo distancia={distancia_real} → SCAPE")
+        stop(px)
+        backward(px)
+        time.sleep(0.4)
+        stop(px)
+
+        st.is_escaping = True
+        st.escape_end_time = time.time() + 1.0
+        px.last_cmd = "SCAPE"
+        return Estado.SEARCH   # ← IMPORTANTE: volver a SEARCH
+
+    # 2. Advertencia → reducir velocidad y evitar empuje
+    if distancia_real < WARNING_DISTANCE and not st.is_escaping:
+        if not px.changed_speed_slow:  # evita spam de logs
+            log_event(px, Estado.TRACK, f"⚠️ Advertencia: objeto a {distancia_real} cm → velocidad reducida")
+        px.changed_speed_slow = True   # TRACK sí usa forward(), así que esto es útil
+
+    # 3. Salida del modo escape
+    if st.is_escaping and time.time() >= st.escape_end_time:
+        st.is_escaping = False
+        px.changed_speed_slow = False
+
 
     forward(px)
     return Estado.TRACK
