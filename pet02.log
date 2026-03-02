@@ -1,138 +1,33 @@
 === Start of pet02.log ===
-[21:37:06] [Estado.CHK] [CHK] ==============================
-[21:37:06] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[21:37:06] [Estado.CHK] [CHK] ==============================
-[21:37:06] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[21:37:06] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[21:37:06] [Estado.CHK] [CHK] State wheels:     0
-[21:37:06] [Estado.CHK] [CHK] ==============================
-[21:37:06] [Estado.IDLE] Inicio del sistema
-[21:37:06] [Estado.IDLE] Entrando en IDLE (test_mode=False)
-[21:37:06] [Estado.RESET] Entrando en RESET (test_mode=False)
-[21:37:06] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[21:37:06] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[21:37:06] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[21:37:07] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[21:37:07] [Estado.SEARCH] Centrado estable (5 frames) → RECENTER
-[21:37:07] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[21:37:07] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-32
-[21:37:08] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-46
-[21:37:08] [Estado.RECENTER] Pérdida de detección → SEARCH
-[21:37:08] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[21:37:08] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[21:37:09] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[21:37:09] [Estado.SEARCH] Centrado estable (4 frames) → RECENTER
-[21:37:09] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[21:37:09] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-24
-[21:37:09] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-44
-[21:37:10] [Estado.RECENTER] Pérdida de detección → SEARCH
-[21:37:10] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[21:37:10] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[21:37:10] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[21:37:11] [Estado.SEARCH] Centrado estable (6 frames) → RECENTER
-[21:37:11] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[21:37:11] [Estado.RECENTER] Alineación completada → TRACK
-[21:37:11] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[21:37:11] [Estado.TRACK] Corrigiendo dirección, error_x=-14
-[21:37:11] [Estado.TRACK] Corrigiendo dirección, error_x=-12
-[21:37:12] [Estado.TRACK] Corrigiendo dirección, error_x=-26
-[21:37:12] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
-[21:37:12] [Estado.TRACK] Corrigiendo dirección, error_x=-30
-[21:37:12] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
-[21:37:12] [Estado.TRACK] Corrigiendo dirección, error_x=-44
-[21:37:12] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
-[21:37:12] [Estado.TRACK] Corrigiendo dirección, error_x=-66
-[21:37:12] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
-[21:37:12] [Estado.TRACK] Corrigiendo dirección, error_x=-90
-[21:37:12] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
-[21:37:12] [Estado.TRACK] Corrigiendo dirección, error_x=-118
-[21:37:12] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
-[21:37:12] [Estado.TRACK] Corrigiendo dirección, error_x=-148
-[21:37:12] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
-[21:37:12] [Estado.TRACK] Corrigiendo dirección, error_x=-174
-[21:37:12] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
-[21:37:12] [Estado.TRACK] Corrigiendo dirección, error_x=-204
-[21:37:12] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
-[21:37:12] [Estado.TRACK] Corrigiendo dirección, error_x=-238
-[21:37:12] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
-[21:37:13] [Estado.TRACK] Corrigiendo dirección, error_x=-264
-[21:37:13] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
-[21:37:13] [Estado.TRACK] Corrigiendo dirección, error_x=-286
-[21:37:13] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
-[21:37:13] [Estado.TRACK] Corrigiendo dirección, error_x=-302
-[21:37:13] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.6)
-[21:37:13] [Estado.TRACK] Pérdida de detección → SEARCH
-[21:37:13] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[21:37:13] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[21:37:13] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
-[21:37:14] [Estado.SEARCH] Centrado estable (8 frames) → RECENTER
-[21:37:14] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[21:37:14] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-48
-[21:37:14] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-96
-[21:37:15] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-300
-[21:37:15] [Estado.RECENTER] Pérdida de detección → SEARCH
-[21:37:15] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[21:37:15] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[21:37:17] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
-[21:37:18] [Estado.SEARCH] Centrado estable (8 frames) → RECENTER
-[21:37:18] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[21:37:18] [Estado.RECENTER] Alineación completada → TRACK
-[21:37:18] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[21:37:18] [Estado.TRACK] Baliza muy cerca → NEAR
-[21:37:18] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[21:37:18] [Estado.NEAR] Retroceso de cortesía
-[21:37:19] [Estado.NEAR] Ejecutando gesto 'SÍ'
-[21:37:19] [Estado.NEAR] Iniciando gesto 'SI'
-[21:37:20] [Estado.NEAR] Fin de interacción → SEARCH
-[21:37:20] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[21:37:20] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[21:37:21] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
-[21:37:22] [Estado.SEARCH] Centrado estable (8 frames) → RECENTER
-[21:37:22] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[21:37:22] [Estado.RECENTER] Alineación completada → TRACK
-[21:37:23] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[21:37:23] [Estado.TRACK] Baliza muy cerca → NEAR
-[21:37:23] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[21:37:23] [Estado.NEAR] Retroceso de cortesía
-[21:37:23] [Estado.NEAR] Ejecutando gesto 'SÍ'
-[21:37:23] [Estado.NEAR] Iniciando gesto 'SI'
-[21:37:24] [Estado.NEAR] Fin de interacción → SEARCH
-[21:37:24] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[21:37:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[21:37:24] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
-[21:37:25] [Estado.SEARCH] Centrado estable (10 frames) → RECENTER
-[21:37:25] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[21:37:26] [Estado.RECENTER] Alineación completada → TRACK
-[21:37:26] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[21:37:26] [Estado.TRACK] Corrigiendo dirección, error_x=6
-[21:37:26] [Estado.TRACK] Baliza muy cerca → NEAR
-[21:37:26] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[21:37:26] [Estado.NEAR] Retroceso de cortesía
-[21:37:26] [Estado.NEAR] Ejecutando gesto 'SÍ'
-[21:37:26] [Estado.NEAR] Iniciando gesto 'SI'
-[21:37:27] [Estado.NEAR] Fin de interacción → SEARCH
-[21:37:27] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[21:37:27] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[21:37:28] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
-[21:37:28] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[21:37:28] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
-[21:37:28] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[21:37:28] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
-[21:37:28] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[21:37:28] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
-[21:37:28] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[21:37:30] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
-[21:37:31] [Estado.SEARCH] Centrado estable (8 frames) → RECENTER
-[21:37:31] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[21:37:31] [Estado.RECENTER] Alineación completada → TRACK
-[21:37:31] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[21:37:31] [Estado.TRACK] Corrigiendo dirección, error_x=4
-[21:37:31] [Estado.TRACK] Baliza muy cerca → NEAR
-[21:37:31] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[21:37:31] [Estado.NEAR] Retroceso de cortesía
-[21:37:32] [Estado.NEAR] Ejecutando gesto 'SÍ'
-[21:37:32] [Estado.NEAR] Iniciando gesto 'SI'
-[21:37:33] [Estado.NEAR] Fin de interacción → SEARCH
-[21:37:33] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[21:37:33] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[21:37:33] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
+[11:05:07] [Estado.CHK] [CHK] ==============================
+[11:05:07] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[11:05:07] [Estado.CHK] [CHK] ==============================
+[11:05:07] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[11:05:07] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[11:05:07] [Estado.CHK] [CHK] State wheels:     0
+[11:05:07] [Estado.CHK] [CHK] ==============================
+[11:05:07] [Estado.IDLE] Inicio del sistema
+[11:05:07] [Estado.IDLE] Entrando en IDLE (test_mode=False)
+[11:05:07] [Estado.RESET] Entrando en RESET (test_mode=False)
+[11:05:07] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[11:05:08] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:05:09] [Estado.SEARCH] Centrado estable (8 frames) → RECENTER
+[11:05:09] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:05:09] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-42
+[11:05:09] [Estado.RECENTER] Ajustando dirección del chasis, error_x=242
+[11:05:09] [Estado.RECENTER] Ajustando dirección del chasis, error_x=174
+[11:05:10] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-32
+[11:05:10] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-74
+[11:05:11] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-106
+[11:05:11] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-130
+[11:05:11] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-160
+[11:05:11] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-192
+[11:05:12] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-238
+[11:05:12] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-270
+[11:05:12] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-292
+[11:05:12] [Estado.RECENTER] Pérdida de detección → SEARCH
+[11:05:13] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[11:05:13] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[11:05:14] [Estado.SEARCH] 🚨 Peligro extremo distancia=16.3 → SCAPE
+[11:05:14] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[11:05:15] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA

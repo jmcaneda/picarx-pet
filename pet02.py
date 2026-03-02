@@ -945,30 +945,27 @@ def state_recenter(px, estado, st, distancia_real,test_mode):
         return Estado.RECENTER
 
     # ============================================================
-    # AJUSTE DE DIRECCIÓN DEL CHASIS
+    # AJUSTE DE DIRECCIÓN DEL CHASIS (RECENTER PROPORCIONAL)
     # ============================================================
     log_event(px, Estado.RECENTER, f"Ajustando dirección del chasis, error_x={det.error_x}")
-    if det.error_x > 0:
-        # Baliza a la derecha → girar chasis a la derecha
-        turn_right(px)
-    else:
-        # Baliza a la izquierda → girar chasis a la izquierda
-        turn_left(px)
 
-    # Pequeño avance para completar el giro
+    # 1. Calcular ángulo proporcional (más suave que TRACK)
+    servo_angle = clamp(det.error_x * 0.03, SERVO_ANGLE_MIN, SERVO_ANGLE_MAX)
+
+    # 2. Aplicar giro suave
+    px.set_dir_servo_angle(servo_angle)
+    px.dir_current_angle = servo_angle
+
+    # 3. Avance muy pequeño (solo para reposicionar)
     forward(px)
-    time.sleep(0.15)
-    # stop(px)
+    time.sleep(0.05)   # mucho más pequeño que antes
 
-    # Resetear dirección
-    px.set_dir_servo_angle(0)
-    px.dir_current_angle = 0
-
-    # Resetear PAN después del giro
-    px.set_cam_pan_angle(0)
-    px.last_pan = 0
+    # 4. No resetear servo ni cámara
+    # px.set_dir_servo_angle(0)  ← NO
+    # px.set_cam_pan_angle(0)    ← NO
 
     return Estado.RECENTER
+
 
 
 def state_track(px, estado, st, distancia_real,test_mode):
