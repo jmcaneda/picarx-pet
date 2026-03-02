@@ -433,18 +433,10 @@ def turn_right(px):
     px.last_cmd = "WHEELS_TURN_RIGHT"
     return True
 
-def zig_zag(px, k=0.3, max_angle=20):
-    """
-    Movimiento suave de zig-zag basado en el PAN de la cámara.
-    - k: factor de suavizado (0.2–0.4 recomendado)
-    - max_angle: límite del servo de dirección
-    """
-
-    # 1. Leer el pan actual de la cámara
-    pan = px.last_pan  # ya lo tienes actualizado en tu FSM
-
-    # 2. Convertir PAN en ángulo de dirección suavizado
-    servo_angle = k * pan
+def zig_zag(px):
+    det, raw = get_detection(px)
+    px.last_det = det
+    servo_angle = clamp(det.error_x * 0.05, SERVO_ANGLE_MIN, SERVO_ANGLE_MAX)
 
     # 3. Limitar el ángulo para evitar sacudidas
     if servo_angle >= SERVO_ANGLE_MAX:
@@ -945,7 +937,7 @@ def state_recenter(px, estado, st, distancia_real,test_mode):
     # Si ya está centrado → TRACK
     if abs(det.error_x) < 20:
         st.recenter_centered_frames += 1
-        if st.recenter_centered_frames >= 3:
+        if st.recenter_centered_frames >= 4:
             log_event(px, Estado.RECENTER, "Alineación completada → TRACK")
             px.last_cmd = "STOP"
             stop(px)
@@ -966,7 +958,7 @@ def state_recenter(px, estado, st, distancia_real,test_mode):
     # Pequeño avance para completar el giro
     forward(px)
     time.sleep(0.15)
-    stop(px)
+    # stop(px)
 
     # Resetear dirección
     px.set_dir_servo_angle(0)
