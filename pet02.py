@@ -896,35 +896,7 @@ def state_recenter(px, estado, st, distancia_real,test_mode):
 
         return Estado.RECENTER
 
-    # ============================================================
-    # SEGURIDAD RECENTER
-    # ============================================================
-    distancia_real = update_safety(px)
-
-    # 1. Peligro extremo → SCAPE inmediato
-    if distancia_real < DANGER_DISTANCE and not st.is_escaping:
-        log_event(px, Estado.RECENTER, f"🚨 Peligro extremo distancia={distancia_real} → SCAPE")
-        stop(px)
-        backward(px)
-        time.sleep(0.4)
-        stop(px)
-
-        st.is_escaping = True
-        st.escape_end_time = time.time() + 1.0
-        px.last_cmd = "SCAPE"
-        return Estado.SEARCH   # ← IMPORTANTE: volver a SEARCH
-
-    # 2. Advertencia → frenar y salir de RECENTER
-    if distancia_real < WARNING_DISTANCE and not st.is_escaping:
-        log_event(px, Estado.RECENTER, f"⚠️ Advertencia: objeto a {distancia_real} cm → frenado preventivo")
-        stop(px)
-        return Estado.SEARCH   # ← IMPORTANTE: no continuar RECENTER
-
-    # 3. Salida del modo escape
-    if st.is_escaping and time.time() >= st.escape_end_time:
-        st.is_escaping = False
-
-
+    
     # ============================================================
     # SIN DETECCIÓN → volver a SEARCH
     # ============================================================
@@ -961,6 +933,35 @@ def state_recenter(px, estado, st, distancia_real,test_mode):
     # 2. Aplicar giro suave
     px.set_dir_servo_angle(servo_angle)
     px.dir_current_angle = servo_angle
+
+    # ============================================================
+    # SEGURIDAD RECENTER
+    # ============================================================
+    distancia_real = update_safety(px)
+
+    # 1. Peligro extremo → SCAPE inmediato
+    if distancia_real < DANGER_DISTANCE and not st.is_escaping:
+        log_event(px, Estado.RECENTER, f"🚨 Peligro extremo distancia={distancia_real} → SCAPE")
+        stop(px)
+        backward(px)
+        time.sleep(0.4)
+        stop(px)
+
+        st.is_escaping = True
+        st.escape_end_time = time.time() + 1.0
+        px.last_cmd = "SCAPE"
+        return Estado.SEARCH   # ← IMPORTANTE: volver a SEARCH
+
+    # 2. Advertencia → frenar y salir de RECENTER
+    if distancia_real < WARNING_DISTANCE and not st.is_escaping:
+        log_event(px, Estado.RECENTER, f"⚠️ Advertencia: objeto a {distancia_real} cm → frenado preventivo")
+        stop(px)
+        return Estado.SEARCH   # ← IMPORTANTE: no continuar RECENTER
+
+    # 3. Salida del modo escape
+    if st.is_escaping and time.time() >= st.escape_end_time:
+        st.is_escaping = False
+
 
     # 3. Avance muy pequeño (solo para reposicionar)
     forward(px)
