@@ -642,7 +642,13 @@ def print_dashboard(px, estado, st, dist, test_mode):
 
     print("="*45)
     print(" Presiona Ctrl+C para detener")
+    
 
+def clamp(value, min_value, max_value):
+    """
+    Limita 'value' entre min_value y max_value.
+    """
+    return max(min_value, min(value, max_value))
 
 
 # ============================================================
