@@ -340,70 +340,61 @@ def init_flags(px):
     # ============================================================
     # Flag para indicar si se ha cambiado la velocidad 
     # ============================================================
-    px.changed_speed_slow = False 
+    px.changed_speed_slow = False
+    px.forward_active = False
 
 # ============================================================
 # ACCIONES BÁSICAS
 # ============================================================
 
 def stop(px):
-    """
-    Detiene el robot sin tocar el servo de dirección.
-    Devuelve True si realmente se detuvo.
-    """
-    if px.last_cmd == "STOP":
-        return False 
+    if px.last_cmd == Cmd.STOP:
+        return False
 
     px.stop()
-    px.last_cmd = "STOP"
+    px.last_cmd = Cmd.STOP
+    px.forward_active = False
     return True
 
 
 def forward(px):
-    """
-    Avance normal o suave dependiendo del flag changed_speed_slow.
-    Evita reenviar el mismo comando, pero NO bloquea el avance.
-    """
-
-    # Elegir comando según velocidad
     cmd = Cmd.FORWARD_SLOW if px.changed_speed_slow else Cmd.FORWARD
 
-    # Si ya estamos enviando este comando, no reenviar
     if px.last_cmd == cmd:
         return True
 
-    # Enviar comando real
     if cmd == Cmd.FORWARD:
         px.forward(FAST_SPEED)
     else:
         px.forward(SLOW_SPEED)
 
-    # Guardar comando
     px.last_cmd = cmd
+    px.forward_active = True
     return True
 
 
 def forward_slow(px):
-    """
-    Avance suave para TRACK y SEARCH.
-    """
-    if px.last_cmd == "FORWARD_SLOW":
+    if px.last_cmd == Cmd.FORWARD_SLOW:
         return False
 
     px.forward(SLOW_SPEED)
-    px.last_cmd = "FORWARD_SLOW"
+    px.last_cmd = Cmd.FORWARD_SLOW
+    px.forward_active = True
     return True
 
 
 def backward(px):
-    """
-    Retroceso seguro.
-    """
-    if px.last_cmd == "BACKWARD":
+    # Bloqueo: no permitir backward directo después de forward
+    if px.forward_active:
+        log_event(px, "BACKWARD", "Bloqueado: veníamos de FORWARD sin STOP")
+        return False
+
+    if px.last_cmd == Cmd.BACKWARD:
         return False
 
     px.backward(SLOW_SPEED)
-    px.last_cmd = "BACKWARD"
+    px.last_cmd = Cmd.BACKWARD
+    px.forward_active = False
     return True
 
 
@@ -412,43 +403,40 @@ def backward(px):
 # ------------------------------------------------------------
 
 def turn_left(px):
-    
-    if px.last_cmd == "WHEELS_TURN_LEFT":
+    if px.last_cmd == Cmd.WHEELS_TURN_LEFT:
         return False
 
     px.set_dir_servo_angle(SERVO_ANGLE_MIN)
     px.dir_current_angle = SERVO_ANGLE_MIN
 
-    px.last_cmd = "WHEELS_TURN_LEFT"
+    px.last_cmd = Cmd.WHEELS_TURN_LEFT
+    px.forward_active = False   # ← IMPORTANTE
     return True
 
 
 def turn_right(px):
-    if px.last_cmd == "WHEELS_TURN_RIGHT":
+    if px.last_cmd == Cmd.WHEELS_TURN_RIGHT:
         return False
-        
+
     px.set_dir_servo_angle(SERVO_ANGLE_MAX)
     px.dir_current_angle = SERVO_ANGLE_MAX
 
-    px.last_cmd = "WHEELS_TURN_RIGHT"
+    px.last_cmd = Cmd.WHEELS_TURN_RIGHT
+    px.forward_active = False   # ← IMPORTANTE
     return True
+
 
 def zig_zag(px):
     det, raw = get_detection(px)
     px.last_det = det
+
     servo_angle = clamp(det.error_x * 0.05, SERVO_ANGLE_MIN, SERVO_ANGLE_MAX)
 
-    # 3. Limitar el ángulo para evitar sacudidas
-    if servo_angle >= SERVO_ANGLE_MAX:
-        servo_angle = SERVO_ANGLE_MAX
-    elif servo_angle <= SERVO_ANGLE_MIN:
-        servo_angle = SERVO_ANGLE_MIN
-
-    # 4. Aplicar el ángulo al servo de dirección
     px.set_dir_servo_angle(servo_angle)
     px.dir_current_angle = servo_angle
-    px.last_cmd = "WHEELS_ZIG_ZAG"
 
+    px.last_cmd = Cmd.WHEELS_ZIG_ZAG
+    px.forward_active = False   # ← IMPORTANTE
     return servo_angle
 
 
@@ -457,76 +445,85 @@ def zig_zag(px):
 # ============================================================
 
 def pan_right(px, step=CAM_STEP):
-    
     new_angle = px.last_pan + step
+
     if new_angle >= PAN_MAX:
         new_angle = PAN_MAX
-        px.last_pan = PAN_MAX
-        px.set_cam_pan_angle(px.last_pan)
-        px.last_cmd = "CAM_PAN_RIGHT"
-        return 0  # no hubo movimiento real
 
     px.last_pan = new_angle
     px.set_cam_pan_angle(px.last_pan)
-    px.last_cmd = "CAM_PAN_RIGHT"
-    return 1 # movimiento realizado
+
+    px.last_cmd = Cmd.CAM_PAN_RIGHT
+    px.forward_active = False   # ← IMPORTANTE
+
+    return 1 if new_angle < PAN_MAX else 0
+
 
 def pan_left(px, step=CAM_STEP):
-   
     new_angle = px.last_pan - step
+
     if new_angle <= PAN_MIN:
         new_angle = PAN_MIN
-        px.last_pan = PAN_MIN
-        px.set_cam_pan_angle(px.last_pan)
-        px.last_cmd = "CAM_PAN_LEFT"
-        return 0 # no hubo movimiento real
 
     px.last_pan = new_angle
     px.set_cam_pan_angle(px.last_pan)
-    px.last_cmd = "CAM_PAN_LEFT"
-    return 1 # movimiento realizado
+
+    px.last_cmd = Cmd.CAM_PAN_LEFT
+    px.forward_active = False   # ← IMPORTANTE
+
+    return 1 if new_angle > PAN_MIN else 0
+
 
 def tilt_top(px, step=CAM_STEP):
     new_angle = px.last_tilt + step
+
     if new_angle >= TILT_MAX:
-        px.last_tilt = TILT_MAX
-        px.set_cam_tilt_angle(px.last_tilt)
-        px.last_cmd = "CAM_TILT_TOP"
-        return 0
+        new_angle = TILT_MAX
 
     px.last_tilt = new_angle
     px.set_cam_tilt_angle(px.last_tilt)
-    px.last_cmd = "CAM_TILT_TOP"
-    return 1
+
+    px.last_cmd = Cmd.CAM_TILT_TOP
+    px.forward_active = False   # ← IMPORTANTE
+
+    return 1 if new_angle < TILT_MAX else 0
+
 
 
 def tilt_bottom(px, step=CAM_STEP):
     new_angle = px.last_tilt - step
+
     if new_angle <= TILT_MIN:
-        px.last_tilt = TILT_MIN
-        px.set_cam_tilt_angle(px.last_tilt)
-        px.last_cmd = "CAM_TILT_BOTTOM"
-        return 0
+        new_angle = TILT_MIN
 
     px.last_tilt = new_angle
     px.set_cam_tilt_angle(px.last_tilt)
-    px.last_cmd = "CAM_TILT_BOTTOM"
-    return 1
+
+    px.last_cmd = Cmd.CAM_TILT_BOTTOM
+    px.forward_active = False   # ← IMPORTANTE
+
+    return 1 if new_angle > TILT_MIN else 0
+
 
 def tilt_yes(px):
 
-    if px.last_cmd == "CAM_TILT_YES":
+    if px.last_cmd == Cmd.CAM_TILT_YES:
         return False
-    
-    # Secuencia de ángulos para el gesto "sí"
-    secuencia = [TILT_MAX, TILT_MIN, 0, TILT_MAX, TILT_MIN, 0]
+
     log_event(px, px.last_state, "Iniciando gesto 'SI'")
+
+    secuencia = [TILT_MAX, TILT_MIN, 0, TILT_MAX, TILT_MIN, 0]
 
     for angulo in secuencia:
         px.set_cam_tilt_angle(angulo)
-        time.sleep(0.15)  # pequeña pausa entre movimientos
-    
-    px.last_cmd = "CAM_TILT_YES"
+        time.sleep(0.15)
+
+    px.last_cmd = Cmd.CAM_TILT_YES
+    px.forward_active = False   # ← IMPORTANTE
+
+    return True
+
+
 
 # ============================================================
 # SEGURIDAD
