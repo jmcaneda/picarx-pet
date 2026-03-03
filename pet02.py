@@ -367,7 +367,6 @@ def stop(px):
     px.forward_active = False
     return True
 
-
 def forward(px):
     cmd = Cmd.FORWARD_SLOW if px.changed_speed_slow else Cmd.FORWARD
 
@@ -380,16 +379,6 @@ def forward(px):
         px.forward(SLOW_SPEED)
 
     px.last_cmd = cmd
-    px.forward_active = True
-    return True
-
-
-def forward_slow(px):
-    if px.last_cmd == Cmd.FORWARD_SLOW:
-        return False
-
-    px.forward(SLOW_SPEED)
-    px.last_cmd = Cmd.FORWARD_SLOW
     px.forward_active = True
     return True
 
@@ -1183,49 +1172,53 @@ def pet_mode(px, test_mode):
     with open(LOG_PATH, "w", encoding="utf-8") as f:
         f.write("=== Start of pet02.log ===\n")
 
-    # music.music_set_volume(20)
-    # sound_path = os.path.join(SOUNDS_DIR, "sounds_angry.wav")
-    # music.sound_play(sound_path)
-    #time.sleep(0.05)
-
     hello_px(px)
     init_camera(px)
     init_flags(px)
     estado = init_internal_state(px)
-    check_robot(px,log_event)
+    check_robot(px, log_event)
     state = RobotState()
     log_event(px, estado, "Inicio del sistema")
     ciclo_dashboard = 0
-    test = test_mode
 
-    while True:
+    try:
+        while True:
+            update_safety(px)
 
-        update_safety(px)
+            if estado == Estado.IDLE:
+                estado = state_idle(px, estado, state, px.distance_real, test_mode)
 
+            elif estado == Estado.RESET:
+                estado = state_reset(px, estado, state, px.distance_real, test_mode)
 
-        if estado == Estado.IDLE:
-            estado = state_idle(px, estado, state, px.distance_real, test)
+            elif estado == Estado.SEARCH:
+                estado = state_search(px, estado, state, px.distance_real, test_mode)
 
-        elif estado == Estado.RESET:
-            estado = state_reset(px, estado, state, px.distance_real, test)
+            elif estado == Estado.RECENTER:
+                estado = state_recenter(px, estado, state, px.distance_real, test_mode)
 
-        elif estado == Estado.SEARCH:
-            estado = state_search(px, estado, state, px.distance_real, test)
+            elif estado == Estado.TRACK:
+                estado = state_track(px, estado, state, px.distance_real, test_mode)
 
-        elif estado == Estado.RECENTER:
-            estado = state_recenter(px, estado, state, px.distance_real, test)
+            elif estado == Estado.NEAR:
+                estado = state_near(px, estado, state, px.distance_real, test_mode)
 
-        elif estado == Estado.TRACK:
-            estado = state_track(px, estado, state, px.distance_real, test)
+            ciclo_dashboard += 1
+            if not test_mode and ciclo_dashboard % 5 == 0:
+                print_dashboard(px, estado, state, px.distance_real, test_mode)
 
-        elif estado == Estado.NEAR:
-            estado = state_near(px, estado, state, px.distance_real, test)
+            time.sleep(0.05)
 
-        ciclo_dashboard += 1
-        if not test_mode and ciclo_dashboard % 5 == 0:
-            print_dashboard(px, estado, state, px.distance_real, test)
+    except KeyboardInterrupt:
+        print("\n🛑 Interrupción detectada (Ctrl+C). Deteniendo robot...")
+        
+    finally:
+        stop(px)
+        px.set_dir_servo_angle(0)
+        px.set_cam_pan_angle(0)
+        px.set_cam_tilt_angle(0)
+        print("✔ Robot detenido de forma segura.")
 
-        time.sleep(0.05)
 
 # ============================================================
 # ENTRYPOINT
