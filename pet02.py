@@ -893,7 +893,6 @@ def state_search(px, estado, st, distancia_real, test_mode):
 def state_recenter(px, estado, st, distancia_real,test_mode):
     det, raw = get_detection(px)
     px.last_det = det
-    
 
     # ============================================================
     # ENTRADA AL ESTADO
@@ -909,7 +908,7 @@ def state_recenter(px, estado, st, distancia_real,test_mode):
         st.just_recentered = None
 
         px.last_state = Estado.RECENTER
-        px.last_cmd = "STOP"
+        px.last_cmd = Cmd.STOP
         stop(px)
 
         return Estado.RECENTER
@@ -941,21 +940,31 @@ def state_recenter(px, estado, st, distancia_real,test_mode):
         return Estado.RECENTER
 
     # ============================================================
-    # AJUSTE DE DIRECCIÓN DEL CHASIS (RECENTER PROPORCIONAL)
+    # CORRECCIÓN DE DIRECCIÓN
     # ============================================================
-    log_event(px, Estado.RECENTER, f"Ajustando dirección del chasis, error_x={det.error_x}")
+    log_event(px, Estado.RECENTER, f"Corrigiendo dirección, error_x={det.error_x}")
+    error = det.error_x
+    if abs(error) <= 20:
+        # Centrado razonable → avanzar recto
+        px.set_dir_servo_angle(0)
+        px.dir_current_angle = 0
 
-    # 1. Calcular ángulo proporcional (más suave que TRACK)
-    servo_angle = clamp(det.error_x * 0.03, SERVO_ANGLE_MIN, SERVO_ANGLE_MAX)
-
-    # 2. Aplicar giro suave
-    px.set_dir_servo_angle(servo_angle)
-    px.dir_current_angle = servo_angle
+    else:
+        # Error significativo → zig-zag para corregir
+        angulo = zig_zag(px)
+        log_event(px, Estado.TRACK, f"Error significativo → zig-zag para corregir (ángulo={angulo})")
 
     # ============================================================
     # SEGURIDAD RECENTER
     # ============================================================
     update_safety(px)
+
+    # Si la visión o la distancia dicen “muy cerca”, pasar a NEAR 
+    if det.near_fused: 
+        log_event(px, Estado.RECENTER, "Baliza muy cerca según fusión → NEAR") 
+        stop(px)
+        px.last_cmd = Cmd.STOP
+        return Estado.NEAR
 
     # 1. Peligro extremo → SCAPE inmediato
     if px.distance_real < DANGER_DISTANCE and not st.is_escaping:
