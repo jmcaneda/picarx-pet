@@ -321,48 +321,35 @@ def init_internal_state(px):
 def init_flags(px):
     """
     Inicializa todas las variables internas del robot.
-    Estas variables NO pertenecen a la FSM, sino al hardware
-    y al registro de últimos valores.
     """
 
-    # ============================================================
     # LOGGING
-    # ============================================================
-    px.last_log = None            # último mensaje registrado (para evitar spam)
+    px.last_log = None
 
-    # ============================================================
     # ESTADOS
-    # ============================================================
-    px.last_state = None          # último estado ejecutado por la FSM
-    px.estado_actual = None       # estado actual (para dashboard/log)
-    px.last_cmd = "KEEP_ALIVE"    # último comando enviado al robot (*)
+    px.last_state = None
+    px.estado_actual = None
+    px.last_cmd = "KEEP_ALIVE"
 
-    # ============================================================
     # CÁMARA
-    # ============================================================
-    px.last_pan = 0               # ángulo actual del servo PAN (*)
-    px.last_tilt = 0              # ángulo actual del servo TILT (si se usa)
+    px.last_pan = 0
+    px.last_tilt = 0
 
-    # ============================================================
     # DIRECCIÓN DEL CHASIS
-    # ============================================================
-    px.dir_current_angle = 0      # ángulo actual del servo de dirección (*)
+    px.dir_current_angle = 0
 
-    # ============================================================
-    # DETECCION
-    # ============================================================
-    px.last_det = None              # última detección procesada (objeto Det)
+    # DETECCIÓN
+    px.last_det = None
 
-    # ============================================================
-    # Flag para indicar si se ha cambiado la velocidad 
-    # ============================================================
+    # MOVIMIENTO
     px.changed_speed_slow = False
     px.forward_active = False
 
-    # ============================================================
     # SEGURIDAD
-    # ============================================================
-    px.distance_real = SAFE_DISTANCE
+    px.distance_real = SAFE_DISTANCE      # distancia filtrada
+    px.distance_raw = SAFE_DISTANCE       # lectura cruda inicial
+    px.ultra_valid = False                # opcional: útil para validadores
+
 
 # ============================================================
 # ACCIONES BÁSICAS
@@ -550,18 +537,25 @@ def tilt_yes(px):
 # SEGURIDAD
 # ============================================================
 def update_safety(px):
-    distance = round(px.ultrasonic.read(), 2)
+    """
+    Lee el sensor ultrasónico UNA sola vez por ciclo,
+    aplica filtro básico y actualiza px.distance_real.
+    """
+
+    raw = px.ultrasonic.read()
 
     # Filtro de valores basura
-    if distance <= 0 or distance >= 400:
+    if raw <= 0 or raw >= 400:
         d = 999
     else:
-        d = distance
+        d = round(raw, 2)
 
-    # ACTUALIZAR EL ESTADO DEL ROBOT
+    # Guardar en el robot
     px.distance_real = d
+    px.distance_raw = raw  # opcional, útil para logs
 
     return d
+
 
 
 # ============================================================
@@ -585,17 +579,15 @@ def get_detection(px):
         y = raw["y"],
         w = raw["w"],
         h = raw["h"],
-        distance = px.distance_real,
-        distance_raw = px.ultrasonic.read()
+        distance = px.distance_real,      # filtrada
+        distance_raw = px.distance_raw    # cruda
     )
 
-    # FILTROS ANTI-FANTASMA
+    # Filtros anti-fantasma
     if det.x < 0 or det.y < 0:
         det.n = 0
-
     if det.n >= 1 and (det.w <= 0 or det.h <= 0):
         det.n = 0
-
     if det.area < 300:
         det.n = 0
 
