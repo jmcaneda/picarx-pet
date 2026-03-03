@@ -971,6 +971,10 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
         angulo = zig_zag(px)
         log_event(px, Estado.RECENTER, f"Error significativo → zig-zag (ángulo={angulo})")
 
+    # ============================================================
+    # 3) AVANCE
+    # ============================================================
+    forward(px)
     return Estado.RECENTER
 
 
