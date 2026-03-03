@@ -63,7 +63,7 @@ class Cmd(Enum):
     FORWARD_SLOW = 3
     WHEELS_TURN_LEFT = 4
     WHEELS_TURN_RIGHT = 5
-    WHEELS_ZIG_ZAG = 6
+    WHEELS_ANGLE_ERROR_X = 6
     BACKWARD = 7
     SCAPE = 8
     CAM_PAN_LEFT = 9
@@ -333,7 +333,6 @@ def init_flags(px):
 
     # ESTADOS
     px.last_state = None
-    px.estado_actual = None
     px.last_cmd = "KEEP_ALIVE"
 
     # CÁMARA
@@ -353,7 +352,6 @@ def init_flags(px):
     # SEGURIDAD
     px.distance_real = SAFE_DISTANCE      # distancia filtrada
     px.distance_raw = SAFE_DISTANCE       # lectura cruda inicial
-    px.ultra_valid = False                # opcional: útil para validadores
 
 
 # ============================================================
@@ -368,6 +366,11 @@ def stop(px):
     return True
 
 def forward(px):
+    # Bloqueo: no permitir forward directo después de backward
+    if px.last_cmd == Cmd.BACKWARD:
+        log_event(px, px.last_state, "Bloqueado: veníamos de BACKWARD sin STOP")
+        return False
+
     cmd = Cmd.FORWARD_SLOW if px.changed_speed_slow else Cmd.FORWARD
 
     if px.last_cmd == cmd:
@@ -386,7 +389,7 @@ def forward(px):
 def backward(px):
     # Bloqueo: no permitir backward directo después de forward
     if px.forward_active:
-        log_event(px, "BACKWARD", "Bloqueado: veníamos de FORWARD sin STOP")
+        log_event(px, px.last_state, "Bloqueado: veníamos de FORWARD sin STOP")
         return False
 
     if px.last_cmd == Cmd.BACKWARD:
@@ -426,14 +429,14 @@ def turn_right(px):
     return True
 
 
-def zig_zag(px, det):
+def wheels_angle_error_x(px, det):
 
     servo_angle = round(clamp(det.error_x * 0.4, SERVO_ANGLE_MIN, SERVO_ANGLE_MAX),1)
 
     px.set_dir_servo_angle(servo_angle)
     px.dir_current_angle = servo_angle
 
-    px.last_cmd = Cmd.WHEELS_ZIG_ZAG
+    px.last_cmd = Cmd.WHEELS_ANGLE_ERROR_X
     
     return servo_angle
 
@@ -452,9 +455,8 @@ def pan_right(px, step=CAM_STEP):
     px.set_cam_pan_angle(px.last_pan)
 
     px.last_cmd = Cmd.CAM_PAN_RIGHT
-    px.forward_active = False   # ← IMPORTANTE
 
-    return 1 if new_angle < PAN_MAX else 0
+    return 1 if new_angle <= PAN_MAX else 0
 
 
 def pan_left(px, step=CAM_STEP):
@@ -467,9 +469,8 @@ def pan_left(px, step=CAM_STEP):
     px.set_cam_pan_angle(px.last_pan)
 
     px.last_cmd = Cmd.CAM_PAN_LEFT
-    px.forward_active = False   # ← IMPORTANTE
 
-    return 1 if new_angle > PAN_MIN else 0
+    return 1 if new_angle >= PAN_MIN else 0
 
 
 def tilt_top(px, step=CAM_STEP):
@@ -482,10 +483,8 @@ def tilt_top(px, step=CAM_STEP):
     px.set_cam_tilt_angle(px.last_tilt)
 
     px.last_cmd = Cmd.CAM_TILT_TOP
-    px.forward_active = False   # ← IMPORTANTE
 
-    return 1 if new_angle < TILT_MAX else 0
-
+    return 1 if new_angle <= TILT_MAX else 0
 
 
 def tilt_bottom(px, step=CAM_STEP):
@@ -498,9 +497,8 @@ def tilt_bottom(px, step=CAM_STEP):
     px.set_cam_tilt_angle(px.last_tilt)
 
     px.last_cmd = Cmd.CAM_TILT_BOTTOM
-    px.forward_active = False   # ← IMPORTANTE
 
-    return 1 if new_angle > TILT_MIN else 0
+    return 1 if new_angle >= TILT_MIN else 0
 
 
 def tilt_yes(px):
@@ -510,17 +508,15 @@ def tilt_yes(px):
 
     log_event(px, px.last_state, "Iniciando gesto 'SI'")
 
-    secuencia = [TILT_MAX, TILT_MIN, 0, TILT_MAX, TILT_MIN, 0]
+    secuencia = [0, TILT_MAX, 0,TILT_MIN, 0, TILT_MAX, 0, TILT_MIN, 0]
 
     for angulo in secuencia:
         px.set_cam_tilt_angle(angulo)
         time.sleep(0.05)
 
     px.last_cmd = Cmd.CAM_TILT_YES
-    px.forward_active = False   # ← IMPORTANTE
 
     return True
-
 
 
 # ============================================================
@@ -599,11 +595,9 @@ def log_event(px, estado, msg):
 
 
 def log_det(px, estado, det, raw, state, prefix=""):
-    # Si state es None, usamos "N/A", si no, el valor real
-    f_lost = state.recenter_lost_frames if state else "N/A"
     
     msg = (
-        f"{prefix} f_lost={f_lost} "
+        f"{prefix} f_lost={state.recenter_lost_frames} "
         f"search={det.valid_for_search} "
         f"near={det.valid_for_near} "
         f"centered={det.is_centered} "
@@ -614,7 +608,7 @@ def log_det(px, estado, det, raw, state, prefix=""):
     log_event(px, estado, msg)
 
 
-def print_dashboard(px, estado, st, dist, test_mode):
+def print_dashboard(px, estado, test_mode):
     os.system('clear')
     print("="*45)
     print(f" 🐾 PICAR-X DASHBOARD | Estado: {estado.name}")
@@ -625,7 +619,7 @@ def print_dashboard(px, estado, st, dist, test_mode):
     print(f" MOVIMIENTO: {px.last_cmd}")
 
     # Seguridad
-    print(f" DISTANCIA:  {dist} cm " + ("⚠️ DANGER" if dist < DANGER_DISTANCE else "SAFE"))
+    print(f" DISTANCIA:  {px.distance_real} cm " + ("⚠️ DANGER" if px.distance_real < DANGER_DISTANCE else "SAFE"))
     print("-"*45)
 
     # Hardware
@@ -955,8 +949,8 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
     if abs(det.error_x) < 20:
         px.set_dir_servo_angle(0)
     else:
-        angulo = zig_zag(px, det)
-        log_event(px, Estado.RECENTER, f"Error significativo → zig-zag (ángulo={angulo})")
+        angulo = wheels_angle_error_x(px, det)
+        log_event(px, Estado.RECENTER, f"Error significativo → wheels_angle_error_x (ángulo={angulo})")
 
     if abs(det.error_x) > 150: # Si la baliza está ya en el tercio exterior del frame
         log_event(px, Estado.RECENTER, "Error demasiado grande para corregir avanzando → SEARCH")
@@ -1041,8 +1035,8 @@ def state_track(px, estado, st, distancia_real, test_mode):
     if abs(det.error_x) <= 20:
         px.set_dir_servo_angle(0)
     else:
-        angulo = zig_zag(px, det)
-        log_event(px, Estado.TRACK, f"Error significativo → zig-zag para corregir (ángulo={angulo})")
+        angulo = wheels_angle_error_x(px, det)
+        log_event(px, Estado.TRACK, f"Error significativo → wheels_angle_error_x para corregir (ángulo={angulo})")
 
     # ============================================================
     # 3) AVANCE
@@ -1205,7 +1199,7 @@ def pet_mode(px, test_mode):
 
             ciclo_dashboard += 1
             if not test_mode and ciclo_dashboard % 5 == 0:
-                print_dashboard(px, estado, state, px.distance_real, test_mode)
+                print_dashboard(px, estado, test_mode)
 
             time.sleep(0.05)
 
