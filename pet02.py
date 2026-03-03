@@ -435,7 +435,7 @@ def zig_zag(px):
     det, raw = get_detection(px)
     px.last_det = det
 
-    servo_angle = clamp(det.error_x * 0.05, SERVO_ANGLE_MIN, SERVO_ANGLE_MAX)
+    servo_angle = round(clamp(det.error_x * 0.05, SERVO_ANGLE_MIN, SERVO_ANGLE_MAX),1)
 
     px.set_dir_servo_angle(servo_angle)
     px.dir_current_angle = servo_angle
@@ -762,6 +762,8 @@ def state_reset(px, estado, st, distancia_real, test_mode):
 def state_search(px, estado, st, distancia_real, test_mode):
     det, raw = get_detection(px)
     px.last_det = det
+    log_det(px, Estado.SEARCH, det, raw, st)
+    log_event(px, Estado.SEARCH, f"Distancia real: {px.distance_real} cm")
 
     # ============================================================
     # ENTRADA AL ESTADO
@@ -797,6 +799,8 @@ def state_search(px, estado, st, distancia_real, test_mode):
     # SEGURIDAD SEARCH
     # ============================================================
     update_safety(px)
+    raw = px.ultrasonic.read()
+    log_event(px, "ULTRA", f"raw={raw}")
 
     # 1. Peligro extremo → SCAPE inmediato
     if px.distance_real < DANGER_DISTANCE and not st.is_escaping:
@@ -882,6 +886,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
 def state_recenter(px, estado, st, distancia_real,test_mode):
     det, raw = get_detection(px)
     px.last_det = det
+    
 
     # ============================================================
     # ENTRADA AL ESTADO
@@ -1080,6 +1085,8 @@ def state_track(px, estado, st, distancia_real,test_mode):
 def state_near(px, estado, st, distancia_real, test_mode):
     det, raw = get_detection(px)
     px.last_det = det
+    log_det(px, Estado.NEAR, det, raw, st)
+    log_event(px, Estado.NEAR, f"Distancia real: {px.distance_real} cm")
 
     # ============================================================
     # ENTRADA AL ESTADO
@@ -1110,6 +1117,9 @@ def state_near(px, estado, st, distancia_real, test_mode):
     # SEGURIDAD NEAR
     # ============================================================
     update_safety(px)
+    raw = px.ultrasonic.read()
+    log_event(px, "ULTRA", f"raw={raw}")
+
 
     # 1. Peligro extremo → SCAPE inmediato
     if px.distance_real < DANGER_DISTANCE and not st.is_escaping:
