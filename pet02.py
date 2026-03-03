@@ -76,19 +76,25 @@ class Cmd(Enum):
 
 class Det:
     """
-    Representa una detección de la baliza.
-    Incluye centroide, tamaño y utilidades para TRACK.
+    Detección fusionada: visión + distancia.
     """
 
-    def __init__(self, n, x, y, w, h, cx=CX, cy=CY):
-        self.n = n          # número de detecciones
-        self.x = x          # centroide X
-        self.y = y          # centroide Y
-        self.w = w          # ancho detectado
-        self.h = h          # alto detectado
-        self.cx = cx        # centro ideal X
-        self.cy = cy        # centro ideal Y
+    def __init__(self, n, x, y, w, h, distance, distance_raw, cx=CX, cy=CY):
+        self.n = n
+        self.x = x
+        self.y = y
+        self.w = w
+        self.h = h
+        self.cx = cx
+        self.cy = cy
 
+        # Distancia
+        self.distance = distance
+        self.distance_raw = distance_raw
+
+    # ------------------------------------------------------------
+    # PROPIEDADES DE VISIÓN
+    # ------------------------------------------------------------
     @property
     def area(self):
         return self.w * self.h
@@ -103,65 +109,75 @@ class Det:
 
     @property
     def is_centered(self):
-        """
-        Centrado geométrico puro.
-        No depende de validadores.
-        """
         return abs(self.error_x) <= 40
 
     @property
     def valid_for_search(self):
-        # Detección inexistente o corrupta
-        if self.w <= 0 or self.h <= 0 or self.n <= 0:
+        if self.n <= 0:
             return False
-
-        # Tamaños razonables (evita ruido y blobs gigantes)
+        if self.w <= 0 or self.h <= 0:
+            return False
         if not (12 < self.w < 640 and 12 < self.h < 480):
             return False
-
-        # Área mínima para evitar falsos positivos
         if not (300 < self.area < 240000):
             return False
-
-        # Dentro del frame
         if not (0 < self.x < 640 and 0 < self.y < 480):
             return False
-
         return True
 
     @property
     def valid_for_near(self):
         if not self.valid_for_search:
             return False
-
-        # 1. Área realmente grande (muy cerca)
         if self.area < 18000:
             return False
-
-        # 2. Centrado horizontal estricto
         if abs(self.error_x) > 40:
             return False
-
-        # 3. Centrado vertical opcional (evita falsos NEAR mirando al suelo)
         if abs(self.error_y) > 120:
             return False
-
         return True
 
+    # ------------------------------------------------------------
+    # PROPIEDADES DE DISTANCIA
+    # ------------------------------------------------------------
+    @property
+    def valid_distance(self):
+        return 5 < self.distance < 350
 
-    def __repr__(self):
+    @property
+    def near_by_distance(self):
+        return self.distance < 35
+
+    @property
+    def too_close_to_measure(self):
         return (
-            "Det("
-            f"n={self.n}, "
-            f"x={self.x}, y={self.y}, "
-            f"w={self.w}, h={self.h}, "
-            f"area={self.area}, "
-            f"error_x={self.error_x}, error_y={self.error_y}, "
-            f"is_centered={self.is_centered}, "
-            f"valid_for_search={self.valid_for_search}, "
-            f"valid_for_near={self.valid_for_near}"
-            ")"
+            self.valid_for_search and
+            self.area > 30000 and
+            (self.distance > 80 or not self.valid_distance)
         )
+
+    # ------------------------------------------------------------
+    # FUSIÓN DE SENSORES
+    # ------------------------------------------------------------
+    @property
+    def near_fused(self):
+        """
+        NEAR robusto:
+        - visión manda cuando el sensor falla
+        - si ambos coinciden → perfecto
+        - si visión dice “muy cerca” y distancia falla → confiar en visión
+        """
+        if self.valid_for_near and self.near_by_distance:
+            return True
+
+        if self.valid_for_near and not self.valid_distance:
+            return True
+
+        if self.too_close_to_measure:
+            return True
+
+        return False
+
 
 class RobotState:
     def __init__(self):
@@ -568,25 +584,18 @@ def get_detection(px):
         x = raw["x"],
         y = raw["y"],
         w = raw["w"],
-        h = raw["h"]
+        h = raw["h"],
+        distance = px.distance_real,
+        distance_raw = px.ultrasonic.read()
     )
 
-    # ------------------------------------------------------------
-    # FILTRO ANTI-FANTASMA 1: coordenadas inválidas
-    # ------------------------------------------------------------
+    # FILTROS ANTI-FANTASMA
     if det.x < 0 or det.y < 0:
         det.n = 0
 
-    # ------------------------------------------------------------
-    # FILTRO ANTI-FANTASMA 2: detección corrupta (n>=1 pero w/h=0)
-    # ------------------------------------------------------------
     if det.n >= 1 and (det.w <= 0 or det.h <= 0):
         det.n = 0
 
-    # ------------------------------------------------------------
-    # FILTRO ANTI-FANTASMA 3: área demasiado pequeña
-    # (ruido típico de Vilib)
-    # ------------------------------------------------------------
     if det.area < 300:
         det.n = 0
 
