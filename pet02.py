@@ -112,6 +112,11 @@ class Det:
         return abs(self.error_x) <= 40
 
     @property
+    def is_proportional(self):
+        ratio = self.w / self.h if self.h != 0 else 0
+        return 0.5 < ratio < 2.0  # Evita detectar líneas largas o reflejos extraños
+
+    @property
     def valid_for_search(self):
         if self.n <= 0:
             return False
@@ -802,7 +807,6 @@ def state_search(px, estado, st, distancia_real, test_mode):
     if det.near_fused:
             log_event(px, Estado.SEARCH, f"Baliza muy cerca según fusión → NEAR")
             stop(px)
-            px.last_cmd = Cmd.STOP
             return Estado.NEAR
 
     # 1. Peligro extremo → SCAPE inmediato
@@ -871,21 +875,23 @@ def state_search(px, estado, st, distancia_real, test_mode):
     # ============================================================
     log_event(px, Estado.SEARCH, "SIN DETECCIÓN VÁLIDA → PANEO")
 
-    # Barrido automático
-    if st.search_cam_dir > 0:
-        moved = pan_right(px)
-    else:
-        moved = pan_left(px)
-
-    # Si llegó al límite, invertir dirección
-    if moved == 0:
-        st.search_cam_dir *= -1
-
-    st.search_found_frames = 0
     st.search_lost_frames += 1
-    st.search_edge_frames = 0
 
-    px.last_cmd = Cmd.KEEP_ALIVE
+    # Si llevamos mucho tiempo sin ver nada, girar el chasis además de la cámara
+    if st.search_lost_frames > 20: 
+        if st.search_lost_frames % 10 == 0: # Solo girar de vez en cuando para no marear al sensor
+            log_event(px, Estado.SEARCH, "Búsqueda profunda: Girando chasis")
+            if st.search_cam_dir > 0:
+                turn_right(px)
+            else:
+                turn_left(px)
+    
+    # Barrido de cámara normal
+    if st.search_cam_dir > 0:
+        if pan_right(px) == 0: st.search_cam_dir = -1
+    else:
+        if pan_left(px) == 0: st.search_cam_dir = 1
+
     px.last_state = Estado.SEARCH
     return Estado.SEARCH
 
