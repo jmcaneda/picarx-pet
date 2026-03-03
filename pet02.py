@@ -1023,7 +1023,7 @@ def state_track(px, estado, st, distancia_real,test_mode):
         st.track_centered_frames = 0
 
         px.last_state = Estado.TRACK
-        px.last_cmd = "STOP"
+        px.last_cmd = Cmd.STOP
         stop(px)
 
         return Estado.TRACK
@@ -1048,7 +1048,7 @@ def state_track(px, estado, st, distancia_real,test_mode):
     if det.valid_for_near:
         log_event(px, Estado.TRACK, "Baliza muy cerca → NEAR")
         stop(px)
-        px.last_cmd = "STOP"
+        px.last_cmd = Cmd.STOP
         return Estado.NEAR
 
     # ============================================================
@@ -1060,8 +1060,6 @@ def state_track(px, estado, st, distancia_real,test_mode):
         # Centrado razonable → avanzar recto
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
-        # forward(px)
-        # return Estado.TRACK
 
     else:
         # Error significativo → zig-zag para corregir
@@ -1073,13 +1071,21 @@ def state_track(px, estado, st, distancia_real,test_mode):
     # ============================================================
     update_safety(px)
 
+    if det.near_fused:
+        stop(px)
+        px.last_cmd = Cmd.STOP
+        return Estado.NEAR
+
     # 1. Peligro extremo → SCAPE inmediato
     if px.distance_real < DANGER_DISTANCE and not st.is_escaping:
         log_event(px, Estado.TRACK, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
         stop(px)
+        px.last_cmd = Cmd.STOP
         backward(px)
+        px.last_cmd = Cmd.BACKWARD
         time.sleep(0.4)
         stop(px)
+        px.last_cmd = Cmd.STOP
 
         st.is_escaping = True
         st.escape_end_time = time.time() + 1.0
