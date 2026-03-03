@@ -992,11 +992,10 @@ def state_track(px, estado, st, distancia_real, test_mode):
 
         px.last_state = Estado.TRACK
         stop(px)
-        px.last_cmd = Cmd.STOP
         return Estado.TRACK
 
     # ============================================================
-    # SEGURIDAD FUSIONADA (PRIMERO)
+    # SEGURIDAD FUSIONADA
     # ============================================================
     update_safety(px)
 
@@ -1019,7 +1018,7 @@ def state_track(px, estado, st, distancia_real, test_mode):
         px.changed_speed_slow = True
 
     # ============================================================
-    # SIN DETECCIÓN → volver a SEARCH
+    # SIN DETECCIÓN → SEARCH
     # ============================================================
     if not det.valid_for_search:
         st.track_lost_frames += 1
@@ -1031,7 +1030,7 @@ def state_track(px, estado, st, distancia_real, test_mode):
     st.track_lost_frames = 0
 
     # ============================================================
-    # MOVER CÁMARA PARA SEGUIR LA BALIZA
+    # 1) MOVER CÁMARA (PRIMERO)
     # ============================================================
     if det.error_x > 20:
         pan_right(px)
@@ -1039,27 +1038,18 @@ def state_track(px, estado, st, distancia_real, test_mode):
         pan_left(px)
 
     # ============================================================
-    # NEAR por visión pura
-    # ============================================================
-    if det.valid_for_near:
-        log_event(px, Estado.TRACK, "Baliza muy cerca → NEAR")
-        stop(px)
-        return Estado.NEAR
-
-    # ============================================================
-    # CORRECCIÓN DE DIRECCIÓN
+    # 2) CORRECCIÓN DE DIRECCIÓN
     # ============================================================
     log_event(px, Estado.TRACK, f"Corrigiendo dirección, error_x={det.error_x}")
 
     if abs(det.error_x) <= 20:
         px.set_dir_servo_angle(0)
-        px.dir_current_angle = 0
     else:
         angulo = zig_zag(px)
         log_event(px, Estado.TRACK, f"Error significativo → zig-zag para corregir (ángulo={angulo})")
 
     # ============================================================
-    # AVANCE
+    # 3) AVANCE
     # ============================================================
     forward(px)
     return Estado.TRACK
