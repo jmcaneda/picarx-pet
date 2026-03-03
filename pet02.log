@@ -1,361 +1,586 @@
 === Start of pet02.log ===
-[10:49:49] [Estado.CHK] [CHK] ==============================
-[10:49:49] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[10:49:49] [Estado.CHK] [CHK] ==============================
-[10:49:49] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[10:49:49] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[10:49:49] [Estado.CHK] [CHK] State wheels:     0
-[10:49:49] [Estado.CHK] [CHK] ==============================
-[10:49:49] [Estado.IDLE] Inicio del sistema
-[10:49:49] [Estado.IDLE] Entrando en IDLE (test_mode=False)
-[10:49:49] [Estado.RESET] Entrando en RESET (test_mode=False)
-[10:49:50] [Estado.SEARCH]  f_lost=0 search=False near=False centered=True n=0 w=0 h=0 area=0 x=320 y=240 err_x=0 err_y=0
-[10:49:50] [Estado.SEARCH] Distancia real: 210.31 cm
-[10:49:50] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[10:49:50] [Estado.SEARCH]  f_lost=0 search=False near=False centered=True n=0 w=0 h=0 area=0 x=320 y=240 err_x=0 err_y=0
-[10:49:50] [Estado.SEARCH] Distancia real: 210.36 cm
-[10:49:50] [ULTRA] raw=210.69
-[10:49:50] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[10:49:50] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=1 w=32 h=72 area=2304 x=624 y=256 err_x=304 err_y=16
-[10:49:50] [Estado.SEARCH] Distancia real: 210.04 cm
-[10:49:50] [ULTRA] raw=212.13
-[10:49:50] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:49:50] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=1 w=56 h=80 area=4480 x=552 y=256 err_x=232 err_y=16
-[10:49:50] [Estado.SEARCH] Distancia real: 210.25 cm
-[10:49:50] [ULTRA] raw=210.32
-[10:49:50] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:49:50] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=1 w=60 h=72 area=4320 x=542 y=260 err_x=222 err_y=20
-[10:49:50] [Estado.SEARCH] Distancia real: 210.81 cm
-[10:49:50] [ULTRA] raw=210.35
-[10:49:50] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:49:50] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=1 w=56 h=40 area=2240 x=504 y=240 err_x=184 err_y=0
-[10:49:50] [Estado.SEARCH] Distancia real: 212.41 cm
-[10:49:50] [ULTRA] raw=210.36
-[10:49:50] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:49:50] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=2 w=80 h=68 area=5440 x=448 y=258 err_x=128 err_y=18
-[10:49:50] [Estado.SEARCH] Distancia real: 209.75 cm
-[10:49:50] [ULTRA] raw=209.76
-[10:49:50] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:49:50] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=2 w=156 h=80 area=12480 x=366 y=260 err_x=46 err_y=20
-[10:49:50] [Estado.SEARCH] Distancia real: 208.54 cm
-[10:49:50] [ULTRA] raw=209.82
-[10:49:50] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:49:51] [Estado.SEARCH]  f_lost=0 search=True near=False centered=True n=2 w=104 h=72 area=7488 x=348 y=264 err_x=28 err_y=24
-[10:49:51] [Estado.SEARCH] Distancia real: 209.95 cm
-[10:49:51] [ULTRA] raw=210.16
-[10:49:51] [Estado.SEARCH] Centrado estable (7 frames) → RECENTER
-[10:49:51] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[10:49:51] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-30
-[10:49:51] [Estado.RECENTER] Alineación completada → TRACK
-[10:49:51] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[10:49:51] [Estado.TRACK] Corrigiendo dirección, error_x=-24
-[10:49:51] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-1.2)
-[10:49:51] [Estado.TRACK] Corrigiendo dirección, error_x=8
-[10:49:51] [Estado.TRACK] Corrigiendo dirección, error_x=2
-[10:49:52] [Estado.TRACK] Corrigiendo dirección, error_x=-8
-[10:49:52] [Estado.TRACK] Corrigiendo dirección, error_x=-16
-[10:49:52] [Estado.TRACK] Corrigiendo dirección, error_x=-42
-[10:49:52] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-2.1)
-[10:49:52] [Estado.TRACK] Corrigiendo dirección, error_x=-26
-[10:49:52] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-1.3)
-[10:49:52] [Estado.TRACK] Corrigiendo dirección, error_x=270
-[10:49:52] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=13.5)
-[10:49:52] [Estado.TRACK] Corrigiendo dirección, error_x=-38
-[10:49:52] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-1.9)
-[10:49:52] [Estado.TRACK] Corrigiendo dirección, error_x=-50
-[10:49:52] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-2.5)
-[10:49:52] [Estado.TRACK] Corrigiendo dirección, error_x=194
-[10:49:52] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=9.7)
-[10:49:52] [Estado.TRACK] Corrigiendo dirección, error_x=252
-[10:49:52] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=12.6)
-[10:49:52] [Estado.TRACK] Corrigiendo dirección, error_x=-74
-[10:49:52] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-3.7)
-[10:49:52] [Estado.TRACK] Corrigiendo dirección, error_x=-112
-[10:49:52] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-5.6)
-[10:49:53] [Estado.TRACK] Corrigiendo dirección, error_x=-136
-[10:49:53] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-6.8)
-[10:49:53] [Estado.TRACK] Corrigiendo dirección, error_x=-142
-[10:49:53] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-7.1)
-[10:49:53] [Estado.TRACK] Corrigiendo dirección, error_x=-144
-[10:49:53] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-7.2)
-[10:49:53] [Estado.TRACK] Corrigiendo dirección, error_x=-138
-[10:49:53] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-6.9)
-[10:49:53] [Estado.TRACK] Corrigiendo dirección, error_x=-130
-[10:49:53] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-6.5)
-[10:49:53] [Estado.TRACK] Corrigiendo dirección, error_x=-126
-[10:49:53] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-6.3)
-[10:49:53] [Estado.TRACK] Corrigiendo dirección, error_x=-122
-[10:49:53] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-6.1)
-[10:49:53] [Estado.TRACK] Corrigiendo dirección, error_x=-114
-[10:49:53] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-5.7)
-[10:49:53] [Estado.TRACK] Corrigiendo dirección, error_x=-106
-[10:49:53] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-5.3)
-[10:49:53] [Estado.TRACK] Corrigiendo dirección, error_x=122
-[10:49:53] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=6.1)
-[10:49:53] [Estado.TRACK] Corrigiendo dirección, error_x=-100
-[10:49:53] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-5.0)
-[10:49:53] [Estado.TRACK] Corrigiendo dirección, error_x=-104
-[10:49:53] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-5.2)
-[10:49:53] [Estado.TRACK] Corrigiendo dirección, error_x=-120
-[10:49:53] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-6.0)
-[10:49:54] [Estado.TRACK] Corrigiendo dirección, error_x=-112
-[10:49:54] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-5.6)
-[10:49:54] [Estado.TRACK] Corrigiendo dirección, error_x=-108
-[10:49:54] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-5.4)
-[10:49:54] [Estado.TRACK] Corrigiendo dirección, error_x=-102
-[10:49:54] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-5.1)
-[10:49:54] [Estado.TRACK] Corrigiendo dirección, error_x=-98
-[10:49:54] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-4.9)
-[10:49:54] [Estado.TRACK] Corrigiendo dirección, error_x=-88
-[10:49:54] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-4.4)
-[10:49:54] [Estado.TRACK] Corrigiendo dirección, error_x=-82
-[10:49:54] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-4.1)
-[10:49:54] [Estado.TRACK] Corrigiendo dirección, error_x=-72
-[10:49:54] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-3.6)
-[10:49:54] [Estado.TRACK] Corrigiendo dirección, error_x=-66
-[10:49:54] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-3.3)
-[10:49:54] [Estado.TRACK] Corrigiendo dirección, error_x=-62
-[10:49:54] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-3.1)
-[10:49:54] [Estado.TRACK] Corrigiendo dirección, error_x=-56
-[10:49:54] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-2.8)
-[10:49:54] [Estado.TRACK] Corrigiendo dirección, error_x=-52
-[10:49:54] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-2.6)
-[10:49:54] [Estado.TRACK] Corrigiendo dirección, error_x=-46
-[10:49:54] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-2.3)
-[10:49:55] [Estado.TRACK] Corrigiendo dirección, error_x=-46
-[10:49:55] [Estado.TRACK] Error significativo → zig-zag para corregir (ángulo=-2.3)
-[10:49:55] [Estado.TRACK] Baliza muy cerca → NEAR
-[10:49:55] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=120 h=172 area=20640 x=280 y=278 err_x=-40 err_y=38
-[10:49:55] [Estado.NEAR] Distancia real: 57.68 cm
-[10:49:55] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[10:49:55] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=128 h=176 area=22528 x=288 y=280 err_x=-32 err_y=40
-[10:49:55] [Estado.NEAR] Distancia real: 57.47 cm
-[10:49:55] [ULTRA] raw=57.43
-[10:49:55] [Estado.NEAR] Retroceso de cortesía
-[10:49:55] [Estado.NEAR]  f_lost=0 search=True near=False centered=False n=1 w=124 h=164 area=20336 x=274 y=274 err_x=-46 err_y=34
-[10:49:55] [Estado.NEAR] Distancia real: 62.26 cm
-[10:49:55] [ULTRA] raw=63.9
-[10:49:55] [Estado.NEAR] Ejecutando gesto 'SÍ'
-[10:49:55] [Estado.NEAR] Iniciando gesto 'SI'
-[10:49:56] [Estado.NEAR]  f_lost=0 search=True near=False centered=False n=2 w=116 h=168 area=19488 x=266 y=272 err_x=-54 err_y=32
-[10:49:56] [Estado.NEAR] Distancia real: 62.96 cm
-[10:49:56] [ULTRA] raw=62.88
-[10:49:56] [Estado.NEAR] Fin de interacción → SEARCH
-[10:49:56] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=1 w=116 h=172 area=19952 x=266 y=278 err_x=-54 err_y=38
-[10:49:56] [Estado.SEARCH] Distancia real: 62.5 cm
-[10:49:56] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[10:49:56] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=2 w=128 h=156 area=19968 x=272 y=282 err_x=-48 err_y=42
-[10:49:56] [Estado.SEARCH] Distancia real: 62.92 cm
-[10:49:56] [ULTRA] raw=62.53
-[10:49:56] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA
-[10:49:56] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=2 w=132 h=180 area=23760 x=562 y=270 err_x=242 err_y=30
-[10:49:56] [Estado.SEARCH] Distancia real: 62.12 cm
-[10:49:57] [ULTRA] raw=65.36
-[10:49:57] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:49:57] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=3 w=104 h=176 area=18304 x=588 y=268 err_x=268 err_y=28
-[10:49:57] [Estado.SEARCH] Distancia real: 63.07 cm
-[10:49:57] [ULTRA] raw=62.52
-[10:49:57] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:49:57] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=3 w=132 h=164 area=21648 x=570 y=270 err_x=250 err_y=30
-[10:49:57] [Estado.SEARCH] Distancia real: 52.62 cm
-[10:49:57] [ULTRA] raw=63.08
-[10:49:57] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:49:57] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=4 w=128 h=160 area=20480 x=524 y=272 err_x=204 err_y=32
-[10:49:57] [Estado.SEARCH] Distancia real: 62.46 cm
-[10:49:57] [ULTRA] raw=62.53
-[10:49:57] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:49:57] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=4 w=132 h=160 area=21120 x=470 y=272 err_x=150 err_y=32
-[10:49:57] [Estado.SEARCH] Distancia real: 62.62 cm
-[10:49:57] [ULTRA] raw=69.54
-[10:49:57] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:49:57] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=5 w=136 h=164 area=22304 x=424 y=274 err_x=104 err_y=34
-[10:49:57] [Estado.SEARCH] Distancia real: 62.57 cm
-[10:49:57] [ULTRA] raw=62.4
-[10:49:57] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:49:57] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=4 w=120 h=160 area=19200 x=388 y=276 err_x=68 err_y=36
-[10:49:57] [Estado.SEARCH] Distancia real: 62.43 cm
-[10:49:57] [ULTRA] raw=62.59
-[10:49:57] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:49:57] [Estado.SEARCH]  f_lost=0 search=True near=True centered=True n=1 w=120 h=156 area=18720 x=352 y=278 err_x=32 err_y=38
-[10:49:57] [Estado.SEARCH] Distancia real: 62.47 cm
-[10:49:57] [ULTRA] raw=62.55
-[10:49:57] [Estado.SEARCH] Centrado estable (9 frames) → RECENTER
-[10:49:57] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[10:49:58] [Estado.RECENTER] Alineación completada → TRACK
-[10:49:58] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[10:49:58] [Estado.TRACK] Baliza muy cerca → NEAR
-[10:49:58] [Estado.NEAR]  f_lost=0 search=True near=False centered=True n=1 w=112 h=160 area=17920 x=304 y=280 err_x=-16 err_y=40
-[10:49:58] [Estado.NEAR] Distancia real: 62.21 cm
-[10:49:58] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[10:49:58] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=3 w=112 h=164 area=18368 x=304 y=282 err_x=-16 err_y=42
-[10:49:58] [Estado.NEAR] Distancia real: 62.39 cm
-[10:49:58] [ULTRA] raw=62.53
-[10:49:58] [Estado.NEAR] Retroceso de cortesía
-[10:49:58] [Estado.NEAR]  f_lost=0 search=True near=False centered=True n=1 w=112 h=160 area=17920 x=300 y=280 err_x=-20 err_y=40
-[10:49:58] [Estado.NEAR] Distancia real: 64.55 cm
-[10:49:58] [ULTRA] raw=64.59
-[10:49:58] [Estado.NEAR] Ejecutando gesto 'SÍ'
-[10:49:58] [Estado.NEAR] Iniciando gesto 'SI'
-[10:49:59] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=112 h=164 area=18368 x=296 y=274 err_x=-24 err_y=34
-[10:49:59] [Estado.NEAR] Distancia real: 64.04 cm
-[10:49:59] [ULTRA] raw=64.0
-[10:49:59] [Estado.NEAR] Fin de interacción → SEARCH
-[10:49:59] [Estado.SEARCH]  f_lost=0 search=True near=False centered=True n=1 w=108 h=148 area=15984 x=294 y=282 err_x=-26 err_y=42
-[10:49:59] [Estado.SEARCH] Distancia real: 63.96 cm
-[10:49:59] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[10:50:00] [Estado.SEARCH]  f_lost=0 search=True near=True centered=True n=2 w=148 h=152 area=22496 x=318 y=276 err_x=-2 err_y=36
-[10:50:00] [Estado.SEARCH] Distancia real: 64.02 cm
-[10:50:00] [ULTRA] raw=64.06
-[10:50:00] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[10:50:00] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=1 w=124 h=156 area=19344 x=538 y=262 err_x=218 err_y=22
-[10:50:00] [Estado.SEARCH] Distancia real: 63.99 cm
-[10:50:00] [ULTRA] raw=64.08
-[10:50:00] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:50:00] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=2 w=120 h=164 area=19680 x=508 y=270 err_x=188 err_y=30
-[10:50:00] [Estado.SEARCH] Distancia real: 64.08 cm
-[10:50:00] [ULTRA] raw=63.99
-[10:50:00] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:50:00] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=2 w=116 h=152 area=17632 x=462 y=272 err_x=142 err_y=32
-[10:50:00] [Estado.SEARCH] Distancia real: 63.93 cm
-[10:50:00] [ULTRA] raw=64.15
-[10:50:00] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:50:00] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=4 w=112 h=160 area=17920 x=424 y=280 err_x=104 err_y=40
-[10:50:00] [Estado.SEARCH] Distancia real: 64.06 cm
-[10:50:00] [ULTRA] raw=64.0
-[10:50:00] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:50:00] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=2 w=120 h=156 area=18720 x=372 y=278 err_x=52 err_y=38
-[10:50:00] [Estado.SEARCH] Distancia real: 64.07 cm
-[10:50:00] [ULTRA] raw=64.05
-[10:50:00] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:50:00] [Estado.SEARCH]  f_lost=0 search=True near=False centered=True n=2 w=108 h=156 area=16848 x=338 y=278 err_x=18 err_y=38
-[10:50:00] [Estado.SEARCH] Distancia real: 64.21 cm
-[10:50:00] [ULTRA] raw=64.3
-[10:50:00] [Estado.SEARCH] Centrado estable (6 frames) → RECENTER
-[10:50:00] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[10:50:00] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-26
-[10:50:01] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-32
-[10:50:01] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-36
-[10:50:01] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-38
-[10:50:01] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-46
-[10:50:01] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-50
-[10:50:02] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-44
-[10:50:02] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-38
-[10:50:02] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-34
-[10:50:02] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-24
-[10:50:02] [Estado.RECENTER] Alineación completada → TRACK
-[10:50:03] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[10:50:03] [Estado.TRACK] Baliza muy cerca → NEAR
-[10:50:03] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=312 h=412 area=128544 x=356 y=274 err_x=36 err_y=34
-[10:50:03] [Estado.NEAR] Distancia real: 185.62 cm
-[10:50:03] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[10:50:03] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=308 h=400 area=123200 x=354 y=280 err_x=34 err_y=40
-[10:50:03] [Estado.NEAR] Distancia real: 185.82 cm
-[10:50:03] [ULTRA] raw=185.65
-[10:50:03] [Estado.NEAR] Retroceso de cortesía
-[10:50:03] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=272 h=372 area=101184 x=320 y=294 err_x=0 err_y=54
-[10:50:03] [Estado.NEAR] Distancia real: 58.71 cm
-[10:50:03] [ULTRA] raw=60.24
-[10:50:03] [Estado.NEAR] Ejecutando gesto 'SÍ'
-[10:50:03] [Estado.NEAR] Iniciando gesto 'SI'
-[10:50:04] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=268 h=376 area=100768 x=310 y=292 err_x=-10 err_y=52
-[10:50:04] [Estado.NEAR] Distancia real: 58.91 cm
-[10:50:04] [ULTRA] raw=58.82
-[10:50:04] [Estado.NEAR] Fin de interacción → SEARCH
-[10:50:04] [Estado.SEARCH]  f_lost=0 search=True near=True centered=True n=2 w=264 h=368 area=97152 x=312 y=296 err_x=-8 err_y=56
-[10:50:04] [Estado.SEARCH] Distancia real: 58.85 cm
-[10:50:04] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[10:50:04] [Estado.SEARCH]  f_lost=0 search=True near=True centered=True n=1 w=288 h=368 area=105984 x=320 y=296 err_x=0 err_y=56
-[10:50:04] [Estado.SEARCH] Distancia real: 58.98 cm
-[10:50:04] [ULTRA] raw=61.19
-[10:50:04] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[10:50:05] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=4 w=204 h=388 area=79152 x=538 y=282 err_x=218 err_y=42
-[10:50:05] [Estado.SEARCH] Distancia real: 58.51 cm
-[10:50:05] [ULTRA] raw=58.87
-[10:50:05] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:50:05] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=3 w=236 h=384 area=90624 x=522 y=288 err_x=202 err_y=48
-[10:50:05] [Estado.SEARCH] Distancia real: 58.51 cm
-[10:50:05] [ULTRA] raw=59.84
-[10:50:05] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:50:05] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=2 w=284 h=376 area=106784 x=498 y=292 err_x=178 err_y=52
-[10:50:05] [Estado.SEARCH] Distancia real: 58.53 cm
-[10:50:05] [ULTRA] raw=58.5
-[10:50:05] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:50:05] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=1 w=280 h=380 area=106400 x=456 y=290 err_x=136 err_y=50
-[10:50:05] [Estado.SEARCH] Distancia real: 58.36 cm
-[10:50:05] [ULTRA] raw=58.22
-[10:50:05] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:50:05] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=1 w=280 h=376 area=105280 x=384 y=292 err_x=64 err_y=52
-[10:50:05] [Estado.SEARCH] Distancia real: 58.76 cm
-[10:50:05] [ULTRA] raw=58.02
-[10:50:05] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:50:05] [Estado.SEARCH]  f_lost=0 search=True near=True centered=True n=2 w=276 h=372 area=102672 x=358 y=294 err_x=38 err_y=54
-[10:50:05] [Estado.SEARCH] Distancia real: 58.74 cm
-[10:50:05] [ULTRA] raw=58.87
-[10:50:05] [Estado.SEARCH] Centrado estable (6 frames) → RECENTER
-[10:50:05] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[10:50:06] [Estado.RECENTER] Alineación completada → TRACK
-[10:50:06] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[10:50:06] [Estado.TRACK] Baliza muy cerca → NEAR
-[10:50:06] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=264 h=372 area=98208 x=312 y=294 err_x=-8 err_y=54
-[10:50:06] [Estado.NEAR] Distancia real: 58.8 cm
-[10:50:06] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[10:50:06] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=264 h=372 area=98208 x=312 y=294 err_x=-8 err_y=54
-[10:50:06] [Estado.NEAR] Distancia real: 58.69 cm
-[10:50:06] [ULTRA] raw=58.36
-[10:50:06] [Estado.NEAR] Retroceso de cortesía
-[10:50:06] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=240 h=340 area=81600 x=288 y=298 err_x=-32 err_y=58
-[10:50:06] [Estado.NEAR] Distancia real: 61.25 cm
-[10:50:06] [ULTRA] raw=61.77
-[10:50:06] [Estado.NEAR] Ejecutando gesto 'SÍ'
-[10:50:06] [Estado.NEAR] Iniciando gesto 'SI'
-[10:50:07] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=240 h=328 area=78720 x=284 y=296 err_x=-36 err_y=56
-[10:50:07] [Estado.NEAR] Distancia real: 61.15 cm
-[10:50:07] [ULTRA] raw=61.09
-[10:50:07] [Estado.NEAR] Fin de interacción → SEARCH
-[10:50:07] [Estado.SEARCH]  f_lost=0 search=True near=True centered=True n=1 w=236 h=336 area=79296 x=286 y=296 err_x=-34 err_y=56
-[10:50:07] [Estado.SEARCH] Distancia real: 61.21 cm
-[10:50:07] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[10:50:07] [Estado.SEARCH]  f_lost=0 search=True near=True centered=True n=1 w=240 h=336 area=80640 x=288 y=296 err_x=-32 err_y=56
-[10:50:07] [Estado.SEARCH] Distancia real: 61.64 cm
-[10:50:07] [ULTRA] raw=61.5
-[10:50:07] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[10:50:07] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=1 w=236 h=372 area=87792 x=522 y=290 err_x=202 err_y=50
-[10:50:07] [Estado.SEARCH] Distancia real: 61.04 cm
-[10:50:08] [ULTRA] raw=61.51
-[10:50:08] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:50:08] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=1 w=252 h=336 area=84672 x=514 y=296 err_x=194 err_y=56
-[10:50:08] [Estado.SEARCH] Distancia real: 61.07 cm
-[10:50:08] [ULTRA] raw=62.34
-[10:50:08] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:50:08] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=3 w=248 h=360 area=89280 x=468 y=296 err_x=148 err_y=56
-[10:50:08] [Estado.SEARCH] Distancia real: 61.13 cm
-[10:50:08] [ULTRA] raw=61.12
-[10:50:08] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:50:08] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=1 w=244 h=348 area=84912 x=422 y=294 err_x=102 err_y=54
-[10:50:08] [Estado.SEARCH] Distancia real: 60.72 cm
-[10:50:08] [ULTRA] raw=61.35
-[10:50:08] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:50:08] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=1 w=248 h=344 area=85312 x=372 y=296 err_x=52 err_y=56
-[10:50:08] [Estado.SEARCH] Distancia real: 61.16 cm
-[10:50:08] [ULTRA] raw=52.47
-[10:50:08] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
-[10:50:08] [Estado.SEARCH]  f_lost=0 search=True near=True centered=True n=1 w=256 h=352 area=90112 x=324 y=300 err_x=4 err_y=60
-[10:50:08] [Estado.SEARCH] Distancia real: 61.02 cm
-[10:50:08] [ULTRA] raw=50.87
-[10:50:08] [Estado.SEARCH] Centrado estable (6 frames) → RECENTER
-[10:50:08] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[10:50:08] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-36
-[10:50:08] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-52
-[10:50:09] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-38
-[10:50:09] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-22
-[10:50:09] [Estado.RECENTER] Ajustando dirección del chasis, error_x=20
-[10:50:09] [Estado.RECENTER] Pérdida de detección → SEARCH
-[10:50:09] [Estado.SEARCH]  f_lost=3 search=False near=False centered=False n=1 w=488 h=480 area=234240 x=396 y=240 err_x=76 err_y=0
-[10:50:09] [Estado.SEARCH] Distancia real: 151.73 cm
-[10:50:09] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[10:50:09] [Estado.SEARCH]  f_lost=3 search=False near=False centered=False n=1 w=480 h=480 area=230400 x=400 y=240 err_x=80 err_y=0
-[10:50:09] [Estado.SEARCH] Distancia real: 171.22 cm
-[10:50:09] [ULTRA] raw=171.22
-[10:50:09] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[10:50:09] [Estado.SEARCH]  f_lost=3 search=True near=False centered=False n=1 w=92 h=368 area=33856 x=594 y=184 err_x=274 err_y=-56
-[10:50:09] [Estado.SEARCH] Distancia real: 171.22 cm
+[11:18:24] [Estado.CHK] [CHK] ==============================
+[11:18:24] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[11:18:24] [Estado.CHK] [CHK] ==============================
+[11:18:24] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[11:18:24] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[11:18:24] [Estado.CHK] [CHK] State wheels:     0
+[11:18:24] [Estado.CHK] [CHK] ==============================
+[11:18:24] [Estado.IDLE] Inicio del sistema
+[11:18:24] [Estado.IDLE] Entrando en IDLE (test_mode=False)
+[11:18:24] [Estado.RESET] Entrando en RESET (test_mode=False)
+[11:18:24] [Estado.SEARCH]  f_lost=0 search=False near=False centered=True n=0 w=0 h=0 area=0 x=320.0 y=240.0 err_x=0.0 err_y=0.0
+[11:18:24] [Estado.SEARCH] Distancia real: 129.16 cm
+[11:18:24] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[11:18:24] [Estado.SEARCH]  f_lost=0 search=False near=False centered=True n=0 w=0 h=0 area=0 x=320.0 y=240.0 err_x=0.0 err_y=0.0
+[11:18:24] [Estado.SEARCH] Distancia real: 129.94 cm
+[11:18:25] [ULTRA] raw=129.47
+[11:18:25] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[11:18:25] [Estado.SEARCH]  f_lost=0 search=False near=False centered=True n=0 w=0 h=0 area=0 x=320.0 y=240.0 err_x=0.0 err_y=0.0
+[11:18:25] [Estado.SEARCH] Distancia real: 129.04 cm
+[11:18:25] [ULTRA] raw=129.45
+[11:18:25] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[11:18:25] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=3 w=76 h=108 area=8208 x=602 y=258 err_x=282 err_y=18
+[11:18:25] [Estado.SEARCH] Distancia real: 129.49 cm
+[11:18:25] [ULTRA] raw=129.02
+[11:18:25] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:25] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=2 w=72 h=112 area=8064 x=604 y=260 err_x=284 err_y=20
+[11:18:25] [Estado.SEARCH] Distancia real: 129.44 cm
+[11:18:25] [ULTRA] raw=169.66
+[11:18:25] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:25] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=3 w=88 h=112 area=9856 x=568 y=260 err_x=248 err_y=20
+[11:18:25] [Estado.SEARCH] Distancia real: 138.57 cm
+[11:18:25] [ULTRA] raw=129.39
+[11:18:25] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:25] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=2 w=80 h=112 area=8960 x=516 y=264 err_x=196 err_y=24
+[11:18:25] [Estado.SEARCH] Distancia real: 129.42 cm
+[11:18:25] [ULTRA] raw=129.44
+[11:18:25] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:25] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=3 w=84 h=116 area=9744 x=474 y=262 err_x=154 err_y=22
+[11:18:25] [Estado.SEARCH] Distancia real: 129.03 cm
+[11:18:25] [ULTRA] raw=129.01
+[11:18:25] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:25] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=2 w=120 h=124 area=14880 x=408 y=266 err_x=88 err_y=26
+[11:18:25] [Estado.SEARCH] Distancia real: 129.58 cm
+[11:18:26] [ULTRA] raw=129.33
+[11:18:26] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:26] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=2 w=96 h=112 area=10752 x=376 y=264 err_x=56 err_y=24
+[11:18:26] [Estado.SEARCH] Distancia real: 129.42 cm
+[11:18:26] [ULTRA] raw=129.43
+[11:18:26] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:26] [Estado.SEARCH]  f_lost=0 search=True near=False centered=True n=6 w=76 h=120 area=9120 x=346 y=268 err_x=26 err_y=28
+[11:18:26] [Estado.SEARCH] Distancia real: 129.57 cm
+[11:18:26] [ULTRA] raw=130.03
+[11:18:26] [Estado.SEARCH] Centrado estable (8 frames) → RECENTER
+[11:18:26] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:18:26] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-66
+[11:18:26] [Estado.RECENTER] Alineación completada → TRACK
+[11:18:26] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[11:18:26] [Estado.TRACK] Corrigiendo dirección, error_x=0
+[11:18:27] [Estado.TRACK] Corrigiendo dirección, error_x=-6
+[11:18:27] [Estado.TRACK] Corrigiendo dirección, error_x=-16
+[11:18:27] [Estado.TRACK] Corrigiendo dirección, error_x=0
+[11:18:27] [Estado.TRACK] Corrigiendo dirección, error_x=-20
+[11:18:27] [Estado.TRACK] Corrigiendo dirección, error_x=-18
+[11:18:27] [Estado.TRACK] Corrigiendo dirección, error_x=-16
+[11:18:27] [Estado.TRACK] Corrigiendo dirección, error_x=-14
+[11:18:27] [Estado.TRACK] Corrigiendo dirección, error_x=-8
+[11:18:28] [Estado.TRACK] Corrigiendo dirección, error_x=-10
+[11:18:28] [Estado.TRACK] Corrigiendo dirección, error_x=-12
+[11:18:28] [Estado.TRACK] Corrigiendo dirección, error_x=-14
+[11:18:28] [Estado.TRACK] Corrigiendo dirección, error_x=-8
+[11:18:28] [Estado.TRACK] Baliza muy cerca → NEAR
+[11:18:28] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=116 h=164 area=19024 x=318 y=274 err_x=-2 err_y=34
+[11:18:28] [Estado.NEAR] Distancia real: 54.82 cm
+[11:18:28] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:18:28] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=120 h=184 area=22080 x=328 y=264 err_x=8 err_y=24
+[11:18:28] [Estado.NEAR] Distancia real: 60.21 cm
+[11:18:28] [ULTRA] raw=60.05
+[11:18:28] [Estado.NEAR] Retroceso de cortesía
+[11:18:28] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=116 h=176 area=20416 x=318 y=264 err_x=-2 err_y=24
+[11:18:28] [Estado.NEAR] Distancia real: 62.48 cm
+[11:18:28] [ULTRA] raw=60.85
+[11:18:28] [Estado.NEAR] Ejecutando gesto 'SÍ'
+[11:18:28] [Estado.NEAR] Iniciando gesto 'SI'
+[11:18:29] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=112 h=164 area=18368 x=312 y=278 err_x=-8 err_y=38
+[11:18:29] [Estado.NEAR] Distancia real: 61.91 cm
+[11:18:30] [ULTRA] raw=62.27
+[11:18:30] [Estado.NEAR] Fin de interacción → SEARCH
+[11:18:30] [Estado.SEARCH]  f_lost=0 search=True near=False centered=True n=1 w=112 h=156 area=17472 x=312 y=270 err_x=-8 err_y=30
+[11:18:30] [Estado.SEARCH] Distancia real: 61.8 cm
+[11:18:30] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[11:18:30] [Estado.SEARCH]  f_lost=0 search=True near=True centered=True n=1 w=128 h=164 area=20992 x=312 y=278 err_x=-8 err_y=38
+[11:18:30] [Estado.SEARCH] Distancia real: 61.92 cm
+[11:18:30] [ULTRA] raw=61.89
+[11:18:30] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[11:18:30] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=1 w=36 h=176 area=6336 x=622 y=268 err_x=302 err_y=28
+[11:18:30] [Estado.SEARCH] Distancia real: 62.16 cm
+[11:18:30] [ULTRA] raw=61.92
+[11:18:30] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:30] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=4 w=40 h=164 area=6560 x=620 y=262 err_x=300 err_y=22
+[11:18:30] [Estado.SEARCH] Distancia real: 61.73 cm
+[11:18:30] [ULTRA] raw=61.71
+[11:18:30] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:30] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=3 w=88 h=168 area=14784 x=596 y=264 err_x=276 err_y=24
+[11:18:30] [Estado.SEARCH] Distancia real: 61.8 cm
+[11:18:30] [ULTRA] raw=61.85
+[11:18:30] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:30] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=2 w=136 h=168 area=22848 x=572 y=268 err_x=252 err_y=28
+[11:18:30] [Estado.SEARCH] Distancia real: 61.92 cm
+[11:18:30] [ULTRA] raw=62.64
+[11:18:30] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:30] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=4 w=128 h=160 area=20480 x=528 y=276 err_x=208 err_y=36
+[11:18:30] [Estado.SEARCH] Distancia real: 61.8 cm
+[11:18:30] [ULTRA] raw=61.87
+[11:18:30] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:30] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=2 w=128 h=164 area=20992 x=480 y=274 err_x=160 err_y=34
+[11:18:30] [Estado.SEARCH] Distancia real: 61.91 cm
+[11:18:30] [ULTRA] raw=61.81
+[11:18:30] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:30] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=1 w=116 h=164 area=19024 x=430 y=274 err_x=110 err_y=34
+[11:18:30] [Estado.SEARCH] Distancia real: 61.85 cm
+[11:18:31] [ULTRA] raw=61.92
+[11:18:31] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:31] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=1 w=120 h=168 area=20160 x=392 y=276 err_x=72 err_y=36
+[11:18:31] [Estado.SEARCH] Distancia real: 61.79 cm
+[11:18:31] [ULTRA] raw=61.73
+[11:18:31] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:31] [Estado.SEARCH]  f_lost=0 search=True near=False centered=True n=2 w=112 h=160 area=17920 x=348 y=276 err_x=28 err_y=36
+[11:18:31] [Estado.SEARCH] Distancia real: 65.44 cm
+[11:18:31] [ULTRA] raw=61.82
+[11:18:31] [Estado.SEARCH] Centrado estable (9 frames) → RECENTER
+[11:18:31] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:18:31] [Estado.RECENTER] Alineación completada → TRACK
+[11:18:31] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[11:18:31] [Estado.TRACK] Corrigiendo dirección, error_x=-12
+[11:18:31] [Estado.TRACK] Baliza muy cerca → NEAR
+[11:18:31] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=120 h=168 area=20160 x=304 y=280 err_x=-16 err_y=40
+[11:18:31] [Estado.NEAR] Distancia real: 172.01 cm
+[11:18:31] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:18:32] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=120 h=160 area=19200 x=308 y=276 err_x=-12 err_y=36
+[11:18:32] [Estado.NEAR] Distancia real: 171.35 cm
+[11:18:32] [ULTRA] raw=174.09
+[11:18:32] [Estado.NEAR] Retroceso de cortesía
+[11:18:32] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=116 h=168 area=19488 x=298 y=264 err_x=-22 err_y=24
+[11:18:32] [Estado.NEAR] Distancia real: 176.44 cm
+[11:18:32] [ULTRA] raw=176.19
+[11:18:32] [Estado.NEAR] Ejecutando gesto 'SÍ'
+[11:18:32] [Estado.NEAR] Iniciando gesto 'SI'
+[11:18:33] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=112 h=164 area=18368 x=296 y=282 err_x=-24 err_y=42
+[11:18:33] [Estado.NEAR] Distancia real: 176.08 cm
+[11:18:33] [ULTRA] raw=176.46
+[11:18:33] [Estado.NEAR] Fin de interacción → SEARCH
+[11:18:33] [Estado.SEARCH]  f_lost=0 search=True near=True centered=True n=1 w=112 h=164 area=18368 x=296 y=278 err_x=-24 err_y=38
+[11:18:33] [Estado.SEARCH] Distancia real: 176.17 cm
+[11:18:33] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[11:18:33] [Estado.SEARCH]  f_lost=0 search=True near=True centered=True n=1 w=144 h=156 area=22464 x=312 y=278 err_x=-8 err_y=38
+[11:18:33] [Estado.SEARCH] Distancia real: 176.64 cm
+[11:18:33] [ULTRA] raw=176.55
+[11:18:33] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[11:18:33] [Estado.SEARCH]  f_lost=0 search=False near=False centered=True n=1 w=0 h=0 area=0 x=320.0 y=240.0 err_x=0.0 err_y=0.0
+[11:18:33] [Estado.SEARCH] Distancia real: 176.57 cm
+[11:18:33] [ULTRA] raw=176.47
+[11:18:33] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[11:18:33] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=3 w=76 h=164 area=12464 x=602 y=278 err_x=282 err_y=38
+[11:18:33] [Estado.SEARCH] Distancia real: 176.64 cm
+[11:18:34] [ULTRA] raw=176.54
+[11:18:34] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:34] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=2 w=104 h=172 area=17888 x=588 y=270 err_x=268 err_y=30
+[11:18:34] [Estado.SEARCH] Distancia real: 176.41 cm
+[11:18:34] [ULTRA] raw=176.12
+[11:18:34] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:34] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=3 w=124 h=160 area=19840 x=562 y=272 err_x=242 err_y=32
+[11:18:34] [Estado.SEARCH] Distancia real: 176.21 cm
+[11:18:34] [ULTRA] raw=176.12
+[11:18:34] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:34] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=3 w=136 h=160 area=21760 x=504 y=272 err_x=184 err_y=32
+[11:18:34] [Estado.SEARCH] Distancia real: 176.25 cm
+[11:18:34] [ULTRA] raw=176.58
+[11:18:34] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:34] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=2 w=116 h=152 area=17632 x=466 y=276 err_x=146 err_y=36
+[11:18:34] [Estado.SEARCH] Distancia real: 176.16 cm
+[11:18:34] [ULTRA] raw=176.23
+[11:18:34] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:34] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=2 w=140 h=160 area=22400 x=398 y=276 err_x=78 err_y=36
+[11:18:34] [Estado.SEARCH] Distancia real: 176.58 cm
+[11:18:34] [ULTRA] raw=176.63
+[11:18:34] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:34] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=1 w=116 h=156 area=18096 x=374 y=278 err_x=54 err_y=38
+[11:18:34] [Estado.SEARCH] Distancia real: 176.19 cm
+[11:18:34] [ULTRA] raw=176.22
+[11:18:34] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:34] [Estado.SEARCH]  f_lost=0 search=True near=True centered=True n=3 w=128 h=156 area=19968 x=324 y=278 err_x=4 err_y=38
+[11:18:34] [Estado.SEARCH] Distancia real: 176.11 cm
+[11:18:34] [ULTRA] raw=176.54
+[11:18:34] [Estado.SEARCH] Centrado estable (8 frames) → RECENTER
+[11:18:35] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:18:35] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-24
+[11:18:35] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-28
+[11:18:35] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-36
+[11:18:35] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-34
+[11:18:35] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-30
+[11:18:35] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-24
+[11:18:35] [Estado.RECENTER] Alineación completada → TRACK
+[11:18:36] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[11:18:36] [Estado.TRACK] Baliza muy cerca → NEAR
+[11:18:36] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=148 h=212 area=31376 x=326 y=270 err_x=6 err_y=30
+[11:18:36] [Estado.NEAR] Distancia real: 107.94 cm
+[11:18:36] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:18:36] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=148 h=216 area=31968 x=326 y=284 err_x=6 err_y=44
+[11:18:36] [Estado.NEAR] Distancia real: 108.31 cm
+[11:18:36] [ULTRA] raw=107.85
+[11:18:36] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=144 h=212 area=30528 x=328 y=274 err_x=8 err_y=34
+[11:18:36] [Estado.NEAR] Distancia real: 109.25 cm
+[11:18:36] [ULTRA] raw=108.26
+[11:18:36] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=148 h=216 area=31968 x=326 y=280 err_x=6 err_y=40
+[11:18:36] [Estado.NEAR] Distancia real: 107.91 cm
+[11:18:36] [ULTRA] raw=108.35
+[11:18:36] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=144 h=208 area=29952 x=328 y=280 err_x=8 err_y=40
+[11:18:36] [Estado.NEAR] Distancia real: 98.71 cm
+[11:18:36] [ULTRA] raw=108.35
+[11:18:36] [Estado.NEAR] Retroceso de cortesía
+[11:18:37] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=140 h=256 area=35840 x=310 y=280 err_x=-10 err_y=40
+[11:18:37] [Estado.NEAR] Distancia real: 112.07 cm
+[11:18:37] [ULTRA] raw=113.21
+[11:18:37] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=136 h=200 area=27200 x=304 y=288 err_x=-16 err_y=48
+[11:18:37] [Estado.NEAR] Distancia real: 112.5 cm
+[11:18:37] [ULTRA] raw=112.54
+[11:18:37] [Estado.NEAR] Ejecutando gesto 'SÍ'
+[11:18:37] [Estado.NEAR] Iniciando gesto 'SI'
+[11:18:38] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=136 h=196 area=26656 x=304 y=270 err_x=-16 err_y=30
+[11:18:38] [Estado.NEAR] Distancia real: 112.44 cm
+[11:18:38] [ULTRA] raw=160.76
+[11:18:38] [Estado.NEAR] Fin de interacción → SEARCH
+[11:18:38] [Estado.SEARCH]  f_lost=0 search=True near=True centered=True n=1 w=140 h=204 area=28560 x=302 y=278 err_x=-18 err_y=38
+[11:18:38] [Estado.SEARCH] Distancia real: 112.37 cm
+[11:18:38] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[11:18:38] [Estado.SEARCH]  f_lost=0 search=True near=True centered=True n=1 w=136 h=204 area=27744 x=304 y=278 err_x=-16 err_y=38
+[11:18:38] [Estado.SEARCH] Distancia real: 102.78 cm
+[11:18:38] [ULTRA] raw=112.39
+[11:18:38] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[11:18:38] [Estado.SEARCH]  f_lost=0 search=False near=False centered=True n=0 w=0 h=0 area=0 x=320.0 y=240.0 err_x=0.0 err_y=0.0
+[11:18:38] [Estado.SEARCH] Distancia real: 112.44 cm
+[11:18:38] [ULTRA] raw=112.68
+[11:18:38] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[11:18:38] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=4 w=60 h=212 area=12720 x=610 y=270 err_x=290 err_y=30
+[11:18:38] [Estado.SEARCH] Distancia real: 112.55 cm
+[11:18:38] [ULTRA] raw=112.58
+[11:18:38] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:38] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=2 w=104 h=200 area=20800 x=588 y=276 err_x=268 err_y=36
+[11:18:38] [Estado.SEARCH] Distancia real: 112.51 cm
+[11:18:38] [ULTRA] raw=112.94
+[11:18:38] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:38] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=2 w=144 h=208 area=29952 x=568 y=272 err_x=248 err_y=32
+[11:18:38] [Estado.SEARCH] Distancia real: 112.96 cm
+[11:18:38] [ULTRA] raw=112.54
+[11:18:38] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:38] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=3 w=164 h=204 area=33456 x=518 y=282 err_x=198 err_y=42
+[11:18:38] [Estado.SEARCH] Distancia real: 112.86 cm
+[11:18:39] [ULTRA] raw=112.81
+[11:18:39] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:39] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=2 w=148 h=196 area=29008 x=478 y=278 err_x=158 err_y=38
+[11:18:39] [Estado.SEARCH] Distancia real: 113.0 cm
+[11:18:39] [ULTRA] raw=112.91
+[11:18:39] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:39] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=1 w=156 h=200 area=31200 x=422 y=276 err_x=102 err_y=36
+[11:18:39] [Estado.SEARCH] Distancia real: 113.01 cm
+[11:18:39] [ULTRA] raw=112.85
+[11:18:39] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:39] [Estado.SEARCH]  f_lost=0 search=True near=False centered=False n=1 w=140 h=208 area=29120 x=386 y=276 err_x=66 err_y=36
+[11:18:39] [Estado.SEARCH] Distancia real: 113.25 cm
+[11:18:39] [ULTRA] raw=112.9
+[11:18:39] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA
+[11:18:39] [Estado.SEARCH]  f_lost=0 search=True near=True centered=True n=1 w=156 h=188 area=29328 x=334 y=278 err_x=14 err_y=38
+[11:18:39] [Estado.SEARCH] Distancia real: 112.86 cm
+[11:18:39] [ULTRA] raw=112.49
+[11:18:39] [Estado.SEARCH] Centrado estable (8 frames) → RECENTER
+[11:18:39] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:18:39] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-20
+[11:18:39] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-24
+[11:18:40] [Estado.RECENTER] Ajustando dirección del chasis, error_x=-22
+[11:18:40] [Estado.RECENTER] Alineación completada → TRACK
+[11:18:40] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[11:18:40] [Estado.TRACK] Baliza muy cerca → NEAR
+[11:18:40] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=164 h=260 area=42640 x=330 y=278 err_x=10 err_y=38
+[11:18:40] [Estado.NEAR] Distancia real: 104.33 cm
+[11:18:40] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:18:40] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=164 h=244 area=40016 x=330 y=282 err_x=10 err_y=42
+[11:18:40] [Estado.NEAR] Distancia real: 100.25 cm
+[11:18:40] [ULTRA] raw=100.18
+[11:18:40] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=164 h=244 area=40016 x=330 y=282 err_x=10 err_y=42
+[11:18:40] [Estado.NEAR] Distancia real: 100.41 cm
+[11:18:40] [ULTRA] raw=100.26
+[11:18:40] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:40] [Estado.NEAR] Distancia real: 100.46 cm
+[11:18:40] [ULTRA] raw=100.38
+[11:18:40] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:40] [Estado.NEAR] Distancia real: 100.38 cm
+[11:18:40] [ULTRA] raw=100.4
+[11:18:41] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=160 h=244 area=39040 x=332 y=282 err_x=12 err_y=42
+[11:18:41] [Estado.NEAR] Distancia real: 100.36 cm
+[11:18:41] [ULTRA] raw=100.4
+[11:18:41] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:41] [Estado.NEAR] Distancia real: 100.37 cm
+[11:18:41] [ULTRA] raw=100.38
+[11:18:41] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:41] [Estado.NEAR] Distancia real: 100.31 cm
+[11:18:41] [ULTRA] raw=100.39
+[11:18:41] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=164 h=244 area=40016 x=330 y=282 err_x=10 err_y=42
+[11:18:41] [Estado.NEAR] Distancia real: 100.28 cm
+[11:18:41] [ULTRA] raw=100.21
+[11:18:41] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:41] [Estado.NEAR] Distancia real: 100.45 cm
+[11:18:41] [ULTRA] raw=100.38
+[11:18:41] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:41] [Estado.NEAR] Distancia real: 100.39 cm
+[11:18:41] [ULTRA] raw=100.4
+[11:18:41] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=164 h=244 area=40016 x=334 y=282 err_x=14 err_y=42
+[11:18:41] [Estado.NEAR] Distancia real: 100.4 cm
+[11:18:41] [ULTRA] raw=100.27
+[11:18:41] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=164 h=244 area=40016 x=334 y=282 err_x=14 err_y=42
+[11:18:41] [Estado.NEAR] Distancia real: 100.38 cm
+[11:18:41] [ULTRA] raw=101.45
+[11:18:42] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=164 h=244 area=40016 x=334 y=282 err_x=14 err_y=42
+[11:18:42] [Estado.NEAR] Distancia real: 100.31 cm
+[11:18:42] [ULTRA] raw=100.38
+[11:18:42] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:42] [Estado.NEAR] Distancia real: 105.8 cm
+[11:18:42] [ULTRA] raw=100.33
+[11:18:42] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:42] [Estado.NEAR] Distancia real: 100.36 cm
+[11:18:42] [ULTRA] raw=100.39
+[11:18:42] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:42] [Estado.NEAR] Distancia real: 100.46 cm
+[11:18:42] [ULTRA] raw=100.35
+[11:18:42] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:42] [Estado.NEAR] Distancia real: 100.36 cm
+[11:18:42] [ULTRA] raw=100.42
+[11:18:42] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=164 h=244 area=40016 x=334 y=282 err_x=14 err_y=42
+[11:18:42] [Estado.NEAR] Distancia real: 100.39 cm
+[11:18:42] [ULTRA] raw=100.41
+[11:18:42] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:42] [Estado.NEAR] Distancia real: 100.34 cm
+[11:18:42] [ULTRA] raw=100.47
+[11:18:42] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:42] [Estado.NEAR] Distancia real: 100.36 cm
+[11:18:42] [ULTRA] raw=100.27
+[11:18:42] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:42] [Estado.NEAR] Distancia real: 100.47 cm
+[11:18:43] [ULTRA] raw=100.45
+[11:18:43] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:43] [Estado.NEAR] Distancia real: 100.34 cm
+[11:18:43] [ULTRA] raw=100.4
+[11:18:43] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:43] [Estado.NEAR] Distancia real: 100.25 cm
+[11:18:43] [ULTRA] raw=100.33
+[11:18:43] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:43] [Estado.NEAR] Distancia real: 100.5 cm
+[11:18:43] [ULTRA] raw=100.35
+[11:18:43] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:43] [Estado.NEAR] Distancia real: 108.9 cm
+[11:18:43] [ULTRA] raw=100.36
+[11:18:43] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:43] [Estado.NEAR] Distancia real: 100.32 cm
+[11:18:43] [ULTRA] raw=100.38
+[11:18:43] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:43] [Estado.NEAR] Distancia real: 100.2 cm
+[11:18:43] [ULTRA] raw=100.29
+[11:18:43] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:43] [Estado.NEAR] Distancia real: 100.4 cm
+[11:18:43] [ULTRA] raw=100.45
+[11:18:43] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:43] [Estado.NEAR] Distancia real: 100.29 cm
+[11:18:44] [ULTRA] raw=100.35
+[11:18:44] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:44] [Estado.NEAR] Distancia real: 100.31 cm
+[11:18:44] [ULTRA] raw=100.38
+[11:18:44] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=160 h=244 area=39040 x=332 y=282 err_x=12 err_y=42
+[11:18:44] [Estado.NEAR] Distancia real: 100.37 cm
+[11:18:44] [ULTRA] raw=100.38
+[11:18:44] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:44] [Estado.NEAR] Distancia real: 95.47 cm
+[11:18:44] [ULTRA] raw=100.39
+[11:18:44] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:44] [Estado.NEAR] Distancia real: 100.41 cm
+[11:18:44] [ULTRA] raw=100.21
+[11:18:44] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=164 h=244 area=40016 x=334 y=282 err_x=14 err_y=42
+[11:18:44] [Estado.NEAR] Distancia real: 100.33 cm
+[11:18:44] [ULTRA] raw=100.45
+[11:18:44] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=164 h=244 area=40016 x=330 y=282 err_x=10 err_y=42
+[11:18:44] [Estado.NEAR] Distancia real: 100.32 cm
+[11:18:44] [ULTRA] raw=100.31
+[11:18:44] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:44] [Estado.NEAR] Distancia real: 100.9 cm
+[11:18:44] [ULTRA] raw=100.77
+[11:18:44] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=164 h=244 area=40016 x=330 y=282 err_x=10 err_y=42
+[11:18:44] [Estado.NEAR] Distancia real: 100.76 cm
+[11:18:44] [ULTRA] raw=100.24
+[11:18:45] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:45] [Estado.NEAR] Distancia real: 100.65 cm
+[11:18:45] [ULTRA] raw=98.98
+[11:18:45] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:45] [Estado.NEAR] Distancia real: 100.35 cm
+[11:18:45] [ULTRA] raw=100.3
+[11:18:45] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:45] [Estado.NEAR] Distancia real: 100.4 cm
+[11:18:45] [ULTRA] raw=100.35
+[11:18:45] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=160 h=244 area=39040 x=332 y=282 err_x=12 err_y=42
+[11:18:45] [Estado.NEAR] Distancia real: 100.31 cm
+[11:18:45] [ULTRA] raw=100.36
+[11:18:45] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:45] [Estado.NEAR] Distancia real: 100.33 cm
+[11:18:45] [ULTRA] raw=100.45
+[11:18:45] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=164 h=244 area=40016 x=334 y=282 err_x=14 err_y=42
+[11:18:45] [Estado.NEAR] Distancia real: 100.39 cm
+[11:18:45] [ULTRA] raw=100.42
+[11:18:45] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:45] [Estado.NEAR] Distancia real: 100.34 cm
+[11:18:45] [ULTRA] raw=100.36
+[11:18:45] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:45] [Estado.NEAR] Distancia real: 100.28 cm
+[11:18:45] [ULTRA] raw=100.38
+[11:18:46] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=164 h=244 area=40016 x=330 y=282 err_x=10 err_y=42
+[11:18:46] [Estado.NEAR] Distancia real: 100.4 cm
+[11:18:46] [ULTRA] raw=100.49
+[11:18:46] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:46] [Estado.NEAR] Distancia real: 100.49 cm
+[11:18:46] [ULTRA] raw=100.41
+[11:18:46] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:46] [Estado.NEAR] Distancia real: 101.13 cm
+[11:18:46] [ULTRA] raw=100.87
+[11:18:46] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:46] [Estado.NEAR] Distancia real: 100.44 cm
+[11:18:46] [ULTRA] raw=100.31
+[11:18:46] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=160 h=244 area=39040 x=332 y=282 err_x=12 err_y=42
+[11:18:46] [Estado.NEAR] Distancia real: 100.41 cm
+[11:18:46] [ULTRA] raw=100.38
+[11:18:46] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=164 h=244 area=40016 x=330 y=282 err_x=10 err_y=42
+[11:18:46] [Estado.NEAR] Distancia real: 100.47 cm
+[11:18:46] [ULTRA] raw=100.32
+[11:18:46] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=164 h=244 area=40016 x=334 y=282 err_x=14 err_y=42
+[11:18:46] [Estado.NEAR] Distancia real: 100.42 cm
+[11:18:46] [ULTRA] raw=100.38
+[11:18:46] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:46] [Estado.NEAR] Distancia real: 100.51 cm
+[11:18:46] [ULTRA] raw=100.33
+[11:18:46] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:46] [Estado.NEAR] Distancia real: 96.16 cm
+[11:18:47] [ULTRA] raw=100.22
+[11:18:47] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=164 h=244 area=40016 x=334 y=282 err_x=14 err_y=42
+[11:18:47] [Estado.NEAR] Distancia real: 101.46 cm
+[11:18:47] [ULTRA] raw=100.38
+[11:18:47] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:47] [Estado.NEAR] Distancia real: 100.4 cm
+[11:18:47] [ULTRA] raw=100.4
+[11:18:47] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=164 h=244 area=40016 x=330 y=282 err_x=10 err_y=42
+[11:18:47] [Estado.NEAR] Distancia real: 100.38 cm
+[11:18:47] [ULTRA] raw=100.5
+[11:18:47] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:47] [Estado.NEAR] Distancia real: 100.42 cm
+[11:18:47] [ULTRA] raw=101.34
+[11:18:47] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:47] [Estado.NEAR] Distancia real: 101.07 cm
+[11:18:47] [ULTRA] raw=100.41
+[11:18:47] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:47] [Estado.NEAR] Distancia real: 100.34 cm
+[11:18:47] [ULTRA] raw=100.42
+[11:18:47] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:47] [Estado.NEAR] Distancia real: 100.35 cm
+[11:18:47] [ULTRA] raw=100.41
+[11:18:47] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:47] [Estado.NEAR] Distancia real: 100.89 cm
+[11:18:48] [ULTRA] raw=100.85
+[11:18:48] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:48] [Estado.NEAR] Distancia real: 100.53 cm
+[11:18:48] [ULTRA] raw=100.34
+[11:18:48] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:48] [Estado.NEAR] Distancia real: 100.47 cm
+[11:18:48] [ULTRA] raw=100.38
+[11:18:48] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:48] [Estado.NEAR] Distancia real: 100.41 cm
+[11:18:48] [ULTRA] raw=100.49
+[11:18:48] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:48] [Estado.NEAR] Distancia real: 100.8 cm
+[11:18:48] [ULTRA] raw=100.43
+[11:18:48] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:48] [Estado.NEAR] Distancia real: 100.38 cm
+[11:18:48] [ULTRA] raw=100.87
+[11:18:48] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:48] [Estado.NEAR] Distancia real: 100.29 cm
+[11:18:48] [ULTRA] raw=100.37
+[11:18:48] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:48] [Estado.NEAR] Distancia real: 100.83 cm
+[11:18:48] [ULTRA] raw=100.25
+[11:18:48] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:48] [Estado.NEAR] Distancia real: 100.32 cm
+[11:18:49] [ULTRA] raw=100.87
+[11:18:49] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:49] [Estado.NEAR] Distancia real: 100.74 cm
+[11:18:49] [ULTRA] raw=100.43
+[11:18:49] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:49] [Estado.NEAR] Distancia real: 100.33 cm
+[11:18:49] [ULTRA] raw=101.56
+[11:18:49] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:49] [Estado.NEAR] Distancia real: 100.33 cm
+[11:18:49] [ULTRA] raw=100.31
+[11:18:49] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:49] [Estado.NEAR] Distancia real: 100.35 cm
+[11:18:49] [ULTRA] raw=100.5
+[11:18:49] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=164 h=244 area=40016 x=334 y=282 err_x=14 err_y=42
+[11:18:49] [Estado.NEAR] Distancia real: 98.73 cm
+[11:18:49] [ULTRA] raw=100.4
+[11:18:49] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:49] [Estado.NEAR] Distancia real: 100.46 cm
+[11:18:49] [ULTRA] raw=100.37
+[11:18:49] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=164 h=244 area=40016 x=330 y=282 err_x=10 err_y=42
+[11:18:49] [Estado.NEAR] Distancia real: 100.47 cm
+[11:18:49] [ULTRA] raw=100.3
+[11:18:49] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:49] [Estado.NEAR] Distancia real: 100.36 cm
+[11:18:49] [ULTRA] raw=100.29
+[11:18:50] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:50] [Estado.NEAR] Distancia real: 100.35 cm
+[11:18:50] [ULTRA] raw=100.21
+[11:18:50] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:50] [Estado.NEAR] Distancia real: 100.43 cm
+[11:18:50] [ULTRA] raw=100.28
+[11:18:50] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:50] [Estado.NEAR] Distancia real: 100.36 cm
+[11:18:50] [ULTRA] raw=100.27
+[11:18:50] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=164 h=244 area=40016 x=330 y=282 err_x=10 err_y=42
+[11:18:50] [Estado.NEAR] Distancia real: 100.45 cm
+[11:18:50] [ULTRA] raw=102.13
+[11:18:50] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:50] [Estado.NEAR] Distancia real: 100.35 cm
+[11:18:50] [ULTRA] raw=100.39
+[11:18:50] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:50] [Estado.NEAR] Distancia real: 100.29 cm
+[11:18:50] [ULTRA] raw=100.36
+[11:18:50] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:50] [Estado.NEAR] Distancia real: 100.31 cm
+[11:18:50] [ULTRA] raw=100.32
+[11:18:50] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:50] [Estado.NEAR] Distancia real: 100.29 cm
+[11:18:50] [ULTRA] raw=99.7
+[11:18:51] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=164 h=244 area=40016 x=330 y=282 err_x=10 err_y=42
+[11:18:51] [Estado.NEAR] Distancia real: 100.29 cm
+[11:18:51] [ULTRA] raw=100.47
+[11:18:51] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:51] [Estado.NEAR] Distancia real: 100.82 cm
+[11:18:51] [ULTRA] raw=100.24
+[11:18:51] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:51] [Estado.NEAR] Distancia real: 100.8 cm
+[11:18:51] [ULTRA] raw=100.82
+[11:18:51] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:51] [Estado.NEAR] Distancia real: 100.86 cm
+[11:18:51] [ULTRA] raw=100.51
+[11:18:51] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=164 h=244 area=40016 x=334 y=282 err_x=14 err_y=42
+[11:18:51] [Estado.NEAR] Distancia real: 100.5 cm
+[11:18:51] [ULTRA] raw=100.37
+[11:18:51] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:51] [Estado.NEAR] Distancia real: 100.32 cm
+[11:18:51] [ULTRA] raw=100.34
+[11:18:51] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=164 h=244 area=40016 x=334 y=282 err_x=14 err_y=42
+[11:18:51] [Estado.NEAR] Distancia real: 100.47 cm
+[11:18:51] [ULTRA] raw=100.4
+[11:18:51] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:51] [Estado.NEAR] Distancia real: 100.42 cm
+[11:18:51] [ULTRA] raw=96.66
+[11:18:52] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=164 h=244 area=40016 x=330 y=282 err_x=10 err_y=42
+[11:18:52] [Estado.NEAR] Distancia real: 100.38 cm
+[11:18:52] [ULTRA] raw=100.33
+[11:18:52] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:52] [Estado.NEAR] Distancia real: 100.41 cm
+[11:18:52] [ULTRA] raw=100.36
+[11:18:52] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:52] [Estado.NEAR] Distancia real: 100.39 cm
+[11:18:52] [ULTRA] raw=100.4
+[11:18:52] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:52] [Estado.NEAR] Distancia real: 100.49 cm
+[11:18:52] [ULTRA] raw=100.49
+[11:18:52] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=1 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:52] [Estado.NEAR] Distancia real: 100.49 cm
+[11:18:52] [ULTRA] raw=100.45
+[11:18:52] [Estado.NEAR]  f_lost=0 search=True near=True centered=True n=2 w=168 h=244 area=40992 x=332 y=282 err_x=12 err_y=42
+[11:18:52] [Estado.NEAR] Distancia real: 100.41 cm
+[11:18:52] [ULTRA] raw=100.36

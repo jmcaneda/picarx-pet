@@ -1096,14 +1096,14 @@ def state_near(px, estado, st, distancia_real, test_mode):
         log_event(px, Estado.NEAR, f"Entrando en NEAR (test_mode={test_mode})")
         if test_mode:
             log_event(px, Estado.NEAR, "¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.")
-            return Estado.SEARCH  # en modo test, no entramos a NEAR para evitar movimientos
+            return Estado.SEARCH
 
         st.near_enter_frames = 0
         st.near_exit_frames = 0
         st.near_lost_frames = 0
         st.near_done_backward = False
         st.near_did_yes = False
-        st.near_cooldown = time.time() + 1.0  # 1 segundo de interacción
+        st.near_cooldown = time.time() + 1.0
 
         st.yes_step = 0
         st.yes_next_time = 0.0
@@ -1115,12 +1115,11 @@ def state_near(px, estado, st, distancia_real, test_mode):
         return Estado.NEAR
 
     # ============================================================
-    # SEGURIDAD NEAR
+    # SEGURIDAD NEAR (fusión)
     # ============================================================
     update_safety(px)
     raw = px.ultrasonic.read()
     log_event(px, "ULTRA", f"raw={raw}")
-
 
     # 1. Peligro extremo → SCAPE inmediato
     if px.distance_real < DANGER_DISTANCE and not st.is_escaping:
@@ -1133,19 +1132,25 @@ def state_near(px, estado, st, distancia_real, test_mode):
         st.is_escaping = True
         st.escape_end_time = time.time() + 1.0
         px.last_cmd = Cmd.SCAPE
-        return Estado.SEARCH   # ← IMPORTANTE: salir de NEAR
+        return Estado.SEARCH
 
     # 2. Advertencia → detener todo movimiento
     if px.distance_real < WARNING_DISTANCE and not st.is_escaping:
         log_event(px, Estado.NEAR, f"⚠️ Advertencia: objeto a {px.distance_real} cm → frenado total")
         stop(px)
-        # En NEAR NO usamos velocidad lenta: simplemente NO debe avanzar
-        return Estado.NEAR   # ← permanecer en NEAR pero sin moverse
+        return Estado.NEAR
 
     # 3. Salida del modo escape
     if st.is_escaping and time.time() >= st.escape_end_time:
         st.is_escaping = False
 
+    # ============================================================
+    # NUEVO: si la visión dice que sigue muy cerca → mantener NEAR
+    # ============================================================
+    if det.near_fused:
+        # Esto evita que el robot salga de NEAR por ruido del sensor
+        st.near_lost_frames = 0
+        return Estado.NEAR
 
     # ============================================================
     # SIN DETECCIÓN → salir de NEAR
@@ -1173,10 +1178,9 @@ def state_near(px, estado, st, distancia_real, test_mode):
     # ============================================================
     if not st.near_did_yes:
         log_event(px, Estado.NEAR, "Ejecutando gesto 'SÍ'")
-        now = time.time()
         tilt_yes(px)
         st.near_did_yes = True
-        return Estado.NEAR  
+        return Estado.NEAR
 
     # ============================================================
     # SALIDA DE NEAR (cooldown terminado)
