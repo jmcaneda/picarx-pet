@@ -890,7 +890,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
     return Estado.SEARCH
 
 
-def state_recenter(px, estado, st, distancia_real,test_mode):
+def state_recenter(px, estado, st, distancia_real, test_mode):
     det, raw = get_detection(px)
     px.last_det = det
 
@@ -900,20 +900,37 @@ def state_recenter(px, estado, st, distancia_real,test_mode):
     if px.last_state != Estado.RECENTER:
         log_event(px, Estado.RECENTER, f"Entrando en RECENTER (test_mode={test_mode})")
         if test_mode:
-            log_event(px, Estado.RECENTER, "¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.") 
-            return Estado.SEARCH  # en modo test, no entramos a RECENTER para evitar movimientos
+            log_event(px, Estado.RECENTER, "¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.")
+            return Estado.SEARCH
 
         st.recenter_centered_frames = 0
         st.recenter_lost_frames = 0
-        st.just_recentered = None
-
         px.last_state = Estado.RECENTER
-        px.last_cmd = Cmd.STOP
-        stop(px)
-
         return Estado.RECENTER
 
-    
+    # ============================================================
+    # SEGURIDAD FUSIONADA
+    # ============================================================
+    update_safety(px)
+
+    if det.near_fused:
+        log_event(px, Estado.RECENTER, "Baliza muy cerca según fusión → NEAR")
+        stop(px)
+        return Estado.NEAR
+
+    if px.distance_real < DANGER_DISTANCE:
+        log_event(px, Estado.RECENTER, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
+        stop(px)
+        backward(px)
+        time.sleep(0.4)
+        stop(px)
+        return Estado.SEARCH
+
+    if px.distance_real < WARNING_DISTANCE:
+        log_event(px, Estado.RECENTER, f"⚠️ Advertencia: objeto a {px.distance_real} cm → frenado preventivo")
+        stop(px)
+        return Estado.SEARCH
+
     # ============================================================
     # SIN DETECCIÓN → volver a SEARCH
     # ============================================================
@@ -924,86 +941,37 @@ def state_recenter(px, estado, st, distancia_real,test_mode):
             return Estado.SEARCH
         return Estado.RECENTER
 
-    # ============================================================
-    # DETECCIÓN VÁLIDA → alinear cuerpo
-    # ============================================================
     st.recenter_lost_frames = 0
 
-    # Si ya está centrado → TRACK
+    # ============================================================
+    # MOVER CÁMARA PARA MANTENER LA BALIZA EN EL FRAME
+    # ============================================================
+    if det.error_x > 20:
+        pan_right(px)
+    elif det.error_x < -20:
+        pan_left(px)
+
+    # ============================================================
+    # ALINEACIÓN DEL CHASIS
+    # ============================================================
     if abs(det.error_x) < 20:
         st.recenter_centered_frames += 1
         if st.recenter_centered_frames >= 4:
             log_event(px, Estado.RECENTER, "Alineación completada → TRACK")
-            px.last_cmd = "STOP"
-            stop(px)
             return Estado.TRACK
-        return Estado.RECENTER
-
-    # ============================================================
-    # CORRECCIÓN DE DIRECCIÓN
-    # ============================================================
-    log_event(px, Estado.RECENTER, f"Corrigiendo dirección, error_x={det.error_x}")
-    error = det.error_x
-    if abs(error) <= 20:
-        # Centrado razonable → avanzar recto
-        px.set_dir_servo_angle(0)
-        px.dir_current_angle = 0
-
     else:
-        # Error significativo → zig-zag para corregir
+        st.recenter_centered_frames = 0
+
+    # Corrección suave del chasis
+    log_event(px, Estado.RECENTER, f"Corrigiendo dirección, error_x={det.error_x}")
+
+    if abs(det.error_x) < 20:
+        px.set_dir_servo_angle(0)
+    else:
         angulo = zig_zag(px)
-        log_event(px, Estado.TRACK, f"Error significativo → zig-zag para corregir (ángulo={angulo})")
-
-    # ============================================================
-    # SEGURIDAD RECENTER
-    # ============================================================
-    update_safety(px)
-
-    # Si la visión o la distancia dicen “muy cerca”, pasar a NEAR 
-    if det.near_fused: 
-        log_event(px, Estado.RECENTER, "Baliza muy cerca según fusión → NEAR") 
-        stop(px)
-        px.last_cmd = Cmd.STOP
-        return Estado.NEAR
-
-    # 1. Peligro extremo → SCAPE inmediato
-    if px.distance_real < DANGER_DISTANCE and not st.is_escaping:
-        log_event(px, Estado.RECENTER, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
-        stop(px)
-        px.last_cmd = Cmd.STOP
-        backward(px)
-        px.last_cmd = Cmd.BACKWARD
-        time.sleep(0.4)
-        stop(px)
-        px.last_cmd = Cmd.STOP
-
-        st.is_escaping = True
-        st.escape_end_time = time.time() + 1.0
-        px.last_cmd = Cmd.SCAPE
-        return Estado.SEARCH   # ← IMPORTANTE: volver a SEARCH
-
-    # 2. Advertencia → frenar y salir de RECENTER
-    if px.distance_real < WARNING_DISTANCE and not st.is_escaping:
-        log_event(px, Estado.RECENTER, f"⚠️ Advertencia: objeto a {px.distance_real} cm → frenado preventivo")
-        stop(px)
-        px.last_cmd = Cmd.STOP
-        return Estado.SEARCH   # ← IMPORTANTE: no continuar RECENTER
-
-    # 3. Salida del modo escape
-    if st.is_escaping and time.time() >= st.escape_end_time:
-        st.is_escaping = False
-
-
-    # 3. Avance muy pequeño (solo para reposicionar)
-    forward(px)
-    time.sleep(0.03)   # mucho más pequeño que antes
-
-    # 4. No resetear servo ni cámara
-    # px.set_dir_servo_angle(0)  ← NO
-    # px.set_cam_pan_angle(0)    ← NO
+        log_event(px, Estado.RECENTER, f"Error significativo → zig-zag (ángulo={angulo})")
 
     return Estado.RECENTER
-
 
 
 def state_track(px, estado, st, distancia_real,test_mode):
