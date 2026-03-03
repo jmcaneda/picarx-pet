@@ -361,8 +361,6 @@ def init_flags(px):
 # ============================================================
 
 def stop(px):
-    if px.last_cmd == Cmd.STOP:
-        return False
 
     px.stop()
     px.last_cmd = Cmd.STOP
@@ -792,8 +790,6 @@ def state_search(px, estado, st, distancia_real, test_mode):
         px.dir_current_angle = 0
         px.changed_speed_slow = False
         px.last_state = Estado.SEARCH
-        px.last_cmd = Cmd.STOP
-        stop(px)
 
         return Estado.SEARCH
 
@@ -811,12 +807,10 @@ def state_search(px, estado, st, distancia_real, test_mode):
     if px.distance_real < DANGER_DISTANCE and not st.is_escaping:
         log_event(px, Estado.SEARCH, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
         stop(px)
-        px.last_cmd = Cmd.STOP
+        time.sleep(0.1)
         backward(px)
-        px.last_cmd = Cmd.BACKWARD
         time.sleep(0.4)
         stop(px)
-        px.last_cmd = Cmd.STOP
 
         st.is_escaping = True
         st.escape_end_time = time.time() + 1.0
@@ -828,7 +822,6 @@ def state_search(px, estado, st, distancia_real, test_mode):
         if not px.changed_speed_slow:  # evita spam de logs
             log_event(px, Estado.SEARCH, f"⚠️ Advertencia: objeto a {px.distance_real} cm → frenado preventivo")
         stop(px)
-        px.last_cmd = Cmd.STOP
         px.changed_speed_slow = True
 
     # 3. Salida del modo escape
@@ -925,6 +918,7 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
     if px.distance_real < DANGER_DISTANCE:
         log_event(px, Estado.RECENTER, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
         stop(px)
+        time.sleep(0.1)
         backward(px)
         time.sleep(0.4)
         stop(px)
@@ -975,6 +969,10 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
         angulo = zig_zag(px, det)
         log_event(px, Estado.RECENTER, f"Error significativo → zig-zag (ángulo={angulo})")
 
+    if abs(det.error_x) > 150: # Si la baliza está ya en el tercio exterior del frame
+        log_event(px, Estado.RECENTER, "Error demasiado grande para corregir avanzando → SEARCH")
+        return Estado.SEARCH
+
     # ============================================================
     # 3) AVANCE
     # ============================================================
@@ -1015,6 +1013,7 @@ def state_track(px, estado, st, distancia_real, test_mode):
     if px.distance_real < DANGER_DISTANCE:
         log_event(px, Estado.TRACK, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
         stop(px)
+        time.sleep(0.1)
         backward(px)
         time.sleep(0.4)
         stop(px)
@@ -1059,6 +1058,10 @@ def state_track(px, estado, st, distancia_real, test_mode):
     # ============================================================
     # 3) AVANCE
     # ============================================================
+    if abs(det.error_x) > 150: # Si la baliza está ya en el tercio exterior del frame
+        log_event(px, Estado.RECENTER, "Error demasiado grande para corregir avanzando → SEARCH")
+        return Estado.SEARCH
+        
     forward(px)
     return Estado.TRACK
 
