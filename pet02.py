@@ -423,7 +423,7 @@ def turn_left(px):
     px.dir_current_angle = SERVO_ANGLE_MIN
 
     px.last_cmd = Cmd.WHEELS_TURN_LEFT
-    px.forward_active = False   # ← IMPORTANTE
+    
     return True
 
 
@@ -435,21 +435,19 @@ def turn_right(px):
     px.dir_current_angle = SERVO_ANGLE_MAX
 
     px.last_cmd = Cmd.WHEELS_TURN_RIGHT
-    px.forward_active = False   # ← IMPORTANTE
+    
     return True
 
 
-def zig_zag(px):
-    det, raw = get_detection(px)
-    px.last_det = det
+def zig_zag(px, det):
 
-    servo_angle = round(clamp(det.error_x * 0.05, SERVO_ANGLE_MIN, SERVO_ANGLE_MAX),1)
+    servo_angle = round(clamp(det.error_x * 0.4, SERVO_ANGLE_MIN, SERVO_ANGLE_MAX),1)
 
     px.set_dir_servo_angle(servo_angle)
     px.dir_current_angle = servo_angle
 
     px.last_cmd = Cmd.WHEELS_ZIG_ZAG
-    px.forward_active = False   # ← IMPORTANTE
+    
     return servo_angle
 
 
@@ -529,7 +527,7 @@ def tilt_yes(px):
 
     for angulo in secuencia:
         px.set_cam_tilt_angle(angulo)
-        time.sleep(0.15)
+        time.sleep(0.05)
 
     px.last_cmd = Cmd.CAM_TILT_YES
     px.forward_active = False   # ← IMPORTANTE
@@ -974,7 +972,7 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
     if abs(det.error_x) < 20:
         px.set_dir_servo_angle(0)
     else:
-        angulo = zig_zag(px)
+        angulo = zig_zag(px, det)
         log_event(px, Estado.RECENTER, f"Error significativo → zig-zag (ángulo={angulo})")
 
     # ============================================================
@@ -1055,7 +1053,7 @@ def state_track(px, estado, st, distancia_real, test_mode):
     if abs(det.error_x) <= 20:
         px.set_dir_servo_angle(0)
     else:
-        angulo = zig_zag(px)
+        angulo = zig_zag(px, det)
         log_event(px, Estado.TRACK, f"Error significativo → zig-zag para corregir (ángulo={angulo})")
 
     # ============================================================
