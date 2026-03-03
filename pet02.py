@@ -970,9 +970,12 @@ def state_recenter(px, estado, st, distancia_real,test_mode):
     if px.distance_real < DANGER_DISTANCE and not st.is_escaping:
         log_event(px, Estado.RECENTER, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
         stop(px)
+        px.last_cmd = Cmd.STOP
         backward(px)
+        px.last_cmd = Cmd.BACKWARD
         time.sleep(0.4)
         stop(px)
+        px.last_cmd = Cmd.STOP
 
         st.is_escaping = True
         st.escape_end_time = time.time() + 1.0
@@ -983,6 +986,7 @@ def state_recenter(px, estado, st, distancia_real,test_mode):
     if px.distance_real < WARNING_DISTANCE and not st.is_escaping:
         log_event(px, Estado.RECENTER, f"⚠️ Advertencia: objeto a {px.distance_real} cm → frenado preventivo")
         stop(px)
+        px.last_cmd = Cmd.STOP
         return Estado.SEARCH   # ← IMPORTANTE: no continuar RECENTER
 
     # 3. Salida del modo escape
