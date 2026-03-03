@@ -974,7 +974,7 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
     return Estado.RECENTER
 
 
-def state_track(px, estado, st, distancia_real,test_mode):
+def state_track(px, estado, st, distancia_real, test_mode):
     det, raw = get_detection(px)
     px.last_det = det
 
@@ -985,18 +985,39 @@ def state_track(px, estado, st, distancia_real,test_mode):
         log_event(px, Estado.TRACK, f"Entrando en TRACK (test_mode={test_mode})")
         if test_mode:
             log_event(px, Estado.TRACK, "¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.")
-            return Estado.SEARCH  # en modo test, no entramos a TRACK para evitar movimientos
+            return Estado.SEARCH
 
         st.track_lost_frames = 0
         st.track_centered_frames = 0
 
         px.last_state = Estado.TRACK
-        px.last_cmd = Cmd.STOP
         stop(px)
-
+        px.last_cmd = Cmd.STOP
         return Estado.TRACK
 
-    
+    # ============================================================
+    # SEGURIDAD FUSIONADA (PRIMERO)
+    # ============================================================
+    update_safety(px)
+
+    if det.near_fused:
+        log_event(px, Estado.TRACK, "Baliza muy cerca según fusión → NEAR")
+        stop(px)
+        return Estado.NEAR
+
+    if px.distance_real < DANGER_DISTANCE:
+        log_event(px, Estado.TRACK, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
+        stop(px)
+        backward(px)
+        time.sleep(0.4)
+        stop(px)
+        return Estado.SEARCH
+
+    if px.distance_real < WARNING_DISTANCE:
+        if not px.changed_speed_slow:
+            log_event(px, Estado.TRACK, f"⚠️ Advertencia: objeto a {px.distance_real} cm → velocidad reducida")
+        px.changed_speed_slow = True
+
     # ============================================================
     # SIN DETECCIÓN → volver a SEARCH
     # ============================================================
@@ -1007,71 +1028,39 @@ def state_track(px, estado, st, distancia_real,test_mode):
             return Estado.SEARCH
         return Estado.TRACK
 
-    # Detección válida
     st.track_lost_frames = 0
 
     # ============================================================
-    # NEAR → si estamos realmente cerca
+    # MOVER CÁMARA PARA SEGUIR LA BALIZA
+    # ============================================================
+    if det.error_x > 20:
+        pan_right(px)
+    elif det.error_x < -20:
+        pan_left(px)
+
+    # ============================================================
+    # NEAR por visión pura
     # ============================================================
     if det.valid_for_near:
         log_event(px, Estado.TRACK, "Baliza muy cerca → NEAR")
         stop(px)
-        px.last_cmd = Cmd.STOP
         return Estado.NEAR
 
     # ============================================================
     # CORRECCIÓN DE DIRECCIÓN
     # ============================================================
     log_event(px, Estado.TRACK, f"Corrigiendo dirección, error_x={det.error_x}")
-    error = det.error_x
-    if abs(error) <= 20:
-        # Centrado razonable → avanzar recto
+
+    if abs(det.error_x) <= 20:
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
-
     else:
-        # Error significativo → zig-zag para corregir
         angulo = zig_zag(px)
         log_event(px, Estado.TRACK, f"Error significativo → zig-zag para corregir (ángulo={angulo})")
-    
+
     # ============================================================
-    # SEGURIDAD TRACK
+    # AVANCE
     # ============================================================
-    update_safety(px)
-
-    if det.near_fused:
-        stop(px)
-        px.last_cmd = Cmd.STOP
-        return Estado.NEAR
-
-    # 1. Peligro extremo → SCAPE inmediato
-    if px.distance_real < DANGER_DISTANCE and not st.is_escaping:
-        log_event(px, Estado.TRACK, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
-        stop(px)
-        px.last_cmd = Cmd.STOP
-        backward(px)
-        px.last_cmd = Cmd.BACKWARD
-        time.sleep(0.4)
-        stop(px)
-        px.last_cmd = Cmd.STOP
-
-        st.is_escaping = True
-        st.escape_end_time = time.time() + 1.0
-        px.last_cmd = Cmd.SCAPE
-        return Estado.SEARCH   # ← IMPORTANTE: volver a SEARCH
-
-    # 2. Advertencia → reducir velocidad y evitar empuje
-    if px.distance_real < WARNING_DISTANCE and not st.is_escaping:
-        if not px.changed_speed_slow:  # evita spam de logs
-            log_event(px, Estado.TRACK, f"⚠️ Advertencia: objeto a {px.distance_real} cm → velocidad reducida")
-        px.changed_speed_slow = True   # TRACK sí usa forward(), así que esto es útil
-
-    # 3. Salida del modo escape
-    if st.is_escaping and time.time() >= st.escape_end_time:
-        st.is_escaping = False
-        px.changed_speed_slow = False
-
-
     forward(px)
     return Estado.TRACK
 
