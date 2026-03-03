@@ -763,8 +763,6 @@ def state_reset(px, estado, st, distancia_real, test_mode):
 def state_search(px, estado, st, distancia_real, test_mode):
     det, raw = get_detection(px)
     px.last_det = det
-    log_det(px, Estado.SEARCH, det, raw, st)
-    log_event(px, Estado.SEARCH, f"Distancia real: {px.distance_real} cm")
 
     # ============================================================
     # ENTRADA AL ESTADO
@@ -791,7 +789,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
         px.dir_current_angle = 0
         px.changed_speed_slow = False
         px.last_state = Estado.SEARCH
-        px.last_cmd = "STOP"
+        px.last_cmd = Cmd.STOP
         stop(px)
 
         return Estado.SEARCH
@@ -800,20 +798,27 @@ def state_search(px, estado, st, distancia_real, test_mode):
     # SEGURIDAD SEARCH
     # ============================================================
     update_safety(px)
-    raw = px.ultrasonic.read()
-    log_event(px, "ULTRA", f"raw={raw}")
+
+    if det.near_fused:
+            log_event(px, Estado.SEARCH, f"Baliza muy cerca según fusión → NEAR")
+            stop(px)
+            px.last_cmd = Cmd.STOP
+            return Estado.NEAR
 
     # 1. Peligro extremo → SCAPE inmediato
     if px.distance_real < DANGER_DISTANCE and not st.is_escaping:
         log_event(px, Estado.SEARCH, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
         stop(px)
+        px.last_cmd = Cmd.STOP
         backward(px)
+        px.last_cmd = Cmd.BACKWARD
         time.sleep(0.4)
         stop(px)
+        px.last_cmd = Cmd.STOP
 
         st.is_escaping = True
         st.escape_end_time = time.time() + 1.0
-        px.last_cmd = "SCAPE"
+        px.last_cmd = Cmd.SCAPE
         return Estado.SEARCH
 
     # 2. Advertencia → frenar inercia (solo si no estamos escapando)
@@ -821,6 +826,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
         if not px.changed_speed_slow:  # evita spam de logs
             log_event(px, Estado.SEARCH, f"⚠️ Advertencia: objeto a {px.distance_real} cm → frenado preventivo")
         stop(px)
+        px.last_cmd = Cmd.STOP
         px.changed_speed_slow = True
 
     # 3. Salida del modo escape
@@ -1086,8 +1092,6 @@ def state_track(px, estado, st, distancia_real,test_mode):
 def state_near(px, estado, st, distancia_real, test_mode):
     det, raw = get_detection(px)
     px.last_det = det
-    log_det(px, Estado.NEAR, det, raw, st)
-    log_event(px, Estado.NEAR, f"Distancia real: {px.distance_real} cm")
 
     # ============================================================
     # ENTRADA AL ESTADO
@@ -1118,8 +1122,6 @@ def state_near(px, estado, st, distancia_real, test_mode):
     # SEGURIDAD NEAR (fusión)
     # ============================================================
     update_safety(px)
-    raw = px.ultrasonic.read()
-    log_event(px, "ULTRA", f"raw={raw}")
 
     # 1. Peligro extremo → SCAPE inmediato
     if px.distance_real < DANGER_DISTANCE and not st.is_escaping:
