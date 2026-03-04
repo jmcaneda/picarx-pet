@@ -209,7 +209,10 @@ class RobotState:
 
         # Frames consecutivos en los que la baliza está en el borde.
         # Si supera un umbral → giro de chasis. (*)
-        self.search_edge_frames = 0          
+        self.search_edge_frames = 0
+
+        # Indica si el robot ha perdido completamente la referencia de la baliza (usado para decidir cuándo ampliar el barrido)
+        self.lost_in_space = False            
 
 
         # ============================================================
@@ -745,6 +748,7 @@ def state_reset(px, estado, st, distancia_real, test_mode):
     st.search_edge_frames = 0
     st.search_cam_dir = 1
     st.search_wheels_dir = 1
+    st.lost_in_space = False
 
     st.recenter_centered_frames = 0
     st.recenter_lost_frames = 0
@@ -812,76 +816,75 @@ def state_search(px, estado, st, distancia_real, test_mode):
         st.search_lost_frames = 0
         st.search_found_frames += 1
 
+        # ------------------------------------------------------------
         # Centrado estable → RECENTER
-        if det.is_centered:
+        # ------------------------------------------------------------
+        # Usamos una ventana más amplia (±40 px) para evitar bloqueos
+        if abs(det.error_x) <= 40:
             if st.search_found_frames >= 3:
                 log_event(px, Estado.SEARCH,
-                          f"Centrado estable ({st.search_found_frames} frames) → RECENTER")
+                        f"Centrado estable ({st.search_found_frames} frames) → RECENTER")
                 px.last_state = Estado.SEARCH
                 return Estado.RECENTER
+        else:
+            # Si no está centrado, reiniciamos el contador
+            st.search_found_frames = 0
 
-        # Ajuste de PAN si error_x grande
+        # ------------------------------------------------------------
+        # Ajuste de PAN proporcional
+        # ------------------------------------------------------------
+        # PAN más fuerte si el error es grande, más suave si es pequeño
         if abs(det.error_x) > 40:
+            step = CAM_STEP
+
+            # Escalado proporcional (máximo x3)
+            if abs(det.error_x) > 120:
+                step *= 3
+            elif abs(det.error_x) > 80:
+                step *= 2
+
             if det.error_x > 0:
-                log_event(px, Estado.SEARCH, "Baliza a la derecha → PAN DERECHA")
-                px.last_cmd = "PAN_RIGHT"
-                if pan_right(px) == 0:
+                log_event(px, Estado.SEARCH, f"Baliza a la derecha → PAN DERECHA (step={step})")
+                if pan_right(px, step) == 0:
                     st.search_cam_dir *= -1
             else:
-                log_event(px, Estado.SEARCH, "Baliza a la izquierda → PAN IZQUIERDA")
-                px.last_cmd = "PAN_LEFT"
-                if pan_left(px) == 0:
+                log_event(px, Estado.SEARCH, f"Baliza a la izquierda → PAN IZQUIERDA (step={step})")
+                if pan_left(px, step) == 0:
                     st.search_cam_dir *= -1
 
             px.last_state = Estado.SEARCH
             return Estado.SEARCH
 
+
     # ============================================================
     # SIN DETECCIÓN → barrido de cámara
     # ============================================================
-    log_event(px, Estado.SEARCH, "SIN DETECCIÓN VÁLIDA → PANEO")
+    if not det.valid_for_search:
+        log_event(px, Estado.SEARCH, "SIN DETECCIÓN VÁLIDA → PANEO")
+        st.search_lost_frames += 1
 
-    st.search_lost_frames += 1
+        # ------------------------------------------------------------
+        # Barrido de cámara normal
+        # ------------------------------------------------------------
+        if st.search_cam_dir > 0:
+            if pan_right(px) == 0:
+                st.search_cam_dir = -1
+        else:
+            if pan_left(px) == 0:
+                st.search_cam_dir = 1
 
-    # Si llevamos mucho tiempo sin ver nada, girar el chasis además de la cámara
-    if st.search_lost_frames > 20: 
-        if st.search_lost_frames % 10 == 0: # Solo girar de vez en cuando para no marear al sensor
-            log_event(px, Estado.SEARCH, "Búsqueda profunda: Girando chasis")
-            if st.search_cam_dir > 0:
-                turn_right(px)
-            else:
-                turn_left(px)
-    
-    # Barrido de cámara normal
-    if st.search_cam_dir > 0:
-        if pan_right(px) == 0: st.search_cam_dir = -1
-    else:
-        if pan_left(px) == 0: st.search_cam_dir = 1
+        px.last_state = Estado.SEARCH
+        return Estado.SEARCH
 
-    px.last_state = Estado.SEARCH
-    return Estado.SEARCH
 
     # ============================================================
     # SALIDA → Plan B
     # ============================================================
-
-    # 1. Si llevamos demasiado tiempo sin ver nada → ampliar barrido
-    if st.search_lost_frames > 30:
-        CAM_STEP = CAM_STEP * 2   # barrido más rápido
-
-    # 2. Si llevamos muchísimo tiempo → girar el chasis más agresivo
-    if st.search_lost_frames > 60:
-        turn_left(px)  # o turn_right según última dirección vista
-
-    # 3. Si llevamos muchísimo más → volver a la última dirección conocida
-    if st.search_lost_frames > 120:
-        pan_to(px, st.last_seen_direction)
-
-    # 4. Si ya es absurdo → STOP o IDLE
-    if st.search_lost_frames > 200:
-        stop(px)
-        return Estado.IDLE
-
+    if not det.valid_for_search and st.search_lost_frames >= 20:
+        log_event(px, Estado.SEARCH, "Búsqueda circular -> TRACK")
+        st.lost_in_space = True
+        px.last_state = Estado.SEARCH
+        return Estado.TRACK
 
 
 def state_recenter(px, estado, st, distancia_real, test_mode):
