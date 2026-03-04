@@ -1,14 +1,162 @@
 === Start of pet02.log ===
-[17:50:15] [Estado.CHK] [CHK] ==============================
-[17:50:15] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[17:50:15] [Estado.CHK] [CHK] ==============================
-[17:50:15] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[17:50:15] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[17:50:15] [Estado.CHK] [CHK] State wheels:     0
-[17:50:15] [Estado.CHK] [CHK] ==============================
-[17:50:15] [Estado.IDLE] Inicio del sistema
-[17:50:15] [Estado.IDLE] Entrando en IDLE (test_mode=False)
-[17:50:15] [Estado.RESET] Entrando en RESET (test_mode=False)
-[17:50:15] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[17:50:15] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[17:50:16] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[18:15:50] [Estado.CHK] [CHK] ==============================
+[18:15:50] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[18:15:50] [Estado.CHK] [CHK] ==============================
+[18:15:50] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[18:15:50] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[18:15:50] [Estado.CHK] [CHK] State wheels:     0
+[18:15:50] [Estado.CHK] [CHK] ==============================
+[18:15:50] [Estado.IDLE] Inicio del sistema
+[18:15:50] [Estado.IDLE] Entrando en IDLE (test_mode=False)
+[18:15:50] [Estado.RESET] Entrando en RESET (test_mode=False)
+[18:15:51] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[18:15:51] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[18:15:51] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[18:15:51] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[18:15:51] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
+[18:15:52] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[18:15:52] [Estado.RECENTER] Corrigiendo dirección, error_x=-26
+[18:15:52] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-10.4)
+[18:15:52] [Estado.RECENTER] Corrigiendo dirección, error_x=-26
+[18:15:52] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-10.4)
+[18:15:52] [Estado.RECENTER] Corrigiendo dirección, error_x=-20
+[18:15:52] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-8.0)
+[18:15:52] [Estado.RECENTER] Corrigiendo dirección, error_x=-14
+[18:15:52] [Estado.RECENTER] Corrigiendo dirección, error_x=-10
+[18:15:52] [Estado.RECENTER] Corrigiendo dirección, error_x=0
+[18:15:52] [Estado.RECENTER] Corrigiendo dirección, error_x=8
+[18:15:52] [Estado.RECENTER] Corrigiendo dirección, error_x=20
+[18:15:52] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=8.0)
+[18:15:53] [Estado.RECENTER] Corrigiendo dirección, error_x=30
+[18:15:53] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=12.0)
+[18:15:53] [Estado.RECENTER] Corrigiendo dirección, error_x=10
+[18:15:53] [Estado.RECENTER] Corrigiendo dirección, error_x=0
+[18:15:53] [Estado.RECENTER] Corrigiendo dirección, error_x=-22
+[18:15:53] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-8.8)
+[18:15:53] [Estado.RECENTER] Corrigiendo dirección, error_x=-52
+[18:15:53] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-20.8)
+[18:15:53] [Estado.RECENTER] Corrigiendo dirección, error_x=-64
+[18:15:53] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-25.6)
+[18:15:53] [Estado.RECENTER] Corrigiendo dirección, error_x=-18
+[18:15:53] [Estado.RECENTER] Corrigiendo dirección, error_x=22
+[18:15:53] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=8.8)
+[18:15:53] [Estado.RECENTER] Corrigiendo dirección, error_x=22
+[18:15:53] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=8.8)
+[18:15:53] [Estado.RECENTER] Corrigiendo dirección, error_x=30
+[18:15:53] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=12.0)
+[18:15:54] [Estado.RECENTER] Corrigiendo dirección, error_x=-8
+[18:15:54] [Estado.RECENTER] Corrigiendo dirección, error_x=-40
+[18:15:54] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-16.0)
+[18:15:54] [Estado.RECENTER] Corrigiendo dirección, error_x=-88
+[18:15:54] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[18:15:54] [Estado.RECENTER] Corrigiendo dirección, error_x=-114
+[18:15:54] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[18:15:54] [Estado.RECENTER] Corrigiendo dirección, error_x=-46
+[18:15:54] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-18.4)
+[18:15:54] [Estado.RECENTER] Corrigiendo dirección, error_x=14
+[18:15:54] [Estado.RECENTER] Corrigiendo dirección, error_x=64
+[18:15:54] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=25.6)
+[18:15:54] [Estado.RECENTER] Corrigiendo dirección, error_x=72
+[18:15:54] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=28.8)
+[18:15:54] [Estado.RECENTER] Corrigiendo dirección, error_x=18
+[18:15:55] [Estado.RECENTER] Corrigiendo dirección, error_x=-64
+[18:15:55] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-25.6)
+[18:15:55] [Estado.RECENTER] Corrigiendo dirección, error_x=-128
+[18:15:55] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[18:15:55] [Estado.RECENTER] Corrigiendo dirección, error_x=-178
+[18:15:55] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[18:15:55] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
+[18:15:55] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[18:15:55] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
+[18:15:55] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=4)
+[18:15:56] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
+[18:15:56] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[18:15:56] [Estado.RECENTER] Corrigiendo dirección, error_x=-62
+[18:15:56] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-24.8)
+[18:15:56] [Estado.RECENTER] Corrigiendo dirección, error_x=-88
+[18:15:56] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[18:15:56] [Estado.RECENTER] Corrigiendo dirección, error_x=-78
+[18:15:56] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[18:15:56] [Estado.RECENTER] Corrigiendo dirección, error_x=-58
+[18:15:56] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-23.2)
+[18:15:56] [Estado.RECENTER] Corrigiendo dirección, error_x=-28
+[18:15:56] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-11.2)
+[18:15:56] [Estado.RECENTER] Baliza muy cerca según fusión → NEAR
+[18:15:56] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[18:15:56] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.65 cm → frenado total
+[18:15:56] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.06 cm → frenado total
+[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.93 cm → frenado total
+[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.71 cm → frenado total
+[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.89 cm → frenado total
+[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.94 cm → frenado total
+[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.86 cm → frenado total
+[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.95 cm → frenado total
+[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.86 cm → frenado total
+[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.83 cm → frenado total
+[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.02 cm → frenado total
+[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.8 cm → frenado total
+[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.5 cm → frenado total
+[18:15:58] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.8 cm → frenado total
+[18:15:58] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.95 cm → frenado total
+[18:15:58] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.88 cm → frenado total
+[18:15:58] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.92 cm → frenado total
+[18:15:58] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.94 cm → frenado total
+[18:15:58] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.95 cm → frenado total
+[18:15:58] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.99 cm → frenado total
+[18:15:58] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.0 cm → frenado total
+[18:15:58] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.92 cm → frenado total
+[18:15:58] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.88 cm → frenado total
+[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.95 cm → frenado total
+[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 29.51 cm → frenado total
+[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.79 cm → frenado total
+[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.95 cm → frenado total
+[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.96 cm → frenado total
+[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.0 cm → frenado total
+[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.97 cm → frenado total
+[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.93 cm → frenado total
+[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.9 cm → frenado total
+[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.86 cm → frenado total
+[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.87 cm → frenado total
+[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.84 cm → frenado total
+[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.99 cm → frenado total
+[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.04 cm → frenado total
+[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.0 cm → frenado total
+[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.94 cm → frenado total
+[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.05 cm → frenado total
+[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.97 cm → frenado total
+[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.9 cm → frenado total
+[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.96 cm → frenado total
+[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.9 cm → frenado total
+[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.87 cm → frenado total
+[18:16:01] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.93 cm → frenado total
+[18:16:01] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.9 cm → frenado total
+[18:16:01] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.07 cm → frenado total
+[18:16:01] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.99 cm → frenado total
+[18:16:01] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.05 cm → frenado total
+[18:16:01] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.99 cm → frenado total
+[18:16:01] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.91 cm → frenado total
+[18:16:01] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.84 cm → frenado total
+[18:16:01] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.97 cm → frenado total
+[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.94 cm → frenado total
+[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.51 cm → frenado total
+[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.99 cm → frenado total
+[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 27.04 cm → frenado total
+[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.04 cm → frenado total
+[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.06 cm → frenado total
+[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.85 cm → frenado total
+[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.95 cm → frenado total
+[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.06 cm → frenado total
+[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.9 cm → frenado total
+[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.95 cm → frenado total
+[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.88 cm → frenado total
+[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 34.21 cm → frenado total
+[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.84 cm → frenado total
+[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 33.27 cm → frenado total
+[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 28.2 cm → frenado total
+[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.95 cm → frenado total
+[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.98 cm → frenado total
+[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.82 cm → frenado total
+[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.83 cm → frenado total
+[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.81 cm → frenado total
+[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.06 cm → frenado total
+[18:16:04] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.01 cm → frenado total

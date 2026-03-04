@@ -663,8 +663,9 @@ def log_det(px, estado, det, raw, state, prefix=""):
 
 def print_dashboard(px, estado, test_mode):
     os.system('clear')
+    estado_name = estado.name if estado is not None else "NONE"
     print("="*45)
-    print(f" 🐾 PICAR-X DASHBOARD | Estado: {estado.name}")
+    print(f" 🐾 PICAR-X DASHBOARD | Estado: {estado_name}")
     print(f" 🐾 TEST MODE: {test_mode}")
     print("="*45)
 
@@ -868,7 +869,16 @@ def state_search(px, estado, st, distancia_real, test_mode):
 
             px.last_state = Estado.SEARCH
             return Estado.SEARCH
+    
 
+    # ============================================================
+    # SALIDA → Plan B
+    # ============================================================
+    if not det.valid_for_search and st.search_lost_frames >= 20:
+        log_event(px, Estado.SEARCH, "Búsqueda circular -> TRACK")
+        st.lost_in_space = True
+        px.last_state = Estado.SEARCH
+        return Estado.TRACK
 
     # ============================================================
     # SIN DETECCIÓN → barrido de cámara
@@ -891,15 +901,8 @@ def state_search(px, estado, st, distancia_real, test_mode):
         return Estado.SEARCH
 
 
-    # ============================================================
-    # SALIDA → Plan B
-    # ============================================================
-    if not det.valid_for_search and st.search_lost_frames >= 20:
-        log_event(px, Estado.SEARCH, "Búsqueda circular -> TRACK")
-        st.lost_in_space = True
-        px.last_state = Estado.SEARCH
-        return Estado.TRACK
-
+    px.last_state = Estado.SEARCH 
+    return Estado.SEARCH
 
 def state_recenter(px, estado, st, distancia_real, test_mode):
 
@@ -972,7 +975,7 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
     if abs(det.error_x) >= 20:
         angulo = wheels_angle_error_x(px, det)
         log_event(px, Estado.RECENTER, f"Error significativo → wheels_angle_error_x (ángulo={angulo})")
-        # rock_robot(px)
+        
 
     if abs(det.error_x) > 150: # Si la baliza está ya en el tercio exterior del frame
         log_event(px, Estado.RECENTER, "Error demasiado grande para corregir avanzando → SEARCH")
