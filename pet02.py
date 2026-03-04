@@ -444,6 +444,20 @@ def wheels_angle_error_x(px, det):
     return servo_angle
 
 
+def rock_robot(px):
+    stop(px)
+    time.sleep(0.05)
+    backward(px)
+    time.sleep(0.05)
+    stop(px)
+    px.changed_speed_slow = True
+    forward(px)
+    time.sleep(0.05)
+    stop(px)
+
+    return True
+
+
 # ============================================================
 # MOVIMIENTOS DE CÁMARA SEGUROS
 # ============================================================
@@ -888,12 +902,13 @@ def state_search(px, estado, st, distancia_real, test_mode):
 
 
 def state_recenter(px, estado, st, distancia_real, test_mode):
+
+    # ============================================================
+    # ENTRADA AL ESTADO RECENTER
+    # ============================================================
     det, raw = get_detection(px)
     px.last_det = det
 
-    # ============================================================
-    # ENTRADA AL ESTADO
-    # ============================================================
     if px.last_state != Estado.RECENTER:
         log_event(px, Estado.RECENTER, f"Entrando en RECENTER (test_mode={test_mode})")
         if test_mode:
@@ -902,32 +917,20 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
 
         st.recenter_centered_frames = 0
         st.recenter_lost_frames = 0
+
+        px.changed_speed_slow = False  # RECENTER empieza en velocidad normal
+
         px.last_state = Estado.RECENTER
         return Estado.RECENTER
 
+
     # ============================================================
-    # SEGURIDAD FUSIONADA
+    # SEGURIDAD RECENTER
     # ============================================================
     update_safety(px)
-
-    if det.near_fused:
-        log_event(px, Estado.RECENTER, "Baliza muy cerca según fusión → NEAR")
-        stop(px)
-        return Estado.NEAR
-
-    if px.distance_real < DANGER_DISTANCE:
-        log_event(px, Estado.RECENTER, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
-        stop(px)
-        time.sleep(0.1)
-        backward(px)
-        time.sleep(0.4)
-        stop(px)
-        return Estado.SEARCH
-
-    if px.distance_real < WARNING_DISTANCE:
-        log_event(px, Estado.RECENTER, f"⚠️ Advertencia: objeto a {px.distance_real} cm → frenado preventivo")
-        stop(px)
-        return Estado.SEARCH
+    estado = apply_safety(px, estado, st, det)
+    if estado != Estado.RECENTER:
+        return estado
 
     # ============================================================
     # SIN DETECCIÓN → volver a SEARCH
@@ -936,7 +939,9 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
         st.recenter_lost_frames += 1
         if st.recenter_lost_frames >= 3:
             log_event(px, Estado.RECENTER, "Pérdida de detección → SEARCH")
+            px.last_state = Estado.RECENTER
             return Estado.SEARCH
+        px.last_state = Estado.RECENTER
         return Estado.RECENTER
 
     st.recenter_lost_frames = 0
@@ -944,9 +949,9 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
     # ============================================================
     # MOVER CÁMARA PARA MANTENER LA BALIZA EN EL FRAME
     # ============================================================
-    if det.error_x > 20:
+    if det.error_x > 40:
         pan_right(px)
-    elif det.error_x < -20:
+    elif det.error_x < -40:
         pan_left(px)
 
     # ============================================================
@@ -954,29 +959,31 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
     # ============================================================
     if abs(det.error_x) < 20:
         st.recenter_centered_frames += 1
-        if st.recenter_centered_frames >= 4:
+        if st.recenter_centered_frames >= 3:
             log_event(px, Estado.RECENTER, "Alineación completada → TRACK")
+            px.last_state = Estado.RECENTER
             return Estado.TRACK
-    else:
-        st.recenter_centered_frames = 0
+    
+    st.recenter_centered_frames = 0
 
     # Corrección suave del chasis
     log_event(px, Estado.RECENTER, f"Corrigiendo dirección, error_x={det.error_x}")
 
-    if abs(det.error_x) < 20:
-        px.set_dir_servo_angle(0)
-    else:
+    if abs(det.error_x) >= 20:
         angulo = wheels_angle_error_x(px, det)
         log_event(px, Estado.RECENTER, f"Error significativo → wheels_angle_error_x (ángulo={angulo})")
+        rock_robot(px)
 
     if abs(det.error_x) > 150: # Si la baliza está ya en el tercio exterior del frame
         log_event(px, Estado.RECENTER, "Error demasiado grande para corregir avanzando → SEARCH")
+        px.last_state = Estado.RECENTER
         return Estado.SEARCH
 
     # ============================================================
-    # 3) AVANCE
+    # SALIDA RECENTER → TRACK
     # ============================================================
     forward(px)
+    px.last_state = Estado.RECENTER
     return Estado.RECENTER
 
 
