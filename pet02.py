@@ -972,7 +972,7 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
     if abs(det.error_x) >= 20:
         angulo = wheels_angle_error_x(px, det)
         log_event(px, Estado.RECENTER, f"Error significativo → wheels_angle_error_x (ángulo={angulo})")
-        rock_robot(px)
+        # rock_robot(px)
 
     if abs(det.error_x) > 150: # Si la baliza está ya en el tercio exterior del frame
         log_event(px, Estado.RECENTER, "Error demasiado grande para corregir avanzando → SEARCH")
