@@ -542,7 +542,43 @@ def update_safety(px):
 
     return d
 
+def apply_safety(px, estado, st, det):
+    """
+    Aplica protocolos de seguridad basados en la distancia.
+    - Si el objeto está demasiado cerca → maniobra de escape.
+    - Si el objeto está en zona de advertencia → frenado preventivo.
+    - Si la baliza está muy cerca según fusión → pasar a NEAR.
+    """
+    if det.near_fused:
+        log_event(px, px.last_state, "Baliza muy cerca según fusión → NEAR")
+        stop(px)
+        return Estado.NEAR
+    
+    if px.distance_real < DANGER_DISTANCE and not st.is_escaping:
+        log_event(px, px.last_state, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
+        stop(px)
+        time.sleep(0.1)
+        backward(px)
+        time.sleep(0.4)
+        stop(px)
 
+        st.is_escaping = True
+        st.escape_end_time = time.time() + 1.0  # Escapa durante 1 segundo
+        return Estado.SEARCH
+
+    if px.distance_real < WARNING_DISTANCE:
+        log_event(px, px.last_state, f"⚠️ Advertencia: objeto a {px.distance_real} cm → frenado preventivo")
+        px.changed_speed_slow = True
+        return Estado.SEARCH
+    
+    if st.is_escaping and time.time() >= st.escape_end_time:
+        log_event(px, px.last_state, "Maniobra de escape finalizada")
+        st.is_escaping = False
+        px.changed_speed_slow = True
+          
+    
+    return estado  # Si no se activa ningún protocolo, mantener el estado actual
+    
 
 # ============================================================
 # FUNCIONES
@@ -653,8 +689,7 @@ def state_idle(px, estado, state, distancia_real, test_mode):
     - No realiza detección ni movimiento.
     - Solo ejecuta STOP y pasa a RESET.
     """
-    det, raw = get_detection(px)
-    px.last_det = det
+    
     if px.last_state != Estado.IDLE:
         log_event(px, Estado.IDLE, f"Entrando en IDLE (test_mode={test_mode})")
         if test_mode:
@@ -675,8 +710,7 @@ def state_reset(px, estado, st, distancia_real, test_mode):
     - Garantiza que el robot está quieto.
     - Transiciona inmediatamente a SEARCH.
     """
-    det, raw = get_detection(px)
-    px.last_det = det
+
     # Registrar entrada al estado solo una vez
     if px.last_state != Estado.RESET:
         log_event(px, Estado.RESET, f"Entrando en RESET (test_mode={test_mode})")
@@ -733,24 +767,18 @@ def state_reset(px, estado, st, distancia_real, test_mode):
     st.escape_end_time = 0
     st.last_sec_active = False
 
-    # ------------------------------------------------------------
-    # ACTUALIZAR ESTADO
-    # ------------------------------------------------------------
     px.last_state = Estado.RESET
-
-    # ------------------------------------------------------------
-    # PASAR A SEARCH
-    # ------------------------------------------------------------
     return Estado.SEARCH
 
 
 def state_search(px, estado, st, distancia_real, test_mode):
+
+    # ============================================================
+    # ENTRADA AL ESTADO SEARCH
+    # ============================================================
     det, raw = get_detection(px)
     px.last_det = det
 
-    # ============================================================
-    # ENTRADA AL ESTADO
-    # ============================================================
     if px.last_state != Estado.SEARCH:
         log_event(px, Estado.SEARCH, f"Entrando en SEARCH (test_mode={test_mode})")
         if test_mode:
@@ -764,54 +792,18 @@ def state_search(px, estado, st, distancia_real, test_mode):
         st.search_wheels_dir = 1
         st.is_escaping = False
 
-        # Reset de hardware
-        px.set_cam_pan_angle(0)
-        px.last_pan = 0
-        px.set_cam_tilt_angle(0)
-        px.last_tilt = 0
-        px.set_dir_servo_angle(0)
-        px.dir_current_angle = 0
         px.changed_speed_slow = False
-        px.last_state = Estado.SEARCH
 
+        px.last_state = Estado.SEARCH
         return Estado.SEARCH
 
     # ============================================================
     # SEGURIDAD SEARCH
     # ============================================================
     update_safety(px)
-
-    if det.near_fused:
-            log_event(px, Estado.SEARCH, f"Baliza muy cerca según fusión → NEAR")
-            stop(px)
-            return Estado.NEAR
-
-    # 1. Peligro extremo → SCAPE inmediato
-    if px.distance_real < DANGER_DISTANCE and not st.is_escaping:
-        log_event(px, Estado.SEARCH, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
-        stop(px)
-        time.sleep(0.1)
-        backward(px)
-        time.sleep(0.4)
-        stop(px)
-
-        st.is_escaping = True
-        st.escape_end_time = time.time() + 1.0
-        px.last_cmd = Cmd.SCAPE
-        return Estado.SEARCH
-
-    # 2. Advertencia → frenar inercia (solo si no estamos escapando)
-    if px.distance_real < WARNING_DISTANCE and not st.is_escaping:
-        if not px.changed_speed_slow:  # evita spam de logs
-            log_event(px, Estado.SEARCH, f"⚠️ Advertencia: objeto a {px.distance_real} cm → frenado preventivo")
-        stop(px)
-        px.changed_speed_slow = True
-
-    # 3. Salida del modo escape
-    if st.is_escaping and time.time() >= st.escape_end_time:
-        st.is_escaping = False
-        px.changed_speed_slow = False
-
+    estado = apply_safety(px, estado, st, det)
+    if estado != Estado.SEARCH:
+        return estado
 
     # ============================================================
     # DETECCIÓN VÁLIDA
@@ -868,6 +860,28 @@ def state_search(px, estado, st, distancia_real, test_mode):
 
     px.last_state = Estado.SEARCH
     return Estado.SEARCH
+
+    # ============================================================
+    # SALIDA → Plan B
+    # ============================================================
+
+    # 1. Si llevamos demasiado tiempo sin ver nada → ampliar barrido
+    if st.search_lost_frames > 30:
+        CAM_STEP = CAM_STEP * 2   # barrido más rápido
+
+    # 2. Si llevamos muchísimo tiempo → girar el chasis más agresivo
+    if st.search_lost_frames > 60:
+        turn_left(px)  # o turn_right según última dirección vista
+
+    # 3. Si llevamos muchísimo más → volver a la última dirección conocida
+    if st.search_lost_frames > 120:
+        pan_to(px, st.last_seen_direction)
+
+    # 4. Si ya es absurdo → STOP o IDLE
+    if st.search_lost_frames > 200:
+        stop(px)
+        return Estado.IDLE
+
 
 
 def state_recenter(px, estado, st, distancia_real, test_mode):
