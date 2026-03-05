@@ -457,6 +457,18 @@ def rock_robot(px):
 
     return True
 
+def circle_robot(px, direction=1):
+    if direction > 0:
+        turn_right(px)
+    else:
+        turn_left(px)
+    px.changed_speed_slow = True
+    forward(px)
+    time.sleep(0.5)
+    stop(px)
+
+    return True
+
 
 # ============================================================
 # MOVIMIENTOS DE CÁMARA SEGUROS
@@ -991,88 +1003,111 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
 
 
 def state_track(px, estado, st, distancia_real, test_mode):
+
+    # ============================================================
+    # ENTRADA AL ESTADO TRACK
+    # ============================================================
     det, raw = get_detection(px)
     px.last_det = det
 
-    # ============================================================
-    # ENTRADA AL ESTADO
-    # ============================================================
     if px.last_state != Estado.TRACK:
         log_event(px, Estado.TRACK, f"Entrando en TRACK (test_mode={test_mode})")
         if test_mode:
             log_event(px, Estado.TRACK, "¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.")
             return Estado.SEARCH
 
-        st.track_lost_frames = 0
         st.track_centered_frames = 0
+        st.track_lost_frames = 0
+
+        px.changed_speed_slow = False  # TRACK empieza en velocidad normal
 
         px.last_state = Estado.TRACK
-        stop(px)
         return Estado.TRACK
 
+
     # ============================================================
-    # SEGURIDAD FUSIONADA
+    # SEGURIDAD TRACK
     # ============================================================
     update_safety(px)
+    estado = apply_safety(px, estado, st, det)
+    if estado != Estado.TRACK:
+        return estado
 
-    if det.near_fused:
-        log_event(px, Estado.TRACK, "Baliza muy cerca según fusión → NEAR")
-        stop(px)
-        return Estado.NEAR
-
-    if px.distance_real < DANGER_DISTANCE:
-        log_event(px, Estado.TRACK, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
-        stop(px)
-        time.sleep(0.1)
-        backward(px)
-        time.sleep(0.4)
-        stop(px)
-        return Estado.SEARCH
-
-    if px.distance_real < WARNING_DISTANCE:
-        if not px.changed_speed_slow:
-            log_event(px, Estado.TRACK, f"⚠️ Advertencia: objeto a {px.distance_real} cm → velocidad reducida")
-        px.changed_speed_slow = True
 
     # ============================================================
-    # SIN DETECCIÓN → SEARCH
+    # PLAN B: si venimos de SEARCH con lost_in_space
+    # ============================================================
+    if st.lost_in_space:
+        if det.valid_for_search:
+            st.lost_in_space = False
+            log_event(px, Estado.TRACK, "Referencia recuperada → TRACK")
+            px.last_state = Estado.TRACK
+            return Estado.TRACK
+        else:
+            log_event(px, Estado.TRACK, "Perdidos en el espacio → SEARCH")
+            px.last_state = Estado.TRACK
+            return Estado.SEARCH
+
+
+    # ============================================================
+    # SIN DETECCIÓN → volver a SEARCH
     # ============================================================
     if not det.valid_for_search:
         st.track_lost_frames += 1
         if st.track_lost_frames >= 3:
             log_event(px, Estado.TRACK, "Pérdida de detección → SEARCH")
+            px.last_state = Estado.TRACK
             return Estado.SEARCH
+        px.last_state = Estado.TRACK
         return Estado.TRACK
 
     st.track_lost_frames = 0
 
+
     # ============================================================
-    # 1) MOVER CÁMARA (PRIMERO)
+    # MOVER CÁMARA PARA MANTENER LA BALIZA EN EL FRAME
     # ============================================================
     if det.error_x > 20:
         pan_right(px)
     elif det.error_x < -20:
         pan_left(px)
 
-    # ============================================================
-    # 2) CORRECCIÓN DE DIRECCIÓN
-    # ============================================================
-    log_event(px, Estado.TRACK, f"Corrigiendo dirección, error_x={det.error_x}")
 
-    if abs(det.error_x) <= 20:
-        px.set_dir_servo_angle(0)
-    else:
+    # ============================================================
+    # CORRECCIÓN DEL CHASIS (GIRO SUAVE)
+    # ============================================================
+    if abs(det.error_x) >= 20:
         angulo = wheels_angle_error_x(px, det)
-        log_event(px, Estado.TRACK, f"Error significativo → wheels_angle_error_x para corregir (ángulo={angulo})")
+        log_event(px, Estado.TRACK, f"Corrigiendo dirección (ángulo={angulo})")
+
+        if det.error_x > 0:
+            turn_right(px)
+        else:
+            turn_left(px)
+
 
     # ============================================================
-    # 3) AVANCE
+    # AVANCE CONTROLADO
     # ============================================================
-    if abs(det.error_x) > 150: # Si la baliza está ya en el tercio exterior del frame
-        log_event(px, Estado.RECENTER, "Error demasiado grande para corregir avanzando → SEARCH")
+    if abs(det.error_x) > 150:
+        # Baliza demasiado descentrada → usar circle_robot
+        log_event(px, Estado.TRACK, "Error extremo → circle_robot + SEARCH")
+        circle_robot(px, direction=1 if det.error_x > 0 else -1)
+        px.last_state = Estado.TRACK
         return Estado.SEARCH
-        
+
+    # Avance normal si está razonablemente centrado
     forward(px)
+
+    # ============================================================
+    # SALIDA TRACK → NEAR
+    # ============================================================
+    if det.valid_for_near:
+        log_event(px, Estado.TRACK, "Distancia crítica → NEAR")
+        px.last_state = Estado.TRACK
+        return Estado.NEAR
+
+    px.last_state = Estado.TRACK
     return Estado.TRACK
 
 
