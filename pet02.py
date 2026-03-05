@@ -191,87 +191,57 @@ class RobotState:
         # SEARCH — Exploración y adquisición de baliza
         # ============================================================
 
-        # Número de frames consecutivos sin detección válida.
-        # Si supera un umbral → giro de chasis. (*)
-        self.search_lost_frames = 0          
-
-        # Número de frames consecutivos con detección válida.
-        # Se usa para histéresis antes de pasar a RECENTER. (*)
-        self.search_found_frames = 0         
-
-        # Dirección del barrido PAN: +1 derecha, -1 izquierda.
-        # Se invierte al llegar a los límites del servo.
-        self.search_cam_dir = 1              
-
-        # Dirección del giro del chasis cuando SEARCH está perdido.
-        # Se alterna para evitar bucles girando siempre al mismo lado.
-        self.search_wheels_dir = 1           
-
-        # Frames consecutivos en los que la baliza está en el borde.
-        # Si supera un umbral → giro de chasis. (*)
-        self.search_edge_frames = 0
-
-        # Indica si el robot ha perdido completamente la referencia de la baliza (usado para decidir cuándo ampliar el barrido)
-        self.lost_in_space = False            
+        self.search_lost_frames = 0          # Frames sin detección válida
+        self.search_found_frames = 0         # Frames con detección válida
+        self.search_cam_dir = 1              # Dirección del barrido PAN
+        self.search_wheels_dir = 1           # Dirección del giro del chasis
+        self.search_edge_frames = 0          # Frames con baliza en el borde
+        self.lost_in_space = False           # Señal de pérdida total
 
 
         # ============================================================
         # RECENTER — Alineación fina cuerpo/cámara
         # ============================================================
 
-        # Frames consecutivos en los que la baliza está centrada.
-        # Si supera un umbral → pasar a TRACK.
-        self.recenter_centered_frames = 0    
-
-        # Frames consecutivos sin detección durante RECENTER.
-        # Si supera un umbral → volver a SEARCH.
-        self.recenter_lost_frames = 0        
-
-        # Marca temporal para evitar volver a RECENTER inmediatamente
-        # después de haberlo completado (cooldown).
-        self.just_recentered = None          
+        self.recenter_centered_frames = 0    # Frames centrado
+        self.recenter_lost_frames = 0        # Frames sin detección
+        self.just_recentered = None          # Cooldown tras RECENTER
 
 
         # ============================================================
         # TRACK — Seguimiento dinámico de la baliza
         # ============================================================
 
-        # Frames consecutivos sin detección válida durante TRACK.
-        # Si supera un umbral → volver a SEARCH.
-        self.track_lost_frames = 0           
-
-        # Frames consecutivos centrado durante TRACK.
-        # Se usa para suavizar movimientos y evitar oscilaciones.
-        self.track_centered_frames = 0       
+        self.track_lost_frames = 0           # Frames sin detección
+        self.track_centered_frames = 0       # Frames centrado (suavizado)
 
 
         # ============================================================
         # NEAR — Interacción cercana (frenado, retroceso, gesto)
         # ============================================================
 
-        # Frames consecutivos en los que se cumplen condiciones de NEAR.
+        # Frames consecutivos en los que la baliza está "muy cerca".
         # Evita entrar en NEAR por ruido.
-        self.near_enter_frames = 0           
+        self.near_hold_frames = 0
 
-        # Frames consecutivos en los que se pierde la condición de NEAR.
+        # Frames consecutivos en los que la condición de NEAR deja de cumplirse.
         # Controla la salida suave de NEAR.
-        self.near_exit_frames = 0            
+        self.near_exit_frames = 0
 
         # Frames sin detección durante NEAR.
         # Si supera un umbral → volver a SEARCH.
-        self.near_lost_frames = 0            
+        self.near_lost_frames = 0
 
         # Indica si ya se ejecutó el retroceso de cortesía.
-        self.near_done_backward = False      
-
-        # Marca temporal para evitar reentradas rápidas en NEAR.
-        self.near_cooldown = None            
+        self.near_backed = False
 
         # Indica si ya se ejecutó el gesto "sí".
-        self.near_did_yes = False            
+        self.near_nodded = False
 
+        # Cooldown para evitar reentradas rápidas en NEAR.
+        self.near_cooldown = 0
 
-        # Animación YES — control de pasos y temporización
+        # Control interno para animación YES (si lo usas en el futuro)
         self.yes_step = 0
         self.yes_next_time = 0.0
 
@@ -280,18 +250,10 @@ class RobotState:
         # SCAPE — Protocolos de seguridad y evasión
         # ============================================================
 
-        # Indica si el robot está actualmente escapando.
-        # Mientras sea True, la FSM queda bloqueada.
-        self.is_escaping = False             
+        self.is_escaping = False             # Señal de escape activo
+        self.escape_end_time = 0             # Tiempo de fin de escape
+        self.last_sec_active = False         # Señal de seguridad reciente
 
-        # Tiempo en el que debe finalizar la maniobra de escape.
-        self.escape_end_time = 0             
-
-        # Indica si SEC ha estado activo recientemente.
-        # SEARCH lo usa para reiniciar PAN y contadores.
-        self.last_sec_active = False
-
-        
 
 # ============================================================
 # INICIALIZACIÓN
@@ -534,8 +496,6 @@ def tilt_yes(px):
 
     if px.last_cmd == Cmd.CAM_TILT_YES:
         return False
-
-    log_event(px, px.last_state, "Iniciando gesto 'SI'")
 
     secuencia = [0, TILT_MAX, 0,TILT_MIN, 0, TILT_MAX, 0, TILT_MIN, 0]
 
@@ -1112,109 +1072,93 @@ def state_track(px, estado, st, distancia_real, test_mode):
 
 
 def state_near(px, estado, st, distancia_real, test_mode):
+
+    # ============================================================
+    # ENTRADA AL ESTADO NEAR
+    # ============================================================
     det, raw = get_detection(px)
     px.last_det = det
 
-    # ============================================================
-    # ENTRADA AL ESTADO
-    # ============================================================
     if px.last_state != Estado.NEAR:
         log_event(px, Estado.NEAR, f"Entrando en NEAR (test_mode={test_mode})")
-        if test_mode:
-            log_event(px, Estado.NEAR, "¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.")
-            return Estado.SEARCH
 
-        st.near_enter_frames = 0
-        st.near_exit_frames = 0
-        st.near_lost_frames = 0
-        st.near_done_backward = False
-        st.near_did_yes = False
-        st.near_cooldown = time.time() + 1.0
-
-        st.yes_step = 0
-        st.yes_next_time = 0.0
+        st.near_hold_frames = 0
+        st.near_backed = False
+        st.near_nodded = False
+        st.near_cooldown = 0
 
         stop(px)
-        px.last_cmd = "STOP"
-        px.last_state = Estado.NEAR
+        px.changed_speed_slow = True
 
+        px.last_state = Estado.NEAR
         return Estado.NEAR
 
+
     # ============================================================
-    # SEGURIDAD NEAR (fusión)
+    # SEGURIDAD NEAR
     # ============================================================
     update_safety(px)
+    estado = apply_safety(px, estado, st, det)
+    if estado != Estado.NEAR:
+        return estado
 
-    # 1. Peligro extremo → SCAPE inmediato
-    if px.distance_real < DANGER_DISTANCE and not st.is_escaping:
-        log_event(px, Estado.NEAR, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
-        stop(px)
-        backward(px)
-        time.sleep(0.4)
-        stop(px)
-
-        st.is_escaping = True
-        st.escape_end_time = time.time() + 1.0
-        px.last_cmd = Cmd.SCAPE
-        return Estado.SEARCH
-
-    # 2. Advertencia → detener todo movimiento
-    if px.distance_real < WARNING_DISTANCE and not st.is_escaping:
-        log_event(px, Estado.NEAR, f"⚠️ Advertencia: objeto a {px.distance_real} cm → frenado total")
-        stop(px)
-        return Estado.NEAR
-
-    # 3. Salida del modo escape
-    if st.is_escaping and time.time() >= st.escape_end_time:
-        st.is_escaping = False
 
     # ============================================================
-    # NUEVO: si la visión dice que sigue muy cerca → mantener NEAR
+    # Si la visión dice que sigue muy cerca → mantener NEAR
     # ============================================================
-    if det.near_fused:
-        # Esto evita que el robot salga de NEAR por ruido del sensor
-        st.near_lost_frames = 0
+    if det.valid_for_near:
+        st.near_hold_frames += 1
+        st.near_cooldown = 0
+        stop(px)
+        log_event(px, Estado.NEAR, f"⚠️ Advertencia: objeto a {distancia_real:.2f} cm → frenado total")
+        px.last_state = Estado.NEAR
         return Estado.NEAR
+
 
     # ============================================================
     # SIN DETECCIÓN → salir de NEAR
     # ============================================================
     if not det.valid_for_search:
-        st.near_lost_frames += 1
-        if st.near_lost_frames >= 3:
-            log_event(px, Estado.NEAR, "Pérdida de detección → SEARCH")
-            return Estado.SEARCH
-        return Estado.NEAR
+        log_event(px, Estado.NEAR, "Sin detección → salir de NEAR → SEARCH")
+        px.last_state = Estado.NEAR
+        return Estado.SEARCH
+
 
     # ============================================================
     # RETROCESO (solo una vez)
     # ============================================================
-    if not st.near_done_backward:
-        log_event(px, Estado.NEAR, "Retroceso de cortesía")
+    if not st.near_backed:
+        log_event(px, Estado.NEAR, "Retroceso preventivo")
         backward(px)
-        time.sleep(0.25)
+        time.sleep(0.15)
         stop(px)
-        st.near_done_backward = True
+        st.near_backed = True
+        px.last_state = Estado.NEAR
         return Estado.NEAR
+
 
     # ============================================================
     # GESTO “SÍ” (solo una vez)
     # ============================================================
-    if not st.near_did_yes:
-        log_event(px, Estado.NEAR, "Ejecutando gesto 'SÍ'")
+    if not st.near_nodded:
+        log_event(px, Estado.NEAR, "Gesto de asentimiento")
         tilt_yes(px)
-        st.near_did_yes = True
+        
+        st.near_nodded = True
+        px.last_state = Estado.NEAR
         return Estado.NEAR
+
 
     # ============================================================
     # SALIDA DE NEAR (cooldown terminado)
     # ============================================================
-    if time.time() >= st.near_cooldown:
-        log_event(px, Estado.NEAR, "Fin de interacción → SEARCH")
-        stop(px)
-        px.last_cmd = "STOP"
-        return Estado.SEARCH
+    st.near_cooldown += 1
+    if st.near_cooldown >= 10:
+        log_event(px, Estado.NEAR, "Cooldown completado → RECENTER")
+        px.last_state = Estado.NEAR
+        return Estado.RECENTER
 
+    px.last_state = Estado.NEAR
     return Estado.NEAR
 
 
