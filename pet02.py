@@ -732,9 +732,7 @@ def state_reset(px, estado, st, distancia_real, test_mode):
     # ------------------------------------------------------------
     st.search_lost_frames = 0
     st.search_found_frames = 0
-    st.search_edge_frames = 0
     st.search_cam_dir = 1
-    st.search_wheels_dir = 1
     st.lost_in_space = False
 
     st.recenter_centered_frames = 0
@@ -744,15 +742,10 @@ def state_reset(px, estado, st, distancia_real, test_mode):
     st.track_lost_frames = 0
     st.track_centered_frames = 0
 
-    st.near_enter_frames = 0
-    st.near_exit_frames = 0
-    st.near_lost_frames = 0
-    st.near_done_backward = False
-    st.near_cooldown = None
-    st.near_did_yes = False
-
-    st.yes_step = 0
-    st.yes_next_time = 0.0
+    st.near_hold_frames = 0
+    st.near_backed = False
+    st.near_cooldown = 0
+    st.near_nodded = False
 
     st.is_escaping = False
     st.escape_end_time = 0
@@ -778,9 +771,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
         # Reset de contadores
         st.search_lost_frames = 0
         st.search_found_frames = 0
-        st.search_edge_frames = 0
         st.search_cam_dir = 1
-        st.search_wheels_dir = 1
         st.is_escaping = False
 
         px.changed_speed_slow = False
