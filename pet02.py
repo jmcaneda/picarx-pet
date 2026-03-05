@@ -538,10 +538,6 @@ def apply_safety(px, estado, st, det):
     - Si el objeto está en zona de advertencia → frenado preventivo.
     - Si la baliza está muy cerca según fusión → pasar a NEAR.
     """
-    if det.near_fused:
-        log_event(px, px.last_state, "Baliza muy cerca según fusión → NEAR")
-        stop(px)
-        return Estado.NEAR
     
     if px.distance_real < DANGER_DISTANCE and not st.is_escaping:
         log_event(px, px.last_state, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
@@ -556,9 +552,14 @@ def apply_safety(px, estado, st, det):
         return Estado.SEARCH
 
     if px.distance_real < WARNING_DISTANCE:
-        log_event(px, px.last_state, f"⚠️ Advertencia: objeto a {px.distance_real} cm → frenado preventivo")
+        log_event(px, px.last_state, f"⚠️ Advertencia: objeto a {px.distance_real} cm → cambio a velocidad lenta")
         px.changed_speed_slow = True
         return Estado.SEARCH
+
+    if det.near_fused:
+        log_event(px, px.last_state, "Baliza muy cerca según fusión → NEAR")
+        stop(px)
+        return Estado.NEAR
     
     if st.is_escaping and time.time() >= st.escape_end_time:
         log_event(px, px.last_state, "Maniobra de escape finalizada")

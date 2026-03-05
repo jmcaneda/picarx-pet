@@ -1,162 +1,221 @@
 === Start of pet02.log ===
-[18:15:50] [Estado.CHK] [CHK] ==============================
-[18:15:50] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[18:15:50] [Estado.CHK] [CHK] ==============================
-[18:15:50] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[18:15:50] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[18:15:50] [Estado.CHK] [CHK] State wheels:     0
-[18:15:50] [Estado.CHK] [CHK] ==============================
-[18:15:50] [Estado.IDLE] Inicio del sistema
-[18:15:50] [Estado.IDLE] Entrando en IDLE (test_mode=False)
-[18:15:50] [Estado.RESET] Entrando en RESET (test_mode=False)
-[18:15:51] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[18:15:51] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[18:15:51] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[18:15:51] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
-[18:15:51] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
-[18:15:52] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[18:15:52] [Estado.RECENTER] Corrigiendo dirección, error_x=-26
-[18:15:52] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-10.4)
-[18:15:52] [Estado.RECENTER] Corrigiendo dirección, error_x=-26
-[18:15:52] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-10.4)
-[18:15:52] [Estado.RECENTER] Corrigiendo dirección, error_x=-20
-[18:15:52] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-8.0)
-[18:15:52] [Estado.RECENTER] Corrigiendo dirección, error_x=-14
-[18:15:52] [Estado.RECENTER] Corrigiendo dirección, error_x=-10
-[18:15:52] [Estado.RECENTER] Corrigiendo dirección, error_x=0
-[18:15:52] [Estado.RECENTER] Corrigiendo dirección, error_x=8
-[18:15:52] [Estado.RECENTER] Corrigiendo dirección, error_x=20
-[18:15:52] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=8.0)
-[18:15:53] [Estado.RECENTER] Corrigiendo dirección, error_x=30
-[18:15:53] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=12.0)
-[18:15:53] [Estado.RECENTER] Corrigiendo dirección, error_x=10
-[18:15:53] [Estado.RECENTER] Corrigiendo dirección, error_x=0
-[18:15:53] [Estado.RECENTER] Corrigiendo dirección, error_x=-22
-[18:15:53] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-8.8)
-[18:15:53] [Estado.RECENTER] Corrigiendo dirección, error_x=-52
-[18:15:53] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-20.8)
-[18:15:53] [Estado.RECENTER] Corrigiendo dirección, error_x=-64
-[18:15:53] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-25.6)
-[18:15:53] [Estado.RECENTER] Corrigiendo dirección, error_x=-18
-[18:15:53] [Estado.RECENTER] Corrigiendo dirección, error_x=22
-[18:15:53] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=8.8)
-[18:15:53] [Estado.RECENTER] Corrigiendo dirección, error_x=22
-[18:15:53] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=8.8)
-[18:15:53] [Estado.RECENTER] Corrigiendo dirección, error_x=30
-[18:15:53] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=12.0)
-[18:15:54] [Estado.RECENTER] Corrigiendo dirección, error_x=-8
-[18:15:54] [Estado.RECENTER] Corrigiendo dirección, error_x=-40
-[18:15:54] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-16.0)
-[18:15:54] [Estado.RECENTER] Corrigiendo dirección, error_x=-88
-[18:15:54] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
-[18:15:54] [Estado.RECENTER] Corrigiendo dirección, error_x=-114
-[18:15:54] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
-[18:15:54] [Estado.RECENTER] Corrigiendo dirección, error_x=-46
-[18:15:54] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-18.4)
-[18:15:54] [Estado.RECENTER] Corrigiendo dirección, error_x=14
-[18:15:54] [Estado.RECENTER] Corrigiendo dirección, error_x=64
-[18:15:54] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=25.6)
-[18:15:54] [Estado.RECENTER] Corrigiendo dirección, error_x=72
-[18:15:54] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=28.8)
-[18:15:54] [Estado.RECENTER] Corrigiendo dirección, error_x=18
-[18:15:55] [Estado.RECENTER] Corrigiendo dirección, error_x=-64
-[18:15:55] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-25.6)
-[18:15:55] [Estado.RECENTER] Corrigiendo dirección, error_x=-128
-[18:15:55] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
-[18:15:55] [Estado.RECENTER] Corrigiendo dirección, error_x=-178
-[18:15:55] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
-[18:15:55] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
-[18:15:55] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[18:15:55] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[18:15:55] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=4)
-[18:15:56] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
-[18:15:56] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[18:15:56] [Estado.RECENTER] Corrigiendo dirección, error_x=-62
-[18:15:56] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-24.8)
-[18:15:56] [Estado.RECENTER] Corrigiendo dirección, error_x=-88
-[18:15:56] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
-[18:15:56] [Estado.RECENTER] Corrigiendo dirección, error_x=-78
-[18:15:56] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
-[18:15:56] [Estado.RECENTER] Corrigiendo dirección, error_x=-58
-[18:15:56] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-23.2)
-[18:15:56] [Estado.RECENTER] Corrigiendo dirección, error_x=-28
-[18:15:56] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-11.2)
-[18:15:56] [Estado.RECENTER] Baliza muy cerca según fusión → NEAR
-[18:15:56] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[18:15:56] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.65 cm → frenado total
-[18:15:56] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.06 cm → frenado total
-[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.93 cm → frenado total
-[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.71 cm → frenado total
-[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.89 cm → frenado total
-[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.94 cm → frenado total
-[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.86 cm → frenado total
-[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.95 cm → frenado total
-[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.86 cm → frenado total
-[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.83 cm → frenado total
-[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.02 cm → frenado total
-[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.8 cm → frenado total
-[18:15:57] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.5 cm → frenado total
-[18:15:58] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.8 cm → frenado total
-[18:15:58] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.95 cm → frenado total
-[18:15:58] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.88 cm → frenado total
-[18:15:58] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.92 cm → frenado total
-[18:15:58] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.94 cm → frenado total
-[18:15:58] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.95 cm → frenado total
-[18:15:58] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.99 cm → frenado total
-[18:15:58] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.0 cm → frenado total
-[18:15:58] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.92 cm → frenado total
-[18:15:58] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.88 cm → frenado total
-[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.95 cm → frenado total
-[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 29.51 cm → frenado total
-[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.79 cm → frenado total
-[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.95 cm → frenado total
-[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.96 cm → frenado total
-[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.0 cm → frenado total
-[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.97 cm → frenado total
-[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.93 cm → frenado total
-[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.9 cm → frenado total
-[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.86 cm → frenado total
-[18:15:59] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.87 cm → frenado total
-[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.84 cm → frenado total
-[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.99 cm → frenado total
-[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.04 cm → frenado total
-[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.0 cm → frenado total
-[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.94 cm → frenado total
-[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.05 cm → frenado total
-[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.97 cm → frenado total
-[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.9 cm → frenado total
-[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.96 cm → frenado total
-[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.9 cm → frenado total
-[18:16:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.87 cm → frenado total
-[18:16:01] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.93 cm → frenado total
-[18:16:01] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.9 cm → frenado total
-[18:16:01] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.07 cm → frenado total
-[18:16:01] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.99 cm → frenado total
-[18:16:01] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.05 cm → frenado total
-[18:16:01] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.99 cm → frenado total
-[18:16:01] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.91 cm → frenado total
-[18:16:01] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.84 cm → frenado total
-[18:16:01] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.97 cm → frenado total
-[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.94 cm → frenado total
-[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.51 cm → frenado total
-[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.99 cm → frenado total
-[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 27.04 cm → frenado total
-[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.04 cm → frenado total
-[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.06 cm → frenado total
-[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.85 cm → frenado total
-[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.95 cm → frenado total
-[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.06 cm → frenado total
-[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.9 cm → frenado total
-[18:16:02] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.95 cm → frenado total
-[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.88 cm → frenado total
-[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 34.21 cm → frenado total
-[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.84 cm → frenado total
-[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 33.27 cm → frenado total
-[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 28.2 cm → frenado total
-[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.95 cm → frenado total
-[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.98 cm → frenado total
-[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.82 cm → frenado total
-[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.83 cm → frenado total
-[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 31.81 cm → frenado total
-[18:16:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.06 cm → frenado total
-[18:16:04] [Estado.NEAR] ⚠️ Advertencia: objeto a 32.01 cm → frenado total
+[11:19:07] [Estado.CHK] [CHK] ==============================
+[11:19:07] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[11:19:07] [Estado.CHK] [CHK] ==============================
+[11:19:07] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[11:19:07] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[11:19:07] [Estado.CHK] [CHK] State wheels:     0
+[11:19:07] [Estado.CHK] [CHK] ==============================
+[11:19:07] [Estado.IDLE] Inicio del sistema
+[11:19:07] [Estado.IDLE] Entrando en IDLE (test_mode=False)
+[11:19:07] [Estado.RESET] Entrando en RESET (test_mode=False)
+[11:19:07] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[11:19:08] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[11:19:08] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
+[11:19:08] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:19:08] [Estado.RECENTER] Corrigiendo dirección, error_x=-22
+[11:19:08] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-8.8)
+[11:19:08] [Estado.RECENTER] Corrigiendo dirección, error_x=-6
+[11:19:09] [Estado.RECENTER] Corrigiendo dirección, error_x=24
+[11:19:09] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=9.6)
+[11:19:09] [Estado.RECENTER] Corrigiendo dirección, error_x=-18
+[11:19:09] [Estado.RECENTER] Corrigiendo dirección, error_x=-36
+[11:19:09] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-14.4)
+[11:19:09] [Estado.RECENTER] Corrigiendo dirección, error_x=-58
+[11:19:09] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-23.2)
+[11:19:09] [Estado.RECENTER] Corrigiendo dirección, error_x=-44
+[11:19:09] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-17.6)
+[11:19:09] [Estado.RECENTER] Corrigiendo dirección, error_x=-38
+[11:19:09] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-15.2)
+[11:19:09] [Estado.RECENTER] Corrigiendo dirección, error_x=0
+[11:19:09] [Estado.RECENTER] Corrigiendo dirección, error_x=-8
+[11:19:09] [Estado.RECENTER] Corrigiendo dirección, error_x=18
+[11:19:10] [Estado.RECENTER] Corrigiendo dirección, error_x=-16
+[11:19:10] [Estado.RECENTER] Corrigiendo dirección, error_x=-4
+[11:19:10] [Estado.RECENTER] Corrigiendo dirección, error_x=0
+[11:19:10] [Estado.RECENTER] Corrigiendo dirección, error_x=18
+[11:19:10] [Estado.RECENTER] Corrigiendo dirección, error_x=16
+[11:19:10] [Estado.RECENTER] Corrigiendo dirección, error_x=68
+[11:19:10] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=27.2)
+[11:19:10] [Estado.RECENTER] Corrigiendo dirección, error_x=88
+[11:19:10] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=30)
+[11:19:10] [Estado.RECENTER] Corrigiendo dirección, error_x=34
+[11:19:10] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=13.6)
+[11:19:10] [Estado.RECENTER] Corrigiendo dirección, error_x=-14
+[11:19:10] [Estado.RECENTER] Corrigiendo dirección, error_x=-86
+[11:19:10] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[11:19:11] [Estado.RECENTER] Baliza muy cerca según fusión → NEAR
+[11:19:11] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:19:11] [Estado.NEAR] Retroceso preventivo
+[11:19:11] [Estado.NEAR] Gesto de asentimiento
+[11:19:12] [Estado.NEAR] Cooldown completado → RECENTER
+[11:19:12] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:19:12] [Estado.RECENTER] Corrigiendo dirección, error_x=-192
+[11:19:13] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[11:19:13] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
+[11:19:13] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[11:19:13] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
+[11:19:13] [Estado.SEARCH] Baliza muy cerca según fusión → NEAR
+[11:19:13] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:19:13] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:13] [Estado.NEAR] ⚠️ Advertencia: objeto a 86.21 cm → frenado total
+[11:19:13] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:13] [Estado.NEAR] ⚠️ Advertencia: objeto a 85.75 cm → frenado total
+[11:19:13] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:13] [Estado.NEAR] ⚠️ Advertencia: objeto a 85.61 cm → frenado total
+[11:19:13] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:13] [Estado.NEAR] Retroceso preventivo
+[11:19:14] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:14] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.60 cm → frenado total
+[11:19:14] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.66 cm → frenado total
+[11:19:14] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.58 cm → frenado total
+[11:19:14] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.48 cm → frenado total
+[11:19:14] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:14] [Estado.NEAR] ⚠️ Advertencia: objeto a 98.60 cm → frenado total
+[11:19:14] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.45 cm → frenado total
+[11:19:14] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.54 cm → frenado total
+[11:19:15] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:15] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.51 cm → frenado total
+[11:19:15] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:15] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.61 cm → frenado total
+[11:19:15] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.55 cm → frenado total
+[11:19:15] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:15] [Estado.NEAR] ⚠️ Advertencia: objeto a 97.45 cm → frenado total
+[11:19:15] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.62 cm → frenado total
+[11:19:15] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:15] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.61 cm → frenado total
+[11:19:15] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.56 cm → frenado total
+[11:19:15] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:15] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.41 cm → frenado total
+[11:19:15] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:15] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.43 cm → frenado total
+[11:19:16] [Estado.NEAR] ⚠️ Advertencia: objeto a 81.55 cm → frenado total
+[11:19:16] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:16] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.41 cm → frenado total
+[11:19:16] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:16] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.57 cm → frenado total
+[11:19:16] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.47 cm → frenado total
+[11:19:16] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:16] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.36 cm → frenado total
+[11:19:16] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:16] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.35 cm → frenado total
+[11:19:16] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:16] [Estado.NEAR] ⚠️ Advertencia: objeto a 84.26 cm → frenado total
+[11:19:16] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:16] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.44 cm → frenado total
+[11:19:16] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:16] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.35 cm → frenado total
+[11:19:16] [Estado.NEAR] ⚠️ Advertencia: objeto a 113.97 cm → frenado total
+[11:19:17] [Estado.NEAR] Gesto de asentimiento
+[11:19:17] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.84 cm → frenado total
+[11:19:18] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.64 cm → frenado total
+[11:19:18] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.38 cm → frenado total
+[11:19:18] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:18] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.43 cm → frenado total
+[11:19:18] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.62 cm → frenado total
+[11:19:18] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.61 cm → frenado total
+[11:19:18] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.50 cm → frenado total
+[11:19:18] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:18] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.42 cm → frenado total
+[11:19:18] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.51 cm → frenado total
+[11:19:18] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.61 cm → frenado total
+[11:19:19] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.51 cm → frenado total
+[11:19:19] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.52 cm → frenado total
+[11:19:19] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.60 cm → frenado total
+[11:19:19] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.52 cm → frenado total
+[11:19:19] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.73 cm → frenado total
+[11:19:19] [Estado.NEAR] ⚠️ Advertencia: objeto a 91.12 cm → frenado total
+[11:19:19] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:19] [Estado.NEAR] ⚠️ Advertencia: objeto a 27.31 cm → frenado total
+[11:19:19] [Estado.NEAR] ⚠️ Advertencia: objeto a 131.32 cm → frenado total
+[11:19:19] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:19] [Estado.NEAR] ⚠️ Advertencia: objeto a 12.60 cm → frenado total
+[11:19:19] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.34 cm → frenado total
+[11:19:20] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.46 cm → frenado total
+[11:19:20] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:20] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.54 cm → frenado total
+[11:19:20] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.58 cm → frenado total
+[11:19:20] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.48 cm → frenado total
+[11:19:20] [Estado.NEAR] ⚠️ Advertencia: objeto a 94.47 cm → frenado total
+[11:19:20] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:20] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.49 cm → frenado total
+[11:19:20] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.63 cm → frenado total
+[11:19:21] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.43 cm → frenado total
+[11:19:21] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.61 cm → frenado total
+[11:19:21] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:21] [Estado.NEAR] ⚠️ Advertencia: objeto a 97.46 cm → frenado total
+[11:19:21] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.43 cm → frenado total
+[11:19:21] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.46 cm → frenado total
+[11:19:21] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.50 cm → frenado total
+[11:19:21] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.48 cm → frenado total
+[11:19:21] [Estado.NEAR] ⚠️ Advertencia: objeto a 94.87 cm → frenado total
+[11:19:21] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.58 cm → frenado total
+[11:19:21] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.48 cm → frenado total
+[11:19:22] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:22] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.69 cm → frenado total
+[11:19:22] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.55 cm → frenado total
+[11:19:22] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.48 cm → frenado total
+[11:19:22] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.58 cm → frenado total
+[11:19:22] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.60 cm → frenado total
+[11:19:22] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:22] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.56 cm → frenado total
+[11:19:22] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:22] [Estado.NEAR] ⚠️ Advertencia: objeto a 97.27 cm → frenado total
+[11:19:22] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.50 cm → frenado total
+[11:19:22] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.52 cm → frenado total
+[11:19:22] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.54 cm → frenado total
+[11:19:23] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.49 cm → frenado total
+[11:19:23] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.63 cm → frenado total
+[11:19:23] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.47 cm → frenado total
+[11:19:23] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.57 cm → frenado total
+[11:19:23] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.40 cm → frenado total
+[11:19:23] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.44 cm → frenado total
+[11:19:23] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:23] [Estado.NEAR] ⚠️ Advertencia: objeto a 97.02 cm → frenado total
+[11:19:23] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:23] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.61 cm → frenado total
+[11:19:23] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.45 cm → frenado total
+[11:19:24] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.50 cm → frenado total
+[11:19:24] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.47 cm → frenado total
+[11:19:24] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:24] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.58 cm → frenado total
+[11:19:24] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.51 cm → frenado total
+[11:19:24] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:24] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.64 cm → frenado total
+[11:19:24] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.57 cm → frenado total
+[11:19:24] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.50 cm → frenado total
+[11:19:24] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:24] [Estado.NEAR] ⚠️ Advertencia: objeto a 85.42 cm → frenado total
+[11:19:24] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.43 cm → frenado total
+[11:19:25] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:25] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.52 cm → frenado total
+[11:19:25] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.59 cm → frenado total
+[11:19:25] [Estado.NEAR] ⚠️ Advertencia: objeto a 103.09 cm → frenado total
+[11:19:25] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:25] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.47 cm → frenado total
+[11:19:25] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:25] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.66 cm → frenado total
+[11:19:25] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:25] [Estado.NEAR] ⚠️ Advertencia: objeto a 92.79 cm → frenado total
+[11:19:25] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:25] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.48 cm → frenado total
+[11:19:25] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:25] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.56 cm → frenado total
+[11:19:26] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:26] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.46 cm → frenado total
+[11:19:26] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.47 cm → frenado total
+[11:19:26] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.39 cm → frenado total
+[11:19:26] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:26] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.48 cm → frenado total
+[11:19:26] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:26] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.53 cm → frenado total
+[11:19:26] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.38 cm → frenado total
+[11:19:26] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.47 cm → frenado total
+[11:19:26] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.54 cm → frenado total
+[11:19:27] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:27] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.41 cm → frenado total
+[11:19:27] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:27] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.45 cm → frenado total
+[11:19:27] [Estado.NEAR] ⚠️ Advertencia: objeto a 94.31 cm → frenado total
+[11:19:27] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[11:19:27] [Estado.NEAR] ⚠️ Advertencia: objeto a 96.61 cm → frenado total
