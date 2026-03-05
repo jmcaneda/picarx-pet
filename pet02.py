@@ -930,12 +930,16 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
     # ============================================================
     # ALINEACIÓN DEL CHASIS
     # ============================================================
-    if abs(det.error_x) < 20:
+    if abs(det.error_x) < 40:
         st.recenter_centered_frames += 1
-        if st.recenter_centered_frames >= 3:
-            log_event(px, Estado.RECENTER, "Alineación completada → TRACK")
+        if st.recenter_centered_frames >= 2:
+            log_event(px, Estado.RECENTER, "Alineación suficiente → TRACK")
             px.last_state = Estado.RECENTER
             return Estado.TRACK
+
+    if det.valid_for_near:
+        px.last_state = Estado.RECENTER
+        return Estado.NEAR
     
     st.recenter_centered_frames = 0
 
