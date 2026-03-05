@@ -134,15 +134,11 @@ class Det:
     def valid_for_near(self):
         if not self.valid_for_search:
             return False
-        if self.area < 35000:   # antes 18000
+        if self.area < 25000:
             return False
-        if abs(self.error_x) > 30:
+        if abs(self.error_x) > 40:
             return False
-        if abs(self.error_y) > 80:
-            return False
-        if not self.valid_distance:
-            return False
-        if self.distance > 45:  # antes no se comprobaba
+        if abs(self.error_y) > 100:
             return False
         return True
 
@@ -162,8 +158,8 @@ class Det:
     def too_close_to_measure(self):
         return (
             self.valid_for_search and
-            self.area > 50000 and
-            self.distance < 50
+            self.area > 30000 and
+            (self.distance > 80 or not self.valid_distance)
         )
 
 
@@ -172,15 +168,18 @@ class Det:
     # ------------------------------------------------------------
     @property
     def near_fused(self):
-        # visión + distancia
-        if self.valid_for_near:
+        """
+        NEAR robusto:
+        - visión manda cuando el sensor falla
+        - si ambos coinciden → perfecto
+        - si visión dice “muy cerca” y distancia falla → confiar en visión
+        """
+        if self.valid_for_near and self.near_by_distance:
             return True
 
-        # visión dice "muy cerca" pero distancia falla
         if self.valid_for_near and not self.valid_distance:
             return True
 
-        # demasiado cerca para medir
         if self.too_close_to_measure:
             return True
 
@@ -541,7 +540,8 @@ def apply_safety(px, estado, st, det):
     - Si el objeto está en zona de advertencia → frenado preventivo.
     - Si la baliza está muy cerca según fusión → pasar a NEAR.
     """
-    
+    px.last_state = estado
+
     if px.distance_real < DANGER_DISTANCE and not st.is_escaping:
         log_event(px, px.last_state, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
         stop(px)
@@ -562,6 +562,7 @@ def apply_safety(px, estado, st, det):
     if det.near_fused:
         log_event(px, px.last_state, "Baliza muy cerca según fusión → NEAR")
         stop(px)
+        px.changed_speed_slow = False
         return Estado.NEAR
     
     if st.is_escaping and time.time() >= st.escape_end_time:
@@ -641,7 +642,7 @@ def print_dashboard(px, estado, test_mode):
     os.system('clear')
     estado_name = estado.name if estado is not None else "NONE"
     print("="*45)
-    print(f" 🐾 PICAR-X DASHBOARD | Estado: {estado_name}")
+    print(f" 🐾 PICAR-X DASHBOARD | Estado actual: {estado_name} Estado anterior: {px.last_state.name}")
     print(f" 🐾 TEST MODE: {test_mode}")
     print("="*45)
 
