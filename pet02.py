@@ -1113,17 +1113,6 @@ def state_near(px, estado, st, distancia_real, test_mode):
         st.near_cooldown = 0
         stop(px)
         log_event(px, Estado.NEAR, f"⚠️ Advertencia: objeto a {distancia_real:.2f} cm → frenado total")
-        px.last_state = Estado.NEAR
-        return Estado.NEAR
-
-
-    # ============================================================
-    # SIN DETECCIÓN → salir de NEAR
-    # ============================================================
-    if not det.valid_for_search:
-        log_event(px, Estado.NEAR, "Sin detección → salir de NEAR → SEARCH")
-        px.last_state = Estado.NEAR
-        return Estado.SEARCH
 
 
     # ============================================================
@@ -1149,6 +1138,15 @@ def state_near(px, estado, st, distancia_real, test_mode):
         st.near_nodded = True
         px.last_state = Estado.NEAR
         return Estado.NEAR
+
+    # ============================================================
+    # VERIFICACIÓN DE PRESENCIA (Si desaparece, volvemos a buscar)
+    # ============================================================
+    if not det.valid_for_search:
+        # Si ya no la veo en absoluto, no tiene sentido esperar el cooldown
+        log_event(px, Estado.NEAR, "Baliza desaparecida durante NEAR → SEARCH")
+        px.last_state = Estado.NEAR
+        return Estado.SEARCH
 
 
     # ============================================================
