@@ -134,13 +134,18 @@ class Det:
     def valid_for_near(self):
         if not self.valid_for_search:
             return False
-        if self.area < 18000:
+        if self.area < 35000:   # antes 18000
             return False
-        if abs(self.error_x) > 40:
+        if abs(self.error_x) > 30:
             return False
-        if abs(self.error_y) > 120:
+        if abs(self.error_y) > 80:
+            return False
+        if not self.valid_distance:
+            return False
+        if self.distance > 45:  # antes no se comprobaba
             return False
         return True
+
 
     # ------------------------------------------------------------
     # PROPIEDADES DE DISTANCIA
@@ -157,27 +162,25 @@ class Det:
     def too_close_to_measure(self):
         return (
             self.valid_for_search and
-            self.area > 30000 and
-            (self.distance > 80 or not self.valid_distance)
+            self.area > 50000 and
+            self.distance < 50
         )
+
 
     # ------------------------------------------------------------
     # FUSIÓN DE SENSORES
     # ------------------------------------------------------------
     @property
     def near_fused(self):
-        """
-        NEAR robusto:
-        - visión manda cuando el sensor falla
-        - si ambos coinciden → perfecto
-        - si visión dice “muy cerca” y distancia falla → confiar en visión
-        """
-        if self.valid_for_near and self.near_by_distance:
+        # visión + distancia
+        if self.valid_for_near:
             return True
 
+        # visión dice "muy cerca" pero distancia falla
         if self.valid_for_near and not self.valid_distance:
             return True
 
+        # demasiado cerca para medir
         if self.too_close_to_measure:
             return True
 
