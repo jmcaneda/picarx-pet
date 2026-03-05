@@ -120,27 +120,27 @@ class Det:
     def valid_for_search(self):
         if self.n <= 0:
             return False
-        if self.w <= 0 or self.h <= 0:
+        if not self.is_proportional:
+            return False 
+        if self.w < 10 or self.h < 10:
             return False
-        if not (12 < self.w < 640 and 12 < self.h < 480):
-            return False
-        if not (300 < self.area < 240000):
+        if self.area < 500:
             return False
         if not (0 < self.x < 640 and 0 < self.y < 480):
             return False
         return True
 
+
     @property
     def valid_for_near(self):
-        if not self.valid_for_search:
+        if not self.valid_for_search: # Si ni siquiera la veo bien, no puede estar cerca
             return False
-        if self.area < 25000:
+        if self.area < 20000: # Pero si la veo, tiene que ser grande (está cerca)
             return False
-        if abs(self.error_x) > 40:
-            return False
-        if abs(self.error_y) > 100:
+        if abs(self.error_x) > 60:
             return False
         return True
+
 
 
     # ------------------------------------------------------------
@@ -796,6 +796,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
     # DETECCIÓN VÁLIDA
     # ============================================================
     if det.valid_for_search:
+        log_event(px, Estado.SEARCH, f"Valid_for_search={det.valid_for_search} n={det.n} area={det.area} error_x={det.error_x}")
         st.search_lost_frames = 0
         st.search_found_frames += 1
 
@@ -842,7 +843,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
     # ============================================================
     # SALIDA → Plan B
     # ============================================================
-    if not det.valid_for_search and st.search_lost_frames >= 20:
+    if not det.valid_for_search and st.search_lost_frames >= 40:
         log_event(px, Estado.SEARCH, "Búsqueda circular -> TRACK")
         st.lost_in_space = True
         px.last_state = Estado.SEARCH
@@ -852,6 +853,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
     # SIN DETECCIÓN → barrido de cámara
     # ============================================================
     if not det.valid_for_search:
+        log_event(px, Estado.SEARCH, f"Valid_for_search={det.valid_for_search} n={det.n} area={det.area} error_x={det.error_x}")
         log_event(px, Estado.SEARCH, "SIN DETECCIÓN VÁLIDA → PANEO")
         st.search_lost_frames += 1
 

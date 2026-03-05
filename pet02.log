@@ -1,118 +1,58 @@
 === Start of pet02.log ===
-[11:38:21] [Estado.CHK] [CHK] ==============================
-[11:38:21] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[11:38:21] [Estado.CHK] [CHK] ==============================
-[11:38:21] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[11:38:21] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[11:38:21] [Estado.CHK] [CHK] State wheels:     0
-[11:38:21] [Estado.CHK] [CHK] ==============================
-[11:38:21] [Estado.IDLE] Inicio del sistema
-[11:38:21] [Estado.IDLE] Entrando en IDLE (test_mode=False)
-[11:38:21] [Estado.RESET] Entrando en RESET (test_mode=False)
-[11:38:21] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[11:38:21] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:21] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[11:38:22] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
-[11:38:22] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[11:38:22] [Estado.RECENTER] Corrigiendo dirección, error_x=-2
-[11:38:22] [Estado.RECENTER] Corrigiendo dirección, error_x=-52
-[11:38:22] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-20.8)
-[11:38:22] [Estado.RECENTER] Corrigiendo dirección, error_x=-40
-[11:38:22] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-16.0)
-[11:38:22] [Estado.RECENTER] Corrigiendo dirección, error_x=-2
-[11:38:22] [Estado.RECENTER] Corrigiendo dirección, error_x=-58
-[11:38:22] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-23.2)
-[11:38:23] [Estado.RECENTER] Corrigiendo dirección, error_x=4
-[11:38:23] [Estado.RECENTER] Corrigiendo dirección, error_x=10
-[11:38:23] [Estado.RECENTER] Corrigiendo dirección, error_x=68
-[11:38:23] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=27.2)
-[11:38:23] [Estado.RECENTER] Corrigiendo dirección, error_x=58
-[11:38:23] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=23.2)
-[11:38:23] [Estado.RECENTER] Corrigiendo dirección, error_x=40
-[11:38:23] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=16.0)
-[11:38:23] [Estado.RECENTER] Corrigiendo dirección, error_x=0
-[11:38:23] [Estado.RECENTER] Corrigiendo dirección, error_x=-48
-[11:38:23] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-19.2)
-[11:38:23] [Estado.RECENTER] Corrigiendo dirección, error_x=220
-[11:38:23] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=30)
-[11:38:23] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
-[11:38:23] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[11:38:23] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
-[11:38:24] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[11:38:24] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
-[11:38:24] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[11:38:24] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
-[11:38:25] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:26] [Estado.SEARCH] ⚠️ Advertencia: objeto a 24.87 cm → cambio a velocidad lenta
-[11:38:26] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:26] [Estado.SEARCH] ⚠️ Advertencia: objeto a 23.54 cm → cambio a velocidad lenta
-[11:38:26] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:26] [Estado.SEARCH] ⚠️ Advertencia: objeto a 21.78 cm → cambio a velocidad lenta
-[11:38:26] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:26] [Estado.SEARCH] 🚨 Peligro extremo distancia=19.73 → SCAPE
-[11:38:27] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:27] [Estado.SEARCH] ⚠️ Advertencia: objeto a 25.05 cm → cambio a velocidad lenta
-[11:38:27] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:27] [Estado.SEARCH] ⚠️ Advertencia: objeto a 24.24 cm → cambio a velocidad lenta
-[11:38:27] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:27] [Estado.SEARCH] ⚠️ Advertencia: objeto a 25.25 cm → cambio a velocidad lenta
-[11:38:27] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:27] [Estado.SEARCH] ⚠️ Advertencia: objeto a 25.22 cm → cambio a velocidad lenta
-[11:38:27] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:27] [Estado.SEARCH] ⚠️ Advertencia: objeto a 25.13 cm → cambio a velocidad lenta
-[11:38:27] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:27] [Estado.SEARCH] ⚠️ Advertencia: objeto a 25.14 cm → cambio a velocidad lenta
-[11:38:27] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:27] [Estado.SEARCH] ⚠️ Advertencia: objeto a 24.83 cm → cambio a velocidad lenta
-[11:38:27] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:28] [Estado.SEARCH] ⚠️ Advertencia: objeto a 25.28 cm → cambio a velocidad lenta
-[11:38:28] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:28] [Estado.SEARCH] ⚠️ Advertencia: objeto a 25.29 cm → cambio a velocidad lenta
-[11:38:28] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:28] [Estado.SEARCH] ⚠️ Advertencia: objeto a 25.1 cm → cambio a velocidad lenta
-[11:38:28] [Estado.SEARCH] Búsqueda circular -> TRACK
-[11:38:28] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[11:38:28] [Estado.TRACK] ⚠️ Advertencia: objeto a 25.12 cm → cambio a velocidad lenta
-[11:38:28] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[11:38:28] [Estado.SEARCH] ⚠️ Advertencia: objeto a 27.54 cm → cambio a velocidad lenta
-[11:38:28] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:28] [Estado.SEARCH] ⚠️ Advertencia: objeto a 25.26 cm → cambio a velocidad lenta
-[11:38:28] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:28] [Estado.SEARCH] ⚠️ Advertencia: objeto a 25.23 cm → cambio a velocidad lenta
-[11:38:28] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:28] [Estado.SEARCH] ⚠️ Advertencia: objeto a 25.16 cm → cambio a velocidad lenta
-[11:38:28] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:28] [Estado.SEARCH] ⚠️ Advertencia: objeto a 24.33 cm → cambio a velocidad lenta
-[11:38:28] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:28] [Estado.SEARCH] ⚠️ Advertencia: objeto a 27.57 cm → cambio a velocidad lenta
-[11:38:28] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:28] [Estado.SEARCH] ⚠️ Advertencia: objeto a 25.08 cm → cambio a velocidad lenta
-[11:38:28] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:29] [Estado.SEARCH] ⚠️ Advertencia: objeto a 25.17 cm → cambio a velocidad lenta
-[11:38:29] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:29] [Estado.SEARCH] ⚠️ Advertencia: objeto a 25.21 cm → cambio a velocidad lenta
-[11:38:29] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:29] [Estado.SEARCH] ⚠️ Advertencia: objeto a 25.16 cm → cambio a velocidad lenta
-[11:38:29] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:29] [Estado.SEARCH] ⚠️ Advertencia: objeto a 23.77 cm → cambio a velocidad lenta
-[11:38:29] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:29] [Estado.SEARCH] ⚠️ Advertencia: objeto a 25.12 cm → cambio a velocidad lenta
-[11:38:29] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:29] [Estado.SEARCH] ⚠️ Advertencia: objeto a 25.17 cm → cambio a velocidad lenta
-[11:38:29] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:29] [Estado.SEARCH] ⚠️ Advertencia: objeto a 25.22 cm → cambio a velocidad lenta
-[11:38:29] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:29] [Estado.SEARCH] 🚨 Peligro extremo distancia=11.02 → SCAPE
-[11:38:30] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:31] [Estado.SEARCH] Maniobra de escape finalizada
-[11:38:31] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:31] [Estado.SEARCH] Búsqueda circular -> TRACK
-[11:38:31] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[11:38:31] [Estado.TRACK] Perdidos en el espacio → SEARCH
-[11:38:32] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[11:38:32] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:38:36] [Estado.SEARCH] Búsqueda circular -> TRACK
-[11:38:36] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[11:38:37] [Estado.TRACK] Perdidos en el espacio → SEARCH
-[11:38:37] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[11:38:37] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[12:51:19] [Estado.CHK] [CHK] ==============================
+[12:51:19] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[12:51:19] [Estado.CHK] [CHK] ==============================
+[12:51:19] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[12:51:19] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[12:51:19] [Estado.CHK] [CHK] State wheels:     0
+[12:51:19] [Estado.CHK] [CHK] ==============================
+[12:51:19] [Estado.IDLE] Inicio del sistema
+[12:51:19] [Estado.IDLE] Entrando en IDLE (test_mode=False)
+[12:51:19] [Estado.RESET] Entrando en RESET (test_mode=False)
+[12:51:19] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[12:51:19] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[12:51:19] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[12:51:19] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[12:51:20] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
+[12:51:20] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[12:51:20] [Estado.RECENTER] Corrigiendo dirección, error_x=196
+[12:51:20] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=30)
+[12:51:20] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
+[12:51:20] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[12:51:20] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[12:51:20] [Estado.SEARCH] Baliza muy cerca según fusión → NEAR
+[12:51:20] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[12:51:20] [Estado.NEAR] Retroceso preventivo
+[12:51:21] [Estado.NEAR] 🚨 Peligro extremo distancia=2.2 → SCAPE
+[12:51:21] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[12:51:22] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[12:51:23] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
+[12:51:23] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[12:51:23] [Estado.RECENTER] Corrigiendo dirección, error_x=-12
+[12:51:24] [Estado.RECENTER] Corrigiendo dirección, error_x=16
+[12:51:24] [Estado.RECENTER] Corrigiendo dirección, error_x=36
+[12:51:24] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=14.4)
+[12:51:24] [Estado.RECENTER] Corrigiendo dirección, error_x=-18
+[12:51:24] [Estado.RECENTER] Corrigiendo dirección, error_x=-106
+[12:51:24] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[12:51:24] [Estado.RECENTER] Corrigiendo dirección, error_x=-126
+[12:51:24] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[12:51:24] [Estado.RECENTER] Corrigiendo dirección, error_x=-140
+[12:51:24] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[12:51:24] [Estado.RECENTER] Corrigiendo dirección, error_x=154
+[12:51:24] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=30)
+[12:51:24] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
+[12:51:24] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[12:51:24] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
+[12:51:25] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[12:51:25] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
+[12:51:26] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[12:51:27] [Estado.SEARCH] 🚨 Peligro extremo distancia=10.15 → SCAPE
+[12:51:27] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[12:51:29] [Estado.SEARCH] Maniobra de escape finalizada
+[12:51:29] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[12:51:30] [Estado.SEARCH] Búsqueda circular -> TRACK
+[12:51:30] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[12:51:30] [Estado.TRACK] Perdidos en el espacio → SEARCH
+[12:51:30] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[12:51:31] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
