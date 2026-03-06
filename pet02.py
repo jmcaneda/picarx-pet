@@ -135,7 +135,7 @@ class Det:
     def valid_for_near(self):
         if not self.valid_for_search: # Si ni siquiera la veo bien, no puede estar cerca
             return False
-        if self.area < 25000: # Pero si la veo, tiene que ser grande (está cerca)
+        if self.area < 35000: # Pero si la veo, tiene que ser grande (está cerca)
             return False
         if abs(self.error_x) > 35: # <--- Más estricto que los 40 de RECENTER
             return False
@@ -158,8 +158,8 @@ class Det:
     def too_close_to_measure(self):
         return (
             self.valid_for_search and
-            self.area > 30000 and
-            (self.distance > 80 or not self.valid_distance)
+            self.area > 45000 and
+            not self.valid_distance
         )
 
 
@@ -168,16 +168,11 @@ class Det:
     # ------------------------------------------------------------
     @property
     def near_fused(self):
-        """
-        NEAR robusto:
-        - visión manda cuando el sensor falla
-        - si ambos coinciden → perfecto
-        - si visión dice “muy cerca” y distancia falla → confiar en visión
-        """
+        # visión + distancia coherente para NEAR
         if self.valid_for_near and self.near_by_distance:
             return True
 
-        if self.valid_for_near and not self.valid_distance:
+        if self.valid_for_near and not self.valid_distance and self.area > 45000:
             return True
 
         if self.too_close_to_measure:
@@ -1109,14 +1104,15 @@ def state_near(px, estado, st, distancia_real, test_mode):
     update_safety(px)
     estado = apply_safety(px, estado, st, det)
     if estado != Estado.NEAR:
+        px.last_state = Estado.NEAR
         return estado
 
 
     # ============================================================
     # Si la visión dice que sigue muy cerca → frenar SOLAMENTE si no hemos retrocedido aún
     # ============================================================
-    if det.valid_for_near and not st.near_backed:
-        log_event(px, Estado.SEARCH, f"Valid_for_search={det.valid_for_search} Valid_for_near={det.valid_for_near} n={det.n} area={det.area} error_x={det.error_x}")
+    if if det.valid_for_near and 5 < px.distance_real < 80 and not st.near_backed:
+        log_event(px, Estado.NEAR, f"Valid_for_search={det.valid_for_search} Valid_for_near={det.valid_for_near} n={det.n} area={det.area} error_x={det.error_x}")
         st.near_hold_frames += 1
         stop(px)
         log_event(px, Estado.NEAR, f"⚠️ Advertencia: objeto a {distancia_real:.2f} cm → frenado total")
@@ -1130,6 +1126,7 @@ def state_near(px, estado, st, distancia_real, test_mode):
         backward(px)
         time.sleep(0.15)
         stop(px)
+
         st.near_backed = True
         px.last_state = Estado.NEAR
         return Estado.NEAR
