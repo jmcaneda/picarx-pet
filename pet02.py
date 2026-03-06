@@ -804,7 +804,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
         # Centrado estable → RECENTER
         # ------------------------------------------------------------
         # Usamos una ventana más amplia (±40 px) para evitar bloqueos
-        if abs(det.error_x) <= 40:
+        if abs(det.error_x) <= 45:
             if st.search_found_frames >= 3:
                 log_event(px, Estado.SEARCH,
                         f"Centrado estable ({st.search_found_frames} frames) → RECENTER")
@@ -818,7 +818,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
         # Ajuste de PAN proporcional
         # ------------------------------------------------------------
         # PAN más fuerte si el error es grande, más suave si es pequeño
-        if abs(det.error_x) > 40:
+        if abs(det.error_x) > 50:
             step = CAM_STEP
 
             # Escalado proporcional (máximo x3)
@@ -1116,6 +1116,7 @@ def state_near(px, estado, st, distancia_real, test_mode):
     # Si la visión dice que sigue muy cerca → frenar SOLAMENTE si no hemos retrocedido aún
     # ============================================================
     if det.valid_for_near and not st.near_backed:
+        log_event(px, Estado.SEARCH, f"Valid_for_search={det.valid_for_search} Valid_for_near={det.valid_for_near} n={det.n} area={det.area} error_x={det.error_x}")
         st.near_hold_frames += 1
         stop(px)
         log_event(px, Estado.NEAR, f"⚠️ Advertencia: objeto a {distancia_real:.2f} cm → frenado total")
