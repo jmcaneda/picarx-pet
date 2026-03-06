@@ -932,16 +932,19 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
     # ============================================================
     if abs(det.error_x) < 40:
         st.recenter_centered_frames += 1
+        log_event(px, Estado.RECENTER, f"Frame estable ({st.recenter_centered_frames}/2)")
         if st.recenter_centered_frames >= 2:
             log_event(px, Estado.RECENTER, "Alineación suficiente → TRACK")
             px.last_state = Estado.RECENTER
             return Estado.TRACK
+    else:
+        # Solo reseteamos si nos salimos del margen de 40px
+        st.recenter_centered_frames = 0
 
+    # Comprobación de cercanía (ahora que sabemos que no hemos saltado a TRACK)
     if det.valid_for_near:
         px.last_state = Estado.RECENTER
         return Estado.NEAR
-    
-    st.recenter_centered_frames = 0
 
     # Corrección suave del chasis
     log_event(px, Estado.RECENTER, f"Corrigiendo dirección, error_x={det.error_x}")
@@ -959,6 +962,7 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
     # ============================================================
     # SALIDA RECENTER → TRACK
     # ============================================================
+    px.changed_speed_slow = True  # RECENTER se hace a velocidad lenta para mayor precisión
     forward(px)
     px.last_state = Estado.RECENTER
     return Estado.RECENTER
@@ -1106,11 +1110,10 @@ def state_near(px, estado, st, distancia_real, test_mode):
 
 
     # ============================================================
-    # Si la visión dice que sigue muy cerca → mantener NEAR
+    # Si la visión dice que sigue muy cerca → frenar SOLAMENTE si no hemos retrocedido aún
     # ============================================================
-    if det.valid_for_near:
+    if det.valid_for_near and not st.near_backed:
         st.near_hold_frames += 1
-        st.near_cooldown = 0
         stop(px)
         log_event(px, Estado.NEAR, f"⚠️ Advertencia: objeto a {distancia_real:.2f} cm → frenado total")
 
@@ -1155,6 +1158,7 @@ def state_near(px, estado, st, distancia_real, test_mode):
     st.near_cooldown += 1
     if st.near_cooldown >= 10:
         log_event(px, Estado.NEAR, "Cooldown completado → RECENTER")
+        st.near_cooldown = 0
         px.last_state = Estado.NEAR
         return Estado.RECENTER
 
