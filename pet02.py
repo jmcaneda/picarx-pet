@@ -1111,7 +1111,7 @@ def state_near(px, estado, st, distancia_real, test_mode):
     # ============================================================
     # Si la visión dice que sigue muy cerca → frenar SOLAMENTE si no hemos retrocedido aún
     # ============================================================
-    if if det.valid_for_near and 5 < px.distance_real < 80 and not st.near_backed:
+    if det.valid_for_near and 5 < px.distance_real < 80 and not st.near_backed:
         log_event(px, Estado.NEAR, f"Valid_for_search={det.valid_for_search} Valid_for_near={det.valid_for_near} n={det.n} area={det.area} error_x={det.error_x}")
         st.near_hold_frames += 1
         stop(px)
