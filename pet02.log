@@ -1,305 +1,253 @@
 === Start of pet02.log ===
-[13:40:23] [Estado.CHK] [CHK] ==============================
-[13:40:23] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[13:40:23] [Estado.CHK] [CHK] ==============================
-[13:40:23] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[13:40:23] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[13:40:23] [Estado.CHK] [CHK] State wheels:     0
-[13:40:23] [Estado.CHK] [CHK] ==============================
-[13:40:23] [Estado.IDLE] Inicio del sistema
-[13:40:23] [Estado.IDLE] Entrando en IDLE (test_mode=False)
-[13:40:23] [Estado.RESET] Entrando en RESET (test_mode=False)
-[13:40:23] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[13:40:23] [Estado.SEARCH] Valid_for_search=True n=3 area=3120 error_x=290
-[13:40:23] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[13:40:23] [Estado.SEARCH] Valid_for_search=True n=3 area=3328 error_x=288
-[13:40:23] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[13:40:23] [Estado.SEARCH] Valid_for_search=False n=3 area=21120 error_x=50
-[13:40:23] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[13:40:23] [Estado.SEARCH] Valid_for_search=True n=3 area=17280 error_x=-4
-[13:40:23] [Estado.SEARCH] Valid_for_search=True n=3 area=19840 error_x=-36
-[13:40:23] [Estado.SEARCH] Valid_for_search=True n=7 area=13920 error_x=-18
-[13:40:23] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
-[13:40:24] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[13:40:24] [Estado.RECENTER] Corrigiendo dirección, error_x=-32
-[13:40:24] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-12.8)
-[13:40:24] [Estado.RECENTER] Corrigiendo dirección, error_x=-22
-[13:40:24] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-8.8)
-[13:40:24] [Estado.RECENTER] Corrigiendo dirección, error_x=-44
-[13:40:24] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-17.6)
-[13:40:24] [Estado.RECENTER] Corrigiendo dirección, error_x=-6
-[13:40:24] [Estado.RECENTER] Corrigiendo dirección, error_x=10
-[13:40:24] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[13:40:24] [Estado.NEAR] Retroceso preventivo
-[13:40:25] [Estado.NEAR] Gesto de asentimiento
-[13:40:25] [Estado.NEAR] Baliza desaparecida durante NEAR → SEARCH
-[13:40:25] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[13:40:25] [Estado.SEARCH] Valid_for_search=False n=3 area=9248 error_x=58
-[13:40:25] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[13:40:25] [Estado.SEARCH] Valid_for_search=False n=4 area=9792 error_x=62
-[13:40:25] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[13:40:26] [Estado.SEARCH] Valid_for_search=False n=2 area=9792 error_x=34
-[13:40:26] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[13:40:26] [Estado.SEARCH] Valid_for_search=True n=4 area=12768 error_x=-2
-[13:40:26] [Estado.SEARCH] Valid_for_search=True n=4 area=16224 error_x=-28
-[13:40:26] [Estado.SEARCH] Valid_for_search=True n=4 area=10944 error_x=-42
-[13:40:26] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
-[13:40:26] [Estado.SEARCH] Valid_for_search=True n=6 area=23712 error_x=0
-[13:40:26] [Estado.SEARCH] Valid_for_search=True n=2 area=14592 error_x=-12
-[13:40:26] [Estado.SEARCH] Valid_for_search=True n=6 area=23712 error_x=-28
-[13:40:26] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
-[13:40:26] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[13:40:26] [Estado.RECENTER] Corrigiendo dirección, error_x=-32
-[13:40:26] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-12.8)
-[13:40:26] [Estado.RECENTER] Corrigiendo dirección, error_x=-8
-[13:40:26] [Estado.RECENTER] Baliza muy cerca según fusión → NEAR
-[13:40:27] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[13:40:27] [Estado.NEAR] Retroceso preventivo
-[13:40:27] [Estado.NEAR] Gesto de asentimiento
-[13:40:28] [Estado.NEAR] Baliza desaparecida durante NEAR → SEARCH
-[13:40:28] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[13:40:28] [Estado.SEARCH] Valid_for_search=True n=4 area=8704 error_x=-34
-[13:40:28] [Estado.SEARCH] Valid_for_search=True n=5 area=16704 error_x=-10
-[13:40:28] [Estado.SEARCH] Valid_for_search=True n=2 area=10880 error_x=-28
-[13:40:28] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
-[13:40:28] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[13:40:28] [Estado.RECENTER] Corrigiendo dirección, error_x=-20
-[13:40:28] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-8.0)
-[13:40:28] [Estado.RECENTER] Corrigiendo dirección, error_x=-36
-[13:40:28] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-14.4)
-[13:40:28] [Estado.RECENTER] Corrigiendo dirección, error_x=-46
-[13:40:28] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-18.4)
-[13:40:29] [Estado.RECENTER] Corrigiendo dirección, error_x=-42
-[13:40:29] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-16.8)
-[13:40:29] [Estado.RECENTER] Corrigiendo dirección, error_x=0
-[13:40:29] [Estado.RECENTER] Corrigiendo dirección, error_x=16
-[13:40:29] [Estado.RECENTER] Corrigiendo dirección, error_x=8
-[13:40:29] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[13:40:29] [Estado.NEAR] Retroceso preventivo
-[13:40:29] [Estado.NEAR] Gesto de asentimiento
-[13:40:30] [Estado.NEAR] Baliza desaparecida durante NEAR → SEARCH
-[13:40:30] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[13:40:30] [Estado.SEARCH] Valid_for_search=False n=2 area=14448 error_x=30
-[13:40:30] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[13:40:30] [Estado.SEARCH] Valid_for_search=True n=4 area=11040 error_x=30
-[13:40:30] [Estado.SEARCH] Valid_for_search=False n=1 area=14112 error_x=-2
-[13:40:30] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[13:40:31] [Estado.SEARCH] Valid_for_search=False n=3 area=14448 error_x=-6
-[13:40:31] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[13:40:31] [Estado.SEARCH] Valid_for_search=True n=3 area=15824 error_x=-30
-[13:40:31] [Estado.SEARCH] Valid_for_search=True n=5 area=8640 error_x=-84
-[13:40:31] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[13:40:31] [Estado.SEARCH] Valid_for_search=True n=7 area=11648 error_x=-68
-[13:40:31] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
-[13:40:31] [Estado.SEARCH] Valid_for_search=True n=5 area=22960 error_x=22
-[13:40:31] [Estado.SEARCH] Valid_for_search=False n=5 area=14112 error_x=34
-[13:40:31] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[13:40:31] [Estado.SEARCH] Valid_for_search=True n=2 area=16800 error_x=22
-[13:40:31] [Estado.SEARCH] Valid_for_search=True n=5 area=14784 error_x=8
-[13:40:31] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
-[13:40:31] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[13:40:31] [Estado.RECENTER] Corrigiendo dirección, error_x=-24
-[13:40:31] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-9.6)
-[13:40:31] [Estado.RECENTER] Corrigiendo dirección, error_x=2
-[13:40:32] [Estado.RECENTER] Corrigiendo dirección, error_x=-6
-[13:40:32] [Estado.RECENTER] Corrigiendo dirección, error_x=4
-[13:40:32] [Estado.RECENTER] Corrigiendo dirección, error_x=12
-[13:40:32] [Estado.RECENTER] Corrigiendo dirección, error_x=18
-[13:40:32] [Estado.RECENTER] Corrigiendo dirección, error_x=36
-[13:40:32] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=14.4)
-[13:40:32] [Estado.RECENTER] Corrigiendo dirección, error_x=44
-[13:40:32] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=17.6)
-[13:40:32] [Estado.RECENTER] Corrigiendo dirección, error_x=40
-[13:40:32] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=16.0)
-[13:40:32] [Estado.RECENTER] Corrigiendo dirección, error_x=-32
-[13:40:32] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-12.8)
-[13:40:32] [Estado.RECENTER] Corrigiendo dirección, error_x=-78
-[13:40:32] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
-[13:40:32] [Estado.RECENTER] Corrigiendo dirección, error_x=-126
-[13:40:32] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
-[13:40:33] [Estado.RECENTER] Corrigiendo dirección, error_x=-100
-[13:40:33] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
-[13:40:33] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[13:40:33] [Estado.NEAR] Retroceso preventivo
-[13:40:33] [Estado.NEAR] Gesto de asentimiento
-[13:40:34] [Estado.NEAR] Baliza desaparecida durante NEAR → SEARCH
-[13:40:34] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[13:40:34] [Estado.SEARCH] Valid_for_search=True n=5 area=14976 error_x=-48
-[13:40:34] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
-[13:40:34] [Estado.SEARCH] Valid_for_search=True n=3 area=13600 error_x=-46
-[13:40:34] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
-[13:40:34] [Estado.SEARCH] Valid_for_search=True n=4 area=13200 error_x=-2
-[13:40:34] [Estado.SEARCH] Valid_for_search=True n=8 area=14000 error_x=58
-[13:40:34] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=4)
-[13:40:34] [Estado.SEARCH] Valid_for_search=True n=5 area=21888 error_x=28
-[13:40:34] [Estado.SEARCH] Valid_for_search=True n=5 area=15200 error_x=18
-[13:40:34] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
-[13:40:34] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[13:40:34] [Estado.RECENTER] Corrigiendo dirección, error_x=20
-[13:40:34] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=8.0)
-[13:40:35] [Estado.RECENTER] Corrigiendo dirección, error_x=16
-[13:40:35] [Estado.RECENTER] Corrigiendo dirección, error_x=22
-[13:40:35] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=8.8)
-[13:40:35] [Estado.RECENTER] Corrigiendo dirección, error_x=-24
-[13:40:35] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-9.6)
-[13:40:35] [Estado.RECENTER] Corrigiendo dirección, error_x=-34
-[13:40:35] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-13.6)
-[13:40:35] [Estado.RECENTER] Corrigiendo dirección, error_x=-54
-[13:40:35] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-21.6)
-[13:40:35] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[13:40:35] [Estado.NEAR] Retroceso preventivo
-[13:40:35] [Estado.NEAR] Gesto de asentimiento
-[13:40:36] [Estado.NEAR] ⚠️ Advertencia: objeto a 61.10 cm → frenado total
-[13:40:36] [Estado.NEAR] ⚠️ Advertencia: objeto a 60.95 cm → frenado total
-[13:40:37] [Estado.NEAR] Cooldown completado → RECENTER
-[13:40:37] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[13:40:37] [Estado.RECENTER] Corrigiendo dirección, error_x=-8
-[13:40:37] [Estado.RECENTER] Corrigiendo dirección, error_x=-32
-[13:40:37] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-12.8)
-[13:40:37] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[13:40:37] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.13 cm → frenado total
-[13:40:37] [Estado.NEAR] Retroceso preventivo
-[13:40:38] [Estado.NEAR] ⚠️ Advertencia: objeto a 56.78 cm → frenado total
-[13:40:38] [Estado.NEAR] Gesto de asentimiento
-[13:40:38] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.15 cm → frenado total
-[13:40:38] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.25 cm → frenado total
-[13:40:38] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.13 cm → frenado total
-[13:40:39] [Estado.NEAR] ⚠️ Advertencia: objeto a 56.66 cm → frenado total
-[13:40:39] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.18 cm → frenado total
-[13:40:39] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.20 cm → frenado total
-[13:40:39] [Estado.NEAR] ⚠️ Advertencia: objeto a 58.87 cm → frenado total
-[13:40:39] [Estado.NEAR] ⚠️ Advertencia: objeto a 59.98 cm → frenado total
-[13:40:39] [Estado.NEAR] ⚠️ Advertencia: objeto a 55.89 cm → frenado total
-[13:40:39] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.63 cm → frenado total
-[13:40:39] [Estado.NEAR] ⚠️ Advertencia: objeto a 58.93 cm → frenado total
-[13:40:39] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.77 cm → frenado total
-[13:40:39] [Estado.NEAR] ⚠️ Advertencia: objeto a 56.73 cm → frenado total
-[13:40:40] [Estado.NEAR] ⚠️ Advertencia: objeto a 58.77 cm → frenado total
-[13:40:40] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.11 cm → frenado total
-[13:40:40] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.21 cm → frenado total
-[13:40:40] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.17 cm → frenado total
-[13:40:40] [Estado.NEAR] ⚠️ Advertencia: objeto a 66.53 cm → frenado total
-[13:40:40] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.17 cm → frenado total
-[13:40:40] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.08 cm → frenado total
-[13:40:40] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.24 cm → frenado total
-[13:40:40] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.05 cm → frenado total
-[13:40:40] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.11 cm → frenado total
-[13:40:41] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.09 cm → frenado total
-[13:40:41] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.25 cm → frenado total
-[13:40:41] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.12 cm → frenado total
-[13:40:41] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.10 cm → frenado total
-[13:40:41] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.14 cm → frenado total
-[13:40:41] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.15 cm → frenado total
-[13:40:41] [Estado.NEAR] ⚠️ Advertencia: objeto a 46.06 cm → frenado total
-[13:40:41] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.25 cm → frenado total
-[13:40:42] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.26 cm → frenado total
-[13:40:42] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.11 cm → frenado total
-[13:40:42] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.09 cm → frenado total
-[13:40:42] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.28 cm → frenado total
-[13:40:42] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.22 cm → frenado total
-[13:40:42] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.26 cm → frenado total
-[13:40:42] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.57 cm → frenado total
-[13:40:42] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.19 cm → frenado total
-[13:40:42] [Estado.NEAR] ⚠️ Advertencia: objeto a 56.56 cm → frenado total
-[13:40:42] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.19 cm → frenado total
-[13:40:43] [Estado.NEAR] ⚠️ Advertencia: objeto a 56.78 cm → frenado total
-[13:40:43] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.22 cm → frenado total
-[13:40:43] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.15 cm → frenado total
-[13:40:43] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.17 cm → frenado total
-[13:40:43] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.28 cm → frenado total
-[13:40:43] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.12 cm → frenado total
-[13:40:43] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.09 cm → frenado total
-[13:40:43] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.17 cm → frenado total
-[13:40:43] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.20 cm → frenado total
-[13:40:43] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.13 cm → frenado total
-[13:40:44] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.11 cm → frenado total
-[13:40:44] [Estado.NEAR] ⚠️ Advertencia: objeto a 56.95 cm → frenado total
-[13:40:44] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.15 cm → frenado total
-[13:40:44] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.26 cm → frenado total
-[13:40:44] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.17 cm → frenado total
-[13:40:44] [Estado.NEAR] ⚠️ Advertencia: objeto a 61.81 cm → frenado total
-[13:40:44] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.16 cm → frenado total
-[13:40:44] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.07 cm → frenado total
-[13:40:44] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.17 cm → frenado total
-[13:40:45] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.28 cm → frenado total
-[13:40:45] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.21 cm → frenado total
-[13:40:45] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.45 cm → frenado total
-[13:40:45] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.20 cm → frenado total
-[13:40:45] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.11 cm → frenado total
-[13:40:45] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.09 cm → frenado total
-[13:40:45] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.07 cm → frenado total
-[13:40:45] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.10 cm → frenado total
-[13:40:45] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.31 cm → frenado total
-[13:40:45] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.21 cm → frenado total
-[13:40:46] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.15 cm → frenado total
-[13:40:46] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.30 cm → frenado total
-[13:40:46] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.11 cm → frenado total
-[13:40:46] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.17 cm → frenado total
-[13:40:46] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.10 cm → frenado total
-[13:40:46] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.20 cm → frenado total
-[13:40:46] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.10 cm → frenado total
-[13:40:46] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.25 cm → frenado total
-[13:40:46] [Estado.NEAR] ⚠️ Advertencia: objeto a 52.51 cm → frenado total
-[13:40:46] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.17 cm → frenado total
-[13:40:47] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.31 cm → frenado total
-[13:40:47] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.69 cm → frenado total
-[13:40:47] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.31 cm → frenado total
-[13:40:47] [Estado.NEAR] ⚠️ Advertencia: objeto a 60.81 cm → frenado total
-[13:40:47] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.09 cm → frenado total
-[13:40:47] [Estado.NEAR] ⚠️ Advertencia: objeto a 68.98 cm → frenado total
-[13:40:47] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.13 cm → frenado total
-[13:40:47] [Estado.NEAR] ⚠️ Advertencia: objeto a 56.62 cm → frenado total
-[13:40:47] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.25 cm → frenado total
-[13:40:47] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.11 cm → frenado total
-[13:40:48] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.16 cm → frenado total
-[13:40:48] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.20 cm → frenado total
-[13:40:48] [Estado.NEAR] ⚠️ Advertencia: objeto a 49.41 cm → frenado total
-[13:40:48] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.07 cm → frenado total
-[13:40:48] [Estado.NEAR] ⚠️ Advertencia: objeto a 58.06 cm → frenado total
-[13:40:48] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.29 cm → frenado total
-[13:40:48] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.25 cm → frenado total
-[13:40:48] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.20 cm → frenado total
-[13:40:48] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.22 cm → frenado total
-[13:40:48] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.11 cm → frenado total
-[13:40:49] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.21 cm → frenado total
-[13:40:49] [Estado.NEAR] ⚠️ Advertencia: objeto a 56.97 cm → frenado total
-[13:40:49] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.01 cm → frenado total
-[13:40:49] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.19 cm → frenado total
-[13:40:49] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.20 cm → frenado total
-[13:40:49] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.04 cm → frenado total
-[13:40:49] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.23 cm → frenado total
-[13:40:49] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.24 cm → frenado total
-[13:40:49] [Estado.NEAR] ⚠️ Advertencia: objeto a 86.53 cm → frenado total
-[13:40:50] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.19 cm → frenado total
-[13:40:50] [Estado.NEAR] ⚠️ Advertencia: objeto a 79.82 cm → frenado total
-[13:40:50] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.29 cm → frenado total
-[13:40:50] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.12 cm → frenado total
-[13:40:50] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.31 cm → frenado total
-[13:40:50] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.15 cm → frenado total
-[13:40:50] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.29 cm → frenado total
-[13:40:50] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.11 cm → frenado total
-[13:40:50] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.22 cm → frenado total
-[13:40:50] [Estado.NEAR] ⚠️ Advertencia: objeto a 56.28 cm → frenado total
-[13:40:50] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.31 cm → frenado total
-[13:40:51] [Estado.NEAR] ⚠️ Advertencia: objeto a 56.72 cm → frenado total
-[13:40:51] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.15 cm → frenado total
-[13:40:51] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.11 cm → frenado total
-[13:40:51] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.22 cm → frenado total
-[13:40:51] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.02 cm → frenado total
-[13:40:51] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.25 cm → frenado total
-[13:40:51] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.22 cm → frenado total
-[13:40:51] [Estado.NEAR] ⚠️ Advertencia: objeto a 56.24 cm → frenado total
-[13:40:52] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.29 cm → frenado total
-[13:40:52] [Estado.NEAR] ⚠️ Advertencia: objeto a 53.89 cm → frenado total
-[13:40:52] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.36 cm → frenado total
-[13:40:52] [Estado.NEAR] ⚠️ Advertencia: objeto a 56.37 cm → frenado total
-[13:40:52] [Estado.NEAR] ⚠️ Advertencia: objeto a 51.64 cm → frenado total
-[13:40:52] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.01 cm → frenado total
-[13:40:52] [Estado.NEAR] ⚠️ Advertencia: objeto a 58.47 cm → frenado total
-[13:40:52] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.03 cm → frenado total
-[13:40:52] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.12 cm → frenado total
-[13:40:52] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.23 cm → frenado total
-[13:40:53] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.30 cm → frenado total
-[13:40:53] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.24 cm → frenado total
-[13:40:53] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.20 cm → frenado total
-[13:40:53] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.06 cm → frenado total
+[10:21:18] [Estado.CHK] [CHK] ==============================
+[10:21:18] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[10:21:18] [Estado.CHK] [CHK] ==============================
+[10:21:18] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[10:21:18] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[10:21:18] [Estado.CHK] [CHK] State wheels:     0
+[10:21:18] [Estado.CHK] [CHK] ==============================
+[10:21:18] [Estado.IDLE] Inicio del sistema
+[10:21:18] [Estado.IDLE] Entrando en IDLE (test_mode=False)
+[10:21:19] [Estado.RESET] Entrando en RESET (test_mode=False)
+[10:21:19] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[10:21:19] [Estado.SEARCH] Valid_for_search=True n=3 area=2496 error_x=296
+[10:21:19] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[10:21:19] [Estado.SEARCH] Valid_for_search=True n=4 area=2688 error_x=296
+[10:21:19] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[10:21:19] [Estado.SEARCH] Valid_for_search=True n=6 area=8160 error_x=30
+[10:21:19] [Estado.SEARCH] Valid_for_search=True n=4 area=21840 error_x=10
+[10:21:19] [Estado.SEARCH] Valid_for_search=False n=7 area=8960 error_x=-2
+[10:21:19] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:19] [Estado.SEARCH] Valid_for_search=True n=4 area=15376 error_x=22
+[10:21:19] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
+[10:21:19] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[10:21:19] [Estado.RECENTER] Frame estable (1/2)
+[10:21:19] [Estado.RECENTER] Corrigiendo dirección, error_x=-12
+[10:21:20] [Estado.RECENTER] Frame estable (2/2)
+[10:21:20] [Estado.RECENTER] Alineación suficiente → TRACK
+[10:21:20] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[10:21:20] [Estado.TRACK] Corrigiendo dirección (ángulo=-9.6)
+[10:21:20] [Estado.TRACK] Pérdida de detección → SEARCH
+[10:21:20] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[10:21:21] [Estado.SEARCH] Valid_for_search=False n=4 area=14080 error_x=-16
+[10:21:21] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:21] [Estado.SEARCH] Valid_for_search=False n=4 area=13440 error_x=-36
+[10:21:21] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:21] [Estado.SEARCH] Valid_for_search=True n=5 area=11040 error_x=100
+[10:21:21] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[10:21:21] [Estado.SEARCH] Valid_for_search=False n=6 area=13072 error_x=234
+[10:21:21] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:21] [Estado.SEARCH] Valid_for_search=False n=5 area=17808 error_x=210
+[10:21:21] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:21] [Estado.SEARCH] Valid_for_search=False n=7 area=12800 error_x=220
+[10:21:21] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:21] [Estado.SEARCH] Valid_for_search=True n=9 area=15392 error_x=34
+[10:21:21] [Estado.SEARCH] Valid_for_search=True n=9 area=15744 error_x=54
+[10:21:21] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=4)
+[10:21:21] [Estado.SEARCH] Valid_for_search=True n=7 area=14976 error_x=54
+[10:21:21] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=4)
+[10:21:22] [Estado.SEARCH] Valid_for_search=True n=4 area=13984 error_x=56
+[10:21:22] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=4)
+[10:21:22] [Estado.SEARCH] Valid_for_search=True n=7 area=12480 error_x=-196
+[10:21:22] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
+[10:21:22] [Estado.SEARCH] Valid_for_search=True n=5 area=12672 error_x=40
+[10:21:22] [Estado.SEARCH] Valid_for_search=False n=4 area=14080 error_x=-84
+[10:21:22] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:22] [Estado.SEARCH] Valid_for_search=False n=3 area=14448 error_x=-78
+[10:21:22] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:22] [Estado.SEARCH] Valid_for_search=True n=5 area=17200 error_x=-130
+[10:21:22] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
+[10:21:22] [Estado.SEARCH] Valid_for_search=True n=4 area=10416 error_x=-146
+[10:21:22] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
+[10:21:22] [Estado.SEARCH] Valid_for_search=True n=3 area=20384 error_x=-32
+[10:21:22] [Estado.SEARCH] Valid_for_search=True n=4 area=11616 error_x=100
+[10:21:22] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[10:21:22] [Estado.SEARCH] Valid_for_search=True n=4 area=10912 error_x=108
+[10:21:22] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[10:21:22] [Estado.SEARCH] Valid_for_search=True n=2 area=28416 error_x=2
+[10:21:23] [Estado.SEARCH] Valid_for_search=False n=2 area=19008 error_x=-32
+[10:21:23] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:23] [Estado.SEARCH] Valid_for_search=True n=4 area=12880 error_x=-26
+[10:21:23] [Estado.SEARCH] Valid_for_search=True n=5 area=13616 error_x=-70
+[10:21:23] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[10:21:23] [Estado.SEARCH] Valid_for_search=True n=3 area=14976 error_x=-72
+[10:21:23] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[10:21:23] [Estado.SEARCH] Valid_for_search=True n=3 area=14592 error_x=-44
+[10:21:23] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[10:21:23] [Estado.SEARCH] Valid_for_search=True n=4 area=14400 error_x=-34
+[10:21:23] [Estado.SEARCH] Valid_for_search=True n=3 area=15600 error_x=-2
+[10:21:23] [Estado.SEARCH] Valid_for_search=True n=4 area=16848 error_x=-10
+[10:21:23] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
+[10:21:23] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[10:21:23] [Estado.RECENTER] Frame estable (1/2)
+[10:21:23] [Estado.RECENTER] Corrigiendo dirección, error_x=-14
+[10:21:24] [Estado.RECENTER] Frame estable (2/2)
+[10:21:24] [Estado.RECENTER] Alineación suficiente → TRACK
+[10:21:24] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[10:21:24] [Estado.TRACK] Distancia crítica → NEAR
+[10:21:24] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[10:21:24] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.26 cm → frenado total
+[10:21:24] [Estado.NEAR] Retroceso preventivo
+[10:21:24] [Estado.NEAR] Gesto de asentimiento
+[10:21:26] [Estado.NEAR] Cooldown completado → RECENTER
+[10:21:26] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[10:21:26] [Estado.RECENTER] Corrigiendo dirección, error_x=-62
+[10:21:26] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-24.8)
+[10:21:26] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[10:21:26] [Estado.NEAR] ⚠️ Advertencia: objeto a 55.65 cm → frenado total
+[10:21:26] [Estado.NEAR] Retroceso preventivo
+[10:21:26] [Estado.NEAR] Gesto de asentimiento
+[10:21:28] [Estado.NEAR] Cooldown completado → RECENTER
+[10:21:28] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[10:21:28] [Estado.RECENTER] Frame estable (1/2)
+[10:21:28] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[10:21:28] [Estado.NEAR] Retroceso preventivo
+[10:21:28] [Estado.NEAR] Gesto de asentimiento
+[10:21:29] [Estado.NEAR] Cooldown completado → RECENTER
+[10:21:29] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[10:21:30] [Estado.RECENTER] Corrigiendo dirección, error_x=-72
+[10:21:30] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-28.8)
+[10:21:30] [Estado.RECENTER] Corrigiendo dirección, error_x=-72
+[10:21:30] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-28.8)
+[10:21:30] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[10:21:30] [Estado.NEAR] ⚠️ Advertencia: objeto a 56.72 cm → frenado total
+[10:21:30] [Estado.NEAR] Retroceso preventivo
+[10:21:30] [Estado.NEAR] Gesto de asentimiento
+[10:21:31] [Estado.NEAR] Cooldown completado → RECENTER
+[10:21:32] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[10:21:32] [Estado.RECENTER] Frame estable (1/2)
+[10:21:32] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[10:21:32] [Estado.NEAR] ⚠️ Advertencia: objeto a 58.38 cm → frenado total
+[10:21:32] [Estado.NEAR] Retroceso preventivo
+[10:21:32] [Estado.NEAR] Gesto de asentimiento
+[10:21:33] [Estado.NEAR] Cooldown completado → RECENTER
+[10:21:33] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[10:21:34] [Estado.RECENTER] Corrigiendo dirección, error_x=-86
+[10:21:34] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[10:21:34] [Estado.RECENTER] Corrigiendo dirección, error_x=-88
+[10:21:34] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[10:21:34] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[10:21:34] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.34 cm → frenado total
+[10:21:34] [Estado.NEAR] Retroceso preventivo
+[10:21:34] [Estado.NEAR] Gesto de asentimiento
+[10:21:35] [Estado.NEAR] Cooldown completado → RECENTER
+[10:21:36] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[10:21:36] [Estado.RECENTER] Frame estable (1/2)
+[10:21:36] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[10:21:36] [Estado.NEAR] ⚠️ Advertencia: objeto a 53.35 cm → frenado total
+[10:21:36] [Estado.NEAR] Retroceso preventivo
+[10:21:36] [Estado.NEAR] Gesto de asentimiento
+[10:21:37] [Estado.NEAR] Cooldown completado → RECENTER
+[10:21:37] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[10:21:38] [Estado.RECENTER] Corrigiendo dirección, error_x=-72
+[10:21:38] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-28.8)
+[10:21:38] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[10:21:38] [Estado.NEAR] ⚠️ Advertencia: objeto a 51.34 cm → frenado total
+[10:21:38] [Estado.NEAR] Retroceso preventivo
+[10:21:38] [Estado.NEAR] Gesto de asentimiento
+[10:21:39] [Estado.NEAR] Cooldown completado → RECENTER
+[10:21:39] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[10:21:39] [Estado.RECENTER] Corrigiendo dirección, error_x=-84
+[10:21:40] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[10:21:40] [Estado.RECENTER] Corrigiendo dirección, error_x=-80
+[10:21:40] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[10:21:40] [Estado.RECENTER] Corrigiendo dirección, error_x=-66
+[10:21:40] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-26.4)
+[10:21:40] [Estado.RECENTER] Frame estable (1/2)
+[10:21:40] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[10:21:40] [Estado.NEAR] ⚠️ Advertencia: objeto a 48.13 cm → frenado total
+[10:21:40] [Estado.NEAR] Retroceso preventivo
+[10:21:40] [Estado.NEAR] Gesto de asentimiento
+[10:21:42] [Estado.NEAR] Cooldown completado → RECENTER
+[10:21:42] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[10:21:42] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[10:21:42] [Estado.NEAR] ⚠️ Advertencia: objeto a 48.99 cm → frenado total
+[10:21:42] [Estado.NEAR] Retroceso preventivo
+[10:21:42] [Estado.NEAR] Gesto de asentimiento
+[10:21:43] [Estado.NEAR] Cooldown completado → RECENTER
+[10:21:43] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[10:21:44] [Estado.RECENTER] Corrigiendo dirección, error_x=-102
+[10:21:44] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[10:21:44] [Estado.RECENTER] Corrigiendo dirección, error_x=-102
+[10:21:44] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[10:21:44] [Estado.RECENTER] Corrigiendo dirección, error_x=-134
+[10:21:44] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[10:21:44] [Estado.RECENTER] Corrigiendo dirección, error_x=-146
+[10:21:44] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[10:21:44] [Estado.RECENTER] Corrigiendo dirección, error_x=-160
+[10:21:44] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[10:21:44] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
+[10:21:44] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[10:21:44] [Estado.SEARCH] Valid_for_search=True n=3 area=22704 error_x=-190
+[10:21:44] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
+[10:21:44] [Estado.SEARCH] Valid_for_search=True n=3 area=25200 error_x=-210
+[10:21:44] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
+[10:21:44] [Estado.SEARCH] Valid_for_search=True n=2 area=26320 error_x=-222
+[10:21:44] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
+[10:21:44] [Estado.SEARCH] Valid_for_search=True n=2 area=28800 error_x=-228
+[10:21:44] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
+[10:21:44] [Estado.SEARCH] Valid_for_search=True n=1 area=27232 error_x=-234
+[10:21:44] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
+[10:21:45] [Estado.SEARCH] Valid_for_search=True n=4 area=29792 error_x=-240
+[10:21:45] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
+[10:21:45] [Estado.SEARCH] Valid_for_search=True n=2 area=31376 error_x=-246
+[10:21:45] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
+[10:21:45] [Estado.SEARCH] Valid_for_search=True n=3 area=27200 error_x=-252
+[10:21:45] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
+[10:21:45] [Estado.SEARCH] Valid_for_search=True n=1 area=24128 error_x=-262
+[10:21:45] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
+[10:21:45] [Estado.SEARCH] Valid_for_search=False n=2 area=21200 error_x=-270
+[10:21:45] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:45] [Estado.SEARCH] Valid_for_search=False n=2 area=16960 error_x=-280
+[10:21:45] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:45] [Estado.SEARCH] ⚠️ Advertencia: objeto a 31.28 cm → cambio a velocidad lenta
+[10:21:45] [Estado.SEARCH] Valid_for_search=False n=1 area=15504 error_x=-282
+[10:21:45] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:45] [Estado.SEARCH] ⚠️ Advertencia: objeto a 30.08 cm → cambio a velocidad lenta
+[10:21:45] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[10:21:45] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:45] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[10:21:45] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:45] [Estado.SEARCH] ⚠️ Advertencia: objeto a 27.26 cm → cambio a velocidad lenta
+[10:21:45] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[10:21:45] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:45] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[10:21:45] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:46] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[10:21:46] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:46] [Estado.SEARCH] ⚠️ Advertencia: objeto a 23.62 cm → cambio a velocidad lenta
+[10:21:46] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[10:21:46] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:46] [Estado.SEARCH] ⚠️ Advertencia: objeto a 21.54 cm → cambio a velocidad lenta
+[10:21:46] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[10:21:46] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:46] [Estado.SEARCH] ⚠️ Advertencia: objeto a 21.2 cm → cambio a velocidad lenta
+[10:21:46] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[10:21:46] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:46] [Estado.SEARCH] 🚨 Peligro extremo distancia=19.6 → SCAPE
+[10:21:46] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[10:21:46] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:47] [Estado.SEARCH] ⚠️ Advertencia: objeto a 23.04 cm → cambio a velocidad lenta
+[10:21:47] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[10:21:47] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:47] [Estado.SEARCH] ⚠️ Advertencia: objeto a 23.49 cm → cambio a velocidad lenta
+[10:21:47] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[10:21:47] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:47] [Estado.SEARCH] ⚠️ Advertencia: objeto a 23.43 cm → cambio a velocidad lenta
+[10:21:47] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[10:21:47] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:47] [Estado.SEARCH] ⚠️ Advertencia: objeto a 23.37 cm → cambio a velocidad lenta
+[10:21:47] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[10:21:47] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:47] [Estado.SEARCH] ⚠️ Advertencia: objeto a 23.5 cm → cambio a velocidad lenta
+[10:21:47] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[10:21:47] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:47] [Estado.SEARCH] ⚠️ Advertencia: objeto a 23.44 cm → cambio a velocidad lenta
+[10:21:47] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[10:21:47] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:47] [Estado.SEARCH] ⚠️ Advertencia: objeto a 23.39 cm → cambio a velocidad lenta
+[10:21:47] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[10:21:47] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[10:21:47] [Estado.SEARCH] ⚠️ Advertencia: objeto a 23.34 cm → cambio a velocidad lenta
+[10:21:47] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[10:21:47] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO

@@ -36,8 +36,8 @@ TURN_SPEED = 15
 CAM_STEP = 4
 
 SAFE_DISTANCE = 999
-WARNING_DISTANCE = 35
-DANGER_DISTANCE = 20
+WARNING_DISTANCE = 25
+DANGER_DISTANCE = 15
 
 LOG_PATH = os.path.join(os.path.dirname(__file__), "pet02.log")
 
@@ -135,9 +135,9 @@ class Det:
     def valid_for_near(self):
         if not self.valid_for_search: # Si ni siquiera la veo bien, no puede estar cerca
             return False
-        if self.area < 20000: # Pero si la veo, tiene que ser grande (está cerca)
+        if self.area < 25000: # Pero si la veo, tiene que ser grande (está cerca)
             return False
-        if abs(self.error_x) > 60:
+        if abs(self.error_x) > 35: # <--- Más estricto que los 40 de RECENTER
             return False
         return True
 
@@ -954,7 +954,7 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
         log_event(px, Estado.RECENTER, f"Error significativo → wheels_angle_error_x (ángulo={angulo})")
         
 
-    if abs(det.error_x) > 150: # Si la baliza está ya en el tercio exterior del frame
+    if abs(det.error_x) > 80: # Si la baliza está ya en el tercio exterior del frame
         log_event(px, Estado.RECENTER, "Error demasiado grande para corregir avanzando → SEARCH")
         px.last_state = Estado.RECENTER
         return Estado.SEARCH
@@ -1094,6 +1094,9 @@ def state_near(px, estado, st, distancia_real, test_mode):
         st.near_cooldown = 0
 
         stop(px)
+        px.set_dir_servo_angle(0)
+        px.dir_current_angle = 0
+        time.sleep(0.1)
         px.changed_speed_slow = True
 
         px.last_state = Estado.NEAR
