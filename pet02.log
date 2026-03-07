@@ -1,368 +1,416 @@
 === Start of pet02.log ===
-[11:21:37] [Estado.CHK] [CHK] ==============================
-[11:21:37] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[11:21:37] [Estado.CHK] [CHK] ==============================
-[11:21:37] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[11:21:37] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[11:21:37] [Estado.CHK] [CHK] State wheels:     0
-[11:21:37] [Estado.CHK] [CHK] ==============================
-[11:21:37] [Estado.IDLE] Inicio del sistema
-[11:21:37] [Estado.IDLE] Entrando en IDLE (test_mode=False)
-[11:21:37] [Estado.RESET] Entrando en RESET (test_mode=False)
-[11:21:37] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[11:21:37] [Estado.SEARCH] Valid_for_search=False n=2 area=2736 error_x=302
-[11:21:37] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:37] [Estado.SEARCH] Valid_for_search=False n=1 area=2736 error_x=302
-[11:21:37] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:38] [Estado.SEARCH] Valid_for_search=True n=2 area=2880 error_x=218
-[11:21:38] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[11:21:38] [Estado.SEARCH] Valid_for_search=True n=2 area=2880 error_x=222
-[11:21:38] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[11:21:38] [Estado.SEARCH] Valid_for_search=True n=3 area=5280 error_x=86
-[11:21:38] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
-[11:21:38] [Estado.SEARCH] Valid_for_search=True n=4 area=8064 error_x=-28
-[11:21:38] [Estado.SEARCH] Valid_for_search=True n=6 area=12288 error_x=-88
-[11:21:38] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[11:21:38] [Estado.SEARCH] Valid_for_search=True n=4 area=15984 error_x=-10
-[11:21:38] [Estado.SEARCH] Valid_for_search=True n=6 area=7904 error_x=2
-[11:21:38] [Estado.SEARCH] Valid_for_search=True n=3 area=11232 error_x=-12
-[11:21:38] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
-[11:21:38] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[11:21:39] [Estado.RECENTER] Frame estable (1/2)
-[11:21:39] [Estado.RECENTER] Corrigiendo dirección, error_x=-8
-[11:21:39] [Estado.RECENTER] Frame estable (2/2)
-[11:21:39] [Estado.RECENTER] Alineación suficiente → TRACK
-[11:21:39] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[11:21:39] [Estado.TRACK] Corrigiendo dirección (ángulo=-8.8)
-[11:21:39] [Estado.TRACK] Corrigiendo dirección (ángulo=-8.0)
-[11:21:40] [Estado.TRACK] Pérdida de detección → SEARCH
-[11:21:40] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[11:21:40] [Estado.SEARCH] Valid_for_search=True n=5 area=13056 error_x=128
-[11:21:40] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[11:21:40] [Estado.SEARCH] Valid_for_search=True n=6 area=10672 error_x=-110
-[11:21:40] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[11:21:40] [Estado.SEARCH] Valid_for_search=True n=4 area=7680 error_x=-232
-[11:21:40] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
-[11:21:40] [Estado.SEARCH] Valid_for_search=True n=9 area=8320 error_x=-156
-[11:21:40] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
-[11:21:40] [Estado.SEARCH] Valid_for_search=False n=4 area=14720 error_x=228
-[11:21:40] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:40] [Estado.SEARCH] Valid_for_search=True n=4 area=8352 error_x=84
-[11:21:40] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
-[11:21:41] [Estado.SEARCH] Valid_for_search=True n=4 area=12960 error_x=16
-[11:21:41] [Estado.SEARCH] Valid_for_search=False n=5 area=14080 error_x=-40
-[11:21:41] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:41] [Estado.SEARCH] Valid_for_search=True n=3 area=10880 error_x=-56
-[11:21:41] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
-[11:21:41] [Estado.SEARCH] Valid_for_search=True n=5 area=10080 error_x=-118
-[11:21:41] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[11:21:41] [Estado.SEARCH] Valid_for_search=True n=7 area=10080 error_x=-94
-[11:21:41] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[11:21:41] [Estado.SEARCH] Valid_for_search=True n=6 area=14384 error_x=2
-[11:21:41] [Estado.SEARCH] Valid_for_search=True n=4 area=11968 error_x=56
-[11:21:41] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=4)
-[11:21:41] [Estado.SEARCH] Valid_for_search=False n=3 area=14448 error_x=50
-[11:21:41] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:41] [Estado.SEARCH] Valid_for_search=True n=6 area=19344 error_x=-10
-[11:21:41] [Estado.SEARCH] Valid_for_search=True n=4 area=12096 error_x=-22
-[11:21:41] [Estado.SEARCH] Valid_for_search=True n=3 area=13248 error_x=-22
-[11:21:41] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
-[11:21:42] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[11:21:42] [Estado.RECENTER] Frame estable (1/2)
-[11:21:42] [Estado.RECENTER] Corrigiendo dirección, error_x=-26
-[11:21:42] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-10.4)
-[11:21:42] [Estado.RECENTER] Frame estable (2/2)
-[11:21:42] [Estado.RECENTER] Alineación suficiente → TRACK
-[11:21:42] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[11:21:42] [Estado.TRACK] Corrigiendo dirección (ángulo=-9.6)
-[11:21:43] [Estado.TRACK] Corrigiendo dirección (ángulo=-10.4)
-[11:21:43] [Estado.TRACK] Corrigiendo dirección (ángulo=-12.8)
-[11:21:43] [Estado.TRACK] Corrigiendo dirección (ángulo=-8.0)
-[11:21:43] [Estado.TRACK] Corrigiendo dirección (ángulo=-8.8)
-[11:21:43] [Estado.TRACK] Corrigiendo dirección (ángulo=-8.0)
-[11:21:43] [Estado.TRACK] Distancia crítica → NEAR
-[11:21:44] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[11:21:44] [Estado.NEAR] Retroceso preventivo
-[11:21:44] [Estado.NEAR] Gesto de asentimiento
-[11:21:45] [Estado.NEAR] Cooldown completado → RECENTER
-[11:21:45] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[11:21:45] [Estado.RECENTER] Corrigiendo dirección, error_x=58
-[11:21:45] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=23.2)
-[11:21:46] [Estado.RECENTER] Corrigiendo dirección, error_x=92
-[11:21:46] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=30)
-[11:21:46] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
-[11:21:46] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[11:21:46] [Estado.SEARCH] Valid_for_search=True n=1 area=45056 error_x=-16
-[11:21:46] [Estado.SEARCH] Valid_for_search=True n=1 area=45632 error_x=-76
-[11:21:46] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
-[11:21:46] [Estado.SEARCH] Valid_for_search=True n=1 area=53312 error_x=-134
-[11:21:46] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
-[11:21:46] [Estado.SEARCH] Valid_for_search=True n=1 area=56304 error_x=-174
-[11:21:46] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
-[11:21:46] [Estado.SEARCH] Valid_for_search=True n=1 area=57664 error_x=-110
-[11:21:46] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[11:21:46] [Estado.SEARCH] Valid_for_search=True n=1 area=59904 error_x=-76
-[11:21:46] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
-[11:21:46] [Estado.SEARCH] Valid_for_search=True n=1 area=62832 error_x=-62
-[11:21:46] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
-[11:21:46] [Estado.SEARCH] Valid_for_search=True n=1 area=63936 error_x=-144
-[11:21:46] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
-[11:21:46] [Estado.SEARCH] Valid_for_search=True n=2 area=69536 error_x=-214
-[11:21:46] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
-[11:21:47] [Estado.SEARCH] Valid_for_search=False n=1 area=38192 error_x=-258
-[11:21:47] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:47] [Estado.SEARCH] ⚠️ Advertencia: objeto a 23.21 cm → cambio a velocidad lenta
-[11:21:47] [Estado.SEARCH] Valid_for_search=False n=1 area=4752 error_x=-302
-[11:21:47] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:47] [Estado.SEARCH] ⚠️ Advertencia: objeto a 21.52 cm → cambio a velocidad lenta
-[11:21:47] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:47] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:47] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.63 cm → cambio a velocidad lenta
-[11:21:47] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:47] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:47] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.67 cm → cambio a velocidad lenta
-[11:21:47] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:47] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:47] [Estado.SEARCH] ⚠️ Advertencia: objeto a 16.33 cm → cambio a velocidad lenta
-[11:21:47] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:47] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:47] [Estado.SEARCH] ⚠️ Advertencia: objeto a 16.12 cm → cambio a velocidad lenta
-[11:21:47] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:47] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:47] [Estado.SEARCH] 🚨 Peligro extremo distancia=13.94 → SCAPE
-[11:21:48] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:48] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:48] [Estado.SEARCH] ⚠️ Advertencia: objeto a 19.93 cm → cambio a velocidad lenta
-[11:21:48] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:48] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:48] [Estado.SEARCH] ⚠️ Advertencia: objeto a 19.97 cm → cambio a velocidad lenta
-[11:21:48] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:48] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:48] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.25 cm → cambio a velocidad lenta
-[11:21:48] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:48] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:48] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.74 cm → cambio a velocidad lenta
-[11:21:48] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:48] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:48] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.98 cm → cambio a velocidad lenta
-[11:21:48] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:48] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:48] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.87 cm → cambio a velocidad lenta
-[11:21:48] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:48] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:48] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.95 cm → cambio a velocidad lenta
-[11:21:48] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:48] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:48] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.25 cm → cambio a velocidad lenta
-[11:21:48] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:48] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:48] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.29 cm → cambio a velocidad lenta
-[11:21:48] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:48] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:49] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.35 cm → cambio a velocidad lenta
-[11:21:49] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:49] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:49] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.16 cm → cambio a velocidad lenta
-[11:21:49] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:49] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:49] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.27 cm → cambio a velocidad lenta
-[11:21:49] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:49] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:49] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.4 cm → cambio a velocidad lenta
-[11:21:49] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:49] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:49] [Estado.SEARCH] ⚠️ Advertencia: objeto a 21.03 cm → cambio a velocidad lenta
-[11:21:49] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:49] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:49] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.34 cm → cambio a velocidad lenta
-[11:21:49] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:49] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:49] [Estado.SEARCH] ⚠️ Advertencia: objeto a 19.06 cm → cambio a velocidad lenta
-[11:21:49] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:49] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:49] [Estado.SEARCH] ⚠️ Advertencia: objeto a 19.0 cm → cambio a velocidad lenta
-[11:21:49] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:49] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:49] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.91 cm → cambio a velocidad lenta
-[11:21:49] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:49] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:49] [Estado.SEARCH] ⚠️ Advertencia: objeto a 19.01 cm → cambio a velocidad lenta
-[11:21:49] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:49] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:49] [Estado.SEARCH] ⚠️ Advertencia: objeto a 19.03 cm → cambio a velocidad lenta
-[11:21:49] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:49] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:49] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.8 cm → cambio a velocidad lenta
-[11:21:49] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:49] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:50] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.96 cm → cambio a velocidad lenta
-[11:21:50] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:50] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:50] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.65 cm → cambio a velocidad lenta
-[11:21:50] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:50] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:50] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.2 cm → cambio a velocidad lenta
-[11:21:50] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:50] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:50] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.91 cm → cambio a velocidad lenta
-[11:21:50] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:50] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:50] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.92 cm → cambio a velocidad lenta
-[11:21:50] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:50] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:50] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.25 cm → cambio a velocidad lenta
-[11:21:50] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:50] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:50] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.29 cm → cambio a velocidad lenta
-[11:21:50] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:50] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:50] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.33 cm → cambio a velocidad lenta
-[11:21:50] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:50] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:50] [Estado.SEARCH] Maniobra de escape finalizada
-[11:21:50] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:50] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:50] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.12 cm → cambio a velocidad lenta
-[11:21:50] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:50] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:50] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.29 cm → cambio a velocidad lenta
-[11:21:50] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:50] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:51] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.29 cm → cambio a velocidad lenta
-[11:21:51] [Estado.SEARCH] Búsqueda circular -> TRACK
-[11:21:51] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[11:21:51] [Estado.TRACK] ⚠️ Advertencia: objeto a 20.36 cm → cambio a velocidad lenta
-[11:21:51] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[11:21:51] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.17 cm → cambio a velocidad lenta
-[11:21:51] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:51] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:51] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.9 cm → cambio a velocidad lenta
-[11:21:51] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:51] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:51] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.98 cm → cambio a velocidad lenta
-[11:21:51] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:51] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:51] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.22 cm → cambio a velocidad lenta
-[11:21:51] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:51] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:51] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.31 cm → cambio a velocidad lenta
-[11:21:51] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:51] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:51] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.25 cm → cambio a velocidad lenta
-[11:21:51] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:51] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:51] [Estado.SEARCH] ⚠️ Advertencia: objeto a 19.03 cm → cambio a velocidad lenta
-[11:21:51] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:51] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:51] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.85 cm → cambio a velocidad lenta
-[11:21:51] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:51] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:51] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.3 cm → cambio a velocidad lenta
-[11:21:51] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:51] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:52] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.16 cm → cambio a velocidad lenta
-[11:21:52] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:52] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:52] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.2 cm → cambio a velocidad lenta
-[11:21:52] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:52] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:52] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.26 cm → cambio a velocidad lenta
-[11:21:52] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:52] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:52] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.22 cm → cambio a velocidad lenta
-[11:21:52] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:52] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:52] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.25 cm → cambio a velocidad lenta
-[11:21:52] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:52] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:52] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.17 cm → cambio a velocidad lenta
-[11:21:52] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:52] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:52] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.22 cm → cambio a velocidad lenta
-[11:21:52] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:52] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:52] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.2 cm → cambio a velocidad lenta
-[11:21:52] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:52] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:52] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.19 cm → cambio a velocidad lenta
-[11:21:52] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:52] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:52] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.96 cm → cambio a velocidad lenta
-[11:21:52] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:52] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:52] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.93 cm → cambio a velocidad lenta
-[11:21:52] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:52] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:53] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.98 cm → cambio a velocidad lenta
-[11:21:53] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:53] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:53] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.96 cm → cambio a velocidad lenta
-[11:21:53] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:53] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:53] [Estado.SEARCH] ⚠️ Advertencia: objeto a 19.03 cm → cambio a velocidad lenta
-[11:21:53] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:53] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:53] [Estado.SEARCH] ⚠️ Advertencia: objeto a 19.01 cm → cambio a velocidad lenta
-[11:21:53] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:53] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:53] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.18 cm → cambio a velocidad lenta
-[11:21:53] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:53] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:53] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.35 cm → cambio a velocidad lenta
-[11:21:53] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:53] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:53] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.3 cm → cambio a velocidad lenta
-[11:21:53] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:53] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:53] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.31 cm → cambio a velocidad lenta
-[11:21:53] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:53] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:53] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.23 cm → cambio a velocidad lenta
-[11:21:53] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:53] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:53] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.31 cm → cambio a velocidad lenta
-[11:21:53] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:53] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:53] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.25 cm → cambio a velocidad lenta
-[11:21:53] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:53] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:54] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.98 cm → cambio a velocidad lenta
-[11:21:54] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:54] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:54] [Estado.SEARCH] ⚠️ Advertencia: objeto a 19.1 cm → cambio a velocidad lenta
-[11:21:54] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:54] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:54] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.85 cm → cambio a velocidad lenta
-[11:21:54] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:54] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:54] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.91 cm → cambio a velocidad lenta
-[11:21:54] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:54] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:54] [Estado.SEARCH] ⚠️ Advertencia: objeto a 19.07 cm → cambio a velocidad lenta
-[11:21:54] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:54] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:54] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.94 cm → cambio a velocidad lenta
-[11:21:54] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:54] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:54] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.34 cm → cambio a velocidad lenta
-[11:21:54] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:54] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:54] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.04 cm → cambio a velocidad lenta
-[11:21:54] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:54] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:54] [Estado.SEARCH] ⚠️ Advertencia: objeto a 17.75 cm → cambio a velocidad lenta
-[11:21:54] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:54] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:54] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.96 cm → cambio a velocidad lenta
-[11:21:54] [Estado.SEARCH] Búsqueda circular -> TRACK
-[11:21:54] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[11:21:54] [Estado.TRACK] ⚠️ Advertencia: objeto a 18.89 cm → cambio a velocidad lenta
-[11:21:55] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[11:21:55] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.24 cm → cambio a velocidad lenta
-[11:21:55] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:55] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:55] [Estado.SEARCH] ⚠️ Advertencia: objeto a 20.2 cm → cambio a velocidad lenta
-[11:21:55] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:55] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[11:21:55] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[11:21:55] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:02] [Estado.CHK] [CHK] ==============================
+[13:33:02] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[13:33:02] [Estado.CHK] [CHK] ==============================
+[13:33:02] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[13:33:02] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[13:33:02] [Estado.CHK] [CHK] State wheels:     0
+[13:33:02] [Estado.CHK] [CHK] ==============================
+[13:33:02] [Estado.IDLE] Inicio del sistema
+[13:33:02] [Estado.IDLE] Entrando en IDLE (test_mode=False)
+[13:33:02] [Estado.RESET] Entrando en RESET (test_mode=False)
+[13:33:02] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[13:33:02] [Estado.SEARCH] Valid_for_search=True n=1 area=3120 error_x=282
+[13:33:02] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[13:33:03] [Estado.SEARCH] Valid_for_search=True n=1 area=8064 error_x=232
+[13:33:03] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[13:33:03] [Estado.SEARCH] Valid_for_search=True n=5 area=7168 error_x=16
+[13:33:03] [Estado.SEARCH] Valid_for_search=True n=6 area=21328 error_x=-38
+[13:33:03] [Estado.SEARCH] Valid_for_search=True n=4 area=22032 error_x=-54
+[13:33:03] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[13:33:04] [Estado.SEARCH] Valid_for_search=True n=4 area=16800 error_x=-40
+[13:33:04] [Estado.SEARCH] Valid_for_search=True n=6 area=15088 error_x=-10
+[13:33:04] [Estado.SEARCH] Valid_for_search=True n=4 area=17808 error_x=-34
+[13:33:04] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
+[13:33:04] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[13:33:04] [Estado.RECENTER] Frame estable (1/2)
+[13:33:04] [Estado.RECENTER] Corrigiendo dirección, error_x=-34
+[13:33:04] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-13.6)
+[13:33:05] [Estado.RECENTER] Frame estable (2/2)
+[13:33:05] [Estado.RECENTER] Alineación suficiente → TRACK
+[13:33:05] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[13:33:05] [Estado.TRACK] Corrigiendo dirección (ángulo=19.2)
+[13:33:05] [Estado.TRACK] Corrigiendo dirección (ángulo=8.8)
+[13:33:05] [Estado.TRACK] Corrigiendo dirección (ángulo=17.6)
+[13:33:05] [Estado.TRACK] Corrigiendo dirección (ángulo=30)
+[13:33:05] [Estado.TRACK] Error extremo → circle_robot + SEARCH
+[13:33:06] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[13:33:06] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:06] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:06] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:06] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:06] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:06] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:06] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:06] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:06] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:06] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:06] [Estado.SEARCH] Valid_for_search=True n=2 area=2240 error_x=-180
+[13:33:06] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
+[13:33:06] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:06] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:06] [Estado.SEARCH] Valid_for_search=True n=1 area=4704 error_x=-42
+[13:33:06] [Estado.SEARCH] Valid_for_search=True n=3 area=1280 error_x=-80
+[13:33:06] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[13:33:07] [Estado.SEARCH] Valid_for_search=True n=1 area=1152 error_x=-66
+[13:33:07] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[13:33:07] [Estado.SEARCH] Valid_for_search=True n=1 area=4032 error_x=-42
+[13:33:07] [Estado.SEARCH] Valid_for_search=True n=2 area=6656 error_x=-28
+[13:33:07] [Estado.SEARCH] Valid_for_search=True n=2 area=4800 error_x=-14
+[13:33:07] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
+[13:33:07] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[13:33:07] [Estado.RECENTER] Frame estable (1/2)
+[13:33:07] [Estado.RECENTER] Corrigiendo dirección, error_x=-16
+[13:33:07] [Estado.RECENTER] Frame estable (2/2)
+[13:33:07] [Estado.RECENTER] Alineación suficiente → TRACK
+[13:33:07] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[13:33:07] [Estado.TRACK] Corrigiendo dirección (ángulo=-11.2)
+[13:33:08] [Estado.TRACK] Corrigiendo dirección (ángulo=-12.0)
+[13:33:08] [Estado.TRACK] Corrigiendo dirección (ángulo=8.0)
+[13:33:08] [Estado.TRACK] Corrigiendo dirección (ángulo=12.8)
+[13:33:09] [Estado.TRACK] Pérdida de detección → SEARCH
+[13:33:09] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[13:33:09] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:09] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:09] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:09] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:09] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:09] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:09] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:09] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:09] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:09] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:09] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:09] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:09] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:09] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:09] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:09] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:10] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:10] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:10] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:10] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:10] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:10] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:10] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:10] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:10] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:10] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:10] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:10] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:10] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:10] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:10] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:10] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:10] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:10] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:10] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:10] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:10] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:10] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:11] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:11] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:11] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:11] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:11] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:11] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:11] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:11] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:11] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:11] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:11] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:11] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:11] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:11] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:11] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:11] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:11] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:11] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:11] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:11] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:11] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:11] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:12] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:12] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:12] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:12] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:12] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:12] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:12] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:12] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:12] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:12] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:12] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:12] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:12] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:12] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:12] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:12] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:12] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:12] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:12] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:12] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:12] [Estado.SEARCH] Búsqueda circular -> TRACK
+[13:33:12] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[13:33:13] [Estado.TRACK] Perdidos en el espacio → SEARCH
+[13:33:13] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[13:33:13] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:13] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:13] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:13] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:13] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:13] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:13] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:13] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:13] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:13] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:13] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:13] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:13] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:13] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:13] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:13] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:13] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:13] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:14] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:14] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:14] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:14] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:14] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:14] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:14] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:14] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:14] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:14] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:14] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:14] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:14] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:14] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:14] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:14] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:14] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:14] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:14] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:14] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:14] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:14] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:15] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:15] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:15] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:15] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:15] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:15] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:15] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:15] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:15] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:15] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:15] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:15] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:15] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:15] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:15] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:15] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:15] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:15] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:15] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:15] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:15] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:15] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:16] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:16] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:16] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:16] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:16] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:16] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:16] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:16] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:16] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:16] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:16] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:16] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:16] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:16] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:16] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:16] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:16] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:16] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:16] [Estado.SEARCH] Búsqueda circular -> TRACK
+[13:33:16] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[13:33:17] [Estado.TRACK] Perdidos en el espacio → SEARCH
+[13:33:17] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[13:33:17] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:17] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:17] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:17] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:17] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:17] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:17] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:17] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:17] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:17] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:17] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:17] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:17] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:17] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:17] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:17] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:17] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:17] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:18] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:18] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:18] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:18] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:18] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:18] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:18] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:18] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:18] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:18] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:18] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:18] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:18] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:18] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:18] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:18] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:18] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:18] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:18] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:18] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:18] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:18] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:19] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:19] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:19] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:19] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:19] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:19] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:19] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:19] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:19] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:19] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:19] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:19] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:19] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:19] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:19] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:19] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:19] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:19] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:19] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:19] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:19] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:19] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:20] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:20] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:20] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:20] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:20] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:20] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:20] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:20] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:20] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:20] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:20] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:20] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:20] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:20] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:20] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:20] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:20] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:20] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:20] [Estado.SEARCH] Búsqueda circular -> TRACK
+[13:33:20] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[13:33:21] [Estado.TRACK] Perdidos en el espacio → SEARCH
+[13:33:21] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[13:33:21] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:21] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:21] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:21] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:21] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:21] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:21] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:21] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:21] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:21] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:21] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:21] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:21] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:21] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:21] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:21] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:21] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:21] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:22] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:22] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:22] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:22] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:22] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:22] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:22] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:22] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:22] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:22] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:22] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:22] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:22] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:22] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:22] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:22] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:22] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:22] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:22] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:22] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:22] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:22] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:22] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:22] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:23] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:23] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:23] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:23] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:23] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:23] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:23] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:23] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:23] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:23] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:23] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:23] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:23] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:23] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:23] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:23] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:23] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:23] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:23] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:23] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:24] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:24] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:24] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:24] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:24] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:24] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:24] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:24] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:24] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:24] [Estado.SEARCH] Búsqueda circular -> TRACK
+[13:33:24] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[13:33:24] [Estado.TRACK] Perdidos en el espacio → SEARCH
+[13:33:25] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[13:33:25] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:25] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:25] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:25] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:25] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:25] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[13:33:25] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[13:33:25] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO

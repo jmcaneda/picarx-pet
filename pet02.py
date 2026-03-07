@@ -25,6 +25,7 @@ TILT_MAX = 20
 
 SERVO_ANGLE_MIN = -30
 SERVO_ANGLE_MAX = 30
+MAX_TRACK_ANGLE = 12
 
 CX = 320
 CY = 240
@@ -64,10 +65,11 @@ class Cmd(Enum):
     WHEELS_TURN_LEFT = 4
     WHEELS_TURN_RIGHT = 5
     WHEELS_ANGLE_ERROR_X = 6
-    BACKWARD = 7
-    SCAPE = 8
-    CAM_PAN_LEFT = 9
-    CAM_PAN_RIGHT = 10
+    WHEELS_ANGLE_PAN = 7
+    BACKWARD = 8
+    SCAPE = 9
+    CAM_PAN_LEFT = 10
+    CAM_PAN_RIGHT = 15
     CAM_TILT_TOP = 20
     CAM_TILT_BOTTOM = 30
     CAM_TILT_YES = 40
@@ -408,6 +410,17 @@ def wheels_angle_error_x(px, det):
     px.dir_current_angle = servo_angle
 
     px.last_cmd = Cmd.WHEELS_ANGLE_ERROR_X
+    
+    return servo_angle
+
+def wheels_angle_pan(px, det):
+
+    servo_angle = round(clamp(px.last_pan, SERVO_ANGLE_MIN, SERVO_ANGLE_MAX),1)
+
+    px.set_dir_servo_angle(servo_angle)
+    px.dir_current_angle = servo_angle
+
+    px.last_cmd = Cmd.WHEELS_ANGLE_PAN
     
     return servo_angle
 
@@ -1059,6 +1072,12 @@ def state_track(px, estado, st, distancia_real, test_mode):
         else:
             turn_left(px)
 
+    if abs(det.error_x) > 80:
+        stop(px)
+        angle = wheels_angle_pan(px, det)
+        log_event(px, Estado.TRACK, f"Corrigiendo dirección (ángulo={angle})")
+        px.last_state = Estado.TRACK
+        return Estado.TRACK
 
     # ============================================================
     # AVANCE CONTROLADO
