@@ -114,20 +114,30 @@ class Det:
     @property
     def is_proportional(self):
         ratio = self.w / self.h if self.h != 0 else 0
-        return 0.5 < ratio < 2.0  # Evita detectar líneas largas o reflejos extraños
+        return 0.3 < ratio < 3.5 # Evita detectar líneas largas o reflejos extraños
 
     @property
     def valid_for_search(self):
-        if self.n <= 0:
+        # Debe haber detección
+        if self.n < 1:
             return False
+
+        # Evitar formas absurdas (líneas, reflejos)
         if not self.is_proportional:
-            return False 
-        if self.w < 10 or self.h < 10:
             return False
-        if self.area < 500:
+
+        # Tamaño mínimo razonable
+        if self.w < 8 or self.h < 8:
             return False
-        if not (0 < self.x < 640 and 0 < self.y < 480):
+
+        # Área mínima para evitar ruido
+        if self.area < 800:
             return False
+
+        # Permitir detecciones en el borde del frame
+        if not (0 <= self.x <= 640 and 0 <= self.y <= 480):
+            return False
+
         return True
 
 
@@ -140,7 +150,6 @@ class Det:
         if abs(self.error_x) > 35: # <--- Más estricto que los 40 de RECENTER
             return False
         return True
-
 
 
     # ------------------------------------------------------------
@@ -774,6 +783,9 @@ def state_search(px, estado, st, distancia_real, test_mode):
         st.search_cam_dir = 1
         st.is_escaping = False
 
+        px.set_dir_servo_angle(0)
+        px.dir_current_angle = 0
+
         px.changed_speed_slow = False
 
         px.last_state = Estado.SEARCH
@@ -1016,6 +1028,7 @@ def state_track(px, estado, st, distancia_real, test_mode):
     if not det.valid_for_search:
         st.track_lost_frames += 1
         if st.track_lost_frames >= 3:
+            stop(px)
             log_event(px, Estado.TRACK, "Pérdida de detección → SEARCH")
             px.last_state = Estado.TRACK
             return Estado.SEARCH
