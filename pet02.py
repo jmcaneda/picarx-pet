@@ -1004,8 +1004,7 @@ def state_track(px, estado, st, distancia_real, test_mode):
 
         st.track_centered_frames = 0
         st.track_lost_frames = 0
-
-        px.changed_speed_slow = False  # TRACK empieza en velocidad normal
+        px.changed_speed_slow = False
 
         px.last_state = Estado.TRACK
         return Estado.TRACK
@@ -1015,9 +1014,9 @@ def state_track(px, estado, st, distancia_real, test_mode):
     # SEGURIDAD TRACK
     # ============================================================
     update_safety(px)
-    estado = apply_safety(px, estado, st, det)
-    if estado != Estado.TRACK:
-        return estado
+    estado2 = apply_safety(px, estado, st, det)
+    if estado2 != Estado.TRACK:
+        return estado2
 
 
     # ============================================================
@@ -1061,36 +1060,44 @@ def state_track(px, estado, st, distancia_real, test_mode):
 
 
     # ============================================================
-    # CORRECCIÓN DEL CHASIS (GIRO SUAVE)
+    # CORRECCIÓN DEL CHASIS (GIRO SUAVE LIMITADO)
     # ============================================================
+
     if abs(det.error_x) >= 20:
-        angulo = wheels_angle_error_x(px, det)
-        log_event(px, Estado.TRACK, f"Corrigiendo dirección (ángulo={angulo})")
+        raw_angle = det.error_x * 0.4
+        servo_angle = round(clamp(raw_angle, -MAX_TRACK_ANGLE, MAX_TRACK_ANGLE), 1)
+
+        px.set_dir_servo_angle(servo_angle)
+        px.dir_current_angle = servo_angle
+
+        log_event(px, Estado.TRACK, f"Corrigiendo dirección (ángulo={servo_angle})")
 
         if det.error_x > 0:
             turn_right(px)
         else:
             turn_left(px)
 
+
+    # ============================================================
+    # SI EL ERROR ES MUY GRANDE → NO AVANZAR
+    # ============================================================
     if abs(det.error_x) > 80:
         stop(px)
-        angle = wheels_angle_pan(px, det)
-        log_event(px, Estado.TRACK, f"Corrigiendo dirección (ángulo={angle})")
         px.last_state = Estado.TRACK
         return Estado.TRACK
+
 
     # ============================================================
     # AVANCE CONTROLADO
     # ============================================================
     if abs(det.error_x) > 150:
-        # Baliza demasiado descentrada → usar circle_robot
         log_event(px, Estado.TRACK, "Error extremo → circle_robot + SEARCH")
         circle_robot(px, direction=1 if det.error_x > 0 else -1)
         px.last_state = Estado.TRACK
         return Estado.SEARCH
 
-    # Avance normal si está razonablemente centrado
     forward(px)
+
 
     # ============================================================
     # SALIDA TRACK → NEAR
