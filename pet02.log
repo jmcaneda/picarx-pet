@@ -1,63 +1,74 @@
 === Start of pet02.log ===
-[14:01:08] [Estado.CHK] [CHK] ==============================
-[14:01:08] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[14:01:08] [Estado.CHK] [CHK] ==============================
-[14:01:08] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[14:01:08] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[14:01:08] [Estado.CHK] [CHK] State wheels:     0
-[14:01:08] [Estado.CHK] [CHK] ==============================
-[14:01:08] [Estado.IDLE] Inicio del sistema
-[14:01:08] [Estado.IDLE] Entrando en IDLE (test_mode=False)
-[14:01:08] [Estado.RESET] Entrando en RESET (test_mode=False)
-[14:01:08] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[14:01:08] [Estado.SEARCH] Valid_for_search=True n=1 area=2880 error_x=290
-[14:01:08] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:01:08] [Estado.SEARCH] Valid_for_search=True n=1 area=2880 error_x=290
-[14:01:08] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:01:08] [Estado.SEARCH] Valid_for_search=True n=3 area=5040 error_x=26
-[14:01:08] [Estado.SEARCH] Valid_for_search=True n=4 area=9072 error_x=2
-[14:01:08] [Estado.SEARCH] Valid_for_search=True n=3 area=8064 error_x=8
-[14:01:08] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
-[14:01:08] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[14:01:09] [Estado.RECENTER] Frame estable (1/2)
-[14:01:09] [Estado.RECENTER] Corrigiendo dirección, error_x=-6
-[14:01:09] [Estado.RECENTER] Frame estable (2/2)
-[14:01:09] [Estado.RECENTER] Alineación suficiente → TRACK
-[14:01:09] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[14:01:10] [Estado.TRACK] Corrigiendo dirección (ángulo=-8.8)
-[14:01:10] [Estado.TRACK] Corrigiendo dirección (ángulo=-10.4)
-[14:01:10] [Estado.TRACK] Corrigiendo dirección (ángulo=18.4)
-[14:01:10] [Estado.TRACK] Corrigiendo dirección (ángulo=19.2)
-[14:01:10] [Estado.TRACK] Corrigiendo dirección (ángulo=8.0)
-[14:01:10] [Estado.TRACK] Corrigiendo dirección (ángulo=-26.4)
-[14:01:10] [Estado.TRACK] Corrigiendo dirección (ángulo=-30)
-[14:01:10] [Estado.TRACK] Corrigiendo dirección (ángulo=16)
-[14:01:10] [Estado.TRACK] Corrigiendo dirección (ángulo=30)
-[14:01:10] [Estado.TRACK] Corrigiendo dirección (ángulo=20)
-[14:01:10] [Estado.TRACK] Corrigiendo dirección (ángulo=-30)
-[14:01:11] [Estado.TRACK] Corrigiendo dirección (ángulo=16)
-[14:01:11] [Estado.TRACK] Corrigiendo dirección (ángulo=-30)
-[14:01:11] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
-[14:01:11] [Estado.TRACK] Corrigiendo dirección (ángulo=-25.6)
-[14:01:11] [Estado.TRACK] Corrigiendo dirección (ángulo=-8.0)
-[14:01:11] [Estado.TRACK] Corrigiendo dirección (ángulo=-15.2)
-[14:01:11] [Estado.TRACK] Corrigiendo dirección (ángulo=-21.6)
-[14:01:11] [Estado.TRACK] Corrigiendo dirección (ángulo=-8.8)
-[14:01:11] [Estado.TRACK] Corrigiendo dirección (ángulo=9.6)
-[14:01:12] [Estado.TRACK] Corrigiendo dirección (ángulo=-27.2)
-[14:01:12] [Estado.TRACK] Corrigiendo dirección (ángulo=-30)
-[14:01:12] [Estado.TRACK] Corrigiendo dirección (ángulo=-8)
-[14:01:12] [Estado.TRACK] Corrigiendo dirección (ángulo=-30)
-[14:01:12] [Estado.TRACK] Corrigiendo dirección (ángulo=-12)
-[14:01:12] [Estado.TRACK] Corrigiendo dirección (ángulo=-30)
-[14:01:12] [Estado.TRACK] Corrigiendo dirección (ángulo=-16)
-[14:01:12] [Estado.TRACK] Corrigiendo dirección (ángulo=-28.8)
-[14:01:12] [Estado.TRACK] Corrigiendo dirección (ángulo=-9.6)
-[14:01:12] [Estado.TRACK] Corrigiendo dirección (ángulo=-16.8)
-[14:01:12] [Estado.TRACK] Corrigiendo dirección (ángulo=-16.0)
-[14:01:13] [Estado.TRACK] Corrigiendo dirección (ángulo=-12.0)
-[14:01:13] [Estado.TRACK] Corrigiendo dirección (ángulo=-9.6)
-[14:01:13] [Estado.TRACK] Corrigiendo dirección (ángulo=-13.6)
-[14:01:13] [Estado.TRACK] Corrigiendo dirección (ángulo=-19.2)
-[14:01:13] [Estado.TRACK] Corrigiendo dirección (ángulo=-25.6)
-[14:01:13] [Estado.TRACK] Corrigiendo dirección (ángulo=-30)
+[11:23:47] [Estado.CHK] [CHK] ==============================
+[11:23:47] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[11:23:47] [Estado.CHK] [CHK] ==============================
+[11:23:47] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[11:23:47] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[11:23:47] [Estado.CHK] [CHK] State wheels:     0
+[11:23:47] [Estado.CHK] [CHK] ==============================
+[11:23:47] [Estado.IDLE] Inicio del sistema
+[11:23:47] [Estado.IDLE] Entrando en IDLE (test_mode=False)
+[11:23:47] [Estado.RESET] Entrando en RESET (test_mode=False)
+[11:23:47] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[11:23:48] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[11:23:48] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[11:23:48] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[11:23:48] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[11:23:48] [Estado.SEARCH] Valid_for_search=True n=7 area=8064 error_x=272
+[11:23:48] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[11:23:48] [Estado.SEARCH] Valid_for_search=True n=8 area=11760 error_x=254
+[11:23:48] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[11:23:48] [Estado.SEARCH] Valid_for_search=True n=8 area=13728 error_x=104
+[11:23:48] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[11:23:48] [Estado.SEARCH] Valid_for_search=True n=9 area=17424 error_x=-10
+[11:23:48] [Estado.SEARCH] Valid_for_search=True n=10 area=13312 error_x=-48
+[11:23:48] [Estado.SEARCH] Valid_for_search=True n=9 area=12800 error_x=208
+[11:23:48] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[11:23:48] [Estado.SEARCH] Valid_for_search=True n=10 area=15824 error_x=210
+[11:23:48] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[11:23:48] [Estado.SEARCH] Valid_for_search=True n=12 area=8064 error_x=-12
+[11:23:49] [Estado.SEARCH] Valid_for_search=True n=13 area=6992 error_x=-14
+[11:23:49] [Estado.SEARCH] Valid_for_search=True n=10 area=8064 error_x=-12
+[11:23:49] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
+[11:23:49] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:23:49] [Estado.RECENTER] Corrigiendo dirección, error_x=206
+[11:23:49] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=30)
+[11:23:49] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
+[11:23:49] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[11:23:49] [Estado.SEARCH] Valid_for_search=True n=13 area=7360 error_x=-6
+[11:23:49] [Estado.SEARCH] Valid_for_search=True n=9 area=8512 error_x=220
+[11:23:49] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[11:23:49] [Estado.SEARCH] Valid_for_search=True n=11 area=8064 error_x=-12
+[11:23:49] [Estado.SEARCH] Valid_for_search=True n=12 area=8928 error_x=10
+[11:23:49] [Estado.SEARCH] Valid_for_search=True n=13 area=7360 error_x=-18
+[11:23:49] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
+[11:23:49] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:23:50] [Estado.RECENTER] Frame estable (1/2)
+[11:23:50] [Estado.RECENTER] Corrigiendo dirección, error_x=-20
+[11:23:50] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-8.0)
+[11:23:50] [Estado.RECENTER] Frame estable (2/2)
+[11:23:50] [Estado.RECENTER] Alineación suficiente → TRACK
+[11:23:50] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[11:23:50] [Estado.TRACK] Corrigiendo dirección (ángulo=-11.2)
+[11:23:50] [Estado.TRACK] Corrigiendo dirección (ángulo=8.8)
+[11:23:50] [Estado.TRACK] Corrigiendo dirección (ángulo=10.4)
+[11:23:51] [Estado.TRACK] Corrigiendo dirección (ángulo=-8.0)
+[11:23:51] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
+[11:23:51] [Estado.TRACK] Corrigiendo dirección (ángulo=-12)
+[11:23:51] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
+[11:23:52] [Estado.TRACK] Corrigiendo dirección (ángulo=-12)
+[11:23:52] [Estado.TRACK] Corrigiendo dirección (ángulo=-8.0)
+[11:23:52] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
+[11:23:53] [Estado.TRACK] Corrigiendo dirección (ángulo=-12)
+[11:23:53] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
+[11:23:53] [Estado.TRACK] Corrigiendo dirección (ángulo=-12)
+[11:23:53] [Estado.TRACK] Corrigiendo dirección (ángulo=-11.2)
+[11:23:53] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
+[11:23:54] [Estado.TRACK] Corrigiendo dirección (ángulo=-12)
+[11:23:54] [Estado.TRACK] Corrigiendo dirección (ángulo=-8.8)
+[11:23:55] [Estado.TRACK] Corrigiendo dirección (ángulo=12.0)
+[11:23:55] [Estado.TRACK] Corrigiendo dirección (ángulo=8.8)
+[11:23:55] [Estado.TRACK] Corrigiendo dirección (ángulo=-8.0)
+[11:23:55] [Estado.TRACK] Corrigiendo dirección (ángulo=-12)
+[11:23:56] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
+[11:23:56] [Estado.TRACK] Corrigiendo dirección (ángulo=-12)
