@@ -1,191 +1,169 @@
 === Start of pet02.log ===
-[20:23:12] [Estado.CHK] [CHK] ==============================
-[20:23:12] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[20:23:12] [Estado.CHK] [CHK] ==============================
-[20:23:12] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[20:23:12] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[20:23:12] [Estado.CHK] [CHK] State wheels:     0
-[20:23:12] [Estado.CHK] [CHK] ==============================
-[20:23:12] [Estado.IDLE] Inicio del sistema
-[20:23:12] [Estado.IDLE] Entrando en IDLE (test_mode=False)
-[20:23:12] [Estado.RESET] Entrando en RESET (test_mode=False)
-[20:23:12] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[20:23:12] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:12] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:12] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:12] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:12] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:12] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:12] [Estado.SEARCH] Valid_for_search=True n=1 area=4320 error_x=194
-[20:23:12] [Estado.SEARCH] Error extremo (194) -> TRACK
-[20:23:12] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[20:23:12] [Estado.TRACK] Referencia recuperada → TRACK
-[20:23:12] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
-[20:23:13] [Estado.TRACK] Corrigiendo dirección (ángulo=6.7)
-[20:23:13] [Estado.TRACK] Corrigiendo dirección (ángulo=-6.0)
-[20:23:13] [Estado.TRACK] Corrigiendo dirección (ángulo=-6.2)
-[20:23:13] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.8)
-[20:23:13] [Estado.TRACK] Corrigiendo dirección (ángulo=3.4)
-[20:23:14] [Estado.TRACK] Corrigiendo dirección (ángulo=2.9)
-[20:23:14] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.1)
-[20:23:14] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.3)
-[20:23:15] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.5)
-[20:23:15] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.8)
-[20:23:15] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.4)
-[20:23:15] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.4)
-[20:23:15] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.0)
-[20:23:15] [Estado.TRACK] Corrigiendo dirección (ángulo=-6.5)
-[20:23:16] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.1)
-[20:23:16] [Estado.TRACK] Distancia crítica → NEAR
-[20:23:16] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[20:23:16] [Estado.NEAR] Retroceso preventivo
-[20:23:16] [Estado.NEAR] Gesto de asentimiento
-[20:23:17] [Estado.NEAR] Cooldown completado → RECENTER
-[20:23:17] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[20:23:18] [Estado.RECENTER] Corrigiendo dirección, error_x=-138
-[20:23:18] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
-[20:23:18] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
-[20:23:18] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[20:23:18] [Estado.SEARCH] Valid_for_search=True n=2 area=56448 error_x=-106
-[20:23:18] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
-[20:23:18] [Estado.SEARCH] Valid_for_search=True n=2 area=59200 error_x=-92
-[20:23:18] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
-[20:23:18] [Estado.SEARCH] Valid_for_search=True n=2 area=54896 error_x=30
-[20:23:18] [Estado.SEARCH] Valid_for_search=True n=3 area=52992 error_x=156
-[20:23:18] [Estado.SEARCH] Error extremo (156) -> TRACK
-[20:23:18] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[20:23:18] [Estado.TRACK] Referencia recuperada → TRACK
-[20:23:18] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
-[20:23:18] [Estado.TRACK] Corrigiendo dirección (ángulo=10.1)
-[20:23:19] [Estado.TRACK] Baliza muy cerca según fusión → NEAR
-[20:23:19] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[20:23:19] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
-[20:23:19] [Estado.NEAR] Valid_for_search=True Valid_for_near=True n=4 area=55440 error_x=-6
-[20:23:19] [Estado.NEAR] ⚠️ Advertencia: objeto a 29.75 cm → frenado total
-[20:23:19] [Estado.NEAR] Retroceso preventivo
-[20:23:19] [Estado.NEAR] Gesto de asentimiento
-[20:23:20] [Estado.NEAR] Baliza desaparecida durante NEAR → SEARCH
-[20:23:20] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[20:23:20] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:20] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:20] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:20] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:21] [Estado.SEARCH] Valid_for_search=True n=1 area=1280 error_x=120
-[20:23:21] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[20:23:21] [Estado.SEARCH] Valid_for_search=True n=1 area=1152 error_x=68
-[20:23:21] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=4)
-[20:23:21] [Estado.SEARCH] Valid_for_search=True n=1 area=3600 error_x=-46
-[20:23:21] [Estado.SEARCH] Valid_for_search=True n=1 area=3360 error_x=-92
-[20:23:21] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
-[20:23:21] [Estado.SEARCH] Valid_for_search=True n=1 area=4080 error_x=-82
-[20:23:21] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[20:23:21] [Estado.SEARCH] Valid_for_search=True n=1 area=3600 error_x=26
-[20:23:21] [Estado.SEARCH] Valid_for_search=True n=1 area=2496 error_x=104
-[20:23:21] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[20:23:21] [Estado.SEARCH] Valid_for_search=True n=1 area=2496 error_x=106
-[20:23:21] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[20:23:21] [Estado.SEARCH] Valid_for_search=True n=1 area=5472 error_x=-34
-[20:23:21] [Estado.SEARCH] Valid_for_search=True n=1 area=3120 error_x=-126
-[20:23:21] [Estado.SEARCH] Error extremo (-126) -> TRACK
-[20:23:21] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[20:23:21] [Estado.TRACK] Referencia recuperada → TRACK
-[20:23:22] [Estado.TRACK] Corrigiendo dirección (ángulo=-12)
-[20:23:22] [Estado.TRACK] Corrigiendo dirección (ángulo=-11.5)
-[20:23:22] [Estado.TRACK] Corrigiendo dirección (ángulo=-7.7)
-[20:23:22] [Estado.TRACK] Corrigiendo dirección (ángulo=3.6)
-[20:23:23] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.6)
-[20:23:23] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.6)
-[20:23:23] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.3)
-[20:23:23] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.1)
-[20:23:23] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.3)
-[20:23:23] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.6)
-[20:23:23] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.3)
-[20:23:23] [Estado.TRACK] Pérdida de detección → SEARCH
-[20:23:23] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[20:23:23] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:24] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:24] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:24] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:24] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:24] [Estado.SEARCH] ⚠️ Advertencia: objeto a 17.59 cm → cambio a velocidad lenta
-[20:23:24] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:24] [Estado.SEARCH] ⚠️ Advertencia: objeto a 16.03 cm → cambio a velocidad lenta
-[20:23:24] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:24] [Estado.SEARCH] ⚠️ Advertencia: objeto a 16.27 cm → cambio a velocidad lenta
-[20:23:24] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:24] [Estado.SEARCH] ⚠️ Advertencia: objeto a 16.75 cm → cambio a velocidad lenta
-[20:23:24] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:24] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:24] [Estado.SEARCH] ⚠️ Advertencia: objeto a 18.3 cm → cambio a velocidad lenta
-[20:23:24] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:24] [Estado.SEARCH] ⚠️ Advertencia: objeto a 16.72 cm → cambio a velocidad lenta
-[20:23:24] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:24] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:25] [Estado.SEARCH] ⚠️ Advertencia: objeto a 16.56 cm → cambio a velocidad lenta
-[20:23:25] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:25] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:25] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:25] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:25] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:25] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:25] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:25] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:25] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:25] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:25] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:25] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:26] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:26] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:26] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:26] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:26] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:26] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:26] [Estado.SEARCH] 🚨 Peligro extremo distancia=14.59 → SCAPE
-[20:23:26] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:26] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:27] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:27] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:27] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:27] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:27] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:27] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:27] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:27] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:27] [Estado.SEARCH] Maniobra de escape finalizada
-[20:23:27] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:27] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:28] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:28] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:28] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:28] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:28] [Estado.SEARCH] 🚨 Peligro extremo distancia=14.01 → SCAPE
-[20:23:28] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:28] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:29] [Estado.SEARCH] Búsqueda circular -> TRACK
-[20:23:29] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[20:23:29] [Estado.TRACK] ⚠️ Advertencia: objeto a 24.78 cm → cambio a velocidad lenta
-[20:23:29] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[20:23:29] [Estado.SEARCH] ⚠️ Advertencia: objeto a 23.94 cm → cambio a velocidad lenta
-[20:23:29] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:29] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:29] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:29] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:30] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:30] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:30] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:30] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:30] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:30] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[20:23:30] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[20:23:30] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[20:48:17] [Estado.CHK] [CHK] ==============================
+[20:48:17] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[20:48:17] [Estado.CHK] [CHK] ==============================
+[20:48:17] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[20:48:17] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[20:48:17] [Estado.CHK] [CHK] State wheels:     0
+[20:48:17] [Estado.CHK] [CHK] ==============================
+[20:48:17] [Estado.IDLE] Inicio del sistema
+[20:48:17] [Estado.IDLE] Entrando en IDLE (test_mode=False)
+[20:48:17] [Estado.RESET] Entrando en RESET (test_mode=False)
+[20:48:18] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[20:48:18] [Estado.SEARCH] Detección: area=1584 error_x=230
+[20:48:18] [Estado.SEARCH] Error extremo -> TRACK para rotar chasis
+[20:48:18] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[20:48:18] [Estado.TRACK] Referencia recuperada → TRACK
+[20:48:18] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
+[20:48:19] [Estado.TRACK] Corrigiendo dirección (ángulo=12.0)
+[20:48:19] [Estado.TRACK] Corrigiendo dirección (ángulo=8.9)
+[20:48:19] [Estado.TRACK] Corrigiendo dirección (ángulo=4.1)
+[20:48:19] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.6)
+[20:48:19] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.8)
+[20:48:19] [Estado.TRACK] Corrigiendo dirección (ángulo=-6.2)
+[20:48:19] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.6)
+[20:48:20] [Estado.TRACK] Corrigiendo dirección (ángulo=2.4)
+[20:48:20] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.1)
+[20:48:20] [Estado.TRACK] Corrigiendo dirección (ángulo=-6.5)
+[20:48:20] [Estado.TRACK] Corrigiendo dirección (ángulo=-9.8)
+[20:48:20] [Estado.TRACK] Corrigiendo dirección (ángulo=-7.7)
+[20:48:20] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.1)
+[20:48:21] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.3)
+[20:48:21] [Estado.TRACK] Corrigiendo dirección (ángulo=-7.9)
+[20:48:21] [Estado.TRACK] Corrigiendo dirección (ángulo=-7.7)
+[20:48:21] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.8)
+[20:48:21] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.1)
+[20:48:21] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.0)
+[20:48:21] [Estado.TRACK] Corrigiendo dirección (ángulo=-7.7)
+[20:48:21] [Estado.TRACK] Corrigiendo dirección (ángulo=-10.3)
+[20:48:21] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.8)
+[20:48:22] [Estado.TRACK] Corrigiendo dirección (ángulo=-6.5)
+[20:48:22] [Estado.TRACK] Corrigiendo dirección (ángulo=-8.4)
+[20:48:22] [Estado.TRACK] Corrigiendo dirección (ángulo=-11.0)
+[20:48:22] [Estado.TRACK] Corrigiendo dirección (ángulo=-12)
+[20:48:22] [Estado.TRACK] Corrigiendo dirección (ángulo=-9.8)
+[20:48:22] [Estado.TRACK] Corrigiendo dirección (ángulo=-7.2)
+[20:48:22] [Estado.TRACK] Corrigiendo dirección (ángulo=-10.3)
+[20:48:22] [Estado.TRACK] Corrigiendo dirección (ángulo=-12)
+[20:48:49] [Estado.TRACK] Corrigiendo dirección (ángulo=-9.4)
+[20:48:49] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.3)
+[20:48:49] [Estado.TRACK] Distancia crítica → NEAR
+[20:48:49] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[20:48:50] [Estado.NEAR] Retroceso preventivo
+[20:48:50] [Estado.NEAR] Gesto de asentimiento
+[20:48:51] [Estado.NEAR] Cooldown completado → RECENTER
+[20:48:51] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[20:48:51] [Estado.RECENTER] Corrigiendo dirección, error_x=84
+[20:48:51] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=30)
+[20:48:51] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
+[20:48:52] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[20:48:52] [Estado.SEARCH] Detección: area=60000 error_x=64
+[20:48:52] [Estado.SEARCH] Detección: area=61152 error_x=46
+[20:48:52] [Estado.SEARCH] Detección: area=59200 error_x=-4
+[20:48:52] [Estado.SEARCH] Detección: area=60000 error_x=-36
+[20:48:52] [Estado.SEARCH] Centrado estable → RECENTER
+[20:48:52] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[20:48:52] [Estado.RECENTER] Frame estable (1/2)
+[20:48:52] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[20:48:52] [Estado.NEAR] Valid_for_search=True Valid_for_near=True n=1 area=58016 error_x=-34
+[20:48:52] [Estado.NEAR] ⚠️ Advertencia: objeto a 235.88 cm → frenado total
+[20:48:52] [Estado.NEAR] Retroceso preventivo
+[20:48:53] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[20:48:53] [Estado.NEAR] Gesto de asentimiento
+[20:48:54] [Estado.NEAR] Cooldown completado → RECENTER
+[20:48:54] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[20:48:54] [Estado.RECENTER] Corrigiendo dirección, error_x=-296
+[20:48:54] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[20:48:54] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
+[20:48:54] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[20:48:54] [Estado.SEARCH] Detección: area=7616 error_x=-292
+[20:48:54] [Estado.SEARCH] Error extremo -> TRACK para rotar chasis
+[20:48:54] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[20:48:55] [Estado.TRACK] Referencia recuperada → TRACK
+[20:48:55] [Estado.TRACK] Corrigiendo dirección (ángulo=-12)
+[20:49:02] [Estado.TRACK] Corrigiendo dirección (ángulo=-11.0)
+[20:49:02] [Estado.TRACK] Corrigiendo dirección (ángulo=-9.4)
+[20:49:03] [Estado.TRACK] Corrigiendo dirección (ángulo=-7.7)
+[20:49:03] [Estado.TRACK] Corrigiendo dirección (ángulo=-10.3)
+[20:49:03] [Estado.TRACK] Corrigiendo dirección (ángulo=-10.8)
+[20:49:03] [Estado.TRACK] Corrigiendo dirección (ángulo=-9.6)
+[20:49:03] [Estado.TRACK] Corrigiendo dirección (ángulo=-9.8)
+[20:49:03] [Estado.TRACK] Corrigiendo dirección (ángulo=-12)
+[20:49:27] [Estado.TRACK] Corrigiendo dirección (ángulo=-11.3)
+[20:49:27] [Estado.TRACK] Corrigiendo dirección (ángulo=-7.9)
+[20:49:27] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.8)
+[20:49:27] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.8)
+[20:49:27] [Estado.TRACK] Corrigiendo dirección (ángulo=3.6)
+[20:49:27] [Estado.TRACK] Distancia crítica → NEAR
+[20:49:27] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[20:49:27] [Estado.NEAR] Retroceso preventivo
+[20:49:28] [Estado.NEAR] Gesto de asentimiento
+[20:49:29] [Estado.NEAR] Baliza desaparecida durante NEAR → SEARCH
+[20:49:29] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[20:49:29] [Estado.SEARCH] Detección: area=2240 error_x=244
+[20:49:29] [Estado.SEARCH] Error extremo -> TRACK para rotar chasis
+[20:49:29] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[20:49:29] [Estado.TRACK] Referencia recuperada → TRACK
+[20:49:30] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
+[20:49:31] [Estado.TRACK] Corrigiendo dirección (ángulo=10.6)
+[20:49:31] [Estado.TRACK] Corrigiendo dirección (ángulo=7.2)
+[20:49:31] [Estado.TRACK] Corrigiendo dirección (ángulo=2.4)
+[20:49:31] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.1)
+[20:49:31] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.4)
+[20:49:31] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.9)
+[20:49:31] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.1)
+[20:49:31] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.5)
+[20:49:31] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.8)
+[20:49:32] [Estado.TRACK] Distancia crítica → NEAR
+[20:49:32] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[20:49:32] [Estado.NEAR] Retroceso preventivo
+[20:49:32] [Estado.NEAR] Gesto de asentimiento
+[20:49:34] [Estado.NEAR] Cooldown completado → RECENTER
+[20:49:34] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[20:49:34] [Estado.RECENTER] Frame estable (1/2)
+[20:49:34] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[20:49:34] [Estado.NEAR] Valid_for_search=True Valid_for_near=True n=1 area=42656 error_x=14
+[20:49:34] [Estado.NEAR] ⚠️ Advertencia: objeto a 59.71 cm → frenado total
+[20:49:34] [Estado.NEAR] Retroceso preventivo
+[20:49:34] [Estado.NEAR] 🚨 Peligro extremo distancia=12.49 → SCAPE
+[20:49:35] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[20:49:35] [Estado.SEARCH] Detección: area=30528 error_x=-4
+[20:49:35] [Estado.SEARCH] Detección: area=29120 error_x=-6
+[20:49:35] [Estado.SEARCH] Centrado estable → RECENTER
+[20:49:35] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[20:49:35] [Estado.RECENTER] Frame estable (1/2)
+[20:49:35] [Estado.RECENTER] Corrigiendo dirección, error_x=-6
+[20:49:35] [Estado.RECENTER] Frame estable (2/2)
+[20:49:35] [Estado.RECENTER] Alineación suficiente → TRACK
+[20:49:35] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[20:49:36] [Estado.TRACK] Distancia crítica → NEAR
+[20:49:36] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[20:49:36] [Estado.NEAR] Maniobra de escape finalizada
+[20:49:36] [Estado.NEAR] Valid_for_search=True Valid_for_near=True n=3 area=54912 error_x=-12
+[20:49:36] [Estado.NEAR] ⚠️ Advertencia: objeto a 50.37 cm → frenado total
+[20:49:36] [Estado.NEAR] Retroceso preventivo
+[20:49:36] [Estado.NEAR] Gesto de asentimiento
+[20:49:38] [Estado.NEAR] Cooldown completado → RECENTER
+[20:49:38] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[20:49:38] [Estado.RECENTER] Corrigiendo dirección, error_x=96
+[20:49:38] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=30)
+[20:49:38] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
+[20:49:38] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[20:49:38] [Estado.SEARCH] Detección: area=59360 error_x=110
+[20:49:38] [Estado.SEARCH] Detección: area=67024 error_x=66
+[20:49:38] [Estado.SEARCH] Baliza muy cerca según fusión → NEAR
+[20:49:38] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[20:49:38] [Estado.NEAR] Retroceso preventivo
+[20:49:39] [Estado.NEAR] Gesto de asentimiento
+[20:49:40] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[20:49:41] [Estado.NEAR] Cooldown completado → RECENTER
+[20:49:41] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[20:49:41] [Estado.RECENTER] Corrigiendo dirección, error_x=298
+[20:49:41] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=30)
+[20:49:41] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
+[20:49:41] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[20:49:41] [Estado.SEARCH] Detección: area=3520 error_x=300
+[20:49:41] [Estado.SEARCH] Error extremo -> TRACK para rotar chasis
+[20:49:41] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[20:49:41] [Estado.TRACK] Referencia recuperada → TRACK
+[20:49:41] [Estado.TRACK] Corrigiendo dirección (ángulo=12)

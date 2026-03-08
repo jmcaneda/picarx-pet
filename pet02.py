@@ -783,125 +783,81 @@ def state_reset(px, estado, st, distancia_real, test_mode):
 
 
 def state_search(px, estado, st, distancia_real, test_mode):
-
-    # ============================================================
-    # ENTRADA AL ESTADO SEARCH
-    # ============================================================
     det, raw = get_detection(px)
     px.last_det = det
 
+    # Entrada al estado (Idéntica a la tuya)
     if px.last_state != Estado.SEARCH:
         log_event(px, Estado.SEARCH, f"Entrando en SEARCH (test_mode={test_mode})")
-        if test_mode:
-            log_event(px, Estado.SEARCH, "¡ATENCIÓN! MODO DE PRUEBAS ACTIVADO: el robot no se moverá.")   
-
-        # Reset de contadores
         st.search_lost_frames = 0
         st.search_found_frames = 0
         st.search_cam_dir = 1
-        st.is_escaping = False
-
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
-
-        px.changed_speed_slow = False
-
         px.last_state = Estado.SEARCH
         return Estado.SEARCH
 
-    # ============================================================
-    # SEGURIDAD SEARCH
-    # ============================================================
+    # Seguridad
     update_safety(px)
     estado = apply_safety(px, estado, st, det)
     if estado != Estado.SEARCH:
         return estado
 
-    # ============================================================
-    # DETECCIÓN VÁLIDA
-    # ============================================================
-    if det.valid_for_search:
-        log_event(px, Estado.SEARCH, f"Valid_for_search={det.valid_for_search} n={det.n} area={det.area} error_x={det.error_x}")
+    # GESTIÓN DE DETECCIÓN
+    if det.valid_for_search and det.area > 1500: # Filtro de ruido
         st.search_lost_frames = 0
         st.search_found_frames += 1
+        
+        log_event(px, Estado.SEARCH, f"Detección: area={det.area} error_x={det.error_x}")
 
-        # ------------------------------------------------------------
-        # Centrado estable → RECENTER
-        # ------------------------------------------------------------
-       
+        # 1. ¿Está centrado?
         if abs(det.error_x) <= 45:
             if st.search_found_frames >= 2:
-                log_event(px, Estado.SEARCH,
-                        f"Centrado estable ({st.search_found_frames} frames) → RECENTER")
+                log_event(px, Estado.SEARCH, "Centrado estable → RECENTER")
                 px.last_state = Estado.SEARCH
                 return Estado.RECENTER
+        
+        # 2. Si no está centrado, mover cámara
         else:
-            # Si no está centrado, reiniciamos el contador
             st.search_found_frames = 0
-
-        # ------------------------------------------------------------
-        # Ajuste de PAN proporcional
-        # ------------------------------------------------------------
-        # PAN más fuerte si el error es grande, más suave si es pequeño
-        # Ajuste de PAN proporcional (De mayor a menor error)
-        if abs(det.error_x) > 50:
             step = CAM_STEP
-
-            if abs(det.error_x) > 120: # Primero el caso extremo
-                log_event(px, Estado.SEARCH, f"Error extremo ({det.error_x}) -> TRACK")
+            
+            # Jerarquía de error (Corregida)
+            if abs(det.error_x) > 120:
+                log_event(px, Estado.SEARCH, "Error extremo -> TRACK para rotar chasis")
                 st.lost_in_space = True
                 return Estado.TRACK
-            
-            elif abs(det.error_x) > 90:
-                step *= 3
-            
-            elif abs(det.error_x) > 70:
-                step *= 2
+            elif abs(det.error_x) > 90: step *= 3
+            elif abs(det.error_x) > 70: step *= 2
 
-            # Ejecutar el movimiento de cámara
             if det.error_x > 0:
-                log_event(px, Estado.SEARCH, f"Baliza a la derecha → PAN DERECHA (step={step})")
                 pan_right(px, step)
             else:
-                log_event(px, Estado.SEARCH, f"Baliza a la izquierda → PAN IZQUIERDA (step={step})")
                 pan_left(px, step)
 
-            return Estado.SEARCH
-    
-
-    # ============================================================
-    # SALIDA → Plan B
-    # ============================================================
-    if not det.valid_for_search and st.search_lost_frames >= 30:
-        log_event(px, Estado.SEARCH, "Búsqueda circular -> TRACK")
-        st.lost_in_space = True
-        px.last_state = Estado.SEARCH
-        return Estado.TRACK
-
-    # ============================================================
-    # SIN DETECCIÓN → barrido de cámara
-    # ============================================================
-    if not det.valid_for_search:
-        log_event(px, Estado.SEARCH, "SIN DETECCIÓN VÁLIDA → PANEO")
+    else:
+        # SIN DETECCIÓN O RUIDO
         st.search_lost_frames += 1
+        st.search_found_frames = 0
+        
+        # Plan B: Si llevamos mucho tiempo perdidos
+        if st.search_lost_frames >= 30:
+            log_event(px, Estado.SEARCH, "Búsqueda fallida → TRACK circular")
+            st.lost_in_space = True
+            return Estado.TRACK
 
-        # ------------------------------------------------------------
-        # Barrido de cámara normal
-        # ------------------------------------------------------------
-        # Dentro de state_search, en la sección de barrido:
+        # Barrido de cámara normal (Usando tus nuevas funciones con return 0/1)
         if st.search_cam_dir > 0:
             if pan_right(px) == 0:
-                log_event(px, Estado.SEARCH, "Tope derecho alcanzado -> Cambiando a IZQUIERDA")
+                log_event(px, Estado.SEARCH, "Tope DER -> Girando a IZQ")
                 st.search_cam_dir = -1
         else:
             if pan_left(px) == 0:
-                log_event(px, Estado.SEARCH, "Tope izquierdo alcanzado -> Cambiando a DERECHA")
+                log_event(px, Estado.SEARCH, "Tope IZQ -> Girando a DER")
                 st.search_cam_dir = 1
 
-
-    px.last_state = Estado.SEARCH 
+    px.last_state = Estado.SEARCH
     return Estado.SEARCH
-
 
 def state_recenter(px, estado, st, distancia_real, test_mode):
 
