@@ -201,6 +201,7 @@ class RobotState:
 
         self.search_lost_frames = 0          # Frames sin detección válida
         self.search_found_frames = 0         # Frames con detección válida
+        self.search_centered_frames = 0
         self.search_cam_dir = 1              # Dirección del barrido PAN
         self.search_wheels_dir = 1           # Dirección del giro del chasis
         self.search_edge_frames = 0          # Frames con baliza en el borde
@@ -793,6 +794,8 @@ def state_search(px, estado, st, distancia_real, test_mode):
         # Reset de contadores
         st.search_lost_frames = 0
         st.search_found_frames = 0
+        st.search_centered_frames = 0
+
         st.search_cam_dir = 1
         st.is_escaping = False
 
@@ -818,21 +821,27 @@ def state_search(px, estado, st, distancia_real, test_mode):
     if det.valid_for_search:
         log_event(px, Estado.SEARCH, f"Valid_for_search={det.valid_for_search} n={det.n} area={det.area} error_x={det.error_x}")
         st.search_lost_frames = 0
-        st.search_found_frames += 1
 
         # ------------------------------------------------------------
         # Centrado estable → RECENTER
         # ------------------------------------------------------------
         # Usamos una ventana más amplia (±40 px) para evitar bloqueos
+        # Contador de detección válida
+        st.search_found_frames += 1
+
+        # Contador de centrado real
         if abs(det.error_x) <= 45:
-            if st.search_found_frames >= 3:
-                log_event(px, Estado.SEARCH,
-                        f"Centrado estable ({st.search_found_frames} frames) → RECENTER")
-                px.last_state = Estado.SEARCH
-                return Estado.RECENTER
+            st.search_centered_frames += 1
         else:
-            # Si no está centrado, reiniciamos el contador
-            st.search_found_frames = 0
+            st.search_centered_frames = 0
+
+        # Solo pasamos a RECENTER si está centrado de verdad
+        if st.search_centered_frames >= 3:
+            log_event(px, Estado.SEARCH,
+                    f"Centrado estable ({st.search_centered_frames} frames) → RECENTER")
+            px.last_state = Estado.SEARCH
+            return Estado.RECENTER
+
 
         # ------------------------------------------------------------
         # Ajuste de PAN proporcional
@@ -1062,29 +1071,29 @@ def state_track(px, estado, st, distancia_real, test_mode):
     # ============================================================
     # CORRECCIÓN DEL CHASIS (GIRO SUAVE LIMITADO)
     # ============================================================
-
+    error_x = det.error_x
     # 1) Zona muerta
-    if abs(det.error_x) < 10:
-        det.error_x = 0
+    if abs(error_x) < 10:
+        error_x = 0
 
     # 2) Histéresis de signo
     if hasattr(st, "prev_error_x"):
-        if (det.error_x != 0 and st.prev_error_x != 0):
-            if (det.error_x > 0 > st.prev_error_x or det.error_x < 0 < st.prev_error_x):
+        if (error_x != 0 and st.prev_error_x != 0):
+            if (error_x > 0 > st.prev_error_x or error_x < 0 < st.prev_error_x):
                 # Si cambia de signo pero el error es pequeño → mantener el anterior
-                if abs(det.error_x) < 40:
-                    det.error_x = st.prev_error_x
+                if abs(error_x) < 40:
+                    error_x = st.prev_error_x
 
     # 3) Filtro temporal
     if hasattr(st, "prev_error_x"):
-        det.error_x = 0.7 * st.prev_error_x + 0.3 * det.error_x
+        error_x = 0.7 * st.prev_error_x + 0.3 * error_x
 
     # Guardar para el siguiente frame
-    st.prev_error_x = det.error_x
+    st.prev_error_x = error_x
 
     # 4) Cálculo del ángulo
-    if abs(det.error_x) >= 30:
-        raw_angle = det.error_x * 0.3
+    if abs(error_x) >= 30:
+        raw_angle = error_x * 0.3
         servo_angle = round(clamp(raw_angle, -MAX_TRACK_ANGLE, MAX_TRACK_ANGLE), 1)
 
         # 5) Histéresis de ángulo (evita zigzag)
@@ -1099,7 +1108,7 @@ def state_track(px, estado, st, distancia_real, test_mode):
 
         log_event(px, Estado.TRACK, f"Corrigiendo dirección (ángulo={servo_angle})")
 
-        if det.error_x > 0:
+        if error_x > 0:
             turn_right(px)
         else:
             turn_left(px)
