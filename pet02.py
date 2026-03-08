@@ -442,8 +442,11 @@ def rock_robot(px):
 def circle_robot(px, direction=1):
     if direction > 0:
         turn_right(px)
+        pan_left(px, step=CAM_STEP)
     else:
         turn_left(px)
+        pan_right(px, step=CAM_STEP)
+
     px.changed_speed_slow = True
     forward(px)
     time.sleep(0.5)
@@ -824,9 +827,9 @@ def state_search(px, estado, st, distancia_real, test_mode):
         # ------------------------------------------------------------
         # Centrado estable → RECENTER
         # ------------------------------------------------------------
-        # Usamos una ventana más amplia (±40 px) para evitar bloqueos
+       
         if abs(det.error_x) <= 45:
-            if st.search_found_frames >= 3:
+            if st.search_found_frames >= 2:
                 log_event(px, Estado.SEARCH,
                         f"Centrado estable ({st.search_found_frames} frames) → RECENTER")
                 px.last_state = Estado.SEARCH
@@ -839,32 +842,36 @@ def state_search(px, estado, st, distancia_real, test_mode):
         # Ajuste de PAN proporcional
         # ------------------------------------------------------------
         # PAN más fuerte si el error es grande, más suave si es pequeño
+        # Ajuste de PAN proporcional (De mayor a menor error)
         if abs(det.error_x) > 50:
             step = CAM_STEP
 
-            # Escalado proporcional (máximo x3)
-            if abs(det.error_x) > 120:
+            if abs(det.error_x) > 120: # Primero el caso extremo
+                log_event(px, Estado.SEARCH, f"Error extremo ({det.error_x}) -> TRACK")
+                st.lost_in_space = True
+                return Estado.TRACK
+            
+            elif abs(det.error_x) > 90:
                 step *= 3
-            elif abs(det.error_x) > 80:
+            
+            elif abs(det.error_x) > 70:
                 step *= 2
 
+            # Ejecutar el movimiento de cámara
             if det.error_x > 0:
                 log_event(px, Estado.SEARCH, f"Baliza a la derecha → PAN DERECHA (step={step})")
-                if pan_right(px, step) == 0:
-                    st.search_cam_dir *= -1
+                pan_right(px, step)
             else:
                 log_event(px, Estado.SEARCH, f"Baliza a la izquierda → PAN IZQUIERDA (step={step})")
-                if pan_left(px, step) == 0:
-                    st.search_cam_dir *= -1
+                pan_left(px, step)
 
-            px.last_state = Estado.SEARCH
             return Estado.SEARCH
     
 
     # ============================================================
     # SALIDA → Plan B
     # ============================================================
-    if not det.valid_for_search and st.search_lost_frames >= 40:
+    if not det.valid_for_search and st.search_lost_frames >= 30:
         log_event(px, Estado.SEARCH, "Búsqueda circular -> TRACK")
         st.lost_in_space = True
         px.last_state = Estado.SEARCH
@@ -894,6 +901,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
 
     px.last_state = Estado.SEARCH 
     return Estado.SEARCH
+
 
 def state_recenter(px, estado, st, distancia_real, test_mode):
 
@@ -940,13 +948,6 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
 
     st.recenter_lost_frames = 0
 
-    # ============================================================
-    # MOVER CÁMARA PARA MANTENER LA BALIZA EN EL FRAME
-    # ============================================================
-    if det.error_x > 40:
-        pan_right(px)
-    elif det.error_x < -40:
-        pan_left(px)
 
     # ============================================================
     # ALINEACIÓN DEL CHASIS
@@ -975,6 +976,15 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
         log_event(px, Estado.RECENTER, f"Error significativo → wheels_angle_error_x (ángulo={angulo})")
         
 
+    # ============================================================
+    # MOVER CÁMARA PARA MANTENER LA BALIZA EN EL FRAME
+    # ============================================================
+    if det.error_x > 40:
+        pan_right(px)
+    elif det.error_x < -40:
+        pan_left(px)
+
+
     if abs(det.error_x) > 80: # Si la baliza está ya en el tercio exterior del frame
         log_event(px, Estado.RECENTER, "Error demasiado grande para corregir avanzando → SEARCH")
         px.last_state = Estado.RECENTER
@@ -983,7 +993,7 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
     # ============================================================
     # SALIDA RECENTER → TRACK
     # ============================================================
-    px.changed_speed_slow = True  # RECENTER se hace a velocidad lenta para mayor precisión
+    # px.changed_speed_slow = True  # RECENTER se hace a velocidad lenta para mayor precisión
     forward(px)
     px.last_state = Estado.RECENTER
     return Estado.RECENTER
@@ -1031,6 +1041,8 @@ def state_track(px, estado, st, distancia_real, test_mode):
             return Estado.TRACK
         else:
             log_event(px, Estado.TRACK, "Perdidos en el espacio → SEARCH")
+            circle_robot(px, direction=1)
+
             px.last_state = Estado.TRACK
             return Estado.SEARCH
 
