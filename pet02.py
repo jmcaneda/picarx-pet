@@ -1052,20 +1052,11 @@ def state_track(px, estado, st, distancia_real, test_mode):
 
 
     # ============================================================
-    # MOVER CÁMARA PARA MANTENER LA BALIZA EN EL FRAME
-    # ============================================================
-    if det.error_x > 20:
-        pan_right(px)
-    elif det.error_x < -20:
-        pan_left(px)
-
-
-    # ============================================================
     # CORRECCIÓN DEL CHASIS (GIRO SUAVE LIMITADO)
     # ============================================================
 
     if abs(det.error_x) >= 20:
-        raw_angle = det.error_x * 0.4
+        raw_angle = det.error_x * 0.12
         servo_angle = round(clamp(raw_angle, -MAX_TRACK_ANGLE, MAX_TRACK_ANGLE), 1)
 
         px.set_dir_servo_angle(servo_angle)
@@ -1073,11 +1064,23 @@ def state_track(px, estado, st, distancia_real, test_mode):
 
         log_event(px, Estado.TRACK, f"Corrigiendo dirección (ángulo={servo_angle})")
 
-        if det.error_x > 0:
-            turn_right(px)
-        else:
-            turn_left(px)
+    else:
+        px.set_dir_servo_angle(0)
+        px.dir_current_angle = 0
 
+
+    # ============================================================
+    # MOVER CÁMARA PARA MANTENER LA BALIZA EN EL FRAME
+    # ============================================================
+    if abs(det.error_x) > 40:
+        if det.error_x > 0:
+            pan_right(px)
+        else:
+            pan_left(px)
+    elif abs(det.error_x) < 15:
+        # Opcional: Centrar suavemente la cámara si el robot ya está bien alineado
+        # Esto prepara la cámara para la siguiente fase de RECENTER o NEAR
+        pass
 
     # ============================================================
     # SI EL ERROR ES MUY GRANDE → NO AVANZAR
