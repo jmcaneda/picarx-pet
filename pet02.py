@@ -461,30 +461,31 @@ def circle_robot(px, direction=1):
 
 def pan_right(px, step=CAM_STEP):
     new_angle = px.last_pan + step
+    alcanzado_limite = 1
 
     if new_angle >= PAN_MAX:
         new_angle = PAN_MAX
+        alcanzado_limite = 0 # Avisamos que no se puede mover más a la derecha
 
     px.last_pan = new_angle
     px.set_cam_pan_angle(px.last_pan)
-
     px.last_cmd = Cmd.CAM_PAN_RIGHT
 
-    return 1 if new_angle <= PAN_MAX else 0
-
+    return alcanzado_limite
 
 def pan_left(px, step=CAM_STEP):
     new_angle = px.last_pan - step
+    alcanzado_limite = 1
 
     if new_angle <= PAN_MIN:
         new_angle = PAN_MIN
+        alcanzado_limite = 0 # Avisamos que no se puede mover más a la izquierda
 
     px.last_pan = new_angle
     px.set_cam_pan_angle(px.last_pan)
-
     px.last_cmd = Cmd.CAM_PAN_LEFT
 
-    return 1 if new_angle >= PAN_MIN else 0
+    return alcanzado_limite
 
 
 def tilt_top(px, step=CAM_STEP):
@@ -881,22 +882,21 @@ def state_search(px, estado, st, distancia_real, test_mode):
     # SIN DETECCIÓN → barrido de cámara
     # ============================================================
     if not det.valid_for_search:
-        log_event(px, Estado.SEARCH, f"Valid_for_search={det.valid_for_search} n={det.n} area={det.area} error_x={det.error_x}")
         log_event(px, Estado.SEARCH, "SIN DETECCIÓN VÁLIDA → PANEO")
         st.search_lost_frames += 1
 
         # ------------------------------------------------------------
         # Barrido de cámara normal
         # ------------------------------------------------------------
+        # Dentro de state_search, en la sección de barrido:
         if st.search_cam_dir > 0:
             if pan_right(px) == 0:
+                log_event(px, Estado.SEARCH, "Tope derecho alcanzado -> Cambiando a IZQUIERDA")
                 st.search_cam_dir = -1
         else:
             if pan_left(px) == 0:
+                log_event(px, Estado.SEARCH, "Tope izquierdo alcanzado -> Cambiando a DERECHA")
                 st.search_cam_dir = 1
-
-        px.last_state = Estado.SEARCH
-        return Estado.SEARCH
 
 
     px.last_state = Estado.SEARCH 
