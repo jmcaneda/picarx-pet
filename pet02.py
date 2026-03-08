@@ -825,12 +825,9 @@ def state_search(px, estado, st, distancia_real, test_mode):
         # ------------------------------------------------------------
         # Centrado estable → RECENTER
         # ------------------------------------------------------------
-        # Usamos una ventana más amplia (±40 px) para evitar bloqueos
-        # Contador de detección válida
-        st.search_found_frames += 1
 
         # Contador de centrado real
-        if abs(det.error_x) <= 45:
+        if abs(det.error_x) <= 30:
             st.search_centered_frames += 1
         else:
             st.search_centered_frames = 0
@@ -847,7 +844,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
         # Ajuste de PAN proporcional
         # ------------------------------------------------------------
         # PAN más fuerte si el error es grande, más suave si es pequeño
-        if abs(det.error_x) > 50:
+        if abs(det.error_x) > 30:
             step = CAM_STEP
 
             # Escalado proporcional (máximo x3)

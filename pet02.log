@@ -1,426 +1,333 @@
 === Start of pet02.log ===
-[14:12:34] [Estado.CHK] [CHK] ==============================
-[14:12:34] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[14:12:34] [Estado.CHK] [CHK] ==============================
-[14:12:34] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[14:12:34] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[14:12:34] [Estado.CHK] [CHK] State wheels:     0
-[14:12:34] [Estado.CHK] [CHK] ==============================
-[14:12:34] [Estado.IDLE] Inicio del sistema
-[14:12:34] [Estado.IDLE] Entrando en IDLE (test_mode=False)
-[14:12:34] [Estado.RESET] Entrando en RESET (test_mode=False)
-[14:12:34] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[14:12:34] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[14:12:34] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[14:12:34] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[14:12:34] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[14:12:34] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
-[14:12:34] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
-[14:12:35] [Estado.SEARCH] Valid_for_search=True n=2 area=5632 error_x=288
-[14:12:35] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:35] [Estado.SEARCH] Valid_for_search=True n=6 area=4032 error_x=252
-[14:12:35] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:35] [Estado.SEARCH] Valid_for_search=True n=5 area=5632 error_x=116
-[14:12:35] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
-[14:12:35] [Estado.SEARCH] Valid_for_search=True n=5 area=6480 error_x=-6
-[14:12:35] [Estado.SEARCH] Valid_for_search=True n=8 area=9200 error_x=138
-[14:12:35] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:35] [Estado.SEARCH] Valid_for_search=True n=4 area=9856 error_x=148
-[14:12:35] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:35] [Estado.SEARCH] Valid_for_search=True n=6 area=5280 error_x=-6
-[14:12:35] [Estado.SEARCH] Valid_for_search=True n=6 area=7744 error_x=132
-[14:12:35] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:35] [Estado.SEARCH] Valid_for_search=True n=5 area=5440 error_x=-10
-[14:12:35] [Estado.SEARCH] Valid_for_search=True n=6 area=4560 error_x=150
-[14:12:35] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:36] [Estado.SEARCH] Valid_for_search=True n=4 area=9280 error_x=150
-[14:12:36] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:36] [Estado.SEARCH] Valid_for_search=True n=5 area=6384 error_x=166
-[14:12:36] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:36] [Estado.SEARCH] Valid_for_search=True n=7 area=4480 error_x=-4
-[14:12:36] [Estado.SEARCH] Valid_for_search=True n=6 area=4800 error_x=-6
-[14:12:36] [Estado.SEARCH] Valid_for_search=True n=7 area=5472 error_x=156
-[14:12:36] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:36] [Estado.SEARCH] Valid_for_search=True n=8 area=4480 error_x=-4
-[14:12:36] [Estado.SEARCH] Valid_for_search=True n=7 area=5760 error_x=148
-[14:12:36] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:36] [Estado.SEARCH] Valid_for_search=True n=7 area=6720 error_x=134
-[14:12:36] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:36] [Estado.SEARCH] Valid_for_search=True n=7 area=4480 error_x=-4
-[14:12:36] [Estado.SEARCH] Valid_for_search=True n=6 area=4480 error_x=-4
-[14:12:37] [Estado.SEARCH] Valid_for_search=True n=7 area=8000 error_x=142
-[14:12:37] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:37] [Estado.SEARCH] Valid_for_search=True n=6 area=5280 error_x=-6
-[14:12:37] [Estado.SEARCH] Valid_for_search=True n=7 area=4480 error_x=-4
-[14:12:37] [Estado.SEARCH] Valid_for_search=True n=5 area=7488 error_x=144
-[14:12:37] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:37] [Estado.SEARCH] Valid_for_search=True n=5 area=6912 error_x=152
-[14:12:37] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:37] [Estado.SEARCH] Valid_for_search=True n=5 area=7600 error_x=142
-[14:12:37] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:37] [Estado.SEARCH] Valid_for_search=True n=6 area=7600 error_x=142
-[14:12:37] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:37] [Estado.SEARCH] Valid_for_search=True n=5 area=8208 error_x=146
-[14:12:37] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:37] [Estado.SEARCH] Valid_for_search=True n=8 area=5168 error_x=154
-[14:12:37] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:38] [Estado.SEARCH] Valid_for_search=True n=6 area=7600 error_x=142
-[14:12:38] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:38] [Estado.SEARCH] Valid_for_search=True n=7 area=4800 error_x=146
-[14:12:38] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:38] [Estado.SEARCH] Valid_for_search=True n=8 area=3360 error_x=168
-[14:12:38] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:38] [Estado.SEARCH] Valid_for_search=True n=6 area=8000 error_x=142
-[14:12:38] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:38] [Estado.SEARCH] Valid_for_search=True n=5 area=6336 error_x=136
-[14:12:38] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:38] [Estado.SEARCH] Valid_for_search=True n=5 area=6800 error_x=142
-[14:12:38] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:38] [Estado.SEARCH] Valid_for_search=True n=5 area=5760 error_x=156
-[14:12:38] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:38] [Estado.SEARCH] Valid_for_search=True n=7 area=4480 error_x=-4
-[14:12:38] [Estado.SEARCH] Valid_for_search=True n=6 area=8208 error_x=146
-[14:12:38] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:38] [Estado.SEARCH] Valid_for_search=True n=7 area=4480 error_x=-4
-[14:12:39] [Estado.SEARCH] Valid_for_search=True n=6 area=7072 error_x=144
-[14:12:39] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:39] [Estado.SEARCH] Valid_for_search=True n=9 area=4480 error_x=-4
-[14:12:39] [Estado.SEARCH] Valid_for_search=True n=5 area=9120 error_x=152
-[14:12:39] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:39] [Estado.SEARCH] Valid_for_search=True n=6 area=6912 error_x=146
-[14:12:39] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
-[14:12:39] [Estado.SEARCH] Valid_for_search=True n=8 area=3136 error_x=-4
-[14:12:39] [Estado.SEARCH] Valid_for_search=True n=5 area=4480 error_x=-4
-[14:12:39] [Estado.SEARCH] Valid_for_search=True n=10 area=4480 error_x=-4
-[14:12:39] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
-[14:12:39] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[14:12:39] [Estado.RECENTER] Frame estable (1/2)
-[14:12:39] [Estado.RECENTER] Corrigiendo dirección, error_x=-4
-[14:12:40] [Estado.RECENTER] Frame estable (2/2)
-[14:12:40] [Estado.RECENTER] Alineación suficiente → TRACK
-[14:12:40] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[14:12:40] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
-[14:12:40] [Estado.TRACK] Error x > 80, det error_x=136
-[14:12:40] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
-[14:12:40] [Estado.TRACK] Error x > 80, det error_x=-190
-[14:12:41] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
-[14:12:41] [Estado.TRACK] Error x > 80, det error_x=-184
-[14:12:41] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
-[14:12:41] [Estado.TRACK] Error x > 80, det error_x=-150
-[14:12:41] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
-[14:12:41] [Estado.TRACK] Error x > 80, det error_x=-240
-[14:12:41] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
-[14:12:41] [Estado.TRACK] Error x > 80, det error_x=-220
-[14:12:42] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
-[14:12:42] [Estado.TRACK] Error x > 80, det error_x=-178
-[14:12:42] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
-[14:12:42] [Estado.TRACK] Error x > 80, det error_x=-96
-[14:12:42] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
-[14:12:43] [Estado.TRACK] Error x > 80, det error_x=244
-[14:12:43] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
-[14:12:43] [Estado.TRACK] Error x > 80, det error_x=240
-[14:12:43] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
-[14:12:43] [Estado.TRACK] Error x > 80, det error_x=204
-[14:12:43] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
-[14:12:43] [Estado.TRACK] Error x > 80, det error_x=168
-[14:12:43] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
-[14:12:43] [Estado.TRACK] Error x > 80, det error_x=-118
-[14:12:43] [Estado.TRACK] Error x > 80, det error_x=-188
-[14:12:43] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
-[14:12:43] [Estado.TRACK] Error x > 80, det error_x=-174
-[14:12:44] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
-[14:12:44] [Estado.TRACK] Error x > 80, det error_x=-128
-[14:12:44] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
-[14:12:44] [Estado.TRACK] Error x > 80, det error_x=186
-[14:12:45] [Estado.TRACK] Corrigiendo dirección (ángulo=9.8)
-[14:12:45] [Estado.TRACK] Error x > 80, det error_x=-86
-[14:12:45] [Estado.TRACK] Corrigiendo dirección (ángulo=9.8)
-[14:12:45] [Estado.TRACK] Error x > 80, det error_x=-108
-[14:12:45] [Estado.TRACK] Corrigiendo dirección (ángulo=9.8)
-[14:12:45] [Estado.TRACK] Error x > 80, det error_x=-84
-[14:12:45] [Estado.TRACK] Corrigiendo dirección (ángulo=9.8)
-[14:12:47] [Estado.TRACK] Corrigiendo dirección (ángulo=9.0)
-[14:12:48] [Estado.TRACK] Corrigiendo dirección (ángulo=10.1)
-[14:12:48] [Estado.TRACK] Error x > 80, det error_x=-104
-[14:12:48] [Estado.TRACK] Corrigiendo dirección (ángulo=10.1)
-[14:12:48] [Estado.TRACK] Error x > 80, det error_x=-118
-[14:12:48] [Estado.TRACK] Corrigiendo dirección (ángulo=10.1)
-[14:12:48] [Estado.TRACK] Error x > 80, det error_x=-90
-[14:12:48] [Estado.TRACK] Corrigiendo dirección (ángulo=10.1)
-[14:12:48] [Estado.TRACK] Distancia crítica → NEAR
-[14:12:49] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[14:12:49] [Estado.NEAR] Valid_for_search=True Valid_for_near=True n=1 area=41280 error_x=34
-[14:12:49] [Estado.NEAR] ⚠️ Advertencia: objeto a 44.37 cm → frenado total
-[14:12:49] [Estado.NEAR] Retroceso preventivo
-[14:12:49] [Estado.NEAR] Gesto de asentimiento
-[14:12:50] [Estado.NEAR] Cooldown completado → RECENTER
-[14:12:50] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[14:12:50] [Estado.RECENTER] Frame estable (1/2)
-[14:12:50] [Estado.RECENTER] Corrigiendo dirección, error_x=38
-[14:12:50] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=15.2)
-[14:12:51] [Estado.RECENTER] Frame estable (2/2)
-[14:12:51] [Estado.RECENTER] Alineación suficiente → TRACK
-[14:12:51] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[14:12:51] [Estado.TRACK] Distancia crítica → NEAR
-[14:12:51] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[14:12:51] [Estado.NEAR] Retroceso preventivo
-[14:12:51] [Estado.NEAR] Gesto de asentimiento
-[14:12:53] [Estado.NEAR] Cooldown completado → RECENTER
-[14:12:53] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[14:12:53] [Estado.RECENTER] Corrigiendo dirección, error_x=-68
-[14:12:53] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-27.2)
-[14:12:53] [Estado.RECENTER] Corrigiendo dirección, error_x=-70
-[14:12:53] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-28.0)
-[14:12:53] [Estado.RECENTER] Frame estable (1/2)
-[14:12:53] [Estado.RECENTER] Corrigiendo dirección, error_x=-36
-[14:12:53] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-14.4)
-[14:12:53] [Estado.RECENTER] Frame estable (2/2)
-[14:12:53] [Estado.RECENTER] Alineación suficiente → TRACK
-[14:12:53] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[14:12:53] [Estado.TRACK] Distancia crítica → NEAR
-[14:12:53] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[14:12:53] [Estado.NEAR] Retroceso preventivo
-[14:12:54] [Estado.NEAR] Gesto de asentimiento
-[14:12:55] [Estado.NEAR] Cooldown completado → RECENTER
-[14:12:55] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[14:12:55] [Estado.RECENTER] Corrigiendo dirección, error_x=54
-[14:12:55] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=21.6)
-[14:12:55] [Estado.RECENTER] Corrigiendo dirección, error_x=40
-[14:12:55] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=16.0)
-[14:12:55] [Estado.RECENTER] Frame estable (1/2)
-[14:12:55] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[14:12:56] [Estado.NEAR] Retroceso preventivo
-[14:12:56] [Estado.NEAR] Gesto de asentimiento
-[14:12:57] [Estado.NEAR] Cooldown completado → RECENTER
-[14:12:57] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[14:12:57] [Estado.RECENTER] Corrigiendo dirección, error_x=-82
-[14:12:57] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
-[14:12:57] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
-[14:12:57] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[14:12:57] [Estado.SEARCH] Valid_for_search=True n=1 area=58240 error_x=-72
-[14:12:57] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
-[14:12:57] [Estado.SEARCH] Valid_for_search=True n=1 area=56304 error_x=-54
-[14:12:57] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
-[14:12:58] [Estado.SEARCH] Valid_for_search=True n=1 area=63360 error_x=-2
-[14:12:58] [Estado.SEARCH] Valid_for_search=True n=1 area=56000 error_x=24
-[14:12:58] [Estado.SEARCH] Valid_for_search=True n=2 area=57600 error_x=24
-[14:12:58] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
-[14:12:58] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[14:12:58] [Estado.RECENTER] Frame estable (1/2)
-[14:12:58] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[14:12:58] [Estado.NEAR] Valid_for_search=True Valid_for_near=True n=2 area=55200 error_x=24
-[14:12:58] [Estado.NEAR] ⚠️ Advertencia: objeto a 37.98 cm → frenado total
-[14:12:58] [Estado.NEAR] Retroceso preventivo
-[14:12:58] [Estado.NEAR] Gesto de asentimiento
-[14:13:00] [Estado.NEAR] Cooldown completado → RECENTER
-[14:13:00] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[14:13:00] [Estado.RECENTER] Frame estable (1/2)
-[14:13:00] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[14:13:00] [Estado.NEAR] Valid_for_search=True Valid_for_near=True n=2 area=48880 error_x=34
-[14:13:00] [Estado.NEAR] ⚠️ Advertencia: objeto a 38.68 cm → frenado total
-[14:13:00] [Estado.NEAR] Retroceso preventivo
-[14:13:00] [Estado.NEAR] Gesto de asentimiento
-[14:13:02] [Estado.NEAR] Cooldown completado → RECENTER
-[14:13:02] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[14:13:02] [Estado.RECENTER] Corrigiendo dirección, error_x=42
-[14:13:02] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=16.8)
-[14:13:02] [Estado.RECENTER] Frame estable (1/2)
-[14:13:02] [Estado.RECENTER] Corrigiendo dirección, error_x=38
-[14:13:02] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=15.2)
-[14:13:02] [Estado.RECENTER] Frame estable (2/2)
-[14:13:02] [Estado.RECENTER] Alineación suficiente → TRACK
-[14:13:02] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[14:13:02] [Estado.TRACK] Corrigiendo dirección (ángulo=10.1)
-[14:13:02] [Estado.TRACK] Error x > 80, det error_x=-90
-[14:13:02] [Estado.TRACK] Corrigiendo dirección (ángulo=10.1)
-[14:13:02] [Estado.TRACK] Error x > 80, det error_x=-134
-[14:13:02] [Estado.TRACK] Corrigiendo dirección (ángulo=10.1)
-[14:13:02] [Estado.TRACK] Error x > 80, det error_x=-114
-[14:13:02] [Estado.TRACK] Corrigiendo dirección (ángulo=10.1)
-[14:13:03] [Estado.TRACK] Distancia crítica → NEAR
-[14:13:03] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[14:13:03] [Estado.NEAR] Valid_for_search=True Valid_for_near=True n=1 area=66304 error_x=32
-[14:13:03] [Estado.NEAR] ⚠️ Advertencia: objeto a 40.60 cm → frenado total
-[14:13:03] [Estado.NEAR] Retroceso preventivo
-[14:13:03] [Estado.NEAR] Gesto de asentimiento
-[14:13:04] [Estado.NEAR] Cooldown completado → RECENTER
-[14:13:04] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[14:13:05] [Estado.RECENTER] Corrigiendo dirección, error_x=58
-[14:13:05] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=23.2)
-[14:13:05] [Estado.RECENTER] Corrigiendo dirección, error_x=46
-[14:13:05] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=18.4)
-[14:13:05] [Estado.RECENTER] Frame estable (1/2)
-[14:13:05] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[14:13:05] [Estado.NEAR] Retroceso preventivo
-[14:13:05] [Estado.NEAR] Gesto de asentimiento
-[14:13:07] [Estado.NEAR] Cooldown completado → RECENTER
-[14:13:07] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[14:13:07] [Estado.RECENTER] Corrigiendo dirección, error_x=-142
-[14:13:07] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
-[14:13:07] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
-[14:13:07] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[14:13:07] [Estado.SEARCH] Valid_for_search=True n=1 area=68992 error_x=-124
-[14:13:07] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
-[14:13:07] [Estado.SEARCH] Valid_for_search=True n=1 area=71680 error_x=-108
-[14:13:07] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:07] [Estado.SEARCH] Valid_for_search=True n=1 area=65296 error_x=26
-[14:13:07] [Estado.SEARCH] Valid_for_search=True n=1 area=75152 error_x=30
-[14:13:07] [Estado.SEARCH] Valid_for_search=True n=2 area=66528 error_x=44
-[14:13:07] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
-[14:13:07] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[14:13:07] [Estado.RECENTER] Corrigiendo dirección, error_x=44
-[14:13:07] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=17.6)
-[14:13:07] [Estado.RECENTER] Corrigiendo dirección, error_x=44
-[14:13:07] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=17.6)
-[14:13:08] [Estado.RECENTER] Frame estable (1/2)
-[14:13:08] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[14:13:08] [Estado.NEAR] Retroceso preventivo
-[14:13:08] [Estado.NEAR] Gesto de asentimiento
-[14:13:09] [Estado.NEAR] Cooldown completado → RECENTER
-[14:13:09] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[14:13:10] [Estado.RECENTER] Corrigiendo dirección, error_x=-180
-[14:13:10] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
-[14:13:10] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
-[14:13:10] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[14:13:10] [Estado.SEARCH] Valid_for_search=True n=1 area=69600 error_x=-168
-[14:13:10] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
-[14:13:10] [Estado.SEARCH] Valid_for_search=True n=1 area=77952 error_x=-144
-[14:13:10] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=12)
-[14:13:10] [Estado.SEARCH] Valid_for_search=True n=1 area=72160 error_x=-86
-[14:13:10] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:10] [Estado.SEARCH] Valid_for_search=True n=1 area=69120 error_x=-92
-[14:13:10] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:10] [Estado.SEARCH] Valid_for_search=True n=1 area=69888 error_x=-92
-[14:13:10] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:10] [Estado.SEARCH] Valid_for_search=True n=1 area=67760 error_x=-94
-[14:13:10] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:10] [Estado.SEARCH] Valid_for_search=True n=1 area=67760 error_x=-94
-[14:13:10] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:10] [Estado.SEARCH] Valid_for_search=True n=1 area=68992 error_x=-92
-[14:13:10] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:10] [Estado.SEARCH] Valid_for_search=True n=1 area=65664 error_x=-92
-[14:13:10] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:10] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-94
-[14:13:10] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:11] [Estado.SEARCH] Valid_for_search=True n=1 area=64800 error_x=-92
-[14:13:11] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:11] [Estado.SEARCH] Valid_for_search=True n=1 area=65664 error_x=-92
-[14:13:11] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:11] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:11] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:11] [Estado.SEARCH] Valid_for_search=True n=1 area=66880 error_x=-90
-[14:13:11] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:11] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:11] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:11] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:11] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:11] [Estado.SEARCH] Valid_for_search=True n=1 area=65120 error_x=-90
-[14:13:11] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:11] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-94
-[14:13:11] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:11] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:11] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:11] [Estado.SEARCH] Valid_for_search=True n=1 area=64800 error_x=-92
-[14:13:11] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:11] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:11] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:12] [Estado.SEARCH] Valid_for_search=True n=1 area=63936 error_x=-92
-[14:13:12] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:12] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:12] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:12] [Estado.SEARCH] Valid_for_search=True n=1 area=64800 error_x=-92
-[14:13:12] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:12] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:12] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:12] [Estado.SEARCH] Valid_for_search=True n=1 area=64800 error_x=-92
-[14:13:12] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:12] [Estado.SEARCH] Valid_for_search=True n=1 area=64800 error_x=-92
-[14:13:12] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:12] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:12] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:12] [Estado.SEARCH] Valid_for_search=True n=1 area=64800 error_x=-92
-[14:13:12] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:12] [Estado.SEARCH] Valid_for_search=True n=1 area=68096 error_x=-92
-[14:13:12] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:12] [Estado.SEARCH] Valid_for_search=True n=1 area=64800 error_x=-92
-[14:13:12] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:12] [Estado.SEARCH] Valid_for_search=True n=1 area=68400 error_x=-90
-[14:13:12] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:13] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:13] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:13] [Estado.SEARCH] Valid_for_search=True n=1 area=67200 error_x=-92
-[14:13:13] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:13] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:13] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:13] [Estado.SEARCH] Valid_for_search=True n=1 area=64800 error_x=-92
-[14:13:13] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:13] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:13] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:13] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:13] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:13] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:13] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:13] [Estado.SEARCH] Valid_for_search=True n=1 area=67200 error_x=-88
-[14:13:13] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:13] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:13] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:13] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-94
-[14:13:13] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:13] [Estado.SEARCH] Valid_for_search=True n=1 area=64800 error_x=-92
-[14:13:13] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:14] [Estado.SEARCH] Valid_for_search=True n=1 area=64800 error_x=-92
-[14:13:14] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:14] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:14] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:14] [Estado.SEARCH] Valid_for_search=True n=1 area=64800 error_x=-92
-[14:13:14] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:14] [Estado.SEARCH] Valid_for_search=True n=1 area=66880 error_x=-94
-[14:13:14] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:14] [Estado.SEARCH] Valid_for_search=True n=1 area=67200 error_x=-92
-[14:13:14] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:14] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:14] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:14] [Estado.SEARCH] Valid_for_search=True n=1 area=66880 error_x=-90
-[14:13:14] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:14] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:14] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:14] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:14] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:14] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:14] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:14] [Estado.SEARCH] Valid_for_search=True n=1 area=67200 error_x=-92
-[14:13:14] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:15] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:15] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:15] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:15] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:15] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:15] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:15] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:15] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:15] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:15] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:15] [Estado.SEARCH] Valid_for_search=True n=1 area=67200 error_x=-88
-[14:13:15] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:15] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:15] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:15] [Estado.SEARCH] Valid_for_search=True n=1 area=64800 error_x=-92
-[14:13:15] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:15] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-94
-[14:13:15] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:15] [Estado.SEARCH] Valid_for_search=True n=1 area=67200 error_x=-92
-[14:13:15] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:15] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-94
-[14:13:15] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:15] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:15] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:16] [Estado.SEARCH] Valid_for_search=True n=1 area=64800 error_x=-92
-[14:13:16] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:16] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:16] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:16] [Estado.SEARCH] Valid_for_search=True n=1 area=64800 error_x=-92
-[14:13:16] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:16] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-94
-[14:13:16] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
-[14:13:16] [Estado.SEARCH] Valid_for_search=True n=1 area=66000 error_x=-90
-[14:13:16] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=8)
+[14:33:38] [Estado.CHK] [CHK] ==============================
+[14:33:38] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[14:33:38] [Estado.CHK] [CHK] ==============================
+[14:33:38] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[14:33:38] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[14:33:38] [Estado.CHK] [CHK] State wheels:     0
+[14:33:38] [Estado.CHK] [CHK] ==============================
+[14:33:38] [Estado.IDLE] Inicio del sistema
+[14:33:38] [Estado.IDLE] Entrando en IDLE (test_mode=False)
+[14:33:38] [Estado.RESET] Entrando en RESET (test_mode=False)
+[14:33:38] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[14:33:38] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[14:33:38] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[14:33:38] [Estado.SEARCH] Valid_for_search=False n=0 area=0 error_x=0.0
+[14:33:38] [Estado.SEARCH] SIN DETECCIÓN VÁLIDA → PANEO
+[14:33:38] [Estado.SEARCH] Valid_for_search=True n=2 area=5120 error_x=256
+[14:33:38] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:39] [Estado.SEARCH] Valid_for_search=True n=3 area=6080 error_x=250
+[14:33:39] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:39] [Estado.SEARCH] Valid_for_search=True n=2 area=5520 error_x=122
+[14:33:39] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:39] [Estado.SEARCH] Valid_for_search=True n=3 area=6912 error_x=-4
+[14:33:39] [Estado.SEARCH] Valid_for_search=True n=5 area=3600 error_x=102
+[14:33:39] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:39] [Estado.SEARCH] Valid_for_search=True n=8 area=2880 error_x=-38
+[14:33:39] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:39] [Estado.SEARCH] Valid_for_search=True n=7 area=4352 error_x=-36
+[14:33:39] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:39] [Estado.SEARCH] Valid_for_search=True n=4 area=5888 error_x=-12
+[14:33:39] [Estado.SEARCH] Valid_for_search=True n=6 area=2880 error_x=34
+[14:33:39] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=4)
+[14:33:39] [Estado.SEARCH] Valid_for_search=True n=6 area=6656 error_x=32
+[14:33:39] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=4)
+[14:33:40] [Estado.SEARCH] Valid_for_search=True n=4 area=9280 error_x=-24
+[14:33:40] [Estado.SEARCH] Valid_for_search=True n=5 area=5520 error_x=98
+[14:33:40] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:40] [Estado.SEARCH] Valid_for_search=True n=5 area=6688 error_x=96
+[14:33:40] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:40] [Estado.SEARCH] Valid_for_search=True n=5 area=6720 error_x=98
+[14:33:40] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:40] [Estado.SEARCH] Valid_for_search=True n=6 area=2688 error_x=-40
+[14:33:40] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:40] [Estado.SEARCH] Valid_for_search=True n=6 area=5984 error_x=-26
+[14:33:40] [Estado.SEARCH] Valid_for_search=True n=7 area=4896 error_x=116
+[14:33:40] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:40] [Estado.SEARCH] Valid_for_search=True n=7 area=4480 error_x=124
+[14:33:40] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:40] [Estado.SEARCH] Valid_for_search=True n=7 area=3360 error_x=82
+[14:33:40] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:41] [Estado.SEARCH] Valid_for_search=True n=4 area=4560 error_x=-42
+[14:33:41] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:41] [Estado.SEARCH] Valid_for_search=True n=6 area=4784 error_x=-42
+[14:33:41] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:41] [Estado.SEARCH] Valid_for_search=True n=5 area=4608 error_x=116
+[14:33:41] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:41] [Estado.SEARCH] Valid_for_search=True n=7 area=3840 error_x=164
+[14:33:41] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:41] [Estado.SEARCH] Valid_for_search=True n=5 area=4800 error_x=100
+[14:33:41] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:41] [Estado.SEARCH] Valid_for_search=True n=5 area=4352 error_x=90
+[14:33:41] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:41] [Estado.SEARCH] Valid_for_search=True n=5 area=5040 error_x=-38
+[14:33:41] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:41] [Estado.SEARCH] Valid_for_search=True n=5 area=4480 error_x=-40
+[14:33:41] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:41] [Estado.SEARCH] Valid_for_search=True n=5 area=5040 error_x=130
+[14:33:41] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:42] [Estado.SEARCH] Valid_for_search=True n=5 area=8320 error_x=20
+[14:33:42] [Estado.SEARCH] Valid_for_search=True n=4 area=6720 error_x=-42
+[14:33:42] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:42] [Estado.SEARCH] Valid_for_search=True n=7 area=5888 error_x=-40
+[14:33:42] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:42] [Estado.SEARCH] Valid_for_search=True n=8 area=5408 error_x=140
+[14:33:42] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:42] [Estado.SEARCH] Valid_for_search=True n=5 area=7072 error_x=184
+[14:33:42] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:42] [Estado.SEARCH] Valid_for_search=True n=2 area=13776 error_x=142
+[14:33:42] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:42] [Estado.SEARCH] Valid_for_search=True n=5 area=4928 error_x=-44
+[14:33:42] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:42] [Estado.SEARCH] Valid_for_search=True n=6 area=4080 error_x=86
+[14:33:42] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:42] [Estado.SEARCH] Valid_for_search=True n=8 area=4160 error_x=120
+[14:33:42] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:42] [Estado.SEARCH] Valid_for_search=True n=4 area=5376 error_x=226
+[14:33:42] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:43] [Estado.SEARCH] Valid_for_search=True n=8 area=4320 error_x=84
+[14:33:43] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:43] [Estado.SEARCH] Valid_for_search=True n=9 area=3808 error_x=82
+[14:33:43] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:43] [Estado.SEARCH] Valid_for_search=True n=9 area=3808 error_x=82
+[14:33:43] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:43] [Estado.SEARCH] Valid_for_search=True n=7 area=5376 error_x=94
+[14:33:43] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:43] [Estado.SEARCH] Valid_for_search=True n=7 area=4256 error_x=90
+[14:33:43] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:43] [Estado.SEARCH] Valid_for_search=True n=5 area=5632 error_x=92
+[14:33:43] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:43] [Estado.SEARCH] Valid_for_search=True n=7 area=4784 error_x=98
+[14:33:43] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:43] [Estado.SEARCH] Valid_for_search=True n=6 area=4560 error_x=90
+[14:33:43] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:43] [Estado.SEARCH] Valid_for_search=True n=6 area=4608 error_x=196
+[14:33:43] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:44] [Estado.SEARCH] Valid_for_search=True n=6 area=5040 error_x=90
+[14:33:44] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:44] [Estado.SEARCH] Valid_for_search=True n=9 area=4480 error_x=200
+[14:33:44] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:44] [Estado.SEARCH] Valid_for_search=True n=7 area=4576 error_x=96
+[14:33:44] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:44] [Estado.SEARCH] Valid_for_search=True n=7 area=4928 error_x=92
+[14:33:44] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:44] [Estado.SEARCH] Valid_for_search=True n=6 area=4256 error_x=90
+[14:33:44] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:44] [Estado.SEARCH] Valid_for_search=True n=7 area=9120 error_x=204
+[14:33:44] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:44] [Estado.SEARCH] Valid_for_search=True n=6 area=5376 error_x=220
+[14:33:44] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:44] [Estado.SEARCH] Valid_for_search=True n=6 area=4256 error_x=-44
+[14:33:44] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:44] [Estado.SEARCH] Valid_for_search=True n=7 area=5632 error_x=-40
+[14:33:44] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:45] [Estado.SEARCH] Valid_for_search=True n=7 area=5520 error_x=-10
+[14:33:45] [Estado.SEARCH] Valid_for_search=True n=5 area=7488 error_x=184
+[14:33:45] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:45] [Estado.SEARCH] Valid_for_search=True n=8 area=2912 error_x=178
+[14:33:45] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:45] [Estado.SEARCH] Valid_for_search=True n=6 area=6960 error_x=-42
+[14:33:45] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:45] [Estado.SEARCH] Valid_for_search=True n=7 area=4480 error_x=-44
+[14:33:45] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:45] [Estado.SEARCH] Valid_for_search=True n=5 area=7344 error_x=-6
+[14:33:45] [Estado.SEARCH] Valid_for_search=True n=4 area=5280 error_x=34
+[14:33:45] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=4)
+[14:33:45] [Estado.SEARCH] Valid_for_search=True n=4 area=6624 error_x=178
+[14:33:45] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:45] [Estado.SEARCH] Valid_for_search=True n=4 area=9152 error_x=-8
+[14:33:46] [Estado.SEARCH] Valid_for_search=True n=9 area=4096 error_x=80
+[14:33:46] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=4)
+[14:33:46] [Estado.SEARCH] Valid_for_search=True n=8 area=4480 error_x=-44
+[14:33:46] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:46] [Estado.SEARCH] Valid_for_search=True n=5 area=4800 error_x=-46
+[14:33:46] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:46] [Estado.SEARCH] Valid_for_search=True n=7 area=5520 error_x=-14
+[14:33:46] [Estado.SEARCH] Valid_for_search=True n=5 area=4928 error_x=36
+[14:33:46] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=4)
+[14:33:46] [Estado.SEARCH] Valid_for_search=True n=5 area=6912 error_x=32
+[14:33:46] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=4)
+[14:33:46] [Estado.SEARCH] Valid_for_search=True n=7 area=6256 error_x=150
+[14:33:46] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:46] [Estado.SEARCH] Valid_for_search=True n=6 area=6000 error_x=-42
+[14:33:46] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:46] [Estado.SEARCH] Valid_for_search=True n=6 area=5520 error_x=-42
+[14:33:46] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:46] [Estado.SEARCH] Valid_for_search=True n=5 area=5760 error_x=120
+[14:33:46] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:47] [Estado.SEARCH] Valid_for_search=True n=6 area=9200 error_x=14
+[14:33:47] [Estado.SEARCH] Valid_for_search=True n=5 area=6048 error_x=-40
+[14:33:47] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:47] [Estado.SEARCH] Valid_for_search=True n=7 area=5376 error_x=-36
+[14:33:47] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:47] [Estado.SEARCH] Valid_for_search=True n=4 area=8320 error_x=-4
+[14:33:47] [Estado.SEARCH] Valid_for_search=True n=5 area=5280 error_x=34
+[14:33:47] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=4)
+[14:33:47] [Estado.SEARCH] Valid_for_search=True n=6 area=8064 error_x=24
+[14:33:47] [Estado.SEARCH] Valid_for_search=True n=6 area=5760 error_x=6
+[14:33:47] [Estado.SEARCH] Valid_for_search=True n=4 area=5280 error_x=6
+[14:33:47] [Estado.SEARCH] Centrado estable (3 frames) → RECENTER
+[14:33:47] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[14:33:48] [Estado.RECENTER] Corrigiendo dirección, error_x=130
+[14:33:48] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=30)
+[14:33:48] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
+[14:33:48] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[14:33:48] [Estado.SEARCH] Valid_for_search=True n=4 area=6240 error_x=-34
+[14:33:48] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:48] [Estado.SEARCH] Valid_for_search=True n=6 area=6048 error_x=134
+[14:33:48] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:48] [Estado.SEARCH] Valid_for_search=True n=5 area=5824 error_x=-16
+[14:33:48] [Estado.SEARCH] Valid_for_search=True n=3 area=16464 error_x=162
+[14:33:48] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:48] [Estado.SEARCH] Valid_for_search=True n=4 area=5040 error_x=-46
+[14:33:48] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:48] [Estado.SEARCH] Valid_for_search=True n=5 area=3952 error_x=102
+[14:33:48] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:48] [Estado.SEARCH] Valid_for_search=True n=7 area=5152 error_x=-16
+[14:33:48] [Estado.SEARCH] Valid_for_search=True n=5 area=4928 error_x=-40
+[14:33:48] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:49] [Estado.SEARCH] Valid_for_search=True n=6 area=5760 error_x=-38
+[14:33:49] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:49] [Estado.SEARCH] Valid_for_search=True n=6 area=5632 error_x=128
+[14:33:49] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:49] [Estado.SEARCH] Valid_for_search=True n=6 area=5472 error_x=166
+[14:33:49] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:49] [Estado.SEARCH] Valid_for_search=True n=7 area=6496 error_x=110
+[14:33:49] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:49] [Estado.SEARCH] Valid_for_search=True n=6 area=7296 error_x=100
+[14:33:49] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:49] [Estado.SEARCH] Valid_for_search=True n=10 area=4480 error_x=92
+[14:33:49] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:49] [Estado.SEARCH] Valid_for_search=True n=8 area=5712 error_x=222
+[14:33:49] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:49] [Estado.SEARCH] Valid_for_search=True n=6 area=19552 error_x=146
+[14:33:49] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:49] [Estado.SEARCH] Valid_for_search=True n=6 area=17280 error_x=142
+[14:33:49] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:50] [Estado.SEARCH] Valid_for_search=True n=6 area=17664 error_x=140
+[14:33:50] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:50] [Estado.SEARCH] Valid_for_search=True n=9 area=7072 error_x=184
+[14:33:50] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:50] [Estado.SEARCH] Valid_for_search=True n=10 area=5600 error_x=98
+[14:33:50] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:50] [Estado.SEARCH] Valid_for_search=True n=7 area=5760 error_x=96
+[14:33:50] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:50] [Estado.SEARCH] Valid_for_search=True n=7 area=6256 error_x=94
+[14:33:50] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:50] [Estado.SEARCH] Valid_for_search=True n=11 area=4080 error_x=82
+[14:33:50] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:50] [Estado.SEARCH] Valid_for_search=True n=6 area=6528 error_x=96
+[14:33:50] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:50] [Estado.SEARCH] Valid_for_search=True n=5 area=9600 error_x=204
+[14:33:50] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:50] [Estado.SEARCH] Valid_for_search=True n=8 area=5376 error_x=96
+[14:33:50] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:51] [Estado.SEARCH] Valid_for_search=True n=8 area=3328 error_x=100
+[14:33:51] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:51] [Estado.SEARCH] Valid_for_search=True n=8 area=5376 error_x=100
+[14:33:51] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:51] [Estado.SEARCH] Valid_for_search=True n=9 area=3520 error_x=96
+[14:33:51] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:51] [Estado.SEARCH] Valid_for_search=True n=6 area=24128 error_x=160
+[14:33:51] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:51] [Estado.SEARCH] Valid_for_search=True n=7 area=7200 error_x=190
+[14:33:51] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:51] [Estado.SEARCH] Valid_for_search=True n=9 area=4800 error_x=88
+[14:33:51] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:51] [Estado.SEARCH] Valid_for_search=True n=7 area=5440 error_x=200
+[14:33:51] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:51] [Estado.SEARCH] Valid_for_search=True n=8 area=5280 error_x=92
+[14:33:51] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:51] [Estado.SEARCH] Valid_for_search=True n=7 area=4368 error_x=194
+[14:33:51] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:52] [Estado.SEARCH] Valid_for_search=True n=6 area=5152 error_x=94
+[14:33:52] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:52] [Estado.SEARCH] Valid_for_search=True n=8 area=4928 error_x=92
+[14:33:52] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:52] [Estado.SEARCH] Valid_for_search=True n=8 area=4800 error_x=188
+[14:33:52] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:52] [Estado.SEARCH] Valid_for_search=True n=8 area=4704 error_x=90
+[14:33:52] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:52] [Estado.SEARCH] Valid_for_search=True n=5 area=5520 error_x=218
+[14:33:52] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:52] [Estado.SEARCH] Valid_for_search=True n=7 area=6528 error_x=216
+[14:33:52] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:52] [Estado.SEARCH] Valid_for_search=True n=7 area=6528 error_x=200
+[14:33:52] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:52] [Estado.SEARCH] Valid_for_search=True n=8 area=5280 error_x=96
+[14:33:52] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:52] [Estado.SEARCH] Valid_for_search=True n=7 area=4576 error_x=92
+[14:33:52] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:52] [Estado.SEARCH] Valid_for_search=True n=7 area=3648 error_x=198
+[14:33:52] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:53] [Estado.SEARCH] Valid_for_search=True n=6 area=3584 error_x=84
+[14:33:53] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:53] [Estado.SEARCH] Valid_for_search=True n=7 area=8064 error_x=200
+[14:33:53] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:53] [Estado.SEARCH] Valid_for_search=True n=7 area=4576 error_x=92
+[14:33:53] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:53] [Estado.SEARCH] Valid_for_search=True n=8 area=4256 error_x=-44
+[14:33:53] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:53] [Estado.SEARCH] Valid_for_search=True n=9 area=3744 error_x=-46
+[14:33:53] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:53] [Estado.SEARCH] Valid_for_search=True n=7 area=5632 error_x=-12
+[14:33:53] [Estado.SEARCH] Valid_for_search=True n=8 area=2688 error_x=36
+[14:33:53] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=4)
+[14:33:53] [Estado.SEARCH] Valid_for_search=True n=5 area=8704 error_x=196
+[14:33:53] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:53] [Estado.SEARCH] Valid_for_search=True n=7 area=5376 error_x=8
+[14:33:54] [Estado.SEARCH] Valid_for_search=True n=9 area=4864 error_x=86
+[14:33:54] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:54] [Estado.SEARCH] Valid_for_search=True n=6 area=7072 error_x=104
+[14:33:54] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:54] [Estado.SEARCH] Valid_for_search=True n=9 area=4352 error_x=80
+[14:33:54] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=4)
+[14:33:54] [Estado.SEARCH] Valid_for_search=True n=7 area=4080 error_x=82
+[14:33:54] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:54] [Estado.SEARCH] Valid_for_search=True n=6 area=2688 error_x=80
+[14:33:54] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=4)
+[14:33:54] [Estado.SEARCH] Valid_for_search=True n=7 area=4608 error_x=84
+[14:33:54] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:54] [Estado.SEARCH] Valid_for_search=True n=8 area=5040 error_x=90
+[14:33:54] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:54] [Estado.SEARCH] Valid_for_search=True n=7 area=4080 error_x=82
+[14:33:54] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:54] [Estado.SEARCH] Valid_for_search=True n=6 area=2304 error_x=76
+[14:33:54] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=4)
+[14:33:55] [Estado.SEARCH] Valid_for_search=True n=6 area=4704 error_x=-44
+[14:33:55] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:55] [Estado.SEARCH] Valid_for_search=True n=7 area=4704 error_x=-44
+[14:33:55] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:55] [Estado.SEARCH] Valid_for_search=True n=4 area=4928 error_x=-16
+[14:33:55] [Estado.SEARCH] Valid_for_search=True n=8 area=4896 error_x=172
+[14:33:55] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:55] [Estado.SEARCH] Valid_for_search=True n=8 area=4928 error_x=32
+[14:33:55] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=4)
+[14:33:55] [Estado.SEARCH] Valid_for_search=True n=6 area=5824 error_x=-40
+[14:33:55] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:55] [Estado.SEARCH] Valid_for_search=True n=5 area=5376 error_x=234
+[14:33:55] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=12)
+[14:33:55] [Estado.SEARCH] Valid_for_search=True n=5 area=6080 error_x=120
+[14:33:55] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:55] [Estado.SEARCH] Valid_for_search=True n=6 area=5152 error_x=-44
+[14:33:55] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:56] [Estado.SEARCH] Valid_for_search=True n=7 area=4352 error_x=86
+[14:33:56] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:56] [Estado.SEARCH] Valid_for_search=True n=9 area=5280 error_x=-14
+[14:33:56] [Estado.SEARCH] Valid_for_search=True n=7 area=4608 error_x=84
+[14:33:56] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:56] [Estado.SEARCH] Valid_for_search=True n=9 area=5760 error_x=96
+[14:33:56] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:56] [Estado.SEARCH] Valid_for_search=True n=10 area=5472 error_x=90
+[14:33:56] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:56] [Estado.SEARCH] Valid_for_search=True n=9 area=6144 error_x=96
+[14:33:56] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:56] [Estado.SEARCH] Valid_for_search=True n=8 area=4096 error_x=84
+[14:33:56] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:56] [Estado.SEARCH] Valid_for_search=True n=10 area=2688 error_x=-48
+[14:33:56] [Estado.SEARCH] Baliza a la izquierda → PAN IZQUIERDA (step=4)
+[14:33:56] [Estado.SEARCH] Valid_for_search=True n=8 area=5376 error_x=90
+[14:33:56] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
+[14:33:57] [Estado.SEARCH] Valid_for_search=True n=8 area=4480 error_x=-16
+[14:33:57] [Estado.SEARCH] Valid_for_search=True n=7 area=5472 error_x=88
+[14:33:57] [Estado.SEARCH] Baliza a la derecha → PAN DERECHA (step=8)
