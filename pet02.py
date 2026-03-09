@@ -759,6 +759,7 @@ def state_reset(px, estado, st, distancia_real, test_mode):
     # ------------------------------------------------------------
     st.search_lost_frames = 0
     st.search_found_frames = 0
+    st.search_centered_frames = 0
     st.search_cam_dir = 1
     st.lost_in_space = False
 
@@ -791,6 +792,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
         log_event(px, Estado.SEARCH, f"Entrando en SEARCH (test_mode={test_mode})")
         st.search_lost_frames = 0
         st.search_found_frames = 0
+        st.search_centered_frames = 0
         st.search_cam_dir = 1
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
@@ -806,36 +808,37 @@ def state_search(px, estado, st, distancia_real, test_mode):
         return estado
 
     # GESTIÓN DE DETECCIÓN
-    if det.valid_for_search or det.valid_for_near
+    # 1. Detección válida
+    if det.valid_for_search or det.valid_for_near:
         st.search_lost_frames = 0
-        st.search_found_frames += 1
-        
-        log_event(px, Estado.SEARCH, f"Detección: area={det.area} error_x={det.error_x}")
 
-        # 1. ¿Está centrado?
+        # CENTRADO REAL
         if abs(det.error_x) <= 45:
-            if st.search_found_frames >= 2:
-                log_event(px, Estado.SEARCH, "Centrado estable → RECENTER")
-                px.last_state = Estado.SEARCH
-                return Estado.RECENTER
-        
-        # 2. Si no está centrado, mover cámara
+            st.search_centered_frames += 1
         else:
-            st.search_found_frames = 0
-            step = CAM_STEP
-            
-            # Jerarquía de error (Corregida)
-            if abs(det.error_x) > 120:
-                log_event(px, Estado.SEARCH, "Error extremo -> TRACK para rotar chasis")
-                st.lost_in_space = True
-                return Estado.TRACK
-            elif abs(det.error_x) > 90: step *= 3
-            elif abs(det.error_x) > 70: step *= 2
+            st.search_centered_frames = 0
 
-            if det.error_x > 0:
-                pan_right(px, step)
-            else:
-                pan_left(px, step)
+        if st.search_centered_frames >= 2:
+            log_event(px, Estado.SEARCH, "Centrado estable → RECENTER")
+            return Estado.RECENTER
+
+        # PAN (sin huecos muertos)
+        step = CAM_STEP
+        if abs(det.error_x) > 120:
+            step *= 3
+        elif abs(det.error_x) > 80:
+            step *= 2
+        elif abs(det.error_x) > 30:
+            step *= 1
+        else:
+            # error_x pequeño → no PAN
+            return Estado.SEARCH
+
+        if det.error_x > 0:
+            pan_right(px, step)
+        else:
+            pan_left(px, step)
+
 
     else:
         # SIN DETECCIÓN O RUIDO
@@ -860,6 +863,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
 
     px.last_state = Estado.SEARCH
     return Estado.SEARCH
+
 
 def state_recenter(px, estado, st, distancia_real, test_mode):
 
