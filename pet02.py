@@ -816,7 +816,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
         st.search_lost_frames = 0
 
         # CENTRADO REAL
-        if abs(det.error_x) <= 45 and px.distance_real > 80:
+        if abs(det.error_x) <= 50 and px.distance_real > 60:
             st.search_centered_frames += 1
         else:
             st.search_centered_frames = 0
@@ -832,7 +832,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
             step *= 3
         elif abs(det.error_x) > 80:
             step *= 2
-        elif abs(det.error_x) > 30:
+        elif abs(det.error_x) > 10:
             step *= 1
         else:
             # error_x pequeño → no PAN
@@ -860,11 +860,11 @@ def state_search(px, estado, st, distancia_real, test_mode):
         # Barrido de cámara normal (Usando tus nuevas funciones con return 0/1)
         if st.search_cam_dir > 0:
             if pan_right(px) == 0:
-                log_event(px, Estado.SEARCH, "Tope DER -> Girando a IZQ")
+                log_event(px, Estado.SEARCH, f"Valid_for_search={det.valid_for_search} Valid_for_near={det.valid_for_near} n={det.n} area={det.area} error_x={det.error_x} Tope DER -> Girando a IZQ")
                 st.search_cam_dir = -1
         else:
             if pan_left(px) == 0:
-                log_event(px, Estado.SEARCH, "Tope IZQ -> Girando a DER")
+                log_event(px, Estado.SEARCH, f"Valid_for_search={det.valid_for_search} Valid_for_near={det.valid_for_near} n={det.n} area={det.area} error_x={det.error_x} Tope IZQ -> Girando a DER")
                 st.search_cam_dir = 1
 
     px.last_state = Estado.SEARCH
