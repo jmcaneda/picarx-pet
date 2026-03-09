@@ -519,18 +519,18 @@ def tilt_bottom(px, step=CAM_STEP):
 
 
 def tilt_yes(px):
-
     if px.last_cmd == Cmd.CAM_TILT_YES:
         return False
 
-    secuencia = [0, TILT_MAX, 0,TILT_MIN, 0, TILT_MAX, 0, TILT_MIN, 0]
+    # Reducimos a solo 4 movimientos clave (0 -> Max -> Min -> 0)
+    # Total tiempo: 0.15s (un 66% más rápido)
+    secuencia = [TILT_MAX, TILT_MIN, 0]
 
     for angulo in secuencia:
         px.set_cam_tilt_angle(angulo)
-        time.sleep(0.05)
+        time.sleep(0.05) 
 
     px.last_cmd = Cmd.CAM_TILT_YES
-
     return True
 
 
@@ -816,7 +816,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
         st.search_lost_frames = 0
 
         # CENTRADO REAL
-        if abs(det.error_x) <= 50 and px.distance_real > 60:
+        if abs(det.error_x) <= 50:
             st.search_centered_frames += 1
         else:
             st.search_centered_frames = 0
@@ -1132,22 +1132,12 @@ def state_near(px, estado, st, distancia_real, test_mode):
 
 
     # ============================================================
-    # Si la visión dice que sigue muy cerca → frenar SOLAMENTE si no hemos retrocedido aún
-    # ============================================================
-    if det.valid_for_near and 5 < px.distance_real < 80 and not st.near_backed:
-        log_event(px, Estado.NEAR, f"Valid_for_search={det.valid_for_search} Valid_for_near={det.valid_for_near} n={det.n} area={det.area} error_x={det.error_x}")
-        st.near_hold_frames += 1
-        stop(px)
-        log_event(px, Estado.NEAR, f"⚠️ Advertencia: objeto a {distancia_real:.2f} cm → frenado total")
-
-
-    # ============================================================
     # RETROCESO (solo una vez)
     # ============================================================
-    if not st.near_backed:
+    if px.distance_real < 15 and not st.near_backed:
         log_event(px, Estado.NEAR, "Retroceso preventivo")
         backward(px)
-        time.sleep(0.15)
+        time.sleep(0.1)
         stop(px)
 
         st.near_backed = True
@@ -1163,13 +1153,14 @@ def state_near(px, estado, st, distancia_real, test_mode):
         tilt_yes(px)
         
         st.near_nodded = True
+        st.near_backed = True # Marcamos backed como True para no retroceder después de asentir
         px.last_state = Estado.NEAR
         return Estado.NEAR
 
     # ============================================================
     # VERIFICACIÓN DE PRESENCIA (Si desaparece, volvemos a buscar)
     # ============================================================
-    if not det.valid_for_search:
+    if not det.valid_for_search and not det.valid_for_near:
         # Si ya no la veo en absoluto, no tiene sentido esperar el cooldown
         log_event(px, Estado.NEAR, "Baliza desaparecida durante NEAR → SEARCH")
         px.last_state = Estado.NEAR
@@ -1180,7 +1171,7 @@ def state_near(px, estado, st, distancia_real, test_mode):
     # SALIDA DE NEAR (cooldown terminado)
     # ============================================================
     st.near_cooldown += 1
-    if st.near_cooldown >= 10:
+    if st.near_cooldown >= 15 or abs(det.error_x) > 40:
         log_event(px, Estado.NEAR, "Cooldown completado → RECENTER")
         st.near_cooldown = 0
         px.last_state = Estado.NEAR
