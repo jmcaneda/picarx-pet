@@ -440,16 +440,18 @@ def rock_robot(px):
     return True
 
 def circle_robot(px, direction=1):
+    step = CAM_STEP
+    step *= 2
     if direction > 0:
         turn_right(px)
-        pan_left(px, step=CAM_STEP)
+        pan_left(px, step)
     else:
         turn_left(px)
-        pan_right(px, step=CAM_STEP)
+        pan_right(px, step)
 
-    px.changed_speed_slow = True
+    px.changed_speed_slow = False
     forward(px)
-    time.sleep(0.5)
+    time.sleep(1)
     stop(px)
 
     return True
@@ -813,7 +815,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
         st.search_lost_frames = 0
 
         # CENTRADO REAL
-        if abs(det.error_x) <= 45:
+        if abs(det.error_x) <= 45 and px.distancia_real > 80:
             st.search_centered_frames += 1
         else:
             st.search_centered_frames = 0
