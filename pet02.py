@@ -794,6 +794,8 @@ def state_search(px, estado, st, distancia_real, test_mode):
         st.search_cam_dir = 1
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
+        stop(px)
+        time.sleep(0.1)
         px.last_state = Estado.SEARCH
         return Estado.SEARCH
 
@@ -804,7 +806,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
         return estado
 
     # GESTIÓN DE DETECCIÓN
-    if det.valid_for_search and det.area > 1500: # Filtro de ruido
+    if det.valid_for_search or det.valid_for_near
         st.search_lost_frames = 0
         st.search_found_frames += 1
         
