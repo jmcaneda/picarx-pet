@@ -815,7 +815,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
         st.search_lost_frames = 0
 
         # CENTRADO REAL
-        if abs(det.error_x) <= 45 and px.distancia_real > 80:
+        if abs(det.error_x) <= 45 and px.distance_real > 80:
             st.search_centered_frames += 1
         else:
             st.search_centered_frames = 0
