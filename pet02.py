@@ -37,8 +37,8 @@ TURN_SPEED = 15
 CAM_STEP = 4
 
 SAFE_DISTANCE = 999
-WARNING_DISTANCE = 25
-DANGER_DISTANCE = 15
+WARNING_DISTANCE = 35
+DANGER_DISTANCE = 10
 
 LOG_PATH = os.path.join(os.path.dirname(__file__), "pet02.log")
 
@@ -558,44 +558,44 @@ def update_safety(px):
     return d
 
 def apply_safety(px, estado, st, det):
-    """
-    Aplica protocolos de seguridad basados en la distancia.
-    - Si el objeto está demasiado cerca → maniobra de escape.
-    - Si el objeto está en zona de advertencia → frenado preventivo.
-    - Si la baliza está muy cerca según fusión → pasar a NEAR.
-    """
     px.last_state = estado
 
+    # 1. PELIGRO EXTREMO (Mantiene el cambio de estado a SEARCH para huir)
     if px.distance_real < DANGER_DISTANCE and not st.is_escaping:
         log_event(px, px.last_state, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
         stop(px)
-        time.sleep(0.1)
         backward(px)
         time.sleep(0.4)
         stop(px)
-
         st.is_escaping = True
-        st.escape_end_time = time.time() + 1.0  # Escapa durante 1 segundo
-        return Estado.SEARCH
+        st.escape_end_time = time.time() + 1.0
+        return Estado.SEARCH 
 
+    # 2. ADVERTENCIA (Solo cambia la velocidad, NO el estado)
     if px.distance_real < WARNING_DISTANCE:
-        log_event(px, px.last_state, f"⚠️ Advertencia: objeto a {px.distance_real} cm → cambio a velocidad lenta")
+        # Solo logueamos si el cambio es nuevo para no inundar el log
+        if not px.changed_speed_slow:
+            log_event(px, px.last_state, f"⚠️ Velocidad lenta activa ({px.distance_real} cm)")
         px.changed_speed_slow = True
-        return Estado.SEARCH
+        # NOTA: No retornamos SEARCH aquí, dejamos que el flujo siga
+    else:
+        px.changed_speed_slow = False
 
+    # 3. FUSIÓN PARA NEAR (Cambio de estado legítimo)
     if det.near_fused:
         log_event(px, px.last_state, "Baliza muy cerca según fusión → NEAR")
         stop(px)
         px.changed_speed_slow = False
         return Estado.NEAR
     
+    # 4. FINALIZACIÓN DE ESCAPE
     if st.is_escaping and time.time() >= st.escape_end_time:
         log_event(px, px.last_state, "Maniobra de escape finalizada")
         st.is_escaping = False
-        px.changed_speed_slow = True
-          
+        # Al salir de escape, solemos estar cerca, mantenemos precaución
+        px.changed_speed_slow = True 
     
-    return estado  # Si no se activa ningún protocolo, mantener el estado actual
+    return estado  # Retorna el estado original (TRACK, RECENTER, etc.)
     
 
 # ============================================================
@@ -807,6 +807,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
     update_safety(px)
     estado = apply_safety(px, estado, st, det)
     if estado != Estado.SEARCH:
+        px.last_state = Estado.SEARCH
         return estado
 
     # GESTIÓN DE DETECCIÓN
@@ -822,6 +823,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
 
         if st.search_centered_frames >= 2:
             log_event(px, Estado.SEARCH, "Centrado estable → RECENTER")
+            px.last_state = Estado.SEARCH
             return Estado.RECENTER
 
         # PAN (sin huecos muertos)
@@ -834,6 +836,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
             step *= 1
         else:
             # error_x pequeño → no PAN
+            px.last_state = Estado.SEARCH
             return Estado.SEARCH
 
         if det.error_x > 0:
@@ -851,6 +854,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
         if st.search_lost_frames >= 30:
             log_event(px, Estado.SEARCH, "Búsqueda fallida → TRACK circular")
             st.lost_in_space = True
+            px.last_state = Estado.SEARCH
             return Estado.TRACK
 
         # Barrido de cámara normal (Usando tus nuevas funciones con return 0/1)
