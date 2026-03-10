@@ -849,6 +849,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
         # SIN DETECCIÓN O RUIDO
         st.search_lost_frames += 1
         st.search_found_frames = 0
+        log_vernt(px, Estado.SEARCH, f"Lost frames={st.search_lost_frames}")
         
         # Plan B: Si llevamos mucho tiempo perdidos
         if st.search_lost_frames >= 30:
