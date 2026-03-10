@@ -574,11 +574,7 @@ def apply_safety(px, estado, st, det):
 
     # 2. ADVERTENCIA (Solo cambia la velocidad, NO el estado)
     if px.distance_real < WARNING_DISTANCE:
-        # Solo logueamos si el cambio es nuevo para no inundar el log
-        if not px.changed_speed_slow:
-            # log_event(px, estado, f"⚠️ Velocidad lenta activa ({px.distance_real} cm)")
         px.changed_speed_slow = True
-        # NOTA: No retornamos SEARCH aquí, dejamos que el flujo siga
     else:
         px.changed_speed_slow = False
 
