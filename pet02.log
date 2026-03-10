@@ -1,247 +1,100 @@
 === Start of pet02.log ===
-[12:46:09] [Estado.CHK] [CHK] ==============================
-[12:46:09] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[12:46:09] [Estado.CHK] [CHK] ==============================
-[12:46:09] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[12:46:09] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[12:46:09] [Estado.CHK] [CHK] State wheels:     0
-[12:46:09] [Estado.CHK] [CHK] ==============================
-[12:46:09] [Estado.IDLE] Inicio del sistema
-[12:46:09] [Estado.IDLE] Entrando en IDLE (test_mode=False)
-[12:46:09] [Estado.RESET] Entrando en RESET (test_mode=False)
-[12:46:09] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[12:46:10] [Estado.SEARCH] Centrado estable → RECENTER
-[12:46:10] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[12:46:10] [Estado.RECENTER] Frame estable (1/2)
-[12:46:10] [Estado.RECENTER] Corrigiendo dirección, error_x=-8
-[12:46:10] [Estado.RECENTER] Frame estable (2/2)
-[12:46:10] [Estado.RECENTER] Alineación suficiente → TRACK
-[12:46:10] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[12:46:10] [Estado.TRACK] ⚠️ Velocidad lenta activa (17.63 cm)
-[12:46:10] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.6)
-[12:46:10] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.1)
-[12:46:10] [Estado.TRACK] ⚠️ Velocidad lenta activa (13.5 cm)
-[12:46:11] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.1)
-[12:46:11] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.3)
-[12:46:11] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.8)
-[12:46:11] [Estado.TRACK] Pérdida de detección → SEARCH
-[12:46:11] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[12:46:12] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=0 error_x=0.0 Tope DER -> Girando a IZQ
-[12:46:14] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=0 error_x=0.0 Tope IZQ -> Girando a DER
-[12:46:15] [Estado.SEARCH] Búsqueda fallida → TRACK circular
-[12:46:16] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[12:46:16] [Estado.TRACK] Perdidos en el espacio → SEARCH
-[12:46:17] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[12:46:17] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=0 error_x=0.0 Tope DER -> Girando a IZQ
-[12:46:19] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=0 error_x=0.0 Tope IZQ -> Girando a DER
-[12:46:20] [Estado.SEARCH] Búsqueda fallida → TRACK circular
-[12:46:20] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[12:46:20] [Estado.TRACK] Perdidos en el espacio → SEARCH
-[12:46:21] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[12:46:56] [Estado.SEARCH] ⚠️ Velocidad lenta activa (23.43 cm)
-[12:46:56] [Estado.SEARCH] ⚠️ Velocidad lenta activa (10.42 cm)
-[12:46:57] [Estado.SEARCH] 🚨 Peligro extremo distancia=8.69 → SCAPE
-[12:46:58] [Estado.SEARCH] Maniobra de escape finalizada
-[12:47:01] [Estado.SEARCH] ⚠️ Velocidad lenta activa (13.04 cm)
-[12:47:01] [Estado.SEARCH] 🚨 Peligro extremo distancia=9.59 → SCAPE
-[12:47:03] [Estado.SEARCH] Maniobra de escape finalizada
-[12:47:16] [Estado.SEARCH] Centrado estable → RECENTER
-[12:47:16] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[12:47:17] [Estado.RECENTER] Frame estable (1/2)
-[12:47:17] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[12:47:17] [Estado.NEAR] Valid_for_search=True Valid_for_near=True n=2 area=40256 error_x=-18
-[12:47:17] [Estado.NEAR] ⚠️ Advertencia: objeto a 57.45 cm → frenado total
-[12:47:17] [Estado.NEAR] Retroceso preventivo
-[12:47:17] [Estado.NEAR] Gesto de asentimiento
-[12:47:19] [Estado.NEAR] Cooldown completado → RECENTER
-[12:47:19] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[12:47:19] [Estado.RECENTER] Frame estable (1/2)
-[12:47:19] [Estado.RECENTER] Corrigiendo dirección, error_x=-22
-[12:47:19] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-8.8)
-[12:47:19] [Estado.RECENTER] Frame estable (2/2)
-[12:47:19] [Estado.RECENTER] Alineación suficiente → TRACK
-[12:47:19] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[12:47:19] [Estado.TRACK] Referencia recuperada → TRACK
-[12:47:19] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.6)
-[12:47:19] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.9)
-[12:47:19] [Estado.TRACK] Distancia crítica → NEAR
-[12:47:19] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[12:47:19] [Estado.NEAR] Valid_for_search=True Valid_for_near=True n=2 area=42240 error_x=4
-[12:47:19] [Estado.NEAR] ⚠️ Advertencia: objeto a 66.47 cm → frenado total
-[12:47:19] [Estado.NEAR] Retroceso preventivo
-[12:47:20] [Estado.NEAR] Gesto de asentimiento
-[12:47:21] [Estado.NEAR] Cooldown completado → RECENTER
-[12:47:21] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[12:47:21] [Estado.RECENTER] Frame estable (1/2)
-[12:47:21] [Estado.RECENTER] Corrigiendo dirección, error_x=-12
-[12:47:21] [Estado.RECENTER] Frame estable (2/2)
-[12:47:21] [Estado.RECENTER] Alineación suficiente → TRACK
-[12:47:21] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[12:47:21] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.8)
-[12:47:21] [Estado.TRACK] Distancia crítica → NEAR
-[12:47:21] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[12:47:22] [Estado.NEAR] Valid_for_search=True Valid_for_near=True n=2 area=49984 error_x=-8
-[12:47:22] [Estado.NEAR] ⚠️ Advertencia: objeto a 62.98 cm → frenado total
-[12:47:22] [Estado.NEAR] Retroceso preventivo
-[12:47:22] [Estado.NEAR] Gesto de asentimiento
-[12:47:23] [Estado.NEAR] Cooldown completado → RECENTER
-[12:47:23] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[12:47:23] [Estado.RECENTER] Frame estable (1/2)
-[12:47:23] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[12:47:24] [Estado.NEAR] Valid_for_search=True Valid_for_near=True n=2 area=40320 error_x=-24
-[12:47:24] [Estado.NEAR] ⚠️ Advertencia: objeto a 62.95 cm → frenado total
-[12:47:24] [Estado.NEAR] Retroceso preventivo
-[12:47:24] [Estado.NEAR] Gesto de asentimiento
-[12:47:25] [Estado.NEAR] Cooldown completado → RECENTER
-[12:47:25] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[12:47:25] [Estado.RECENTER] Frame estable (1/2)
-[12:47:26] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[12:47:26] [Estado.NEAR] Valid_for_search=True Valid_for_near=True n=2 area=36480 error_x=-32
-[12:47:26] [Estado.NEAR] ⚠️ Advertencia: objeto a 64.12 cm → frenado total
-[12:47:26] [Estado.NEAR] Retroceso preventivo
-[12:47:26] [Estado.NEAR] Gesto de asentimiento
-[12:47:27] [Estado.NEAR] Cooldown completado → RECENTER
-[12:47:27] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[12:47:27] [Estado.RECENTER] Corrigiendo dirección, error_x=-42
-[12:47:27] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-16.8)
-[12:47:28] [Estado.RECENTER] Corrigiendo dirección, error_x=-44
-[12:47:28] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-17.6)
-[12:47:28] [Estado.RECENTER] Frame estable (1/2)
-[12:47:28] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[12:47:28] [Estado.NEAR] Retroceso preventivo
-[12:47:28] [Estado.NEAR] Gesto de asentimiento
-[12:47:30] [Estado.NEAR] Cooldown completado → RECENTER
-[12:47:30] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[12:47:30] [Estado.RECENTER] Corrigiendo dirección, error_x=116
-[12:47:30] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=30)
-[12:47:30] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
-[12:47:30] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[12:47:30] [Estado.SEARCH] Centrado estable → RECENTER
-[12:47:30] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[12:47:30] [Estado.RECENTER] Frame estable (1/2)
-[12:47:30] [Estado.RECENTER] Corrigiendo dirección, error_x=38
-[12:47:30] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=15.2)
-[12:47:31] [Estado.RECENTER] Frame estable (2/2)
-[12:47:31] [Estado.RECENTER] Alineación suficiente → TRACK
-[12:47:31] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[12:47:31] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.9)
-[12:47:31] [Estado.TRACK] Corrigiendo dirección (ángulo=7.7)
-[12:47:31] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
-[12:47:31] [Estado.TRACK] Corrigiendo dirección (ángulo=-7.4)
-[12:47:31] [Estado.TRACK] Corrigiendo dirección (ángulo=-8.4)
-[12:47:31] [Estado.TRACK] Corrigiendo dirección (ángulo=-8.6)
-[12:47:31] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.8)
-[12:47:32] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.4)
-[12:47:32] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.9)
-[12:47:32] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.1)
-[12:47:32] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.4)
-[12:47:32] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.8)
-[12:47:32] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.6)
-[12:47:33] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.8)
-[12:47:33] [Estado.TRACK] ⚠️ Velocidad lenta activa (16.07 cm)
-[12:47:33] [Estado.TRACK] Corrigiendo dirección (ángulo=-6.2)
-[12:47:33] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.5)
-[12:47:33] [Estado.TRACK] 🚨 Peligro extremo distancia=7.98 → SCAPE
-[12:47:33] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[12:47:34] [Estado.SEARCH] Maniobra de escape finalizada
-[12:47:35] [Estado.SEARCH] ⚠️ Velocidad lenta activa (12.45 cm)
-[12:47:35] [Estado.SEARCH] ⚠️ Velocidad lenta activa (14.57 cm)
-[12:47:35] [Estado.SEARCH] 🚨 Peligro extremo distancia=9.35 → SCAPE
-[12:47:37] [Estado.SEARCH] Maniobra de escape finalizada
-[12:47:37] [Estado.SEARCH] 🚨 Peligro extremo distancia=6.52 → SCAPE
-[12:47:38] [Estado.SEARCH] Centrado estable → RECENTER
-[12:47:38] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[12:47:38] [Estado.RECENTER] Corrigiendo dirección, error_x=82
-[12:47:38] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=30)
-[12:47:38] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
-[12:47:38] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[12:47:39] [Estado.SEARCH] Maniobra de escape finalizada
-[12:47:39] [Estado.SEARCH] Centrado estable → RECENTER
-[12:47:39] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[12:47:39] [Estado.RECENTER] Corrigiendo dirección, error_x=-90
-[12:47:39] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
-[12:47:39] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
-[12:47:39] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[12:47:49] [Estado.SEARCH] Centrado estable → RECENTER
-[12:47:49] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[12:47:49] [Estado.RECENTER] Frame estable (1/2)
-[12:47:49] [Estado.RECENTER] Corrigiendo dirección, error_x=-16
-[12:47:49] [Estado.RECENTER] Frame estable (2/2)
-[12:47:49] [Estado.RECENTER] Alineación suficiente → TRACK
-[12:47:49] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[12:47:49] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.0)
-[12:47:49] [Estado.TRACK] Corrigiendo dirección (ángulo=-6.0)
-[12:47:50] [Estado.TRACK] Corrigiendo dirección (ángulo=3.4)
-[12:47:50] [Estado.TRACK] Corrigiendo dirección (ángulo=2.4)
-[12:47:50] [Estado.TRACK] ⚠️ Velocidad lenta activa (23.68 cm)
-[12:47:50] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.9)
-[12:47:50] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.8)
-[12:47:50] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.5)
-[12:47:51] [Estado.TRACK] Corrigiendo dirección (ángulo=-6.0)
-[12:47:51] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.9)
-[12:47:51] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.6)
-[12:47:52] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.4)
-[12:47:52] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.8)
-[12:47:52] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.0)
-[12:47:52] [Estado.TRACK] Corrigiendo dirección (ángulo=4.1)
-[12:47:52] [Estado.TRACK] Pérdida de detección → SEARCH
-[12:47:52] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[12:47:53] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=0 error_x=0.0 Tope DER -> Girando a IZQ
-[12:47:55] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=0 error_x=0.0 Tope IZQ -> Girando a DER
-[12:47:55] [Estado.SEARCH] Búsqueda fallida → TRACK circular
-[12:47:55] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[12:47:55] [Estado.TRACK] Perdidos en el espacio → SEARCH
-[12:47:56] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[12:47:56] [Estado.SEARCH] ⚠️ Velocidad lenta activa (30.74 cm)
-[12:47:58] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=0 error_x=0.0 Tope DER -> Girando a IZQ
-[12:47:59] [Estado.SEARCH] Búsqueda fallida → TRACK circular
-[12:47:59] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[12:47:59] [Estado.TRACK] ⚠️ Velocidad lenta activa (23.12 cm)
-[12:47:59] [Estado.TRACK] Perdidos en el espacio → SEARCH
-[12:48:00] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[12:48:12] [Estado.SEARCH] Centrado estable → RECENTER
-[12:48:12] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[12:48:12] [Estado.RECENTER] Frame estable (1/2)
-[12:48:12] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[12:48:13] [Estado.NEAR] Valid_for_search=True Valid_for_near=True n=3 area=51888 error_x=-6
-[12:48:13] [Estado.NEAR] ⚠️ Advertencia: objeto a 74.32 cm → frenado total
-[12:48:13] [Estado.NEAR] Retroceso preventivo
-[12:48:13] [Estado.NEAR] Gesto de asentimiento
-[12:48:14] [Estado.NEAR] Cooldown completado → RECENTER
-[12:48:14] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[12:48:14] [Estado.RECENTER] Frame estable (1/2)
-[12:48:15] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[12:48:15] [Estado.NEAR] Retroceso preventivo
-[12:48:15] [Estado.NEAR] Gesto de asentimiento
-[12:48:16] [Estado.NEAR] Cooldown completado → RECENTER
-[12:48:17] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[12:48:17] [Estado.RECENTER] Frame estable (1/2)
-[12:48:17] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[12:48:17] [Estado.NEAR] Retroceso preventivo
-[12:48:17] [Estado.NEAR] Gesto de asentimiento
-[12:48:19] [Estado.NEAR] Cooldown completado → RECENTER
-[12:48:19] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[12:48:19] [Estado.RECENTER] Frame estable (1/2)
-[12:48:19] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[12:48:19] [Estado.NEAR] Retroceso preventivo
-[12:48:19] [Estado.NEAR] Gesto de asentimiento
-[12:48:20] [Estado.NEAR] 🚨 Peligro extremo distancia=2.04 → SCAPE
-[12:48:21] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[12:48:22] [Estado.SEARCH] Maniobra de escape finalizada
-[12:48:26] [Estado.SEARCH] Centrado estable → RECENTER
-[12:48:26] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[12:48:26] [Estado.RECENTER] Frame estable (1/2)
-[12:48:26] [Estado.RECENTER] Corrigiendo dirección, error_x=-22
-[12:48:26] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-8.8)
-[12:48:26] [Estado.RECENTER] Frame estable (2/2)
-[12:48:26] [Estado.RECENTER] Alineación suficiente → TRACK
-[12:48:26] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[12:48:26] [Estado.TRACK] Referencia recuperada → TRACK
-[12:48:26] [Estado.TRACK] Distancia crítica → NEAR
-[12:48:27] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[12:48:27] [Estado.NEAR] Retroceso preventivo
-[12:48:27] [Estado.NEAR] Gesto de asentimiento
-[12:48:28] [Estado.NEAR] Cooldown completado → RECENTER
-[12:48:28] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[12:48:29] [Estado.RECENTER] Frame estable (1/2)
-[12:48:29] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:29:32] [Estado.CHK] [CHK] ==============================
+[11:29:32] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[11:29:32] [Estado.CHK] [CHK] ==============================
+[11:29:32] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[11:29:32] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[11:29:32] [Estado.CHK] [CHK] State wheels:     0
+[11:29:32] [Estado.CHK] [CHK] ==============================
+[11:29:32] [Estado.IDLE] Inicio del sistema
+[11:29:32] [Estado.IDLE] Entrando en IDLE (test_mode=False)
+[11:29:32] [Estado.RESET] Entrando en RESET (test_mode=False)
+[11:29:32] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[11:29:34] [Estado.SEARCH] Centrado estable → RECENTER
+[11:29:34] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:29:34] [Estado.RECENTER] Frame estable (1/2)
+[11:29:34] [Estado.RECENTER] Corrigiendo dirección, error_x=-36
+[11:29:34] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-14.4)
+[11:29:34] [Estado.RECENTER] Corrigiendo dirección, error_x=-44
+[11:29:34] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-17.6)
+[11:29:34] [Estado.RECENTER] Corrigiendo dirección, error_x=-54
+[11:29:34] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-21.6)
+[11:29:34] [Estado.RECENTER] Frame estable (1/2)
+[11:29:34] [Estado.RECENTER] Corrigiendo dirección, error_x=26
+[11:29:34] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=10.4)
+[11:29:34] [Estado.RECENTER] Frame estable (2/2)
+[11:29:34] [Estado.RECENTER] Alineación suficiente → TRACK
+[11:29:34] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[11:29:34] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.4)
+[11:29:35] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.0)
+[11:29:35] [Estado.TRACK] Corrigiendo dirección (ángulo=-6.0)
+[11:29:35] [Estado.TRACK] Corrigiendo dirección (ángulo=3.1)
+[11:29:36] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
+[11:29:36] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.1)
+[11:29:36] [Estado.TRACK] Corrigiendo dirección (ángulo=-8.6)
+[11:29:36] [Estado.TRACK] Corrigiendo dirección (ángulo=-8.4)
+[11:29:36] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.0)
+[11:29:36] [Estado.TRACK] Corrigiendo dirección (ángulo=4.6)
+[11:29:36] [Estado.TRACK] Corrigiendo dirección (ángulo=2.6)
+[11:29:37] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.8)
+[11:29:37] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.8)
+[11:29:37] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.8)
+[11:29:37] [Estado.TRACK] Corrigiendo dirección (ángulo=-6.0)
+[11:29:37] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.9)
+[11:29:38] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.4)
+[11:29:38] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.3)
+[11:29:38] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.8)
+[11:29:38] [Estado.TRACK] Corrigiendo dirección (ángulo=-6.2)
+[11:29:38] [Estado.TRACK] Distancia crítica → NEAR
+[11:29:38] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:29:38] [Estado.NEAR] Gesto de asentimiento
+[11:29:40] [Estado.NEAR] Cooldown completado → RECENTER
+[11:29:40] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:29:40] [Estado.RECENTER] Frame estable (1/2)
+[11:29:40] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:29:40] [Estado.NEAR] Gesto de asentimiento
+[11:29:42] [Estado.NEAR] Cooldown completado → RECENTER
+[11:29:42] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:29:42] [Estado.RECENTER] Frame estable (1/2)
+[11:29:42] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:29:42] [Estado.NEAR] Gesto de asentimiento
+[11:29:44] [Estado.NEAR] Cooldown completado → RECENTER
+[11:29:44] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:29:44] [Estado.RECENTER] Frame estable (1/2)
+[11:29:44] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:29:44] [Estado.NEAR] Gesto de asentimiento
+[11:29:46] [Estado.NEAR] Cooldown completado → RECENTER
+[11:29:46] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:29:46] [Estado.RECENTER] Frame estable (1/2)
+[11:29:46] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:29:46] [Estado.NEAR] Gesto de asentimiento
+[11:29:47] [Estado.NEAR] Cooldown completado → RECENTER
+[11:29:48] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:29:48] [Estado.RECENTER] Frame estable (1/2)
+[11:29:48] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:29:48] [Estado.NEAR] Gesto de asentimiento
+[11:29:49] [Estado.NEAR] Cooldown completado → RECENTER
+[11:29:49] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:29:49] [Estado.RECENTER] Frame estable (1/2)
+[11:29:50] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:29:50] [Estado.NEAR] Gesto de asentimiento
+[11:29:51] [Estado.NEAR] Cooldown completado → RECENTER
+[11:29:51] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:29:51] [Estado.RECENTER] Frame estable (1/2)
+[11:29:51] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:29:52] [Estado.NEAR] Gesto de asentimiento
+[11:29:53] [Estado.NEAR] Cooldown completado → RECENTER
+[11:29:53] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:29:53] [Estado.RECENTER] Frame estable (1/2)
+[11:29:53] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:29:54] [Estado.NEAR] Gesto de asentimiento
+[11:29:55] [Estado.NEAR] Cooldown completado → RECENTER
+[11:29:55] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:29:55] [Estado.RECENTER] Frame estable (1/2)
+[11:29:55] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:29:55] [Estado.NEAR] Gesto de asentimiento
+[11:29:57] [Estado.NEAR] Cooldown completado → RECENTER
+[11:29:57] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:29:57] [Estado.RECENTER] Frame estable (1/2)
+[11:29:57] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:29:57] [Estado.NEAR] Gesto de asentimiento

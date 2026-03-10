@@ -932,7 +932,7 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
         st.recenter_centered_frames = 0
 
     # Comprobación de cercanía (ahora que sabemos que no hemos saltado a TRACK)
-    if det.valid_for_near:
+    if det.valid_for_near and px.last_state != Estado.NEAR:
         px.last_state = Estado.RECENTER
         return Estado.NEAR
 
@@ -1171,8 +1171,13 @@ def state_near(px, estado, st, distancia_real, test_mode):
     # SALIDA DE NEAR (cooldown terminado)
     # ============================================================
     st.near_cooldown += 1
-    if st.near_cooldown >= 15 or abs(det.error_x) > 40:
-        log_event(px, Estado.NEAR, "Cooldown completado → RECENTER")
+    if st.near_cooldown >= 100: # Aumentamos mucho el tiempo (unos 5-8 segundos)
+        log_event(px, Estado.NEAR, "Misión cumplida. Esperando nueva orden o alejamiento.")
+        px.last_state = Estado.NEAR
+        return Estado.IDLE
+
+    if abs(det.error_x) > 60 or px.distance_real > 40:
+        log_event(px, Estado.NEAR, "La baliza se ha movido o alejado -> RECENTER")
         st.near_cooldown = 0
         px.last_state = Estado.NEAR
         return Estado.RECENTER
