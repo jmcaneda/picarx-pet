@@ -1013,15 +1013,14 @@ def state_track(px, estado, st, distancia_real, test_mode):
         if det.valid_for_search:
             st.lost_in_space = False
             log_event(px, Estado.TRACK, "Referencia recuperada → TRACK")
-            px.last_state = Estado.TRACK
-            return Estado.TRACK
+            
         else:
             log_event(px, Estado.TRACK, "Perdidos en el espacio → SEARCH")
             circle_robot(px, direction=1)
+            st.lost_in_space = True
 
-            px.last_state = Estado.TRACK
-            return Estado.SEARCH
-
+        px.last_state = Estado.TRACK
+        return Estado.TRACK
 
     # ============================================================
     # SIN DETECCIÓN → volver a SEARCH
@@ -1037,7 +1036,26 @@ def state_track(px, estado, st, distancia_real, test_mode):
         return Estado.TRACK
 
     st.track_lost_frames = 0
+    # ============================================================
+    # SI EL ERROR ES MUY GRANDE → NO AVANZAR
+    # ============================================================
+    if abs(det.error_x) > 80:
+        stop(px)
+        px.last_state = Estado.TRACK
+        return Estado.TRACK
 
+    # ============================================================
+    # MOVER CÁMARA PARA MANTENER LA BALIZA EN EL FRAME
+    # ============================================================
+    if abs(det.error_x) > 40:
+        if det.error_x > 0:
+            pan_right(px)
+        else:
+            pan_left(px)
+    elif abs(det.error_x) < 15:
+        # Opcional: Centrar suavemente la cámara si el robot ya está bien alineado
+        # Esto prepara la cámara para la siguiente fase de RECENTER o NEAR
+        pass
 
     # ============================================================
     # CORRECCIÓN DEL CHASIS (GIRO SUAVE LIMITADO)
@@ -1056,37 +1074,6 @@ def state_track(px, estado, st, distancia_real, test_mode):
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
 
-
-    # ============================================================
-    # MOVER CÁMARA PARA MANTENER LA BALIZA EN EL FRAME
-    # ============================================================
-    if abs(det.error_x) > 40:
-        if det.error_x > 0:
-            pan_right(px)
-        else:
-            pan_left(px)
-    elif abs(det.error_x) < 15:
-        # Opcional: Centrar suavemente la cámara si el robot ya está bien alineado
-        # Esto prepara la cámara para la siguiente fase de RECENTER o NEAR
-        pass
-
-    # ============================================================
-    # SI EL ERROR ES MUY GRANDE → NO AVANZAR
-    # ============================================================
-    if abs(det.error_x) > 80:
-        stop(px)
-        px.last_state = Estado.TRACK
-        return Estado.TRACK
-
-
-    # ============================================================
-    # AVANCE CONTROLADO
-    # ============================================================
-    if abs(det.error_x) > 150:
-        log_event(px, Estado.TRACK, "Error extremo → circle_robot + SEARCH")
-        circle_robot(px, direction=1 if det.error_x > 0 else -1)
-        px.last_state = Estado.TRACK
-        return Estado.SEARCH
 
     forward(px)
 
