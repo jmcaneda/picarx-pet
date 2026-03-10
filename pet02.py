@@ -1178,8 +1178,8 @@ def state_near(px, estado, st, distancia_real, test_mode):
             # CONDICIÓN DE ALEJAMIENTO REAL: 
             # Solo volvemos a RECENTER si el objeto está a más de 45cm (Margen de seguridad)
             # O si el error de centrado es EXTREMO (se ha ido del frame)
-            if px.distance_real > 45 or abs(det.error_x) > 100:
-                log_event(px, Estado.NEAR, f"Distancia/Error recuperado ({px.distance_real}cm) -> RECENTER")
+            if px.distance_real > 45 and abs(det.error_x) > 100:
+                log_event(px, Estado.NEAR, f"Distancia real ({px.distance_real})cm Error_x ({det.error_x})-> RECENTER")
                 st.near_cooldown = 0
                 px.last_state = Estado.NEAR
                 return Estado.RECENTER
