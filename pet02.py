@@ -1152,7 +1152,7 @@ def state_near(px, estado, st, distancia_real, test_mode):
         log_event(px, Estado.NEAR, "Gesto de asentimiento")
         tilt_yes(px)
         
-        st.near_nodded = True
+        st.near_nodded = True # Marcamos nodded como True para no repetir asentir
         st.near_backed = True # Marcamos backed como True para no retroceder después de asentir
         px.last_state = Estado.NEAR
         return Estado.NEAR
@@ -1170,17 +1170,27 @@ def state_near(px, estado, st, distancia_real, test_mode):
     # ============================================================
     # SALIDA DE NEAR (cooldown terminado)
     # ============================================================
-    st.near_cooldown += 1
-    if st.near_cooldown >= 100: # Aumentamos mucho el tiempo (unos 5-8 segundos)
-        log_event(px, Estado.NEAR, "Misión cumplida. Esperando nueva orden o alejamiento.")
-        px.last_state = Estado.NEAR
-        return Estado.IDLE
-
-    if abs(det.error_x) > 60 or px.distance_real > 40:
-        log_event(px, Estado.NEAR, "La baliza se ha movido o alejado -> RECENTER")
-        st.near_cooldown = 0
-        px.last_state = Estado.NEAR
-        return Estado.RECENTER
+    if st.near_nodded:
+        st.near_cooldown += 1
+        
+        # Le damos un respiro. No evaluamos la salida hasta que pasen unos frames
+        if st.near_cooldown > 20: 
+            # CONDICIÓN DE ALEJAMIENTO REAL: 
+            # Solo volvemos a RECENTER si el objeto está a más de 45cm (Margen de seguridad)
+            # O si el error de centrado es EXTREMO (se ha ido del frame)
+            if px.distance_real > 45 or abs(det.error_x) > 100:
+                log_event(px, Estado.NEAR, f"Distancia/Error recuperado ({px.distance_real}cm) -> RECENTER")
+                st.near_cooldown = 0
+                px.last_state = Estado.NEAR
+                return Estado.RECENTER
+            
+            # Si llegamos aquí y el cooldown es muy alto (ej. 200), 
+            # Paso a IDLE
+            if st.near_cooldown > 200:
+                 log_event(px, Estado.NEAR, "Misión cumplida: En espera estática")
+                 stop(px) # Aseguramos frenado
+                 px.last_state = Estado.NEAR
+                 return Estado.IDLE
 
     px.last_state = Estado.NEAR
     return Estado.NEAR

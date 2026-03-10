@@ -1,100 +1,125 @@
 === Start of pet02.log ===
-[11:29:32] [Estado.CHK] [CHK] ==============================
-[11:29:32] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[11:29:32] [Estado.CHK] [CHK] ==============================
-[11:29:32] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[11:29:32] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[11:29:32] [Estado.CHK] [CHK] State wheels:     0
-[11:29:32] [Estado.CHK] [CHK] ==============================
-[11:29:32] [Estado.IDLE] Inicio del sistema
-[11:29:32] [Estado.IDLE] Entrando en IDLE (test_mode=False)
-[11:29:32] [Estado.RESET] Entrando en RESET (test_mode=False)
-[11:29:32] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[11:29:34] [Estado.SEARCH] Centrado estable → RECENTER
-[11:29:34] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[11:29:34] [Estado.RECENTER] Frame estable (1/2)
-[11:29:34] [Estado.RECENTER] Corrigiendo dirección, error_x=-36
-[11:29:34] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-14.4)
-[11:29:34] [Estado.RECENTER] Corrigiendo dirección, error_x=-44
-[11:29:34] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-17.6)
-[11:29:34] [Estado.RECENTER] Corrigiendo dirección, error_x=-54
-[11:29:34] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-21.6)
-[11:29:34] [Estado.RECENTER] Frame estable (1/2)
-[11:29:34] [Estado.RECENTER] Corrigiendo dirección, error_x=26
-[11:29:34] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=10.4)
-[11:29:34] [Estado.RECENTER] Frame estable (2/2)
-[11:29:34] [Estado.RECENTER] Alineación suficiente → TRACK
-[11:29:34] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[11:29:34] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.4)
-[11:29:35] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.0)
-[11:29:35] [Estado.TRACK] Corrigiendo dirección (ángulo=-6.0)
-[11:29:35] [Estado.TRACK] Corrigiendo dirección (ángulo=3.1)
-[11:29:36] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
-[11:29:36] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.1)
-[11:29:36] [Estado.TRACK] Corrigiendo dirección (ángulo=-8.6)
-[11:29:36] [Estado.TRACK] Corrigiendo dirección (ángulo=-8.4)
-[11:29:36] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.0)
-[11:29:36] [Estado.TRACK] Corrigiendo dirección (ángulo=4.6)
-[11:29:36] [Estado.TRACK] Corrigiendo dirección (ángulo=2.6)
-[11:29:37] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.8)
-[11:29:37] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.8)
-[11:29:37] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.8)
-[11:29:37] [Estado.TRACK] Corrigiendo dirección (ángulo=-6.0)
-[11:29:37] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.9)
-[11:29:38] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.4)
-[11:29:38] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.3)
-[11:29:38] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.8)
-[11:29:38] [Estado.TRACK] Corrigiendo dirección (ángulo=-6.2)
-[11:29:38] [Estado.TRACK] Distancia crítica → NEAR
-[11:29:38] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[11:29:38] [Estado.NEAR] Gesto de asentimiento
-[11:29:40] [Estado.NEAR] Cooldown completado → RECENTER
-[11:29:40] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[11:29:40] [Estado.RECENTER] Frame estable (1/2)
-[11:29:40] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[11:29:40] [Estado.NEAR] Gesto de asentimiento
-[11:29:42] [Estado.NEAR] Cooldown completado → RECENTER
-[11:29:42] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[11:29:42] [Estado.RECENTER] Frame estable (1/2)
-[11:29:42] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[11:29:42] [Estado.NEAR] Gesto de asentimiento
-[11:29:44] [Estado.NEAR] Cooldown completado → RECENTER
-[11:29:44] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[11:29:44] [Estado.RECENTER] Frame estable (1/2)
-[11:29:44] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[11:29:44] [Estado.NEAR] Gesto de asentimiento
-[11:29:46] [Estado.NEAR] Cooldown completado → RECENTER
-[11:29:46] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[11:29:46] [Estado.RECENTER] Frame estable (1/2)
-[11:29:46] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[11:29:46] [Estado.NEAR] Gesto de asentimiento
-[11:29:47] [Estado.NEAR] Cooldown completado → RECENTER
-[11:29:48] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[11:29:48] [Estado.RECENTER] Frame estable (1/2)
-[11:29:48] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[11:29:48] [Estado.NEAR] Gesto de asentimiento
-[11:29:49] [Estado.NEAR] Cooldown completado → RECENTER
-[11:29:49] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[11:29:49] [Estado.RECENTER] Frame estable (1/2)
-[11:29:50] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[11:29:50] [Estado.NEAR] Gesto de asentimiento
-[11:29:51] [Estado.NEAR] Cooldown completado → RECENTER
-[11:29:51] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[11:29:51] [Estado.RECENTER] Frame estable (1/2)
-[11:29:51] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[11:29:52] [Estado.NEAR] Gesto de asentimiento
-[11:29:53] [Estado.NEAR] Cooldown completado → RECENTER
-[11:29:53] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[11:29:53] [Estado.RECENTER] Frame estable (1/2)
-[11:29:53] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[11:29:54] [Estado.NEAR] Gesto de asentimiento
-[11:29:55] [Estado.NEAR] Cooldown completado → RECENTER
-[11:29:55] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[11:29:55] [Estado.RECENTER] Frame estable (1/2)
-[11:29:55] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[11:29:55] [Estado.NEAR] Gesto de asentimiento
-[11:29:57] [Estado.NEAR] Cooldown completado → RECENTER
-[11:29:57] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[11:29:57] [Estado.RECENTER] Frame estable (1/2)
-[11:29:57] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[11:29:57] [Estado.NEAR] Gesto de asentimiento
+[11:47:37] [Estado.CHK] [CHK] ==============================
+[11:47:37] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[11:47:37] [Estado.CHK] [CHK] ==============================
+[11:47:37] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[11:47:37] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[11:47:37] [Estado.CHK] [CHK] State wheels:     0
+[11:47:37] [Estado.CHK] [CHK] ==============================
+[11:47:37] [Estado.IDLE] Inicio del sistema
+[11:47:37] [Estado.IDLE] Entrando en IDLE (test_mode=False)
+[11:47:37] [Estado.RESET] Entrando en RESET (test_mode=False)
+[11:47:37] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[11:47:37] [Estado.SEARCH] Centrado estable → RECENTER
+[11:47:37] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:37] [Estado.RECENTER] Frame estable (1/2)
+[11:47:37] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:38] [Estado.NEAR] Gesto de asentimiento
+[11:47:38] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:38] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:38] [Estado.RECENTER] Frame estable (1/2)
+[11:47:38] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:38] [Estado.NEAR] Gesto de asentimiento
+[11:47:39] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:39] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:39] [Estado.RECENTER] Frame estable (1/2)
+[11:47:39] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:39] [Estado.NEAR] Gesto de asentimiento
+[11:47:39] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:39] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:39] [Estado.RECENTER] Frame estable (1/2)
+[11:47:39] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:40] [Estado.NEAR] Gesto de asentimiento
+[11:47:40] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:40] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:40] [Estado.RECENTER] Frame estable (1/2)
+[11:47:40] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:40] [Estado.NEAR] Gesto de asentimiento
+[11:47:41] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:41] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:41] [Estado.RECENTER] Frame estable (1/2)
+[11:47:41] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:41] [Estado.NEAR] Gesto de asentimiento
+[11:47:41] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:41] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:41] [Estado.RECENTER] Frame estable (1/2)
+[11:47:41] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:42] [Estado.NEAR] Gesto de asentimiento
+[11:47:42] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:42] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:42] [Estado.RECENTER] Frame estable (1/2)
+[11:47:42] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:42] [Estado.NEAR] Gesto de asentimiento
+[11:47:42] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:43] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:43] [Estado.RECENTER] Frame estable (1/2)
+[11:47:43] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:43] [Estado.NEAR] Gesto de asentimiento
+[11:47:43] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:43] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:43] [Estado.RECENTER] Frame estable (1/2)
+[11:47:43] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:44] [Estado.NEAR] Gesto de asentimiento
+[11:47:44] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:44] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:44] [Estado.RECENTER] Frame estable (1/2)
+[11:47:44] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:44] [Estado.NEAR] Gesto de asentimiento
+[11:47:44] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:45] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:45] [Estado.RECENTER] Frame estable (1/2)
+[11:47:45] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:45] [Estado.NEAR] Gesto de asentimiento
+[11:47:45] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:45] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:45] [Estado.RECENTER] Frame estable (1/2)
+[11:47:45] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:46] [Estado.NEAR] Gesto de asentimiento
+[11:47:46] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:46] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:46] [Estado.RECENTER] Frame estable (1/2)
+[11:47:46] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:46] [Estado.NEAR] Gesto de asentimiento
+[11:47:46] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:46] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:47] [Estado.RECENTER] Frame estable (1/2)
+[11:47:47] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:47] [Estado.NEAR] Gesto de asentimiento
+[11:47:47] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:47] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:47] [Estado.RECENTER] Frame estable (1/2)
+[11:47:47] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:47] [Estado.NEAR] Gesto de asentimiento
+[11:47:48] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:48] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:48] [Estado.RECENTER] Frame estable (1/2)
+[11:47:48] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:48] [Estado.NEAR] Gesto de asentimiento
+[11:47:48] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:48] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:49] [Estado.RECENTER] Frame estable (1/2)
+[11:47:49] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:49] [Estado.NEAR] Gesto de asentimiento
+[11:47:49] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:49] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:49] [Estado.RECENTER] Frame estable (1/2)
+[11:47:49] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:49] [Estado.NEAR] Gesto de asentimiento
+[11:47:50] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:50] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:50] [Estado.RECENTER] Frame estable (1/2)
+[11:47:50] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:50] [Estado.NEAR] Gesto de asentimiento
+[11:47:50] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:50] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:50] [Estado.RECENTER] Frame estable (1/2)
+[11:47:51] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:51] [Estado.NEAR] Gesto de asentimiento
+[11:47:51] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:51] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:51] [Estado.RECENTER] Frame estable (1/2)
+[11:47:51] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[11:47:51] [Estado.NEAR] Gesto de asentimiento
+[11:47:52] [Estado.NEAR] La baliza se ha movido o alejado -> RECENTER
+[11:47:52] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[11:47:52] [Estado.RECENTER] Frame estable (1/2)
