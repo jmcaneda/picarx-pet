@@ -802,7 +802,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
         return Estado.SEARCH
 
     # Seguridad
-    update_safety(px)
+    # update_safety(px)
     estado = apply_safety(px, estado, st, det)
     if estado != Estado.SEARCH:
         px.last_state = Estado.SEARCH
@@ -885,7 +885,7 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
     # ============================================================
     # SEGURIDAD RECENTER
     # ============================================================
-    update_safety(px)
+    # update_safety(px)
     estado = apply_safety(px, estado, st, det)
     if estado != Estado.RECENTER:
         return estado
@@ -988,7 +988,7 @@ def state_track(px, estado, st, distancia_real, test_mode):
     # ============================================================
     # SEGURIDAD TRACK
     # ============================================================
-    update_safety(px)
+    # update_safety(px)
     estado = apply_safety(px, estado, st, det)
     if estado != Estado.TRACK:
         return estado
@@ -1107,7 +1107,7 @@ def state_near(px, estado, st, distancia_real, test_mode):
     # ============================================================
     # SEGURIDAD NEAR
     # ============================================================
-    update_safety(px)
+    # update_safety(px)
     estado = apply_safety(px, estado, st, det)
     if estado != Estado.NEAR:
         px.last_state = Estado.NEAR

@@ -1,26 +1,30 @@
-# 🧠 PiCarX_Pet – Sistema Autónomo Modular con Comportamiento de Mascota
-
-El proyecto **PiCarX_Pet** implementa un sistema autónomo de seguimiento visual con comportamientos expresivos inspirados en una mascota.  
-El robot detecta una baliza de color, la persigue de forma estable y natural, evita obstáculos, recupera la baliza cuando la pierde y expresa estados mediante gestos y sonidos.
+# 🧠 PiCarX_Pet – Sistema Autónomo con Lógica de FSM y Fusión Sensorial
+**PiCarX_Pet** es un sistema de navegación autónoma para el PiCar-X que transforma al robot en una "mascota" inteligente. A diferencia de un simple seguidor de líneas, este sistema utiliza una **Máquina de Estados Finita (FSM) y Fusión de Sensores (Visión + Ultrasonidos)** para tomar decisiones complejas en tiempo real.
 
 ---
 
-## 🎯 Mascota — Seguimiento visual inteligente de una baliza
+## 🎯 Capacidades Avanzadas
+🤖 **Gestión de Estados (FSM)**
+El comportamiento no es lineal; el robot evalúa su entorno y cambia de estrategia dinámicamente:
 
-El robot actúa como una mascota que reconoce, persigue y reacciona ante una baliza roja.  
-La **cámara lidera** el comportamiento: detecta, corrige, centra y decide.  
-Las **ruedas siguen** las órdenes de la cámara, generando un movimiento suave, estable y animal‑like.
+- **SEARCH:** Barrido de cámara (PAN) y rastreo circular para localizar la baliza.
 
-### Características principales
+- **RECENTER:** Alineación fina entre el chasis y la cámara antes de iniciar la marcha.
 
-- Detección robusta de baliza mediante Vilib  
-- Corrección con cámara y ruedas según error visual  
-- Búsqueda activa con giro continuo cuando no ve la baliza  
-- Recentrado automático del cuerpo  
-- Persecución estable con control de distancia  
-- Escape ante obstáculos críticos  
-- Gesto de “sí” con sonido de perro cuando alcanza la distancia segura  
-- Arquitectura modular y fácil de extender  
+- **TRACK:** Seguimiento dinámico con velocidad adaptativa y corrección de dirección Ackerman.
+
+- **NEAR:** Interacción de proximidad con gestos de asentimiento, retroceso de cortesía y modo de espera (IDLE).
+
+- **SCAPE:** Protocolo de emergencia que interrumpe cualquier estado ante una colisión inminente.
+
+📡 **Fusión de Sensores (Robustez)**
+El robot no confía en un solo dato. Implementa lógica para escenarios críticos:
+
+- **Predicción por Área:** Si el ultrasonido falla por cercanía extrema (punto ciego), el robot usa el área de la baliza en la cámara para confirmar que está "Cerca".
+
+- **Filtro Anti-Ruido:** Contadores de frames (Lost Frames) para evitar reacciones bruscas ante fallos momentáneos de detección.
+
+- **Velocidad Adaptativa:** Reducción automática de velocidad al detectar obstáculos en el rango de advertencia. 
 
 ---
 
@@ -29,31 +33,42 @@ Las **ruedas siguen** las órdenes de la cámara, generando un movimiento suave,
 ```Code
 picarx-projects/
 └── autonomous/
-    ├── battery.py
-    ├── libs.py
-    ├── pet02.log
-    ├── pet02.py
-    ├── readme-picarx_pet.md
-    ├── security.py
-    ├── sound.py
-    └── sounds/          ← efectos de sonido (wav)
+    ├── pet02.py         <-- Núcleo: FSM y lógica de control
+    ├── libs.py          <-- Abstracción de hardware y utilidades
+    ├── pet02.log        <-- Registro detallado de decisiones
+    ├── sounds/          <-- Efectos de sonido (WAV)
+    └── README.md
 ```
-### 📄 Archivos clave
+---
+### 📊 Dashboard de Telemetría
+El sistema incluye un panel en consola que muestra en tiempo real:
 
-| Archivo      | Función |
-|--------------|---------|
-| **pet02.py** | Lógica completa del robot: FSM, visión, movimiento, gestos y sonido. |
-| **sound.py** | Reproducción de sonidos (ladrido, alerta, etc.). |
-| **libs.py**  | Utilidades comunes del proyecto. |
-| **sounds/**  | Carpeta con efectos de sonido en formato WAV. |
-| **pet02.log** | Registro de eventos del robot en tiempo real. |
+- **Estado Actual vs Anterior**
 
+- **Ángulos de Servos** (Dirección, Pan, Tilt)
+
+- **Error Visual (ERR_X) y Área del Objeto**
+
+- **Distancia Real Filtrada** y alertas de seguridad.
+
+### 🛠️ Especificaciones Técnicas Característica Detalle
+**Visión** Vilib (Detección de color/forma proporcional)
+**Dirección** Control proporcional limitado para evitar bloqueos mecánicos
+**Seguridad** Tres niveles: SAFE, WARNING (velocidad lenta), DANGER (escape)
+**Interacción** Gesto "YES" (Tilt) + Timeout a IDLE para ahorro de energía
+
+--- 
 ### ▶️ Ejecución
 Conectar a la Raspberry Pi mediante VS Code Remote‑SSH y ejecutar:
-
+Para iniciar la mascota en modo real:
 ```bash
-python3 pet02.py
+python3 pet02.py real
 ```
+Para modo de pruebas (sin movimiento de motores):
+```bash
+python3 pet02.py sim
+```
+--- 
 ### El robot iniciará:
 
 - Comprobación del sistema
@@ -66,67 +81,10 @@ python3 pet02.py
 
 ### ⏹️ Detener
 Presiona Ctrl + C en cualquier momento para salir del modo activo.
+- El robot se detenga inmediatamente.
+- Todos los servos vuelvan a la posición neutral ($0^\circ$).
+- La cámara se apague correctamente.
 
-#### 🐾 Comportamiento del robot
+## 📝 Licencia y Uso
 
-#### 🔍 SEARCH – Búsqueda activa
-
-- Cámara centrada
-- Giro continuo del cuerpo
-- Inversión de giro para evitar bucles
-- Cambio inmediato a RECENTER cuando detecta la baliza
-
-#### 🎯 RECENTER – Alineación
-
-- Corrige orientación del cuerpo
-- Mantiene la baliza centrada
-- Pasa a TRACK cuando está estable
-
-#### 🐕 TRACK – Persecución
-
-- Avanza hacia la baliza
-- Corrige con ruedas o cámara según error
-- Mantiene distancia segura
-- Si la baliza está demasiado cerca → retrocede
-- Si la pierde → vuelve a SEARCH
-- Si alcanza la distancia segura → doble gesto de “sí” + sonido de perro
-
-#### 🛑 RESET – Seguridad
-
-- Reposiciona cámara y dirección
-- Se activa ante obstáculos críticos
-- Vuelve a SEARCH
-
-#### 🔊 Gestos y sonidos
-
-#### El robot expresa estados mediante:
-
-- Gesto doble de “sí” cuando alcanza la distancia segura
-- Sonido de perro (sound_dog()) sincronizado con el gesto
-- Posibilidad de añadir sonidos de alerta, curiosidad o enfado
-
-#### 🧩 Arquitectura modular
-
-#### El sistema está dividido en módulos independientes:
-
-- Visión → detección de baliza
-- FSM → estados y transiciones
-- Movimiento → ruedas y servos
-- Seguridad → ultrasonidos y SCAPE
-- Expresión → gestos y sonidos
-- Esto permite extender fácilmente:
-
-nuevos gestos
-
-nuevas emociones
-
-nuevos modos de seguimiento
-
-nuevas balizas o colores
-
-integración con sensores adicionales
-
-## 📝 Licencia
-
-- Uso personal y educativo.
-- Modificable libremente.
+Desarrollado para fines educativos y experimentales en plataformas Raspberry Pi con arquitectura Picar X (Robot Hat V4).
