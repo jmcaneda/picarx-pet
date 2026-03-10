@@ -813,7 +813,8 @@ def state_search(px, estado, st, distancia_real, test_mode):
     # GESTIÓN DE DETECCIÓN
     # 1. Detección válida
     if det.valid_for_search or det.valid_for_near:
-        st.search_lost_frames = 0
+        if abs(det.error_x) < 100:
+            st.search_lost_frames = 0
 
         # CENTRADO REAL
         if abs(det.error_x) <= 50:
@@ -826,31 +827,17 @@ def state_search(px, estado, st, distancia_real, test_mode):
             px.last_state = Estado.SEARCH
             return Estado.RECENTER
 
-        # PAN (sin huecos muertos)
-        step = CAM_STEP
-        if abs(det.error_x) > 120:
-            step *= 3
-        elif abs(det.error_x) > 80:
-            step *= 2
-        elif abs(det.error_x) > 10:
-            step *= 1
-        else:
+        if abs(det.error_x) < 10:
             # error_x pequeño → no PAN
             px.last_state = Estado.SEARCH
             return Estado.SEARCH
-
-        if det.error_x > 0:
-            pan_right(px, step)
-        else:
-            pan_left(px, step)
-
 
     else:
         # SIN DETECCIÓN O RUIDO
         st.search_lost_frames += 1
         st.search_found_frames = 0
-        log_vernt(px, Estado.SEARCH, f"Lost frames={st.search_lost_frames}")
-        
+        log_event(px, Estado.SEARCH, f"Lost frames={st.search_lost_frames}")
+
         # Plan B: Si llevamos mucho tiempo perdidos
         if st.search_lost_frames >= 30:
             log_event(px, Estado.SEARCH, "Búsqueda fallida → TRACK circular")
@@ -858,15 +845,15 @@ def state_search(px, estado, st, distancia_real, test_mode):
             px.last_state = Estado.SEARCH
             return Estado.TRACK
 
-        # Barrido de cámara normal (Usando tus nuevas funciones con return 0/1)
-        if st.search_cam_dir > 0:
-            if pan_right(px) == 0:
-                log_event(px, Estado.SEARCH, f"Valid_for_search={det.valid_for_search} Valid_for_near={det.valid_for_near} n={det.n} area={det.area} error_x={det.error_x} Tope DER -> Girando a IZQ")
-                st.search_cam_dir = -1
-        else:
-            if pan_left(px) == 0:
-                log_event(px, Estado.SEARCH, f"Valid_for_search={det.valid_for_search} Valid_for_near={det.valid_for_near} n={det.n} area={det.area} error_x={det.error_x} Tope IZQ -> Girando a DER")
-                st.search_cam_dir = 1
+    # Barrido de cámara normal (Usando tus nuevas funciones con return 0/1)
+    if st.search_cam_dir > 0:
+        if pan_right(px) == 0:
+            log_event(px, Estado.SEARCH, f"Valid_for_search={det.valid_for_search} Valid_for_near={det.valid_for_near} n={det.n} area={det.area} error_x={det.error_x} Tope DER -> Girando a IZQ")
+            st.search_cam_dir = -1
+    else:
+        if pan_left(px) == 0:
+            log_event(px, Estado.SEARCH, f"Valid_for_search={det.valid_for_search} Valid_for_near={det.valid_for_near} n={det.n} area={det.area} error_x={det.error_x} Tope IZQ -> Girando a DER")
+            st.search_cam_dir = 1
 
     px.last_state = Estado.SEARCH
     return Estado.SEARCH

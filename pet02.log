@@ -1,12 +1,19 @@
 === Start of pet02.log ===
-[13:19:58] [Estado.CHK] [CHK] ==============================
-[13:19:58] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[13:19:58] [Estado.CHK] [CHK] ==============================
-[13:19:58] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[13:19:58] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[13:19:58] [Estado.CHK] [CHK] State wheels:     0
-[13:19:58] [Estado.CHK] [CHK] ==============================
-[13:19:58] [Estado.IDLE] Inicio del sistema
-[13:19:58] [Estado.IDLE] Entrando en IDLE (test_mode=False)
-[13:19:59] [Estado.RESET] Entrando en RESET (test_mode=False)
-[13:19:59] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[13:29:08] [Estado.CHK] [CHK] ==============================
+[13:29:08] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[13:29:08] [Estado.CHK] [CHK] ==============================
+[13:29:08] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[13:29:08] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[13:29:08] [Estado.CHK] [CHK] State wheels:     0
+[13:29:08] [Estado.CHK] [CHK] ==============================
+[13:29:08] [Estado.IDLE] Inicio del sistema
+[13:29:08] [Estado.IDLE] Entrando en IDLE (test_mode=False)
+[13:29:08] [Estado.RESET] Entrando en RESET (test_mode=False)
+[13:29:08] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[13:29:08] [Estado.SEARCH] Lost frames=1
+[13:29:09] [Estado.SEARCH] Lost frames=2
+[13:29:09] [Estado.SEARCH] Lost frames=3
+[13:29:09] [Estado.SEARCH] Lost frames=4
+[13:29:09] [Estado.SEARCH] Lost frames=5
+[13:29:09] [Estado.SEARCH] Lost frames=6
+[13:29:09] [Estado.SEARCH] Lost frames=7
