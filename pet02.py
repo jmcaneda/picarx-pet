@@ -55,6 +55,7 @@ class Estado(Enum):
     RECENTER = 5
     TRACK = 10
     NEAR = 15
+    SEC = 30
     ERR = 89
     CHK = 99
 
@@ -558,24 +559,24 @@ def update_safety(px):
     return d
 
 def apply_safety(px, estado, st, det):
-    px.last_state = estado
 
     # 1. PELIGRO EXTREMO (Mantiene el cambio de estado a SEARCH para huir)
     if px.distance_real < DANGER_DISTANCE and not st.is_escaping:
-        log_event(px, px.last_state, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
+        log_event(px, estado, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
         stop(px)
         backward(px)
         time.sleep(0.4)
         stop(px)
         st.is_escaping = True
         st.escape_end_time = time.time() + 1.0
+        px.last_state = Estado.SEC
         return Estado.SEARCH 
 
     # 2. ADVERTENCIA (Solo cambia la velocidad, NO el estado)
     if px.distance_real < WARNING_DISTANCE:
         # Solo logueamos si el cambio es nuevo para no inundar el log
         if not px.changed_speed_slow:
-            log_event(px, px.last_state, f"⚠️ Velocidad lenta activa ({px.distance_real} cm)")
+            # log_event(px, estado, f"⚠️ Velocidad lenta activa ({px.distance_real} cm)")
         px.changed_speed_slow = True
         # NOTA: No retornamos SEARCH aquí, dejamos que el flujo siga
     else:
@@ -583,9 +584,10 @@ def apply_safety(px, estado, st, det):
 
     # 3. FUSIÓN PARA NEAR (Cambio de estado legítimo)
     if det.near_fused:
-        log_event(px, px.last_state, "Baliza muy cerca según fusión → NEAR")
+        log_event(px, estado, "Baliza muy cerca según fusión → NEAR")
         stop(px)
         px.changed_speed_slow = False
+        px.last_state = Estado.SEC
         return Estado.NEAR
     
     # 4. FINALIZACIÓN DE ESCAPE
