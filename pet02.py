@@ -953,10 +953,18 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
         pan_left(px)
 
 
-    if abs(det.error_x) > 80: # Si la baliza está ya en el tercio exterior del frame
+    if abs(det.error_x) > 150: # Si la baliza está ya en el tercio exterior del frame
         log_event(px, Estado.RECENTER, "Error demasiado grande para corregir avanzando → SEARCH")
         px.last_state = Estado.RECENTER
         return Estado.SEARCH
+
+    if abs(det.error_x) > 80: # Si la baliza está ya en el tercio exterior del frame
+        log_event(px, Estado.RECENTER, "Error grande para corregir avanzando → SEARCH")
+        turn_left(px)
+        rock_robot(px)
+        px.last_state = Estado.RECENTER
+        return Estado.RECENTER
+
 
     # ============================================================
     # SALIDA RECENTER → TRACK
