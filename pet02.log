@@ -1,19 +1,303 @@
 === Start of pet02.log ===
-[13:29:08] [Estado.CHK] [CHK] ==============================
-[13:29:08] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[13:29:08] [Estado.CHK] [CHK] ==============================
-[13:29:08] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[13:29:08] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[13:29:08] [Estado.CHK] [CHK] State wheels:     0
-[13:29:08] [Estado.CHK] [CHK] ==============================
-[13:29:08] [Estado.IDLE] Inicio del sistema
-[13:29:08] [Estado.IDLE] Entrando en IDLE (test_mode=False)
-[13:29:08] [Estado.RESET] Entrando en RESET (test_mode=False)
-[13:29:08] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[13:29:08] [Estado.SEARCH] Lost frames=1
-[13:29:09] [Estado.SEARCH] Lost frames=2
-[13:29:09] [Estado.SEARCH] Lost frames=3
-[13:29:09] [Estado.SEARCH] Lost frames=4
-[13:29:09] [Estado.SEARCH] Lost frames=5
-[13:29:09] [Estado.SEARCH] Lost frames=6
-[13:29:09] [Estado.SEARCH] Lost frames=7
+[18:55:56] [Estado.CHK] [CHK] ==============================
+[18:55:56] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[18:55:56] [Estado.CHK] [CHK] ==============================
+[18:55:56] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[18:55:56] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[18:55:56] [Estado.CHK] [CHK] State wheels:     0
+[18:55:56] [Estado.CHK] [CHK] ==============================
+[18:55:56] [Estado.IDLE] Inicio del sistema
+[18:55:56] [Estado.IDLE] Entrando en IDLE (test_mode=False)
+[18:55:57] [Estado.RESET] Entrando en RESET (test_mode=False)
+[18:55:57] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[18:55:57] [Estado.SEARCH] Lost frames=1
+[18:55:57] [Estado.SEARCH] Lost frames=2
+[18:55:57] [Estado.SEARCH] Lost frames=3
+[18:55:58] [Estado.SEARCH] Valid_for_search=True Valid_for_near=False n=2 area=4256 error_x=74 Tope DER -> Girando a IZQ
+[18:55:58] [Estado.SEARCH] Centrado estable → RECENTER
+[18:55:58] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[18:55:58] [Estado.RECENTER] Frame estable (1/2)
+[18:55:58] [Estado.RECENTER] Corrigiendo dirección, error_x=20
+[18:55:58] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=8.0)
+[18:55:58] [Estado.RECENTER] Frame estable (2/2)
+[18:55:58] [Estado.RECENTER] Alineación suficiente → TRACK
+[18:55:58] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[18:55:59] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.6)
+[18:55:59] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.8)
+[18:55:59] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.3)
+[18:55:59] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.0)
+[18:55:59] [Estado.TRACK] Corrigiendo dirección (ángulo=7.0)
+[18:55:59] [Estado.TRACK] Corrigiendo dirección (ángulo=6.5)
+[18:55:59] [Estado.TRACK] Corrigiendo dirección (ángulo=-5.5)
+[18:55:59] [Estado.TRACK] Corrigiendo dirección (ángulo=-7.0)
+[18:56:00] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.1)
+[18:56:02] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.6)
+[18:56:02] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.9)
+[18:56:02] [Estado.TRACK] Distancia crítica → NEAR
+[18:56:02] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[18:56:03] [Estado.NEAR] Gesto de asentimiento
+[18:56:22] [Estado.NEAR] Misión cumplida: En espera estática
+[18:56:22] [Estado.IDLE] Entrando en IDLE (test_mode=False)
+[18:56:22] [Estado.RESET] Entrando en RESET (test_mode=False)
+[18:56:22] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[18:56:23] [Estado.SEARCH] Centrado estable → RECENTER
+[18:56:23] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[18:56:23] [Estado.RECENTER] Corrigiendo dirección, error_x=-78
+[18:56:23] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[18:56:23] [Estado.RECENTER] Corrigiendo dirección, error_x=-70
+[18:56:23] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-28.0)
+[18:56:24] [Estado.RECENTER] Corrigiendo dirección, error_x=-82
+[18:56:24] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[18:56:24] [Estado.RECENTER] Error grande para corregir avanzando → SEARCH
+[18:56:24] [Estado.RECENTER] Frame estable (1/2)
+[18:56:24] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[18:56:24] [Estado.NEAR] Gesto de asentimiento
+[18:56:29] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:32] [Estado.NEAR] ⚠️ Velocidad lenta activa (34.56 cm)
+[18:56:33] [Estado.NEAR] Distancia real (204.96)cm Error_x (206)-> RECENTER
+[18:56:33] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[18:56:33] [Estado.RECENTER] Corrigiendo dirección, error_x=276
+[18:56:33] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=30)
+[18:56:33] [Estado.RECENTER] Error demasiado grande para corregir avanzando → SEARCH
+[18:56:33] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[18:56:33] [Estado.SEARCH] Lost frames=1
+[18:56:34] [Estado.SEARCH] Lost frames=2
+[18:56:34] [Estado.SEARCH] Lost frames=3
+[18:56:34] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=0 error_x=0.0 Tope DER -> Girando a IZQ
+[18:56:34] [Estado.SEARCH] Lost frames=4
+[18:56:34] [Estado.SEARCH] Lost frames=5
+[18:56:34] [Estado.SEARCH] Lost frames=6
+[18:56:34] [Estado.SEARCH] Lost frames=7
+[18:56:34] [Estado.SEARCH] Lost frames=8
+[18:56:35] [Estado.SEARCH] Lost frames=9
+[18:56:35] [Estado.SEARCH] Lost frames=10
+[18:56:35] [Estado.SEARCH] Lost frames=11
+[18:56:35] [Estado.SEARCH] Lost frames=12
+[18:56:35] [Estado.SEARCH] Lost frames=13
+[18:56:35] [Estado.SEARCH] Lost frames=14
+[18:56:35] [Estado.SEARCH] Lost frames=15
+[18:56:36] [Estado.SEARCH] Lost frames=16
+[18:56:36] [Estado.SEARCH] Lost frames=17
+[18:56:36] [Estado.SEARCH] Lost frames=18
+[18:56:36] [Estado.SEARCH] Lost frames=19
+[18:56:36] [Estado.SEARCH] Lost frames=20
+[18:56:36] [Estado.SEARCH] Lost frames=21
+[18:56:36] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=0 error_x=0.0 Tope IZQ -> Girando a DER
+[18:56:36] [Estado.SEARCH] Lost frames=22
+[18:56:37] [Estado.SEARCH] Lost frames=23
+[18:56:37] [Estado.SEARCH] Lost frames=24
+[18:56:37] [Estado.SEARCH] Lost frames=25
+[18:56:37] [Estado.SEARCH] Lost frames=26
+[18:56:37] [Estado.SEARCH] Lost frames=27
+[18:56:37] [Estado.SEARCH] Lost frames=28
+[18:56:37] [Estado.SEARCH] Lost frames=29
+[18:56:37] [Estado.SEARCH] Lost frames=30
+[18:56:37] [Estado.SEARCH] Búsqueda fallida → TRACK circular
+[18:56:37] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[18:56:38] [Estado.TRACK] Perdidos en el espacio → SEARCH
+[18:56:39] [Estado.TRACK] ⚠️ Velocidad lenta activa (24.9 cm)
+[18:56:39] [Estado.TRACK] Perdidos en el espacio → SEARCH
+[18:56:40] [Estado.TRACK] 🚨 Peligro extremo distancia=2.47 → SCAPE
+[18:56:40] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[18:56:40] [Estado.SEARCH] ⚠️ Velocidad lenta activa (14.21 cm)
+[18:56:40] [Estado.SEARCH] Lost frames=1
+[18:56:41] [Estado.SEARCH] Baliza muy cerca según fusión → NEAR
+[18:56:41] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[18:56:41] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:41] [Estado.NEAR] Retroceso preventivo
+[18:56:42] [Estado.NEAR] ⚠️ Velocidad lenta activa (16.76 cm)
+[18:56:42] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:42] [Estado.NEAR] Gesto de asentimiento
+[18:56:42] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.76 cm)
+[18:56:42] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:42] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.63 cm)
+[18:56:42] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:42] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.69 cm)
+[18:56:42] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:42] [Estado.NEAR] ⚠️ Velocidad lenta activa (13.45 cm)
+[18:56:42] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:42] [Estado.NEAR] ⚠️ Velocidad lenta activa (18.28 cm)
+[18:56:42] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:42] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.56 cm)
+[18:56:42] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:42] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.67 cm)
+[18:56:42] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:43] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.79 cm)
+[18:56:43] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:43] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.63 cm)
+[18:56:43] [Estado.NEAR] Maniobra de escape finalizada
+[18:56:43] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:43] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.53 cm)
+[18:56:43] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:43] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.7 cm)
+[18:56:43] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:43] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.64 cm)
+[18:56:43] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:43] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.77 cm)
+[18:56:43] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:43] [Estado.NEAR] ⚠️ Velocidad lenta activa (13.73 cm)
+[18:56:43] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:43] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.6 cm)
+[18:56:43] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:44] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.66 cm)
+[18:56:44] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:44] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.7 cm)
+[18:56:44] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:44] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.6 cm)
+[18:56:45] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:45] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.75 cm)
+[18:56:45] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:45] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.64 cm)
+[18:56:45] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:45] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.73 cm)
+[18:56:45] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:45] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.68 cm)
+[18:56:45] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:45] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.68 cm)
+[18:56:46] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:46] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.7 cm)
+[18:56:46] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:46] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.72 cm)
+[18:56:46] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:46] [Estado.NEAR] ⚠️ Velocidad lenta activa (16.35 cm)
+[18:56:46] [Estado.NEAR] Baliza desaparecida durante NEAR → SEARCH
+[18:56:46] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[18:56:46] [Estado.SEARCH] Lost frames=1
+[18:56:46] [Estado.SEARCH] Lost frames=2
+[18:56:47] [Estado.SEARCH] Lost frames=3
+[18:56:47] [Estado.SEARCH] Lost frames=4
+[18:56:47] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=0 error_x=0.0 Tope DER -> Girando a IZQ
+[18:56:47] [Estado.SEARCH] Lost frames=5
+[18:56:47] [Estado.SEARCH] Lost frames=6
+[18:56:47] [Estado.SEARCH] Lost frames=7
+[18:56:47] [Estado.SEARCH] Lost frames=8
+[18:56:47] [Estado.SEARCH] Lost frames=9
+[18:56:47] [Estado.SEARCH] Lost frames=10
+[18:56:47] [Estado.SEARCH] Lost frames=11
+[18:56:47] [Estado.SEARCH] Lost frames=12
+[18:56:47] [Estado.SEARCH] Lost frames=13
+[18:56:47] [Estado.SEARCH] Lost frames=14
+[18:56:48] [Estado.SEARCH] Lost frames=15
+[18:56:48] [Estado.SEARCH] Lost frames=16
+[18:56:48] [Estado.SEARCH] Lost frames=17
+[18:56:48] [Estado.SEARCH] Lost frames=18
+[18:56:48] [Estado.SEARCH] Lost frames=19
+[18:56:48] [Estado.SEARCH] Lost frames=20
+[18:56:48] [Estado.SEARCH] Lost frames=21
+[18:56:48] [Estado.SEARCH] Lost frames=22
+[18:56:48] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=0 error_x=0.0 Tope IZQ -> Girando a DER
+[18:56:48] [Estado.SEARCH] Lost frames=23
+[18:56:48] [Estado.SEARCH] Lost frames=24
+[18:56:48] [Estado.SEARCH] Lost frames=25
+[18:56:48] [Estado.SEARCH] Lost frames=26
+[18:56:49] [Estado.SEARCH] Lost frames=27
+[18:56:49] [Estado.SEARCH] Lost frames=28
+[18:56:49] [Estado.SEARCH] Lost frames=29
+[18:56:49] [Estado.SEARCH] Lost frames=30
+[18:56:49] [Estado.SEARCH] Búsqueda fallida → TRACK circular
+[18:56:49] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[18:56:49] [Estado.TRACK] ⚠️ Velocidad lenta activa (14.68 cm)
+[18:56:49] [Estado.TRACK] Perdidos en el espacio → SEARCH
+[18:56:51] [Estado.TRACK] 🚨 Peligro extremo distancia=9.79 → SCAPE
+[18:56:52] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[18:56:52] [Estado.SEARCH] Lost frames=1
+[18:56:52] [Estado.SEARCH] Lost frames=2
+[18:56:52] [Estado.SEARCH] Lost frames=3
+[18:56:52] [Estado.SEARCH] Lost frames=4
+[18:56:52] [Estado.SEARCH] Lost frames=5
+[18:56:53] [Estado.SEARCH] Maniobra de escape finalizada
+[18:56:53] [Estado.SEARCH] Centrado estable → RECENTER
+[18:56:53] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[18:56:53] [Estado.RECENTER] Corrigiendo dirección, error_x=-72
+[18:56:53] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-28.8)
+[18:56:53] [Estado.RECENTER] Corrigiendo dirección, error_x=-70
+[18:56:53] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-28.0)
+[18:56:53] [Estado.RECENTER] ⚠️ Velocidad lenta activa (15.09 cm)
+[18:56:53] [Estado.RECENTER] Corrigiendo dirección, error_x=-106
+[18:56:53] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=-30)
+[18:56:53] [Estado.RECENTER] Error grande para corregir avanzando → SEARCH
+[18:56:54] [Estado.RECENTER] Corrigiendo dirección, error_x=58
+[18:56:54] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=23.2)
+[18:56:54] [Estado.RECENTER] Corrigiendo dirección, error_x=70
+[18:56:54] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=28.0)
+[18:56:54] [Estado.RECENTER] ⚠️ Velocidad lenta activa (11.21 cm)
+[18:56:54] [Estado.RECENTER] Corrigiendo dirección, error_x=84
+[18:56:54] [Estado.RECENTER] Error significativo → wheels_angle_error_x (ángulo=30)
+[18:56:54] [Estado.RECENTER] Error grande para corregir avanzando → SEARCH
+[18:56:54] [Estado.RECENTER] 🚨 Peligro extremo distancia=7.35 → SCAPE
+[18:56:54] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[18:56:55] [Estado.SEARCH] Lost frames=1
+[18:56:55] [Estado.SEARCH] Lost frames=2
+[18:56:55] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=0 error_x=0.0 Tope DER -> Girando a IZQ
+[18:56:55] [Estado.SEARCH] Lost frames=3
+[18:56:55] [Estado.SEARCH] Lost frames=4
+[18:56:55] [Estado.SEARCH] Lost frames=5
+[18:56:55] [Estado.SEARCH] Lost frames=6
+[18:56:55] [Estado.SEARCH] Lost frames=7
+[18:56:55] [Estado.SEARCH] Lost frames=8
+[18:56:55] [Estado.SEARCH] Maniobra de escape finalizada
+[18:56:56] [Estado.SEARCH] Baliza muy cerca según fusión → NEAR
+[18:56:56] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[18:56:56] [Estado.NEAR] Retroceso preventivo
+[18:56:56] [Estado.NEAR] Gesto de asentimiento
+[18:56:57] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:57] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.78 cm)
+[18:56:57] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:57] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.54 cm)
+[18:56:57] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:57] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.56 cm)
+[18:56:57] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:57] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.64 cm)
+[18:56:57] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:57] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.48 cm)
+[18:56:57] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:57] [Estado.NEAR] ⚠️ Velocidad lenta activa (14.69 cm)
+[18:56:57] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:56:57] [Estado.NEAR] 🚨 Peligro extremo distancia=8.03 → SCAPE
+[18:56:58] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[18:56:58] [Estado.SEARCH] ⚠️ Velocidad lenta activa (21.59 cm)
+[18:56:58] [Estado.SEARCH] Baliza muy cerca según fusión → NEAR
+[18:56:58] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[18:56:58] [Estado.NEAR] Gesto de asentimiento
+[18:56:59] [Estado.NEAR] Maniobra de escape finalizada
+[18:57:01] [Estado.NEAR] Baliza muy cerca según fusión → NEAR
+[18:57:01] [Estado.NEAR] Distancia real (99.88)cm Error_x (190)-> RECENTER
+[18:57:01] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[18:57:01] [Estado.RECENTER] Pérdida de detección → SEARCH
+[18:57:02] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[18:57:02] [Estado.SEARCH] Lost frames=1
+[18:57:02] [Estado.SEARCH] Lost frames=2
+[18:57:02] [Estado.SEARCH] Lost frames=3
+[18:57:02] [Estado.SEARCH] Lost frames=4
+[18:57:02] [Estado.SEARCH] Lost frames=5
+[18:57:02] [Estado.SEARCH] Lost frames=6
+[18:57:03] [Estado.SEARCH] Lost frames=7
+[18:57:03] [Estado.SEARCH] Lost frames=8
+[18:57:03] [Estado.SEARCH] Lost frames=9
+[18:57:03] [Estado.SEARCH] Valid_for_search=True Valid_for_near=False n=1 area=4080 error_x=270 Tope DER -> Girando a IZQ
+[18:57:03] [Estado.SEARCH] Lost frames=10
+[18:57:04] [Estado.SEARCH] Lost frames=11
+[18:57:04] [Estado.SEARCH] Lost frames=12
+[18:57:04] [Estado.SEARCH] Lost frames=13
+[18:57:04] [Estado.SEARCH] Lost frames=14
+[18:57:04] [Estado.SEARCH] Lost frames=15
+[18:57:04] [Estado.SEARCH] Lost frames=16
+[18:57:04] [Estado.SEARCH] Lost frames=17
+[18:57:05] [Estado.SEARCH] Lost frames=18
+[18:57:05] [Estado.SEARCH] Lost frames=19
+[18:57:05] [Estado.SEARCH] Lost frames=20
+[18:57:05] [Estado.SEARCH] Lost frames=21
+[18:57:05] [Estado.SEARCH] Lost frames=22
+[18:57:05] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=0 error_x=0.0 Tope IZQ -> Girando a DER
+[18:57:06] [Estado.SEARCH] Lost frames=23
+[18:57:06] [Estado.SEARCH] Lost frames=24
+[18:57:06] [Estado.SEARCH] Lost frames=25
+[18:57:06] [Estado.SEARCH] Lost frames=26
+[18:57:07] [Estado.SEARCH] Lost frames=27
+[18:57:07] [Estado.SEARCH] Lost frames=28
+[18:57:07] [Estado.SEARCH] Lost frames=29
+[18:57:07] [Estado.SEARCH] Lost frames=30
+[18:57:07] [Estado.SEARCH] Búsqueda fallida → TRACK circular
+[18:57:07] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[18:57:07] [Estado.TRACK] Perdidos en el espacio → SEARCH
+[18:57:08] [Estado.TRACK] Referencia recuperada → TRACK

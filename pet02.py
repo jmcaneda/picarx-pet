@@ -1000,10 +1000,10 @@ def state_track(px, estado, st, distancia_real, test_mode):
     if st.lost_in_space:
         if det.valid_for_search:
             st.lost_in_space = False
-            log_event(px, Estado.TRACK, "Referencia recuperada → TRACK")
+            log_event(px, Estado.TRACK, "Referencia recuperada")
             
         else:
-            log_event(px, Estado.TRACK, "Perdidos en el espacio → SEARCH")
+            log_event(px, Estado.TRACK, "Perdidos en el espacio")
             circle_robot(px, direction=1)
             st.lost_in_space = True
 
@@ -1030,7 +1030,7 @@ def state_track(px, estado, st, distancia_real, test_mode):
     if abs(det.error_x) > 80:
         stop(px)
         px.last_state = Estado.TRACK
-        return Estado.TRACK
+        return Estado.SEARCH
 
     # ============================================================
     # MOVER CÁMARA PARA MANTENER LA BALIZA EN EL FRAME
