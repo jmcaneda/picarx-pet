@@ -415,23 +415,12 @@ def wheels_angle_error_x(px, det):
     
     return servo_angle
 
-def wheels_angle_pan(px, det):
-
-    servo_angle = round(clamp(px.last_pan, SERVO_ANGLE_MIN, SERVO_ANGLE_MAX),1)
-
-    px.set_dir_servo_angle(servo_angle)
-    px.dir_current_angle = servo_angle
-
-    px.last_cmd = Cmd.WHEELS_ANGLE_PAN
-    
-    return servo_angle
-
 
 def rock_robot(px):
     stop(px)
     time.sleep(0.05)
     backward(px)
-    time.sleep(0.05)
+    time.sleep(0.1)
     stop(px)
     px.changed_speed_slow = True
     forward(px)
@@ -1029,6 +1018,20 @@ def state_track(px, estado, st, distancia_real, test_mode):
     # ============================================================
     if abs(det.error_x) > 80:
         stop(px)
+        if det.error_x > 0:
+            turn_left(px)
+            backward(px)
+            time.sleep(0.1)
+            
+        else:
+            turn_right(px)
+            backward(px)
+            time.sleep(0.1)
+        
+        stop(px)
+        px.set_cam_pan_angle(0)
+        px.last_pan = 0
+        
         px.last_state = Estado.TRACK
         return Estado.SEARCH
 
