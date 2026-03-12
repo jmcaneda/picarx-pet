@@ -224,7 +224,7 @@ class RobotState:
 
         self.track_lost_frames = 0           # Frames sin detección
         self.track_centered_frames = 0       # Frames centrado (suavizado)
-
+        self.track_edge_frames = 0
 
         # ============================================================
         # NEAR — Interacción cercana (frenado, retroceso, gesto)
@@ -758,6 +758,7 @@ def state_reset(px, estado, st, distancia_real, test_mode):
 
     st.track_lost_frames = 0
     st.track_centered_frames = 0
+    st.track_edge_frames = 0
 
     st.near_hold_frames = 0
     st.near_backed = False
@@ -800,39 +801,24 @@ def state_search(px, estado, st, distancia_real, test_mode):
     # GESTIÓN DE DETECCIÓN
     # 1. Detección válida
     if det.valid_for_search or det.valid_for_near:
-        if abs(det.error_x) < 100:
-            st.search_lost_frames = 0
+        # Si el error es enorme (>150), RECENTER se encargará de girar el cuerpo
+        log_event(px, Estado.SEARCH, f"Baliza detectada (err={det.error_x}) -> RECENTER")
+        px.last_state = Estado.SEARCH
+        return Estado.RECENTER
 
-        # CENTRADO REAL
-        if abs(det.error_x) <= 50:
-            st.search_centered_frames += 1
-        else:
-            st.search_centered_frames = 0
+    # Si no hay detección, seguimos perdiendo frames
+    st.search_lost_frames += 1
+    st.search_found_frames = 0
+    # Solo escribe en el log cada 10 frames para no saturar
+    if st.search_lost_frames % 10 == 0:
+        log_event(px, Estado.SEARCH, f"Lost frames={st.search_lost_frames}/30")
 
-        if st.search_centered_frames >= 2:
-            log_event(px, Estado.SEARCH, "Centrado estable → RECENTER")
-            px.last_state = Estado.SEARCH
-            return Estado.RECENTER
-
-        if abs(det.error_x) < 10:
-            # error_x pequeño → no PAN
-            px.last_state = Estado.SEARCH
-            return Estado.SEARCH
-
-    else:
-        # SIN DETECCIÓN O RUIDO
-        st.search_lost_frames += 1
-        st.search_found_frames = 0
-        # Solo escribe en el log cada 10 frames para no saturar
-        if st.search_lost_frames % 10 == 0:
-            log_event(px, Estado.SEARCH, f"Lost frames={st.search_lost_frames}/30")
-
-        # Plan B: Si llevamos mucho tiempo perdidos
-        if st.search_lost_frames >= 30:
-            log_event(px, Estado.SEARCH, "Búsqueda fallida → TRACK circular")
-            st.lost_in_space = True
-            px.last_state = Estado.SEARCH
-            return Estado.TRACK
+    # Plan B: Si llevamos mucho tiempo perdidos
+    if st.search_lost_frames >= 30:
+        log_event(px, Estado.SEARCH, "Búsqueda fallida → TRACK circular")
+        st.lost_in_space = True
+        px.last_state = Estado.SEARCH
+        return Estado.TRACK
 
     # Barrido de cámara normal (Usando tus nuevas funciones con return 0/1)
     if st.search_cam_dir > 0:
@@ -865,11 +851,10 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
         st.recenter_centered_frames = 0
         st.recenter_lost_frames = 0
 
-        px.changed_speed_slow = False  # RECENTER empieza en velocidad normal
+        px.changed_speed_slow = False 
 
         px.last_state = Estado.RECENTER
         return Estado.RECENTER
-
 
     # ============================================================
     # SEGURIDAD RECENTER
@@ -882,9 +867,9 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
     # ============================================================
     # SIN DETECCIÓN → volver a SEARCH
     # ============================================================
-    if not det.valid_for_search:
+    if not det.valid_for_search and not det.valid_for_near:
         st.recenter_lost_frames += 1
-        if st.recenter_lost_frames >= 3:
+        if st.recenter_lost_frames >= 5:
             log_event(px, Estado.RECENTER, "Pérdida de detección → SEARCH")
             px.last_state = Estado.RECENTER
             return Estado.SEARCH
@@ -892,7 +877,6 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
         return Estado.RECENTER
 
     st.recenter_lost_frames = 0
-
 
     # ============================================================
     # ALINEACIÓN DEL CHASIS
@@ -906,48 +890,24 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
             return Estado.TRACK
     else:
         # Solo reseteamos si nos salimos del margen de 40px
+        log_event(px, Estado.RECENTER, f"Corrigiendo chasis: err={det.error_x:.1f} ang={target_angle:.1f}")
         st.recenter_centered_frames = 0
+        px.changed_speed_slow = True
+        forward(px)
 
     # Comprobación de cercanía (ahora que sabemos que no hemos saltado a TRACK)
     if det.valid_for_near and px.last_state != Estado.NEAR:
         px.last_state = Estado.RECENTER
         return Estado.NEAR
 
-    # Corrección suave del chasis
-    log_event(px, Estado.RECENTER, f"Corrigiendo dirección, error_x={det.error_x}")
-
-    if abs(det.error_x) >= 20:
-        angulo = wheels_angle_error_x(px, det)
-        log_event(px, Estado.RECENTER, f"Error significativo → wheels_angle_error_x (ángulo={angulo})")
-        
-
     # ============================================================
     # MOVER CÁMARA PARA MANTENER LA BALIZA EN EL FRAME
     # ============================================================
-    if det.error_x > 40:
+    if det.error_x > 20:
         pan_right(px)
-    elif det.error_x < -40:
+    elif det.error_x < -20:
         pan_left(px)
-
-
-    if abs(det.error_x) > 150: # Si la baliza está ya en el tercio exterior del frame
-        log_event(px, Estado.RECENTER, "Error demasiado grande para corregir avanzando → SEARCH")
-        px.last_state = Estado.RECENTER
-        return Estado.SEARCH
-
-    if abs(det.error_x) > 80: # Si la baliza está ya en el tercio exterior del frame
-        log_event(px, Estado.RECENTER, "Error grande para corregir avanzando → SEARCH")
-        turn_left(px)
-        rock_robot(px)
-        px.last_state = Estado.RECENTER
-        return Estado.RECENTER
-
-
-    # ============================================================
-    # SALIDA RECENTER → TRACK
-    # ============================================================
-    # px.changed_speed_slow = True  # RECENTER se hace a velocidad lenta para mayor precisión
-    forward(px)
+    
     px.last_state = Estado.RECENTER
     return Estado.RECENTER
 
@@ -1014,10 +974,16 @@ def state_track(px, estado, st, distancia_real, test_mode):
 
     st.track_lost_frames = 0
     # ============================================================
-    # SI EL ERROR ES MUY GRANDE → NO AVANZAR
+    # SI EL ERROR ESTA MUY EN EL FLANCO
     # ============================================================
-    if abs(det.error_x) > 80:
+    if abs(det.error_x) > 100:
+        st.track_edge_frames += 1
         stop(px)
+        if st.track_edge_frames >=3:
+            st.track_edge_frames = 0
+            px.last_state = Estado.TRACK
+            return Estado.SEARCH
+
         if det.error_x > 0:
             turn_left(px)
             backward(px)
@@ -1031,9 +997,7 @@ def state_track(px, estado, st, distancia_real, test_mode):
         stop(px)
         px.set_cam_pan_angle(0)
         px.last_pan = 0
-        
-        px.last_state = Estado.TRACK
-        return Estado.SEARCH
+            
 
     # ============================================================
     # MOVER CÁMARA PARA MANTENER LA BALIZA EN EL FRAME
