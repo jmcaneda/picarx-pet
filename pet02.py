@@ -878,6 +878,13 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
 
     st.recenter_lost_frames = 0
 
+    # 2. Lógica de corrección de chasis
+    # Calculamos ángulo de ruedas proporcional al error
+    # Si error es -160, ángulo será -30 (máx izquierda)
+
+    target_angle = clamp(det.error_x / 5.0, SERVO_ANGLE_MIN, SERVO_ANGLE_MAX)
+    px.set_dir_servo_angle(target_angle)
+
     # ============================================================
     # ALINEACIÓN DEL CHASIS
     # ============================================================
@@ -894,6 +901,8 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
         st.recenter_centered_frames = 0
         px.changed_speed_slow = True
         forward(px)
+        time.sleep(0.1)
+        stop(px)
 
     # Comprobación de cercanía (ahora que sabemos que no hemos saltado a TRACK)
     if det.valid_for_near and px.last_state != Estado.NEAR:
