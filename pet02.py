@@ -688,7 +688,8 @@ def clamp(value, min_value, max_value):
     """
     Limita 'value' entre min_value y max_value.
     """
-    return max(min_value, min(value, max_value))
+    k = 0.9 # valor de proporcionalidad entre 0.1 y 1
+    return max(min_value*k, min(value, max_value*k))
 
 
 # ============================================================
@@ -859,7 +860,10 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
         st.recenter_centered_frames = 0
         st.recenter_lost_frames = 0
 
-        px.changed_speed_slow = False 
+        px.changed_speed_slow = False
+
+        px.set_cam_pan_angle(0)
+        px.dir_current_angle = 0
 
         px.last_state = Estado.RECENTER
         return Estado.RECENTER
@@ -877,7 +881,7 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
     # ============================================================
     if not det.valid_for_search and not det.valid_for_near:
         st.recenter_lost_frames += 1
-        if st.recenter_lost_frames >= 5:
+        if st.recenter_lost_frames >= 20:
             log_event(px, Estado.RECENTER, "Pérdida de detección → SEARCH")
             px.last_state = Estado.RECENTER
             return Estado.SEARCH
@@ -889,8 +893,8 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
     # 2. Lógica de corrección de chasis
     # Calculamos ángulo de ruedas proporcional al error
     # Si error es -160, ángulo será -30 (máx izquierda)
-
-    target_angle = clamp(det.error_x / 5.0, SERVO_ANGLE_MIN, SERVO_ANGLE_MAX)
+    # En clamp estoy aplicando un k = 0.9 sobre el angulo maximo y minimo
+    target_angle = clamp(det.error_x / 10.0, SERVO_ANGLE_MIN, SERVO_ANGLE_MAX)
     px.set_dir_servo_angle(target_angle)
 
     # ============================================================
@@ -912,7 +916,7 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
             log_event(px, Estado.RECENTER, f"Corrigiendo chasis: err={det.error_x:.1f} ang={target_angle:.1f}")
             px.changed_speed_slow = True
             forward(px)
-            time.sleep(0.1)
+            time.sleep(0.15)
             stop(px)
         else:
             # Si ya estamos cerca, solo movemos el servo de dirección, NO el motor
@@ -925,6 +929,7 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
         px.last_state = Estado.RECENTER
         return Estado.NEAR
 
+    '''
     # ============================================================
     # MOVER CÁMARA PARA MANTENER LA BALIZA EN EL FRAME
     # ============================================================
@@ -932,7 +937,8 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
         pan_right(px)
     elif det.error_x < -20:
         pan_left(px)
-    
+    '''
+
     px.last_state = Estado.RECENTER
     return Estado.RECENTER
 
