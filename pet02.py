@@ -895,14 +895,22 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
             log_event(px, Estado.RECENTER, "Alineación suficiente → TRACK")
             px.last_state = Estado.RECENTER
             return Estado.TRACK
-    else:
-        # Solo reseteamos si nos salimos del margen de 40px
-        log_event(px, Estado.RECENTER, f"Corrigiendo chasis: err={det.error_x:.1f} ang={target_angle:.1f}")
+
+    # 2. ¿Damos el paso adelante? Solo si NO estamos ya en zona NEAR
+    if abs(det.error_x) >= 40:
         st.recenter_centered_frames = 0
-        px.changed_speed_slow = True
-        forward(px)
-        time.sleep(0.1)
-        stop(px)
+
+        if not det.near_fused and not det.too_close_to_measure:
+            log_event(px, Estado.RECENTER, f"Corrigiendo chasis: err={det.error_x:.1f} ang={target_angle:.1f}")
+            px.changed_speed_slow = True
+            forward(px)
+            time.sleep(0.1)
+            stop(px)
+        else:
+            # Si ya estamos cerca, solo movemos el servo de dirección, NO el motor
+            log_event(px, Estado.RECENTER, f"Cerca del objetivo (Area={det.area}). Solo ajusto dirección.")
+            time.sleep(0.1) # Pausa para dejar que la cámara refresque
+
 
     # Comprobación de cercanía (ahora que sabemos que no hemos saltado a TRACK)
     if det.valid_for_near and px.last_state != Estado.NEAR:
