@@ -370,7 +370,7 @@ def backward(px):
     if px.last_cmd == Cmd.BACKWARD:
         return False
 
-    px.backward(SLOW_SPEED)
+    px.backward(FAST_SPEED)
     px.last_cmd = Cmd.BACKWARD
     px.forward_active = False
     return True
@@ -554,7 +554,7 @@ def apply_safety(px, estado, st, det):
         log_event(px, estado, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
         stop(px)
         backward(px)
-        time.sleep(0.4)
+        time.sleep(1)
         stop(px)
         st.is_escaping = True
         st.escape_end_time = time.time() + 1.0
@@ -1052,7 +1052,7 @@ def state_track(px, estado, st, distancia_real, test_mode):
         px.changed_speed_slow = True
     else:
         px.changed_speed_slow = False
-        
+
     forward(px)
 
     # ============================================================
@@ -1151,7 +1151,7 @@ def state_near(px, estado, st, distancia_real, test_mode):
             # CONDICIÓN DE ALEJAMIENTO REAL: 
             # Solo volvemos a RECENTER si el objeto está a más de 45cm (Margen de seguridad)
             # O si el error de centrado es EXTREMO (se ha ido del frame)
-            if px.distance_real > 45 and abs(det.error_x) > 100:
+            if px.distance_real > 60 and abs(det.error_x) > 100:
                 log_event(px, Estado.NEAR, f"Distancia real ({px.distance_real})cm Error_x ({det.error_x})-> RECENTER")
                 st.near_cooldown = 0
                 px.last_state = Estado.NEAR
