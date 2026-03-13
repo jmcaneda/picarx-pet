@@ -862,9 +862,6 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
 
         px.changed_speed_slow = False
 
-        px.set_cam_pan_angle(0)
-        px.dir_current_angle = 0
-
         px.last_state = Estado.RECENTER
         return Estado.RECENTER
 
@@ -890,11 +887,20 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
 
     st.recenter_lost_frames = 0
 
-    # 2. Lógica de corrección de chasis
-    # Calculamos ángulo de ruedas proporcional al error
-    # Si error es -160, ángulo será -30 (máx izquierda)
-    # En clamp estoy aplicando un k = 0.9 sobre el angulo maximo y minimo
-    target_angle = clamp(det.error_x / 10.0, SERVO_ANGLE_MIN, SERVO_ANGLE_MAX)
+    # ============================================================
+    # EL LÍDER: El PAN busca centrar la baliza en la imagen
+    # ============================================================
+    if det.error_x > 20:
+        pan_right(px)
+    elif det.error_x < -20:
+        pan_left(px)
+
+    # ============================================================
+    # 2. EL SEGUIDOR: Las ruedas siguen el ángulo de la cámara
+    # En lugar de mirar el error_x, miramos hacia donde apunta el cuello
+    # ============================================================
+    # Si la cámara está a +20°, las ruedas giran a +20° para alinear el chasis
+    target_angle = clamp(px.last_pan, SERVO_ANGLE_MIN, SERVO_ANGLE_MAX)
     px.set_dir_servo_angle(target_angle)
 
     # ============================================================
@@ -912,15 +918,14 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
     if abs(det.error_x) >= 40:
         st.recenter_centered_frames = 0
 
-        if not det.near_fused and not det.too_close_to_measure:
+        if (not det.near_fused and not det.too_close_to_measure) or det.area < 45000:
             log_event(px, Estado.RECENTER, f"Corrigiendo chasis: err={det.error_x:.1f} ang={target_angle:.1f}")
             px.changed_speed_slow = True
             forward(px)
             time.sleep(0.15)
             stop(px)
         else:
-            # Si ya estamos cerca, solo movemos el servo de dirección, NO el motor
-            log_event(px, Estado.RECENTER, f"Cerca del objetivo (Area={det.area}). Solo ajusto dirección.")
+            log_event(px, Estado.RECENTER, f"Cerca del objetivo (Area={det.area})")
             time.sleep(0.1) # Pausa para dejar que la cámara refresque
 
 
@@ -928,16 +933,6 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
     if det.valid_for_near and px.last_state != Estado.NEAR:
         px.last_state = Estado.RECENTER
         return Estado.NEAR
-
-    '''
-    # ============================================================
-    # MOVER CÁMARA PARA MANTENER LA BALIZA EN EL FRAME
-    # ============================================================
-    if det.error_x > 20:
-        pan_right(px)
-    elif det.error_x < -20:
-        pan_left(px)
-    '''
 
     px.last_state = Estado.RECENTER
     return Estado.RECENTER
