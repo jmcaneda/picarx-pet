@@ -994,7 +994,9 @@ def state_track(px, estado, st, distancia_real, test_mode):
     # SI EL ERROR ESTA MUY EN EL FLANCO
     # ============================================================
     if abs(det.error_x) > 100:
+        
         st.track_edge_frames += 1
+        log_event(px, Estado.TRACK, f"🚨 flanco (Error_x={det.error_x}, Area={det.area}, Dist={det.distance}, Edge={st.track_edge_frames}/3)")
         stop(px)
         if st.track_edge_frames >=3:
             st.track_edge_frames = 0
@@ -1046,15 +1048,19 @@ def state_track(px, estado, st, distancia_real, test_mode):
         px.set_dir_servo_angle(0)
         px.dir_current_angle = 0
 
-
+    if det.distance < 60:
+        px.changed_speed_slow = True
+    else:
+        px.changed_speed_slow = False
+        
     forward(px)
-
 
     # ============================================================
     # SALIDA TRACK → NEAR
     # ============================================================
-    if det.valid_for_near:
-        log_event(px, Estado.TRACK, "Distancia crítica → NEAR")
+    if det.near_fused or det.too_close_to_measure:
+        log_event(px, Estado.TRACK, f"Fusión indica cercanía (Area={det.area}, Dist={det.distance}) -> NEAR")
+        stop(px) # ¡Frenazo seco!
         px.last_state = Estado.TRACK
         return Estado.NEAR
 
