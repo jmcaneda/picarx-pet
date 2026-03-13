@@ -922,7 +922,7 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
             log_event(px, Estado.RECENTER, f"Corrigiendo chasis: err={det.error_x:.1f} ang={target_angle:.1f}")
             px.changed_speed_slow = True
             forward(px)
-            time.sleep(0.15)
+            time.sleep(0.12)
             stop(px)
         else:
             log_event(px, Estado.RECENTER, f"Cerca del objetivo (Area={det.area})")
