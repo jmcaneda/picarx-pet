@@ -323,6 +323,7 @@ def init_flags(px):
     # MOVIMIENTO
     px.changed_speed_slow = False
     px.forward_active = False
+    px.flipflop_dir_servo = 1
 
     # SEGURIDAD
     px.distance_real = SAFE_DISTANCE      # distancia filtrada
@@ -548,43 +549,48 @@ def update_safety(px):
     return d
 
 def apply_safety(px, estado, st, det):
+    ahora = time.time()
 
-    # 1. PELIGRO EXTREMO (Mantiene el cambio de estado a SEARCH para huir)
-    if px.distance_real < DANGER_DISTANCE and not st.is_escaping:
-        log_event(px, estado, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
+    # --- 1. GESTIÓN DEL TIEMPO DE GRACIA (Prioridad Máxima) ---
+    if st.is_escaping:
+        if ahora < st.escape_end_time:
+            # Mientras estemos en el segundo de "paz", no evaluamos más peligros
+            return estado 
+        else:
+            # El tiempo de gracia ha terminado justo ahora
+            log_event(px, estado, "🛡️ Escudo post-escape desactivado. Reactivando sensores.")
+            st.is_escaping = False
+            px.changed_speed_slow = True # Mantenemos precaución al reanudar
+
+    # --- 2. PELIGRO EXTREMO ---
+    # Solo entramos aquí si NO estamos escapando (gracias al punto 1)
+    if px.distance_real < DANGER_DISTANCE:
+        log_event(px, estado, f"🚨 Peligro extremo ({px.distance_real}cm) → Ejecutando SCAPE")
         stop(px)
-        px.set_dir_servo_angle(20)
+        
+        # Maniobra física
+        px.flipflop_dir_servo *= -1
+        px.set_dir_servo_angle(px.flipflop_dir_servo * 25) # Un poco más de ángulo ayuda
         backward(px)
         time.sleep(1.2)
         stop(px)
+        
+        # Configurar inmunidad
         st.is_escaping = True
-        st.escape_end_time = time.time() + 1.0
-        px.last_state = Estado.SEC
+        st.escape_end_time = ahora + 1.5 # 1.5s de inmunidad para que el sensor respire
         return Estado.SEARCH 
 
-    # 2. ADVERTENCIA (Solo cambia la velocidad, NO el estado)
-    if px.distance_real < WARNING_DISTANCE:
-        px.changed_speed_slow = True
-    else:
-        px.changed_speed_slow = False
+    # --- 3. ADVERTENCIA DE VELOCIDAD ---
+    px.changed_speed_slow = (px.distance_real < WARNING_DISTANCE)
 
-    # 3. FUSIÓN PARA NEAR (Cambio de estado legítimo)
+    # --- 4. FUSIÓN PARA NEAR ---
     if det.near_fused:
-        log_event(px, estado, "Baliza muy cerca según fusión → NEAR")
+        log_event(px, estado, f"🎯 Objetivo alcanzado (Area={det.area}) → NEAR")
         stop(px)
         px.changed_speed_slow = False
-        px.last_state = Estado.SEC
         return Estado.NEAR
     
-    # 4. FINALIZACIÓN DE ESCAPE
-    if st.is_escaping and time.time() >= st.escape_end_time:
-        log_event(px, px.last_state, "Maniobra de escape finalizada")
-        st.is_escaping = False
-        # Al salir de escape, solemos estar cerca, mantenemos precaución
-        px.changed_speed_slow = True 
-    
-    return estado  # Retorna el estado original (TRACK, RECENTER, etc.)
-    
+    return estado
 
 # ============================================================
 # FUNCIONES
@@ -743,6 +749,7 @@ def state_reset(px, estado, st, distancia_real, test_mode):
     px.last_tilt = 0
     px.dir_current_angle = 0
     px.changed_speed_slow = False
+    px.flipflop_dir_servo = 1
 
     # ------------------------------------------------------------
     # LIMPIAR CONTADORES DEL ESTADO INTERNO
@@ -997,12 +1004,12 @@ def state_track(px, estado, st, distancia_real, test_mode):
     if abs(det.error_x) > 100:
         
         st.track_edge_frames += 1
-        log_event(px, Estado.TRACK, f"🚨 flanco (Error_x={det.error_x}, Area={det.area}, Dist={det.distance}, Edge={st.track_edge_frames}/3)")
+        log_event(px, Estado.TRACK, f"🚨 En flanco (Error_x={det.error_x}, Area={det.area}, Dist={det.distance}, Edge={st.track_edge_frames}/3)")
         stop(px)
         if st.track_edge_frames >=3:
             st.track_edge_frames = 0
             px.last_state = Estado.TRACK
-            return Estado.SEARCH
+            return Estado.RECENTER
 
         if det.error_x > 0:
             turn_left(px)
