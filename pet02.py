@@ -553,8 +553,9 @@ def apply_safety(px, estado, st, det):
     if px.distance_real < DANGER_DISTANCE and not st.is_escaping:
         log_event(px, estado, f"🚨 Peligro extremo distancia={px.distance_real} → SCAPE")
         stop(px)
+        px.set_dir_servo_angle(20)
         backward(px)
-        time.sleep(1)
+        time.sleep(1.2)
         stop(px)
         st.is_escaping = True
         st.escape_end_time = time.time() + 1.0
