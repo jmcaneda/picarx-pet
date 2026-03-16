@@ -8,6 +8,7 @@ from vilib import Vilib
 from enum import Enum
 from libs import hello_px, check_robot
 from picarx.music import Music
+# import subprocess
 
 # ============================================================
 # CONSTANTES
@@ -1163,8 +1164,15 @@ def state_near(px, estado, st, distancia_real, test_mode):
     # VERIFICACIÓN DE PRESENCIA (Si desaparece, volvemos a buscar)
     # ============================================================
     if not det.valid_for_search and not det.valid_for_near:
-        # Si ya no la veo en absoluto, no tiene sentido esperar el cooldown
-        log_event(px, Estado.NEAR, "Baliza desaparecida durante NEAR → SEARCH")
+        log_event(px, Estado.NEAR, "Baliza desaparecida → SEARCH")
+        
+        # RESET de flags para que pueda volver a celebrar en el futuro
+        st.near_nodded = False 
+        st.near_backed = False
+        
+        # Apagamos altavoz por seguridad térmica
+        os.system("pinctrl set 20 op dl") 
+        
         px.last_state = Estado.NEAR
         return Estado.SEARCH
 
@@ -1176,13 +1184,20 @@ def state_near(px, estado, st, distancia_real, test_mode):
         st.near_cooldown += 1
         
         # Le damos un respiro. No evaluamos la salida hasta que pasen unos frames
-        if st.near_cooldown > 20: 
+        if st.near_cooldown > 15: 
             # CONDICIÓN DE ALEJAMIENTO REAL: 
             # Solo volvemos a RECENTER si el objeto está a más de 45cm (Margen de seguridad)
             # O si el error de centrado es EXTREMO (se ha ido del frame)
-            if px.distance_real > 60 and abs(det.error_x) > 100:
+            if px.distance_real > 45 or abs(det.error_x) > 80:
                 log_event(px, Estado.NEAR, f"Distancia real ({px.distance_real})cm Error_x ({det.error_x})-> RECENTER")
+                # RESET para la próxima vez
+                st.near_nodded = False
+                st.near_backed = False
                 st.near_cooldown = 0
+                
+                # Seguridad altavoz
+                os.system("pinctrl set 20 op dl")
+
                 px.last_state = Estado.NEAR
                 return Estado.RECENTER
             
