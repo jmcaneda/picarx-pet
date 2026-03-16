@@ -3,13 +3,11 @@
 ############################################################
 
 import os
+import subprocess
 import time
 from vilib import Vilib
 from enum import Enum
 from libs import hello_px, check_robot
-# from picarx.music import Music
-
-# music = Music()
 
 # ============================================================
 # CONSTANTES
@@ -691,6 +689,20 @@ def clamp(value, min_value, max_value):
     k = 0.9 # valor de proporcionalidad entre 0.1 y 1
     return max(min_value*k, min(value, max_value*k))
 
+def say_angry():
+    """Reproduce el sonido y apaga el altavoz inmediatamente después"""
+    # 1. Activamos el pin físicamente (DH = Drive High)
+    os.system("pinctrl set 20 op dh")
+    
+    # 2. Reproducimos el sonido (usando la ruta correcta)
+    # Usamos subprocess.run para que el código espere a que termine el sonido
+    ruta_sonido = "/home/jmcaneda/picarx-projects/autonomous/sounds/sounds_angry.wav"
+    subprocess.run(["aplay", "-D", "plughw:2,0", "-q", ruta_sonido])
+    
+    # 3. Apagamos el pin inmediatamente (DL = Drive Low)
+    os.system("pinctrl set 20 op dl")
+    print("Sonido finalizado y altavoz en reposo (frío).")
+
 
 # ============================================================
 # ESTADOS
@@ -1132,6 +1144,7 @@ def state_near(px, estado, st, distancia_real, test_mode):
     # ============================================================
     if not st.near_nodded:
         log_event(px, Estado.NEAR, "Gesto de asentimiento")
+        say_angry()
         tilt_yes(px)
         
         st.near_nodded = True # Marcamos nodded como True para no repetir asentir
@@ -1233,6 +1246,7 @@ def pet_mode(px, test_mode):
         px.set_dir_servo_angle(0)
         px.set_cam_pan_angle(0)
         px.set_cam_tilt_angle(0)
+        os.system("pinctrl set 20 op dl")
         print("✔ Robot detenido de forma segura.")
 
 
