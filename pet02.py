@@ -3,11 +3,11 @@
 ############################################################
 
 import os
-import subprocess
 import time
 from vilib import Vilib
 from enum import Enum
 from libs import hello_px, check_robot
+from picarx.music import Music
 
 # ============================================================
 # CONSTANTES
@@ -287,6 +287,10 @@ def init_camera(px):
     # Pequeña pausa para estabilizar la cámara
     time.sleep(0.5)
 
+def init_internal_sound(px):
+    music = Music()
+    music.music_set_volume(20)
+    return music
 
 def init_internal_state(px):
     """
@@ -583,7 +587,7 @@ def apply_safety(px, estado, st, det):
 
     # --- 4. FUSIÓN PARA NEAR ---
     if det.near_fused:
-        log_event(px, estado, f"🎯 Objetivo alcanzado (Area={det.area}) → NEAR")
+        log_event(px, estado, f"🎯 Objetivo alcanzado → NEAR")
         stop(px)
         px.changed_speed_slow = False
         return Estado.NEAR
@@ -1144,7 +1148,10 @@ def state_near(px, estado, st, distancia_real, test_mode):
     # ============================================================
     if not st.near_nodded:
         log_event(px, Estado.NEAR, "Gesto de asentimiento")
-        say_angry()
+        # say_angry()
+        px.music_manager.sound_play('/home/jmcaneda/picarx-projects/autonomous/sounds/sounds_angry.wav')
+        time.sleep(1)
+        px.music_manager.music_stop()
         tilt_yes(px)
         
         st.near_nodded = True # Marcamos nodded como True para no repetir asentir
@@ -1203,6 +1210,7 @@ def pet_mode(px, test_mode):
 
     hello_px(px)
     init_camera(px)
+    px.music_manager = init_internal_sound(px)
     init_flags(px)
     estado = init_internal_state(px)
     check_robot(px, log_event)
