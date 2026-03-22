@@ -76,6 +76,18 @@ class Cmd(Enum):
     CAM_PAN_NO = 50
     KEEP_ALIVE = 99 # Comando ficticio para mantener maniobra activa sin cambiar estado
 
+class BalizaConfig:
+    # Dimensiones físicas en cm
+    ANCHO_MIN = 9.0
+    ANCHO_MAX = 12.0
+    ALTO = 14.0
+    
+    # Calculamos los ratios objetivo (Ancho / Alto)
+    # Ratio mínimo: 9/14 ≈ 0.64
+    # Ratio máximo: 12/14 ≈ 0.85
+    RATIO_MIN = ANCHO_MIN / ALTO
+    RATIO_MAX = ANCHO_MAX / ALTO
+
 class Det:
     """
     Detección fusionada: visión + distancia.
@@ -93,6 +105,7 @@ class Det:
         # Distancia
         self.distance = distance
         self.distance_raw = distance_raw
+        self.ratio_actual = 0.0
 
     # ------------------------------------------------------------
     # PROPIEDADES DE VISIÓN
@@ -115,8 +128,21 @@ class Det:
 
     @property
     def is_proportional(self):
-        ratio = self.w / self.h if self.h != 0 else 0
-        return 0.3 < ratio < 3.5 # Evita detectar líneas largas o reflejos extraños
+        if self.h <= 0: 
+            self.ratio_actual = 0.0
+            return False
+            
+        # 1. Calculamos y GUARDAMOS el dato en el objeto
+        self.ratio_actual = round(self.w / self.h, 2) 
+        
+        # 2. Definimos los límites
+        tolerancia = 0.15
+        limite_inferior = BalizaConfig.RATIO_MIN - tolerancia
+        limite_superior = BalizaConfig.RATIO_MAX + tolerancia
+        
+        # 3. Devolvemos la comparación (True/False)
+        return limite_inferior < self.ratio_actual < limite_superior
+
 
     @property
     def valid_for_search(self):
@@ -263,6 +289,11 @@ class RobotState:
         self.escape_end_time = 0             # Tiempo de fin de escape
         self.last_sec_active = False         # Señal de seguridad reciente
 
+        # ============================================================
+        # Proporcionalidad
+        # ============================================================
+        self.ratio_history = []
+        
 
 # ============================================================
 # INICIALIZACIÓN
@@ -616,19 +647,43 @@ def get_detection(px):
         y = raw["y"],
         w = raw["w"],
         h = raw["h"],
-        distance = px.distance_real,      # filtrada
-        distance_raw = px.distance_raw    # cruda
+        distance = px.distance_real,
+        distance_raw = px.distance_raw
     )
 
-    # Filtros anti-fantasma
+    # 1. Filtros básicos (Coordenadas y existencia)
     if det.x < 0 or det.y < 0:
         det.n = 0
+    
     if det.n >= 1 and (det.w <= 0 or det.h <= 0):
         det.n = 0
+
+    # 2. FILTRO DE GEOMETRÍA (Tu nueva lógica)
+    # Al llamar a det.is_proportional, se calcula y se guarda det.ratio_actual
+    if det.n >= 1 and not det.is_proportional:
+        # Si no tiene la forma de la baliza, lo tratamos como "nada"
+        det.n = 0 
+
+    # 3. Filtro de área (Solo si ha pasado los anteriores)
     if det.area < 300:
         det.n = 0
 
     return det, raw
+
+
+def is_stable(px):
+    """Comprueba si la forma ha sido consistente en los últimos 5 frames"""
+    if not self.is_proportional:
+        return False
+    
+    self.ratio_history.append(self.w / self.h)
+    if len(self.ratio_history) > 5:
+        self.ratio_history.pop(0)
+        
+    # Si la desviación estándar es muy alta, es ruido
+    # (O simplemente ver si la media sigue siendo proporcional)
+    media_ratio = sum(self.ratio_history) / len(self.ratio_history)
+    return 0.49 < media_ratio < 1.0
 
 
 def log_event(px, estado, msg):
@@ -680,8 +735,9 @@ def print_dashboard(px, estado, test_mode):
     print(f" CAM TILT:   {px.last_tilt:>5.1f}°")
 
     # Última detección
-    print(f" AREA:       {px.last_det.area}")
-    print(f" ERR_X:      {px.last_det.error_x}")
+    print(f" AREA:          {px.last_det.area}")
+    print(f" ERR_X:         {px.last_det.error_x}")
+    print(f" GEOMETRIA:     {px.last_det.ratio_actual} " + ("✅ OK" if px.last_det.is_proportional else "❌ BAD"))
 
     print("="*45)
     print(" Presiona Ctrl+C para detener")
