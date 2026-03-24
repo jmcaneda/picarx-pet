@@ -465,19 +465,18 @@ def rock_robot(px):
     return True
 
 def circle_robot(px, direction=1):
-    step = CAM_STEP
-    step *= 2
+    px.set_cam_pan_angle(0)
+    px.last_pan = 0
     if direction > 0:
-        turn_right(px)
-        pan_left(px, step)
+        turn_right(px) 
     else:
         turn_left(px)
-        pan_right(px, step)
-
+        
     px.changed_speed_slow = False
     forward(px)
-    time.sleep(1)
+    time.sleep(0.8)
     stop(px)
+    time.sleep(0.2)
 
     return True
 
