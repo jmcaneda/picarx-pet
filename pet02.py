@@ -8,7 +8,6 @@ from vilib import Vilib
 from enum import Enum
 from libs import hello_px, check_robot
 from picarx.music import Music
-# import subprocess
 
 # ============================================================
 # CONSTANTES
@@ -31,7 +30,6 @@ CY = 240
 
 FAST_SPEED = 35
 SLOW_SPEED = 10
-TURN_SPEED = 15
 
 CAM_STEP = 4
 
@@ -229,7 +227,6 @@ class RobotState:
         self.search_found_frames = 0         # Frames con detección válida
         self.search_centered_frames = 0
         self.search_cam_dir = 1              # Dirección del barrido PAN
-        self.search_wheels_dir = 1           # Dirección del giro del chasis
         self.search_edge_frames = 0          # Frames con baliza en el borde
         self.lost_in_space = False           # Señal de pérdida total
 
@@ -240,8 +237,6 @@ class RobotState:
 
         self.recenter_centered_frames = 0    # Frames centrado
         self.recenter_lost_frames = 0        # Frames sin detección
-        self.just_recentered = None          # Cooldown tras RECENTER
-
 
         # ============================================================
         # TRACK — Seguimiento dinámico de la baliza
@@ -259,14 +254,6 @@ class RobotState:
         # Evita entrar en NEAR por ruido.
         self.near_hold_frames = 0
 
-        # Frames consecutivos en los que la condición de NEAR deja de cumplirse.
-        # Controla la salida suave de NEAR.
-        self.near_exit_frames = 0
-
-        # Frames sin detección durante NEAR.
-        # Si supera un umbral → volver a SEARCH.
-        self.near_lost_frames = 0
-
         # Indica si ya se ejecutó el retroceso de cortesía.
         self.near_backed = False
 
@@ -276,11 +263,6 @@ class RobotState:
         # Cooldown para evitar reentradas rápidas en NEAR.
         self.near_cooldown = 0
 
-        # Control interno para animación YES (si lo usas en el futuro)
-        self.yes_step = 0
-        self.yes_next_time = 0.0
-
-
         # ============================================================
         # SCAPE — Protocolos de seguridad y evasión
         # ============================================================
@@ -288,11 +270,6 @@ class RobotState:
         self.is_escaping = False             # Señal de escape activo
         self.escape_end_time = 0             # Tiempo de fin de escape
         self.last_sec_active = False         # Señal de seguridad reciente
-
-        # ============================================================
-        # Proporcionalidad
-        # ============================================================
-        self.ratio_history = []
         
 
 # ============================================================
@@ -670,21 +647,6 @@ def get_detection(px):
     return det, raw
 
 
-def is_stable(px):
-    """Comprueba si la forma ha sido consistente en los últimos 5 frames"""
-    if not self.is_proportional:
-        return False
-    
-    self.ratio_history.append(self.w / self.h)
-    if len(self.ratio_history) > 5:
-        self.ratio_history.pop(0)
-        
-    # Si la desviación estándar es muy alta, es ruido
-    # (O simplemente ver si la media sigue siendo proporcional)
-    media_ratio = sum(self.ratio_history) / len(self.ratio_history)
-    return 0.49 < media_ratio < 1.0
-
-
 def log_event(px, estado, msg):
     # Si es igual al último mensaje, no lo repitas
     if px.last_log == (estado, msg):
@@ -748,20 +710,6 @@ def clamp(value, min_value, max_value):
     """
     k = 0.9 # valor de proporcionalidad entre 0.1 y 1
     return max(min_value*k, min(value, max_value*k))
-
-def say_angry():
-    """Reproduce el sonido y apaga el altavoz inmediatamente después"""
-    # 1. Activamos el pin físicamente (DH = Drive High)
-    os.system("pinctrl set 20 op dh")
-    
-    # 2. Reproducimos el sonido (usando la ruta correcta)
-    # Usamos subprocess.run para que el código espere a que termine el sonido
-    ruta_sonido = "/home/jmcaneda/picarx-projects/autonomous/sounds/sounds_angry.wav"
-    subprocess.run(["aplay", "-D", "plughw:2,0", "-q", ruta_sonido])
-    
-    # 3. Apagamos el pin inmediatamente (DL = Drive Low)
-    os.system("pinctrl set 20 op dl")
-    print("Sonido finalizado y altavoz en reposo (frío).")
 
 
 # ============================================================
@@ -835,7 +783,6 @@ def state_reset(px, estado, st, distancia_real, test_mode):
 
     st.recenter_centered_frames = 0
     st.recenter_lost_frames = 0
-    st.just_recentered = None
 
     st.track_lost_frames = 0
     st.track_centered_frames = 0
@@ -1204,7 +1151,6 @@ def state_near(px, estado, st, distancia_real, test_mode):
     # ============================================================
     if not st.near_nodded:
         log_event(px, Estado.NEAR, "Gesto de asentimiento")
-        # say_angry()
         px.music_manager.sound_play('/home/jmcaneda/picarx-projects/autonomous/sounds/sounds_angry.wav')
         time.sleep(1)
         px.music_manager.music_stop()
