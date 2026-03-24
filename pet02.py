@@ -502,7 +502,7 @@ def tilt_top(px, step=CAM_STEP):
 
     px.last_cmd = Cmd.CAM_TILT_TOP
 
-    return 1 if new_angle <= TILT_MAX else 0
+    return True
 
 
 def tilt_bottom(px, step=CAM_STEP):
@@ -516,7 +516,7 @@ def tilt_bottom(px, step=CAM_STEP):
 
     px.last_cmd = Cmd.CAM_TILT_BOTTOM
 
-    return 1 if new_angle >= TILT_MIN else 0
+    return True
 
 
 def tilt_yes(px):
@@ -696,7 +696,10 @@ def print_dashboard(px, estado, test_mode):
     print(f" CAM TILT:   {px.last_tilt:>5.1f}°")
 
     # Última detección
-    print(f" AREA:          {px.last_det.area}")
+    if px.last_det:
+        print(f" AREA:          {px.last_det.area}")
+    else:
+        print("Sin detección")    
     print(f" ERR_X:         {px.last_det.error_x}")
     print(f" GEOMETRIA:     {px.last_det.ratio_actual} " + ("✅ OK" if px.last_det.is_proportional else "❌ BAD"))
 
@@ -708,8 +711,7 @@ def clamp(value, min_value, max_value):
     """
     Limita 'value' entre min_value y max_value.
     """
-    k = 0.9 # valor de proporcionalidad entre 0.1 y 1
-    return max(min_value*k, min(value, max_value*k))
+    return max(min_value, min(value, max_value))
 
 
 # ============================================================
