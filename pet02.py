@@ -137,10 +137,8 @@ class Det:
         tolerancia = 0.15
         limite_inferior = BalizaConfig.RATIO_MIN - tolerancia
         limite_superior = BalizaConfig.RATIO_MAX + tolerancia
-        
-        # 3. Devolvemos la comparación (True/False)
-        return limite_inferior < self.ratio_actual < limite_superior
 
+        return limite_inferior < self.ratio_actual < limite_superior
 
     @property
     def valid_for_search(self):
@@ -187,7 +185,7 @@ class Det:
 
     @property
     def near_by_distance(self):
-        return self.distance < 40
+        return self.distance < 50
 
     @property
     def too_close_to_measure(self):
@@ -203,11 +201,12 @@ class Det:
     # ------------------------------------------------------------
     @property
     def near_fused(self):
+
         # visión + distancia coherente para NEAR
         if self.valid_for_near and self.near_by_distance:
             return True
 
-        if self.valid_for_near and not self.valid_distance and self.area > 45000:
+        if self.valid_for_near and not self.valid_distance and self.area > 40000:
             return True
 
         if self.too_close_to_measure:
