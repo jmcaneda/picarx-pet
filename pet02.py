@@ -157,7 +157,7 @@ class Det:
             return False
 
         # Área mínima para evitar ruido
-        if self.area < 800:
+        if self.area < 300:
             return False
 
         # Permitir detecciones en el borde del frame
@@ -594,7 +594,7 @@ def apply_safety(px, estado, st, det):
     px.changed_speed_slow = (px.distance_real < WARNING_DISTANCE)
 
     # --- 4. FUSIÓN PARA NEAR ---
-    if det.near_fused:
+    if det and det.near_fused:
         log_event(px, estado, f"🎯 Objetivo alcanzado → NEAR")
         stop(px)
         px.changed_speed_slow = False
@@ -943,7 +943,7 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
             log_event(px, Estado.RECENTER, f"Corrigiendo chasis: err={det.error_x:.1f} ang={target_angle:.1f}")
             px.changed_speed_slow = True
             forward(px)
-            time.sleep(0.12)
+            time.sleep(0.1)
             stop(px)
         else:
             log_event(px, Estado.RECENTER, f"Cerca del objetivo (Area={det.area})")
@@ -1056,10 +1056,6 @@ def state_track(px, estado, st, distancia_real, test_mode):
             pan_right(px)
         else:
             pan_left(px)
-    elif abs(det.error_x) < 15:
-        # Opcional: Centrar suavemente la cámara si el robot ya está bien alineado
-        # Esto prepara la cámara para la siguiente fase de RECENTER o NEAR
-        pass
 
     # ============================================================
     # CORRECCIÓN DEL CHASIS (GIRO SUAVE LIMITADO)
