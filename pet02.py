@@ -137,9 +137,6 @@ class Det:
         tolerancia = 0.15
         limite_inferior = BalizaConfig.RATIO_MIN - tolerancia
         limite_superior = BalizaConfig.RATIO_MAX + tolerancia
-
-        if self.area > 150000:
-            return True
         
         # 3. Devolvemos la comparación (True/False)
         return limite_inferior < self.ratio_actual < limite_superior
@@ -835,7 +832,7 @@ def state_search(px, estado, st, distancia_real, test_mode):
     # 1. Detección válida
     if det.valid_for_search or det.valid_for_near:
         # Si el error es enorme (>150), RECENTER se encargará de girar el cuerpo
-        log_event(px, Estado.SEARCH, f"Baliza detectada (err={det.error_x}) -> RECENTER")
+        log_event(px, Estado.SEARCH, f"Baliza detectada (err={det.error_x} dist={det.distance} area={det.area}) -> RECENTER")
         px.last_state = Estado.SEARCH
         return Estado.RECENTER
 
