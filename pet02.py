@@ -21,8 +21,8 @@ PAN_MAX = 35
 TILT_MIN = -20
 TILT_MAX = 20
 
-SERVO_ANGLE_MIN = -30
-SERVO_ANGLE_MAX = 30
+SERVO_ANGLE_MIN = -25
+SERVO_ANGLE_MAX = 25
 MAX_TRACK_ANGLE = 12
 
 CX = 320
@@ -130,15 +130,28 @@ class Det:
             self.ratio_actual = 0.0
             return False
             
-        # 1. Calculamos y GUARDAMOS el dato en el objeto
+        # 1. Cálculo del ratio actual
         self.ratio_actual = round(self.w / self.h, 2) 
         
-        # 2. Definimos los límites
-        tolerancia = 0.15
+        # 2. Tolerancia Dinámica basada en el área
+        # Si el área es pequeña (< 5000), la cámara falla más: damos 0.25 de margen
+        # Si el área es grande (> 5000), el objeto es claro: damos 0.15 de margen
+        if self.area < 5000:
+            tolerancia = 0.25  # Más "ojos gordos" con la forma a distancia
+        else:
+            tolerancia = 0.15  # Precisión normal de cerca
+            
+        # 3. Definimos los límites con la nueva tolerancia
         limite_inferior = BalizaConfig.RATIO_MIN - tolerancia
         limite_superior = BalizaConfig.RATIO_MAX + tolerancia
 
+        # 4. Verificación (con un extra de seguridad)
+        # Evitamos ratios absurdos (objetos que son 5 veces más altos que anchos o viceversa)
+        if self.ratio_actual < 0.25 or self.ratio_actual > 1.2:
+            return False
+
         return limite_inferior < self.ratio_actual < limite_superior
+
 
     @property
     def valid_for_search(self):
@@ -581,7 +594,7 @@ def apply_safety(px, estado, st, det):
         px.flipflop_dir_servo *= -1
         px.set_dir_servo_angle(px.flipflop_dir_servo * 25) # Un poco más de ángulo ayuda
         backward(px)
-        time.sleep(1.2)
+        time.sleep(1)
         stop(px)
         
         # Configurar inmunidad
@@ -898,10 +911,12 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
     # ============================================================
     if not det.valid_for_search and not det.valid_for_near:
         st.recenter_lost_frames += 1
-        if st.recenter_lost_frames >= 20:
+        if st.recenter_lost_frames >= 25:
             log_event(px, Estado.RECENTER, "Pérdida de detección → SEARCH")
             px.last_state = Estado.RECENTER
             return Estado.SEARCH
+
+        stop(px)
         px.last_state = Estado.RECENTER
         return Estado.RECENTER
 
@@ -910,23 +925,24 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
     # ============================================================
     # EL LÍDER: El PAN busca centrar la baliza en la imagen
     # ============================================================
-    if det.error_x > 20:
+    if det.error_x > 15:
         pan_right(px)
-    elif det.error_x < -20:
+    elif det.error_x < -15:
         pan_left(px)
 
     # ============================================================
     # 2. EL SEGUIDOR: Las ruedas siguen el ángulo de la cámara
     # En lugar de mirar el error_x, miramos hacia donde apunta el cuello
     # ============================================================
-    # Si la cámara está a +20°, las ruedas giran a +20° para alinear el chasis
-    target_angle = clamp(px.last_pan, SERVO_ANGLE_MIN, SERVO_ANGLE_MAX)
+    # Si la cámara está a +20°, las ruedas giran a +18° para alinear el chasis
+    suavizado = 0.6 
+    target_angle = clamp(px.last_pan * suavizado, SERVO_ANGLE_MIN, SERVO_ANGLE_MAX)
     px.set_dir_servo_angle(target_angle)
 
     # ============================================================
     # ALINEACIÓN DEL CHASIS
     # ============================================================
-    if abs(det.error_x) < 40:
+    if abs(det.error_x) < 40 and abs(px.last_pan) < 15:
         st.recenter_centered_frames += 1
         log_event(px, Estado.RECENTER, f"Frame estable ({st.recenter_centered_frames}/2)")
         if st.recenter_centered_frames >= 2:
@@ -934,23 +950,27 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
             px.last_state = Estado.RECENTER
             return Estado.TRACK
 
-    # 2. ¿Damos el paso adelante? Solo si NO estamos ya en zona NEAR
-    if abs(det.error_x) >= 40:
+    else:
         st.recenter_centered_frames = 0
 
-        if (not det.near_fused and not det.too_close_to_measure) or det.area < 45000:
-            log_event(px, Estado.RECENTER, f"Corrigiendo chasis: err={det.error_x:.1f} ang={target_angle:.1f}")
-            px.changed_speed_slow = True
-            forward(px)
-            time.sleep(0.1)
-            stop(px)
-        else:
-            log_event(px, Estado.RECENTER, f"Cerca del objetivo (Area={det.area})")
-            time.sleep(0.1) # Pausa para dejar que la cámara refresque
+
+    # --- MOVIMIENTO FÍSICO ---
+    # Solo avanzamos si no estamos en NEAR y el error es aún notable
+    if not det.near_fused and det.area < 40000:
+        log_event(px, Estado.RECENTER, f"Corrigiendo chasis: err={det.error_x:.1f} ang={target_angle:.1f}")
+        
+        # PASO CORTO: Reducimos el sleep a 0.05 para que el giro sea más granular
+        px.changed_speed_slow = True
+        forward(px)
+        time.sleep(0.05) 
+        stop(px)
+    else:
+        # Si estamos cerca, solo esperamos a que la cámara se estabilice
+        time.sleep(0.1)
 
 
-    # Comprobación de cercanía (ahora que sabemos que no hemos saltado a TRACK)
-    if det.valid_for_near and px.last_state != Estado.NEAR:
+    # --- SALIDA A NEAR ---
+    if det.near_fused:
         px.last_state = Estado.RECENTER
         return Estado.NEAR
 
