@@ -902,8 +902,9 @@ def state_recenter(px, estado, st, distancia_real, test_mode):
     # ============================================================
     if not det.valid_for_search and not det.valid_for_near:
         st.recenter_lost_frames += 1
-        if st.recenter_lost_frames >= 25:
+        if st.recenter_lost_frames >= 30:
             log_event(px, Estado.RECENTER, "Pérdida de detección → SEARCH")
+
             px.last_state = Estado.RECENTER
             return Estado.SEARCH
 
@@ -1179,22 +1180,25 @@ def state_near(px, estado, st, distancia_real, test_mode):
     # ============================================================
     if not det.valid_for_search and not det.valid_for_near:
         st.near_lost_frames += 1
-        if st.near_lost_frames > 20: # Un segundo de margen
+        if st.near_lost_frames > 30: # Un segundo de margen
             log_event(px, Estado.NEAR, "Histeresis NEAR completada, Baliza desaparecida → SEARCH")
         
             # RESET de flags para que pueda volver a celebrar en el futuro
             st.near_nodded = False 
             st.near_backed = False
-            st.near_lost_frames = 0
 
             # Apagamos altavoz por seguridad térmica
             os.system("pinctrl set 20 op dl") 
             
             px.last_state = Estado.NEAR
             return Estado.SEARCH
-    else:
-        st.near_lost_frames = 0
-            
+
+        stop(px)
+        px.last_state = Estado.NEAR
+        return Estado.NEAR
+    
+    st.near_lost_frames = 0
+
 
     # ============================================================
     # SALIDA DE NEAR (cooldown terminado)
