@@ -1,104 +1,218 @@
 === Start of pet02.log ===
-[15:26:18] [Estado.CHK] [CHK] ==============================
-[15:26:18] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
-[15:26:18] [Estado.CHK] [CHK] ==============================
-[15:26:18] [Estado.CHK] [CHK] PAN cámara:            0.0°
-[15:26:18] [Estado.CHK] [CHK] TILT cámara:           0.0°
-[15:26:18] [Estado.CHK] [CHK] State wheels:     0
-[15:26:18] [Estado.CHK] [CHK] ==============================
-[15:26:18] [Estado.IDLE] Inicio del sistema
-[15:26:18] [Estado.IDLE] Entrando en IDLE (test_mode=False)
-[15:26:18] [Estado.RESET] Entrando en RESET (test_mode=False)
-[15:26:18] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[15:26:19] [Estado.SEARCH] Baliza detectada (err=304 dist=133.11 area=2560) -> RECENTER
-[15:26:19] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[15:26:19] [Estado.RECENTER] Corrigiendo chasis: err=274.0 ang=9.6
-[15:26:19] [Estado.RECENTER] Corrigiendo chasis: err=216.0 ang=12.0
-[15:26:19] [Estado.RECENTER] Corrigiendo chasis: err=160.0 ang=14.4
-[15:26:19] [Estado.RECENTER] Corrigiendo chasis: err=114.0 ang=16.8
-[15:26:19] [Estado.RECENTER] Corrigiendo chasis: err=68.0 ang=19.2
-[15:26:19] [Estado.RECENTER] Corrigiendo chasis: err=34.0 ang=21.0
-[15:26:20] [Estado.RECENTER] Corrigiendo chasis: err=-20.0 ang=18.6
-[15:26:20] [Estado.RECENTER] Corrigiendo chasis: err=-2.0 ang=18.6
-[15:26:20] [Estado.RECENTER] Corrigiendo chasis: err=-14.0 ang=18.6
-[15:26:20] [Estado.RECENTER] Corrigiendo chasis: err=-24.0 ang=16.2
-[15:26:20] [Estado.RECENTER] Corrigiendo chasis: err=18.0 ang=18.6
-[15:26:20] [Estado.RECENTER] Corrigiendo chasis: err=-14.0 ang=18.6
-[15:26:21] [Estado.RECENTER] Corrigiendo chasis: err=-30.0 ang=16.2
-[15:26:21] [Estado.RECENTER] Corrigiendo chasis: err=-14.0 ang=16.2
-[15:26:21] [Estado.RECENTER] Corrigiendo chasis: err=-18.0 ang=13.8
-[15:26:21] [Estado.RECENTER] Corrigiendo chasis: err=18.0 ang=16.2
-[15:26:21] [Estado.RECENTER] Corrigiendo chasis: err=-30.0 ang=13.8
-[15:26:22] [Estado.RECENTER] Corrigiendo chasis: err=2.0 ang=13.8
-[15:26:22] [Estado.RECENTER] Corrigiendo chasis: err=-14.0 ang=13.8
-[15:26:22] [Estado.RECENTER] Corrigiendo chasis: err=-22.0 ang=11.4
-[15:26:22] [Estado.RECENTER] Corrigiendo chasis: err=4.0 ang=11.4
-[15:26:22] [Estado.RECENTER] Corrigiendo chasis: err=8.0 ang=11.4
-[15:26:23] [Estado.RECENTER] Corrigiendo chasis: err=-6.0 ang=11.4
-[15:26:23] [Estado.RECENTER] Corrigiendo chasis: err=-10.0 ang=11.4
-[15:26:23] [Estado.RECENTER] Corrigiendo chasis: err=-20.0 ang=9.0
-[15:26:23] [Estado.RECENTER] Corrigiendo chasis: err=16.0 ang=11.4
-[15:26:23] [Estado.RECENTER] Corrigiendo chasis: err=-12.0 ang=11.4
-[15:26:23] [Estado.RECENTER] Corrigiendo chasis: err=-20.0 ang=9.0
-[15:26:24] [Estado.RECENTER] Corrigiendo chasis: err=4.0 ang=9.0
-[15:26:24] [Estado.RECENTER] Corrigiendo chasis: err=-4.0 ang=9.0
-[15:26:24] [Estado.RECENTER] Corrigiendo chasis: err=-8.0 ang=9.0
-[15:26:24] [Estado.RECENTER] Corrigiendo chasis: err=-12.0 ang=9.0
-[15:26:24] [Estado.RECENTER] Corrigiendo chasis: err=-14.0 ang=9.0
-[15:26:24] [Estado.RECENTER] Frame estable (1/2)
-[15:26:24] [Estado.RECENTER] Corrigiendo chasis: err=-18.0 ang=6.6
-[15:26:24] [Estado.RECENTER] Corrigiendo chasis: err=26.0 ang=9.0
-[15:26:25] [Estado.RECENTER] Frame estable (1/2)
-[15:26:25] [Estado.RECENTER] Corrigiendo chasis: err=-16.0 ang=6.6
-[15:26:25] [Estado.RECENTER] Corrigiendo chasis: err=18.0 ang=9.0
-[15:26:25] [Estado.RECENTER] Frame estable (1/2)
-[15:26:25] [Estado.RECENTER] Corrigiendo chasis: err=-30.0 ang=6.6
-[15:26:25] [Estado.RECENTER] Frame estable (2/2)
-[15:26:25] [Estado.RECENTER] Alineación suficiente → TRACK
-[15:26:25] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[15:26:26] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.4)
-[15:26:26] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.9)
-[15:26:26] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.1)
-[15:26:26] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.4)
-[15:26:26] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.9)
-[15:26:26] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.6)
-[15:26:28] [Estado.TRACK] 🎯 Objetivo alcanzado → NEAR
-[15:26:28] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[15:26:28] [Estado.NEAR] 🎯 Objetivo alcanzado → NEAR
-[15:26:28] [Estado.NEAR] Gesto de asentimiento
-[15:26:32] [Estado.NEAR] 🎯 Objetivo alcanzado → NEAR
-[15:26:49] [Estado.NEAR] Misión cumplida: En espera estática
-[15:26:49] [Estado.IDLE] Entrando en IDLE (test_mode=False)
-[15:26:49] [Estado.RESET] Entrando en RESET (test_mode=False)
-[15:26:50] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[15:26:50] [Estado.SEARCH] Baliza detectada (err=106 dist=44.87 area=23664) -> RECENTER
-[15:26:50] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[15:26:50] [Estado.RECENTER] 🎯 Objetivo alcanzado → NEAR
-[15:26:51] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[15:26:51] [Estado.NEAR] 🎯 Objetivo alcanzado → NEAR
-[15:26:51] [Estado.NEAR] Gesto de asentimiento
-[15:26:56] [Estado.NEAR] Baliza desaparecida → SEARCH
-[15:26:56] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[15:26:56] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=0 error_x=0.0 Tope DER -> Girando a IZQ
-[15:26:57] [Estado.SEARCH] Lost frames=10/30
-[15:26:58] [Estado.SEARCH] Lost frames=20/30
-[15:26:58] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=0 error_x=0.0 Tope IZQ -> Girando a DER
-[15:26:59] [Estado.SEARCH] Lost frames=30/30
-[15:26:59] [Estado.SEARCH] Búsqueda fallida → TRACK circular
-[15:26:59] [Estado.TRACK] Entrando en TRACK (test_mode=False)
-[15:26:59] [Estado.TRACK] Perdidos en el espacio
-[15:27:00] [Estado.TRACK] Referencia recuperada
-[15:27:00] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[15:27:02] [Estado.RECENTER] Pérdida de detección → SEARCH
-[15:27:02] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
-[15:27:03] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=0 error_x=0.0 Tope DER -> Girando a IZQ
-[15:27:03] [Estado.SEARCH] Lost frames=10/30
-[15:27:04] [Estado.SEARCH] Lost frames=20/30
-[15:27:05] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=0 error_x=0.0 Tope IZQ -> Girando a DER
-[15:27:05] [Estado.SEARCH] Baliza detectada (err=202 dist=38.53 area=4320) -> RECENTER
-[15:27:05] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
-[15:27:06] [Estado.RECENTER] 🎯 Objetivo alcanzado → NEAR
-[15:27:06] [Estado.NEAR] Entrando en NEAR (test_mode=False)
-[15:27:06] [Estado.NEAR] 🎯 Objetivo alcanzado → NEAR
-[15:27:06] [Estado.NEAR] Gesto de asentimiento
-[15:27:10] [Estado.NEAR] 🎯 Objetivo alcanzado → NEAR
+[15:35:47] [Estado.CHK] [CHK] ==============================
+[15:35:47] [Estado.CHK] [CHK]    🧪 ESTADO DEL ROBOT
+[15:35:47] [Estado.CHK] [CHK] ==============================
+[15:35:47] [Estado.CHK] [CHK] PAN cámara:            0.0°
+[15:35:47] [Estado.CHK] [CHK] TILT cámara:           0.0°
+[15:35:47] [Estado.CHK] [CHK] State wheels:     0
+[15:35:47] [Estado.CHK] [CHK] ==============================
+[15:35:47] [Estado.IDLE] Inicio del sistema
+[15:35:47] [Estado.IDLE] Entrando en IDLE (test_mode=False)
+[15:35:47] [Estado.RESET] Entrando en RESET (test_mode=False)
+[15:35:47] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[15:35:47] [Estado.SEARCH] Baliza detectada (err=292 dist=195.57 area=5152) -> RECENTER
+[15:35:47] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[15:35:48] [Estado.RECENTER] Corrigiendo chasis: err=292.0 ang=2.4
+[15:35:48] [Estado.RECENTER] Corrigiendo chasis: err=262.0 ang=4.8
+[15:35:48] [Estado.RECENTER] Corrigiendo chasis: err=216.0 ang=7.2
+[15:35:48] [Estado.RECENTER] Corrigiendo chasis: err=168.0 ang=9.6
+[15:35:48] [Estado.RECENTER] Corrigiendo chasis: err=114.0 ang=12.0
+[15:35:48] [Estado.RECENTER] Corrigiendo chasis: err=66.0 ang=14.4
+[15:35:49] [Estado.RECENTER] Corrigiendo chasis: err=10.0 ang=14.4
+[15:35:49] [Estado.RECENTER] Corrigiendo chasis: err=12.0 ang=14.4
+[15:35:49] [Estado.RECENTER] Corrigiendo chasis: err=8.0 ang=14.4
+[15:35:49] [Estado.RECENTER] Corrigiendo chasis: err=-4.0 ang=14.4
+[15:35:49] [Estado.RECENTER] Corrigiendo chasis: err=-14.0 ang=14.4
+[15:35:49] [Estado.RECENTER] Corrigiendo chasis: err=-20.0 ang=12.0
+[15:35:50] [Estado.RECENTER] Corrigiendo chasis: err=-8.0 ang=12.0
+[15:35:50] [Estado.RECENTER] Corrigiendo chasis: err=-14.0 ang=12.0
+[15:35:50] [Estado.RECENTER] Corrigiendo chasis: err=-26.0 ang=9.6
+[15:35:50] [Estado.RECENTER] Corrigiendo chasis: err=16.0 ang=12.0
+[15:35:50] [Estado.RECENTER] Corrigiendo chasis: err=-16.0 ang=9.6
+[15:35:50] [Estado.RECENTER] Corrigiendo chasis: err=4.0 ang=9.6
+[15:35:51] [Estado.RECENTER] Corrigiendo chasis: err=-4.0 ang=9.6
+[15:35:51] [Estado.RECENTER] Corrigiendo chasis: err=-12.0 ang=9.6
+[15:35:51] [Estado.RECENTER] Corrigiendo chasis: err=-14.0 ang=9.6
+[15:35:51] [Estado.RECENTER] Frame estable (1/2)
+[15:35:51] [Estado.RECENTER] Corrigiendo chasis: err=-20.0 ang=7.2
+[15:35:51] [Estado.RECENTER] Corrigiendo chasis: err=20.0 ang=9.6
+[15:35:51] [Estado.RECENTER] Corrigiendo chasis: err=-12.0 ang=9.6
+[15:35:52] [Estado.RECENTER] Frame estable (1/2)
+[15:35:52] [Estado.RECENTER] Corrigiendo chasis: err=-18.0 ang=7.2
+[15:35:52] [Estado.RECENTER] Frame estable (2/2)
+[15:35:52] [Estado.RECENTER] Alineación suficiente → TRACK
+[15:35:52] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[15:35:53] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.4)
+[15:35:53] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.9)
+[15:35:53] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.6)
+[15:35:53] [Estado.TRACK] Corrigiendo dirección (ángulo=-4.1)
+[15:35:53] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.6)
+[15:35:53] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.8)
+[15:35:53] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.6)
+[15:35:53] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.4)
+[15:35:53] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.6)
+[15:35:54] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.4)
+[15:35:54] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.9)
+[15:35:55] [Estado.TRACK] 🎯 Objetivo alcanzado → NEAR
+[15:35:55] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[15:35:55] [Estado.NEAR] 🎯 Objetivo alcanzado → NEAR
+[15:35:55] [Estado.NEAR] Gesto de asentimiento
+[15:35:58] [Estado.NEAR] 🎯 Objetivo alcanzado → NEAR
+[15:36:17] [Estado.NEAR] Misión cumplida: En espera estática
+[15:36:17] [Estado.IDLE] Entrando en IDLE (test_mode=False)
+[15:36:17] [Estado.RESET] Entrando en RESET (test_mode=False)
+[15:36:17] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[15:36:17] [Estado.SEARCH] Baliza detectada (err=146 dist=40.85 area=46096) -> RECENTER
+[15:36:17] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[15:36:18] [Estado.RECENTER] 🎯 Objetivo alcanzado → NEAR
+[15:36:18] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[15:36:18] [Estado.NEAR] 🎯 Objetivo alcanzado → NEAR
+[15:36:18] [Estado.NEAR] Gesto de asentimiento
+[15:36:22] [Estado.NEAR] 🎯 Objetivo alcanzado → NEAR
+[15:36:40] [Estado.NEAR] Misión cumplida: En espera estática
+[15:36:40] [Estado.IDLE] Entrando en IDLE (test_mode=False)
+[15:36:40] [Estado.RESET] Entrando en RESET (test_mode=False)
+[15:36:40] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[15:36:41] [Estado.SEARCH] Baliza detectada (err=146 dist=40.7 area=46096) -> RECENTER
+[15:36:41] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[15:36:41] [Estado.RECENTER] 🎯 Objetivo alcanzado → NEAR
+[15:36:41] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[15:36:42] [Estado.NEAR] 🎯 Objetivo alcanzado → NEAR
+[15:36:42] [Estado.NEAR] Gesto de asentimiento
+[15:36:45] [Estado.NEAR] 🎯 Objetivo alcanzado → NEAR
+[15:36:49] [Estado.NEAR] Distancia real (50.88)cm Error_x (136)-> RECENTER
+[15:36:49] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[15:36:51] [Estado.RECENTER] Corrigiendo chasis: err=-86.0 ang=4.8
+[15:36:53] [Estado.RECENTER] Pérdida de detección → SEARCH
+[15:36:53] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[15:36:54] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=0 error_x=0.0 Pan tope DER -> Girando a IZQ
+[15:36:54] [Estado.SEARCH] Lost frames=10/30
+[15:36:55] [Estado.SEARCH] Lost frames=20/30
+[15:36:56] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=0 error_x=0.0 Pan tope IZQ -> Girando a DER
+[15:36:56] [Estado.SEARCH] Lost frames=30/30
+[15:36:56] [Estado.SEARCH] Búsqueda fallida → TRACK circular
+[15:36:57] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[15:36:57] [Estado.TRACK] Perdidos en el espacio
+[15:37:11] [Estado.TRACK] Referencia recuperada
+[15:37:11] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[15:37:11] [Estado.RECENTER] Corrigiendo chasis: err=208.0 ang=2.4
+[15:37:11] [Estado.RECENTER] Corrigiendo chasis: err=-44.0 ang=0.0
+[15:37:12] [Estado.RECENTER] Frame estable (1/2)
+[15:37:12] [Estado.RECENTER] Corrigiendo chasis: err=-24.0 ang=-2.4
+[15:37:12] [Estado.RECENTER] Frame estable (2/2)
+[15:37:12] [Estado.RECENTER] Alineación suficiente → TRACK
+[15:37:12] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[15:37:12] [Estado.TRACK] Corrigiendo dirección (ángulo=-2.9)
+[15:37:12] [Estado.TRACK] Corrigiendo dirección (ángulo=-3.6)
+[15:37:12] [Estado.TRACK] Corrigiendo dirección (ángulo=-6.2)
+[15:37:12] [Estado.TRACK] 🚨 En flanco (Error_x=264, Area=1760, Dist=17.58, Edge=1/3)
+[15:37:12] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
+[15:37:13] [Estado.TRACK] 🚨 En flanco (Error_x=298, Area=4400, Dist=14.35, Edge=2/3)
+[15:37:13] [Estado.TRACK] Corrigiendo dirección (ángulo=12)
+[15:37:13] [Estado.TRACK] 🚨 En flanco (Error_x=284, Area=10080, Dist=11.47, Edge=3/3)
+[15:37:13] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[15:37:13] [Estado.RECENTER] Corrigiendo chasis: err=250.0 ang=4.8
+[15:37:14] [Estado.RECENTER] Corrigiendo chasis: err=206.0 ang=7.2
+[15:37:14] [Estado.RECENTER] 🚨 Peligro extremo (9.73cm) → Ejecutando SCAPE
+[15:37:15] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[15:37:16] [Estado.SEARCH] 🛡️ Escudo post-escape desactivado. Reactivando sensores.
+[15:37:16] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=0 error_x=0.0 Pan tope DER -> Girando a IZQ
+[15:37:16] [Estado.SEARCH] Lost frames=10/30
+[15:37:17] [Estado.SEARCH] Baliza detectada (err=-222 dist=109.46 area=67424) -> RECENTER
+[15:37:17] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[15:37:18] [Estado.RECENTER] Corrigiendo chasis: err=-116.0 ang=-12.6
+[15:37:18] [Estado.RECENTER] Corrigiendo chasis: err=-96.0 ang=-15.0
+[15:37:18] [Estado.RECENTER] Corrigiendo chasis: err=52.0 ang=-12.6
+[15:37:19] [Estado.RECENTER] Corrigiendo chasis: err=10.0 ang=-12.6
+[15:37:19] [Estado.RECENTER] Corrigiendo chasis: err=6.0 ang=-12.6
+[15:37:19] [Estado.RECENTER] Corrigiendo chasis: err=4.0 ang=-12.6
+[15:37:19] [Estado.RECENTER] Corrigiendo chasis: err=8.0 ang=-12.6
+[15:37:19] [Estado.RECENTER] Corrigiendo chasis: err=4.0 ang=-12.6
+[15:37:20] [Estado.RECENTER] Corrigiendo chasis: err=12.0 ang=-12.6
+[15:37:20] [Estado.RECENTER] Corrigiendo chasis: err=-20.0 ang=-15.0
+[15:37:20] [Estado.RECENTER] Corrigiendo chasis: err=32.0 ang=-12.6
+[15:37:20] [Estado.RECENTER] Corrigiendo chasis: err=-14.0 ang=-12.6
+[15:37:20] [Estado.RECENTER] Corrigiendo chasis: err=-10.0 ang=-12.6
+[15:37:21] [Estado.RECENTER] Corrigiendo chasis: err=-24.0 ang=-15.0
+[15:37:21] [Estado.RECENTER] Corrigiendo chasis: err=20.0 ang=-12.6
+[15:37:21] [Estado.RECENTER] Corrigiendo chasis: err=-36.0 ang=-15.0
+[15:37:21] [Estado.RECENTER] Corrigiendo chasis: err=2.0 ang=-15.0
+[15:37:21] [Estado.RECENTER] Corrigiendo chasis: err=-12.0 ang=-15.0
+[15:37:21] [Estado.RECENTER] Corrigiendo chasis: err=-18.0 ang=-17.4
+[15:37:21] [Estado.RECENTER] Corrigiendo chasis: err=26.0 ang=-15.0
+[15:37:22] [Estado.RECENTER] Corrigiendo chasis: err=-12.0 ang=-15.0
+[15:37:22] [Estado.RECENTER] Corrigiendo chasis: err=-26.0 ang=-17.4
+[15:37:22] [Estado.RECENTER] Corrigiendo chasis: err=-2.0 ang=-17.4
+[15:37:22] [Estado.RECENTER] Corrigiendo chasis: err=-22.0 ang=-19.8
+[15:37:22] [Estado.RECENTER] Corrigiendo chasis: err=32.0 ang=-17.4
+[15:37:22] [Estado.RECENTER] Corrigiendo chasis: err=-20.0 ang=-19.8
+[15:37:23] [Estado.RECENTER] Corrigiendo chasis: err=38.0 ang=-17.4
+[15:37:25] [Estado.RECENTER] Pérdida de detección → SEARCH
+[15:37:25] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[15:37:26] [Estado.SEARCH] Lost frames=10/30
+[15:37:27] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=0 error_x=0.0 Pan tope DER -> Girando a IZQ
+[15:37:27] [Estado.SEARCH] Lost frames=20/30
+[15:37:28] [Estado.SEARCH] Lost frames=30/30
+[15:37:28] [Estado.SEARCH] Búsqueda fallida → TRACK circular
+[15:37:28] [Estado.TRACK] Entrando en TRACK (test_mode=False)
+[15:37:28] [Estado.TRACK] Perdidos en el espacio
+[15:37:48] [Estado.TRACK] Referencia recuperada
+[15:37:48] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[15:37:48] [Estado.RECENTER] Corrigiendo chasis: err=300.0 ang=2.4
+[15:37:50] [Estado.RECENTER] Pérdida de detección → SEARCH
+[15:37:50] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[15:37:51] [Estado.SEARCH] Baliza detectada (err=0 dist=19.94 area=1408) -> RECENTER
+[15:37:51] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[15:37:51] [Estado.RECENTER] Corrigiendo chasis: err=-50.0 ang=14.4
+[15:37:52] [Estado.RECENTER] Corrigiendo chasis: err=-22.0 ang=12.0
+[15:37:52] [Estado.RECENTER] Corrigiendo chasis: err=10.0 ang=12.0
+[15:37:52] [Estado.RECENTER] Corrigiendo chasis: err=2.0 ang=12.0
+[15:37:54] [Estado.RECENTER] Pérdida de detección → SEARCH
+[15:37:54] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[15:37:55] [Estado.SEARCH] Valid_for_search=False Valid_for_near=False n=0 area=18304 error_x=-92 Pan tope DER -> Girando a IZQ
+[15:37:55] [Estado.SEARCH] Lost frames=10/30
+[15:37:56] [Estado.SEARCH] Baliza detectada (err=94 dist=17.28 area=8976) -> RECENTER
+[15:37:56] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[15:37:56] [Estado.RECENTER] Corrigiendo chasis: err=130.0 ang=-5.4
+[15:37:56] [Estado.RECENTER] Corrigiendo chasis: err=92.0 ang=-3.0
+[15:37:58] [Estado.RECENTER] Corrigiendo chasis: err=302.0 ang=-0.6
+[15:37:58] [Estado.RECENTER] Corrigiendo chasis: err=286.0 ang=1.8
+[15:37:58] [Estado.RECENTER] Corrigiendo chasis: err=252.0 ang=4.2
+[15:37:58] [Estado.RECENTER] Corrigiendo chasis: err=206.0 ang=6.6
+[15:37:58] [Estado.RECENTER] Corrigiendo chasis: err=150.0 ang=9.0
+[15:37:59] [Estado.RECENTER] Corrigiendo chasis: err=120.0 ang=11.4
+[15:37:59] [Estado.RECENTER] Corrigiendo chasis: err=66.0 ang=13.8
+[15:37:59] [Estado.RECENTER] Corrigiendo chasis: err=10.0 ang=13.8
+[15:37:59] [Estado.RECENTER] Corrigiendo chasis: err=-12.0 ang=13.8
+[15:38:00] [Estado.RECENTER] 🎯 Objetivo alcanzado → NEAR
+[15:38:00] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[15:38:00] [Estado.NEAR] Retroceso preventivo
+[15:38:00] [Estado.NEAR] Gesto de asentimiento
+[15:38:20] [Estado.NEAR] Misión cumplida: En espera estática
+[15:38:20] [Estado.IDLE] Entrando en IDLE (test_mode=False)
+[15:38:20] [Estado.RESET] Entrando en RESET (test_mode=False)
+[15:38:20] [Estado.SEARCH] Entrando en SEARCH (test_mode=False)
+[15:38:20] [Estado.SEARCH] Baliza detectada (err=184 dist=13.27 area=130560) -> RECENTER
+[15:38:21] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[15:38:21] [Estado.RECENTER] Corrigiendo chasis: err=268.0 ang=2.4
+[15:38:21] [Estado.RECENTER] Corrigiendo chasis: err=244.0 ang=4.8
+[15:38:21] [Estado.RECENTER] Corrigiendo chasis: err=186.0 ang=7.2
+[15:38:22] [Estado.RECENTER] Corrigiendo chasis: err=142.0 ang=9.6
+[15:38:22] [Estado.RECENTER] Corrigiendo chasis: err=86.0 ang=12.0
+[15:38:22] [Estado.RECENTER] Corrigiendo chasis: err=32.0 ang=14.4
+[15:38:22] [Estado.RECENTER] 🎯 Objetivo alcanzado → NEAR
+[15:38:22] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[15:38:23] [Estado.NEAR] 🎯 Objetivo alcanzado → NEAR
+[15:38:23] [Estado.NEAR] Gesto de asentimiento
+[15:38:26] [Estado.NEAR] 🎯 Objetivo alcanzado → NEAR
+[15:38:30] [Estado.NEAR] Distancia real (999)cm Error_x (-108)-> RECENTER
+[15:38:30] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[15:38:30] [Estado.RECENTER] 🎯 Objetivo alcanzado → NEAR
+[15:38:30] [Estado.NEAR] Entrando en NEAR (test_mode=False)
+[15:38:30] [Estado.NEAR] 🎯 Objetivo alcanzado → NEAR
+[15:38:30] [Estado.NEAR] Gesto de asentimiento
+[15:38:34] [Estado.NEAR] 🎯 Objetivo alcanzado → NEAR
+[15:38:37] [Estado.NEAR] Distancia real (999)cm Error_x (-116)-> RECENTER
+[15:38:37] [Estado.RECENTER] Entrando en RECENTER (test_mode=False)
+[15:38:38] [Estado.RECENTER] 🎯 Objetivo alcanzado → NEAR
+[15:38:38] [Estado.NEAR] Entrando en NEAR (test_mode=False)
