@@ -440,19 +440,6 @@ def wheels_angle_error_x(px, det):
     return servo_angle
 
 
-def rock_robot(px):
-    stop(px)
-    time.sleep(0.05)
-    backward(px)
-    time.sleep(0.1)
-    stop(px)
-    px.changed_speed_slow = True
-    forward(px)
-    time.sleep(0.05)
-    stop(px)
-
-    return True
-
 def circle_robot(px, direction):
     px.set_cam_pan_angle(0)
     px.last_pan = 0
@@ -463,9 +450,9 @@ def circle_robot(px, direction):
         
     px.changed_speed_slow = True
     forward(px)
-    time.sleep(0.2)
+    time.sleep(0.5)
     stop(px)
-    time.sleep(0.4)
+    time.sleep(0.5)
 
     return True
 
@@ -1210,7 +1197,7 @@ def state_near(px, estado, st, distancia_real, test_mode):
             # CONDICIÓN DE ALEJAMIENTO REAL: 
             # Solo volvemos a RECENTER si el objeto está a más de 45cm (Margen de seguridad)
             # O si el error de centrado es EXTREMO (se ha ido del frame)
-            if px.distance_real > 45 or abs(det.error_x) > 80:
+            if px.distance_real > 45 and abs(det.error_x) > 80:
                 log_event(px, Estado.NEAR, f"Distancia real ({px.distance_real})cm Error_x ({det.error_x})-> RECENTER")
                 # RESET para la próxima vez
                 st.near_nodded = False
