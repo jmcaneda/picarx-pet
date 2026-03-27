@@ -275,6 +275,9 @@ class RobotState:
         # Cooldown para evitar reentradas rápidas en NEAR.
         self.near_cooldown = 0
 
+        # Histeresis NEAR
+        self.near_lost_frames = 0
+
         # ============================================================
         # SCAPE — Protocolos de seguridad y evasión
         # ============================================================
@@ -793,6 +796,7 @@ def state_reset(px, estado, st, distancia_real, test_mode):
     st.near_backed = False
     st.near_cooldown = 0
     st.near_nodded = False
+    st.near_lost_frames = 0
 
     st.is_escaping = False
     st.escape_end_time = 0
@@ -852,11 +856,11 @@ def state_search(px, estado, st, distancia_real, test_mode):
     # Barrido de cámara normal (Usando tus nuevas funciones con return 0/1)
     if st.search_cam_dir > 0:
         if pan_right(px) == 0:
-            log_event(px, Estado.SEARCH, f"Valid_for_search={det.valid_for_search} Valid_for_near={det.valid_for_near} n={det.n} area={det.area} error_x={det.error_x} Tope DER -> Girando a IZQ")
+            log_event(px, Estado.SEARCH, f"Valid_for_search={det.valid_for_search} Valid_for_near={det.valid_for_near} n={det.n} area={det.area} error_x={det.error_x} Pan tope DER -> Girando a IZQ")
             st.search_cam_dir = -1
     else:
         if pan_left(px) == 0:
-            log_event(px, Estado.SEARCH, f"Valid_for_search={det.valid_for_search} Valid_for_near={det.valid_for_near} n={det.n} area={det.area} error_x={det.error_x} Tope IZQ -> Girando a DER")
+            log_event(px, Estado.SEARCH, f"Valid_for_search={det.valid_for_search} Valid_for_near={det.valid_for_near} n={det.n} area={det.area} error_x={det.error_x} Pan tope IZQ -> Girando a DER")
             st.search_cam_dir = 1
 
     px.last_state = Estado.SEARCH
@@ -1119,6 +1123,7 @@ def state_near(px, estado, st, distancia_real, test_mode):
         st.near_backed = False
         st.near_nodded = False
         st.near_cooldown = 0
+        st.near_lost_frames = 0
 
         stop(px)
         px.set_dir_servo_angle(0)
@@ -1173,18 +1178,23 @@ def state_near(px, estado, st, distancia_real, test_mode):
     # VERIFICACIÓN DE PRESENCIA (Si desaparece, volvemos a buscar)
     # ============================================================
     if not det.valid_for_search and not det.valid_for_near:
-        log_event(px, Estado.NEAR, "Baliza desaparecida → SEARCH")
+        st.near_lost_frames += 1
+        if st.near_lost_frames > 20: # Un segundo de margen
+            log_event(px, Estado.NEAR, "Histeresis NEAR completada, Baliza desaparecida → SEARCH")
         
-        # RESET de flags para que pueda volver a celebrar en el futuro
-        st.near_nodded = False 
-        st.near_backed = False
-        
-        # Apagamos altavoz por seguridad térmica
-        os.system("pinctrl set 20 op dl") 
-        
-        px.last_state = Estado.NEAR
-        return Estado.SEARCH
+            # RESET de flags para que pueda volver a celebrar en el futuro
+            st.near_nodded = False 
+            st.near_backed = False
+            st.near_lost_frames = 0
 
+            # Apagamos altavoz por seguridad térmica
+            os.system("pinctrl set 20 op dl") 
+            
+            px.last_state = Estado.NEAR
+            return Estado.SEARCH
+    else:
+        st.near_lost_frames = 0
+            
 
     # ============================================================
     # SALIDA DE NEAR (cooldown terminado)
