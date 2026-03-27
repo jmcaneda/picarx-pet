@@ -453,7 +453,7 @@ def rock_robot(px):
 
     return True
 
-def circle_robot(px, direction=1):
+def circle_robot(px, direction):
     px.set_cam_pan_angle(0)
     px.last_pan = 0
     if direction > 0:
@@ -461,11 +461,11 @@ def circle_robot(px, direction=1):
     else:
         turn_left(px)
         
-    px.changed_speed_slow = False
+    px.changed_speed_slow = True
     forward(px)
-    time.sleep(0.8)
-    stop(px)
     time.sleep(0.2)
+    stop(px)
+    time.sleep(0.4)
 
     return True
 
@@ -1013,10 +1013,14 @@ def state_track(px, estado, st, distancia_real, test_mode):
     # PLAN B: si venimos de SEARCH con lost_in_space
     # ============================================================
     if st.lost_in_space:
+        det, raw = get_detection(px)
         if det.valid_for_search:
             st.lost_in_space = False
+            stop(px)
             log_event(px, Estado.TRACK, "Referencia recuperada")
             
+            px.last_state = Estado.TRACK
+            return Estado.RECENTER
         else:
             log_event(px, Estado.TRACK, "Perdidos en el espacio")
             circle_robot(px, direction=1)
