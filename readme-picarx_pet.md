@@ -88,3 +88,4 @@ Presiona Ctrl + C en cualquier momento para salir del modo activo.
 ## 📝 Licencia y Uso
 
 Desarrollado para fines educativos y experimentales en plataformas Raspberry Pi con arquitectura Picar X (Robot Hat V4).
+---
