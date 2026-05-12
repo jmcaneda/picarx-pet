@@ -82,7 +82,7 @@ python3 pet02.py sim
 ### ⏹️ Detener
 Presiona Ctrl + C en cualquier momento para salir del modo activo.
 - El robot se detenga inmediatamente.
-- Todos los servos vuelvan a la posición neutral ($0^\circ$).
+- Todos los servos vuelvan a la posición neutral.
 - La cámara se apague correctamente.
 
 ## 📝 Licencia y Uso
